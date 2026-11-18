@@ -65,6 +65,11 @@ namespace DemonIdol.Combat
                     Clear(ov, lib.originalRise);
                     speed = 1f;
                     break;
+                case "Victory":
+                    if (lib.clipVictory != null)
+                        Bind(ov, lib.originalVictory, lib.clipVictory);
+                    speed = 1f;
+                    break;
                 case "Idle":
                 case "Crouch":
                     RestoreLocomotion(fc);

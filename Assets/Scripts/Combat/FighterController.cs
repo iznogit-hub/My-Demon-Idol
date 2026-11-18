@@ -152,7 +152,7 @@ namespace DemonIdol.Combat
         bool _akioLauncherAirChain;
         bool _akioLeftGround;
         bool _akioStrikeArmed;
-        public bool UsesAkioMovelist => _appliedDefinition != null && _appliedDefinition.akioDepthMovelist;
+        public bool UsesAkioMovelist => _appliedDefinition != null && _appliedDefinition.UsesDepthMovelist;
         public CharacterDefinition AppliedDefinition => _appliedDefinition;
         public AnimatorOverrideController AkioRuntimeOverride { get; private set; }
         private int _blockRecoveryBonusTicks = 0;
@@ -878,6 +878,19 @@ namespace DemonIdol.Combat
                 return true;
             }
 
+            AttackData quarterBack = ms.depthQuarterBack;
+            if (quarterBack != null && CmdParser.CheckQuarterCircleBack(currentTick, FacingDirection, consume: false))
+            {
+                if (CanExecuteResolvedAttack(quarterBack))
+                {
+                    CmdParser.CheckQuarterCircleBack(currentTick, FacingDirection, consume: true);
+                    ConsumeAkioButton(InputButton.DriveSkill, ThreeButtonCommand.Special);
+                    _meleeComboStep = 0;
+                    StartAttack(quarterBack);
+                }
+                return true;
+            }
+
             if (!IsGrounded)
             {
                 AttackData air = ms.airS;
@@ -927,8 +940,11 @@ namespace DemonIdol.Combat
                 && (_hitConfirmed || _isBlockedByDefender))
             {
                 AttackData chain = null;
-                if (CurrentAttack.akioMoveId == "5M" || CurrentAttack.akioMoveId == "rekka1") chain = ms.akioRekka2;
-                else if (CurrentAttack.akioMoveId == "rekka2") chain = ms.akioRekka3;
+                string fromA = CancelQuery.FirstChainId(ms.depthChainA);
+                string fromB = CancelQuery.SecondChainId(ms.depthChainB);
+                string mid = CancelQuery.ThirdChainId(ms.depthChainC);
+                if (CurrentAttack.akioMoveId == fromA || CurrentAttack.akioMoveId == fromB) chain = ms.akioRekka2;
+                else if (CurrentAttack.akioMoveId == mid) chain = ms.akioRekka3;
                 if (chain != null && CanExecuteResolvedAttack(chain))
                 {
                     ConsumeAkioButton(InputButton.Heavy, ThreeButtonCommand.Melee);
@@ -965,6 +981,16 @@ namespace DemonIdol.Combat
         {
             MoveSet ms = moveSet;
             if (ms == null) return false;
+            AttackData charge = ms.depthCharge;
+            if (charge != null && CmdParser.CheckChargeBackForward(currentTick, FacingDirection))
+            {
+                if (CanExecuteResolvedAttack(charge))
+                {
+                    ConsumeAkioButton(InputButton.Light, ThreeButtonCommand.Projectile);
+                    StartAttack(charge);
+                }
+                return true;
+            }
             bool qcf = CmdParser.CheckQuarterCircleForward(currentTick, FacingDirection, consume: false);
             if (qcf)
             {

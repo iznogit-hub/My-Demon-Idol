@@ -93,21 +93,31 @@ namespace DemonIdol.Combat
             Apply(pose);
         }
 
+        static float Pick(float authored, float fallback)
+        {
+            return authored > 0f ? authored : fallback;
+        }
+
         void Apply(int pose)
         {
+            CharacterDefinition def = _fc != null ? _fc.AppliedDefinition : null;
+            float crouchH = Pick(def != null ? def.depthCrouchHeight : 0f, CrouchHeight);
+            float crouchR = Pick(def != null ? def.depthCrouchRadius : 0f, CrouchRadius);
+            float airH = Pick(def != null ? def.depthAirHeight : 0f, AirHeight);
+            float airR = Pick(def != null ? def.depthAirRadius : 0f, AirRadius);
             if (_cc != null)
             {
                 if (pose == 1)
                 {
-                    _cc.height = CrouchHeight;
-                    _cc.radius = CrouchRadius;
-                    _cc.center = new Vector3(_standCenter.x, CrouchHeight * 0.5f, _standCenter.z);
+                    _cc.height = crouchH;
+                    _cc.radius = crouchR;
+                    _cc.center = new Vector3(_standCenter.x, crouchH * 0.5f, _standCenter.z);
                 }
                 else if (pose == 2)
                 {
-                    _cc.height = AirHeight;
-                    _cc.radius = AirRadius;
-                    _cc.center = new Vector3(_standCenter.x, AirHeight * 0.5f, _standCenter.z);
+                    _cc.height = airH;
+                    _cc.radius = airR;
+                    _cc.center = new Vector3(_standCenter.x, airH * 0.5f, _standCenter.z);
                 }
                 else
                 {
@@ -117,9 +127,10 @@ namespace DemonIdol.Combat
                 }
             }
 
-            float leg = pose == 1 ? 0.55f : pose == 2 ? 0.85f : 1f;
-            float torso = pose == 1 ? 0.75f : pose == 2 ? 0.85f : 1f;
-            float head = pose == 1 ? 0.35f : 1f;
+            float airScale = Pick(def != null ? def.depthAirHurtScale : 0f, 0.85f);
+            float leg = pose == 1 ? Pick(def != null ? def.depthCrouchLegScale : 0f, 0.55f) : pose == 2 ? airScale : 1f;
+            float torso = pose == 1 ? Pick(def != null ? def.depthCrouchTorsoScale : 0f, 0.75f) : pose == 2 ? airScale : 1f;
+            float head = pose == 1 ? Pick(def != null ? def.depthCrouchHeadScale : 0f, 0.35f) : 1f;
             for (int i = 0; i < _cols.Count; i++)
             {
                 var snap = _cols[i];

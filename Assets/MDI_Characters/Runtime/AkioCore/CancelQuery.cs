@@ -19,6 +19,21 @@ namespace MDI.Akio
             return false;
         }
 
+        public static string FirstChainId(string authored)
+        {
+            return string.IsNullOrEmpty(authored) ? "5M" : authored;
+        }
+
+        public static string SecondChainId(string authored)
+        {
+            return string.IsNullOrEmpty(authored) ? "rekka1" : authored;
+        }
+
+        public static string ThirdChainId(string authored)
+        {
+            return string.IsNullOrEmpty(authored) ? "rekka2" : authored;
+        }
+
         public static bool Contains(string[] list, string id)
         {
             if (list == null || string.IsNullOrEmpty(id)) return false;
