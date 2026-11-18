@@ -72,6 +72,8 @@ namespace DemonIdol.BlazBlue
             _sim.b.maxHp = b.AppliedDefinition.blazBlueProfile.maxHp;
             _sim.a.hp = _sim.a.maxHp;
             _sim.b.hp = _sim.b.maxHp;
+            _sim.a.stockMax = a.AppliedDefinition.blazBlueProfile.driveResourceMax;
+            _sim.b.stockMax = b.AppliedDefinition.blazBlueProfile.driveResourceMax;
             _sim.a.x = a.transform.position.x;
             _sim.b.x = b.transform.position.x;
             _sim.a.stylish = SettingsPanel.SimpleSpecials;
