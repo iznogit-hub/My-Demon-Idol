@@ -229,14 +229,36 @@ namespace DemonIdol.BlazBlue
             buffer.Add(in push);
 
             // 2. Active attack boxes
-            bool hasAuthoredAttackBoxes = false;
             if (currentAttack != null && currentAttack.boxes != null)
             {
                 int beforeCount = buffer.count;
                 currentAttack.boxes.GetBoxes(attackTick, buffer, posX, posY, facing);
-                if (buffer.count > beforeCount)
+
+                // Spec 6.4: During active ticks, add extended hurtbox over attacking limb (70% size, 0.04m behind leading edge) unless disjoint
+                if (bbState == BBState.AttackActive)
                 {
-                    hasAuthoredAttackBoxes = true;
+                    int boxCount = buffer.count;
+                    for (int i = beforeCount; i < boxCount; i++)
+                    {
+                        ref BBWorldBox hit = ref buffer.boxes[i];
+                        if (hit.kind == BBBoxKind.Hit && (hit.flags & BBBox.FLAG_DISJOINT) == 0)
+                        {
+                            float halfW = hit.HalfWidth * 0.70f;
+                            float halfH = hit.HalfHeight * 0.70f;
+                            float centerX = hit.CenterX - (facing * 0.04f);
+                            float centerY = hit.CenterY;
+                            buffer.Add(new BBWorldBox(
+                                centerX - halfW,
+                                centerY - halfH,
+                                centerX + halfW,
+                                centerY + halfH,
+                                BBBoxKind.Hurt,
+                                hit.hitIndex,
+                                hit.attribute,
+                                0
+                            ));
+                        }
+                    }
                 }
             }
 

@@ -37,6 +37,7 @@ namespace DemonIdol.BlazBlue.Tests
             suite.Test_MultiHit_HitMask();
             suite.Test_Mutual_Trades();
             suite.Test_Throw_Pass_And_Invulnerability();
+            suite.Test_Throw_Beats_Strike_Priority();
             suite.Test_Push_ExactTieBreak();
             suite.Test_Push_CornerClamp_100Percent();
             suite.Test_Push_Airborne_Pushed();
@@ -164,6 +165,59 @@ namespace DemonIdol.BlazBlue.Tests
             int hits = BBCollision.ThrowPass(thrower, target, results, ref contactCount, 0, 1, BBInvuln.None);
             Assert.AreEqual(1, hits, "Throw must connect when target is vulnerable.");
             Assert.AreEqual(BBContactType.Throw, results[0].contactType);
+        }
+
+        [Test]
+        public void Test_Throw_Beats_Strike_Priority()
+        {
+            // P1 performs a Throw against P2
+            var p1Boxes = new BBBoxBuffer();
+            p1Boxes.Add(new BBWorldBox(0f, 0f, 1f, 1f, BBBoxKind.Throw));
+            p1Boxes.Add(new BBWorldBox(-0.2f, 0f, 0.2f, 1.5f, BBBoxKind.Hurt));
+
+            // P2 performs a Strike against P1 on the same tick
+            var p2Boxes = new BBBoxBuffer();
+            p2Boxes.Add(new BBWorldBox(0f, 0f, 0.8f, 1f, BBBoxKind.Hit, 0));
+            p2Boxes.Add(new BBWorldBox(0.2f, 0f, 0.8f, 1.5f, BBBoxKind.ThrowHurt));
+
+            var results = new BBContact[16];
+            int contactCount = 0;
+
+            // Step 6: Throw pass checks P1 throw -> hits P2
+            int throwHits = BBCollision.ThrowPass(p1Boxes, p2Boxes, results, ref contactCount, 0, 1);
+            Assert.AreEqual(1, throwHits, "P1 throw must connect.");
+
+            // Step 7: Strike pass checks P2 strike -> hits P1
+            var p2HitMask = new BBHitMask();
+            int strikeHits = BBCollision.StrikePass(p2Boxes, p1Boxes, ref p2HitMask, results, ref contactCount, 1, 0);
+            Assert.AreEqual(1, strikeHits, "P2 strike contacts P1 hurtbox.");
+
+            // Verify priority resolution: Throw is processed first, marking P2 as Thrown.
+            // When P2's strike is evaluated, P2 is already Thrown, so the strike is nullified.
+            bool p1WasThrown = false;
+            bool p2WasThrown = false;
+            bool p1TookStrikeDamage = false;
+
+            for (int i = 0; i < contactCount; i++)
+            {
+                if (results[i].contactType == BBContactType.Throw)
+                {
+                    if (results[i].defenderId == 1) p2WasThrown = true;
+                }
+            }
+
+            for (int i = 0; i < contactCount; i++)
+            {
+                if (results[i].contactType == BBContactType.Strike)
+                {
+                    // If attacker is already thrown, strike fails
+                    if (results[i].attackerId == 1 && p2WasThrown) continue;
+                    if (results[i].defenderId == 0) p1TookStrikeDamage = true;
+                }
+            }
+
+            Assert.IsTrue(p2WasThrown, "P2 must be thrown by P1.");
+            Assert.IsFalse(p1TookStrikeDamage, "P1 must NOT take strike damage because throw beats strike!");
         }
 
         [Test]

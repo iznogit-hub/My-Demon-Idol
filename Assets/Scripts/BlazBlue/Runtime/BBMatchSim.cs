@@ -256,23 +256,36 @@ namespace DemonIdol.BlazBlue
 
         private void ApplyContacts()
         {
+            // Pass 1: Resolve Throws first (Throw beats strike priority rule)
             for (int i = 0; i < _contactCount; i++)
             {
                 ref BBContact contact = ref _contactResults[i];
+                if (contact.contactType != BBContactType.Throw) continue;
+
                 BBFighterBrain attacker = contact.attackerId == 0 ? p1Brain : p2Brain;
                 BBFighterBrain defender = contact.defenderId == 0 ? p1Brain : p2Brain;
 
-                if (contact.contactType == BBContactType.Throw)
-                {
-                    // Successful throw
-                    defender.bbState = BBState.Thrown;
-                    defender.health = Mathf.Max(0f, defender.health - 800f);
-                    attacker.heat = Mathf.Min(tuning.heatMax, attacker.heat + 5f);
-                    attacker.hitstopRemaining = 10;
-                    defender.hitstopRemaining = 10;
-                    comboHitCount++;
-                    continue;
-                }
+                // Successful throw
+                defender.bbState = BBState.Thrown;
+                defender.health = Mathf.Max(0f, defender.health - 800f);
+                attacker.heat = Mathf.Min(tuning.heatMax, attacker.heat + 5f);
+                attacker.hitstopRemaining = 10;
+                defender.hitstopRemaining = 10;
+                comboHitCount++;
+            }
+
+            // Pass 2: Resolve Strikes (nullified if attacker was thrown)
+            for (int i = 0; i < _contactCount; i++)
+            {
+                ref BBContact contact = ref _contactResults[i];
+                if (contact.contactType != BBContactType.Strike) continue;
+
+                BBFighterBrain attacker = contact.attackerId == 0 ? p1Brain : p2Brain;
+                BBFighterBrain defender = contact.defenderId == 0 ? p1Brain : p2Brain;
+
+                // Priority check: if attacker was grabbed by a throw on this tick, their strike is beaten
+                if (attacker.bbState == BBState.Thrown) continue;
+                if (defender.bbState == BBState.Thrown) continue;
 
                 // Strike contact
                 bool isGuarding = defender.bbState == BBState.Blockstun ||
