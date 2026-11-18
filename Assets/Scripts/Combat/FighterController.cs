@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MDI.Akio;
 using UnityEngine;
 using DemonIdol.Cutscenes;
 using DemonIdol.Audio;
@@ -147,6 +148,13 @@ namespace DemonIdol.Combat
         public int MeleeComboStep => _meleeComboStep;
         private bool _isBlockedByDefender = false;
         public bool IsBlockedByDefender => _isBlockedByDefender;
+        CharacterDefinition _appliedDefinition;
+        bool _akioLauncherAirChain;
+        bool _akioLeftGround;
+        bool _akioStrikeArmed;
+        public bool UsesAkioMovelist => _appliedDefinition != null && _appliedDefinition.akioDepthMovelist;
+        public CharacterDefinition AppliedDefinition => _appliedDefinition;
+        public AnimatorOverrideController AkioRuntimeOverride { get; private set; }
         private int _blockRecoveryBonusTicks = 0;
 
         public void SetBlockRecoveryBonusTicks(int bonusTicks)
@@ -251,6 +259,7 @@ namespace DemonIdol.Combat
         public void TriggerAnimation(string triggerName)
         {
             if (string.IsNullOrEmpty(triggerName)) return;
+            if (UsesAkioMovelist) AkioPresentation.Prepare(this, triggerName);
             if (animator != null && _animatorParams.Contains(triggerName))
             {
                 animator.SetTrigger(triggerName);
@@ -552,6 +561,7 @@ namespace DemonIdol.Combat
                         // Neutral get-up with 14 ticks explicit recovery protection
                         SetState(FighterState.Wakeup, 14);
                         _recoveryProtectionTicks = 14;
+                        if (UsesAkioMovelist) TriggerAnimation("StandUpBack");
                     }
                     break;
 
@@ -595,6 +605,8 @@ namespace DemonIdol.Combat
                     }
                     break;
             }
+
+            if (UsesAkioMovelist) AkioAfterStateTick();
 
             // Landing check for airborne jump attacks: landing overrides with 6 vulnerable recovery ticks
             if (_isGrounded && _velocity.y <= 0 && State != FighterState.Knockdown && State != FighterState.Wakeup)
@@ -696,7 +708,11 @@ namespace DemonIdol.Combat
             }
 
             // 5. Special Attack Button [S] (Signature Skill / Node Teleport, cancelable from Melee combo on hit or block)
-            if (InputBuf.HasCommand(ThreeButtonCommand.Special, currentTick, out var specCmd))
+            if (UsesAkioMovelist && (InputBuf.HasCommand(ThreeButtonCommand.Special, currentTick, out _) || InputBuf.HasCommand(InputButton.DriveSkill, currentTick, out _)))
+            {
+                if (TryAkioSpecial(currentTick)) return;
+            }
+            else if (InputBuf.HasCommand(ThreeButtonCommand.Special, currentTick, out var specCmd))
             {
                 MoveSet ms = moveSet != null ? moveSet : MoveSet.CreateSamplePreset(fighterName);
                 if (IsGrounded && (IsActionable || CanAdvanceMeleeCombo()))
@@ -722,7 +738,11 @@ namespace DemonIdol.Combat
             }
 
             // 6. Melee Attack Button [M] (3-Hit Target Combo: M1 -> M2 -> M3)
-            if (InputBuf.HasCommand(ThreeButtonCommand.Melee, currentTick, out var meleeCmd))
+            if (UsesAkioMovelist && (InputBuf.HasCommand(ThreeButtonCommand.Melee, currentTick, out _) || InputBuf.HasCommand(InputButton.Medium, currentTick, out _)))
+            {
+                if (TryAkioMelee(currentTick)) return;
+            }
+            else if (InputBuf.HasCommand(ThreeButtonCommand.Melee, currentTick, out var meleeCmd))
             {
                 MoveSet ms = moveSet != null ? moveSet : MoveSet.CreateSamplePreset(fighterName);
                 if (IsGrounded)
@@ -767,7 +787,11 @@ namespace DemonIdol.Combat
             }
 
             // 7. Projectile Button [P] (Consumes Projectile Meter, recharges in 1.8s)
-            if (InputBuf.HasCommand(ThreeButtonCommand.Projectile, currentTick, out var projCmd))
+            if (UsesAkioMovelist && (InputBuf.HasCommand(ThreeButtonCommand.Projectile, currentTick, out _) || InputBuf.HasCommand(InputButton.Light, currentTick, out _)))
+            {
+                if (TryAkioProjectile(currentTick)) return;
+            }
+            else if (InputBuf.HasCommand(ThreeButtonCommand.Projectile, currentTick, out var projCmd))
             {
                 if (projectileMeter >= 0.95f && IsGrounded && (IsActionable || CanAdvanceMeleeCombo()))
                 {
@@ -807,10 +831,216 @@ namespace DemonIdol.Combat
         private bool CanExecuteResolvedAttack(AttackData attack)
         {
             if (attack == null) return false;
+            if (UsesAkioMovelist)
+            {
+                if (IsGrounded && IsActionable) return true;
+                if (!IsGrounded && !_hasAttackedInJump && (State == FighterState.Idle || State == FighterState.WalkCreep)) return true;
+                if (!IsGrounded && _akioLauncherAirChain && _hasAttackedInJump && AkioCancelAllowed(attack)) return true;
+                if (AkioCancelAllowed(attack)) return true;
+                return false;
+            }
             if (IsGrounded && IsActionable) return true;
             if (!IsGrounded && !_hasAttackedInJump && (State == FighterState.Idle || State == FighterState.WalkCreep)) return true;
             if (IsInLegalHitCancelWindow(attack.attackType)) return true;
             return false;
+        }
+
+        bool AkioCancelAllowed(AttackData next)
+        {
+            if (!UsesAkioMovelist || next == null || CurrentAttack == null || !CurrentAttack.akioAuthoredCancels) return false;
+            if (!string.IsNullOrEmpty(next.akioMoveId) && next.akioMoveId.StartsWith("j") && !_akioLauncherAirChain) return false;
+            if (State != FighterState.AttackActive && State != FighterState.AttackRecovery) return false;
+            if (!CancelQuery.InWindow(_currentAttackTick, CurrentAttack.cancelWindow.x, CurrentAttack.cancelWindow.y)) return false;
+            return CancelQuery.Allows(CurrentAttack.akioCancelOnHit, CurrentAttack.akioCancelOnBlock, next.akioMoveId, _hitConfirmed, _isBlockedByDefender);
+        }
+
+        void ConsumeAkioButton(InputButton button, ThreeButtonCommand cmd)
+        {
+            InputBuf.Consume(button);
+            InputBuf.Consume(cmd);
+        }
+
+        bool TryAkioSpecial(int currentTick)
+        {
+            MoveSet ms = moveSet;
+            if (ms == null) return false;
+            bool dpMotion = CmdParser.CheckDragonPunch(currentTick, FacingDirection, consume: false);
+            if (dpMotion)
+            {
+                AttackData dp = ms.akioDragonPunch;
+                if (dp != null && CanExecuteResolvedAttack(dp))
+                {
+                    CmdParser.CheckDragonPunch(currentTick, FacingDirection, consume: true);
+                    ConsumeAkioButton(InputButton.DriveSkill, ThreeButtonCommand.Special);
+                    _meleeComboStep = 0;
+                    StartAttack(dp);
+                }
+                return true;
+            }
+
+            if (!IsGrounded)
+            {
+                AttackData air = ms.airS;
+                if (air != null && CanExecuteResolvedAttack(air))
+                {
+                    ConsumeAkioButton(InputButton.DriveSkill, ThreeButtonCommand.Special);
+                    _hasAttackedInJump = true;
+                    StartAttack(air);
+                    return true;
+                }
+                return false;
+            }
+
+            bool down = _moveInput.y < -0.20f;
+            bool forward = _moveInput.x * FacingDirection > 0.20f;
+            AttackData atk = down ? ms.downS : forward ? ms.forwardS : null;
+            if (atk != null && CanExecuteResolvedAttack(atk))
+            {
+                ConsumeAkioButton(InputButton.DriveSkill, ThreeButtonCommand.Special);
+                _meleeComboStep = 0;
+                StartAttack(atk);
+                return true;
+            }
+            return false;
+        }
+
+        bool TryAkioMelee(int currentTick)
+        {
+            MoveSet ms = moveSet;
+            if (ms == null) return false;
+            if (!IsGrounded)
+            {
+                AttackData air = ms.airH;
+                if (air != null && CanExecuteResolvedAttack(air))
+                {
+                    ConsumeAkioButton(InputButton.Heavy, ThreeButtonCommand.Melee);
+                    InputBuf.Consume(InputButton.Medium);
+                    _hasAttackedInJump = true;
+                    StartAttack(air);
+                    return true;
+                }
+                return false;
+            }
+
+            if (CurrentAttack != null
+                && (State == FighterState.AttackActive || State == FighterState.AttackRecovery)
+                && (_hitConfirmed || _isBlockedByDefender))
+            {
+                AttackData chain = null;
+                if (CurrentAttack.akioMoveId == "5M" || CurrentAttack.akioMoveId == "rekka1") chain = ms.akioRekka2;
+                else if (CurrentAttack.akioMoveId == "rekka2") chain = ms.akioRekka3;
+                if (chain != null && CanExecuteResolvedAttack(chain))
+                {
+                    ConsumeAkioButton(InputButton.Heavy, ThreeButtonCommand.Melee);
+                    InputBuf.Consume(InputButton.Medium);
+                    _meleeComboStep++;
+                    StartAttack(chain);
+                    return true;
+                }
+            }
+
+            bool down = _moveInput.y < -0.20f;
+            bool forward = _moveInput.x * FacingDirection > 0.20f;
+            AttackData atk;
+            if (down) atk = ms.crouchingH;
+            else if (forward) atk = ms.forwardH;
+            else
+            {
+                int mashed = InputBuf.CountRecent(InputButton.Heavy, currentTick, 10) + InputBuf.CountRecent(InputButton.Medium, currentTick, 10);
+                bool fromNeutral = IsActionable;
+                atk = fromNeutral && mashed >= 2 && ms.akioRekka1 != null ? ms.akioRekka1 : ms.standingH;
+            }
+            if (atk != null && CanExecuteResolvedAttack(atk))
+            {
+                ConsumeAkioButton(InputButton.Heavy, ThreeButtonCommand.Melee);
+                InputBuf.Consume(InputButton.Medium);
+                _meleeComboStep = 1;
+                StartAttack(atk);
+                return true;
+            }
+            return false;
+        }
+
+        bool TryAkioProjectile(int currentTick)
+        {
+            MoveSet ms = moveSet;
+            if (ms == null) return false;
+            bool qcf = CmdParser.CheckQuarterCircleForward(currentTick, FacingDirection, consume: false);
+            if (qcf)
+            {
+                AttackData fireball = ms.akioFireball;
+                if (fireball != null && CanExecuteResolvedAttack(fireball))
+                {
+                    CmdParser.CheckQuarterCircleForward(currentTick, FacingDirection, consume: true);
+                    ConsumeAkioButton(InputButton.Light, ThreeButtonCommand.Projectile);
+                    if (projectileMeter >= 0.95f)
+                    {
+                        projectileMeter = 0f;
+                        StartAttack(fireball);
+                    }
+                    else if (CombatAudioDirector.Instance != null)
+                    {
+                        CombatAudioDirector.Instance.PlayBlock();
+                    }
+                }
+                return true;
+            }
+
+            AttackData atk;
+            if (!IsGrounded) atk = ms.airL;
+            else if (_moveInput.y < -0.20f) atk = ms.crouchingL;
+            else atk = ms.standingL;
+            if (atk != null && CanExecuteResolvedAttack(atk))
+            {
+                ConsumeAkioButton(InputButton.Light, ThreeButtonCommand.Projectile);
+                if (!IsGrounded) _hasAttackedInJump = true;
+                StartAttack(atk);
+                return true;
+            }
+            return false;
+        }
+
+        void AkioAfterStateTick()
+        {
+            if (CurrentAttack != null && (State == FighterState.AttackStartup || State == FighterState.AttackActive || State == FighterState.AttackRecovery))
+            {
+                if (CurrentAttack.akioStrikeInvuln)
+                {
+                    if (_currentAttackTick >= CurrentAttack.protectionStartTick && _currentAttackTick <= CurrentAttack.protectionEndTick)
+                        InvulnMask |= InvulnerabilityMask.Strike;
+                    else
+                        InvulnMask &= ~InvulnerabilityMask.Strike;
+                }
+                if (activeHitbox != null && CurrentAttack.akioApplyHitbox)
+                    activeHitbox.ApplyAuthored(CurrentAttack, _currentAttackTick, this);
+            }
+
+            if (_isGrounded && _velocity.y <= 0f && _moveInput.y > 0.40f
+                && (State == FighterState.AttackActive || State == FighterState.AttackRecovery)
+                && CurrentAttack != null
+                && CancelQuery.InWindow(_currentAttackTick, CurrentAttack.cancelWindow.x, CurrentAttack.cancelWindow.y)
+                && CancelQuery.Allows(CurrentAttack.akioCancelOnHit, CurrentAttack.akioCancelOnBlock, "jump", _hitConfirmed, false))
+            {
+                if (activeHitbox) activeHitbox.Deactivate();
+                float jumpX = 0f;
+                if (_moveInput.x * FacingDirection > 0.20f) jumpX = FacingDirection * jumpHorizontalSpeed;
+                else if (_moveInput.x * FacingDirection < -0.20f) jumpX = -FacingDirection * jumpHorizontalSpeed;
+                _velocity.x = jumpX;
+                _velocity.y = jumpVerticalLaunch;
+                _hasAttackedInJump = false;
+                _akioLauncherAirChain = true;
+                _akioLeftGround = false;
+                SetState(FighterState.Idle);
+                TriggerAnimation("Jump");
+            }
+
+            if (!_isGrounded) _akioLeftGround = true;
+            else if (_akioLeftGround && _velocity.y <= 0f
+                && State != FighterState.AttackStartup && State != FighterState.AttackActive && State != FighterState.AttackRecovery)
+            {
+                _akioLauncherAirChain = false;
+                _akioLeftGround = false;
+            }
         }
 
         private bool IsInLegalHitCancelWindow(AttackType nextAttackType)
@@ -891,7 +1121,26 @@ namespace DemonIdol.Combat
                 }
             }
 
-            // Forward Dash
+            // Forward Dash. Akio also accepts f,f inside the longer 22-tick window.
+            if (UsesAkioMovelist && CmdParser.CheckLenientDash(currentTick, FacingDirection, true, consume: false))
+            {
+                if (CanDash())
+                {
+                    CmdParser.CheckLenientDash(currentTick, FacingDirection, true, consume: true);
+                    InputBuf.Consume(InputButton.ForwardDash);
+                    ExecuteForwardDash();
+                    return;
+                }
+            }
+            if (UsesAkioMovelist && CmdParser.CheckLenientDash(currentTick, FacingDirection, false, consume: false))
+            {
+                if (CanDash())
+                {
+                    CmdParser.CheckLenientDash(currentTick, FacingDirection, false, consume: true);
+                    ExecuteBackdash();
+                    return;
+                }
+            }
             if (InputBuf.HasCommand(InputButton.ForwardDash, currentTick, out _) || CmdParser.CheckForwardDash(currentTick, FacingDirection))
             {
                 if (CanDash())
@@ -901,6 +1150,8 @@ namespace DemonIdol.Combat
                     return;
                 }
             }
+
+            if (UsesAkioMovelist) return;
 
             // Legacy Light/Medium/Heavy/DriveSkill
             if (InputBuf.HasCommand(InputButton.DriveSkill, currentTick, out _))
@@ -995,6 +1246,16 @@ namespace DemonIdol.Combat
                 InvulnMask |= InvulnerabilityMask.AirborneStrikeOnly;
             }
 
+            if (UsesAkioMovelist && attack.akioStrikeInvuln)
+            {
+                InvulnMask |= InvulnerabilityMask.Strike;
+                _akioStrikeArmed = true;
+            }
+            else if (UsesAkioMovelist)
+            {
+                _akioStrikeArmed = false;
+            }
+
             if (attack.attackType == AttackType.JumpAttack)
             {
                 _velocity.x = FacingDirection * jumpAttackVelocityX;
@@ -1008,7 +1269,12 @@ namespace DemonIdol.Combat
         {
             _isInvincible = false;
             SetState(FighterState.AttackActive, CurrentAttack.activeFrames);
-            if (activeHitbox && CurrentAttack)
+            bool akioProjectile = UsesAkioMovelist && CurrentAttack.akioMoveId == "236P";
+            if (akioProjectile)
+            {
+                ProjectileFactory.SpawnProjectileForCharacter(fighterName, this, transform.position + new Vector3(FacingDirection * 0.7f, 1.05f, 0f), FacingDirection);
+            }
+            else if (activeHitbox && CurrentAttack)
             {
                 activeHitbox.Activate(CurrentAttack);
             }
@@ -1026,7 +1292,7 @@ namespace DemonIdol.Combat
             }
 
             int recTicks = CurrentAttack.recoveryFrames;
-            if (!IsGrounded && CurrentAttack.attackType == AttackType.JumpAttack)
+            if (!IsGrounded && CurrentAttack.attackType == AttackType.JumpAttack && !(UsesAkioMovelist && CurrentAttack.akioKeepRecovery))
             {
                 recTicks = 12; // Air recovery is 12 ticks if still airborne
             }
@@ -1503,7 +1769,10 @@ namespace DemonIdol.Combat
             if (activeHitbox != null) activeHitbox.Deactivate();
             if (Burst != null) Burst.ResetMeter();
             if (Barrier != null) Barrier.DeactivateBarrier();
-            TriggerAnimation("Idle");
+            _akioLauncherAirChain = false;
+            _akioLeftGround = false;
+            if (UsesAkioMovelist) TriggerAnimation("Intro");
+            else TriggerAnimation("Idle");
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
             OnSuperMeterChanged?.Invoke(currentSuperMeter, maxSuperMeter);
         }
@@ -1564,7 +1833,15 @@ namespace DemonIdol.Combat
                 if (_animatorParams.Contains("IsGrounded")) animator.SetBool("IsGrounded", _isGrounded);
                 if (_animatorParams.Contains("IsCrouch")) animator.SetBool("IsCrouch", State == FighterState.Crouch);
                 // Block pose holds for the blockstun the combat code already chose. Frame data is unchanged.
-                if (_animatorParams.Contains("IsBlocking")) animator.SetBool("IsBlocking", State == FighterState.Blockstun);
+                bool blocking = State == FighterState.Blockstun;
+                if (UsesAkioMovelist && _isGrounded && _moveInput.x * FacingDirection < -0.35f
+                    && (State == FighterState.Idle || State == FighterState.WalkCreep || State == FighterState.Crouch || State == FighterState.Blockstun)
+                    && !_isBeingThrown)
+                {
+                    blocking = true;
+                    AkioPresentation.SetGuardClip(this, _moveInput.y < -0.20f);
+                }
+                if (_animatorParams.Contains("IsBlocking")) animator.SetBool("IsBlocking", blocking);
             }
         }
 
@@ -1578,6 +1855,15 @@ namespace DemonIdol.Combat
                 _meleeComboStep = 0;
                 _isBlockedByDefender = false;
                 _blockRecoveryBonusTicks = 0;
+                if (UsesAkioMovelist)
+                {
+                    if (_akioStrikeArmed)
+                    {
+                        InvulnMask &= ~InvulnerabilityMask.Strike;
+                        _akioStrikeArmed = false;
+                    }
+                    AkioPresentation.RestoreLocomotion(this);
+                }
             }
 
             OnStateChanged?.Invoke(newState);
@@ -1586,6 +1872,7 @@ namespace DemonIdol.Combat
         public void ApplyCharacterDefinition(CharacterDefinition charDef)
         {
             if (charDef == null) return;
+            _appliedDefinition = charDef;
             fighterName = charDef.displayName;
 
             float speedFactor = Mathf.Clamp(charDef.speed / 50f, 0.7f, 1.4f);
@@ -1625,6 +1912,25 @@ namespace DemonIdol.Combat
             if (ms.tacticalThrow != null) throwAttackData = ms.tacticalThrow;
             if (ms.airL != null) jumpAttackData = ms.airL;
             else if (ms.overheadAttack != null) jumpAttackData = ms.overheadAttack;
+        }
+
+        public void InstallAkioPresentationIfEnabled()
+        {
+            if (!UsesAkioMovelist || animator == null) return;
+            var current = animator.runtimeAnimatorController;
+            if (current == null) return;
+            if (AkioRuntimeOverride != null && animator.runtimeAnimatorController == AkioRuntimeOverride)
+            {
+                AkioBodyFit.Ensure(this);
+                return;
+            }
+            var copy = new AnimatorOverrideController(current);
+            copy.name = current.name + " (Akio Runtime)";
+            animator.runtimeAnimatorController = copy;
+            AkioRuntimeOverride = copy;
+            CacheAnimatorParams();
+            AkioPresentation.RestoreLocomotion(this);
+            AkioBodyFit.Ensure(this);
         }
 
         #endregion

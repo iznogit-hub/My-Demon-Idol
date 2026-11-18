@@ -139,6 +139,16 @@ def main():
         print("WARN", w)
     for e in errors:
         print("FAIL", e)
+    akio = ROOT / "tools/validate_akio_movelist.py"
+    if akio.exists():
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("validate_akio_movelist", akio)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        akio_code = mod.main()
+        if akio_code != 0:
+            errors.append("Akio movelist validator failed")
+
     if errors:
         print(f"{len(errors)} failure(s)")
         return 1

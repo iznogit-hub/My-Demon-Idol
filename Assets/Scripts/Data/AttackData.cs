@@ -102,6 +102,20 @@ namespace DemonIdol.Combat
         public Vector2Int cancelWindow = new Vector2Int(5, 12);
         public FighterArchetype archetype = FighterArchetype.Rushdown;
 
+        [Header("Akio depth (ignored unless akioAuthoredCancels / akioApplyHitbox)")]
+        public bool akioApplyHitbox = false;
+        public bool akioAuthoredCancels = false;
+        public bool akioStrikeInvuln = false;
+        public bool akioKeepRecovery = false;
+        public bool akioFollowBone = false;
+        public HumanBodyBones akioBone = HumanBodyBones.LastBone;
+        public string akioMoveId = "";
+        public string akioClipSlot = "";
+        public float akioAnimatorSpeed = 0f;
+        public string[] akioCancelOnHit;
+        public string[] akioCancelOnBlock;
+        public AkioHitPhase[] akioHitPhases;
+
         public bool CanGatlingCancelInto(AttackType nextAttack)
         {
             if (gatlingCancels == null) return false;
@@ -110,6 +124,17 @@ namespace DemonIdol.Combat
                 if (gatlingCancels[i] == nextAttack) return true;
             }
             return false;
+        }
+
+        [System.Serializable]
+        public class AkioHitPhase
+        {
+            public int startTick;
+            public int endTick;
+            public Vector3 offset;
+            public Vector3 size;
+            public bool followBone;
+            public HumanBodyBones bone = HumanBodyBones.LastBone;
         }
 
         public bool IsCrushActive(int currentAttackTick)

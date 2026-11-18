@@ -27,7 +27,7 @@ namespace DemonIdol.Combat
         private static readonly Dictionary<string, ProjectilePreset> _presets = new Dictionary<string, ProjectilePreset>(StringComparer.OrdinalIgnoreCase)
         {
             // C01 Akio: Shadow Ink Kunai
-            { "Akio", new ProjectilePreset { name = "Shadow Ink Kunai", speed = 16f, damage = 42f, coreColor = new Color(0.12f, 0.12f, 0.15f), trailColor = new Color(0.2f, 0.2f, 0.25f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit A (Red).prefab" } },
+            { "Akio", new ProjectilePreset { name = "Shadow Ink Kunai", speed = 16f, damage = 60f, coreColor = new Color(0.12f, 0.12f, 0.15f), trailColor = new Color(0.2f, 0.2f, 0.25f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit A (Red).prefab" } },
             // C02 Aika: Resonance Occult Nail
             { "Aika", new ProjectilePreset { name = "Resonance Occult Nail", speed = 14f, damage = 45f, coreColor = new Color(0.85f, 0.2f, 0.6f), trailColor = new Color(0.6f, 0.1f, 0.8f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab" } },
             // C03 Ren: Phantom Flame Shuriken
