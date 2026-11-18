@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: bbea4319dc727c644ba5608609927bd3
+labels:
+- QuantumAsset
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}

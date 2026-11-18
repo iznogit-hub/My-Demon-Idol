@@ -59,7 +59,7 @@ Material:
     - _RampThreshold2: 0.76
     - _RimPower: 3
     - _RimThreshold: 0.25
-    - _SpecIntensity: 0
+    - _SpecIntensity: 1.8
     - _SpecPower: 48
     - _SpecThreshold: 0.5
     - _SrcBlend: 1
