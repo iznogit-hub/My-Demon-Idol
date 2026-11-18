@@ -1,0 +1,244 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0a11ac000000000000000000000001, type: 3}
+  m_Name: BB_Aika_2D
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: Ground Nail
+  attackType: 0
+  startupFrames: 15
+  activeFrames: 1
+  recoveryFrames: 20
+  hitstunTicks: 24
+  blockstunTicks: 16
+  damage: 500
+  initialProration: 0.85
+  comboDamageDecay: 0.9
+  advantageOnHit: 4
+  advantageOnBlock: -4
+  canRapidCancel: 1
+  animationClip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
+  animationTrigger: LightAttack
+  moveId: 2D
+  button: 8
+  kind: 3
+  motion: 0
+  airOk: 0
+  groundOk: 1
+  stance: 1
+  priority: 0
+  guard: 1
+  attribute: 2
+  fatalCounter: 0
+  hardKnockdown: 0
+  untechableTicks: 18
+  airHitX: 1.5
+  airHitY: 5
+  landingRecovery: 4
+  minDamagePct: 0.08
+  chipPct: 0.08
+  heatCost: 0
+  gatlingInto: []
+  specialCancel: 1
+  ddCancel: 1
+  jumpCancelOnHit: 0
+  rapidCancelable: 1
+  followUps: []
+  boxTickCount: 36
+  boxSamples:
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0.7
+      y: 0.7
+      w: 0.5
+      h: 0.22
+      kind: 1
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+  clipName: HumanF@MagicAttackDirect1H01_R
+  clip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 36
+  hitLocalX: 0.7
+  hitLocalY: 0.7
+  hitLocalW: 0.5
+  hitLocalH: 0.22

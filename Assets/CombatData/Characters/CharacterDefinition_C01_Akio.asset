@@ -34,4 +34,4 @@ MonoBehaviour:
   ufeCharacterName: Mike
   akioDepthMovelist: 1
   akioClips: {fileID: 11400000, guid: c0a10e00000000000000000000000003, type: 2}
-  blazBlueProfile: {fileID: 11400000, guid: c0bb01000000000000000000000001, type: 2}
+  blazBlueProfile: {fileID: 11400000, guid: c0bb0100000000000000000000000001, type: 2}

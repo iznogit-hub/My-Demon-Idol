@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Akio_BBProfile
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBCharacterProfile
   characterId: C01
-  moveSet: {fileID: 11400000, guid: c0bb01000000000000000000000002, type: 2}
+  moveSet: {fileID: 11400000, guid: c0bb0100000000000000000000000002, type: 2}
   maxHp: 11000
   dashType: 0
   airActions: 1
@@ -22,7 +22,7 @@ MonoBehaviour:
   jumpV: 8
   jumpH: 3.2
   gravity: 20
-  bbAnimator: {fileID: 22100000, guid: c0bb01000000000000000000000010, type: 2}
+  bbAnimator: {fileID: 22100000, guid: c0bb0100000000000000000000000010, type: 2}
   driveName: Iron Rush
   driveResource: 1
   driveResourceMax: 3

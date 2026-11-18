@@ -25,6 +25,7 @@ namespace DemonIdol.BlazBlue
         public int aRepeats;
         public int hitstop;
         public int stocks;
+        public int stockMax;
         public int guardCrush;
         public int odTicks;
         public int rcSlow;
@@ -85,6 +86,7 @@ namespace DemonIdol.BlazBlue
             f.p2Product = 1f;
             f.grounded = true;
             f.phase = Neutral;
+            f.stockMax = 3;
             return f;
         }
 
@@ -302,7 +304,8 @@ namespace DemonIdol.BlazBlue
             if (atk.heatMilli > tuning.heatMax * 1000) atk.heatMilli = tuning.heatMax * 1000;
             def.heatMilli += (int)(dmg * tuning.heatPerDamageTaken * 1000f);
             if (counter && m.fatalCounter) atk.fatalCombo = true;
-            if (m.kind == BBMoveKind.DriveMove && atk.stocks < 3) atk.stocks++;
+            int cap = atk.stockMax > 0 ? atk.stockMax : 3;
+            if (m.kind == BBMoveKind.DriveMove && atk.stocks < cap) atk.stocks++;
             atk.comboTime += def.stunLeft;
         }
 

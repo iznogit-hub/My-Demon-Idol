@@ -35,6 +35,9 @@ ALLOWED_EDIT = {
     "tools/validate_akio_movelist.py",
     "Docs/MDI_BLAZBLUE_IMPLEMENTATION_SPEC.md",
     "Assets/CombatData/Characters/CharacterDefinition_C01_Akio.asset",
+    "Assets/CombatData/Characters/CharacterDefinition_C02_Aika.asset",
+    "Assets/CombatData/Characters/CharacterDefinition_C04_UnityChan.asset",
+    "Assets/CombatData/Characters/CharacterDefinition_C09_PicoChan.asset",
 }
 
 ALLOWED_NEW = (
@@ -48,67 +51,80 @@ ALLOWED_NEW = (
 )
 
 
-def check_akio():
-    errors = []
-    definition = (ROOT / "Assets/CombatData/Characters/CharacterDefinition_C01_Akio.asset").read_text()
-    if "akioDepthMovelist: 1" not in definition:
-        errors.append("Akio Classic flag missing")
-    if "guid: c0a10e00000000000000000000000001" not in definition:
-        errors.append("Akio Classic override missing")
-    if "guid: c0bb01000000000000000000000001" not in definition:
-        errors.append("Akio BlazBlue profile is not linked")
-    profile = (ROOT / "Assets/CombatData/BlazBlue/Akio/Akio_BBProfile.asset").read_text()
-    if "driveName: Iron Rush" not in profile or "driveResourceMax: 3" not in profile:
-        errors.append("Iron Rush profile is wrong")
-    override = (ROOT / "Assets/MDI_Characters/Runtime/BlazBlue/Akio_BB_Override.overrideController").read_text()
-    if "guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4" not in override:
-        errors.append("Akio BB override is not on the shared controller")
-    doc = (ROOT / "Assets/MDI_Characters/Runtime/BlazBlue/AKIO_BB_MOVELIST.md").read_text().splitlines()
-    rows = []
-    for line in doc:
-        if not line.startswith("| ") or line.startswith("| Move") or line.startswith("| ---"):
-            continue
-        cells = [c.strip() for c in line.strip("|").split("|")]
-        if len(cells) < 4:
-            continue
-        rows.append(cells)
+GIRLS = [
+    ("Akio", "CharacterDefinition_C01_Akio.asset", "akioDepthMovelist: 1", "c0a10e00000000000000000000000001", "c0bb0100000000000000000000000001", "Iron Rush", "AKIO_BB_MOVELIST.md", "Akio_BB_Override", "5C"),
+    ("Aika", "CharacterDefinition_C02_Aika.asset", "depthMovelist: 1", "c0a11a00000000000000000000000001", "c0bb0200000000000000000000000001", "Resonance Nail", "AIKA_BB_MOVELIST.md", "Aika_BB_Override", "5C"),
+    ("UnityChan", "CharacterDefinition_C04_UnityChan.asset", "depthMovelist: 1", "c0a12c00000000000000000000000001", "c0bb0300000000000000000000000001", "Aero Hop", "UNITYCHAN_BB_MOVELIST.md", "UnityChan_BB_Override", "5C"),
+    ("PicoChan", "CharacterDefinition_C09_PicoChan.asset", "depthMovelist: 1", "c0a13c00000000000000000000000001", "c0bb0400000000000000000000000001", "Clinch", "PICOCHAN_BB_MOVELIST.md", "PicoChan_BB_Override", "5C"),
+]
+
+
+def load_clips():
     clips = {}
-    mocap = ROOT / "Assets/Huge Mocap Library"
-    for meta in mocap.rglob("*.fbx.meta"):
-        body = meta.read_text(errors="ignore")
-        for chunk in body.split("      name: ")[1:]:
-            name = chunk.split("\n", 1)[0].strip()
-            if "firstFrame:" not in chunk:
-                continue
-            first = chunk.split("firstFrame: ", 1)[1].split("\n", 1)[0].strip()
-            last = chunk.split("lastFrame: ", 1)[1].split("\n", 1)[0].strip()
-            clips[name] = (first, last)
-    for cells in rows:
-        move = cells[0]
-        asset = ROOT / "Assets/CombatData/BlazBlue/Akio" / f"BB_Akio_{move}.asset"
-        if not asset.exists():
-            errors.append("missing asset for " + move)
+    roots = [ROOT / "Assets/Huge Mocap Library", ROOT / "Assets/Kevin Iglesias"]
+    for base in roots:
+        if not base.exists():
             continue
-        body = asset.read_text()
-        if f"moveId: {move}" not in body:
-            errors.append(move + " id mismatch")
-        clip = cells[2].split()[0]
-        if f"clipName: {clip}" not in body:
-            errors.append(move + " clip " + clip)
-        if clip not in clips:
-            errors.append("clip missing " + clip)
-        elif len(cells[2].split()) >= 4:
-            frames = cells[2].split()[-1]
-            first, last = frames.split("-")
-            if clips[clip] != (first, last):
-                errors.append(f"{clip} frames {clips[clip]} != {first}-{last}")
-        startup, active, recovery = [int(x) for x in cells[3].split("/")]
-        if f"boxTickCount: {startup + active + recovery}" not in body:
-            errors.append(move + " box track length")
-        if "fatalCounter: 1" not in body and move == "5C":
-            errors.append("5C is not a Fatal Counter")
-    if "name: Akio_5P" not in (ROOT / "Assets/Huge Mocap Library/mocap animations/144/144_20.fbx.meta").read_text():
-        errors.append("Akio_5P clip entry missing")
+        for meta in base.rglob("*.fbx.meta"):
+            body = meta.read_text(errors="ignore")
+            for chunk in body.split("      name: ")[1:]:
+                name = chunk.split("\n", 1)[0].strip()
+                if "firstFrame:" not in chunk:
+                    continue
+                first = chunk.split("firstFrame: ", 1)[1].split("\n", 1)[0].strip()
+                last = chunk.split("lastFrame: ", 1)[1].split("\n", 1)[0].strip()
+                clips[name] = (first, last)
+    return clips
+
+
+def check_girls():
+    errors = []
+    clips = load_clips()
+    for folder, definition_name, classic_flag, classic_guid, profile_guid, drive, doc_name, override_name, fatal in GIRLS:
+        doc_path = ROOT / "Assets/MDI_Characters/Runtime/BlazBlue" / doc_name
+        if not doc_path.exists():
+            continue
+        definition = (ROOT / "Assets/CombatData/Characters" / definition_name).read_text()
+        if classic_flag not in definition:
+            errors.append(folder + " Classic flag missing")
+        if "guid: " + classic_guid not in definition:
+            errors.append(folder + " Classic override missing")
+        if "guid: " + profile_guid not in definition:
+            errors.append(folder + " BlazBlue profile is not linked")
+        profile = (ROOT / "Assets/CombatData/BlazBlue" / folder / f"{folder}_BBProfile.asset").read_text()
+        if f"driveName: {drive}" not in profile:
+            errors.append(folder + " drive name mismatch")
+        override = (ROOT / "Assets/MDI_Characters/Runtime/BlazBlue" / f"{override_name}.overrideController").read_text()
+        if "guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4" not in override:
+            errors.append(folder + " BB override is not on the shared controller")
+        for line in doc_path.read_text().splitlines():
+            if not line.startswith("| ") or line.startswith("| Move") or line.startswith("| ---"):
+                continue
+            cells = [c.strip() for c in line.strip("|").split("|")]
+            if len(cells) < 4:
+                continue
+            move = cells[0]
+            asset = ROOT / "Assets/CombatData/BlazBlue" / folder / f"BB_{folder}_{move}.asset"
+            if not asset.exists():
+                errors.append("missing asset for " + folder + " " + move)
+                continue
+            body = asset.read_text()
+            if f"moveId: {move}" not in body:
+                errors.append(move + " id mismatch")
+            clip = cells[2].split()[0]
+            if f"clipName: {clip}" not in body:
+                errors.append(move + " clip " + clip)
+            if clip not in clips:
+                errors.append("clip missing " + clip)
+            elif len(cells[2].split()) >= 4 and "-" in cells[2].split()[-1]:
+                first, last = cells[2].split()[-1].split("-")
+                if clips[clip] != (first, last):
+                    errors.append(f"{clip} frames {clips[clip]} != {first}-{last}")
+            startup, active, recovery = [int(x) for x in cells[3].split("/")]
+            if f"boxTickCount: {startup + active + recovery}" not in body:
+                errors.append(move + " box track length")
+            if move == fatal and "fatalCounter: 1" not in body:
+                errors.append(folder + " " + fatal + " is not a Fatal Counter")
     return errors
 
 
@@ -158,7 +174,7 @@ def main() -> int:
         errors.append("Classic is not the default scheme")
     if "StellarWitch" not in (ROOT / "Docs/MDI_BLAZBLUE_IMPLEMENTATION_SPEC.md").read_text():
         errors.append("slot 9 decision missing from the spec")
-    errors.extend(check_akio())
+    errors.extend(check_girls())
 
     if errors:
         print("FAIL")

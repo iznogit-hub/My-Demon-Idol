@@ -1,0 +1,229 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0a11ac000000000000000000000001, type: 3}
+  m_Name: BB_Aika_214B
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: Reap
+  attackType: 0
+  startupFrames: 10
+  activeFrames: 5
+  recoveryFrames: 18
+  hitstunTicks: 22
+  blockstunTicks: 14
+  damage: 860
+  initialProration: 0.9
+  comboDamageDecay: 0.9
+  advantageOnHit: 0
+  advantageOnBlock: -8
+  canRapidCancel: 1
+  animationClip: {fileID: 8201432400002, guid: 46feb3206186ef34dafd90fe51026b22, type: 3}
+  animationTrigger: LightAttack
+  moveId: 214B
+  button: 2
+  kind: 2
+  motion: 2
+  airOk: 0
+  groundOk: 1
+  stance: 0
+  priority: 18
+  guard: 1
+  attribute: 2
+  fatalCounter: 0
+  hardKnockdown: 0
+  untechableTicks: 18
+  airHitX: 1.5
+  airHitY: 5
+  landingRecovery: 4
+  minDamagePct: 0.12
+  chipPct: 0.1
+  heatCost: 0
+  gatlingInto: []
+  specialCancel: 1
+  ddCancel: 1
+  jumpCancelOnHit: 0
+  rapidCancelable: 1
+  followUps: []
+  boxTickCount: 33
+  boxSamples:
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0.7
+      y: 0.7
+      w: 0.5
+      h: 0.22
+      kind: 1
+    - x: 0.7
+      y: 0.7
+      w: 0.5
+      h: 0.22
+      kind: 1
+    - x: 0.7
+      y: 0.7
+      w: 0.5
+      h: 0.22
+      kind: 1
+    - x: 0.7
+      y: 0.7
+      w: 0.5
+      h: 0.22
+      kind: 1
+    - x: 0.7
+      y: 0.7
+      w: 0.5
+      h: 0.22
+      kind: 1
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+  clipName: Aika_214S
+  clip: {fileID: 8201432400002, guid: 46feb3206186ef34dafd90fe51026b22, type: 3}
+  clipFirstFrame: 34
+  clipLastFrame: 54
+  hitLocalX: 0.7
+  hitLocalY: 0.7
+  hitLocalW: 0.5
+  hitLocalH: 0.22
