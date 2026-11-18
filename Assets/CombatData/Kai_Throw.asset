@@ -55,7 +55,7 @@ MonoBehaviour:
   canRapidCancel: 0
   gatlingCancels: 
   animationClip: {fileID: 0}
-  animationTrigger: Knockdown
+  animationTrigger: Throw
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
   cancelWindow: {x: 5, y: 12}

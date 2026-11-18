@@ -1438,6 +1438,8 @@ namespace DemonIdol.Combat
                 _throwAttacker = null;
                 if (activeHitbox != null) activeHitbox.Deactivate();
                 TriggerAnimation("Defeat");
+                if (opponent != null)
+                    opponent.TriggerAnimation("Victory");
 
                 // Death Dissolve Sequence
                 DemonIdol.VFX.DeathDissolveController.TriggerDissolve(this);
@@ -1561,6 +1563,8 @@ namespace DemonIdol.Combat
                 if (_animatorParams.Contains("Speed")) animator.SetFloat("Speed", Mathf.Abs(_velocity.x));
                 if (_animatorParams.Contains("IsGrounded")) animator.SetBool("IsGrounded", _isGrounded);
                 if (_animatorParams.Contains("IsCrouch")) animator.SetBool("IsCrouch", State == FighterState.Crouch);
+                // Block pose holds for the blockstun the combat code already chose. Frame data is unchanged.
+                if (_animatorParams.Contains("IsBlocking")) animator.SetBool("IsBlocking", State == FighterState.Blockstun);
             }
         }
 
