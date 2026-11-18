@@ -16,7 +16,6 @@ ALLOWED_MODIFIED = {
     "Assets/Scripts/Combat/HomegrownCombatDirector.cs",
     "Assets/Scripts/Combat/ProjectileFactory.cs",
     "Assets/Scripts/Data/AttackData.cs",
-    "Assets/Scripts/Data/CharacterDefinition.cs",
     "Assets/Scripts/Data/MoveSet.cs",
     "Assets/Scripts/Input/CommandParser.cs",
     "Assets/Scripts/Input/InputBuffer.cs",
@@ -25,6 +24,8 @@ ALLOWED_MODIFIED = {
     "Assets/Scripts/Data/AkioClipLibrary.cs",
     "Assets/CombatData/Characters/CharacterDefinition_C01_Akio.asset",
     "Assets/CombatData/Characters/CharacterDefinition_C02_Aika.asset",
+    "Assets/CombatData/Characters/CharacterDefinition_C04_UnityChan.asset",
+    "Assets/Scripts/Data/CharacterDefinition.cs",
     "tools/validate_ki_melee.py",
     "tools/validate_akio_movelist.py",
     "Assets/Huge Mocap Library/mocap animations/144/144_20.fbx.meta",
@@ -52,6 +53,16 @@ ALLOWED_MODIFIED = {
     "Assets/Huge Mocap Library/mocap animations/111/111_19.fbx.meta",
     "Assets/Huge Mocap Library/mocap animations/144/144_08.fbx.meta",
     "Assets/Huge Mocap Library/mocap animations/114/114_02.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/02/02_05.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/14/14_02.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/16/16_01.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/16/16_05.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/16/16_15.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/16/16_35.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/91/91_39.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/118/118_01.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/118/118_05.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/140/140_01.fbx.meta",
 }
 
 ALLOWED_ADDED_PREFIXES = (
@@ -64,6 +75,10 @@ ALLOWED_ADDED_PREFIXES = (
     "Assets/MDI_Characters/Runtime/AIKA_MOVELIST.md",
     "Assets/CombatData/Aika/",
     "Assets/MDI_Characters/Runtime/Aika/",
+    "Assets/MDI_Characters/Runtime/UnityChan/",
+    "Assets/MDI_Characters/Runtime/UNITYCHAN_MOVELIST.md",
+    "Assets/MDI_Characters/Runtime/UnityChan_KI_Melee_Override.overrideController",
+    "Assets/CombatData/UnityChan/",
     "Assets/Scripts/Combat/AkioPresentation.cs",
     "Assets/Scripts/Combat/AkioBodyFit.cs",
     "Assets/Scripts/Data/AkioClipLibrary.cs",
@@ -163,6 +178,15 @@ def main() -> int:
                 errors.append("Aika is not on her own override")
             if "guid: c0a10e00000000000000000000000002" in body:
                 errors.append("Aika is pointing at Akio's moveset")
+        elif path.name == "CharacterDefinition_C04_UnityChan.asset":
+            if flagged:
+                errors.append("UnityChan must not use Akio's opt-in flag")
+            if not depth:
+                errors.append("UnityChan is not opted into the depth movelist")
+            if "guid: c0a12c00000000000000000000000001" not in body:
+                errors.append("UnityChan is not on her own override")
+            if "guid: c0a10e00000000000000000000000002" in body or "guid: c0a11a00000000000000000000000002" in body:
+                errors.append("UnityChan is pointing at another fighter's moveset")
         elif flagged or depth:
             errors.append(path.name + " opted into a depth movelist")
 
@@ -304,6 +328,51 @@ def main() -> int:
     aika_override = (ROOT / "Assets/MDI_Characters/Runtime/Aika_KI_Melee_Override.overrideController").read_text()
     if "guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4" not in aika_override:
         errors.append("Aika override is not parented to the shared controller")
+
+    uchan_windows = {
+        "UChan_5P": (92, 108), "UChan_2P": (212, 230), "UChan_5M": (144, 162), "UChan_jP": (124, 140),
+        "UChan_Rekka1": (55, 71), "UChan_Rekka2": (126, 144), "UChan_Rekka3": (148, 168),
+        "UChan_Throw": (72, 94), "UChan_StandBlock": (8, 28), "UChan_2S": (16, 40),
+        "UChan_Jump": (14, 42), "UChan_Victory": (48, 64), "UChan_6M": (20, 40), "UChan_623S": (30, 50),
+        "UChan_Walk": (35, 63), "UChan_Intro": (8, 40), "UChan_Dash": (8, 32), "UChan_2M": (630, 648),
+        "UChan_Super": (811, 845), "UChan_jM": (88, 106), "UChan_jS": (64, 82), "UChan_Crouch": (27, 43),
+        "UChan_Charge": (47, 70), "UChan_CrouchBlock": (27, 43), "UChan_6S": (24, 44), "UChan_214S": (50, 70),
+        "UChan_Fall": (8, 40), "UChan_Getup": (70, 130),
+    }
+    seen_uchan = set()
+    for meta in (ROOT / "Assets/Huge Mocap Library").rglob("*.fbx.meta"):
+        body = meta.read_text(errors="ignore")
+        if "UChan_" not in body:
+            continue
+        if "Akio_" in body or "Aika_" in body:
+            errors.append(meta.name + " mixes UnityChan clips with Akio or Aika")
+        for name, (first, last) in uchan_windows.items():
+            m = re.search(
+                rf"name: {name}\n      takeName: .+\n      internalID: (\d+)\n      firstFrame: (\d+)\n      lastFrame: (\d+)",
+                body,
+            )
+            if not m:
+                continue
+            seen_uchan.add(name)
+            if int(m.group(2)) != first or int(m.group(3)) != last:
+                errors.append(f"{name} range {m.group(2)}-{m.group(3)} != {first}-{last}")
+            if name in ("UChan_Getup", "UChan_Fall") and "keepOriginalPositionY: 0" not in body:
+                errors.append(name + " still keeps the sunk root height")
+    if seen_uchan != set(uchan_windows):
+        errors.append("missing UnityChan windows " + ", ".join(sorted(set(uchan_windows) - seen_uchan)))
+    factory = (ROOT / "Assets/Scripts/Combat/ProjectileFactory.cs").read_text()
+    if 'name = "Aero Plasma Disc", speed = 15f, damage = 44f' not in factory:
+        errors.append("UnityChan flag-off projectile numbers changed")
+    if 'name = "Shadow Ink Kunai", speed = 16f, damage = 60f' not in factory:
+        errors.append("Akio projectile numbers changed")
+    if 'name = "Resonance Occult Nail", speed = 13f, damage = 55f' not in factory:
+        errors.append("Aika projectile numbers changed")
+    uchan_ms = (ROOT / "Assets/CombatData/UnityChan/UnityChanMoveSet.asset").read_text()
+    if "depthQuarterBack:" not in uchan_ms or "depthCharge:" not in uchan_ms:
+        errors.append("UnityChan moveset does not bind 214 and charge")
+    uchan_override = (ROOT / "Assets/MDI_Characters/Runtime/UnityChan_KI_Melee_Override.overrideController").read_text()
+    if "guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4" not in uchan_override:
+        errors.append("UnityChan override is not parented to the shared controller")
 
     other = (ROOT / "Assets/CombatData/Characters/CharacterDefinition_C02_Aika.asset").read_text()
     if "akioDepthMovelist: 1" in other or "c0a10e00000000000000000000000002" in other:

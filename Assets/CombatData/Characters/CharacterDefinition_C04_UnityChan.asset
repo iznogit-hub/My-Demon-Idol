@@ -15,11 +15,11 @@ MonoBehaviour:
   id: C04
   displayName: UnityChan
   title: The Crimson Shadow
-  archetype: Rushdown / Mixup
+  archetype: Aerial Hopper
   signatureStageId: ST01
-  description: Swift ninja operative mastering lethal frame-traps, Gatling cancels, and Void Rift domain expansions.
+  description: Light aerial hopper. She is shorter than Akio and Aika, with a short forearm, so she leaves the ground instead of out-ranging them.
   modelPrefab: {fileID: 100096, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
-  animatorController: {fileID: 9100000, guid: 8d5a0e0d58f4e4176a844a1a03976c19, type: 2}
+  animatorController: {fileID: 22100000, guid: c0a12c00000000000000000000000001, type: 2}
   avatar: {fileID: 9000000, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
   portraitSprite: {fileID: 21300000, guid: b352671e47e0844ab934674412a8d452, type: 3}
   bannerSprite: {fileID: 0}
@@ -29,6 +29,16 @@ MonoBehaviour:
   defense: 70
   domainName: Void Rift
   domainDescription: Freezes spacetime for 20 combat ticks, shattering enemy barrier integrity with an unavoidable fatal strike.
-  moveSet: {fileID: 0}
+  moveSet: {fileID: 11400000, guid: c0a12c00000000000000000000000002, type: 2}
   videoBindings: {fileID: 0}
   ufeCharacterName: Mike
+  depthMovelist: 1
+  akioClips: {fileID: 11400000, guid: c0a12c00000000000000000000000003, type: 2}
+  depthCrouchHeight: 0.46
+  depthCrouchRadius: 0.18
+  depthAirHeight: 1.02
+  depthAirRadius: 0.16
+  depthCrouchLegScale: 0.5
+  depthCrouchTorsoScale: 0.7
+  depthCrouchHeadScale: 0.4
+  depthAirHurtScale: 0.9
