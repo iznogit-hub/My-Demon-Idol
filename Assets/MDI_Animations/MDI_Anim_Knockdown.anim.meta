@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: c55da0d4f53aaf7d0aad002813a126c4
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MDI_Anim_Knockdown
+  serializedVersion: 7

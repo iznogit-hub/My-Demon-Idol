@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: cb7292e135fd0bd1cc978efa4ba59889
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MDI_Anim_Lose
+  serializedVersion: 7

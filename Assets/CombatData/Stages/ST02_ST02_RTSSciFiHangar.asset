@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604fda12dcdde40c4b553a6be13cefc2, type: 3}
+  m_Name: ST02_ST02_RTSSciFiHangar
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.StageDefinition
+  id: ST02
+  displayName: RTS Sci-Fi Game Assets v1
+  description: High-tech industrial gantry platform, modular cyber conduits, cargo units, and neon cyan status lines.
+  sceneName: Home
+  stagePrefab: {fileID: 4632755094403257523, guid: 10dd4c4ef4a6f4398a519ac14d597c58, type: 3}
+  thumbnailSprite: {fileID: 0}
+  backgroundSprite: {fileID: 0}
+  backgroundResourcePath: Prefabs/Stages/ST02_RTSSciFiHangar
+  ufeStageName: Training Room (Prefab)
+  signatureArenaAuthored: 1
+  playableWidth: 23
+  wallThreshold: 10.2
+  groundSurfaceY: 0
+  cameraMinZ: -6.5
+  cameraMaxZ: -13.5
+  cameraMinY: 1
+  cameraMaxY: 6.5
+  bgmAudioClip: {fileID: 0}
+  bgmTrackName: Cyber Hangar BGM
+  p1SpawnPosition: {x: -2.5, y: 0, z: 0}
+  p2SpawnPosition: {x: 2.5, y: 0, z: 0}

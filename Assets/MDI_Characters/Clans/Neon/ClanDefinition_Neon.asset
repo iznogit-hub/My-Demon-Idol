@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a9b7e40a1b2c3d4e5f600000000002, type: 3}
+  m_Name: ClanDefinition_Neon
+  m_EditorClassIdentifier: 
+  clanId: CLAN_NEON
+  clanName: Neon Clan
+  stageName: Neon Shrine
+  primaryColor: {r: 0, g: 0.7, b: 0.9, a: 1}
+  secondaryColor: {r: 0.1, g: 0.1, b: 0.2, a: 1}
+  neonColor: {r: 0, g: 0.83137256, b: 1, a: 1}
+  fighters:
+  - {fileID: 11400000, guid: 262bab6110df4829f53d8236d1c97710, type: 2}
+  - {fileID: 11400000, guid: bf5c7ec3795799d009cf7d69ae458184, type: 2}
+  - {fileID: 11400000, guid: 2e12ea055474f84094a477fb8d07dcb0, type: 2}

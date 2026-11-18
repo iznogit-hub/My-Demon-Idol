@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e40a1b2c3d4e5f6000000000001, type: 3}
+  m_Name: FighterDefinition_DEM_NOX
+  m_EditorClassIdentifier: 
+  id: DEM_NOX
+  displayName: Nox the Hollow Crown
+  clan: Demon
+  gender: 1
+  basePrefab: {fileID: 100124, guid: 040819d724fd8409ba290e50d3d17354, type: 3}
+  hairPrefab: {fileID: 919132149155446097, guid: 73b78b9a63541194bbb3519aa5ff8181, type: 3}
+  accessories:
+  - accessoryName: Floating Fractured Horn Crown
+    accessoryPrefab: {fileID: 0}
+    targetBone: 0
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  assembledPrefab: {fileID: 100001, guid: 7233519ca170f74368cf095c5545cc93, type: 3}
+  skinTint: {r: 0.98, g: 0.9, b: 0.92, a: 1}
+  hairTint: {r: 0.15, g: 0.12, b: 0.2, a: 1}
+  primaryTint: {r: 0.15, g: 0.1, b: 0.2, a: 1}
+  secondaryTint: {r: 0.35, g: 0.12, b: 0.45, a: 1}
+  accentTint: {r: 0.7, g: 0.2, b: 1, a: 1}
+  emissiveNeonColor: {r: 0.5411765, g: 0.16862746, b: 0.8862745, a: 1}
+  emissiveIntensity: 2.6
+  animatorController: {fileID: 22100000, guid: bcb3e5c833bc321d969a1f46e0dca55d, type: 2}
+  portrait: {fileID: 0}

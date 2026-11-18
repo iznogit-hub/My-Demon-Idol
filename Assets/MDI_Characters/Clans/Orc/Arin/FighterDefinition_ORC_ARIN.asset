@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e40a1b2c3d4e5f6000000000001, type: 3}
+  m_Name: FighterDefinition_ORC_ARIN
+  m_EditorClassIdentifier: 
+  id: ORC_ARIN
+  displayName: Arin the Iron Vow
+  clan: Orc
+  gender: 0
+  basePrefab: {fileID: 100010, guid: 9ba437e07b4055c4aa4e2a95cbac09ae, type: 3}
+  hairPrefab: {fileID: 0}
+  accessories:
+  - accessoryName: Heavy Riveted Iron Pauldron
+    accessoryPrefab: {fileID: 0}
+    targetBone: 5
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  assembledPrefab: {fileID: 100001, guid: 4d0e90cefe1bc55fc712049ef8dac6d9, type: 3}
+  skinTint: {r: 0.65, g: 0.72, b: 0.55, a: 1}
+  hairTint: {r: 0.15, g: 0.15, b: 0.15, a: 1}
+  primaryTint: {r: 0.35, g: 0.35, b: 0.38, a: 1}
+  secondaryTint: {r: 0.6, g: 0.3, b: 0.15, a: 1}
+  accentTint: {r: 1, g: 0.45, b: 0.1, a: 1}
+  emissiveNeonColor: {r: 1, g: 0.33333334, b: 0, a: 1}
+  emissiveIntensity: 2.2
+  animatorController: {fileID: 22100000, guid: 1a1b53da48c13fe3c0ca2e24b491f904, type: 2}
+  portrait: {fileID: 0}

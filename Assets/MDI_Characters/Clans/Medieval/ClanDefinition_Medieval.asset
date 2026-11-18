@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a9b7e40a1b2c3d4e5f600000000002, type: 3}
+  m_Name: ClanDefinition_Medieval
+  m_EditorClassIdentifier: 
+  clanId: CLAN_MEDIEVAL
+  clanName: Medieval Clan
+  stageName: Lantern Gate
+  primaryColor: {r: 0.85, g: 0.7, b: 0.2, a: 1}
+  secondaryColor: {r: 0.3, g: 0.3, b: 0.35, a: 1}
+  neonColor: {r: 1, g: 0.84313726, b: 0, a: 1}
+  fighters:
+  - {fileID: 11400000, guid: 6c2ec6d93ecd69a483eb2ef7204c95a9, type: 2}
+  - {fileID: 11400000, guid: 908feba32ba5fb2711d262c14c894ce3, type: 2}
+  - {fileID: 11400000, guid: e4c00fd5c2efed95f833094565cee5ce, type: 2}

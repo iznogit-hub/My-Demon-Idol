@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
+  m_Name: Kai_DomainSuper
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
+  attackName: 'Domain Expansion: Void Calligraphy'
+  attackType: 5
+  hitLevel: 4
+  guardRequirement: 0
+  isDuckableHigh: 0
+  crush: 0
+  crushStartTick: 4
+  crushEndTick: 18
+  hasArmor: 0
+  isAirborneStrikeProtected: 0
+  protectionStartTick: 5
+  protectionEndTick: 12
+  startupFrames: 15
+  activeFrames: 12
+  recoveryFrames: 30
+  hitstunTicks: 16
+  blockstunTicks: 10
+  knockdownDurationTicks: 36
+  hitstopAttacker: 18
+  hitstopDefender: 24
+  hitstopOnBlock: 4
+  counterHitStopBonus: 4
+  advantageOnBlock: -2
+  advantageOnHit: 4
+  advantageOnCounterHit: 8
+  damage: 380
+  chipDamageOnBlock: 0
+  initialProration: 1
+  comboDamageDecay: 0.92
+  pushbackOnHit: 1.2
+  pushbackOnBlock: 0.8
+  isLauncher: 0
+  isBoundTornado: 0
+  causesWallSplat: 0
+  causesWallBounce: 0
+  causesKnockdown: 1
+  isLinear: 1
+  throwTechWindowTicks: 6
+  launchVelocity: {x: 0, y: 0}
+  screenShakeTrauma: 0.6
+  canRapidCancel: 0
+  gatlingCancels: 
+  animationClip: {fileID: 0}
+  animationTrigger: DomainSuper
+  hitboxOffset: {x: 0.8, y: 1, z: 0}
+  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  cancelWindow: {x: 5, y: 12}
+  archetype: 0

@@ -1,0 +1,336 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3331866031116817083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6505888172353181733}
+  - component: {fileID: 8225980023824626827}
+  - component: {fileID: 3976539347127840839}
+  m_Layer: 0
+  m_Name: Hurtbox_Torso
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6505888172353181733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331866031116817083}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6095427070750093922}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8225980023824626827
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331866031116817083}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8, y: 1.6, z: 0.8}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3976539347127840839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331866031116817083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f625a6a70fc604b25a10b2833d453e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hurtbox
+  _zone: 1
+--- !u!1 &4129494386446831038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6358934032491144965}
+  - component: {fileID: 8217949121959803181}
+  - component: {fileID: 3999005661895226707}
+  m_Layer: 0
+  m_Name: Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6358934032491144965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4129494386446831038}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6095427070750093922}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8217949121959803181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4129494386446831038}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2, y: 1.2, z: 1.4}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3999005661895226707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4129494386446831038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b90eb9dbbe945e1a25c54fb9f101d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hitbox
+--- !u!1001 &6095427070750222563
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_Name
+      value: TrainingDummy_Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 950001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 292285498032992845, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 760c0ac34b4c4738b818919a53832b5c, type: 2}
+    - target: {fileID: 7538133608355139229, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 760c0ac34b4c4738b818919a53832b5c, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6358934032491144965}
+    - targetCorrespondingSourceObject: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6505888172353181733}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8683184398961562454}
+    - targetCorrespondingSourceObject: {fileID: 100001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2314844709020711366}
+    - targetCorrespondingSourceObject: {fileID: 100001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 218541883132211204}
+    - targetCorrespondingSourceObject: {fileID: 100001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1131583205025233364}
+  m_SourcePrefab: {fileID: 100100000, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+--- !u!95 &6095427070749546002 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 950001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+  m_PrefabInstance: {fileID: 6095427070750222563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6095427070750093922 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+  m_PrefabInstance: {fileID: 6095427070750222563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6095427070750125634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+  m_PrefabInstance: {fileID: 6095427070750222563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8683184398961562454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095427070750125634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a22a42fd7a58453292990cf439d7fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.TrainingDummyAI
+  mode: 4
+  attackIntervalTicks: 90
+  _fighter: {fileID: 0}
+--- !u!143 &2314844709020711366
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095427070750125634}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.85
+  m_Radius: 0.35
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.95, z: 0}
+--- !u!114 &218541883132211204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095427070750125634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88b982dc086e4799a538067bd8c9482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterController
+  fighterName: Training Dummy
+  isPlayerControlled: 0
+  maxHealth: 9999
+  maxSuperMeter: 100
+  forwardWalkSpeed: 3.6
+  backwardWalkSpeed: 2.8
+  jumpVerticalLaunch: 8
+  jumpHorizontalSpeed: 3.2
+  gravity: 20
+  creepSpeed: 1.2
+  forwardDashSpeed: 6.5
+  forwardDashDurationTicks: 12
+  backdashSpeed: 7
+  backdashDurationTicks: 14
+  backdashInvincibleTicks: 5
+  jumpAttackVelocityX: 3.2
+  jumpAttackVelocityY: 6
+  parryActiveTicks: 5
+  parryRecoveryTicks: 14
+  parryStunTicksOnAttacker: 18
+  moveSet: {fileID: 0}
+  lightAttackData: {fileID: 11400000, guid: 72ee71133320c4c398704b3a4988f2c3, type: 2}
+  lowAttackData: {fileID: 11400000, guid: e89c629f6b9542e88a3e7b8c0df124ab, type: 2}
+  mediumAttackData: {fileID: 11400000, guid: d7e98537c4d304b03a5fd00ba3dbbc62, type: 2}
+  heavyAttackData: {fileID: 11400000, guid: 8081e3657a540436f9d44a88f84be17c, type: 2}
+  driveSkillData: {fileID: 11400000, guid: d950e0430a40d4b1681d011010cb141c, type: 2}
+  jumpAttackData: {fileID: 11400000, guid: 5372c34b74370411b886c89e327e8410, type: 2}
+  domainSuperData: {fileID: 11400000, guid: f1a208c2f79634a21a53f884c1ac7891, type: 2}
+  throwAttackData: {fileID: 11400000, guid: c97f1a34b8924f0ca64188b75e039f21, type: 2}
+  opponent: {fileID: 0}
+  activeHitbox: {fileID: 3999005661895226707}
+  animator: {fileID: 6095427070749546002}
+  sidestepDistanceZ: 0.85
+  sidestepDurationTicks: 14
+  projectileMeter: 1
+--- !u!114 &1131583205025233364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095427070750125634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83a2b16e33474c3e96167a8d6f1c853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AnimationEventReceiver

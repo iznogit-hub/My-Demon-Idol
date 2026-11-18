@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e40a1b2c3d4e5f6000000000001, type: 3}
+  m_Name: FighterDefinition_OCC_KAI
+  m_EditorClassIdentifier: 
+  id: OCC_KAI
+  displayName: Kai the Fool
+  clan: Occult
+  gender: 0
+  basePrefab: {fileID: 100120, guid: 85a75d288a5af4ad8916f1f9f99de70d, type: 3}
+  hairPrefab: {fileID: 0}
+  accessories:
+  - accessoryName: Fool's Feathered Talisman Band
+    accessoryPrefab: {fileID: 0}
+    targetBone: 0
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  assembledPrefab: {fileID: 100001, guid: 0bfe161df66298b6c44f424c0400a7e2, type: 3}
+  skinTint: {r: 0.96, g: 0.88, b: 0.82, a: 1}
+  hairTint: {r: 0.95, g: 0.95, b: 0.98, a: 1}
+  primaryTint: {r: 0.35, g: 0.15, b: 0.5, a: 1}
+  secondaryTint: {r: 0.15, g: 0.12, b: 0.2, a: 1}
+  accentTint: {r: 0.7, g: 0.2, b: 1, a: 1}
+  emissiveNeonColor: {r: 0.6156863, g: 0, b: 1, a: 1}
+  emissiveIntensity: 2.4
+  animatorController: {fileID: 22100000, guid: acb27db8decd5af210fcb56ad03f3746, type: 2}
+  portrait: {fileID: 0}

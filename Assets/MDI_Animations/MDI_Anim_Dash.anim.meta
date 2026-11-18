@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 53ebfd62fbc750a06c5342ab74847652
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MDI_Anim_Dash
+  serializedVersion: 7

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e40a1b2c3d4e5f6000000000001, type: 3}
+  m_Name: FighterDefinition_MED_VICTOR
+  m_EditorClassIdentifier: 
+  id: MED_VICTOR
+  displayName: Victor
+  clan: Medieval
+  gender: 0
+  basePrefab: {fileID: 100124, guid: 1f67a337e2ea64a809a950ebb320a68f, type: 3}
+  hairPrefab: {fileID: 0}
+  accessories:
+  - accessoryName: Reinforced Plate Gorget & Spikes
+    accessoryPrefab: {fileID: 0}
+    targetBone: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  assembledPrefab: {fileID: 100001, guid: f4484ade26893152bd11fb0e709fa235, type: 3}
+  skinTint: {r: 0.9, g: 0.82, b: 0.75, a: 1}
+  hairTint: {r: 0.35, g: 0.3, b: 0.25, a: 1}
+  primaryTint: {r: 0.45, g: 0.48, b: 0.52, a: 1}
+  secondaryTint: {r: 0.25, g: 0.2, b: 0.2, a: 1}
+  accentTint: {r: 0.7, g: 0.8, b: 0.9, a: 1}
+  emissiveNeonColor: {r: 0.627451, g: 0.7529412, b: 0.8156863, a: 1}
+  emissiveIntensity: 2
+  animatorController: {fileID: 22100000, guid: 3fd49450bbe8715113b82cafd1fdc95c, type: 2}
+  portrait: {fileID: 0}

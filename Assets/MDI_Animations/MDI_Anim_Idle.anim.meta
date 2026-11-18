@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 6277bd149d3475a3a0d7f919abf0d1e3
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MDI_Anim_Idle
+  serializedVersion: 7

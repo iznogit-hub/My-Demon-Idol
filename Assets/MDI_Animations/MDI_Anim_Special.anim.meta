@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 89d5b7c7044f7cf53d2e4f98106f0345
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MDI_Anim_Special
+  serializedVersion: 7

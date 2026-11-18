@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 092ee44e33e10837b86d3c26c93496dc
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MDI_Anim_Walk
+  serializedVersion: 7

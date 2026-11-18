@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: a306518da9f15671c1a16431bba561e1
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MDI_Anim_Win
+  serializedVersion: 7

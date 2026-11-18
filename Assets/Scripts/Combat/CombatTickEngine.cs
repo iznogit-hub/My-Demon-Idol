@@ -1,0 +1,97 @@
+using System;
+using UnityEngine;
+
+namespace DemonIdol.Combat
+{
+    /// <summary>
+    /// Deterministic 60Hz combat simulation ticker.
+    /// Decouples fighting game logic (startup, active, recovery, hitstop, blockstun)
+    /// from variable mobile rendering framerates (60Hz, 90Hz, 120Hz).
+    /// </summary>
+    public class CombatTickEngine : MonoBehaviour
+    {
+        public static CombatTickEngine Instance { get; private set; }
+
+        public const float TICK_RATE = 60f;
+        public const float TICK_DELTA_TIME = 1f / TICK_RATE; // 16.666ms
+
+        public int CurrentTick { get; private set; } = 0;
+        public int SuperfreezeTicksRemaining { get; private set; } = 0;
+        public bool IsSuperfrozen => SuperfreezeTicksRemaining > 0;
+
+        /// <summary>
+        /// Fraction of tick elapsed between [0, 1] for render/camera interpolation.
+        /// </summary>
+        public float InterpolationAlpha => Mathf.Clamp01(_timeAccumulator / TICK_DELTA_TIME);
+
+        public event Action<int> OnTick;
+        public event Action<int> OnSuperfreezeTick;
+
+        private float _timeAccumulator = 0f;
+        private bool _isPaused = false;
+
+        private void Awake()
+        {
+            if (GameplaySimulationAuthority.IsPackageNative)
+            {
+                enabled = false;
+                return;
+            }
+
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
+        }
+
+        private void Update()
+        {
+            if (_isPaused) return;
+
+            // Use unscaled delta time so combat tick remains on 60Hz wall-clock
+            // independent of presentation slow-mo or timeScale variations
+            _timeAccumulator += Time.unscaledDeltaTime;
+
+            // Prevent spiral of death if a huge frame hitch happens
+            if (_timeAccumulator > 0.2f)
+            {
+                _timeAccumulator = 0.2f;
+            }
+
+            while (_timeAccumulator >= TICK_DELTA_TIME)
+            {
+                _timeAccumulator -= TICK_DELTA_TIME;
+                CurrentTick++;
+
+                if (SuperfreezeTicksRemaining > 0)
+                {
+                    OnSuperfreezeTick?.Invoke(SuperfreezeTicksRemaining);
+                    OnTick?.Invoke(CurrentTick);
+                    SuperfreezeTicksRemaining--;
+                }
+                else
+                {
+                    OnTick?.Invoke(CurrentTick);
+                }
+            }
+        }
+
+        public void TriggerSuperfreeze(int ticks)
+        {
+            SuperfreezeTicksRemaining = Mathf.Max(SuperfreezeTicksRemaining, ticks);
+        }
+
+        public void PauseSimulation(bool pause)
+        {
+            _isPaused = pause;
+        }
+
+        public void ResetTicks()
+        {
+            CurrentTick = 0;
+            _timeAccumulator = 0f;
+        }
+    }
+}

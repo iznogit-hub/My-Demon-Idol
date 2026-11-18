@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5649b13ed6ea466d84cc537d2d7a540, type: 3}
+  m_Name: CharacterDefinition_C07_StellarWitch
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.CharacterDefinition
+  id: C07
+  displayName: StellarWitch
+  title: The Crimson Shadow
+  archetype: Rushdown / Mixup
+  signatureStageId: ST01
+  description: Swift ninja operative mastering lethal frame-traps, Gatling cancels, and Void Rift domain expansions.
+  modelPrefab: {fileID: 1095970306432993455, guid: 91b8d1c4a4bff496aa72afc17d2fd3b1, type: 3}
+  animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  avatar: {fileID: 9000000, guid: d172c22791a73d64ab9cfd99ee72de93, type: 3}
+  portraitSprite: {fileID: 21300000, guid: 927d8b1029c004279a9a07ddf41dd102, type: 3}
+  bannerSprite: {fileID: 0}
+  speed: 90
+  power: 75
+  reach: 65
+  defense: 70
+  domainName: Void Rift
+  domainDescription: Freezes spacetime for 20 combat ticks, shattering enemy barrier integrity with an unavoidable fatal strike.
+  moveSet: {fileID: 0}
+  videoBindings: {fileID: 0}
+  ufeCharacterName: Mike

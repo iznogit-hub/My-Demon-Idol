@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e40a1b2c3d4e5f6000000000001, type: 3}
+  m_Name: FighterDefinition_ASH_SHIN
+  m_EditorClassIdentifier: 
+  id: ASH_SHIN
+  displayName: Shin
+  clan: Ash
+  gender: 0
+  basePrefab: {fileID: 100120, guid: 85a75d288a5af4ad8916f1f9f99de70d, type: 3}
+  hairPrefab: {fileID: 0}
+  accessories:
+  - accessoryName: Prayer Bead Rosary & Straw Hat
+    accessoryPrefab: {fileID: 0}
+    targetBone: 1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  assembledPrefab: {fileID: 100001, guid: 20c2b9e4aee475da371fb4a91cda1b91, type: 3}
+  skinTint: {r: 0.92, g: 0.84, b: 0.76, a: 1}
+  hairTint: {r: 0.2, g: 0.15, b: 0.12, a: 1}
+  primaryTint: {r: 0.45, g: 0.38, b: 0.3, a: 1}
+  secondaryTint: {r: 0.65, g: 0.45, b: 0.25, a: 1}
+  accentTint: {r: 1, g: 0.55, b: 0.1, a: 1}
+  emissiveNeonColor: {r: 1, g: 0.54901963, b: 0, a: 1}
+  emissiveIntensity: 2.2
+  animatorController: {fileID: 22100000, guid: b7aa3fe2514d37f865ed586fad1a46ca, type: 2}
+  portrait: {fileID: 0}

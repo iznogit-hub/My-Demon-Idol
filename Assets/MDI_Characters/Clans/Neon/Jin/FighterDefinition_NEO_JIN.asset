@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19b7e40a1b2c3d4e5f6000000000001, type: 3}
+  m_Name: FighterDefinition_NEO_JIN
+  m_EditorClassIdentifier: 
+  id: NEO_JIN
+  displayName: Jin
+  clan: Neon
+  gender: 0
+  basePrefab: {fileID: 100128, guid: dc2e36b2b28974a81a6a71a63891b2b9, type: 3}
+  hairPrefab: {fileID: 0}
+  accessories:
+  - accessoryName: Tactical HUD Visor Plate
+    accessoryPrefab: {fileID: 0}
+    targetBone: 0
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  assembledPrefab: {fileID: 100001, guid: 70b40ca0af09360633b43b43ef0ce39d, type: 3}
+  skinTint: {r: 0.94, g: 0.86, b: 0.8, a: 1}
+  hairTint: {r: 0.12, g: 0.12, b: 0.14, a: 1}
+  primaryTint: {r: 0.15, g: 0.2, b: 0.18, a: 1}
+  secondaryTint: {r: 0.2, g: 0.25, b: 0.22, a: 1}
+  accentTint: {r: 0.15, g: 1, b: 0.5, a: 1}
+  emissiveNeonColor: {r: 0, g: 1, b: 0.53333336, a: 1}
+  emissiveIntensity: 2.4
+  animatorController: {fileID: 22100000, guid: aab5d3df1d1a34553c2da7ef46fe3a94, type: 2}
+  portrait: {fileID: 0}

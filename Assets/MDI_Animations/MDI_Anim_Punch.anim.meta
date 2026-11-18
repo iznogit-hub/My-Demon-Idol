@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 275aa68575babffe02cfe6c2fef83002
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MDI_Anim_Punch
+  serializedVersion: 7
