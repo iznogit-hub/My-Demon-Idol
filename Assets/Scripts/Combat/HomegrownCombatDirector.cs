@@ -289,6 +289,7 @@ namespace DemonIdol.Combat
                     fc.animator = anim;
                     fc.CacheAnimatorParams();
                 }
+                fc.InstallAkioPresentationIfEnabled();
                 fc.transform.localScale = Vector3.one;
                 Vector3 p = fc.transform.position;
                 if (p.y < 0f) { p.y = 0f; fc.transform.position = p; }
@@ -432,6 +433,7 @@ namespace DemonIdol.Combat
                 fc.animator.applyRootMotion = false;
             }
 
+            fc.InstallAkioPresentationIfEnabled();
             fc.transform.localScale = Vector3.one;
         }
 

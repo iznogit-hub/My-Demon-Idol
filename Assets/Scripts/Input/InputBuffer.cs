@@ -196,5 +196,17 @@ namespace DemonIdol.Combat
                 _buffer[i] = default;
             }
         }
+
+        public int CountRecent(InputButton button, int currentTick, int windowTicks)
+        {
+            int n = 0;
+            for (int i = 0; i < BUFFER_SIZE; i++)
+            {
+                BufferedCommand cmd = _buffer[i];
+                if (cmd.Button == InputButton.None || !cmd.Button.HasFlag(button)) continue;
+                if (currentTick - cmd.TickTimestamp <= windowTicks) n++;
+            }
+            return n;
+        }
     }
 }

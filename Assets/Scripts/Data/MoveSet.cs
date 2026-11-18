@@ -52,6 +52,13 @@ namespace DemonIdol.Combat
         [Header("Additional Move List")]
         public List<AttackData> additionalMoves = new List<AttackData>();
 
+        [Header("Akio-only routes (null on every other moveset)")]
+        public AttackData akioRekka1;
+        public AttackData akioRekka2;
+        public AttackData akioRekka3;
+        public AttackData akioFireball;
+        public AttackData akioDragonPunch;
+
         /// <summary>
         /// Unambiguously resolves an accepted 3-button command into the authored AttackData.
         /// Facing-relative direction: forward is direction.x * facingDirection > 0.20f.

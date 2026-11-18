@@ -1,4 +1,5 @@
 using System;
+using MDI.Akio;
 using UnityEngine;
 
 namespace DemonIdol.Combat
@@ -33,6 +34,7 @@ namespace DemonIdol.Combat
     {
         private const int HISTORY_SIZE = 32;
         private readonly DirectionalInput[] _history = new DirectionalInput[HISTORY_SIZE];
+        private readonly MotionEdge[] _edges = new MotionEdge[HISTORY_SIZE];
         private int _head = 0;
 
         public void RecordDirection(Vector2 rawDir, int currentTick, int facingDirection)
@@ -246,5 +248,62 @@ namespace DemonIdol.Combat
                 _history[i] = default;
             }
         }
+
+        /// <summary>236. Lenient: down then forward inside 22 ticks. Does not change dash detection.</summary>
+        public bool CheckQuarterCircleForward(int currentTick, int facingDirection, bool consume = true, int window = MotionMatcher.LenientWindow)
+        {
+            return Match(currentTick, facingDirection, consume, window, (e, n, now, face, w) => MotionMatcher.Is236(e, n, now, face, w));
+        }
+
+        /// <summary>214. Parsed so the buffer is real. No move is bound to it.</summary>
+        public bool CheckQuarterCircleBack(int currentTick, int facingDirection, bool consume = true, int window = MotionMatcher.LenientWindow)
+        {
+            return Match(currentTick, facingDirection, consume, window, (e, n, now, face, w) => MotionMatcher.Is214(e, n, now, face, w));
+        }
+
+        /// <summary>623. Forward, down, down-forward.</summary>
+        public bool CheckDragonPunch(int currentTick, int facingDirection, bool consume = true, int window = MotionMatcher.LenientWindow)
+        {
+            return Match(currentTick, facingDirection, consume, window, (e, n, now, face, w) => MotionMatcher.Is623(e, n, now, face, w));
+        }
+
+        /// <summary>f,f or b,b inside the lenient 22-tick window. The 14-tick dash path is unchanged.</summary>
+        public bool CheckLenientDash(int currentTick, int facingDirection, bool forward, bool consume = true, int window = MotionMatcher.LenientWindow)
+        {
+            int n = CopyEdges();
+            if (!MotionMatcher.IsDoubleTap(_edges, n, currentTick, facingDirection, forward, window)) return false;
+            if (consume) ConsumeHistory(0);
+            return true;
+        }
+
+        /// <summary>Optional charge (back 40 ticks, then forward). No move consumes it yet.</summary>
+        public bool CheckChargeBackForward(int currentTick, int facingDirection)
+        {
+            int n = CopyEdges();
+            return MotionMatcher.IsChargeBackForward(_edges, n, currentTick, facingDirection);
+        }
+
+        int CopyEdges()
+        {
+            int n = 0;
+            for (int i = 1; i <= HISTORY_SIZE; i++)
+            {
+                int idx = (_head + i) % HISTORY_SIZE;
+                DirectionalInput d = _history[idx];
+                if (d.TickTimestamp <= 0) continue;
+                _edges[n++] = new MotionEdge(d.Horizontal, d.Vertical, d.TickTimestamp);
+            }
+            return n;
+        }
+
+        bool Match(int currentTick, int facingDirection, bool consume, int window, MotionTest test)
+        {
+            int n = CopyEdges();
+            if (!test(_edges, n, currentTick, facingDirection, window)) return false;
+            if (consume) ConsumeHistory(0);
+            return true;
+        }
+
+        delegate bool MotionTest(MotionEdge[] edges, int count, int now, int facing, int window);
     }
 }

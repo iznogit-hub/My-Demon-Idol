@@ -47,6 +47,11 @@ namespace DemonIdol.Combat
         [Header("Legacy Mapping")]
         public string ufeCharacterName = "Mike";
 
+        [Header("Akio depth movelist")]
+        [Tooltip("Opt-in. Only C01 Akio sets this. Every other fighter leaves it off and keeps the shared routes.")]
+        public bool akioDepthMovelist = false;
+        public AkioClipLibrary akioClips;
+
         public string GetEffectiveUFEName()
         {
             // Id mapping wins over the class default "Mike"
