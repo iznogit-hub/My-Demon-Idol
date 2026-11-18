@@ -6,24 +6,42 @@ namespace DemonIdol.BlazBlue
 {
     /// <summary>
     /// BlazBlue fighter brain component. Mounted on each fighter when ControlScheme == BlazBlue4Button.
-    /// Manages 4-button input sampling, history, command interpretation, and gauge state.
+    /// Manages 4-button input sampling, history, command interpretation, discrete state machine,
+    /// gauges, and zero-allocation collision box generation for BBMatchSim.
     /// </summary>
     public class BBFighterBrain : MonoBehaviour
     {
-        [Header("Profile & Configuration")]
+        [Header("Profile & Tuning")]
         public BBCharacterProfile profile;
         public BBSystemTuning tuning;
+        public BBBodyBoxes bodyBoxes;
 
         [Header("Components")]
         public FighterController fighter;
         public BBInputSampler sampler;
 
+        [Header("Sim State")]
+        public BBState bbState = BBState.Neutral;
+        public int stateTick = 0;
+        public Vector2 simVelocity = Vector2.zero;
+        public bool isGrounded = true;
+        public int hitstopRemaining = 0;
+        public int hitstunRemaining = 0;
+        public int blockstunRemaining = 0;
+        public BBInvuln currentInvuln = BBInvuln.None;
+
+        [Header("Active Attack")]
+        public BBAttackData currentAttack;
+        public int attackTick = 0;
+        public BBHitMask attackHitMask;
+
         public BBInputHistory History { get; private set; } = new BBInputHistory();
         public BBCommandInterpreter Interpreter { get; private set; } = new BBCommandInterpreter();
-
         public BBEvaluatedCommand CurrentCommand { get; private set; }
 
         [Header("Gauges (0..Max)")]
+        public float health = 11000f;
+        public float maxHealth = 11000f;
         public float heat = 0f;
         public float barrier = 1000f;
         public float burst = 1000f;
@@ -35,17 +53,30 @@ namespace DemonIdol.BlazBlue
             if (fighter == null) fighter = GetComponent<FighterController>();
             if (sampler == null) sampler = GetComponent<BBInputSampler>();
             if (tuning == null) tuning = BBSystemTuning.Default;
+            if (bodyBoxes == null)
+            {
+                if (profile != null && profile.characterId.Contains("Aika")) bodyBoxes = BBBodyBoxes.CreateAikaPreset();
+                else if (profile != null && profile.characterId.Contains("UnityChan")) bodyBoxes = BBBodyBoxes.CreateUnityChanPreset();
+                else if (profile != null && profile.characterId.Contains("PicoChan")) bodyBoxes = BBBodyBoxes.CreatePicoChanPreset();
+                else bodyBoxes = BBBodyBoxes.CreateAkioPreset();
+            }
 
+            maxHealth = profile != null ? profile.maxHealth : 11000f;
+            health = maxHealth;
             heat = 0f;
-            barrier = tuning.barrierMax;
-            burst = tuning.burstMax;
+            barrier = tuning != null ? tuning.barrierMax : 1000f;
+            burst = tuning != null ? tuning.burstMax : 1000f;
         }
 
         private void OnEnable()
         {
-            if (CombatTickEngine.Instance != null)
+            // If BBMatchSim is not present or not active, self-subscribe to tick
+            if (BBMatchSim.Instance == null)
             {
-                CombatTickEngine.Instance.OnTick += HandleCombatTick;
+                if (CombatTickEngine.Instance != null)
+                {
+                    CombatTickEngine.Instance.OnTick += HandleCombatTick;
+                }
             }
         }
 
@@ -57,38 +88,47 @@ namespace DemonIdol.BlazBlue
             }
         }
 
-        public void HandleCombatTick(int tick)
+        public void StepInput(int tick)
         {
             if (fighter == null) return;
 
-            // 1. Sample input for this tick
             if (sampler != null)
             {
                 BBInputFrame frame = sampler.SampleFrameForTick(tick, fighter.FacingDirection);
                 History.PushFrame(frame, tick, fighter.FacingDirection);
             }
 
-            // 2. Query fighter state context
-            bool isGrounded = fighter.State != FighterState.AirborneJuggle && fighter.transform.position.y <= 0.05f;
-            bool isInAttack = fighter.State == FighterState.AttackStartup ||
-                              fighter.State == FighterState.AttackActive ||
-                              fighter.State == FighterState.AttackRecovery;
-            bool isInBlockstun = fighter.State == FighterState.Blockstun;
-            bool isGuarding = fighter.State == FighterState.Blockstun ||
-                              fighter.State == FighterState.BarrierActive ||
-                              BBInputFrame.IsBack(BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, fighter.FacingDirection));
+            bool inAttack = bbState == BBState.AttackStartup || bbState == BBState.AttackActive || bbState == BBState.AttackRecovery;
+            bool inBlockstun = bbState == BBState.Blockstun || bbState == BBState.BarrierBlockstun;
+            bool isGuarding = inBlockstun || BBInputFrame.IsBack(BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, fighter.FacingDirection));
 
-            // 3. Evaluate highest-priority command
             CurrentCommand = Interpreter.Evaluate(
                 History,
                 tick,
                 fighter.FacingDirection,
                 isGrounded,
-                isInAttack,
-                isInBlockstun,
+                inAttack,
+                inBlockstun,
                 isGuarding);
+        }
 
-            // 4. Tick gauge timers
+        public void HandleCombatTick(int tick)
+        {
+            StepInput(tick);
+            AdvanceState(tick);
+        }
+
+        public void AdvanceState(int tick)
+        {
+            if (hitstopRemaining > 0)
+            {
+                hitstopRemaining--;
+                return; // Frozen during hitstop
+            }
+
+            stateTick++;
+
+            // Handle Overdrive countdown
             if (isOverdriveActive && overdriveTicksRemaining > 0)
             {
                 overdriveTicksRemaining--;
@@ -98,16 +138,162 @@ namespace DemonIdol.BlazBlue
                 }
             }
 
-            // Passive barrier regeneration when not actively blocking with barrier
-            if (CurrentCommand.commandType != BBCommandType.Barrier && barrier < tuning.barrierMax)
+            // Passive barrier regeneration
+            if (bbState != BBState.BarrierBlockstun && CurrentCommand.commandType != BBCommandType.Barrier && barrier < tuning.barrierMax)
             {
-                barrier = Mathf.Min(tuning.barrierMax, barrier + (tuning.barrierDrainPerSecond * 0.5f * CombatTickEngine.TICK_DELTA_TIME));
+                barrier = Mathf.Min(tuning.barrierMax, barrier + (tuning.barrierRegen * CombatTickEngine.TICK_DELTA_TIME * 60f));
+            }
+
+            // State-specific timers
+            switch (bbState)
+            {
+                case BBState.Blockstun:
+                case BBState.BarrierBlockstun:
+                    if (blockstunRemaining > 0) blockstunRemaining--;
+                    if (blockstunRemaining <= 0)
+                    {
+                        bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
+                        stateTick = 0;
+                    }
+                    break;
+
+                case BBState.Hitstun:
+                    if (hitstunRemaining > 0) hitstunRemaining--;
+                    if (hitstunRemaining <= 0)
+                    {
+                        bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
+                        stateTick = 0;
+                    }
+                    break;
+
+                case BBState.AttackStartup:
+                case BBState.AttackActive:
+                case BBState.AttackRecovery:
+                    attackTick++;
+                    if (currentAttack != null)
+                    {
+                        if (attackTick < currentAttack.startupFrames)
+                        {
+                            bbState = BBState.AttackStartup;
+                        }
+                        else if (attackTick < currentAttack.startupFrames + currentAttack.activeFrames)
+                        {
+                            bbState = BBState.AttackActive;
+                        }
+                        else if (attackTick < currentAttack.TotalTicks)
+                        {
+                            bbState = BBState.AttackRecovery;
+                        }
+                        else
+                        {
+                            // Move finished
+                            currentAttack = null;
+                            attackTick = 0;
+                            attackHitMask.Clear();
+                            bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
+                            stateTick = 0;
+                        }
+                    }
+                    else
+                    {
+                        bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
+                        stateTick = 0;
+                    }
+                    break;
+            }
+        }
+
+        public void StartAttack(BBAttackData attack)
+        {
+            if (attack == null) return;
+            currentAttack = attack;
+            attackTick = 0;
+            attackHitMask.Clear();
+            bbState = attack.startupFrames > 0 ? BBState.AttackStartup : BBState.AttackActive;
+            stateTick = 0;
+            currentInvuln = BBInvuln.None;
+        }
+
+        /// <summary>
+        /// Populates world-space hitboxes, hurtboxes, and pushboxes into a zero-allocation BBBoxBuffer.
+        /// </summary>
+        public void PopulateWorldBoxes(BBBoxBuffer buffer)
+        {
+            if (buffer == null) return;
+            float posX = transform.position.x;
+            float posY = transform.position.y;
+            int facing = fighter != null ? fighter.FacingDirection : 1;
+
+            // 1. Pushbox
+            BBWorldBox push = GetPushBox();
+            buffer.Add(in push);
+
+            // 2. Active attack boxes
+            bool hasAuthoredAttackBoxes = false;
+            if (currentAttack != null && currentAttack.boxes != null)
+            {
+                int beforeCount = buffer.count;
+                currentAttack.boxes.GetBoxes(attackTick, buffer, posX, posY, facing);
+                if (buffer.count > beforeCount)
+                {
+                    hasAuthoredAttackBoxes = true;
+                }
+            }
+
+            // 3. Body hurtboxes (Head, Body, Foot)
+            if (bodyBoxes != null)
+            {
+                if (!isGrounded)
+                {
+                    for (int i = 0; i < bodyBoxes.airHurtBoxes.Length; i++)
+                    {
+                        buffer.AddLocal(in bodyBoxes.airHurtBoxes[i], posX, posY, facing);
+                    }
+                }
+                else if (bbState == BBState.Crouching)
+                {
+                    for (int i = 0; i < bodyBoxes.crouchHurtBoxes.Length; i++)
+                    {
+                        buffer.AddLocal(in bodyBoxes.crouchHurtBoxes[i], posX, posY, facing);
+                    }
+                    // Throw hurtbox
+                    buffer.AddLocal(in bodyBoxes.crouchThrowHurtBox, posX, posY, facing);
+                }
+                else
+                {
+                    for (int i = 0; i < bodyBoxes.standHurtBoxes.Length; i++)
+                    {
+                        buffer.AddLocal(in bodyBoxes.standHurtBoxes[i], posX, posY, facing);
+                    }
+                    // Throw hurtbox (only when standing / neutral / blockstun)
+                    if (bbState != BBState.Hitstun && bbState != BBState.Thrown)
+                    {
+                        buffer.AddLocal(in bodyBoxes.standThrowHurtBox, posX, posY, facing);
+                    }
+                }
             }
         }
 
         /// <summary>
-        /// Consumes the button associated with the current command.
+        /// Returns the current world-space pushbox.
         /// </summary>
+        public BBWorldBox GetPushBox()
+        {
+            float posX = transform.position.x;
+            float posY = transform.position.y;
+            int facing = fighter != null ? fighter.FacingDirection : 1;
+
+            if (bodyBoxes != null)
+            {
+                if (!isGrounded) return BBWorldBox.FromLocal(in bodyBoxes.airPushBox, posX, posY, facing);
+                if (bbState == BBState.Crouching) return BBWorldBox.FromLocal(in bodyBoxes.crouchPushBox, posX, posY, facing);
+                return BBWorldBox.FromLocal(in bodyBoxes.standPushBox, posX, posY, facing);
+            }
+
+            // Fallback pushbox
+            return new BBWorldBox(posX - 0.35f, posY, posX + 0.35f, posY + 1.8f, BBBoxKind.Push);
+        }
+
         public void ConsumeCurrentCommand()
         {
             if (CurrentCommand.button != BBButton.None)

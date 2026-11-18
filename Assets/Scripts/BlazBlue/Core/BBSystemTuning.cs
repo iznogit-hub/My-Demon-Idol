@@ -5,50 +5,94 @@ namespace DemonIdol.BlazBlue
 {
     /// <summary>
     /// Tunable configuration asset for BlazBlue combat mechanics.
+    /// Strictly adheres to section 4.21 of the specification.
     /// Never modifies Classic constants.
     /// </summary>
-    [CreateAssetMenu(fileName = "BBSystemTuning", menuName = "DemonIdol/BlazBlue/SystemTuning")]
+    [CreateAssetMenu(fileName = "BBSystemTuning", menuName = "DemonIdol/BlazBlue/System Tuning")]
     public class BBSystemTuning : ScriptableObject
     {
-        [Header("Input Buffer & Windows (Ticks)")]
-        [Tooltip("How long a button press stays usable in the buffer")]
+        [Header("Input")]
         public int bufferTicks = 5;
-
-        [Tooltip("Max tick difference between buttons to form a multi-button chord / macro")]
         public int chordWindowTicks = 3;
-
-        [Tooltip("Quarter-circle window (236, 214)")]
-        public int motionWindow236 = 22;
-
-        [Tooltip("Dragon punch window (623, 421)")]
-        public int motionWindow623 = 22;
-
-        [Tooltip("Half-circle window (41236, 63214)")]
-        public int motionWindowHalfCircle = 30;
-
-        [Tooltip("360 command grab window")]
-        public int motionWindow360 = 40;
-
-        [Tooltip("Distortion double quarter-circle and 632146 window")]
-        public int motionWindowDD = 36;
-
-        [Tooltip("Down-down window (22)")]
-        public int motionWindow22 = 16;
-
-        [Tooltip("Charge hold duration in ticks before release ([4]6, [2]8)")]
-        public int chargeHoldTicks = 40;
-
-        [Tooltip("Max release window to input the forward/up direction after charging")]
-        public int chargeReleaseTicks = 12;
-
-        [Tooltip("How long a negative edge release stays usable for specials")]
         public int negativeEdgeTicks = 3;
-
-        [Tooltip("Allow 323 shortcut for DP motions")]
+        public int motionWindow236 = 22;
+        public int motionWindow623 = 22;
+        public int motionWindowHalfCircle = 30;
+        public int motionWindow360 = 40;
+        public int motionWindowDD = 36;
+        public int motionWindow22 = 16;
+        public int chargeHoldTicks = 40;
+        public int chargeReleaseTicks = 12;
+        public float stickDeadzone = 0.20f;
         public bool allow323Shortcut = true;
 
-        [Tooltip("Stick deadzone for analog controls")]
-        public float stickDeadzone = 0.20f;
+        [Header("Heat")]
+        public int heatMax = 100;
+        public int costRC = 50;
+        public int costDD = 50;
+        public int costCA = 50;
+        public int costCT = 25;
+        public int costAstral = 100;
+        public float heatOnHitA = 2;
+        public float heatOnHitB = 3;
+        public float heatOnHitC = 4;
+        public float heatOnHitD = 3;
+        public float heatOnHitSpecial = 5;
+        public float heatPerDamageTaken = 0.03f;
+        public float lowHpThreshold = 0.35f;
+        public float lowHpRegenPerTick = 0.05f;
+
+        [Header("Barrier")]
+        public int barrierMax = 1000;
+        public int barrierHoldCost = 2;
+        public int barrierRegen = 3;
+        public int barrierRegenDelay = 30;
+        public int dangerTicks = 300;
+        public float barrierDrainPerSecond = 15f;
+        public float barrierHitCostPerDamage = 0.5f;
+        public float barrierPushback = 2.2f;
+        public float instantBarrierPushback = 2.6f;
+        public float dangerDamageScale = 1.25f;
+        public int instantBlockWindow = 8;
+
+        [Header("Burst / Overdrive")]
+        public int burstMax = 1000;
+        public int burstRegenPerTick = 1;
+        public int burstInvulnTicks = 26;
+        public float burstRadius = 1.8f;
+        public int odMinTicks = 180;
+        public int odMaxTicks = 480;
+        public float activeODPenalty = 0.6f;
+
+        [Header("Rapid Cancel")]
+        public bool allowWhiffRC = false;
+        public int rcSlowTicks = 20;
+        public float rcSlowFactor = 0.75f;
+        public int rcPerCombo = 1;
+        public int rapidCancelCost = 50;
+
+        [Header("Throw")]
+        public int throwTechTicks = 13;
+        public int throwTechTicksCH = 6;
+        public int throwWhiffRecovery = 24;
+        public int throwProtectTicks = 6;
+        public float throwRange = 1.0f;
+
+        [Header("Combo")]
+        public float sameMovePenalty = 0.80f;
+        public float gravityScalePerHit = 0.06f;
+        public float gravityCap = 1.9f;
+        public int[] hitstunDecayThresholds = { 180, 300, 420, 540 };
+        public int[] hitstunDecayGround = { 0, 2, 4, 6, 8 };
+        public int[] hitstunDecayAir = { 0, 6, 12, 18, 24 };
+        public int fatalCounterDecayShift = 120;
+        public float fatalCounterGravity = 0.8f;
+        public float counterHitHitstunScale = 1.5f;
+
+        [Header("Optional")]
+        public bool enableAstral = true;
+        public bool negativePenalty = false;
+        public float stylishDamageScale = 0.8f;
 
         [Header("Locomotion Defaults")]
         public float walkForwardSpeed = 3.6f;
@@ -62,15 +106,6 @@ namespace DemonIdol.BlazBlue
         public float jumpHorizontalSpeed = 3.2f;
         public float gravity = 20.0f;
         public int jumpPrejumpTicks = 4;
-
-        [Header("Gauge & Resource Tuning")]
-        public int rapidCancelCost = 50;
-        public int barrierMax = 1000;
-        public float barrierDrainPerSecond = 15f;
-        public float barrierPushbackMultiplier = 2.2f;
-        public int heatMax = 100;
-        public int burstMax = 1000;
-        public float burstRadius = 3.5f;
 
         private static BBSystemTuning _defaultInstance;
         public static BBSystemTuning Default
