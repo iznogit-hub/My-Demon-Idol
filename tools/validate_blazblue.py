@@ -34,6 +34,7 @@ ALLOWED_EDIT = {
     "Assets/Scripts/UI/SettingsPanel.cs",
     "tools/validate_akio_movelist.py",
     "Docs/MDI_BLAZBLUE_IMPLEMENTATION_SPEC.md",
+    "Assets/CombatData/Characters/CharacterDefinition_C01_Akio.asset",
 }
 
 ALLOWED_NEW = (
@@ -45,6 +46,70 @@ ALLOWED_NEW = (
     "tools/run_classic_validators.sh",
     "tools/bb_core_check/",
 )
+
+
+def check_akio():
+    errors = []
+    definition = (ROOT / "Assets/CombatData/Characters/CharacterDefinition_C01_Akio.asset").read_text()
+    if "akioDepthMovelist: 1" not in definition:
+        errors.append("Akio Classic flag missing")
+    if "guid: c0a10e00000000000000000000000001" not in definition:
+        errors.append("Akio Classic override missing")
+    if "guid: c0bb01000000000000000000000001" not in definition:
+        errors.append("Akio BlazBlue profile is not linked")
+    profile = (ROOT / "Assets/CombatData/BlazBlue/Akio/Akio_BBProfile.asset").read_text()
+    if "driveName: Iron Rush" not in profile or "driveResourceMax: 3" not in profile:
+        errors.append("Iron Rush profile is wrong")
+    override = (ROOT / "Assets/MDI_Characters/Runtime/BlazBlue/Akio_BB_Override.overrideController").read_text()
+    if "guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4" not in override:
+        errors.append("Akio BB override is not on the shared controller")
+    doc = (ROOT / "Assets/MDI_Characters/Runtime/BlazBlue/AKIO_BB_MOVELIST.md").read_text().splitlines()
+    rows = []
+    for line in doc:
+        if not line.startswith("| ") or line.startswith("| Move") or line.startswith("| ---"):
+            continue
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        if len(cells) < 4:
+            continue
+        rows.append(cells)
+    clips = {}
+    mocap = ROOT / "Assets/Huge Mocap Library"
+    for meta in mocap.rglob("*.fbx.meta"):
+        body = meta.read_text(errors="ignore")
+        for chunk in body.split("      name: ")[1:]:
+            name = chunk.split("\n", 1)[0].strip()
+            if "firstFrame:" not in chunk:
+                continue
+            first = chunk.split("firstFrame: ", 1)[1].split("\n", 1)[0].strip()
+            last = chunk.split("lastFrame: ", 1)[1].split("\n", 1)[0].strip()
+            clips[name] = (first, last)
+    for cells in rows:
+        move = cells[0]
+        asset = ROOT / "Assets/CombatData/BlazBlue/Akio" / f"BB_Akio_{move}.asset"
+        if not asset.exists():
+            errors.append("missing asset for " + move)
+            continue
+        body = asset.read_text()
+        if f"moveId: {move}" not in body:
+            errors.append(move + " id mismatch")
+        clip = cells[2].split()[0]
+        if f"clipName: {clip}" not in body:
+            errors.append(move + " clip " + clip)
+        if clip not in clips:
+            errors.append("clip missing " + clip)
+        elif len(cells[2].split()) >= 4:
+            frames = cells[2].split()[-1]
+            first, last = frames.split("-")
+            if clips[clip] != (first, last):
+                errors.append(f"{clip} frames {clips[clip]} != {first}-{last}")
+        startup, active, recovery = [int(x) for x in cells[3].split("/")]
+        if f"boxTickCount: {startup + active + recovery}" not in body:
+            errors.append(move + " box track length")
+        if "fatalCounter: 1" not in body and move == "5C":
+            errors.append("5C is not a Fatal Counter")
+    if "name: Akio_5P" not in (ROOT / "Assets/Huge Mocap Library/mocap animations/144/144_20.fbx.meta").read_text():
+        errors.append("Akio_5P clip entry missing")
+    return errors
 
 
 def main() -> int:
@@ -62,7 +127,11 @@ def main() -> int:
             errors.append("prefab or existing override changed " + path)
             continue
         if path.endswith(".fbx.meta"):
-            errors.append("mocap meta changed in the shared layer " + path)
+            diff = subprocess.check_output(["git", "diff", "-U0", "main", "--", path], cwd=ROOT, text=True)
+            for line in diff.splitlines():
+                if line.startswith("-") and not line.startswith("---") and "name: " in line:
+                    errors.append("existing clip renamed or removed in " + path)
+                    break
             continue
         if path in ALLOWED_EDIT or any(path == p or path.startswith(p) for p in ALLOWED_NEW):
             continue
@@ -89,6 +158,7 @@ def main() -> int:
         errors.append("Classic is not the default scheme")
     if "StellarWitch" not in (ROOT / "Docs/MDI_BLAZBLUE_IMPLEMENTATION_SPEC.md").read_text():
         errors.append("slot 9 decision missing from the spec")
+    errors.extend(check_akio())
 
     if errors:
         print("FAIL")
