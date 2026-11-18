@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a10e00000000000000000000000010, type: 3}
+  m_Name: AikaClipLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AkioClipLibrary
+  originalAtkR: {fileID: 3094330708855449807, guid: 408142c06e2d48c4db8065d1fbbcc8eb, type: 3}
+  originalAtkL: {fileID: 3094330708855449807, guid: b3d13322675e10d47aa75892a620c7bc, type: 3}
+  originalAtk2: {fileID: 3094330708855449807, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
+  originalPole: {fileID: 3094330708855449807, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
+  originalShield: {fileID: 3094330708855449807, guid: 6683d02f31b83724daa4714c986bd1f5, type: 3}
+  originalMagic1: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
+  originalMagic2: {fileID: 3094330708855449807, guid: afc0d7b05fc184d49a7e863d9eec0f9e, type: 3}
+  originalDeath: {fileID: 5957932628511814003, guid: b09be4f98e05fa7489d148a376fc0f1c, type: 3}
+  originalRise: {fileID: 3094330708855449807, guid: b3b7631decc86f04bb15e95e6e0c6a0c, type: 3}
+  originalHop: {fileID: 3094330708855449807, guid: 38a45c96315321348952eec2abacbd04, type: 3}
+  originalRunF: {fileID: 3094330708855449807, guid: 40786e67f3ceb094b9c00543f295cb5f, type: 3}
+  originalGuard: {fileID: 3094330708855449807, guid: c163a36c98396ee4488ff914e337cf3c, type: 3}
+  originalCrouch: {fileID: 3094330708855449807, guid: 6abe61edacb78c74489739f89ec126bc, type: 3}
+  originalVictory: {fileID: 3094330708855449807, guid: 34ced3481cc3833478728f31579a88c9, type: 3}
+  clipWalk: {fileID: 8200740100002, guid: 24b36a45a97e3e643b764770ed872d0c, type: 3}
+  clipDash: {fileID: 8201111900002, guid: 2ee91a46bcfe72045b18fc84d46f8964, type: 3}
+  clipJump: {fileID: 8201432400004, guid: 46feb3206186ef34dafd90fe51026b22, type: 3}
+  clipIntro: {fileID: 8200740100003, guid: 24b36a45a97e3e643b764770ed872d0c, type: 3}
+  clipCrouch: {fileID: 8201350900002, guid: e9c7f4a9e8299714bbe59aa67621c3e9, type: 3}
+  clipStandBlock: {fileID: 8201440800002, guid: ea0f0b764143843418164d1851f7570e, type: 3}
+  clipCrouchBlock: {fileID: 8201350900003, guid: e9c7f4a9e8299714bbe59aa67621c3e9, type: 3}
+  clipFall: {fileID: 8201140200002, guid: ea70386750ba788448c33e4315b4617f, type: 3}
+  clipGetup: {fileID: 8201140200003, guid: ea70386750ba788448c33e4315b4617f, type: 3}
+  clipVictory: {fileID: 8201440800003, guid: ea0f0b764143843418164d1851f7570e, type: 3}
+  dashAnimatorSpeed: 1.3194
+  fallAnimatorSpeed: 1.6776
+  getupAnimatorSpeed: 0.6886

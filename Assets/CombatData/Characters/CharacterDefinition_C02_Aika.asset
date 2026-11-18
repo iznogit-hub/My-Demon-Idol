@@ -15,11 +15,11 @@ MonoBehaviour:
   id: C02
   displayName: Aika
   title: The Crimson Shadow
-  archetype: Rushdown / Mixup
+  archetype: Karate Zoner
   signatureStageId: ST01
-  description: Swift ninja operative mastering lethal frame-traps, Gatling cancels, and Void Rift domain expansions.
+  description: Long-shin karate zoner. She keeps the round at kick range with a nail projectile, a reaping 214, and a charged side kick.
   modelPrefab: {fileID: 57404065822515113, guid: f8284d8a9c0d40b1a93c7d2bcfaf2eef, type: 3}
-  animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  animatorController: {fileID: 22100000, guid: c0a11a00000000000000000000000001, type: 2}
   avatar: {fileID: 9000000, guid: 6f046a28acb55a743ac3d732fcac0054, type: 3}
   portraitSprite: {fileID: 21300000, guid: 2efed0adcb3b84f799e95663ce0874a0, type: 3}
   bannerSprite: {fileID: 0}
@@ -29,6 +29,16 @@ MonoBehaviour:
   defense: 70
   domainName: Void Rift
   domainDescription: Freezes spacetime for 20 combat ticks, shattering enemy barrier integrity with an unavoidable fatal strike.
-  moveSet: {fileID: 0}
+  moveSet: {fileID: 11400000, guid: c0a11a00000000000000000000000002, type: 2}
   videoBindings: {fileID: 0}
   ufeCharacterName: Mike
+  depthMovelist: 1
+  akioClips: {fileID: 11400000, guid: c0a11a00000000000000000000000003, type: 2}
+  depthCrouchHeight: 0.5
+  depthCrouchRadius: 0.24
+  depthAirHeight: 1.05
+  depthAirRadius: 0.2
+  depthCrouchLegScale: 0.62
+  depthCrouchTorsoScale: 0.7
+  depthCrouchHeadScale: 0.4
+  depthAirHurtScale: 0.8

@@ -52,12 +52,17 @@ namespace DemonIdol.Combat
         [Header("Additional Move List")]
         public List<AttackData> additionalMoves = new List<AttackData>();
 
-        [Header("Akio-only routes (null on every other moveset)")]
+        [Header("Depth routes (null unless that fighter's moveset fills them)")]
         public AttackData akioRekka1;
         public AttackData akioRekka2;
         public AttackData akioRekka3;
         public AttackData akioFireball;
         public AttackData akioDragonPunch;
+        public AttackData depthQuarterBack;
+        public AttackData depthCharge;
+        public string depthChainA = "";
+        public string depthChainB = "";
+        public string depthChainC = "";
 
         /// <summary>
         /// Unambiguously resolves an accepted 3-button command into the authored AttackData.

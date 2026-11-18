@@ -47,10 +47,23 @@ namespace DemonIdol.Combat
         [Header("Legacy Mapping")]
         public string ufeCharacterName = "Mike";
 
-        [Header("Akio depth movelist")]
-        [Tooltip("Opt-in. Only C01 Akio sets this. Every other fighter leaves it off and keeps the shared routes.")]
+        [Header("Depth movelist")]
+        [Tooltip("C01 Akio's original opt-in. Leave this off on everyone else.")]
         public bool akioDepthMovelist = false;
+        [Tooltip("Per-character opt-in for the same depth system. Aika sets this. Akio does not need it.")]
+        public bool depthMovelist = false;
         public AkioClipLibrary akioClips;
+        [Tooltip("0 keeps the original Akio pushbox numbers. A positive value is that fighter's own size.")]
+        public float depthCrouchHeight = 0f;
+        public float depthCrouchRadius = 0f;
+        public float depthAirHeight = 0f;
+        public float depthAirRadius = 0f;
+        public float depthCrouchLegScale = 0f;
+        public float depthCrouchTorsoScale = 0f;
+        public float depthCrouchHeadScale = 0f;
+        public float depthAirHurtScale = 0f;
+
+        public bool UsesDepthMovelist => akioDepthMovelist || depthMovelist;
 
         public string GetEffectiveUFEName()
         {

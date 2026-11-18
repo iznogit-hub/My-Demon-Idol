@@ -89,5 +89,15 @@ namespace MDI.Akio.Tests
             Assert.IsTrue(CancelQuery.InWindow(10, 6, 15));
             Assert.IsFalse(CancelQuery.InWindow(4, 6, 15));
         }
+
+        [Test]
+        public void ChainIds_DefaultToAkiosMergedRoute_UntilAMovesetOverridesThem()
+        {
+            Assert.AreEqual("5M", CancelQuery.FirstChainId(null));
+            Assert.AreEqual("5M", CancelQuery.FirstChainId(""));
+            Assert.AreEqual("rekka1", CancelQuery.SecondChainId(null));
+            Assert.AreEqual("rekka2", CancelQuery.ThirdChainId(""));
+            Assert.AreEqual("5K", CancelQuery.FirstChainId("5K"));
+        }
     }
 }

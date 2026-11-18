@@ -3,8 +3,9 @@ using UnityEngine;
 namespace DemonIdol.Combat
 {
     /// <summary>
-    /// Clip handles for Akio's runtime override. Assigned only from her character definition.
+    /// Clip handles for a depth-movelist fighter. Akio and Aika each have their own asset.
     /// Original clips are the KI motions the shared controller already plays. Sub-clips are CMU windows.
+    /// clipVictory stays empty on Akio, so her victory clip is still the KI idle.
     /// </summary>
     [CreateAssetMenu(fileName = "AkioClipLibrary", menuName = "DemonIdol/Combat/Akio Clip Library")]
     public class AkioClipLibrary : ScriptableObject
@@ -23,6 +24,7 @@ namespace DemonIdol.Combat
         public AnimationClip originalRunF;
         public AnimationClip originalGuard;
         public AnimationClip originalCrouch;
+        public AnimationClip originalVictory;
 
         [Header("CMU sub-clips")]
         public AnimationClip clipWalk;
@@ -34,6 +36,7 @@ namespace DemonIdol.Combat
         public AnimationClip clipCrouchBlock;
         public AnimationClip clipFall;
         public AnimationClip clipGetup;
+        public AnimationClip clipVictory;
 
         [Header("Animator.speed while that state is playing")]
         public float dashAnimatorSpeed = 1.458f;
