@@ -15,11 +15,11 @@ MonoBehaviour:
   id: C09
   displayName: PicoChan
   title: The Crimson Shadow
-  archetype: Rushdown / Mixup
+  archetype: Close Grappler
   signatureStageId: ST01
-  description: Swift ninja operative mastering lethal frame-traps, Gatling cancels, and Void Rift domain expansions.
+  description: Short close grappler. Her hips are the lowest in the roster and her forearm is long for that frame, so she crowds, hooks, and grabs.
   modelPrefab: {fileID: 2350652681907635850, guid: fd3454c99b4e4e6da0b97d841cdf2de8, type: 3}
-  animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  animatorController: {fileID: 22100000, guid: c0a13c00000000000000000000000001, type: 2}
   avatar: {fileID: 9000000, guid: 10038fdbf93c4dd43af9ce774d03a956, type: 3}
   portraitSprite: {fileID: 21300000, guid: f16f647cae22e494a9612f23e64460dd, type: 3}
   bannerSprite: {fileID: 0}
@@ -29,6 +29,16 @@ MonoBehaviour:
   defense: 70
   domainName: Void Rift
   domainDescription: Freezes spacetime for 20 combat ticks, shattering enemy barrier integrity with an unavoidable fatal strike.
-  moveSet: {fileID: 0}
+  moveSet: {fileID: 11400000, guid: c0a13c00000000000000000000000002, type: 2}
   videoBindings: {fileID: 0}
   ufeCharacterName: Mike
+  depthMovelist: 1
+  akioClips: {fileID: 11400000, guid: c0a13c00000000000000000000000003, type: 2}
+  depthCrouchHeight: 0.42
+  depthCrouchRadius: 0.22
+  depthAirHeight: 0.9
+  depthAirRadius: 0.2
+  depthCrouchLegScale: 0.48
+  depthCrouchTorsoScale: 0.65
+  depthCrouchHeadScale: 0.35
+  depthAirHurtScale: 0.8

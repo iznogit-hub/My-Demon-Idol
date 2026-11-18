@@ -59,6 +59,7 @@ namespace DemonIdol.Combat
         public AttackData akioFireball;
         public AttackData akioDragonPunch;
         public AttackData depthQuarterBack;
+        public AttackData depthQuarterForward;
         public AttackData depthCharge;
         public string depthChainA = "";
         public string depthChainB = "";

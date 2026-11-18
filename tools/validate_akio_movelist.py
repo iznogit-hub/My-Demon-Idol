@@ -25,6 +25,9 @@ ALLOWED_MODIFIED = {
     "Assets/CombatData/Characters/CharacterDefinition_C01_Akio.asset",
     "Assets/CombatData/Characters/CharacterDefinition_C02_Aika.asset",
     "Assets/CombatData/Characters/CharacterDefinition_C04_UnityChan.asset",
+    "Assets/CombatData/Characters/CharacterDefinition_C09_PicoChan.asset",
+    "Assets/Scripts/Combat/FighterController.cs",
+    "Assets/Scripts/Data/MoveSet.cs",
     "Assets/Scripts/Data/CharacterDefinition.cs",
     "tools/validate_ki_melee.py",
     "tools/validate_akio_movelist.py",
@@ -63,6 +66,16 @@ ALLOWED_MODIFIED = {
     "Assets/Huge Mocap Library/mocap animations/118/118_01.fbx.meta",
     "Assets/Huge Mocap Library/mocap animations/118/118_05.fbx.meta",
     "Assets/Huge Mocap Library/mocap animations/140/140_01.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/15/15_13.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/17/17_10.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/86/86_08.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/111/111_02.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/111/111_33.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/111/111_34.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/113/113_08.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/139/139_09.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/141/141_23.fbx.meta",
+    "Assets/Huge Mocap Library/mocap animations/143/143_06.fbx.meta",
 }
 
 ALLOWED_ADDED_PREFIXES = (
@@ -79,6 +92,10 @@ ALLOWED_ADDED_PREFIXES = (
     "Assets/MDI_Characters/Runtime/UNITYCHAN_MOVELIST.md",
     "Assets/MDI_Characters/Runtime/UnityChan_KI_Melee_Override.overrideController",
     "Assets/CombatData/UnityChan/",
+    "Assets/CombatData/PicoChan/",
+    "Assets/MDI_Characters/Runtime/PicoChan/",
+    "Assets/MDI_Characters/Runtime/PICOCHAN_MOVELIST.md",
+    "Assets/MDI_Characters/Runtime/PicoChan_KI_Melee_Override.overrideController",
     "Assets/Scripts/Combat/AkioPresentation.cs",
     "Assets/Scripts/Combat/AkioBodyFit.cs",
     "Assets/Scripts/Data/AkioClipLibrary.cs",
@@ -187,6 +204,13 @@ def main() -> int:
                 errors.append("UnityChan is not on her own override")
             if "guid: c0a10e00000000000000000000000002" in body or "guid: c0a11a00000000000000000000000002" in body:
                 errors.append("UnityChan is pointing at another fighter's moveset")
+        elif path.name == "CharacterDefinition_C09_PicoChan.asset":
+            if flagged:
+                errors.append("PicoChan must not use Akio's opt-in flag")
+            if not depth:
+                errors.append("PicoChan is not opted into the depth movelist")
+            if "guid: c0a13c00000000000000000000000001" not in body:
+                errors.append("PicoChan is not on her own override")
         elif flagged or depth:
             errors.append(path.name + " opted into a depth movelist")
 
@@ -373,6 +397,58 @@ def main() -> int:
     uchan_override = (ROOT / "Assets/MDI_Characters/Runtime/UnityChan_KI_Melee_Override.overrideController").read_text()
     if "guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4" not in uchan_override:
         errors.append("UnityChan override is not parented to the shared controller")
+    if "depthQuarterForward:" in (ROOT / "Assets/CombatData/Akio/AkioMoveSet.asset").read_text():
+        errors.append("Akio moveset gained a non-projectile 236")
+    if "depthQuarterForward:" in (ROOT / "Assets/CombatData/Aika/AikaMoveSet.asset").read_text():
+        errors.append("Aika moveset gained a non-projectile 236")
+    if "depthQuarterForward:" in (ROOT / "Assets/CombatData/UnityChan/UnityChanMoveSet.asset").read_text():
+        errors.append("UnityChan moveset gained a non-projectile 236")
+
+    pico_windows = {
+        "Pico_5P": (638, 654), "Pico_2P": (376, 394), "Pico_5M": (1256, 1274), "Pico_6M": (400, 418),
+        "Pico_2M": (344, 362), "Pico_jP": (765, 783), "Pico_Rekka1": (35, 53), "Pico_Rekka2": (465, 483),
+        "Pico_StandBlock": (8, 28), "Pico_2S": (288, 308), "Pico_623S": (149, 169), "Pico_236S": (37, 57),
+        "Pico_6S": (173, 193), "Pico_Dash": (355, 373), "Pico_jM": (312, 330), "Pico_jS": (944, 962),
+        "Pico_Charge": (1502, 1524), "Pico_Rekka3": (556, 574), "Pico_Victory": (17, 77),
+        "Pico_Throw": (314, 336), "Pico_Walk": (82, 110), "Pico_Intro": (8, 40),
+        "Pico_Fall": (8, 36), "Pico_Getup": (300, 342), "Pico_Crouch": (110, 130),
+        "Pico_CrouchBlock": (42, 62), "Pico_214S": (11, 33), "Pico_Jump": (12, 32),
+        "Pico_Super": (820, 854),
+    }
+    seen_pico = set()
+    for meta in (ROOT / "Assets/Huge Mocap Library").rglob("*.fbx.meta"):
+        body = meta.read_text(errors="ignore")
+        if "Pico_" not in body:
+            continue
+        if "Akio_" in body or "Aika_" in body or "UChan_" in body:
+            errors.append(meta.name + " mixes PicoChan clips with another fighter")
+        for name, (first, last) in pico_windows.items():
+            m = re.search(
+                rf"name: {name}\n      takeName: .+\n      internalID: (\d+)\n      firstFrame: (\d+)\n      lastFrame: (\d+)",
+                body,
+            )
+            if not m:
+                continue
+            seen_pico.add(name)
+            if int(m.group(2)) != first or int(m.group(3)) != last:
+                errors.append(f"{name} range {m.group(2)}-{m.group(3)} != {first}-{last}")
+            if name == "Pico_Getup" and "keepOriginalPositionY: 0" not in body:
+                errors.append("Pico get-up still keeps the sunk root")
+    if seen_pico != set(pico_windows):
+        errors.append("missing Pico windows " + ", ".join(sorted(set(pico_windows) - seen_pico)))
+    pico_ms = (ROOT / "Assets/CombatData/PicoChan/PicoChanMoveSet.asset").read_text()
+    if "akioFireball: {fileID: 0}" not in pico_ms:
+        errors.append("Pico 236 would spend the laser meter")
+    if "depthQuarterForward:" not in pico_ms or "depthQuarterBack:" not in pico_ms or "depthCharge:" not in pico_ms:
+        errors.append("Pico moveset is missing 236, 214, or charge")
+    if "akioMoveId: 236S" not in (ROOT / "Assets/CombatData/PicoChan/Pico_236S.asset").read_text():
+        errors.append("Pico lariat id would spawn a projectile")
+    factory = (ROOT / "Assets/Scripts/Combat/ProjectileFactory.cs").read_text()
+    if 'name = "Cyber Laser Cannon", speed = 20f, damage = 44f' not in factory:
+        errors.append("Pico flag-off laser numbers changed")
+    pico_override = (ROOT / "Assets/MDI_Characters/Runtime/PicoChan_KI_Melee_Override.overrideController").read_text()
+    if "guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4" not in pico_override:
+        errors.append("Pico override is not parented to the shared controller")
 
     other = (ROOT / "Assets/CombatData/Characters/CharacterDefinition_C02_Aika.asset").read_text()
     if "akioDepthMovelist: 1" in other or "c0a10e00000000000000000000000002" in other:
