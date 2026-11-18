@@ -15,6 +15,7 @@ namespace DemonIdol.BlazBlue
             Hitstun(fails);
             Collision(fails);
             Determinism(fails);
+            IronRushStocks(fails);
             return fails;
         }
 
@@ -180,6 +181,49 @@ namespace DemonIdol.BlazBlue
             Expect(fails, BBRules.HitstunDecayAir(400, false, 120) == 12, "air decay");
             float g = BBRules.GravityScale(20, 0.06f, 1.9f);
             Expect(fails, g == 1.9f, "gravity caps at 1.9, got " + g);
+        }
+
+        static void IronRushStocks(List<string> fails)
+        {
+            BBSim sim = new BBSim();
+            BBMoveDef[] moves = new BBMoveDef[1];
+            moves[0] = new BBMoveDef();
+            moves[0].id = 1;
+            moves[0].button = BBButton.D;
+            moves[0].kind = BBMoveKind.DriveMove;
+            moves[0].groundOk = true;
+            moves[0].startup = 1;
+            moves[0].active = 2;
+            moves[0].recovery = 4;
+            moves[0].damage = 350;
+            moves[0].p1 = 0.85f;
+            moves[0].p2 = 0.9f;
+            moves[0].hitstun = 12;
+            moves[0].hitX = 0.4f;
+            moves[0].hitY = 1f;
+            moves[0].hitW = 1.2f;
+            moves[0].hitH = 1.2f;
+            sim.Reset(moves, 1, BBTuning.Default());
+            sim.a.x = 0f;
+            sim.b.x = 0.3f;
+            BBInputFrame press = new BBInputFrame();
+            press.numpad = 5;
+            press.pressed = (byte)BBButton.D;
+            press.held = (byte)BBButton.D;
+            BBInputFrame idle = new BBInputFrame();
+            idle.numpad = 5;
+            sim.Tick(press, idle);
+            for (int i = 0; i < 6; i++) sim.Tick(idle, idle);
+            Expect(fails, sim.a.stocks == 1, "Iron Rush banks one stock on hit, got " + sim.a.stocks);
+            sim.a.stocks = 3;
+            sim.a.phase = 0;
+            sim.a.moveId = -1;
+            sim.a.madeContact = false;
+            sim.b.phase = 0;
+            sim.b.hp = 11000;
+            sim.Tick(press, idle);
+            for (int i = 0; i < 6; i++) sim.Tick(idle, idle);
+            Expect(fails, sim.a.stocks == 3, "Iron Rush caps at 3");
         }
 
         static void Collision(List<string> fails)

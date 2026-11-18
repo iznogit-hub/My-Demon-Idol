@@ -302,6 +302,7 @@ namespace DemonIdol.BlazBlue
             if (atk.heatMilli > tuning.heatMax * 1000) atk.heatMilli = tuning.heatMax * 1000;
             def.heatMilli += (int)(dmg * tuning.heatPerDamageTaken * 1000f);
             if (counter && m.fatalCounter) atk.fatalCombo = true;
+            if (m.kind == BBMoveKind.DriveMove && atk.stocks < 3) atk.stocks++;
             atk.comboTime += def.stunLeft;
         }
 
