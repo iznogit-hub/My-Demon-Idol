@@ -1,4 +1,5 @@
 using System;
+using MDI.Akio;
 using UnityEngine;
 using DemonIdol.UI;
 
@@ -63,7 +64,7 @@ namespace DemonIdol.Combat
         public float depthCrouchHeadScale = 0f;
         public float depthAirHurtScale = 0f;
 
-        public bool UsesDepthMovelist => akioDepthMovelist || depthMovelist;
+        public bool UsesDepthMovelist => CancelQuery.IsOptedIn(akioDepthMovelist, depthMovelist);
 
         public string GetEffectiveUFEName()
         {

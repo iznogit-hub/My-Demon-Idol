@@ -19,6 +19,11 @@ namespace MDI.Akio
             return false;
         }
 
+        public static bool IsOptedIn(bool akioFlag, bool depthFlag)
+        {
+            return akioFlag || depthFlag;
+        }
+
         public static string FirstChainId(string authored)
         {
             return string.IsNullOrEmpty(authored) ? "5M" : authored;

@@ -99,5 +99,13 @@ namespace MDI.Akio.Tests
             Assert.AreEqual("rekka2", CancelQuery.ThirdChainId(""));
             Assert.AreEqual("5K", CancelQuery.FirstChainId("5K"));
         }
+
+        [Test]
+        public void OptIn_IsPerCharacter_AndLeavesEveryoneElseOff()
+        {
+            Assert.IsTrue(CancelQuery.IsOptedIn(true, false));
+            Assert.IsTrue(CancelQuery.IsOptedIn(false, true));
+            Assert.IsFalse(CancelQuery.IsOptedIn(false, false));
+        }
     }
 }
