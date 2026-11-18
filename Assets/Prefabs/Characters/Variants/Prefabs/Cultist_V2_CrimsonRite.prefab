@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2114260609946995563
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 223424382107264828, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_Name
+      value: "Cultist_V2_CrimsonRite"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119093262940853706, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.96000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119093262940853706, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.96000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119093262940853706, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.96000
+      objectReference: {fileID: 0}
+    - target: {fileID: 234485459701260908, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6cad299a32685b0d995a3717991c849b, type: 2}
+    - target: {fileID: 234485459701260908, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe58a8e60bcf54ae85a8859faf10f910, type: 2}
+    - target: {fileID: 234485459701260908, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: ac14fde916b95bd99191ecb5bc45ada3, type: 2}
+    - target: {fileID: 234485459701260908, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_Materials.Array.data[9]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cb3a577c6ad566bbf550ba4e151e61d, type: 2}
+    - target: {fileID: 234485459701260908, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_Materials.Array.data[10]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f8ef5a2455b5229968518d9c08d02ef, type: 2}
+    - target: {fileID: 234485459701260908, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_Materials.Array.data[11]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6eb13049aabf542da94716a39c8b0db5, type: 2}
+    - target: {fileID: 234485459701260908, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_Materials.Array.data[12]
+      value: 
+      objectReference: {fileID: 2100000, guid: d31778fc6f6656b48d2853b1795ac555, type: 2}
+    - target: {fileID: 234485459701260908, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_Materials.Array.data[13]
+      value: 
+      objectReference: {fileID: 2100000, guid: a15d51fedb5652a8b6d1282d629709db, type: 2}
+    - target: {fileID: 234485459701260908, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      propertyPath: m_Materials.Array.data[14]
+      value: 
+      objectReference: {fileID: 2100000, guid: db8058495bb55ae0b2a0f1b4916f58ad, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 223424382107264828, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2296867521400540469}
+  m_SourcePrefab: {fileID: 100100000, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+--- !u!1 &847320069887801615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 223424382107264828, guid: 8c72a13e06f84033a22b99636bd06ad0, type: 3}
+  m_PrefabInstance: {fileID: 2114260609946995563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2296867521400540469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847320069887801615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7e1b94d2f4a68b5e0d7c81f6a4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Characters.MDIVariantLook
+  description: "Crimson robe, black-red hair, red eyes, angry face, dagger. Slightly shorter."
+  variantId: Cultist_V2_CrimsonRite
+  expressions:
+  - shapeName: Face.M_F00_000_00_Fcl_ALL_Angry
+    weight: 75.0
+  - shapeName: Fcl_ALL_Angry
+    weight: 75.0
+  accessories:
+  - prefab: {fileID: 100100000, guid: b23ae580d1432f445844e358ffffd0b1, type: 3}
+    boneSlot: rightHand
+    localPosition: {x: 0.0, y: 0.01, z: 0.04}
+    localEulerAngles: {x: 90.0, y: 0.0, z: 90.0}
+    localScale: {x: 0.8, y: 0.8, z: 0.8}

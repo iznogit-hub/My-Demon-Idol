@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2438698060762205469
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 593211545231182016, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Name
+      value: "Reika_V2_CrimsonCarol"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055916280143935423, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055916280143935423, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055916280143935423, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153506351474962018, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4502831aa3b6580db400616a6aa65bf2, type: 2}
+    - target: {fileID: 8261898498691259300, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b1b6b15f3cb55a91808aab9898e8b197, type: 2}
+    - target: {fileID: 5701351252300887060, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f914889f43d575e8cda5c81a615f50d, type: 2}
+    - target: {fileID: 5701351252300887060, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 579e98c7e41054f08a3fcb2ed29eb085, type: 2}
+    - target: {fileID: 5450812513515872026, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7338b6b85246562aab46e1b33822a250, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 593211545231182016, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 340607506959856044}
+  m_SourcePrefab: {fileID: 100100000, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+--- !u!1 &3816974171490580340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 593211545231182016, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+  m_PrefabInstance: {fileID: 2438698060762205469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &340607506959856044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3816974171490580340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7e1b94d2f4a68b5e0d7c81f6a4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Characters.MDIVariantLook
+  description: "Hat stays. Crimson dress, dark red hair, red eyes, raised brows, dagger."
+  variantId: Reika_V2_CrimsonCarol
+  expressions:
+  - shapeName: eyeBrow Height
+    weight: 75.0
+  accessories:
+  - prefab: {fileID: 100100000, guid: b23ae580d1432f445844e358ffffd0b1, type: 3}
+    boneSlot: rightHand
+    localPosition: {x: 0.0, y: 0.01, z: 0.04}
+    localEulerAngles: {x: 90.0, y: 0.0, z: 90.0}
+    localScale: {x: 0.8, y: 0.8, z: 0.8}

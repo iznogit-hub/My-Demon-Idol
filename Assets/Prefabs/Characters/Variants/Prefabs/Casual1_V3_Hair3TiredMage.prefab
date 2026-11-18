@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4589201309367420380
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1694388104871626401, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_Name
+      value: "Casual1_V3_Hair3TiredMage"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694388104871467649, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694388104871467649, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694388104871467649, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 924288981084533774, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b6ebec91bf550c6838087956faf69e4, type: 2}
+    - target: {fileID: 2806998933368918527, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 160c08c21c0654cfa5bb8770f0e260e9, type: 2}
+    - target: {fileID: 2806998933368918527, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: fd178a2c06045c00adb6f377bce7d13c, type: 2}
+    - target: {fileID: 2806998933368918527, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 51bc29643ec75f9cafe9dc0290f2bc25, type: 2}
+    - target: {fileID: 2806998933368918527, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_Materials.Array.data[8]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1954777097a155c0987222340125ac9d, type: 2}
+    - target: {fileID: 2806998933368918527, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_Materials.Array.data[9]
+      value: 
+      objectReference: {fileID: 2100000, guid: ebb20b1cb5e55736bd2915e8b2ffe947, type: 2}
+    - target: {fileID: 9152065412437331283, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 72bc121c7e3a5e8884b6d02721d9b1eb, type: 2}
+    - target: {fileID: 9152065412437331283, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300006, guid: d8e6717bd7507b44c9fc5a0a6749ec6c, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1694388104871626401, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 702676085367637573}
+  m_SourcePrefab: {fileID: 100100000, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+--- !u!1 &3186166184855741208 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1694388104871626401, guid: 8a93f627f1674e6f9af55f551ad9bcbe, type: 3}
+  m_PrefabInstance: {fileID: 4589201309367420380}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &702676085367637573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3186166184855741208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7e1b94d2f4a68b5e0d7c81f6a4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Characters.MDIVariantLook
+  description: "Hair 3, shipped eye colour 4, sad expression, mint outfit, mage hat."
+  variantId: Casual1_V3_Hair3TiredMage
+  expressions:
+  - shapeName: sad
+    weight: 75.0
+  accessories:
+  - prefab: {fileID: 100100000, guid: dd0475d91e3344c01a82015df9436913, type: 3}
+    boneSlot: head
+    localPosition: {x: 0.0, y: 0.15, z: 0.02}
+    localEulerAngles: {x: 0.0, y: 0.0, z: 0.0}
+    localScale: {x: 1.0, y: 1.0, z: 1.0}

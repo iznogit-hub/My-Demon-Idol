@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4129012312177222175
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8862449341055988924, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Name
+      value: "Fina_V2_BobDuelist"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193857608373317126, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.96000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193857608373317126, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.96000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193857608373317126, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.96000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135175396833850125, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481950349224441712, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36790275766651761, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 259cbbb69b975d1da6293e35ad6529df, type: 2}
+    - target: {fileID: 5552460074435015174, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 349acde9c3675843b50f0420d881ab7c, type: 2}
+    - target: {fileID: 1212438271741942119, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c1d1a27dd1a53deba734af455b7fc80, type: 2}
+    - target: {fileID: 5989576644714335531, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 726573abd18550e1bd1e4afcbc2aa739, type: 2}
+    - target: {fileID: 2758636216028189819, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 726573abd18550e1bd1e4afcbc2aa739, type: 2}
+    - target: {fileID: 1363518778376511212, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 373758a7d19252d5ba50830a2f9dab7a, type: 2}
+    - target: {fileID: 1011932305851421841, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 726573abd18550e1bd1e4afcbc2aa739, type: 2}
+    - target: {fileID: 6200607929848927061, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 726573abd18550e1bd1e4afcbc2aa739, type: 2}
+    - target: {fileID: 2985396553964097756, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ac61431f4b785655abd480ad4f4ede62, type: 2}
+    - target: {fileID: 2985396553964097756, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3c45f058d17524780971635faa76c58, type: 2}
+    - target: {fileID: 7471331912349372669, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: df5d491cc2cd5e25955e21f3c0fcadae, type: 2}
+    - target: {fileID: 6961834993952920767, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 726573abd18550e1bd1e4afcbc2aa739, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8862449341055988924, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3544482586014489064}
+  m_SourcePrefab: {fileID: 100100000, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+--- !u!1 &1868139142955263948 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8862449341055988924, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+  m_PrefabInstance: {fileID: 4129012312177222175}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3544482586014489064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868139142955263948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7e1b94d2f4a68b5e0d7c81f6a4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Characters.MDIVariantLook
+  description: "Back and mid hair off, leaving the front hair. Blue clothes, cool hair, angry face, dagger. Shorter."
+  variantId: Fina_V2_BobDuelist
+  expressions:
+  - shapeName: Fcl_BRW_Angry
+    weight: 75.0
+  - shapeName: Fcl_EYE_Angry
+    weight: 75.0
+  accessories:
+  - prefab: {fileID: 100100000, guid: b23ae580d1432f445844e358ffffd0b1, type: 3}
+    boneSlot: rightHand
+    localPosition: {x: 0.0, y: 0.01, z: 0.04}
+    localEulerAngles: {x: 90.0, y: 0.0, z: 90.0}
+    localScale: {x: 0.8, y: 0.8, z: 0.8}

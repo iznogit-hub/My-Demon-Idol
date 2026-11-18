@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3582585497935602215
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 593211545231182016, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Name
+      value: "Reika_V4_MidnightBell"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055916280143935423, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.02000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055916280143935423, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.02000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055916280143935423, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.02000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153506351474962018, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d284d44d29cb5ee8ba84078cb1681952, type: 2}
+    - target: {fileID: 8261898498691259300, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aeee688ca7a95d0fa8697c86a556d2d8, type: 2}
+    - target: {fileID: 5701351252300887060, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 36e6e29ae6485443977814d41e1fc39b, type: 2}
+    - target: {fileID: 5701351252300887060, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 04c7ab2f3fa2510ea8dd6f9555f5d3c3, type: 2}
+    - target: {fileID: 5450812513515872026, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4dfe6ae8e1c359a38ec3ecbefbb0c230, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 593211545231182016, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1435587055826931487}
+  m_SourcePrefab: {fileID: 100100000, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+--- !u!1 &1763822054951211413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 593211545231182016, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+  m_PrefabInstance: {fileID: 3582585497935602215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1435587055826931487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763822054951211413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7e1b94d2f4a68b5e0d7c81f6a4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Characters.MDIVariantLook
+  description: "Hat stays. Midnight violet dress, violet hair, violet eyes, sad face, half mask."
+  variantId: Reika_V4_MidnightBell
+  expressions:
+  - shapeName: Sad
+    weight: 75.0
+  accessories:
+  - prefab: {fileID: 100100000, guid: 10d7478575653bf479f98a720cf27024, type: 3}
+    boneSlot: head
+    localPosition: {x: 0.0, y: 0.05, z: 0.08}
+    localEulerAngles: {x: 0.0, y: 0.0, z: 0.0}
+    localScale: {x: 1.0, y: 1.0, z: 1.0}
