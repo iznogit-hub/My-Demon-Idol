@@ -12,6 +12,7 @@ namespace DemonIdol.Combat
         [Header("Fighter Identity")]
         public string fighterName = "Kai";
         public bool isPlayerControlled = true;
+        [System.NonSerialized] public bool externalSimulation = false;
 
         [Header("Combat Stats")]
         public float maxHealth = 1000f;
@@ -267,6 +268,7 @@ namespace DemonIdol.Combat
 
         private void Update()
         {
+            if (externalSimulation) return;
             if (CombatTickEngine.Instance != null && CombatTickEngine.Instance.IsSuperfrozen) return;
 
             // Projectile Meter Rapid Recharge (1.8s)
@@ -300,6 +302,8 @@ namespace DemonIdol.Combat
 
         private void HandleCombatTick(int currentTick)
         {
+            if (externalSimulation) return;
+
             // Global superfreeze check (Domain Expansion, etc.)
             if (CombatTickEngine.Instance != null && CombatTickEngine.Instance.IsSuperfrozen)
             {

@@ -63,8 +63,15 @@ namespace DemonIdol.BlazBlue.Tests
 
         static ClassicMatchRecorder()
         {
+            CheckAndRecord();
+        }
+
+        private static void CheckAndRecord()
+        {
             try
             {
+                BBMotionMatcherTests.RunAllTestsMenu();
+
                 if (!Directory.Exists(GOLDEN_DIR) || Directory.GetFiles(GOLDEN_DIR, "*.classicrec").Length < 6)
                 {
                     RecordAllGoldenMatches();
@@ -242,6 +249,7 @@ namespace DemonIdol.BlazBlue.Tests
 
             if (allGreen)
             {
+                BBMotionMatcherTests.RunAllTestsMenu();
                 Debug.Log("<color=#00e676>[ClassicMatchRecorder] VERIFIED: All 6 Golden Replays replayed with 100% hash parity!</color>");
             }
 

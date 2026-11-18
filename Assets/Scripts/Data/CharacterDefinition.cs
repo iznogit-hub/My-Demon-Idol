@@ -44,6 +44,9 @@ namespace DemonIdol.Combat
         public MoveSet moveSet;
         public VideoBindings videoBindings;
 
+        [Header("BlazBlue 4-Button Configuration")]
+        public ScriptableObject blazBlueProfile;
+
         [Header("Legacy Mapping")]
         public string ufeCharacterName = "Mike";
 

@@ -55,6 +55,7 @@ namespace DemonIdol.UI
         public int colorblindMode = 0; // 0 = None, 1 = Protanopia, 2 = Deuteranopia, 3 = Tritanopia
         public bool highContrastHitboxes = false;
         public int touchControlsMode = 0; // 0 = Auto-Detect, 1 = Always On, 2 = Off
+        public int controlScheme = 0; // 0 = Classic3Button, 1 = BlazBlue4Button
     }
 
     /// <summary>
@@ -104,6 +105,10 @@ namespace DemonIdol.UI
         public static int ColorblindMode => Instance != null ? Instance._current.colorblindMode : 0;
         public static bool HighContrastHitboxes => Instance != null && Instance._current.highContrastHitboxes;
         public static int TouchControlsMode => Instance != null ? Instance._current.touchControlsMode : 0;
+        public static DemonIdol.BlazBlue.ControlScheme ActiveControlScheme =>
+            (Instance != null && Instance._current.controlScheme == 1)
+                ? DemonIdol.BlazBlue.ControlScheme.BlazBlue4Button
+                : DemonIdol.BlazBlue.ControlScheme.Classic3Button;
 
         [Header("Master Audio")]
         [SerializeField] private Slider _masterSlider;
