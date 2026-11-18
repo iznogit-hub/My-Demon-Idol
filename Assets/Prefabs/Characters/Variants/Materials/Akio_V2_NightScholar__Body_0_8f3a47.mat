@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Akio_V2_NightScholar__Body_0_8f3a47
+  m_Shader: {fileID: 4800000, guid: 7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _OUTLINE_ON
+  - _ZWRITE_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 106d6117ffe855198c57e591dc45f767, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 106d6117ffe855198c57e591dc45f767, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TintMask:
+        m_Texture: {fileID: 2800000, guid: f09545f3121c538cb71333f261b5c552, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaClip: 0
+    - _ChromaticEdgeIntensity: 0
+    - _ChromaticEdgePower: 5.2
+    - _ChromaticEdgeThreshold: 0.22
+    - _Cull: 0
+    - _Cutoff: 0.5
+    - _DstBlend: 0
+    - _EnableOutline: 1
+    - _FilmGrain: 0.08
+    - _HalationIntensity: 0.25
+    - _NeonIntensity: 0
+    - _OutlineWidth: 1.2
+    - _RampSmoothness: 0.008
+    - _RampThreshold1: 0.42
+    - _RampThreshold2: 0.78
+    - _RimPower: 3.5
+    - _RimThreshold: 0.4
+    - _SpecIntensity: 0.8
+    - _SpecPower: 48
+    - _SpecThreshold: 0.55
+    - _SrcBlend: 1
+    - _UniformDesat: 0
+    - _VintageWarmth: 0.4
+    - _ZWrite: 1
+    m_Colors:
+    - _AccentTint: {r: 1.0000, g: 1.0000, b: 1.0000, a: 1}
+    - _BaseColor: {r: 1.0000, g: 1.0000, b: 1.0000, a: 1}
+    - _HairTint: {r: 0.9384, g: 0.9300, b: 0.9720, a: 1}
+    - _NeonColor: {r: 0, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 0.09, g: 0.07, b: 0.12, a: 1}
+    - _PrimaryTint: {r: 1.0000, g: 1.0000, b: 1.0000, a: 1}
+    - _RimColor: {r: 0.95, g: 0.92, b: 0.86, a: 0.55}
+    - _SecondaryTint: {r: 1.0000, g: 1.0000, b: 1.0000, a: 1}
+    - _ShadowColor: {r: 0.3713, g: 0.2925, b: 0.4500, a: 1}
+    - _SkinTint: {r: 1.0000, g: 1.0000, b: 1.0000, a: 1}
+    - _SpecColor: {r: 1, g: 0.98, b: 0.92, a: 1}
+    - _UniformTint: {r: 1.0000, g: 1.0000, b: 1.0000, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4362835863804919710
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 593211545231182016, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Name
+      value: "Reika_V3_HollyArcher"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055916280143935423, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.06000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055916280143935423, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.06000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055916280143935423, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.06000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411597484495821904, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153506351474962018, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eb668d26b7805911bc1d9f518b461c30, type: 2}
+    - target: {fileID: 5701351252300887060, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b240a6a862fa5deabf1817c131e351d1, type: 2}
+    - target: {fileID: 5701351252300887060, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10542294d915504d9c09d47875e6ff30, type: 2}
+    - target: {fileID: 5450812513515872026, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c73848d493d53228a0eefd9b19672b7, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 593211545231182016, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 644494541160746416}
+  m_SourcePrefab: {fileID: 100100000, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+--- !u!1 &245665684654611970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 593211545231182016, guid: 9a1ec8d521fc8482888dbc391e546044, type: 3}
+  m_PrefabInstance: {fileID: 4362835863804919710}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &644494541160746416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245665684654611970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7e1b94d2f4a68b5e0d7c81f6a4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Characters.MDIVariantLook
+  description: "Hat off. Holly-green dress, brown-green hair, green eyes, a wider open mouth, bow and quiver. Tallest Reika variant."
+  variantId: Reika_V3_HollyArcher
+  expressions:
+  - shapeName: Big Ahh
+    weight: 75.0
+  accessories:
+  - prefab: {fileID: 100100000, guid: d92eaccb2f3ba4b51b923db2f7367e34, type: 3}
+    boneSlot: leftHand
+    localPosition: {x: 0.0, y: 0.05, z: 0.02}
+    localEulerAngles: {x: 0.0, y: 0.0, z: 80.0}
+    localScale: {x: 1.0, y: 1.0, z: 1.0}
+  - prefab: {fileID: 100100000, guid: 73eb62c85df1449eba4ca205e6fc5c34, type: 3}
+    boneSlot: spine
+    localPosition: {x: 0.06, y: 0.12, z: -0.14}
+    localEulerAngles: {x: 0.0, y: 0.0, z: 10.0}
+    localScale: {x: 1.0, y: 1.0, z: 1.0}

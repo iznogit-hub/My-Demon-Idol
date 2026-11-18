@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4549131978749445544
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8862449341055988924, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Name
+      value: "Fina_V4_SleevelessKnight"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193857608373317126, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.03000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193857608373317126, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.03000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8193857608373317126, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.03000
+      objectReference: {fileID: 0}
+    - target: {fileID: 836858732975364232, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36790275766651761, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ffa179b4038f55ae8214f3f08cc558e0, type: 2}
+    - target: {fileID: 1212438271741942119, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f66b2031e9b526182c7086e1b843fd4, type: 2}
+    - target: {fileID: 5989576644714335531, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af31afec8ea5bf78baa737e483d9501, type: 2}
+    - target: {fileID: 2758636216028189819, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af31afec8ea5bf78baa737e483d9501, type: 2}
+    - target: {fileID: 1363518778376511212, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10d808fb4029504882cf8490f33b275b, type: 2}
+    - target: {fileID: 1011932305851421841, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af31afec8ea5bf78baa737e483d9501, type: 2}
+    - target: {fileID: 6200607929848927061, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af31afec8ea5bf78baa737e483d9501, type: 2}
+    - target: {fileID: 8993350821639547659, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10d808fb4029504882cf8490f33b275b, type: 2}
+    - target: {fileID: 2985396553964097756, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f9ddf4eef01a51b2ac15ef3a513e3f8a, type: 2}
+    - target: {fileID: 2985396553964097756, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef25836a079b548a861c501de60e51c1, type: 2}
+    - target: {fileID: 2171716742020901918, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 10d808fb4029504882cf8490f33b275b, type: 2}
+    - target: {fileID: 7471331912349372669, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ae1ea50e51e59029e7e1b8b610ca9dc, type: 2}
+    - target: {fileID: 6961834993952920767, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af31afec8ea5bf78baa737e483d9501, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8862449341055988924, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2947429423500438498}
+  m_SourcePrefab: {fileID: 100100000, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+--- !u!1 &1162040732815451698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8862449341055988924, guid: 8a4e27185568d499c8d2d0fd0a90e016, type: 3}
+  m_PrefabInstance: {fileID: 4549131978749445544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2947429423500438498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162040732815451698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7e1b94d2f4a68b5e0d7c81f6a4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Characters.MDIVariantLook
+  description: "The top mesh named topic is off. Gold accents, sword-length greatsword and shield, angry face."
+  variantId: Fina_V4_SleevelessKnight
+  expressions:
+  - shapeName: Fcl_BRW_Angry
+    weight: 75.0
+  - shapeName: Fcl_EYE_Angry
+    weight: 75.0
+  accessories:
+  - prefab: {fileID: 100100000, guid: 5af83bca6803146fea556cf3ac1bc8f4, type: 3}
+    boneSlot: rightHand
+    localPosition: {x: 0.0, y: 0.03, z: 0.08}
+    localEulerAngles: {x: 90.0, y: 0.0, z: 90.0}
+    localScale: {x: 1.05, y: 1.05, z: 1.05}
+  - prefab: {fileID: 100100000, guid: ef132fb4be06e41649acd6c53ff1f10f, type: 3}
+    boneSlot: leftHand
+    localPosition: {x: 0.0, y: 0.02, z: 0.05}
+    localEulerAngles: {x: 0.0, y: 80.0, z: 0.0}
+    localScale: {x: 1.0, y: 1.0, z: 1.0}

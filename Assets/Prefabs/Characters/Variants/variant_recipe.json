@@ -1,0 +1,5657 @@
+{
+  "variants": [
+    {
+      "name": "UnityChan_V1_ShortHairDuelist",
+      "basePrefab": "Assets/Prefabs/Characters/C04_UnityChan.prefab",
+      "description": "She wears her hair short: twin tails, tail tips, clips and head ribbons are off. Crimson jacket, black shirt, gold trim, fair skin, blue eyes, angry face, sword in her right hand.",
+      "rootScale": 1.0,
+      "disable": [
+        "tail",
+        "tail_bottom",
+        "hair_accce",
+        "hairband"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "uwagi",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__uwagi_0_087195.mat"
+        },
+        {
+          "renderer": "button",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__button_0_e76836.mat"
+        },
+        {
+          "renderer": "shirts_sode",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__shirts_sode_0_5571af.mat"
+        },
+        {
+          "renderer": "hair_frontside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__hair_frontside_0_62b871.mat"
+        },
+        {
+          "renderer": "Leg",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__Leg_0_c97486.mat"
+        },
+        {
+          "renderer": "EYE_DEF",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__EYE_DEF_0_d25f8e.mat"
+        },
+        {
+          "renderer": "uwagi_BK",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__uwagi_0_087195.mat"
+        },
+        {
+          "renderer": "skin",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__skin_0_0126d0.mat"
+        },
+        {
+          "renderer": "MTH_DEF",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__EYE_DEF_0_d25f8e.mat"
+        },
+        {
+          "renderer": "Shirts",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__Shirts_0_e856b4.mat"
+        },
+        {
+          "renderer": "head_back",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__EYE_DEF_0_d25f8e.mat"
+        },
+        {
+          "renderer": "shirts_sode_BK",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__shirts_sode_0_5571af.mat"
+        },
+        {
+          "renderer": "eye_R_old",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__eye_R_old_0_1e0d1a.mat"
+        },
+        {
+          "renderer": "eye_L_old",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__eye_L_old_0_49f1b3.mat"
+        },
+        {
+          "renderer": "hair_front",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V1_ShortHairDuelist__hair_frontside_0_62b871.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "MTH_ANG2",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "blendShape1.MTH_ANG2",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "UnityChan_V2_JacketlessScholar",
+      "basePrefab": "Assets/Prefabs/Characters/C04_UnityChan.prefab",
+      "description": "Jacket, vest back and buttons are off, so the shirt and skirt read on their own. Navy and gold, honey hair, a mage hat, and a calm smile. Slightly shorter.",
+      "rootScale": 0.96,
+      "disable": [
+        "uwagi",
+        "uwagi_BK",
+        "button"
+      ],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.08
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "tail_bottom",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__tail_bottom_0_f602a4.mat"
+        },
+        {
+          "renderer": "shirts_sode",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__shirts_sode_0_3b80cc.mat"
+        },
+        {
+          "renderer": "hair_accce",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__hair_accce_0_663c32.mat"
+        },
+        {
+          "renderer": "hair_frontside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__tail_bottom_0_f602a4.mat"
+        },
+        {
+          "renderer": "Leg",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__Leg_0_200212.mat"
+        },
+        {
+          "renderer": "EYE_DEF",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__EYE_DEF_0_b2347f.mat"
+        },
+        {
+          "renderer": "skin",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__skin_0_a19c66.mat"
+        },
+        {
+          "renderer": "MTH_DEF",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__EYE_DEF_0_b2347f.mat"
+        },
+        {
+          "renderer": "hairband",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__hairband_0_3e1f38.mat"
+        },
+        {
+          "renderer": "Shirts",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__Shirts_0_ee5d14.mat"
+        },
+        {
+          "renderer": "tail",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__tail_bottom_0_f602a4.mat"
+        },
+        {
+          "renderer": "head_back",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__EYE_DEF_0_b2347f.mat"
+        },
+        {
+          "renderer": "shirts_sode_BK",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__shirts_sode_0_3b80cc.mat"
+        },
+        {
+          "renderer": "eye_R_old",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__eye_R_old_0_829e4a.mat"
+        },
+        {
+          "renderer": "eye_L_old",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__eye_L_old_0_1ea58c.mat"
+        },
+        {
+          "renderer": "hair_front",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__tail_bottom_0_f602a4.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "MTH_SMILE1",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "blendShape1.MTH_SMILE1",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "UnityChan_V3_RibbonKnight",
+      "basePrefab": "Assets/Prefabs/Characters/C04_UnityChan.prefab",
+      "description": "Ribbons and twin tails are larger. White-and-gold uniform, warm eyes, sword and shield. Taller than the base.",
+      "rootScale": 1.05,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.16
+        },
+        {
+          "contains": "Ribbon",
+          "factor": 1.42
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "uwagi",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__uwagi_0_9b044d.mat"
+        },
+        {
+          "renderer": "button",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__button_0_a11a05.mat"
+        },
+        {
+          "renderer": "tail_bottom",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__tail_bottom_0_aefaaa.mat"
+        },
+        {
+          "renderer": "shirts_sode",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__shirts_sode_0_b25038.mat"
+        },
+        {
+          "renderer": "hair_accce",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__button_0_a11a05.mat"
+        },
+        {
+          "renderer": "hair_frontside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__tail_bottom_0_aefaaa.mat"
+        },
+        {
+          "renderer": "Leg",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__Leg_0_b40cf7.mat"
+        },
+        {
+          "renderer": "EYE_DEF",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__EYE_DEF_0_6341e6.mat"
+        },
+        {
+          "renderer": "uwagi_BK",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__uwagi_0_9b044d.mat"
+        },
+        {
+          "renderer": "skin",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__skin_0_1513d2.mat"
+        },
+        {
+          "renderer": "MTH_DEF",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__EYE_DEF_0_6341e6.mat"
+        },
+        {
+          "renderer": "hairband",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__hairband_0_fb3398.mat"
+        },
+        {
+          "renderer": "Shirts",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__Shirts_0_26f3d9.mat"
+        },
+        {
+          "renderer": "tail",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__tail_bottom_0_aefaaa.mat"
+        },
+        {
+          "renderer": "head_back",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__EYE_DEF_0_6341e6.mat"
+        },
+        {
+          "renderer": "shirts_sode_BK",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__shirts_sode_0_b25038.mat"
+        },
+        {
+          "renderer": "eye_R_old",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__eye_R_old_0_4df382.mat"
+        },
+        {
+          "renderer": "eye_L_old",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__eye_L_old_0_4ed09d.mat"
+        },
+        {
+          "renderer": "hair_front",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V3_RibbonKnight__tail_bottom_0_aefaaa.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "MTH_SMILE1",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "blendShape1.MTH_SMILE1",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Shield.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.05,
+          "ex": 0.0,
+          "ey": 80.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "UnityChan_V4_SleevelessNight",
+      "basePrefab": "Assets/Prefabs/Characters/C04_UnityChan.prefab",
+      "description": "Sleeves and the head ribbon are off. Violet-and-black clothes, near-black hair, red eyes, a half mask and a dagger.",
+      "rootScale": 1.0,
+      "disable": [
+        "shirts_sode",
+        "shirts_sode_BK",
+        "hairband"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "uwagi",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__uwagi_0_c7a55c.mat"
+        },
+        {
+          "renderer": "button",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__button_0_908fca.mat"
+        },
+        {
+          "renderer": "tail_bottom",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__tail_bottom_0_01dbdc.mat"
+        },
+        {
+          "renderer": "hair_accce",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__button_0_908fca.mat"
+        },
+        {
+          "renderer": "hair_frontside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__tail_bottom_0_01dbdc.mat"
+        },
+        {
+          "renderer": "Leg",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__Leg_0_245e87.mat"
+        },
+        {
+          "renderer": "EYE_DEF",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__EYE_DEF_0_31d981.mat"
+        },
+        {
+          "renderer": "uwagi_BK",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__uwagi_0_c7a55c.mat"
+        },
+        {
+          "renderer": "skin",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__skin_0_839085.mat"
+        },
+        {
+          "renderer": "MTH_DEF",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__EYE_DEF_0_31d981.mat"
+        },
+        {
+          "renderer": "Shirts",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__Shirts_0_e257c9.mat"
+        },
+        {
+          "renderer": "tail",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__tail_bottom_0_01dbdc.mat"
+        },
+        {
+          "renderer": "head_back",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__EYE_DEF_0_31d981.mat"
+        },
+        {
+          "renderer": "eye_R_old",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__eye_R_old_0_2f1e3f.mat"
+        },
+        {
+          "renderer": "eye_L_old",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__eye_L_old_0_f89875.mat"
+        },
+        {
+          "renderer": "hair_front",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V4_SleevelessNight__tail_bottom_0_01dbdc.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "MTH_ANG2",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "blendShape1.MTH_ANG2",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Dagger.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.01,
+          "pz": 0.04,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 0.8,
+          "sy": 0.8,
+          "sz": 0.8
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Mask.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.08,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "UnityChan_V5_PetiteArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C04_UnityChan.prefab",
+      "description": "Petite archer. Teal hair worn longer, forest clothes, green eyes, bow and quiver.",
+      "rootScale": 0.92,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.28
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "uwagi",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__uwagi_0_34cb53.mat"
+        },
+        {
+          "renderer": "button",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__button_0_a8633c.mat"
+        },
+        {
+          "renderer": "tail_bottom",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__tail_bottom_0_d3d16e.mat"
+        },
+        {
+          "renderer": "shirts_sode",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__shirts_sode_0_b02228.mat"
+        },
+        {
+          "renderer": "hair_accce",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__button_0_a8633c.mat"
+        },
+        {
+          "renderer": "hair_frontside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__tail_bottom_0_d3d16e.mat"
+        },
+        {
+          "renderer": "Leg",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__Leg_0_beef4c.mat"
+        },
+        {
+          "renderer": "EYE_DEF",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__EYE_DEF_0_b2347f.mat"
+        },
+        {
+          "renderer": "uwagi_BK",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__uwagi_0_34cb53.mat"
+        },
+        {
+          "renderer": "skin",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__skin_0_a19c66.mat"
+        },
+        {
+          "renderer": "MTH_DEF",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__EYE_DEF_0_b2347f.mat"
+        },
+        {
+          "renderer": "hairband",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__hairband_0_6991a2.mat"
+        },
+        {
+          "renderer": "Shirts",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__Shirts_0_54f709.mat"
+        },
+        {
+          "renderer": "tail",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__tail_bottom_0_d3d16e.mat"
+        },
+        {
+          "renderer": "head_back",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V2_JacketlessScholar__EYE_DEF_0_b2347f.mat"
+        },
+        {
+          "renderer": "shirts_sode_BK",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__shirts_sode_0_b02228.mat"
+        },
+        {
+          "renderer": "eye_R_old",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__eye_R_old_0_bae278.mat"
+        },
+        {
+          "renderer": "eye_L_old",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__eye_L_old_0_ce7abc.mat"
+        },
+        {
+          "renderer": "hair_front",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/UnityChan_V5_PetiteArcher__tail_bottom_0_d3d16e.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "MTH_SMILE2",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "blendShape1.MTH_SMILE2",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "PicoChan_V1_StreetMechanic",
+      "basePrefab": "Assets/Prefabs/Characters/C09_PicoChan.prefab",
+      "description": "Street clothes: jacket, goggles, bag robot and the four hair tails are off. Orange shirt, pink bob, angry expression, sword.",
+      "rootScale": 1.0,
+      "disable": [
+        "jacket_base",
+        "jacket_sub",
+        "jacket_fastener",
+        "jacket_fastener_top",
+        "goggle_base",
+        "goggle_belt",
+        "goggle_lens",
+        "picolabo_base",
+        "picolabo_metal",
+        "hair_tail_01",
+        "hair_tail_02",
+        "hair_tail_03",
+        "hair_tail_04"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "face_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__face_base_0_1286e8.mat"
+        },
+        {
+          "renderer": "face_base",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__face_base_1_412d71.mat"
+        },
+        {
+          "renderer": "face_base",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__face_base_2_eec604.mat"
+        },
+        {
+          "renderer": "boots_left",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__boots_left_0_5ea054.mat"
+        },
+        {
+          "renderer": "face_ear",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__face_base_1_412d71.mat"
+        },
+        {
+          "renderer": "body_leg",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__body_leg_0_3cbfe1.mat"
+        },
+        {
+          "renderer": "clothe_left_arm",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__clothe_left_arm_0_97e561.mat"
+        },
+        {
+          "renderer": "clothe_right_arm",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__clothe_left_arm_0_97e561.mat"
+        },
+        {
+          "renderer": "hair_front_b",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__hair_front_b_0_1d6081.mat"
+        },
+        {
+          "renderer": "clothe_pants",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__clothe_pants_0_467968.mat"
+        },
+        {
+          "renderer": "hair_front_a",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__hair_front_b_0_1d6081.mat"
+        },
+        {
+          "renderer": "body_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__body_leg_0_3cbfe1.mat"
+        },
+        {
+          "renderer": "boots_right",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__boots_left_0_5ea054.mat"
+        },
+        {
+          "renderer": "hair_back",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__hair_front_b_0_1d6081.mat"
+        },
+        {
+          "renderer": "clothe_arm_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__clothe_left_arm_0_97e561.mat"
+        },
+        {
+          "renderer": "boots_main",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__boots_left_0_5ea054.mat"
+        },
+        {
+          "renderer": "clothe_pants_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__clothe_pants_0_467968.mat"
+        },
+        {
+          "renderer": "clothe_pants_bracket",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__clothe_pants_bracket_0_2210cf.mat"
+        },
+        {
+          "renderer": "clothe_shirt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__clothe_left_arm_0_97e561.mat"
+        },
+        {
+          "renderer": "body_hand",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V1_StreetMechanic__body_leg_0_3cbfe1.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Angry",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "blendShape1.Angry",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "PicoChan_V2_HoodedPilot",
+      "basePrefab": "Assets/Prefabs/Characters/C09_PicoChan.prefab",
+      "description": "Hooded jacket stays. Goggles and the bag robot are off. Ice-blue clothes, blue hair, mage hat. A little shorter.",
+      "rootScale": 0.94,
+      "disable": [
+        "goggle_base",
+        "goggle_belt",
+        "goggle_lens",
+        "picolabo_base",
+        "picolabo_metal"
+      ],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.1
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "face_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__face_base_0_a27f57.mat"
+        },
+        {
+          "renderer": "face_base",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__face_base_1_636a7d.mat"
+        },
+        {
+          "renderer": "face_base",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__face_base_2_4c77fa.mat"
+        },
+        {
+          "renderer": "hair_tail_03",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__hair_tail_03_0_4f491d.mat"
+        },
+        {
+          "renderer": "jacket_sub",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__jacket_sub_0_b0787a.mat"
+        },
+        {
+          "renderer": "boots_left",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__boots_left_0_feaaeb.mat"
+        },
+        {
+          "renderer": "face_ear",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__face_base_1_636a7d.mat"
+        },
+        {
+          "renderer": "body_leg",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__body_leg_0_666584.mat"
+        },
+        {
+          "renderer": "clothe_left_arm",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__clothe_left_arm_0_df88ea.mat"
+        },
+        {
+          "renderer": "clothe_right_arm",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__clothe_left_arm_0_df88ea.mat"
+        },
+        {
+          "renderer": "jacket_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__jacket_sub_0_b0787a.mat"
+        },
+        {
+          "renderer": "hair_tail_02",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__hair_tail_03_0_4f491d.mat"
+        },
+        {
+          "renderer": "hair_front_b",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__hair_tail_03_0_4f491d.mat"
+        },
+        {
+          "renderer": "clothe_pants",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__clothe_pants_0_e25dda.mat"
+        },
+        {
+          "renderer": "hair_front_a",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__hair_tail_03_0_4f491d.mat"
+        },
+        {
+          "renderer": "body_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__body_leg_0_666584.mat"
+        },
+        {
+          "renderer": "boots_right",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__boots_left_0_feaaeb.mat"
+        },
+        {
+          "renderer": "hair_back",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__hair_tail_03_0_4f491d.mat"
+        },
+        {
+          "renderer": "clothe_arm_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__clothe_left_arm_0_df88ea.mat"
+        },
+        {
+          "renderer": "boots_main",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__boots_left_0_feaaeb.mat"
+        },
+        {
+          "renderer": "clothe_pants_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__clothe_pants_0_e25dda.mat"
+        },
+        {
+          "renderer": "hair_tail_01",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__hair_tail_03_0_4f491d.mat"
+        },
+        {
+          "renderer": "hair_tail_04",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__hair_tail_03_0_4f491d.mat"
+        },
+        {
+          "renderer": "clothe_pants_bracket",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__clothe_pants_bracket_0_8d06b2.mat"
+        },
+        {
+          "renderer": "clothe_shirt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__clothe_left_arm_0_df88ea.mat"
+        },
+        {
+          "renderer": "body_hand",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__body_leg_0_666584.mat"
+        },
+        {
+          "renderer": "jacket_fastener",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__jacket_fastener_0_051d5c.mat"
+        },
+        {
+          "renderer": "jacket_fastener_top",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V2_HoodedPilot__jacket_fastener_0_051d5c.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Joy",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "blendShape1.Joy",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "PicoChan_V3_BagCompanion",
+      "basePrefab": "Assets/Prefabs/Characters/C09_PicoChan.prefab",
+      "description": "Jacket off so the shirt shows. Goggles and a larger bag robot stay. Rose clothes, rose hair, cheerful face, dagger.",
+      "rootScale": 1.03,
+      "disable": [
+        "jacket_base",
+        "jacket_sub",
+        "jacket_fastener",
+        "jacket_fastener_top"
+      ],
+      "scales": [
+        {
+          "contains": "picolabo",
+          "factor": 1.35
+        },
+        {
+          "contains": "Bag",
+          "factor": 1.35
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "face_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__face_base_0_9693be.mat"
+        },
+        {
+          "renderer": "face_base",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__face_base_1_3aa2c6.mat"
+        },
+        {
+          "renderer": "face_base",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__face_base_2_feae97.mat"
+        },
+        {
+          "renderer": "hair_tail_03",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__hair_tail_03_0_1a20df.mat"
+        },
+        {
+          "renderer": "boots_left",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__boots_left_0_1b5b7f.mat"
+        },
+        {
+          "renderer": "face_ear",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__face_base_1_3aa2c6.mat"
+        },
+        {
+          "renderer": "body_leg",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__body_leg_0_76eb04.mat"
+        },
+        {
+          "renderer": "clothe_left_arm",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__clothe_left_arm_0_0fd8df.mat"
+        },
+        {
+          "renderer": "clothe_right_arm",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__clothe_left_arm_0_0fd8df.mat"
+        },
+        {
+          "renderer": "goggle_lens",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__goggle_lens_0_589b57.mat"
+        },
+        {
+          "renderer": "hair_tail_02",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__hair_tail_03_0_1a20df.mat"
+        },
+        {
+          "renderer": "picolabo_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__picolabo_base_0_a67049.mat"
+        },
+        {
+          "renderer": "hair_front_b",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__hair_tail_03_0_1a20df.mat"
+        },
+        {
+          "renderer": "clothe_pants",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__clothe_pants_0_5f9f71.mat"
+        },
+        {
+          "renderer": "hair_front_a",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__hair_tail_03_0_1a20df.mat"
+        },
+        {
+          "renderer": "body_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__body_leg_0_76eb04.mat"
+        },
+        {
+          "renderer": "boots_right",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__boots_left_0_1b5b7f.mat"
+        },
+        {
+          "renderer": "hair_back",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__hair_tail_03_0_1a20df.mat"
+        },
+        {
+          "renderer": "goggle_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__goggle_belt_0_9ad989.mat"
+        },
+        {
+          "renderer": "clothe_arm_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__clothe_left_arm_0_0fd8df.mat"
+        },
+        {
+          "renderer": "boots_main",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__boots_left_0_1b5b7f.mat"
+        },
+        {
+          "renderer": "goggle_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__goggle_belt_0_9ad989.mat"
+        },
+        {
+          "renderer": "clothe_pants_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__clothe_pants_0_5f9f71.mat"
+        },
+        {
+          "renderer": "hair_tail_01",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__hair_tail_03_0_1a20df.mat"
+        },
+        {
+          "renderer": "hair_tail_04",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__hair_tail_03_0_1a20df.mat"
+        },
+        {
+          "renderer": "clothe_pants_bracket",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__clothe_pants_bracket_0_16c1cc.mat"
+        },
+        {
+          "renderer": "clothe_shirt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__clothe_left_arm_0_0fd8df.mat"
+        },
+        {
+          "renderer": "body_hand",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__body_leg_0_76eb04.mat"
+        },
+        {
+          "renderer": "picolabo_metal",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__picolabo_metal_0_a48731.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fun",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "blendShape1.Fun",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Dagger.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.01,
+          "pz": 0.04,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 0.8,
+          "sy": 0.8,
+          "sz": 0.8
+        }
+      ]
+    },
+    {
+      "name": "PicoChan_V4_ShortHairKnight",
+      "basePrefab": "Assets/Prefabs/Characters/C09_PicoChan.prefab",
+      "description": "Hair tails off, jacket on in white and gold. Sword and shield. Tallest Pico variant.",
+      "rootScale": 1.06,
+      "disable": [
+        "hair_tail_01",
+        "hair_tail_02",
+        "hair_tail_03",
+        "hair_tail_04"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "face_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__face_base_0_4716d0.mat"
+        },
+        {
+          "renderer": "face_base",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__face_base_1_b56d65.mat"
+        },
+        {
+          "renderer": "face_base",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__face_base_2_26aefe.mat"
+        },
+        {
+          "renderer": "jacket_sub",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__jacket_sub_0_5d4cde.mat"
+        },
+        {
+          "renderer": "boots_left",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__boots_left_0_165d36.mat"
+        },
+        {
+          "renderer": "face_ear",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__face_base_1_b56d65.mat"
+        },
+        {
+          "renderer": "body_leg",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__body_leg_0_12f2d8.mat"
+        },
+        {
+          "renderer": "clothe_left_arm",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__clothe_left_arm_0_b1e3f6.mat"
+        },
+        {
+          "renderer": "clothe_right_arm",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__clothe_left_arm_0_b1e3f6.mat"
+        },
+        {
+          "renderer": "goggle_lens",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__goggle_lens_0_589b57.mat"
+        },
+        {
+          "renderer": "jacket_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__jacket_sub_0_5d4cde.mat"
+        },
+        {
+          "renderer": "picolabo_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__picolabo_base_0_60fa5e.mat"
+        },
+        {
+          "renderer": "hair_front_b",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__hair_front_b_0_bc27a4.mat"
+        },
+        {
+          "renderer": "clothe_pants",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__clothe_pants_0_f80a2d.mat"
+        },
+        {
+          "renderer": "hair_front_a",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__hair_front_b_0_bc27a4.mat"
+        },
+        {
+          "renderer": "body_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__body_leg_0_12f2d8.mat"
+        },
+        {
+          "renderer": "boots_right",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__boots_left_0_165d36.mat"
+        },
+        {
+          "renderer": "hair_back",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__hair_front_b_0_bc27a4.mat"
+        },
+        {
+          "renderer": "goggle_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__goggle_belt_0_9ad989.mat"
+        },
+        {
+          "renderer": "clothe_arm_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__clothe_left_arm_0_b1e3f6.mat"
+        },
+        {
+          "renderer": "boots_main",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__boots_left_0_165d36.mat"
+        },
+        {
+          "renderer": "goggle_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V3_BagCompanion__goggle_belt_0_9ad989.mat"
+        },
+        {
+          "renderer": "clothe_pants_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__clothe_pants_0_f80a2d.mat"
+        },
+        {
+          "renderer": "clothe_pants_bracket",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__clothe_pants_bracket_0_5f8008.mat"
+        },
+        {
+          "renderer": "clothe_shirt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__clothe_left_arm_0_b1e3f6.mat"
+        },
+        {
+          "renderer": "body_hand",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__body_leg_0_12f2d8.mat"
+        },
+        {
+          "renderer": "jacket_fastener",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__jacket_fastener_0_af25be.mat"
+        },
+        {
+          "renderer": "jacket_fastener_top",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__jacket_fastener_0_af25be.mat"
+        },
+        {
+          "renderer": "picolabo_metal",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V4_ShortHairKnight__picolabo_metal_0_f759ed.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Angry",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "blendShape1.Angry",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Shield.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.05,
+          "ex": 0.0,
+          "ey": 80.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "PicoChan_V5_MageTinkerer",
+      "basePrefab": "Assets/Prefabs/Characters/C09_PicoChan.prefab",
+      "description": "Jacket, goggles and bag are off. Long purple hair, violet shirt, mage hat. Shortest Pico variant.",
+      "rootScale": 0.92,
+      "disable": [
+        "jacket_base",
+        "jacket_sub",
+        "jacket_fastener",
+        "jacket_fastener_top",
+        "goggle_base",
+        "goggle_belt",
+        "goggle_lens",
+        "picolabo_base",
+        "picolabo_metal"
+      ],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.22
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "face_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__face_base_0_b0c147.mat"
+        },
+        {
+          "renderer": "face_base",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__face_base_1_445d4e.mat"
+        },
+        {
+          "renderer": "face_base",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__face_base_2_3dfc03.mat"
+        },
+        {
+          "renderer": "hair_tail_03",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__hair_tail_03_0_bbb0ab.mat"
+        },
+        {
+          "renderer": "boots_left",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__boots_left_0_fa3b73.mat"
+        },
+        {
+          "renderer": "face_ear",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__face_base_1_445d4e.mat"
+        },
+        {
+          "renderer": "body_leg",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__body_leg_0_531c0b.mat"
+        },
+        {
+          "renderer": "clothe_left_arm",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__clothe_left_arm_0_947bbc.mat"
+        },
+        {
+          "renderer": "clothe_right_arm",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__clothe_left_arm_0_947bbc.mat"
+        },
+        {
+          "renderer": "hair_tail_02",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__hair_tail_03_0_bbb0ab.mat"
+        },
+        {
+          "renderer": "hair_front_b",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__hair_tail_03_0_bbb0ab.mat"
+        },
+        {
+          "renderer": "clothe_pants",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__clothe_pants_0_6c16f8.mat"
+        },
+        {
+          "renderer": "hair_front_a",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__hair_tail_03_0_bbb0ab.mat"
+        },
+        {
+          "renderer": "body_base",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__body_leg_0_531c0b.mat"
+        },
+        {
+          "renderer": "boots_right",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__boots_left_0_fa3b73.mat"
+        },
+        {
+          "renderer": "hair_back",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__hair_tail_03_0_bbb0ab.mat"
+        },
+        {
+          "renderer": "clothe_arm_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__clothe_left_arm_0_947bbc.mat"
+        },
+        {
+          "renderer": "boots_main",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__boots_left_0_fa3b73.mat"
+        },
+        {
+          "renderer": "clothe_pants_belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__clothe_pants_0_6c16f8.mat"
+        },
+        {
+          "renderer": "hair_tail_01",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__hair_tail_03_0_bbb0ab.mat"
+        },
+        {
+          "renderer": "hair_tail_04",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__hair_tail_03_0_bbb0ab.mat"
+        },
+        {
+          "renderer": "clothe_pants_bracket",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__clothe_pants_bracket_0_7a921a.mat"
+        },
+        {
+          "renderer": "clothe_shirt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__clothe_left_arm_0_947bbc.mat"
+        },
+        {
+          "renderer": "body_hand",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/PicoChan_V5_MageTinkerer__body_leg_0_531c0b.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Joy",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "blendShape1.Joy",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Casual1_V1_Hair1SmileFencer",
+      "basePrefab": "Assets/Prefabs/Characters/C11_Casual1.prefab",
+      "description": "Hair 1, shipped eye colour 2, smile, warm casual outfit, fair skin, sword. One of the five shipped hairstyles.",
+      "rootScale": 1.0,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Casual1",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V1_Hair1SmileFencer__Casual1_0_98c17a.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 5,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V1_Hair1SmileFencer__Casual1_Body_5_250489.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V1_Hair1SmileFencer__Casual1_Body_6_a10a74.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V1_Hair1SmileFencer__Casual1_Body_7_788942.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V1_Hair1SmileFencer__Casual1_Body_8_cc93ef.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V1_Hair1SmileFencer__Casual1_Body_9_f9dea5.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V1_Hair1SmileFencer__Hair_0_734da7.mat"
+        }
+      ],
+      "meshSwaps": [
+        {
+          "renderer": "Hair",
+          "fbx": "Assets/AnimeGirls/BaseCharacter/BaseCharacter/Sourcefiles/BaseCharacter.fbx",
+          "meshName": "Hair1"
+        }
+      ],
+      "expressions": [
+        {
+          "shapeName": "slight_smile",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "smile",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Casual1_V2_Hair2FangedRogue",
+      "basePrefab": "Assets/Prefabs/Characters/C11_Casual1.prefab",
+      "description": "Hair 2, shipped eye colour 3, angry face with fangs, black-red outfit, darker hair, dagger.",
+      "rootScale": 0.95,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Casual1",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V2_Hair2FangedRogue__Casual1_0_2dfa50.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 5,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V2_Hair2FangedRogue__Casual1_Body_5_941a66.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V2_Hair2FangedRogue__Casual1_Body_6_9835ad.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V2_Hair2FangedRogue__Casual1_Body_7_f85032.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V2_Hair2FangedRogue__Casual1_Body_8_de9824.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V2_Hair2FangedRogue__Casual1_Body_9_e87c4d.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V2_Hair2FangedRogue__Hair_0_cd07dc.mat"
+        }
+      ],
+      "meshSwaps": [
+        {
+          "renderer": "Hair",
+          "fbx": "Assets/AnimeGirls/BaseCharacter/BaseCharacter/Sourcefiles/BaseCharacter.fbx",
+          "meshName": "Hair2"
+        }
+      ],
+      "expressions": [
+        {
+          "shapeName": "angry_face",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "angry",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "spike_teeth",
+          "weight": 100.0
+        },
+        {
+          "shapeName": "spike_teeth3",
+          "weight": 100.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Dagger.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.01,
+          "pz": 0.04,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 0.8,
+          "sy": 0.8,
+          "sz": 0.8
+        }
+      ]
+    },
+    {
+      "name": "Casual1_V3_Hair3TiredMage",
+      "basePrefab": "Assets/Prefabs/Characters/C11_Casual1.prefab",
+      "description": "Hair 3, shipped eye colour 4, sad expression, mint outfit, mage hat.",
+      "rootScale": 1.0,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Casual1",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V3_Hair3TiredMage__Casual1_0_f2edc1.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 5,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V3_Hair3TiredMage__Casual1_Body_5_6eeb19.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V3_Hair3TiredMage__Casual1_Body_6_12fa80.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V3_Hair3TiredMage__Casual1_Body_7_75f227.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V3_Hair3TiredMage__Casual1_Body_8_8e1f6e.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V3_Hair3TiredMage__Casual1_Body_9_571624.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V3_Hair3TiredMage__Hair_0_f18100.mat"
+        }
+      ],
+      "meshSwaps": [
+        {
+          "renderer": "Hair",
+          "fbx": "Assets/AnimeGirls/BaseCharacter/BaseCharacter/Sourcefiles/BaseCharacter.fbx",
+          "meshName": "Hair3"
+        }
+      ],
+      "expressions": [
+        {
+          "shapeName": "sad",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Casual1_V4_Hair4TallArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C11_Casual1.prefab",
+      "description": "Hair 4, shipped eye colour 2 with a cooler grade, surprised expression, sky outfit, bow and quiver. Tallest Casual variant.",
+      "rootScale": 1.07,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Casual1",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V4_Hair4TallArcher__Casual1_0_71a24f.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 5,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V4_Hair4TallArcher__Casual1_Body_5_05eba4.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V4_Hair4TallArcher__Casual1_Body_6_5f7c4b.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V1_Hair1SmileFencer__Casual1_Body_7_788942.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V4_Hair4TallArcher__Casual1_Body_8_a1abb6.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V4_Hair4TallArcher__Casual1_Body_9_0a8afc.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V4_Hair4TallArcher__Hair_0_645d7a.mat"
+        }
+      ],
+      "meshSwaps": [
+        {
+          "renderer": "Hair",
+          "fbx": "Assets/AnimeGirls/BaseCharacter/BaseCharacter/Sourcefiles/BaseCharacter.fbx",
+          "meshName": "Hair4"
+        }
+      ],
+      "expressions": [
+        {
+          "shapeName": "surprise",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "scream",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Casual1_V5_Hair5MaskedGuard",
+      "basePrefab": "Assets/Prefabs/Characters/C11_Casual1.prefab",
+      "description": "Hair 5, shipped eye colour 3, cheerful eyes, plum outfit, half mask and shield.",
+      "rootScale": 0.98,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Casual1",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V5_Hair5MaskedGuard__Casual1_0_6314cb.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 5,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V5_Hair5MaskedGuard__Casual1_Body_5_b2a64f.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V5_Hair5MaskedGuard__Casual1_Body_6_e27422.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V5_Hair5MaskedGuard__Casual1_Body_7_5b9eb4.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V5_Hair5MaskedGuard__Casual1_Body_8_1990d3.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V5_Hair5MaskedGuard__Casual1_Body_9_fc4866.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V5_Hair5MaskedGuard__Hair_0_d18ad3.mat"
+        }
+      ],
+      "meshSwaps": [
+        {
+          "renderer": "Hair",
+          "fbx": "Assets/AnimeGirls/BaseCharacter/BaseCharacter/Sourcefiles/BaseCharacter.fbx",
+          "meshName": "Hair5"
+        }
+      ],
+      "expressions": [
+        {
+          "shapeName": "smile_eyes",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Mask.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.08,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Shield.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.05,
+          "ex": 0.0,
+          "ey": 80.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Casual1_V6_Hair4MakeupChampion",
+      "basePrefab": "Assets/Prefabs/Characters/C11_Casual1.prefab",
+      "description": "Hair 4 again, but with the shipped makeup face, eye colour 4, fangs, sand-and-gold outfit and a greatsword. Reads apart from the tall archer.",
+      "rootScale": 1.03,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Casual1",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V6_Hair4MakeupChampion__Casual1_0_baf78d.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 5,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V6_Hair4MakeupChampion__Casual1_Body_5_b15c65.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V6_Hair4MakeupChampion__Casual1_Body_6_e57596.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V6_Hair4MakeupChampion__Casual1_Body_7_8535f1.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V6_Hair4MakeupChampion__Casual1_Body_8_6d1f07.mat"
+        },
+        {
+          "renderer": "Casual1_Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V6_Hair4MakeupChampion__Casual1_Body_9_753546.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Casual1_V6_Hair4MakeupChampion__Hair_0_4dc509.mat"
+        }
+      ],
+      "meshSwaps": [
+        {
+          "renderer": "Hair",
+          "fbx": "Assets/AnimeGirls/BaseCharacter/BaseCharacter/Sourcefiles/BaseCharacter.fbx",
+          "meshName": "Hair4"
+        }
+      ],
+      "expressions": [
+        {
+          "shapeName": "angry_face",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "angry",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "spike_teeth",
+          "weight": 100.0
+        },
+        {
+          "shapeName": "spike_teeth3",
+          "weight": 100.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Greatsword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.03,
+          "pz": 0.08,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.05,
+          "sy": 1.05,
+          "sz": 1.05
+        }
+      ]
+    },
+    {
+      "name": "Akio_V1_CrimsonFencer",
+      "basePrefab": "Assets/Prefabs/Characters/C01_Akio.prefab",
+      "description": "One-piece school body, so parts cannot be toggled. Crimson bottoms, auburn hair scaled up, blue eyes, angry face, sword. Slightly shorter.",
+      "rootScale": 0.97,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.22
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V1_CrimsonFencer__Body_0_91d723.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V1_CrimsonFencer__Body_2_c3662f.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 4,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V1_CrimsonFencer__Body_4_62ac94.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V1_CrimsonFencer__Body_6_f86157.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V1_CrimsonFencer__Body_7_10dbc1.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V1_CrimsonFencer__Body_8_970fc4.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Angry",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Angry",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Akio_V2_NightScholar",
+      "basePrefab": "Assets/Prefabs/Characters/C01_Akio.prefab",
+      "description": "Violet uniform, silver-lilac hair worn smaller, red eyes, sorrowful face, mage hat and dagger.",
+      "rootScale": 1.0,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 0.84
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V2_NightScholar__Body_0_8f3a47.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V2_NightScholar__Body_2_eedc5e.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 4,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V2_NightScholar__Body_4_51b437.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V2_NightScholar__Body_6_30458d.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V2_NightScholar__Body_7_f7db41.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V2_NightScholar__Body_8_30ed37.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Sorrow",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Sorrow",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Dagger.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.01,
+          "pz": 0.04,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 0.8,
+          "sy": 0.8,
+          "sz": 0.8
+        }
+      ]
+    },
+    {
+      "name": "Akio_V3_GroveArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C01_Akio.prefab",
+      "description": "Olive uniform, warm brown hair, green eyes, cheerful face, bow and quiver. Taller.",
+      "rootScale": 1.06,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V3_GroveArcher__Body_0_369455.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V3_GroveArcher__Body_2_7e0398.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 4,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V3_GroveArcher__Body_4_368329.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V3_GroveArcher__Body_6_d39135.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V3_GroveArcher__Body_7_57eacb.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V3_GroveArcher__Body_8_1c3d60.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Fun",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Fun",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Akio_V4_GoldCaptain",
+      "basePrefab": "Assets/Prefabs/Characters/C01_Akio.prefab",
+      "description": "White-and-gold uniform, blonde hair, amber eyes, bright smile, sword and shield. Tallest Akio variant.",
+      "rootScale": 1.08,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.1
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V4_GoldCaptain__Body_0_f227e2.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V4_GoldCaptain__Body_2_6f81e6.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 4,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V4_GoldCaptain__Body_4_38ad15.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V4_GoldCaptain__Body_6_458e8c.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V4_GoldCaptain__Body_7_9538cb.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akio_V4_GoldCaptain__Body_8_de83d4.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Joy",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Joy",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Shield.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.05,
+          "ex": 0.0,
+          "ey": 80.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Aika_V1_RoseIdol",
+      "basePrefab": "Assets/Prefabs/Characters/C02_Aika.prefab",
+      "description": "Rose uniform and rose hair, blue eyes, smile, dagger. Shortest Aika variant. Separate from Akio's crimson fencer by hue and weapon.",
+      "rootScale": 0.94,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.18
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V1_RoseIdol__Body_0_6966d7.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V1_RoseIdol__Body_2_0cd064.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 4,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V1_RoseIdol__Body_4_b8be56.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V1_RoseIdol__Body_6_0b8448.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V1_RoseIdol__Body_7_1137a8.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V1_RoseIdol__Body_8_965bda.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Joy",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Joy",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Dagger.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.01,
+          "pz": 0.04,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 0.8,
+          "sy": 0.8,
+          "sz": 0.8
+        }
+      ]
+    },
+    {
+      "name": "Aika_V2_FrostMage",
+      "basePrefab": "Assets/Prefabs/Characters/C02_Aika.prefab",
+      "description": "Ice-blue uniform, pale silver hair, blue eyes, surprised face, mage hat.",
+      "rootScale": 1.03,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V2_FrostMage__Body_0_b5a4a8.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V2_FrostMage__Body_2_d8ab5d.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 4,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V2_FrostMage__Body_4_92e08f.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V2_FrostMage__Body_6_cea49b.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V2_FrostMage__Body_7_eccf1d.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V2_FrostMage__Body_8_cf9e0a.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Surprised",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Surprised",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Aika_V3_OliveArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C02_Aika.prefab",
+      "description": "Moss uniform, dark-blonde hair, green eyes, cheerful face, bow and quiver.",
+      "rootScale": 1.0,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V3_OliveArcher__Body_0_5c611e.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V3_OliveArcher__Body_2_09823a.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 4,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V3_OliveArcher__Body_4_95d9e3.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V3_OliveArcher__Body_6_b367af.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V3_OliveArcher__Body_7_3a4dd6.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V3_OliveArcher__Body_8_a08f6e.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Fun",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Fun",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Aika_V4_WineGuard",
+      "basePrefab": "Assets/Prefabs/Characters/C02_Aika.prefab",
+      "description": "Wine uniform, black-red hair, red eyes, angry face, sword and shield. Tall.",
+      "rootScale": 1.06,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V4_WineGuard__Body_0_d254e8.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V4_WineGuard__Body_2_7103ad.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 4,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V4_WineGuard__Body_4_f82ad6.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V4_WineGuard__Body_6_54cf7e.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V4_WineGuard__Body_7_4e2adb.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Aika_V4_WineGuard__Body_8_7cc13f.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Angry",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Angry",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Shield.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.05,
+          "ex": 0.0,
+          "ey": 80.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Akane_V1_PastelWitch",
+      "basePrefab": "Assets/Prefabs/Characters/C05_Akane.prefab",
+      "description": "Petite pastel witch. Lavender clothes, pink hair, violet eyes, cheerful face, mage hat.",
+      "rootScale": 0.96,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.2
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V1_PastelWitch__Body_0_a72b3f.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V1_PastelWitch__Body_2_2fe31a.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 3,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V1_PastelWitch__Body_3_f8d718.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V1_PastelWitch__Body_7_7a8b95.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V1_PastelWitch__Body_8_766d99.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V1_PastelWitch__Body_9_040f53.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 10,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V1_PastelWitch__Body_10_8f4cf5.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Fun",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Fun",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Akane_V2_InkDuelist",
+      "basePrefab": "Assets/Prefabs/Characters/C05_Akane.prefab",
+      "description": "Black-and-red clothes, black hair, red eyes, angry face, sword.",
+      "rootScale": 1.0,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V2_InkDuelist__Body_0_a3d1f9.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V2_InkDuelist__Body_2_4686dc.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 3,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V2_InkDuelist__Body_3_318751.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V2_InkDuelist__Body_7_128ff4.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V2_InkDuelist__Body_8_cf7db9.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V2_InkDuelist__Body_9_8f01f3.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 10,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V2_InkDuelist__Body_10_94289e.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Angry",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Angry",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Akane_V3_SunnyArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C05_Akane.prefab",
+      "description": "Marigold clothes, honey hair, amber eyes, smile, bow and quiver. Tallest Akane variant.",
+      "rootScale": 1.08,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V3_SunnyArcher__Body_0_8d5f1d.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V3_SunnyArcher__Body_2_00a3d3.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 3,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V3_SunnyArcher__Body_3_f611d3.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V3_SunnyArcher__Body_7_10cdcc.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V3_SunnyArcher__Body_8_33c3f6.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V3_SunnyArcher__Body_9_72d039.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 10,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V3_SunnyArcher__Body_10_cf15b2.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Joy",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Joy",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Akane_V4_MossSquire",
+      "basePrefab": "Assets/Prefabs/Characters/C05_Akane.prefab",
+      "description": "Moss clothes, brown hair, green eyes, sad face, shield.",
+      "rootScale": 1.02,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V4_MossSquire__Body_0_dc3f47.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V4_MossSquire__Body_2_3127bd.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 3,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V4_MossSquire__Body_3_e9f7d9.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 7,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V4_MossSquire__Body_7_bc97f4.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 8,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V4_MossSquire__Body_8_743ed3.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V4_MossSquire__Body_9_73dd89.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 10,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Akane_V4_MossSquire__Body_10_037e7a.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_ALL_Sorrow",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_BRW_Sorrow",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Shield.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.05,
+          "ex": 0.0,
+          "ey": 80.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Cultist_V1_WhiteCantor",
+      "basePrefab": "Assets/Prefabs/Characters/C06_Cultist.prefab",
+      "description": "The robe is one mesh, so the silhouette stays. This one is a pale gold-white robe, honey hair, blue eyes, smile, half mask.",
+      "rootScale": 1.0,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V1_WhiteCantor__Body_0_b4dcb1.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 3,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V1_WhiteCantor__Body_3_58bff4.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V1_WhiteCantor__Body_6_92d877.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V1_WhiteCantor__Body_9_544d4d.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 10,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V1_WhiteCantor__Body_10_a64cc5.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 11,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V1_WhiteCantor__Body_11_4093d5.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 12,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V1_WhiteCantor__Body_12_94e3e9.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 13,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V1_WhiteCantor__Body_13_8bbe8e.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 14,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V1_WhiteCantor__Body_14_ddb778.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Face.M_F00_000_00_Fcl_ALL_Joy",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_ALL_Joy",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Mask.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.08,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Cultist_V2_CrimsonRite",
+      "basePrefab": "Assets/Prefabs/Characters/C06_Cultist.prefab",
+      "description": "Crimson robe, black-red hair, red eyes, angry face, dagger. Slightly shorter.",
+      "rootScale": 0.96,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V2_CrimsonRite__Body_0_52dc00.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 3,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V2_CrimsonRite__Body_3_f650ac.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V2_CrimsonRite__Body_6_d9a371.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V2_CrimsonRite__Body_9_08b25f.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 10,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V2_CrimsonRite__Body_10_44e7a8.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 11,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V2_CrimsonRite__Body_11_7a5157.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 12,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V2_CrimsonRite__Body_12_94ba9f.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 13,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V2_CrimsonRite__Body_13_cc4968.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 14,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V2_CrimsonRite__Body_14_004c18.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Face.M_F00_000_00_Fcl_ALL_Angry",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_ALL_Angry",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Dagger.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.01,
+          "pz": 0.04,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 0.8,
+          "sy": 0.8,
+          "sz": 0.8
+        }
+      ]
+    },
+    {
+      "name": "Cultist_V3_VerdantOracle",
+      "basePrefab": "Assets/Prefabs/Characters/C06_Cultist.prefab",
+      "description": "Green robe, teal hair, green eyes, cheerful face, mage hat. Taller.",
+      "rootScale": 1.05,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.12
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V3_VerdantOracle__Body_0_a8f7f3.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 3,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V3_VerdantOracle__Body_3_273d2d.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V3_VerdantOracle__Body_6_e10946.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V3_VerdantOracle__Body_9_3e4454.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 10,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V3_VerdantOracle__Body_10_69af1e.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 11,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V3_VerdantOracle__Body_11_b65e64.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 12,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V3_VerdantOracle__Body_12_14a1e8.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 13,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V3_VerdantOracle__Body_13_d6c593.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 14,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V3_VerdantOracle__Body_14_5b5a2e.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Face.M_F00_000_00_Fcl_ALL_Fun",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_ALL_Fun",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Cultist_V4_NightBow",
+      "basePrefab": "Assets/Prefabs/Characters/C06_Cultist.prefab",
+      "description": "Deep blue robe, silver-blue hair, blue eyes, sad face, bow and quiver.",
+      "rootScale": 1.0,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V4_NightBow__Body_0_0bb68c.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 3,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V1_WhiteCantor__Body_3_58bff4.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 6,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V4_NightBow__Body_6_623eb8.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 9,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V4_NightBow__Body_9_c17bd3.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 10,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V4_NightBow__Body_10_c541bf.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 11,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V4_NightBow__Body_11_c46270.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 12,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V4_NightBow__Body_12_40826c.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 13,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V4_NightBow__Body_13_149a33.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 14,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Cultist_V4_NightBow__Body_14_d171a9.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Face.M_F00_000_00_Fcl_ALL_Sorrow",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_ALL_Sorrow",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "StellarWitch_V1_UnrobedDuelist",
+      "basePrefab": "Assets/Prefabs/Characters/C07_StellarWitch.prefab",
+      "description": "Hat, robe and scarf are off, leaving blouse and drawers. Red hair, angry face has no blend shapes on this rig, sword.",
+      "rootScale": 1.02,
+      "disable": [
+        "hat",
+        "robe",
+        "scart"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "tights",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__tights_0_65ee9c.mat"
+        },
+        {
+          "renderer": "sidehair_02",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__sidehair_02_0_63b54b.mat"
+        },
+        {
+          "renderer": "hand",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__hand_0_6c7534.mat"
+        },
+        {
+          "renderer": "blouse",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__tights_0_65ee9c.mat"
+        },
+        {
+          "renderer": "backtail",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__sidehair_02_0_63b54b.mat"
+        },
+        {
+          "renderer": "sidehair_01",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__sidehair_02_0_63b54b.mat"
+        },
+        {
+          "renderer": "face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__hand_0_6c7534.mat"
+        },
+        {
+          "renderer": "drawers",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__tights_0_65ee9c.mat"
+        },
+        {
+          "renderer": "sidehair_03",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__sidehair_02_0_63b54b.mat"
+        },
+        {
+          "renderer": "earling",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__sidehair_02_0_63b54b.mat"
+        },
+        {
+          "renderer": "fronthair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__sidehair_02_0_63b54b.mat"
+        },
+        {
+          "renderer": "backhair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__sidehair_02_0_63b54b.mat"
+        },
+        {
+          "renderer": "pupil",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__pupil_0_eb5fd4.mat"
+        },
+        {
+          "renderer": "shoes",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__shoes_0_b3d228.mat"
+        },
+        {
+          "renderer": "hairaccessory",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V1_UnrobedDuelist__sidehair_02_0_63b54b.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "StellarWitch_V2_NightOracle",
+      "basePrefab": "Assets/Prefabs/Characters/C07_StellarWitch.prefab",
+      "description": "Full robe and hat, violet cloth, lilac hair, half mask. Hair bones slightly larger.",
+      "rootScale": 0.96,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.12
+        },
+        {
+          "contains": "hat",
+          "factor": 1.15
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "tights",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__tights_0_0a7b90.mat"
+        },
+        {
+          "renderer": "hat",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__hat_0_5834d1.mat"
+        },
+        {
+          "renderer": "sidehair_02",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__sidehair_02_0_ccbf42.mat"
+        },
+        {
+          "renderer": "hand",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__hand_0_a81034.mat"
+        },
+        {
+          "renderer": "blouse",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__tights_0_0a7b90.mat"
+        },
+        {
+          "renderer": "backtail",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__sidehair_02_0_ccbf42.mat"
+        },
+        {
+          "renderer": "sidehair_01",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__sidehair_02_0_ccbf42.mat"
+        },
+        {
+          "renderer": "face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__hand_0_a81034.mat"
+        },
+        {
+          "renderer": "drawers",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__tights_0_0a7b90.mat"
+        },
+        {
+          "renderer": "robe",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__robe_0_d63d77.mat"
+        },
+        {
+          "renderer": "sidehair_03",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__sidehair_02_0_ccbf42.mat"
+        },
+        {
+          "renderer": "earling",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__sidehair_02_0_ccbf42.mat"
+        },
+        {
+          "renderer": "fronthair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__sidehair_02_0_ccbf42.mat"
+        },
+        {
+          "renderer": "scart",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__scart_0_9cf53f.mat"
+        },
+        {
+          "renderer": "backhair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__sidehair_02_0_ccbf42.mat"
+        },
+        {
+          "renderer": "pupil",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__pupil_0_ff34c5.mat"
+        },
+        {
+          "renderer": "shoes",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__shoes_0_43d2ed.mat"
+        },
+        {
+          "renderer": "hairaccessory",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V2_NightOracle__sidehair_02_0_ccbf42.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Mask.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.08,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "StellarWitch_V3_ScarflessArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C07_StellarWitch.prefab",
+      "description": "Scarf off, hat kept, teal robe, teal hair, bow and quiver.",
+      "rootScale": 1.0,
+      "disable": [
+        "scart"
+      ],
+      "scales": [
+        {
+          "contains": "hat",
+          "factor": 1.22
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "tights",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__tights_0_80e9c6.mat"
+        },
+        {
+          "renderer": "hat",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__hat_0_a17eef.mat"
+        },
+        {
+          "renderer": "sidehair_02",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__sidehair_02_0_ff3e64.mat"
+        },
+        {
+          "renderer": "hand",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__hand_0_779595.mat"
+        },
+        {
+          "renderer": "blouse",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__tights_0_80e9c6.mat"
+        },
+        {
+          "renderer": "backtail",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__sidehair_02_0_ff3e64.mat"
+        },
+        {
+          "renderer": "sidehair_01",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__sidehair_02_0_ff3e64.mat"
+        },
+        {
+          "renderer": "face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__hand_0_779595.mat"
+        },
+        {
+          "renderer": "drawers",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__tights_0_80e9c6.mat"
+        },
+        {
+          "renderer": "robe",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__robe_0_cef4a2.mat"
+        },
+        {
+          "renderer": "sidehair_03",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__sidehair_02_0_ff3e64.mat"
+        },
+        {
+          "renderer": "earling",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__sidehair_02_0_ff3e64.mat"
+        },
+        {
+          "renderer": "fronthair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__sidehair_02_0_ff3e64.mat"
+        },
+        {
+          "renderer": "backhair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__sidehair_02_0_ff3e64.mat"
+        },
+        {
+          "renderer": "pupil",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__pupil_0_146f9a.mat"
+        },
+        {
+          "renderer": "shoes",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__shoes_0_3fd82b.mat"
+        },
+        {
+          "renderer": "hairaccessory",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V3_ScarflessArcher__sidehair_02_0_ff3e64.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "StellarWitch_V4_TaillessKnight",
+      "basePrefab": "Assets/Prefabs/Characters/C07_StellarWitch.prefab",
+      "description": "Back tail and earring off. Gold-white robe, blonde hair, sword and shield. Tallest witch variant.",
+      "rootScale": 1.07,
+      "disable": [
+        "backtail",
+        "earling"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "tights",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__tights_0_8980f5.mat"
+        },
+        {
+          "renderer": "hat",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__hat_0_fed75d.mat"
+        },
+        {
+          "renderer": "sidehair_02",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__sidehair_02_0_15ee6a.mat"
+        },
+        {
+          "renderer": "hand",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__hand_0_ecae57.mat"
+        },
+        {
+          "renderer": "blouse",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__tights_0_8980f5.mat"
+        },
+        {
+          "renderer": "sidehair_01",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__sidehair_02_0_15ee6a.mat"
+        },
+        {
+          "renderer": "face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__hand_0_ecae57.mat"
+        },
+        {
+          "renderer": "drawers",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__tights_0_8980f5.mat"
+        },
+        {
+          "renderer": "robe",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__robe_0_ba7038.mat"
+        },
+        {
+          "renderer": "sidehair_03",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__sidehair_02_0_15ee6a.mat"
+        },
+        {
+          "renderer": "fronthair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__sidehair_02_0_15ee6a.mat"
+        },
+        {
+          "renderer": "scart",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__scart_0_e77bca.mat"
+        },
+        {
+          "renderer": "backhair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__sidehair_02_0_15ee6a.mat"
+        },
+        {
+          "renderer": "pupil",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__pupil_0_c66399.mat"
+        },
+        {
+          "renderer": "shoes",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__shoes_0_700213.mat"
+        },
+        {
+          "renderer": "hairaccessory",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/StellarWitch_V4_TaillessKnight__sidehair_02_0_15ee6a.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Greatsword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.03,
+          "pz": 0.08,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.05,
+          "sy": 1.05,
+          "sz": 1.05
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Shield.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.05,
+          "ex": 0.0,
+          "ey": 80.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "SanpakuChan_V1_PinkBlade",
+      "basePrefab": "Assets/Prefabs/Characters/C08_SanpakuChan.prefab",
+      "description": "Pink clothes and hair, blue eyes, sword. Hair bones enlarged. The tail is not a separate renderer, so it cannot be toggled.",
+      "rootScale": 0.98,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.2
+        },
+        {
+          "contains": "tail",
+          "factor": 1.15
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V1_PinkBlade__Body_0_189448.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V1_PinkBlade__Face_0_7052e2.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V1_PinkBlade__Hair_0_1239e5.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "SanpakuChan_V2_BlueMage",
+      "basePrefab": "Assets/Prefabs/Characters/C08_SanpakuChan.prefab",
+      "description": "Blue clothes, pale blue hair, mage hat.",
+      "rootScale": 1.0,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V2_BlueMage__Body_0_8d41a0.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V2_BlueMage__Face_0_35adce.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V2_BlueMage__Hair_0_d97983.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "SanpakuChan_V3_InkMask",
+      "basePrefab": "Assets/Prefabs/Characters/C08_SanpakuChan.prefab",
+      "description": "Black-red clothes, dark hair, red eyes, half mask and dagger. Slightly taller.",
+      "rootScale": 1.04,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V3_InkMask__Body_0_a26acd.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V3_InkMask__Face_0_92b734.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V3_InkMask__Hair_0_efaf89.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Mask.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.08,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Dagger.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.01,
+          "pz": 0.04,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 0.8,
+          "sy": 0.8,
+          "sz": 0.8
+        }
+      ]
+    },
+    {
+      "name": "SanpakuChan_V4_SeaArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C08_SanpakuChan.prefab",
+      "description": "Sea-green clothes and hair, bow and quiver. Shortest Sanpaku variant.",
+      "rootScale": 0.94,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V4_SeaArcher__Body_0_cf5730.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V4_SeaArcher__Face_0_2b2178.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SanpakuChan_V4_SeaArcher__Hair_0_404472.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Reika_V1_HatlessSnow",
+      "basePrefab": "Assets/Prefabs/Characters/C10_Reika.prefab",
+      "description": "Holiday hat off. Pale ice dress, silver-blue hair, blue eyes, open mouth, sword. Shorter. This rig has no smile shape.",
+      "rootScale": 0.95,
+      "disable": [
+        "Hat_mesh.001"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Dress_mesh.003",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V1_HatlessSnow__Dress_mesh_003_0_d2a9fc.mat"
+        },
+        {
+          "renderer": "Face.003",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V1_HatlessSnow__Face_003_0_1e31c2.mat"
+        },
+        {
+          "renderer": "Face.003",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V1_HatlessSnow__Face_003_2_01aaf7.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V1_HatlessSnow__Hair_0_919ab1.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Ahh",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Reika_V2_CrimsonCarol",
+      "basePrefab": "Assets/Prefabs/Characters/C10_Reika.prefab",
+      "description": "Hat stays. Crimson dress, dark red hair, red eyes, raised brows, dagger.",
+      "rootScale": 1.0,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Dress_mesh.003",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V2_CrimsonCarol__Dress_mesh_003_0_2f3669.mat"
+        },
+        {
+          "renderer": "Hat_mesh.001",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V2_CrimsonCarol__Hat_mesh_001_0_44a33b.mat"
+        },
+        {
+          "renderer": "Face.003",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V2_CrimsonCarol__Face_003_0_2a4328.mat"
+        },
+        {
+          "renderer": "Face.003",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V2_CrimsonCarol__Face_003_2_2b9b67.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V2_CrimsonCarol__Hair_0_6425a1.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "eyeBrow Height",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Dagger.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.01,
+          "pz": 0.04,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 0.8,
+          "sy": 0.8,
+          "sz": 0.8
+        }
+      ]
+    },
+    {
+      "name": "Reika_V3_HollyArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C10_Reika.prefab",
+      "description": "Hat off. Holly-green dress, brown-green hair, green eyes, a wider open mouth, bow and quiver. Tallest Reika variant.",
+      "rootScale": 1.06,
+      "disable": [
+        "Hat_mesh.001"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Dress_mesh.003",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V3_HollyArcher__Dress_mesh_003_0_f7d808.mat"
+        },
+        {
+          "renderer": "Face.003",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V3_HollyArcher__Face_003_0_3dddf7.mat"
+        },
+        {
+          "renderer": "Face.003",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V3_HollyArcher__Face_003_2_5a1cb8.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V3_HollyArcher__Hair_0_34a149.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Big Ahh",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Reika_V4_MidnightBell",
+      "basePrefab": "Assets/Prefabs/Characters/C10_Reika.prefab",
+      "description": "Hat stays. Midnight violet dress, violet hair, violet eyes, sad face, half mask.",
+      "rootScale": 1.02,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Dress_mesh.003",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V4_MidnightBell__Dress_mesh_003_0_31200a.mat"
+        },
+        {
+          "renderer": "Hat_mesh.001",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V4_MidnightBell__Hat_mesh_001_0_fabe4b.mat"
+        },
+        {
+          "renderer": "Face.003",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V4_MidnightBell__Face_003_0_4cf9a2.mat"
+        },
+        {
+          "renderer": "Face.003",
+          "slot": 2,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V4_MidnightBell__Face_003_2_0c20db.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Reika_V4_MidnightBell__Hair_0_d7f8b8.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Sad",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Mask.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.08,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Fina_V1_CoralSprinter",
+      "basePrefab": "Assets/Prefabs/Characters/C12_Fina.prefab",
+      "description": "Back hair off for a shorter silhouette. Coral top, warm hair, blue eyes, smile, sword.",
+      "rootScale": 1.0,
+      "disable": [
+        "HairBack"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Torso",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__Torso_0_bf4e11.mat"
+        },
+        {
+          "renderer": "topic",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__topic_0_415618.mat"
+        },
+        {
+          "renderer": "sneakers",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__sneakers_0_0ee03e.mat"
+        },
+        {
+          "renderer": "Legs",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__Legs_0_07371c.mat"
+        },
+        {
+          "renderer": "Arms",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__Legs_0_07371c.mat"
+        },
+        {
+          "renderer": "HairFront",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__HairFront_0_c663d3.mat"
+        },
+        {
+          "renderer": "Hands",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__Legs_0_07371c.mat"
+        },
+        {
+          "renderer": "Feets",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__Legs_0_07371c.mat"
+        },
+        {
+          "renderer": "HairMid",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__HairFront_0_c663d3.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__Face_0_93d5de.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__Face_1_972264.mat"
+        },
+        {
+          "renderer": "pants",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__pants_0_2e3da8.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V1_CoralSprinter__Legs_0_07371c.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_BRW_Joy",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_EYE_Joy",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Fina_V2_BobDuelist",
+      "basePrefab": "Assets/Prefabs/Characters/C12_Fina.prefab",
+      "description": "Back and mid hair off, leaving the front hair. Blue clothes, cool hair, angry face, dagger. Shorter.",
+      "rootScale": 0.96,
+      "disable": [
+        "HairBack",
+        "HairMid"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Torso",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__Torso_0_f3f073.mat"
+        },
+        {
+          "renderer": "topic",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__topic_0_01aacd.mat"
+        },
+        {
+          "renderer": "sneakers",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__sneakers_0_dc6943.mat"
+        },
+        {
+          "renderer": "Legs",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__Legs_0_203a27.mat"
+        },
+        {
+          "renderer": "Arms",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__Legs_0_203a27.mat"
+        },
+        {
+          "renderer": "HairFront",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__HairFront_0_a16fa6.mat"
+        },
+        {
+          "renderer": "Hands",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__Legs_0_203a27.mat"
+        },
+        {
+          "renderer": "Feets",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__Legs_0_203a27.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__Face_0_a8f834.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__Face_1_5b3dca.mat"
+        },
+        {
+          "renderer": "pants",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__pants_0_aa439d.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V2_BobDuelist__Legs_0_203a27.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_BRW_Angry",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_EYE_Angry",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Dagger.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.01,
+          "pz": 0.04,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 0.8,
+          "sy": 0.8,
+          "sz": 0.8
+        }
+      ]
+    },
+    {
+      "name": "Fina_V3_FullHairArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C12_Fina.prefab",
+      "description": "All three hair pieces stay. Green street clothes, green-brown hair, bow and quiver. Taller.",
+      "rootScale": 1.05,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.08
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "Torso",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__Torso_0_7a26b8.mat"
+        },
+        {
+          "renderer": "topic",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__topic_0_76ccea.mat"
+        },
+        {
+          "renderer": "sneakers",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__sneakers_0_b27c72.mat"
+        },
+        {
+          "renderer": "Legs",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__Legs_0_cb7e86.mat"
+        },
+        {
+          "renderer": "Arms",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__Legs_0_cb7e86.mat"
+        },
+        {
+          "renderer": "HairFront",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__HairFront_0_496ea7.mat"
+        },
+        {
+          "renderer": "Hands",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__Legs_0_cb7e86.mat"
+        },
+        {
+          "renderer": "Feets",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__Legs_0_cb7e86.mat"
+        },
+        {
+          "renderer": "HairMid",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__HairFront_0_496ea7.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__Face_0_08a49d.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__Face_1_322195.mat"
+        },
+        {
+          "renderer": "HairBack",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__HairFront_0_496ea7.mat"
+        },
+        {
+          "renderer": "pants",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__pants_0_05a3dd.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V3_FullHairArcher__Legs_0_cb7e86.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_BRW_Fun",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_EYE_Fun",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Fina_V4_SleevelessKnight",
+      "basePrefab": "Assets/Prefabs/Characters/C12_Fina.prefab",
+      "description": "The top mesh named topic is off. Gold accents, sword-length greatsword and shield, angry face.",
+      "rootScale": 1.03,
+      "disable": [
+        "topic"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Torso",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__Torso_0_602dcd.mat"
+        },
+        {
+          "renderer": "sneakers",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__sneakers_0_eaf8f7.mat"
+        },
+        {
+          "renderer": "Legs",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__Legs_0_320aea.mat"
+        },
+        {
+          "renderer": "Arms",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__Legs_0_320aea.mat"
+        },
+        {
+          "renderer": "HairFront",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__HairFront_0_f47387.mat"
+        },
+        {
+          "renderer": "Hands",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__Legs_0_320aea.mat"
+        },
+        {
+          "renderer": "Feets",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__Legs_0_320aea.mat"
+        },
+        {
+          "renderer": "HairMid",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__HairFront_0_f47387.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__Face_0_85204f.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__Face_1_0b9060.mat"
+        },
+        {
+          "renderer": "HairBack",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__HairFront_0_f47387.mat"
+        },
+        {
+          "renderer": "pants",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__pants_0_410e97.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Fina_V4_SleevelessKnight__Legs_0_320aea.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Fcl_BRW_Angry",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Fcl_EYE_Angry",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Greatsword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.03,
+          "pz": 0.08,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.05,
+          "sy": 1.05,
+          "sz": 1.05
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Shield.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.05,
+          "ex": 0.0,
+          "ey": 80.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "SapphiArtchan_V1_ClassRibbon",
+      "basePrefab": "Assets/Prefabs/Characters/C13_SapphiArtchan.prefab",
+      "description": "Chequer collar and back-skirt tiles off. Rose uniform, warm hair, blue eyes, smile, sword. Rig is Generic, so humanoid retargets will not play.",
+      "rootScale": 1.0,
+      "disable": [
+        "Colar_Tile",
+        "BackSkirt_Tile"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "legs",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__legs_0_fdc5d7.mat"
+        },
+        {
+          "renderer": "hairFront",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__hairFront_0_a3db26.mat"
+        },
+        {
+          "renderer": "Mech_Inner_R",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Mech_Inner_R_0_2f3841.mat"
+        },
+        {
+          "renderer": "Skirt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Skirt_0_0c9db8.mat"
+        },
+        {
+          "renderer": "boots",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__legs_0_fdc5d7.mat"
+        },
+        {
+          "renderer": "arms",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__legs_0_fdc5d7.mat"
+        },
+        {
+          "renderer": "Mech_Outer_L",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Mech_Inner_R_0_2f3841.mat"
+        },
+        {
+          "renderer": "Belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Belt_0_eeddfc.mat"
+        },
+        {
+          "renderer": "Mech_Inner_L",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Mech_Inner_R_0_2f3841.mat"
+        },
+        {
+          "renderer": "Mech_Cover_R",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Mech_Inner_R_0_2f3841.mat"
+        },
+        {
+          "renderer": "legAcc",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Belt_0_eeddfc.mat"
+        },
+        {
+          "renderer": "BackSkirt_Inside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Skirt_0_0c9db8.mat"
+        },
+        {
+          "renderer": "cloth",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__legs_0_fdc5d7.mat"
+        },
+        {
+          "renderer": "cloth",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__legs_0_fdc5d7.mat"
+        },
+        {
+          "renderer": "Tie",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Belt_0_eeddfc.mat"
+        },
+        {
+          "renderer": "Skirt_Inside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Skirt_0_0c9db8.mat"
+        },
+        {
+          "renderer": "Button",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Belt_0_eeddfc.mat"
+        },
+        {
+          "renderer": "Mech_Outer_R",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Mech_Inner_R_0_2f3841.mat"
+        },
+        {
+          "renderer": "hairAcce",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__hairAcce_0_c1f176.mat"
+        },
+        {
+          "renderer": "face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__face_0_ae4c2e.mat"
+        },
+        {
+          "renderer": "ClothOuter",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__legs_0_fdc5d7.mat"
+        },
+        {
+          "renderer": "hairBack",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__hairFront_0_a3db26.mat"
+        },
+        {
+          "renderer": "faceFlat",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__faceFlat_0_4a7d1a.mat"
+        },
+        {
+          "renderer": "Mech_Cover_L",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__Mech_Inner_R_0_2f3841.mat"
+        },
+        {
+          "renderer": "eyes",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__eyes_0_87cb8c.mat"
+        },
+        {
+          "renderer": "tummy",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V1_ClassRibbon__legs_0_fdc5d7.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "face_smile_BS",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Face_Blendshape.face_smile_BS",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "SapphiArtchan_V2_MechKnight",
+      "basePrefab": "Assets/Prefabs/Characters/C13_SapphiArtchan.prefab",
+      "description": "Skirts off so the mech legs and boots carry the silhouette. Blue-and-gold, sword and shield. Tallest.",
+      "rootScale": 1.06,
+      "disable": [
+        "Skirt",
+        "Skirt_Inside",
+        "BackSkirt_Inside",
+        "BackSkirt_Tile"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "legs",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__legs_0_3ad7bb.mat"
+        },
+        {
+          "renderer": "hairFront",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__hairFront_0_0f5e63.mat"
+        },
+        {
+          "renderer": "Mech_Inner_R",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Mech_Inner_R_0_f9d913.mat"
+        },
+        {
+          "renderer": "boots",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__legs_0_3ad7bb.mat"
+        },
+        {
+          "renderer": "arms",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__legs_0_3ad7bb.mat"
+        },
+        {
+          "renderer": "Mech_Outer_L",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Mech_Inner_R_0_f9d913.mat"
+        },
+        {
+          "renderer": "Belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Belt_0_9364e2.mat"
+        },
+        {
+          "renderer": "Mech_Inner_L",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Mech_Inner_R_0_f9d913.mat"
+        },
+        {
+          "renderer": "Mech_Cover_R",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Mech_Inner_R_0_f9d913.mat"
+        },
+        {
+          "renderer": "legAcc",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Belt_0_9364e2.mat"
+        },
+        {
+          "renderer": "Colar_Tile",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Colar_Tile_0_5ad276.mat"
+        },
+        {
+          "renderer": "cloth",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__legs_0_3ad7bb.mat"
+        },
+        {
+          "renderer": "cloth",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__legs_0_3ad7bb.mat"
+        },
+        {
+          "renderer": "Tie",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Belt_0_9364e2.mat"
+        },
+        {
+          "renderer": "Button",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Belt_0_9364e2.mat"
+        },
+        {
+          "renderer": "Mech_Outer_R",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Mech_Inner_R_0_f9d913.mat"
+        },
+        {
+          "renderer": "hairAcce",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__hairAcce_0_94778a.mat"
+        },
+        {
+          "renderer": "face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__face_0_ba11e7.mat"
+        },
+        {
+          "renderer": "ClothOuter",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__legs_0_3ad7bb.mat"
+        },
+        {
+          "renderer": "hairBack",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__hairFront_0_0f5e63.mat"
+        },
+        {
+          "renderer": "faceFlat",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__faceFlat_0_6832c7.mat"
+        },
+        {
+          "renderer": "Mech_Cover_L",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__Mech_Inner_R_0_f9d913.mat"
+        },
+        {
+          "renderer": "eyes",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__eyes_0_5063c9.mat"
+        },
+        {
+          "renderer": "tummy",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V2_MechKnight__legs_0_3ad7bb.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "brow_anger_L",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Brow_BS.brow_anger_L",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Shield.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.05,
+          "ex": 0.0,
+          "ey": 80.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "SapphiArtchan_V3_SkirtMage",
+      "basePrefab": "Assets/Prefabs/Characters/C13_SapphiArtchan.prefab",
+      "description": "Mech covers and outer mech shells off, skirts stay. Orchid clothes, pink hair, mage hat. Shorter.",
+      "rootScale": 0.97,
+      "disable": [
+        "Mech_Cover_L",
+        "Mech_Cover_R",
+        "Mech_Outer_L",
+        "Mech_Outer_R"
+      ],
+      "scales": [
+        {
+          "contains": "Hair",
+          "factor": 1.12
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "legs",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__legs_0_f55336.mat"
+        },
+        {
+          "renderer": "hairFront",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__hairFront_0_90d12b.mat"
+        },
+        {
+          "renderer": "BackSkirt_Tile",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__BackSkirt_Tile_0_407652.mat"
+        },
+        {
+          "renderer": "Mech_Inner_R",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__Mech_Inner_R_0_975f75.mat"
+        },
+        {
+          "renderer": "Skirt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__Skirt_0_afb561.mat"
+        },
+        {
+          "renderer": "boots",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__legs_0_f55336.mat"
+        },
+        {
+          "renderer": "arms",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__legs_0_f55336.mat"
+        },
+        {
+          "renderer": "Belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__Belt_0_76dd89.mat"
+        },
+        {
+          "renderer": "Mech_Inner_L",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__Mech_Inner_R_0_975f75.mat"
+        },
+        {
+          "renderer": "legAcc",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__Belt_0_76dd89.mat"
+        },
+        {
+          "renderer": "Colar_Tile",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__Colar_Tile_0_d695ef.mat"
+        },
+        {
+          "renderer": "BackSkirt_Inside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__Skirt_0_afb561.mat"
+        },
+        {
+          "renderer": "cloth",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__legs_0_f55336.mat"
+        },
+        {
+          "renderer": "cloth",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__legs_0_f55336.mat"
+        },
+        {
+          "renderer": "Tie",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__Belt_0_76dd89.mat"
+        },
+        {
+          "renderer": "Skirt_Inside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__Skirt_0_afb561.mat"
+        },
+        {
+          "renderer": "Button",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__Belt_0_76dd89.mat"
+        },
+        {
+          "renderer": "hairAcce",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__hairAcce_0_26802d.mat"
+        },
+        {
+          "renderer": "face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__face_0_b85d1f.mat"
+        },
+        {
+          "renderer": "ClothOuter",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__legs_0_f55336.mat"
+        },
+        {
+          "renderer": "hairBack",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__hairFront_0_90d12b.mat"
+        },
+        {
+          "renderer": "faceFlat",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__faceFlat_0_c04d1a.mat"
+        },
+        {
+          "renderer": "eyes",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__eyes_0_65db3f.mat"
+        },
+        {
+          "renderer": "tummy",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V3_SkirtMage__legs_0_f55336.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "brow_Up_L",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Brow_BS.brow_Up_L",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "SapphiArtchan_V4_LiteArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C13_SapphiArtchan.prefab",
+      "description": "Tile pieces off. Sea-green clothes, bow and quiver. Shortest Sapphi variant.",
+      "rootScale": 0.94,
+      "disable": [
+        "Colar_Tile",
+        "BackSkirt_Tile"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "legs",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__legs_0_4a013d.mat"
+        },
+        {
+          "renderer": "hairFront",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__hairFront_0_212bb3.mat"
+        },
+        {
+          "renderer": "Mech_Inner_R",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Mech_Inner_R_0_f74d93.mat"
+        },
+        {
+          "renderer": "Skirt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Skirt_0_4dc344.mat"
+        },
+        {
+          "renderer": "boots",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__legs_0_4a013d.mat"
+        },
+        {
+          "renderer": "arms",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__legs_0_4a013d.mat"
+        },
+        {
+          "renderer": "Mech_Outer_L",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Mech_Inner_R_0_f74d93.mat"
+        },
+        {
+          "renderer": "Belt",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Belt_0_90d03c.mat"
+        },
+        {
+          "renderer": "Mech_Inner_L",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Mech_Inner_R_0_f74d93.mat"
+        },
+        {
+          "renderer": "Mech_Cover_R",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Mech_Inner_R_0_f74d93.mat"
+        },
+        {
+          "renderer": "legAcc",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Belt_0_90d03c.mat"
+        },
+        {
+          "renderer": "BackSkirt_Inside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Skirt_0_4dc344.mat"
+        },
+        {
+          "renderer": "cloth",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__legs_0_4a013d.mat"
+        },
+        {
+          "renderer": "cloth",
+          "slot": 1,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__legs_0_4a013d.mat"
+        },
+        {
+          "renderer": "Tie",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Belt_0_90d03c.mat"
+        },
+        {
+          "renderer": "Skirt_Inside",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Skirt_0_4dc344.mat"
+        },
+        {
+          "renderer": "Button",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Belt_0_90d03c.mat"
+        },
+        {
+          "renderer": "Mech_Outer_R",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Mech_Inner_R_0_f74d93.mat"
+        },
+        {
+          "renderer": "hairAcce",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__hairAcce_0_141728.mat"
+        },
+        {
+          "renderer": "face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__face_0_4a4fed.mat"
+        },
+        {
+          "renderer": "ClothOuter",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__legs_0_4a013d.mat"
+        },
+        {
+          "renderer": "hairBack",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__hairFront_0_212bb3.mat"
+        },
+        {
+          "renderer": "faceFlat",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__faceFlat_0_e78409.mat"
+        },
+        {
+          "renderer": "Mech_Cover_L",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__Mech_Inner_R_0_f74d93.mat"
+        },
+        {
+          "renderer": "eyes",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__eyes_0_9d45d5.mat"
+        },
+        {
+          "renderer": "tummy",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/SapphiArtchan_V4_LiteArcher__legs_0_4a013d.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "face_sad_BS",
+          "weight": 75.0
+        },
+        {
+          "shapeName": "Face_Blendshape.face_sad_BS",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Muryotaisu_V1_HaloKnight",
+      "basePrefab": "Assets/Prefabs/Characters/C14_Muryotaisu.prefab",
+      "description": "Coat and halo stay. The halo bone is scaled up. Gold-white coat, blonde hair, amber eyes, smile, sword.",
+      "rootScale": 1.0,
+      "disable": [],
+      "scales": [
+        {
+          "contains": "Angel",
+          "factor": 1.38
+        },
+        {
+          "contains": "Ring",
+          "factor": 1.38
+        }
+      ],
+      "materials": [
+        {
+          "renderer": "AngelRing",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V1_HaloKnight__AngelRing_0_21d27b.mat"
+        },
+        {
+          "renderer": "Coat",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V1_HaloKnight__Coat_0_245883.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V1_HaloKnight__Hair_0_580e73.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V1_HaloKnight__Body_0_39cc5a.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V1_HaloKnight__Face_0_a5bd81.mat"
+        },
+        {
+          "renderer": "Eye",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V1_HaloKnight__Eye_0_a54e84.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Smile",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Sword.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.02,
+          "pz": 0.06,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Muryotaisu_V2_CoatlessDuelist",
+      "basePrefab": "Assets/Prefabs/Characters/C14_Muryotaisu.prefab",
+      "description": "Coat off. The body renderer remains. Black-red hair, red eyes, troubled face, dagger. Shorter. This rig has no angry shape.",
+      "rootScale": 0.95,
+      "disable": [
+        "Coat"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "AngelRing",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V2_CoatlessDuelist__AngelRing_0_aef4c7.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V2_CoatlessDuelist__Hair_0_bca3b2.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V2_CoatlessDuelist__Body_0_dfb08d.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V2_CoatlessDuelist__Face_0_ed4bcb.mat"
+        },
+        {
+          "renderer": "Eye",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V2_CoatlessDuelist__Eye_0_1cee6c.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "Trouble",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Dagger.fbx",
+          "boneSlot": "rightHand",
+          "px": 0.0,
+          "py": 0.01,
+          "pz": 0.04,
+          "ex": 90.0,
+          "ey": 0.0,
+          "ez": 90.0,
+          "sx": 0.8,
+          "sy": 0.8,
+          "sz": 0.8
+        }
+      ]
+    },
+    {
+      "name": "Muryotaisu_V3_RinglessMage",
+      "basePrefab": "Assets/Prefabs/Characters/C14_Muryotaisu.prefab",
+      "description": "Halo off. Violet coat and hair, mage hat, mouth open. Tallest Muryotaisu variant.",
+      "rootScale": 1.05,
+      "disable": [
+        "AngelRing"
+      ],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "Coat",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V3_RinglessMage__Coat_0_a19dce.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V3_RinglessMage__Hair_0_b135a7.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V3_RinglessMage__Body_0_df4978.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V3_RinglessMage__Face_0_4d1afa.mat"
+        },
+        {
+          "renderer": "Eye",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V3_RinglessMage__Eye_0_88b146.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "MouthOpen",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_MageHat.fbx",
+          "boneSlot": "head",
+          "px": 0.0,
+          "py": 0.15,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 0.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    },
+    {
+      "name": "Muryotaisu_V4_GroveArcher",
+      "basePrefab": "Assets/Prefabs/Characters/C14_Muryotaisu.prefab",
+      "description": "Green coat, green-brown hair, green eyes, eyes closed, bow and quiver. Halo stays at normal size. This rig has no sad shape.",
+      "rootScale": 1.02,
+      "disable": [],
+      "scales": [],
+      "materials": [
+        {
+          "renderer": "AngelRing",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V4_GroveArcher__AngelRing_0_d96a87.mat"
+        },
+        {
+          "renderer": "Coat",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V4_GroveArcher__Coat_0_d885aa.mat"
+        },
+        {
+          "renderer": "Hair",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V4_GroveArcher__Hair_0_38095b.mat"
+        },
+        {
+          "renderer": "Body",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V4_GroveArcher__Body_0_6d3714.mat"
+        },
+        {
+          "renderer": "Face",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V4_GroveArcher__Face_0_2f10e2.mat"
+        },
+        {
+          "renderer": "Eye",
+          "slot": 0,
+          "material": "Assets/Prefabs/Characters/Variants/Materials/Muryotaisu_V4_GroveArcher__Eye_0_73a185.mat"
+        }
+      ],
+      "meshSwaps": [],
+      "expressions": [
+        {
+          "shapeName": "EyeClose",
+          "weight": 75.0
+        }
+      ],
+      "accessories": [
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Bow.fbx",
+          "boneSlot": "leftHand",
+          "px": 0.0,
+          "py": 0.05,
+          "pz": 0.02,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 80.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        },
+        {
+          "prefab": "Assets/MDI_Characters/Shared/Accessories/Accessory_Quiver.fbx",
+          "boneSlot": "spine",
+          "px": 0.06,
+          "py": 0.12,
+          "pz": -0.14,
+          "ex": 0.0,
+          "ey": 0.0,
+          "ez": 10.0,
+          "sx": 1.0,
+          "sy": 1.0,
+          "sz": 1.0
+        }
+      ]
+    }
+  ]
+}

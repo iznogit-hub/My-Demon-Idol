@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1223698334162906714
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 65556280210881102, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      propertyPath: m_Name
+      value: "Muryotaisu_V1_HaloKnight"
+      objectReference: {fileID: 0}
+    - target: {fileID: 103270117265562674, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 103270117265562674, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 103270117265562674, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964983379703384913, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d79a1d8048965f1fbfdb4e433b587309, type: 2}
+    - target: {fileID: 2186653030673554635, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f31b4a3204fa5592a90b91acc92c8b57, type: 2}
+    - target: {fileID: 1448223056194268519, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35431c6d9e5c58c0bafdc1a4a05df1c6, type: 2}
+    - target: {fileID: 7728328344926762027, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d1821e9c499b559d93eb834946e631d7, type: 2}
+    - target: {fileID: 7944830977493285425, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 15dbcbd4a62159c48c247b7299515a08, type: 2}
+    - target: {fileID: 3454778256126084373, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ee588eb8819520481d7297b577715eb, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 65556280210881102, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 957260589169577764}
+  m_SourcePrefab: {fileID: 100100000, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+--- !u!1 &2542014155818708247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 65556280210881102, guid: ef01b697adfa4b309658211feae5b1e9, type: 3}
+  m_PrefabInstance: {fileID: 1223698334162906714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &957260589169577764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542014155818708247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7e1b94d2f4a68b5e0d7c81f6a4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Characters.MDIVariantLook
+  description: "Coat and halo stay. The halo bone is scaled up. Gold-white coat, blonde hair, amber eyes, smile, sword."
+  variantId: Muryotaisu_V1_HaloKnight
+  expressions:
+  - shapeName: Smile
+    weight: 75.0
+  accessories:
+  - prefab: {fileID: 100100000, guid: 867c4447bb453884f9131275468f3cca, type: 3}
+    boneSlot: rightHand
+    localPosition: {x: 0.0, y: 0.02, z: 0.06}
+    localEulerAngles: {x: 90.0, y: 0.0, z: 90.0}
+    localScale: {x: 1.0, y: 1.0, z: 1.0}

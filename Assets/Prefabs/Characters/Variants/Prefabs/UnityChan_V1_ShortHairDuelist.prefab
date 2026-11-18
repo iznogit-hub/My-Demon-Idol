@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &595486485134027581
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100096, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Name
+      value: "UnityChan_V1_ShortHairDuelist"
+      objectReference: {fileID: 0}
+    - target: {fileID: 400096, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 400096, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 400096, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.00000
+      objectReference: {fileID: 0}
+    - target: {fileID: 100202, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100038, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100076, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100156, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d5d77ea36ad857a68922bfe5d7de0601, type: 2}
+    - target: {fileID: 13700002, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a63037e22a3f57dda811b67e77e4d30d, type: 2}
+    - target: {fileID: 13700006, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9ef8c57323dc5e479c96a0c269e22c15, type: 2}
+    - target: {fileID: 13700010, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c7bc489e34b159dda531bb857b3542ec, type: 2}
+    - target: {fileID: 13700012, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fa6e785353725c8cbbd5e0ae9a41918d, type: 2}
+    - target: {fileID: 13700014, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6b50c8c98457d4a9928661def7db27, type: 2}
+    - target: {fileID: 13700016, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d5d77ea36ad857a68922bfe5d7de0601, type: 2}
+    - target: {fileID: 13700018, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3758959d5cfd52feb5f310b048dd7591, type: 2}
+    - target: {fileID: 13700024, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6b50c8c98457d4a9928661def7db27, type: 2}
+    - target: {fileID: 13700028, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c72fb65b2aa50ccbef7a88dd6867313, type: 2}
+    - target: {fileID: 2300000, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6b50c8c98457d4a9928661def7db27, type: 2}
+    - target: {fileID: 13700034, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9ef8c57323dc5e479c96a0c269e22c15, type: 2}
+    - target: {fileID: 2300004, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae95d88029b75c3fb46a3e99806eac2f, type: 2}
+    - target: {fileID: 2300006, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 00e92119bd1a55fe9203355b842f0e4a, type: 2}
+    - target: {fileID: 13700036, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c7bc489e34b159dda531bb857b3542ec, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100096, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 919435549916745894}
+  m_SourcePrefab: {fileID: 100100000, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+--- !u!1 &325791588947870762 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100096, guid: eef16908df2704727a63bc444ad7c4d4, type: 3}
+  m_PrefabInstance: {fileID: 595486485134027581}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &919435549916745894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325791588947870762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7e1b94d2f4a68b5e0d7c81f6a4902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Characters.MDIVariantLook
+  description: "She wears her hair short: twin tails, tail tips, clips and head ribbons are off. Crimson jacket, black shirt, gold trim, fair skin, blue eyes, angry face, sword in her right hand."
+  variantId: UnityChan_V1_ShortHairDuelist
+  expressions:
+  - shapeName: MTH_ANG2
+    weight: 75.0
+  - shapeName: blendShape1.MTH_ANG2
+    weight: 75.0
+  accessories:
+  - prefab: {fileID: 100100000, guid: 867c4447bb453884f9131275468f3cca, type: 3}
+    boneSlot: rightHand
+    localPosition: {x: 0.0, y: 0.02, z: 0.06}
+    localEulerAngles: {x: 90.0, y: 0.0, z: 90.0}
+    localScale: {x: 1.0, y: 1.0, z: 1.0}
