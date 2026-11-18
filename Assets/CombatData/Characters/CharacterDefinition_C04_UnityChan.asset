@@ -42,3 +42,4 @@ MonoBehaviour:
   depthCrouchTorsoScale: 0.7
   depthCrouchHeadScale: 0.4
   depthAirHurtScale: 0.9
+  blazBlueProfile: {fileID: 11400000, guid: c0bb0300000000000000000000000001, type: 2}

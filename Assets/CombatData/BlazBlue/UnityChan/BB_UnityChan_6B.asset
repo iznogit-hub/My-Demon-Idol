@@ -1,0 +1,244 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0a11ac000000000000000000000001, type: 3}
+  m_Name: BB_UnityChan_6B
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: Hop overhead
+  attackType: 0
+  startupFrames: 18
+  activeFrames: 4
+  recoveryFrames: 14
+  hitstunTicks: 19
+  blockstunTicks: 11
+  damage: 680
+  initialProration: 0.8
+  comboDamageDecay: 0.89
+  advantageOnHit: 2
+  advantageOnBlock: -6
+  canRapidCancel: 1
+  animationClip: {fileID: 8301605000002, guid: a717be6abf612fd49a8acd95c8b585f3, type: 3}
+  animationTrigger: LightAttack
+  moveId: 6B
+  button: 2
+  kind: 1
+  motion: 0
+  airOk: 0
+  groundOk: 1
+  stance: 2
+  priority: 0
+  guard: 2
+  attribute: 2
+  fatalCounter: 0
+  hardKnockdown: 0
+  untechableTicks: 18
+  airHitX: 1.5
+  airHitY: 5
+  landingRecovery: 4
+  minDamagePct: 0.08
+  chipPct: 0
+  heatCost: 0
+  gatlingInto: []
+  specialCancel: 1
+  ddCancel: 1
+  jumpCancelOnHit: 0
+  rapidCancelable: 1
+  followUps: []
+  boxTickCount: 36
+  boxSamples:
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+  clipName: UChan_6M
+  clip: {fileID: 8301605000002, guid: a717be6abf612fd49a8acd95c8b585f3, type: 3}
+  clipFirstFrame: 20
+  clipLastFrame: 40
+  hitLocalX: 0.55
+  hitLocalY: 1.2
+  hitLocalW: 0.36
+  hitLocalH: 0.28

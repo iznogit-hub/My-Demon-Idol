@@ -1,0 +1,274 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0a11ac000000000000000000000001, type: 3}
+  m_Name: BB_UnityChan_236236C
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: Flurry
+  attackType: 0
+  startupFrames: 14
+  activeFrames: 8
+  recoveryFrames: 20
+  hitstunTicks: 23
+  blockstunTicks: 15
+  damage: 2400
+  initialProration: 1.0
+  comboDamageDecay: 0.95
+  advantageOnHit: -4
+  advantageOnBlock: -12
+  canRapidCancel: 1
+  animationClip: {fileID: 8301402000003, guid: 0ada3eb562c004041918e1b7f964854c, type: 3}
+  animationTrigger: LightAttack
+  moveId: 236236C
+  button: 4
+  kind: 4
+  motion: 7
+  airOk: 0
+  groundOk: 1
+  stance: 0
+  priority: 40
+  guard: 0
+  attribute: 2
+  fatalCounter: 0
+  hardKnockdown: 0
+  untechableTicks: 18
+  airHitX: 1.5
+  airHitY: 5
+  landingRecovery: 4
+  minDamagePct: 0.3
+  chipPct: 0.15
+  heatCost: 50
+  gatlingInto: []
+  specialCancel: 0
+  ddCancel: 0
+  jumpCancelOnHit: 0
+  rapidCancelable: 0
+  followUps: []
+  boxTickCount: 42
+  boxSamples:
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0.55
+      y: 1.2
+      w: 0.36
+      h: 0.28
+      kind: 1
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+  clipName: UChan_Super
+  clip: {fileID: 8301402000003, guid: 0ada3eb562c004041918e1b7f964854c, type: 3}
+  clipFirstFrame: 811
+  clipLastFrame: 845
+  hitLocalX: 0.55
+  hitLocalY: 1.2
+  hitLocalW: 0.36
+  hitLocalH: 0.28
