@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0a11ac000000000000000000000001, type: 3}
+  m_Name: BB_UnityChan_2B
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: Low check
+  attackType: 0
+  startupFrames: 8
+  activeFrames: 3
+  recoveryFrames: 14
+  hitstunTicks: 17
+  blockstunTicks: 9
+  damage: 580
+  initialProration: 0.8
+  comboDamageDecay: 0.89
+  advantageOnHit: 1
+  advantageOnBlock: -7
+  canRapidCancel: 1
+  animationClip: {fileID: 8301402000002, guid: 0ada3eb562c004041918e1b7f964854c, type: 3}
+  animationTrigger: LightAttack
+  moveId: 2B
+  button: 2
+  kind: 0
+  motion: 0
+  airOk: 0
+  groundOk: 1
+  stance: 1
+  priority: 0
+  guard: 1
+  attribute: 2
+  fatalCounter: 0
+  hardKnockdown: 0
+  untechableTicks: 18
+  airHitX: 1.5
+  airHitY: 5
+  landingRecovery: 4
+  minDamagePct: 0.08
+  chipPct: 0
+  heatCost: 0
+  gatlingInto:
+  - 2C
+  specialCancel: 1
+  ddCancel: 1
+  jumpCancelOnHit: 0
+  rapidCancelable: 1
+  followUps: []
+  boxTickCount: 25
+  boxSamples:
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0.7
+      y: 0.7
+      w: 0.5
+      h: 0.22
+      kind: 1
+    - x: 0.7
+      y: 0.7
+      w: 0.5
+      h: 0.22
+      kind: 1
+    - x: 0.7
+      y: 0.7
+      w: 0.5
+      h: 0.22
+      kind: 1
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+    - x: 0
+      y: 0
+      w: 0
+      h: 0
+      kind: 0
+  clipName: UChan_2M
+  clip: {fileID: 8301402000002, guid: 0ada3eb562c004041918e1b7f964854c, type: 3}
+  clipFirstFrame: 630
+  clipLastFrame: 648
+  hitLocalX: 0.7
+  hitLocalY: 0.7
+  hitLocalW: 0.5
+  hitLocalH: 0.22
