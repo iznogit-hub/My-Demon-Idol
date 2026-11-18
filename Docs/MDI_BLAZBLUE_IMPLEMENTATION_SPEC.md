@@ -1097,12 +1097,12 @@ The base `MDI_KI_Melee_Fighter` has a fixed set of triggers and states (`LightAt
 | 6 | C08 | SanpakuChan | good model (54 bones) | Speed and mixup | **Crow Step** (short teleports and cross-ups) |
 | 7 | C06 | Cultist | good model (53 bones) | Setplay / summoner | **Void Orb** (place and command orbs) |
 | 8 | C10 | Reika | good model (50 bones; `pevis` hips; Kiki script disabled) | Counter / stance | **Veil** (guard-point counter stance) |
-| 9 | **Izno to decide** | StellarWitch C07 / Akane C05 / Muryotaisu C14 | uncertain (see right) | Fullscreen zoner / poke / tether | Star Field / Cursed Dagger / Threads |
+| 9 | C07 | StellarWitch | **chosen by Izno** (18 Nov 2026) | Fullscreen zoner | **Star Field** |
 
-**Uncertain models, for Izno to decide:**
-- **StellarWitch (C07):** the hips were remapped to `Hip`, and the FBX must be reimported so the avatar rebuilds. Recommended for slot 9 **if** that reimport works (she becomes the fullscreen zoner, an archetype nobody else has).
-- **Akane (C05):** there is no chest bone between `Spine` and `Neck`, so spine twist spreads. That is fine for pokes and bad for big twisting punches. She is the backup for slot 9.
-- **Muryotaisu (C14):** 51 bones with no upper chest, toes or jaw, and her `MuryotaisuController` is disabled. Usable, but the weakest rig. Hold back.
+**Slot 9 decision (Izno, 18 Nov 2026): C07 StellarWitch.** Akane and Muryotaisu are not slot 9.
+- **StellarWitch (C07):** the hips were remapped to `Hip`, and the FBX must be reimported so the avatar rebuilds before her kit is built. She is the fullscreen zoner (Drive **Star Field**).
+- **Akane (C05):** there is no chest bone between `Spine` and `Neck`, so spine twist spreads. Not in the launch-nine.
+- **Muryotaisu (C14):** 51 bones with no upper chest, toes or jaw, and her `MuryotaisuController` is disabled. Not in the launch-nine.
 - **Reika (C10)** is listed as playable, but her Kiki Rigidbody and capsule setup needs a Play Mode check first (`KI_MELEE_ANIMATION.md`).
 - Excluded: Ren C03 (dummy), Casual1 C11 (empty bone map; needs a Blender reparent) and SapphiArtchan C13 (Generic rig).
 - **Check that the definition animator is correct** for every non-built girl (finding in 2.6) before building her.
@@ -1284,7 +1284,7 @@ Locomotion: intro 16_15 8–40; victory 16_01 48–64; fall 140_01 8–40 and ge
 
 Locomotion: intro 111_34 8–40; victory (bow) 111_02 17–77; walk 111_34 82–110; dash 17_10 355–373; jump 143_06 12–32; crouch 139_09 110–130; get-up 113_08 300–342 (`keepOriginalPositionY: 0`).
 
-### 8.7 New girls (C12 Fina, C08 SanpakuChan, C06 Cultist, C10 Reika, slot 9)
+### 8.7 New girls (C12 Fina, C08 SanpakuChan, C06 Cultist, C10 Reika, C07 StellarWitch)
 
 These use the 8.2 skeleton. Only their identity moves are listed. Every source is **TBD**, and each girl must use **mostly different CMU takes** from the four built girls (Akio is mostly subject 144; Aika uses 80, 13, 135, 141, 143, 113 and 111; UnityChan uses 02, 14, 16, 118 and 91; PicoChan uses 15, 17, 86, 111, 141, 143 and 139). The hints say where to look first. Measure hips, forearm and shin on her avatar before sizing boxes (6.4).
 
@@ -1337,10 +1337,8 @@ These use the 8.2 skeleton. Only their identity moves are listed. Every source i
 | DD | 236236C (counter DD, Guard point 1–20), 632146C | | 135 kata |
 | Astral | 214214D | optional | — |
 
-**Slot 9 (Izno to decide).**
-- *StellarWitch (C07), fullscreen zoner:* Drive **Star Field** places up to 3 star points; D fires Starlight Comets (preset speed 13, damage 48) from every point. Her normals are slow and her air mobility weak. Search hints: KI Spellcasting, plus 135 for normals.
-- *Akane (C05), poke specialist:* Drive **Cursed Dagger** throws a dagger (preset speed 18, damage 40) that sticks to the wall or floor, and D again recalls it, hitting on the way back. Avoid big twisting takes (no chest bone). Search hints: 79 / 80 boxing jabs.
-- *Muryotaisu (C14), tether control:* Drive **Cursed Threads** attaches a thread on hit; 6D pulls the opponent in, 4D pushes away. Preset "Cursed Thread Needles" (speed 17, damage 44). Weakest rig, so use simple takes only.
+**Slot 9 is C07 StellarWitch (Izno, 18 Nov 2026).** Akane and Muryotaisu are not built as slot 9.
+- *StellarWitch (C07), fullscreen zoner:* Drive **Star Field** places up to 3 star points; D fires Starlight Comets (preset speed 13, damage 48) from every point. Her normals are slow and her air mobility weak. Search hints: KI Spellcasting, plus 135 for normals. Reimport her FBX so the `Hip` remap rebuilds the avatar before cutting clips.
 
 ### 8.8 Per-character asset list (what to create for each girl)
 
@@ -1585,7 +1583,7 @@ private void HandleCombatTick(int currentTick)
 | M8 | Aika BlazBlue | 8.4 | same |
 | M9 | UnityChan BlazBlue | 8.5 | same |
 | M10 | PicoChan BlazBlue | 8.6 | same |
-| M11 | Fina, SanpakuChan, Cultist, Reika, slot 9 (one PR each) | 8.7, measure first | same, for each |
+| M11 | Fina, SanpakuChan, Cultist, Reika, StellarWitch C07 (one PR each) | 8.7, measure first | same, for each |
 | M12 | HUD, modes, AI | `BBBattleHUD`, arcade, versus, the training menu, tutorial, challenges, character select filter, `BBAIController` | All modes are playable start to finish on phone and pad |
 | M13 | Polish and launch | VFX/SFX pass, accessibility, localisation keys, device perf tests (10.6), store builds | Definition of done (1.4) is fully met |
 
@@ -1607,12 +1605,12 @@ private void HandleCombatTick(int currentTick)
 | R8 | Validators hard-code `ROOT = Path("/workspace")` | Fail on other checkouts | A wrapper script; the originals stay unedited |
 | R9 | `ROSTER.md` describes an old 18-fighter clan roster with male fighters | Misleading | Ignore it (lore is on hold). This spec's roster table is the plan |
 | R10 | Floats aren't bit-exact across devices | Blocks future online play | `BBReal` alias and the fixed-point plan (9.12) |
-| R11 | Reika's Kiki setup (kinematic Rigidbody, disabled capsule) and StellarWitch's hip remap need a Unity check | Those girls could be blocked | Check them before building; slot 9 alternates |
+| R11 | Reika's Kiki setup (kinematic Rigidbody, disabled capsule) and StellarWitch's hip remap need a Unity check | Those girls could be blocked | Check them before building. Slot 9 is StellarWitch |
 | R12 | Adult-sized CMU actors on small girls | Punches look short | Hitboxes are baked from her own bones; choose takes per girl |
 | R13 | The Classic `CutsceneManager` plays an MP4 on a `DomainSuper` hit | Not used by BlazBlue | In-engine Timeline cinematics |
 
 ### 12.2 Open decisions (please choose)
-1. **Slot 9:** StellarWitch (if the reimport works), Akane, or Muryotaisu?
+1. **Slot 9:** decided. C07 StellarWitch. Not Akane, not Muryotaisu.
 2. **Default scheme at launch:** Classic3Button or BlazBlue4Button? (The spec keeps Classic as the default until you flip it.)
 3. **Astral Heats:** on (arcade and versus) or off?
 4. **Stylish mode** at launch: yes or no? If yes, should D move to A+D in stylish?
@@ -1677,8 +1675,8 @@ ARCHITECTURE TO BUILD (spec sections in brackets)
   intro/victory; attacks through BBAnimationDriver (Playables layer mixer, clip playables seeked each tick:
   time = tickInMove/60 * ((last-first)/24) / (totalTicks/60)); root motion off, travel from BBMotionTrack; foot slide < 3 cm.
 - Characters [8]: build in order Akio (rushdown puncher, Drive Iron Rush), Aika (karate zoner, Resonance Nail), UnityChan
-  (aerial hopper, Aero Hop), PicoChan (close grappler, Clinch), then Fina, SanpakuChan, Cultist, Reika, and the slot-9 girl Izno
-  picks. Use the movelist tables in section 8; reuse the documented CMU windows for the first four; for the rest measure the
+  (aerial hopper, Aero Hop), PicoChan (close grappler, Clinch), then Fina, SanpakuChan, Cultist, Reika, and C07 StellarWitch
+  (slot 9, Izno 18 Nov 2026; not Akane or Muryotaisu). Use the movelist tables in section 8; reuse the documented CMU windows for the first four; for the rest measure the
   avatar first and use mostly different CMU takes (search hints in 8.7). Each girl: BBCharacterProfile, BBMoveSet, BBAttackData
   per move, IBBDrive implementation, override controller, <NAME>_BB_MOVELIST.md, AI profile, 10 challenges.
 - Game [9]: BBBattleHUD (HP, Heat, Barrier, Burst, Drive resource, OD ring, combo/CH/FC banners), arcade, versus, training menu
@@ -1705,7 +1703,7 @@ Do not start a milestone until the previous one's acceptance criteria pass.
 REPORTING
 For every PR: list files added/changed, test and validator output, what you verified inside Unity (and on which device),
 and what you could NOT verify. Never claim something works in-game unless you ran it. Raise the open decisions in spec 12.2
-instead of guessing (slot 9, default scheme, Astral, stylish, HP scale, neutral ABCD, Classic animator mismatch, LFS).
+instead of guessing. Slot 9 is already decided: C07 StellarWitch. Remaining defaults: Classic scheme, Astral off for this pass, stylish off, HP 11,000, neutral ABCD is Overdrive, Classic animator mismatch left as-is, no Git LFS.
 ```
 
 ---

@@ -52,6 +52,7 @@ namespace DemonIdol.Combat
         public string ActiveP1Id => _activeP1Id;
         public string ActiveP2Id => _activeP2Id;
         public string ActiveStageId => _activeStageId;
+        public static event System.Action OnMatchInitialized;
 
         private void Awake()
         {
@@ -255,6 +256,8 @@ namespace DemonIdol.Combat
                     FighterCamera2D.Instance.ApplyStageCameraLimits(stage);
                 }
             }
+
+            if (OnMatchInitialized != null) OnMatchInitialized();
         }
 
         private void ConfigureFighter(FighterController fc, string charId, bool isPlayer)

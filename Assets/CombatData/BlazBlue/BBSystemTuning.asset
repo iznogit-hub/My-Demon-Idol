@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0a11ac000000000000000000000004, type: 3}
+  m_Name: BBSystemTuning
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBSystemTuning
+  bufferTicks: 5
+  chordWindowTicks: 3
+  negativeEdgeTicks: 3
+  motionWindow236: 22
+  motionWindowHalfCircle: 30
+  motionWindow360: 40
+  motionWindowDD: 36
+  motionWindow22: 16
+  chargeHoldTicks: 40
+  chargeReleaseTicks: 12
+  stickDeadzone: 0.2
+  allow323Shortcut: 1
+  heatMax: 100
+  costRC: 50
+  costDD: 50
+  costCA: 50
+  costCT: 25
+  costAstral: 100
+  heatOnHitA: 2
+  heatOnHitB: 3
+  heatOnHitC: 4
+  heatOnHitD: 3
+  heatOnHitSpecial: 5
+  heatPerDamageTaken: 0.03
+  lowHpThreshold: 0.35
+  lowHpRegenPerTick: 0.05
+  barrierMax: 1000
+  barrierHoldCost: 2
+  barrierRegen: 3
+  barrierRegenDelay: 30
+  dangerTicks: 300
+  barrierHitCostPerDamage: 0.5
+  barrierPushback: 2.2
+  instantBarrierPushback: 2.6
+  dangerDamageScale: 1.25
+  instantBlockWindow: 8
+  burstMax: 1000
+  burstRegenPerTick: 1
+  burstInvulnTicks: 26
+  burstRadius: 1.8
+  odMinTicks: 180
+  odMaxTicks: 480
+  activeODPenalty: 0.6
+  allowWhiffRC: 0
+  rcSlowTicks: 20
+  rcSlowFactor: 0.75
+  rcPerCombo: 1
+  throwTechTicks: 13
+  throwTechTicksCH: 6
+  throwWhiffRecovery: 24
+  throwProtectTicks: 6
+  throwRange: 1
+  sameMovePenalty: 0.8
+  gravityScalePerHit: 0.06
+  gravityCap: 1.9
+  fatalCounterDecayShift: 120
+  fatalCounterGravity: 0.8
+  counterHitHitstunScale: 1.5
+  enableAstral: 0
+  negativePenalty: 0
+  stylishDamageScale: 0.8
+  allowWhiffACancels: 1
+  maxARepeats: 3

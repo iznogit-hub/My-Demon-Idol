@@ -107,5 +107,9 @@ namespace DemonIdol.Combat
                 themeColor = SumiStyleTokens.PaperWhite
             };
         }
+
+        [Header("BlazBlue 4-button (ignored in Classic)")]
+        public DemonIdol.BlazBlue.BBCharacterProfile blazBlueProfile;
+        public bool BlazBlueReady => blazBlueProfile != null && blazBlueProfile.moveSet != null;
     }
 }

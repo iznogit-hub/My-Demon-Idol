@@ -29,6 +29,9 @@ ALLOWED_MODIFIED = {
     "Assets/Scripts/Combat/FighterController.cs",
     "Assets/Scripts/Data/MoveSet.cs",
     "Assets/Scripts/Data/CharacterDefinition.cs",
+    "Assets/Scripts/UI/SettingsPanel.cs",
+    "Assets/Scripts/Combat/HomegrownCombatDirector.cs",
+    "Docs/MDI_BLAZBLUE_IMPLEMENTATION_SPEC.md",
     "tools/validate_ki_melee.py",
     "tools/validate_akio_movelist.py",
     "Assets/Huge Mocap Library/mocap animations/144/144_20.fbx.meta",
@@ -100,6 +103,12 @@ ALLOWED_ADDED_PREFIXES = (
     "Assets/Scripts/Combat/AkioBodyFit.cs",
     "Assets/Scripts/Data/AkioClipLibrary.cs",
     "tools/validate_akio_movelist.py",
+    "Assets/Scripts/BlazBlue",
+    "Assets/CombatData/BlazBlue",
+    "Assets/MDI_Characters/Runtime/BlazBlue",
+    "tools/validate_blazblue.py",
+    "tools/run_classic_validators.sh",
+    "tools/bb_core_check/",
 )
 
 WINDOWS = {

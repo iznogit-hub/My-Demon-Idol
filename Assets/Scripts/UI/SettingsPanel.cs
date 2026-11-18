@@ -55,6 +55,12 @@ namespace DemonIdol.UI
         public int colorblindMode = 0; // 0 = None, 1 = Protanopia, 2 = Deuteranopia, 3 = Tritanopia
         public bool highContrastHitboxes = false;
         public int touchControlsMode = 0; // 0 = Auto-Detect, 1 = Always On, 2 = Off
+
+        // BlazBlue. 0 = Classic3Button. Missing on old saves, so it stays Classic.
+        public int controlScheme = 0;
+        public bool bbStylish = false;
+        public int bbInputBuffer = 5;
+        public bool bbShowFrameMeter = false;
     }
 
     /// <summary>
@@ -104,6 +110,12 @@ namespace DemonIdol.UI
         public static int ColorblindMode => Instance != null ? Instance._current.colorblindMode : 0;
         public static bool HighContrastHitboxes => Instance != null && Instance._current.highContrastHitboxes;
         public static int TouchControlsMode => Instance != null ? Instance._current.touchControlsMode : 0;
+        public static DemonIdol.BlazBlue.ControlScheme ControlScheme =>
+            Instance != null
+                ? (DemonIdol.BlazBlue.ControlScheme)Instance._current.controlScheme
+                : (DemonIdol.BlazBlue.ControlScheme)PlayerPrefs.GetInt("mdi_control_scheme", 0);
+        public static bool ShowBlazBlueFrameMeter => Instance != null && Instance._current.bbShowFrameMeter;
+        public static int BlazBlueInputBuffer => Instance != null ? Mathf.Clamp(Instance._current.bbInputBuffer, 3, 8) : 5;
 
         [Header("Master Audio")]
         [SerializeField] private Slider _masterSlider;
@@ -188,6 +200,16 @@ namespace DemonIdol.UI
             ApplyAudioSettings();
             ApplyQualityTier();
             ApplyResolutionScale();
+            PlayerPrefs.SetInt("mdi_control_scheme", _current.controlScheme);
+        }
+
+        public static void SetControlScheme(DemonIdol.BlazBlue.ControlScheme scheme)
+        {
+            PlayerPrefs.SetInt("mdi_control_scheme", (int)scheme);
+            PlayerPrefs.Save();
+            if (Instance == null) return;
+            Instance._current.controlScheme = (int)scheme;
+            Instance.SaveSettings();
         }
 
         public void ApplyResolutionScale()
