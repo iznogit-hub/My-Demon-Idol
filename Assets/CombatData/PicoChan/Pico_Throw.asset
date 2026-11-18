@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
+  m_Name: Pico_Throw
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
+  attackName: Throw
+  attackType: 6
+  hitLevel: 6
+  guardRequirement: 3
+  isDuckableHigh: 0
+  crush: 0
+  crushStartTick: 4
+  crushEndTick: 18
+  hasArmor: 0
+  isAirborneStrikeProtected: 0
+  protectionStartTick: 5
+  protectionEndTick: 12
+  startupFrames: 5
+  activeFrames: 2
+  recoveryFrames: 18
+  hitstunTicks: 48
+  blockstunTicks: 19
+  knockdownDurationTicks: 48
+  hitstopAttacker: 8
+  hitstopDefender: 8
+  hitstopOnBlock: 4
+  counterHitStopBonus: 4
+  advantageOnBlock: 0
+  advantageOnHit: 0
+  advantageOnCounterHit: 4
+  damage: 150
+  chipDamageOnBlock: 0
+  initialProration: 1
+  comboDamageDecay: 0.88
+  pushbackOnHit: 0.7
+  pushbackOnBlock: 0.45
+  isLauncher: 0
+  isBoundTornado: 0
+  causesWallSplat: 0
+  causesWallBounce: 0
+  causesKnockdown: 1
+  isLinear: 0
+  throwTechWindowTicks: 8
+  launchVelocity: {x: 0, y: 0}
+  screenShakeTrauma: 0.12
+  canRapidCancel: 0
+  gatlingCancels: []
+  animationClip: {fileID: 8401113300002, guid: 27783d90c74b8524d9df286fc517342c, type: 3}
+  animationTrigger: Throw
+  hitboxOffset: {x: 0.3, y: 0, z: 0}
+  hitboxSize: {x: 0.42, y: 0.5, z: 0.36}
+  cancelWindow: {x: 5, y: 13}
+  archetype: 2
+  akioApplyHitbox: 1
+  akioAuthoredCancels: 1
+  akioStrikeInvuln: 0
+  akioKeepRecovery: 0
+  akioFollowBone: 1
+  akioBone: 8
+  akioMoveId: throw
+  akioClipSlot: shield
+  akioAnimatorSpeed: 1.4059
+  akioCancelOnHit: []
+  akioCancelOnBlock: []
+  akioHitPhases: []

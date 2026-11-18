@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
+  m_Name: Pico_Rekka2
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
+  attackName: Rekka 2
+  attackType: 1
+  hitLevel: 1
+  guardRequirement: 0
+  isDuckableHigh: 0
+  crush: 0
+  crushStartTick: 4
+  crushEndTick: 18
+  hasArmor: 0
+  isAirborneStrikeProtected: 0
+  protectionStartTick: 5
+  protectionEndTick: 12
+  startupFrames: 7
+  activeFrames: 3
+  recoveryFrames: 11
+  hitstunTicks: 17
+  blockstunTicks: 10
+  knockdownDurationTicks: 36
+  hitstopAttacker: 8
+  hitstopDefender: 8
+  hitstopOnBlock: 4
+  counterHitStopBonus: 4
+  advantageOnBlock: -3
+  advantageOnHit: 4
+  advantageOnCounterHit: 8
+  damage: 50
+  chipDamageOnBlock: 0
+  initialProration: 0.86
+  comboDamageDecay: 0.88
+  pushbackOnHit: 0.7
+  pushbackOnBlock: 0.45
+  isLauncher: 0
+  isBoundTornado: 0
+  causesWallSplat: 0
+  causesWallBounce: 0
+  causesKnockdown: 0
+  isLinear: 0
+  throwTechWindowTicks: 6
+  launchVelocity: {x: 0, y: 0}
+  screenShakeTrauma: 0.12
+  canRapidCancel: 1
+  gatlingCancels: []
+  animationClip: {fileID: 8401513000009, guid: b4e89af5f837194428560a6f0dc97b6b, type: 3}
+  animationTrigger: HeavyAttack
+  hitboxOffset: {x: 0.12, y: 0, z: 0}
+  hitboxSize: {x: 0.26, y: 0.18, z: 0.2}
+  cancelWindow: {x: 7, y: 16}
+  archetype: 2
+  akioApplyHitbox: 1
+  akioAuthoredCancels: 1
+  akioStrikeInvuln: 0
+  akioKeepRecovery: 0
+  akioFollowBone: 1
+  akioBone: 18
+  akioMoveId: rekka2
+  akioClipSlot: atk2
+  akioAnimatorSpeed: 0.801
+  akioCancelOnHit:
+  - rekka3
+  - 6S
+  - 236S
+  - super
+  akioCancelOnBlock:
+  - rekka3
+  - 6S
+  - 236S
+  akioHitPhases: []

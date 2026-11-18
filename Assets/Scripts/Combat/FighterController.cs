@@ -994,6 +994,17 @@ namespace DemonIdol.Combat
             bool qcf = CmdParser.CheckQuarterCircleForward(currentTick, FacingDirection, consume: false);
             if (qcf)
             {
+                AttackData closeArc = ms.depthQuarterForward;
+                if (closeArc != null)
+                {
+                    if (CanExecuteResolvedAttack(closeArc))
+                    {
+                        CmdParser.CheckQuarterCircleForward(currentTick, FacingDirection, consume: true);
+                        ConsumeAkioButton(InputButton.Light, ThreeButtonCommand.Projectile);
+                        StartAttack(closeArc);
+                    }
+                    return true;
+                }
                 AttackData fireball = ms.akioFireball;
                 if (fireball != null && CanExecuteResolvedAttack(fireball))
                 {

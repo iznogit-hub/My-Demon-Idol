@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c25885bf7bbc49aebe492dd3a4ec123, type: 3}
+  m_Name: PicoChanMoveSet
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.MoveSet
+  characterId: C09
+  moveSetName: PicoChan Close Grappler
+  archetype: 2
+  standingL: {fileID: 11400000, guid: c0a13c00000000000000000000000101, type: 2}
+  crouchingL: {fileID: 11400000, guid: c0a13c00000000000000000000000102, type: 2}
+  standingH: {fileID: 11400000, guid: c0a13c00000000000000000000000104, type: 2}
+  forwardH: {fileID: 11400000, guid: c0a13c00000000000000000000000105, type: 2}
+  crouchingH: {fileID: 11400000, guid: c0a13c00000000000000000000000106, type: 2}
+  neutralS: {fileID: 0}
+  forwardS: {fileID: 11400000, guid: c0a13c00000000000000000000000110, type: 2}
+  downS: {fileID: 11400000, guid: c0a13c0000000000000000000000010b, type: 2}
+  airL: {fileID: 11400000, guid: c0a13c00000000000000000000000103, type: 2}
+  airH: {fileID: 11400000, guid: c0a13c00000000000000000000000107, type: 2}
+  airS: {fileID: 11400000, guid: c0a13c0000000000000000000000010c, type: 2}
+  tacticalThrow: {fileID: 11400000, guid: c0a13c00000000000000000000000112, type: 2}
+  domainSuper: {fileID: 11400000, guid: c0a13c00000000000000000000000113, type: 2}
+  defensiveBurst: {fileID: 11400000, guid: c0a13c00000000000000000000000114, type: 2}
+  lightAttack: {fileID: 11400000, guid: c0a13c00000000000000000000000101, type: 2}
+  mediumAttack: {fileID: 11400000, guid: c0a13c00000000000000000000000104, type: 2}
+  heavyAttack: {fileID: 11400000, guid: c0a13c00000000000000000000000104, type: 2}
+  driveSkill: {fileID: 11400000, guid: c0a13c0000000000000000000000010e, type: 2}
+  overheadAttack: {fileID: 11400000, guid: c0a13c00000000000000000000000105, type: 2}
+  lowSweepAttack: {fileID: 11400000, guid: c0a13c00000000000000000000000106, type: 2}
+  antiairAttack: {fileID: 11400000, guid: c0a13c0000000000000000000000010b, type: 2}
+  additionalMoves:
+  - {fileID: 11400000, guid: c0a13c00000000000000000000000108, type: 2}
+  - {fileID: 11400000, guid: c0a13c00000000000000000000000109, type: 2}
+  - {fileID: 11400000, guid: c0a13c00000000000000000000000115, type: 2}
+  - {fileID: 11400000, guid: c0a13c0000000000000000000000010d, type: 2}
+  - {fileID: 11400000, guid: c0a13c0000000000000000000000010e, type: 2}
+  - {fileID: 11400000, guid: c0a13c0000000000000000000000010f, type: 2}
+  - {fileID: 11400000, guid: c0a13c00000000000000000000000111, type: 2}
+  akioRekka1: {fileID: 11400000, guid: c0a13c00000000000000000000000108, type: 2}
+  akioRekka2: {fileID: 11400000, guid: c0a13c00000000000000000000000109, type: 2}
+  akioRekka3: {fileID: 11400000, guid: c0a13c00000000000000000000000115, type: 2}
+  akioFireball: {fileID: 0}
+  akioDragonPunch: {fileID: 11400000, guid: c0a13c0000000000000000000000010e, type: 2}
+  depthQuarterBack: {fileID: 11400000, guid: c0a13c0000000000000000000000010f, type: 2}
+  depthQuarterForward: {fileID: 11400000, guid: c0a13c0000000000000000000000010d, type: 2}
+  depthCharge: {fileID: 11400000, guid: c0a13c00000000000000000000000111, type: 2}
+  depthChainA: 
+  depthChainB: 
+  depthChainC: 
