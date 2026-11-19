@@ -173,6 +173,10 @@ namespace DemonIdol.BlazBlue
                     (int)p2Brain.heat,
                     comboHitCount
                 );
+
+                // Step 12: Presentation driver (Playables animation seeking)
+                if (p1Brain.animDriver != null) p1Brain.animDriver.TickAnimation(tick);
+                if (p2Brain.animDriver != null) p2Brain.animDriver.TickAnimation(tick);
             }
         }
 
@@ -291,7 +295,7 @@ namespace DemonIdol.BlazBlue
                 bool isGuarding = defender.bbState == BBState.Blockstun ||
                                   defender.bbState == BBState.BarrierBlockstun ||
                                   (defender.fighter != null && BBInputFrame.IsBack(BBInputFrame.WorldToFacingNumpad(defender.History.LatestFrame.numpad, defender.fighter.FacingDirection)));
-                bool isBarrier = defender.CurrentCommand.commandType == BBCommandType.Barrier && defender.barrier > 0f;
+                bool isBarrier = defender.CurrentCommand.commandType == BBCommandType.Barrier && defender.barrier > 0f && !defender.gauges.isDanger;
 
                 float baseDamage = attacker.currentAttack != null ? attacker.currentAttack.damage : 300f;
                 int hitstun = attacker.currentAttack != null ? attacker.currentAttack.hitstunTicks : 14;
@@ -299,17 +303,27 @@ namespace DemonIdol.BlazBlue
                 int hitstopA = attacker.currentAttack != null ? attacker.currentAttack.hitstopAttacker : 8;
                 int hitstopD = attacker.currentAttack != null ? attacker.currentAttack.hitstopDefender : 8;
 
+                BBMoveKind moveKind = attacker.currentAttack != null ? attacker.currentAttack.kind : BBMoveKind.Normal;
+                BBButton moveButton = attacker.currentAttack != null ? attacker.currentAttack.button : BBButton.A;
+                int moveHash = attacker.currentAttack != null ? attacker.currentAttack.moveId.GetHashCode() : 1;
+
                 if (isGuarding)
                 {
-                    if (isBarrier)
+                    if (isBarrier && defender.barrierSys != null)
                     {
+                        defender.barrierSys.ApplyBarrierBlock(baseDamage, currentTick, out float pushbackMult, out int blockstunReduction);
                         defender.bbState = BBState.BarrierBlockstun;
-                        defender.blockstunRemaining = blockstun;
-                        defender.barrier = Mathf.Max(0f, defender.barrier - (baseDamage * tuning.barrierHitCostPerDamage));
-                        PushbackSolver.ApplyPushback(attacker.fighter, defender.fighter, 0.4f, attacker.fighter.FacingDirection, tuning.barrierPushback);
+                        defender.blockstunRemaining = Mathf.Max(1, blockstun - blockstunReduction);
+                        PushbackSolver.ApplyPushback(attacker.fighter, defender.fighter, 0.4f, attacker.fighter.FacingDirection, pushbackMult);
                     }
                     else
                     {
+                        // Regular block takes chip damage (spec 4.19)
+                        float authoredChip = attacker.currentAttack != null ? attacker.currentAttack.chipPct : 0f;
+                        int chip = BBDamageModel.CalculateChipDamage(baseDamage, moveKind, false, authoredChip);
+                        float minHp = BBDamageModel.CanChipKO(moveKind) ? 0f : 1f;
+                        defender.health = Mathf.Max(minHp, defender.health - chip);
+
                         defender.bbState = BBState.Blockstun;
                         defender.blockstunRemaining = blockstun;
                         PushbackSolver.ApplyPushback(attacker.fighter, defender.fighter, 0.3f, attacker.fighter.FacingDirection, 1.0f);
@@ -317,22 +331,61 @@ namespace DemonIdol.BlazBlue
 
                     attacker.hitstopRemaining = hitstopA;
                     defender.hitstopRemaining = hitstopD;
-                    attacker.heat = Mathf.Min(tuning.heatMax, attacker.heat + 1f);
+                    attacker.gauges.AddHeatOnHit(moveButton, moveKind, true, tuning);
+
+                    // Mark contact on attacker chain state
+                    attacker.chainState.madeContact = true;
+                    attacker.chainState.contactTick = attacker.attackTick;
                 }
                 else
                 {
                     // Clean strike hit!
+                    // Get proration parameters
+                    BBDamageModel.GetDefaultProration(moveKind, moveButton, out float p1, out float p2, out float minDamagePct);
+                    if (attacker.currentAttack != null && attacker.currentAttack.minDamagePct > 0f)
+                    {
+                        minDamagePct = attacker.currentAttack.minDamagePct;
+                    }
+
+                    bool isCounterHit = defender.bbState == BBState.AttackStartup || defender.bbState == BBState.AttackActive;
+                    bool isFatal = attacker.currentAttack != null && attacker.currentAttack.fatalCounter && isCounterHit;
+
+                    // Register hit in combo state
+                    attacker.comboState.RegisterHit(moveHash, p1, p2, isAirHit: !defender.isGrounded, isFatalStarter: isFatal);
+
+                    // Calculate scaled damage via BBDamageModel
+                    int scaledDmg = BBDamageModel.CalculateDamage(
+                        baseDamage,
+                        attacker.comboState.comboStarterP1,
+                        attacker.comboState.accumulatedP2,
+                        attacker.comboState.GetMoveUsageCount(moveHash),
+                        defender.health,
+                        defender.maxHealth,
+                        minDamagePct,
+                        isDefenderInDanger: defender.gauges.isDanger
+                    );
+
+                    defender.health = Mathf.Max(0f, defender.health - scaledDmg);
+
+                    // Hitstun with combo duration decay (spec 4.15)
+                    int decayedHitstun = attacker.comboState.CalculateDecayedHitstun(hitstun, defender.isGrounded);
+                    if (isCounterHit) decayedHitstun = Mathf.RoundToInt(decayedHitstun * 1.5f);
+
                     defender.bbState = BBState.Hitstun;
-                    defender.hitstunRemaining = hitstun;
-                    defender.health = Mathf.Max(0f, defender.health - baseDamage);
-                    attacker.heat = Mathf.Min(tuning.heatMax, attacker.heat + 4f);
-                    defender.heat = Mathf.Min(tuning.heatMax, defender.heat + (baseDamage * tuning.heatPerDamageTaken));
+                    defender.hitstunRemaining = decayedHitstun;
 
                     attacker.hitstopRemaining = hitstopA;
                     defender.hitstopRemaining = hitstopD;
 
+                    attacker.gauges.AddHeatOnHit(moveButton, moveKind, false, tuning);
+                    defender.gauges.AddHeatOnDamageTaken(scaledDmg, tuning);
+
                     PushbackSolver.ApplyPushback(attacker.fighter, defender.fighter, 0.35f, attacker.fighter.FacingDirection, 1.0f);
                     comboHitCount++;
+
+                    // Mark contact on attacker chain state
+                    attacker.chainState.madeContact = true;
+                    attacker.chainState.contactTick = attacker.attackTick;
                 }
             }
 

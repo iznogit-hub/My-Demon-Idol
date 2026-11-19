@@ -10,8 +10,21 @@ namespace DemonIdol.BlazBlue
     /// while adding deterministic box tracks, gatlings, motions, and attributes.
     /// </summary>
     [CreateAssetMenu(fileName = "BB_Move", menuName = "DemonIdol/BlazBlue/Attack Data")]
-    public class BBAttackData : AttackData
+    public class BBAttackData : AttackData, IBBCancelableMove
     {
+        // IBBCancelableMove implementation
+        public string MoveId => moveId;
+        public BBButton Button => button;
+        public BBMoveKind Kind => kind;
+        public bool AirOk => airOk;
+        public bool GroundOk => groundOk;
+        public bool SpecialCancel => specialCancel;
+        public bool DdCancel => ddCancel;
+        public bool JumpCancelOnHit => jumpCancelOnHit;
+        public bool JumpCancelOnBlock => jumpCancelOnBlock;
+        public bool RapidCancelable => rapidCancelable;
+        public string[] GatlingInto => gatlingInto;
+
         [Header("BB Identity")]
         public string moveId = "5A";              // Unique per character: 5A, 2A, j.A, 5B, 236A, 632146C, etc.
         public BBButton button = BBButton.A;

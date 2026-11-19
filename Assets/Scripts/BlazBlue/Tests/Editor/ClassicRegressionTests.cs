@@ -21,6 +21,7 @@ namespace DemonIdol.BlazBlue.Tests
             suite.Test_GoldenMatch6_PicoChanThrowsAndBurst();
             BBMotionMatcherTests.RunAllTestsMenu();
             BBCollisionTests.RunAllTestsMenu();
+            BBSubsystemTests.RunAllTestsMenu();
             Debug.Log("<color=#00e676>[ClassicRegressionTests] ALL 6 GOLDEN REPLAY TESTS PASSED!</color>");
         }
 

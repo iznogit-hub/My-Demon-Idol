@@ -7,7 +7,7 @@ namespace DemonIdol.BlazBlue
     /// <summary>
     /// BlazBlue fighter brain component. Mounted on each fighter when ControlScheme == BlazBlue4Button.
     /// Manages 4-button input sampling, history, command interpretation, discrete state machine,
-    /// gauges, and zero-allocation collision box generation for BBMatchSim.
+    /// gauges, combat subsystems, and zero-allocation collision box generation for BBMatchSim.
     /// </summary>
     public class BBFighterBrain : MonoBehaviour
     {
@@ -19,6 +19,10 @@ namespace DemonIdol.BlazBlue
         [Header("Components")]
         public FighterController fighter;
         public BBInputSampler sampler;
+        public BBRapidCancel rapidCancel;
+        public BBBarrier barrierSys;
+        public BBOverdrive overdrive;
+        public BBAnimationDriver animDriver;
 
         [Header("Sim State")]
         public BBState bbState = BBState.Neutral;
@@ -39,20 +43,31 @@ namespace DemonIdol.BlazBlue
         public BBCommandInterpreter Interpreter { get; private set; } = new BBCommandInterpreter();
         public BBEvaluatedCommand CurrentCommand { get; private set; }
 
-        [Header("Gauges (0..Max)")]
+        [Header("Gauges & Combos")]
         public float health = 11000f;
         public float maxHealth = 11000f;
-        public float heat = 0f;
-        public float barrier = 1000f;
-        public float burst = 1000f;
-        public bool isOverdriveActive = false;
-        public int overdriveTicksRemaining = 0;
+        public BBGauges gauges;
+        public BBChainState chainState;
+        public BBComboState comboState;
+
+        // Convenience properties forwarding to gauges
+        public float heat { get => gauges.heat; set => gauges.heat = value; }
+        public float barrier { get => gauges.barrier; set => gauges.barrier = value; }
+        public float burst { get => gauges.burst; set => gauges.burst = value; }
+        public bool isOverdriveActive { get => gauges.isOverdriveActive; set => gauges.isOverdriveActive = value; }
+        public int overdriveTicksRemaining { get => gauges.overdriveTicksRemaining; set => gauges.overdriveTicksRemaining = value; }
 
         private void Awake()
         {
             if (fighter == null) fighter = GetComponent<FighterController>();
             if (sampler == null) sampler = GetComponent<BBInputSampler>();
             if (tuning == null) tuning = BBSystemTuning.Default;
+
+            if (rapidCancel == null) rapidCancel = GetComponent<BBRapidCancel>() ?? gameObject.AddComponent<BBRapidCancel>();
+            if (barrierSys == null) barrierSys = GetComponent<BBBarrier>() ?? gameObject.AddComponent<BBBarrier>();
+            if (overdrive == null) overdrive = GetComponent<BBOverdrive>() ?? gameObject.AddComponent<BBOverdrive>();
+            if (animDriver == null) animDriver = GetComponent<BBAnimationDriver>() ?? gameObject.AddComponent<BBAnimationDriver>();
+
             if (bodyBoxes == null)
             {
                 if (profile != null && profile.characterId.Contains("Aika")) bodyBoxes = BBBodyBoxes.CreateAikaPreset();
@@ -63,9 +78,9 @@ namespace DemonIdol.BlazBlue
 
             maxHealth = profile != null ? profile.maxHealth : 11000f;
             health = maxHealth;
-            heat = 0f;
-            barrier = tuning != null ? tuning.barrierMax : 1000f;
-            burst = tuning != null ? tuning.burstMax : 1000f;
+            gauges.Initialize(tuning);
+            chainState.Reset();
+            comboState.Reset();
         }
 
         private void OnEnable()
@@ -110,6 +125,11 @@ namespace DemonIdol.BlazBlue
                 inAttack,
                 inBlockstun,
                 isGuarding);
+
+            if (CurrentCommand.commandType == BBCommandType.Barrier && barrierSys != null)
+            {
+                barrierSys.NotifyBarrierPressed(tick);
+            }
         }
 
         public void HandleCombatTick(int tick)
@@ -128,20 +148,21 @@ namespace DemonIdol.BlazBlue
 
             stateTick++;
 
-            // Handle Overdrive countdown
-            if (isOverdriveActive && overdriveTicksRemaining > 0)
-            {
-                overdriveTicksRemaining--;
-                if (overdriveTicksRemaining <= 0)
-                {
-                    isOverdriveActive = false;
-                }
-            }
+            // Tick gauges (passive regen, low-HP regen, OD countdown, barrier drain)
+            bool isBarriering = CurrentCommand.commandType == BBCommandType.Barrier && !gauges.isDanger;
+            gauges.Tick(tuning, health / maxHealth, isBarriering);
 
-            // Passive barrier regeneration
-            if (bbState != BBState.BarrierBlockstun && CurrentCommand.commandType != BBCommandType.Barrier && barrier < tuning.barrierMax)
+            // Update invulnerability mask for current attack frame
+            if (currentAttack != null && currentAttack.invuln != null && currentAttack.invuln.Length > 0)
             {
-                barrier = Mathf.Min(tuning.barrierMax, barrier + (tuning.barrierRegen * CombatTickEngine.TICK_DELTA_TIME * 60f));
+                currentInvuln = BBInvuln.None;
+                for (int i = 0; i < currentAttack.invuln.Length; i++)
+                {
+                    if (currentAttack.invuln[i].IsActiveAt(attackTick))
+                    {
+                        currentInvuln |= currentAttack.invuln[i].mask;
+                    }
+                }
             }
 
             // State-specific timers
@@ -154,6 +175,8 @@ namespace DemonIdol.BlazBlue
                     {
                         bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
                         stateTick = 0;
+                        chainState.Reset();
+                        comboState.Reset();
                     }
                     break;
 
@@ -163,6 +186,8 @@ namespace DemonIdol.BlazBlue
                     {
                         bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
                         stateTick = 0;
+                        chainState.Reset();
+                        comboState.Reset();
                     }
                     break;
 
@@ -190,6 +215,8 @@ namespace DemonIdol.BlazBlue
                             currentAttack = null;
                             attackTick = 0;
                             attackHitMask.Clear();
+                            chainState.Reset();
+                            currentInvuln = BBInvuln.None;
                             bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
                             stateTick = 0;
                         }
@@ -212,6 +239,15 @@ namespace DemonIdol.BlazBlue
             bbState = attack.startupFrames > 0 ? BBState.AttackStartup : BBState.AttackActive;
             stateTick = 0;
             currentInvuln = BBInvuln.None;
+
+            if ((attack.button & BBButton.A) != 0)
+            {
+                chainState.aRepeatCount++;
+            }
+            else
+            {
+                chainState.aRepeatCount = 0;
+            }
         }
 
         /// <summary>
