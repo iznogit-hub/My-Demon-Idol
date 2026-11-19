@@ -112,6 +112,9 @@ def check_character(char_key: str) -> tuple[list[str], list[str]]:
     elif "unitychan" in char_key.lower() or "c04" in char_key.lower():
         char_name = "UnityChan"
         char_id = "C04"
+    elif "picochan" in char_key.lower() or "c09" in char_key.lower():
+        char_name = "PicoChan"
+        char_id = "C09"
     else:
         char_name = char_key
         char_id = char_key
@@ -210,7 +213,7 @@ def main() -> int:
         overall_errors.extend(errs)
         overall_warnings.extend(warns)
     elif args.all:
-        for target_char in ["C01", "C02", "C04"]:
+        for target_char in ["C01", "C02", "C04", "C09"]:
             print(f"[2] Validating BlazBlue Character Suite for '{target_char}'...")
             errs, warns = check_character(target_char)
             overall_errors.extend(errs)
