@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f8045e2503643a2baf0c575397e980, type: 3}
+  m_Name: BBProfile_C12_Fina
+  m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBCharacterProfile
+  characterId: C12_Fina
+  characterName: Fina
+  driveName: Plasma Charge
+  forwardWalkSpeed: 3.8
+  backwardWalkSpeed: 3
+  forwardDashSpeed: 8
+  forwardDashDurationTicks: 11
+  backdashSpeed: 7.2
+  backdashDurationTicks: 12
+  backdashInvulnTicks: 6
+  jumpVerticalLaunch: 8.2
+  jumpHorizontalSpeed: 3.5
+  gravity: 20
+  standPushboxSize: {x: 0.62, y: 1.6}
+  crouchPushboxSize: {x: 0.68, y: 1.1}
+  airPushboxSize: {x: 0.55, y: 1.25}
+  blazBlueOverrideController: {fileID: 22100000, guid: 3aedb18fbb1b546f8865f3403608f592, type: 2}
+  moveSet: {fileID: 11400000, guid: 684e5e7db40ff4f199a662812e5fc17d, type: 2}
+  maxHealth: 11000
+  defenseModifier: 1

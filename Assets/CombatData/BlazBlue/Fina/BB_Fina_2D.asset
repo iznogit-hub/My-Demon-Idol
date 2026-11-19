@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
+  m_Name: BB_Fina_2D
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: Low Plasma Shot
+  attackType: 0
+  hitLevel: 1
+  guardRequirement: 0
+  isDuckableHigh: 0
+  crush: 0
+  crushStartTick: 4
+  crushEndTick: 18
+  hasArmor: 0
+  isAirborneStrikeProtected: 0
+  protectionStartTick: 5
+  protectionEndTick: 12
+  startupFrames: 12
+  activeFrames: 2
+  recoveryFrames: 18
+  hitstunTicks: 18
+  blockstunTicks: 14
+  knockdownDurationTicks: 36
+  hitstopAttacker: 5
+  hitstopDefender: 5
+  hitstopOnBlock: 4
+  counterHitStopBonus: 4
+  advantageOnBlock: -4
+  advantageOnHit: 4
+  advantageOnCounterHit: 8
+  damage: 460
+  chipDamageOnBlock: 0
+  initialProration: 0.85
+  comboDamageDecay: 0.92
+  pushbackOnHit: 1.2
+  pushbackOnBlock: 0.8
+  isLauncher: 0
+  isBoundTornado: 0
+  causesWallSplat: 0
+  causesWallBounce: 0
+  causesKnockdown: 0
+  isLinear: 1
+  throwTechWindowTicks: 6
+  launchVelocity: {x: 0, y: 0}
+  screenShakeTrauma: 0.1
+  canRapidCancel: 1
+  gatlingCancels: 010000000200000003000000i
+  animationClip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
+  animationTrigger: LightAttack
+  hitboxOffset: {x: 0.8, y: 1, z: 0}
+  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  cancelWindow: {x: 5, y: 12}
+  archetype: 0
+  moveId: 2D
+  button: 8
+  kind: 3
+  motion: 0
+  airOk: 0
+  groundOk: 1
+  guard: 1
+  attribute: 2
+  invuln: []
+  fatalCounter: 0
+  hardKnockdown: 0
+  otg: 0
+  groundBounce: 0
+  wallBounce: 0
+  wallStick: 0
+  groundSlide: 0
+  untechableTicks: 18
+  untechableTicksCH: 27
+  airHitVelocity: {x: 1.5, y: 5}
+  landingRecovery: 4
+  minDamagePct: 0.08
+  chipPct: 0.08
+  heatGainOverride: -1
+  heatCost: 0
+  gatlingInto: []
+  specialCancel: 1
+  ddCancel: 1
+  jumpCancelOnHit: 0
+  jumpCancelOnBlock: 0
+  rapidCancelable: 1
+  followUps: []
+  followUpWindow: {x: 0, y: 0}
+  boxes: {fileID: 11400000, guid: 0b0a1adeb17f64432b159c2636f6ebc8, type: 2}
+  motionTrack: {fileID: 0}
+  clipName: HumanF@MagicAttackDirect1H01_R
+  clip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 40
+  events: []
