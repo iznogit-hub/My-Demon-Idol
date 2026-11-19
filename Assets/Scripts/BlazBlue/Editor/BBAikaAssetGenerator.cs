@@ -165,6 +165,7 @@ namespace DemonIdol.BlazBlue.Editor
                 }
 
                 overrideCtrl.ApplyOverrides(overridesList);
+                BBWarriorStanceOverrideBuilder.ApplyWarriorStances(overrideCtrl, "C02");
                 EditorUtility.SetDirty(overrideCtrl);
                 profile.blazBlueOverrideController = overrideCtrl;
             }
