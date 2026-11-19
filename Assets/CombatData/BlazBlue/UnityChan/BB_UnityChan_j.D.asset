@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
+  m_Name: BB_UnityChan_j.D
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: Aero Air Hop & Disc
+  attackType: 0
+  hitLevel: 1
+  guardRequirement: 0
+  isDuckableHigh: 0
+  crush: 0
+  crushStartTick: 4
+  crushEndTick: 18
+  hasArmor: 0
+  isAirborneStrikeProtected: 0
+  protectionStartTick: 5
+  protectionEndTick: 12
+  startupFrames: 6
+  activeFrames: 1
+  recoveryFrames: 10
+  hitstunTicks: 16
+  blockstunTicks: 12
+  knockdownDurationTicks: 36
+  hitstopAttacker: 5
+  hitstopDefender: 5
+  hitstopOnBlock: 4
+  counterHitStopBonus: 4
+  advantageOnBlock: 0
+  advantageOnHit: 4
+  advantageOnCounterHit: 8
+  damage: 300
+  chipDamageOnBlock: 0
+  initialProration: 0.85
+  comboDamageDecay: 0.92
+  pushbackOnHit: 1.2
+  pushbackOnBlock: 0.8
+  isLauncher: 0
+  isBoundTornado: 0
+  causesWallSplat: 0
+  causesWallBounce: 0
+  causesKnockdown: 0
+  isLinear: 1
+  throwTechWindowTicks: 6
+  launchVelocity: {x: 0, y: 0}
+  screenShakeTrauma: 0.1
+  canRapidCancel: 1
+  gatlingCancels: 010000000200000003000000i
+  animationClip: {fileID: 3755210964824101832, guid: 28ea393eef0b431409927fd5212d0472, type: 3}
+  animationTrigger: LightAttack
+  hitboxOffset: {x: 0.8, y: 1, z: 0}
+  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  cancelWindow: {x: 5, y: 12}
+  archetype: 0
+  moveId: j.D
+  button: 8
+  kind: 3
+  motion: 0
+  airOk: 1
+  groundOk: 0
+  guard: 0
+  attribute: 2
+  invuln: []
+  fatalCounter: 0
+  hardKnockdown: 0
+  otg: 0
+  groundBounce: 0
+  wallBounce: 0
+  wallStick: 0
+  groundSlide: 0
+  untechableTicks: 18
+  untechableTicksCH: 27
+  airHitVelocity: {x: 1.5, y: 5}
+  landingRecovery: 4
+  minDamagePct: 0.08
+  chipPct: 0.05
+  heatGainOverride: -1
+  heatCost: 0
+  gatlingInto: []
+  specialCancel: 1
+  ddCancel: 1
+  jumpCancelOnHit: 0
+  jumpCancelOnBlock: 0
+  rapidCancelable: 1
+  followUps: []
+  followUpWindow: {x: 0, y: 0}
+  boxes: {fileID: 11400000, guid: e78844dc7a7744e1b955978f727e0513, type: 2}
+  motionTrack: {fileID: 0}
+  clipName: UChan_jD
+  clip: {fileID: 3755210964824101832, guid: 28ea393eef0b431409927fd5212d0472, type: 3}
+  clipFirstFrame: 95
+  clipLastFrame: 115
+  events: []
