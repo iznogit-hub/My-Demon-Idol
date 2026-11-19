@@ -136,6 +136,15 @@ namespace DemonIdol.BlazBlue
             _graph.Evaluate(0f);
         }
 
+        public void PlayAttack(BBAttackData attack)
+        {
+            if (attack == null) return;
+            if (attack.clip != null)
+            {
+                PlayAttackClip(attack.clip, attack.clipFirstFrame, attack.clipLastFrame, attack.TotalTicks, 0);
+            }
+        }
+
         /// <summary>
         /// Smoothly blends back to Layer 0 base locomotion/idle when an attack finishes.
         /// </summary>

@@ -23,6 +23,7 @@ namespace DemonIdol.BlazBlue
         public BBBarrier barrierSys;
         public BBOverdrive overdrive;
         public BBAnimationDriver animDriver;
+        public IBBDrive drive;
 
         [Header("Sim State")]
         public BBState bbState = BBState.Neutral;
@@ -67,6 +68,7 @@ namespace DemonIdol.BlazBlue
             if (barrierSys == null) barrierSys = GetComponent<BBBarrier>() ?? gameObject.AddComponent<BBBarrier>();
             if (overdrive == null) overdrive = GetComponent<BBOverdrive>() ?? gameObject.AddComponent<BBOverdrive>();
             if (animDriver == null) animDriver = GetComponent<BBAnimationDriver>() ?? gameObject.AddComponent<BBAnimationDriver>();
+            if (drive == null) drive = GetComponent<IBBDrive>();
 
             if (bodyBoxes == null)
             {
@@ -151,6 +153,12 @@ namespace DemonIdol.BlazBlue
             // Tick gauges (passive regen, low-HP regen, OD countdown, barrier drain)
             bool isBarriering = CurrentCommand.commandType == BBCommandType.Barrier && !gauges.isDanger;
             gauges.Tick(tuning, health / maxHealth, isBarriering);
+
+            if (drive != null)
+            {
+                drive.InOverdrive = isOverdriveActive;
+                drive.TickDrive(this, tick);
+            }
 
             // Update invulnerability mask for current attack frame
             if (currentAttack != null && currentAttack.invuln != null && currentAttack.invuln.Length > 0)
@@ -240,6 +248,11 @@ namespace DemonIdol.BlazBlue
             stateTick = 0;
             currentInvuln = BBInvuln.None;
 
+            if (animDriver != null)
+            {
+                animDriver.PlayAttack(attack);
+            }
+
             if ((attack.button & BBButton.A) != 0)
             {
                 chainState.aRepeatCount++;
@@ -248,6 +261,47 @@ namespace DemonIdol.BlazBlue
             {
                 chainState.aRepeatCount = 0;
             }
+        }
+
+        public BBAttackData FindAttackByMoveId(string targetMoveId)
+        {
+            if (string.IsNullOrEmpty(targetMoveId)) return null;
+
+            if (profile != null && profile.moveSet is BBMoveSet ms && ms.moves != null)
+            {
+                for (int i = 0; i < ms.moves.Length; i++)
+                {
+                    if (ms.moves[i] != null && ms.moves[i].moveId == targetMoveId)
+                        return ms.moves[i];
+                }
+            }
+
+            return null;
+        }
+
+        public bool CanExecuteMove(BBAttackData move)
+        {
+            if (move == null) return false;
+
+            if (isGrounded && !move.groundOk) return false;
+            if (!isGrounded && !move.airOk) return false;
+
+            if (bbState == BBState.Neutral || bbState == BBState.Crouching ||
+                bbState == BBState.WalkForward || bbState == BBState.WalkBackward ||
+                bbState == BBState.Airborne)
+            {
+                return true;
+            }
+
+            if (bbState == BBState.AttackStartup || bbState == BBState.AttackActive || bbState == BBState.AttackRecovery)
+            {
+                if (currentAttack != null)
+                {
+                    return BBCancelRules.CanCancel(in chainState, currentAttack, move, 0, attackTick, onHit: true, onBlock: false, isGrounded: isGrounded);
+                }
+            }
+
+            return false;
         }
 
         /// <summary>

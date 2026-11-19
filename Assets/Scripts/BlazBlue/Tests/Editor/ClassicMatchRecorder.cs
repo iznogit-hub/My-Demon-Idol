@@ -59,6 +59,7 @@ namespace DemonIdol.BlazBlue.Tests
     [InitializeOnLoad]
     public static class ClassicMatchRecorder
     {
+        // Auto-run test suites on compilation
         public const string GOLDEN_DIR = "Assets/Scripts/BlazBlue/Tests/Golden";
 
         static ClassicMatchRecorder()
@@ -73,6 +74,7 @@ namespace DemonIdol.BlazBlue.Tests
                 BBMotionMatcherTests.RunAllTestsMenu();
                 BBCollisionTests.RunAllTestsMenu();
                 BBSubsystemTests.RunAllTestsMenu();
+                BBAkioTests.RunAllTestsMenu();
                 ClassicRegressionTests.RunAllTestsMenu();
 
                 if (!Directory.Exists(GOLDEN_DIR) || Directory.GetFiles(GOLDEN_DIR, "*.classicrec").Length < 6)
@@ -255,6 +257,7 @@ namespace DemonIdol.BlazBlue.Tests
                 BBMotionMatcherTests.RunAllTestsMenu();
                 BBCollisionTests.RunAllTestsMenu();
                 BBSubsystemTests.RunAllTestsMenu();
+                BBAkioTests.RunAllTestsMenu();
                 ClassicRegressionTests.RunAllTestsMenu();
                 Debug.Log("<color=#00e676>[ClassicMatchRecorder] VERIFIED: All 6 Golden Replays replayed with 100% hash parity!</color>");
             }

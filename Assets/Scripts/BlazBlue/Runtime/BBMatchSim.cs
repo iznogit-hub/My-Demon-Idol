@@ -336,6 +336,10 @@ namespace DemonIdol.BlazBlue
                     // Mark contact on attacker chain state
                     attacker.chainState.madeContact = true;
                     attacker.chainState.contactTick = attacker.attackTick;
+                    if (attacker.drive != null && attacker.currentAttack != null)
+                    {
+                        attacker.drive.OnDriveHit(attacker, attacker.currentAttack, true);
+                    }
                 }
                 else
                 {
@@ -386,6 +390,10 @@ namespace DemonIdol.BlazBlue
                     // Mark contact on attacker chain state
                     attacker.chainState.madeContact = true;
                     attacker.chainState.contactTick = attacker.attackTick;
+                    if (attacker.drive != null && attacker.currentAttack != null)
+                    {
+                        attacker.drive.OnDriveHit(attacker, attacker.currentAttack, false);
+                    }
                 }
             }
 

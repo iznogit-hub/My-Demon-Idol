@@ -35,6 +35,9 @@ namespace DemonIdol.BlazBlue
         [Header("Animation Override Asset (Non-Destructive)")]
         public AnimatorOverrideController blazBlueOverrideController;
 
+        [Header("MoveSet Configuration")]
+        public ScriptableObject moveSet;
+
         [Header("Stats & Defense")]
         public float maxHealth = 1000f;
         public float defenseModifier = 1.0f;

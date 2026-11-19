@@ -22,6 +22,7 @@ namespace DemonIdol.BlazBlue.Tests
             BBMotionMatcherTests.RunAllTestsMenu();
             BBCollisionTests.RunAllTestsMenu();
             BBSubsystemTests.RunAllTestsMenu();
+            BBAkioTests.RunAllTestsMenu();
             Debug.Log("<color=#00e676>[ClassicRegressionTests] ALL 6 GOLDEN REPLAY TESTS PASSED!</color>");
         }
 
