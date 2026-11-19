@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f8045e2503643a2baf0c575397e980, type: 3}
+  m_Name: BBProfile_C08_SanpakuChan
+  m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBCharacterProfile
+  characterId: C08_SanpakuChan
+  characterName: SanpakuChan
+  driveName: Crow Step
+  forwardWalkSpeed: 4.2
+  backwardWalkSpeed: 3.4
+  forwardDashSpeed: 9
+  forwardDashDurationTicks: 10
+  backdashSpeed: 8
+  backdashDurationTicks: 11
+  backdashInvulnTicks: 6
+  jumpVerticalLaunch: 8.6
+  jumpHorizontalSpeed: 3.8
+  gravity: 20
+  standPushboxSize: {x: 0.58, y: 1.55}
+  crouchPushboxSize: {x: 0.62, y: 1.05}
+  airPushboxSize: {x: 0.5, y: 1.2}
+  blazBlueOverrideController: {fileID: 22100000, guid: f8f504493de4c46d2b0192897284d4cb, type: 2}
+  moveSet: {fileID: 11400000, guid: 49cafd36f6dd949118b96e0f48f6fa66, type: 2}
+  maxHealth: 10500
+  defenseModifier: 1.08
