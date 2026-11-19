@@ -75,6 +75,7 @@ namespace DemonIdol.BlazBlue.Tests
                 BBCollisionTests.RunAllTestsMenu();
                 BBSubsystemTests.RunAllTestsMenu();
                 BBAkioTests.RunAllTestsMenu();
+                BBAikaTests.RunAllTestsMenu();
                 ClassicRegressionTests.RunAllTestsMenu();
 
                 if (!Directory.Exists(GOLDEN_DIR) || Directory.GetFiles(GOLDEN_DIR, "*.classicrec").Length < 6)
@@ -258,6 +259,7 @@ namespace DemonIdol.BlazBlue.Tests
                 BBCollisionTests.RunAllTestsMenu();
                 BBSubsystemTests.RunAllTestsMenu();
                 BBAkioTests.RunAllTestsMenu();
+                BBAikaTests.RunAllTestsMenu();
                 ClassicRegressionTests.RunAllTestsMenu();
                 Debug.Log("<color=#00e676>[ClassicMatchRecorder] VERIFIED: All 6 Golden Replays replayed with 100% hash parity!</color>");
             }
