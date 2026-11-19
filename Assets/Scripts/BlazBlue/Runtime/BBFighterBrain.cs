@@ -55,6 +55,13 @@ namespace DemonIdol.BlazBlue
         public float heat { get => gauges.heat; set => gauges.heat = value; }
         public float barrier { get => gauges.barrier; set => gauges.barrier = value; }
         public float burst { get => gauges.burst; set => gauges.burst = value; }
+        public float currentHealth { get => health; set => health = value; }
+        public float heatMeter { get => gauges.heat; set => gauges.heat = value; }
+        public float barrierMeter { get => gauges.barrier; set => gauges.barrier = value; }
+        public float burstMeter { get => gauges.burst; set => gauges.burst = value; }
+        public bool inDanger { get => gauges.isDanger; set => gauges.isDanger = value; }
+        public bool inOverdrive { get => gauges.isOverdriveActive; set => gauges.isOverdriveActive = value; }
+        public int hitstunRemainingTicks => hitstunRemaining;
         public bool isOverdriveActive { get => gauges.isOverdriveActive; set => gauges.isOverdriveActive = value; }
         public int overdriveTicksRemaining { get => gauges.overdriveTicksRemaining; set => gauges.overdriveTicksRemaining = value; }
 
