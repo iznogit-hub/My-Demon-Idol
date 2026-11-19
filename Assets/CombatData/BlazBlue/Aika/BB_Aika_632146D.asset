@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
+  m_Name: BB_Aika_632146D
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: Nail Rain
+  attackType: 0
+  hitLevel: 1
+  guardRequirement: 0
+  isDuckableHigh: 0
+  crush: 0
+  crushStartTick: 4
+  crushEndTick: 18
+  hasArmor: 0
+  isAirborneStrikeProtected: 0
+  protectionStartTick: 5
+  protectionEndTick: 12
+  startupFrames: 12
+  activeFrames: 30
+  recoveryFrames: 28
+  hitstunTicks: 45
+  blockstunTicks: 28
+  knockdownDurationTicks: 36
+  hitstopAttacker: 5
+  hitstopDefender: 5
+  hitstopOnBlock: 4
+  counterHitStopBonus: 4
+  advantageOnBlock: -10
+  advantageOnHit: 4
+  advantageOnCounterHit: 8
+  damage: 2400
+  chipDamageOnBlock: 0
+  initialProration: 0.85
+  comboDamageDecay: 0.92
+  pushbackOnHit: 1.2
+  pushbackOnBlock: 0.8
+  isLauncher: 0
+  isBoundTornado: 0
+  causesWallSplat: 0
+  causesWallBounce: 0
+  causesKnockdown: 0
+  isLinear: 1
+  throwTechWindowTicks: 6
+  launchVelocity: {x: 0, y: 0}
+  screenShakeTrauma: 0.1
+  canRapidCancel: 1
+  gatlingCancels: 010000000200000003000000i
+  animationClip: {fileID: 3094330708855449807, guid: 6ce5c8cc7157f2542b78acd83e609475, type: 3}
+  animationTrigger: LightAttack
+  hitboxOffset: {x: 0.8, y: 1, z: 0}
+  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  cancelWindow: {x: 5, y: 12}
+  archetype: 0
+  moveId: 632146D
+  button: 8
+  kind: 4
+  motion: 9
+  airOk: 0
+  groundOk: 1
+  guard: 0
+  attribute: 2
+  invuln:
+  - startTick: 1
+    endTick: 12
+    mask: 62
+  fatalCounter: 0
+  hardKnockdown: 0
+  otg: 0
+  groundBounce: 0
+  wallBounce: 0
+  wallStick: 0
+  groundSlide: 0
+  untechableTicks: 18
+  untechableTicksCH: 27
+  airHitVelocity: {x: 1.5, y: 5}
+  landingRecovery: 4
+  minDamagePct: 0.08
+  chipPct: 0.15
+  heatGainOverride: -1
+  heatCost: 50
+  gatlingInto: []
+  specialCancel: 0
+  ddCancel: 0
+  jumpCancelOnHit: 0
+  jumpCancelOnBlock: 0
+  rapidCancelable: 1
+  followUps: []
+  followUpWindow: {x: 0, y: 0}
+  boxes: {fileID: 11400000, guid: d8885e2e708f045a7a4f1b58dd61944a, type: 2}
+  motionTrack: {fileID: 0}
+  clipName: HumanF@MagicAttackOmni01
+  clip: {fileID: 3094330708855449807, guid: 6ce5c8cc7157f2542b78acd83e609475, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 45
+  events: []

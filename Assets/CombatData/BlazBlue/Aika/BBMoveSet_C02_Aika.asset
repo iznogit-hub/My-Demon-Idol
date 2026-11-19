@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39fbfec8de3c4b33b34c085baa785d9, type: 3}
+  m_Name: BBMoveSet_C02_Aika
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBMoveSet
+  characterId: C02
+  moves:
+  - {fileID: 11400000, guid: e0c13a4f9d2ce4a5ebbb9560eb7af710, type: 2}
+  - {fileID: 11400000, guid: b21f7e6d986cc4396844e9401c957d08, type: 2}
+  - {fileID: 11400000, guid: 1c480c3eacb6345178e759741197032f, type: 2}
+  - {fileID: 11400000, guid: 2ca4d780368284f599a1e704e960afd5, type: 2}
+  - {fileID: 11400000, guid: a41bb89f07c1a4f4cb7a3e7afa71274c, type: 2}
+  - {fileID: 11400000, guid: 557a6e79b88b044719e2d52c7f1644c9, type: 2}
+  - {fileID: 11400000, guid: 45b736266185a44698abc2ad36366448, type: 2}
+  - {fileID: 11400000, guid: 87f4f01bd50584a0e83f391405f8a822, type: 2}
+  - {fileID: 11400000, guid: e1d46d108d8104380ab7491d68f34aca, type: 2}
+  - {fileID: 11400000, guid: 1a585511a7aa04764a15549fbf0af883, type: 2}
+  - {fileID: 11400000, guid: 7d18f17a59b6944b9b2ff863a631c233, type: 2}
+  - {fileID: 11400000, guid: 3f3022dac32f7479aa5753b5cd3531b5, type: 2}
+  - {fileID: 11400000, guid: 9fd40677a2a424191aa2d9d16b6b3929, type: 2}
+  - {fileID: 11400000, guid: f85f34ea6c5ad46fd88352e1fb97aa17, type: 2}
+  - {fileID: 11400000, guid: a121179f435d84a329916d2b98695395, type: 2}
+  - {fileID: 11400000, guid: 729cf01303d0d46ebb88abda7a63f5de, type: 2}
+  - {fileID: 11400000, guid: ec287764414494dffaead3949a8e1d22, type: 2}
+  - {fileID: 11400000, guid: 0ff46ea6d9b184f46be8883a7ce6e5bf, type: 2}
+  - {fileID: 11400000, guid: 6e0c3a268c8684a62afc7df1e15cf1e5, type: 2}
+  - {fileID: 11400000, guid: 5cfbf67359b604123b26a47f9cc405d4, type: 2}
+  - {fileID: 11400000, guid: 81b13c8b82120405eb8a4017a4be4cad, type: 2}
+  - {fileID: 11400000, guid: 6e2fcd2c27b574380951f34b7c513854, type: 2}
+  - {fileID: 11400000, guid: d5b6b86f4aacf40c98c626c2d76ad378, type: 2}
+  - {fileID: 11400000, guid: 2ab79aaaa024b4cf99ba3faa3b254217, type: 2}
+  - {fileID: 11400000, guid: 7ac4974696a2d4e3b82b62c8b9e667e4, type: 2}
+  - {fileID: 11400000, guid: e6563ccea9a4a47b2862106904cdea20, type: 2}
+  - {fileID: 11400000, guid: 6bec48980b23f48289e0cf5000580bd9, type: 2}
+  - {fileID: 11400000, guid: 430773cd115c14b26b848138f490d2c6, type: 2}
+  throwForward: {fileID: 11400000, guid: 2ab79aaaa024b4cf99ba3faa3b254217, type: 2}
+  throwBack: {fileID: 11400000, guid: 7ac4974696a2d4e3b82b62c8b9e667e4, type: 2}
+  throwAir: {fileID: 11400000, guid: e6563ccea9a4a47b2862106904cdea20, type: 2}
+  counterAssault: {fileID: 11400000, guid: 6bec48980b23f48289e0cf5000580bd9, type: 2}
+  crushTrigger: {fileID: 11400000, guid: 430773cd115c14b26b848138f490d2c6, type: 2}
+  burst: {fileID: 0}
+  overdriveStart: {fileID: 0}
+  exceedAccel: {fileID: 11400000, guid: d5b6b86f4aacf40c98c626c2d76ad378, type: 2}
+  astralHeat: {fileID: 0}

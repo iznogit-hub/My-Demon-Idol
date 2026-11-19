@@ -31,4 +31,5 @@ MonoBehaviour:
   domainDescription: Freezes spacetime for 20 combat ticks, shattering enemy barrier integrity with an unavoidable fatal strike.
   moveSet: {fileID: 0}
   videoBindings: {fileID: 0}
+  blazBlueProfile: {fileID: 11400000, guid: 80af75aa76c0344bebcd2d75243dadc8, type: 2}
   ufeCharacterName: Mike

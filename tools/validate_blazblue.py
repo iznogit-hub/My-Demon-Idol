@@ -103,8 +103,15 @@ def check_character(char_key: str) -> tuple[list[str], list[str]]:
     warnings: list[str] = []
 
     # Normalize character name & id
-    char_name = "Akio" if "akio" in char_key.lower() or "c01" in char_key.lower() else char_key
-    char_id = "C01" if char_name == "Akio" else char_key
+    if "akio" in char_key.lower() or "c01" in char_key.lower():
+        char_name = "Akio"
+        char_id = "C01"
+    elif "aika" in char_key.lower() or "c02" in char_key.lower():
+        char_name = "Aika"
+        char_id = "C02"
+    else:
+        char_name = char_key
+        char_id = char_key
 
     # 1. Check Movelist markdown file exists
     movelist_path = WORKSPACE_ROOT / f"Assets/MDI_Characters/Runtime/BlazBlue/{char_name.upper()}_BB_MOVELIST.md"
@@ -194,12 +201,17 @@ def main() -> int:
         overall_errors.extend(errs)
         overall_warnings.extend(warns)
 
-    if args.character or args.all:
-        target_char = args.character if args.character else "C01"
-        print(f"[2] Validating BlazBlue Character Suite for '{target_char}'...")
-        errs, warns = check_character(target_char)
+    if args.character:
+        print(f"[2] Validating BlazBlue Character Suite for '{args.character}'...")
+        errs, warns = check_character(args.character)
         overall_errors.extend(errs)
         overall_warnings.extend(warns)
+    elif args.all:
+        for target_char in ["C01", "C02"]:
+            print(f"[2] Validating BlazBlue Character Suite for '{target_char}'...")
+            errs, warns = check_character(target_char)
+            overall_errors.extend(errs)
+            overall_warnings.extend(warns)
 
     for w in overall_warnings:
         print(f"WARN: {w}")
