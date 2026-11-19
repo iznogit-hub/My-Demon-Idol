@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f8045e2503643a2baf0c575397e980, type: 3}
+  m_Name: BBProfile_C06_Cultist
+  m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBCharacterProfile
+  characterId: C06_Cultist
+  characterName: Cultist
+  driveName: Void Orb
+  forwardWalkSpeed: 3.6
+  backwardWalkSpeed: 2.8
+  forwardDashSpeed: 7.5
+  forwardDashDurationTicks: 12
+  backdashSpeed: 7
+  backdashDurationTicks: 13
+  backdashInvulnTicks: 6
+  jumpVerticalLaunch: 8
+  jumpHorizontalSpeed: 3.2
+  gravity: 20
+  standPushboxSize: {x: 0.6, y: 1.55}
+  crouchPushboxSize: {x: 0.65, y: 1.05}
+  airPushboxSize: {x: 0.52, y: 1.2}
+  blazBlueOverrideController: {fileID: 22100000, guid: 4f17d83934e9b44b09f3024b280d440c, type: 2}
+  moveSet: {fileID: 11400000, guid: 3eedce6b28cae42ae90892e6144f7922, type: 2}
+  maxHealth: 11000
+  defenseModifier: 1
