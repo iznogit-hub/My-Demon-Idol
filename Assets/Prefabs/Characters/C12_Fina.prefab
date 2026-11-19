@@ -5432,6 +5432,7 @@ GameObject:
   - component: {fileID: 6810027776103675840}
   - component: {fileID: 4239093477669992136}
   - component: {fileID: 2656187841589531240}
+  - component: {fileID: 5773257849912498707}
   m_Layer: 0
   m_Name: C12_Fina
   m_TagString: Untagged
@@ -5593,6 +5594,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83a2b16e33474c3e96167a8d6f1c853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AnimationEventReceiver
+--- !u!114 &5773257849912498707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862449341055988924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55bbfed3f5db4c65bafeec077e67b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.Visual.BBWeaponRig
+  warriorType: 12
+  primaryWeaponPrefab: {fileID: 5772131030351363395, guid: 3cad6ff0adf0c47abb304cd2ef9f8139, type: 3}
+  primarySocket: 18
+  primaryPositionOffset: {x: 0, y: 0.08, z: 0}
+  primaryRotationOffset: {x: 0, y: 0, z: 0}
+  primaryScale: {x: 1, y: 1, z: 1}
+  secondaryWeaponPrefab: {fileID: 0}
+  secondarySocket: 17
+  secondaryPositionOffset: {x: 0, y: 0, z: 0}
+  secondaryRotationOffset: {x: 0, y: 0, z: 0}
+  secondaryScale: {x: 1, y: 1, z: 1}
+  _primaryInstance: {fileID: 0}
+  _secondaryInstance: {fileID: 0}
+  _primaryBoneTransform: {fileID: 0}
+  _secondaryBoneTransform: {fileID: 0}
 --- !u!1 &9101605434741783347
 GameObject:
   m_ObjectHideFlags: 0

@@ -2013,6 +2013,7 @@ GameObject:
   - component: {fileID: 599467938231095439}
   - component: {fileID: 4790158181785017941}
   - component: {fileID: 5061480043249247778}
+  - component: {fileID: 477758949311330429}
   m_Layer: 0
   m_Name: C09_PicoChan
   m_TagString: Untagged
@@ -2161,6 +2162,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &477758949311330429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2350652681907635850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55bbfed3f5db4c65bafeec077e67b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.Visual.BBWeaponRig
+  warriorType: 9
+  primaryWeaponPrefab: {fileID: 5013285955035313634, guid: 1aeb8bc5d99b84f6f93887be1f44fefd, type: 3}
+  primarySocket: 18
+  primaryPositionOffset: {x: 0, y: -0.15, z: 0}
+  primaryRotationOffset: {x: 0, y: 0, z: 0}
+  primaryScale: {x: 0.85, y: 0.85, z: 0.85}
+  secondaryWeaponPrefab: {fileID: 0}
+  secondarySocket: 17
+  secondaryPositionOffset: {x: 0, y: 0, z: 0}
+  secondaryRotationOffset: {x: 0, y: 0, z: 0}
+  secondaryScale: {x: 1, y: 1, z: 1}
+  _primaryInstance: {fileID: 0}
+  _secondaryInstance: {fileID: 0}
+  _primaryBoneTransform: {fileID: 0}
+  _secondaryBoneTransform: {fileID: 0}
 --- !u!1 &2360930407998502323
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1990348086877287170}
   - component: {fileID: 1823661735119761035}
   - component: {fileID: 1535110499000783883}
+  - component: {fileID: 5303230279389967612}
   m_Layer: 0
   m_Name: C06_Cultist
   m_TagString: Untagged
@@ -187,6 +188,33 @@ MonoBehaviour:
   joystickExitThreshold: 0.15
   _rawVirtualJoystick: {x: 0, y: 0}
   isGestureModeEnabled: 0
+--- !u!114 &5303230279389967612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223424382107264828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55bbfed3f5db4c65bafeec077e67b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.Visual.BBWeaponRig
+  warriorType: 6
+  primaryWeaponPrefab: {fileID: 4711574881837402200, guid: fb58f84a17ba947759c6cf486f3e334b, type: 3}
+  primarySocket: 18
+  primaryPositionOffset: {x: 0, y: -0.3, z: 0}
+  primaryRotationOffset: {x: 0, y: 0, z: 0}
+  primaryScale: {x: 1, y: 1, z: 1}
+  secondaryWeaponPrefab: {fileID: 0}
+  secondarySocket: 17
+  secondaryPositionOffset: {x: 0, y: 0, z: 0}
+  secondaryRotationOffset: {x: 0, y: 0, z: 0}
+  secondaryScale: {x: 1, y: 1, z: 1}
+  _primaryInstance: {fileID: 0}
+  _secondaryInstance: {fileID: 0}
+  _primaryBoneTransform: {fileID: 0}
+  _secondaryBoneTransform: {fileID: 0}
 --- !u!1 &229101848450680550
 GameObject:
   m_ObjectHideFlags: 0

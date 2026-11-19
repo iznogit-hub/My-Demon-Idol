@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 6753856664337020720}
   - component: {fileID: 9103377088539424436}
   - component: {fileID: 4559731834392125793}
+  - component: {fileID: 1606042820585963596}
   m_Layer: 0
   m_Name: C02_Aika
   m_TagString: Untagged
@@ -194,6 +195,33 @@ MonoBehaviour:
   joystickExitThreshold: 0.15
   _rawVirtualJoystick: {x: 0, y: 0}
   isGestureModeEnabled: 0
+--- !u!114 &1606042820585963596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57404065822515113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55bbfed3f5db4c65bafeec077e67b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.Visual.BBWeaponRig
+  warriorType: 2
+  primaryWeaponPrefab: {fileID: 0}
+  primarySocket: 18
+  primaryPositionOffset: {x: 0, y: 0, z: 0}
+  primaryRotationOffset: {x: 0, y: 0, z: 0}
+  primaryScale: {x: 1, y: 1, z: 1}
+  secondaryWeaponPrefab: {fileID: 0}
+  secondarySocket: 17
+  secondaryPositionOffset: {x: 0, y: 0, z: 0}
+  secondaryRotationOffset: {x: 0, y: 0, z: 0}
+  secondaryScale: {x: 1, y: 1, z: 1}
+  _primaryInstance: {fileID: 0}
+  _secondaryInstance: {fileID: 0}
+  _primaryBoneTransform: {fileID: 0}
+  _secondaryBoneTransform: {fileID: 0}
 --- !u!1 &124163274148768477
 GameObject:
   m_ObjectHideFlags: 0
