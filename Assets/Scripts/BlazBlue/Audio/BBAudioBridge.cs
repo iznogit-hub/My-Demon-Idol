@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using DemonIdol.Audio;
+using DemonIdol.BlazBlue.Visual;
 
 namespace DemonIdol.BlazBlue
 {
@@ -16,7 +17,12 @@ namespace DemonIdol.BlazBlue
         RapidCancel = 7,
         OverdriveActivate = 8,
         DistortionSuperFlash = 9,
-        AstralHeat = 10
+        AstralHeat = 10,
+        WeaponSwingLight = 11,
+        WeaponSwingHeavy = 12,
+        WeaponSwingColossal = 13,
+        WeaponBowFire = 14,
+        WeaponStaffHum = 15
     }
 
     /// <summary>
@@ -28,7 +34,17 @@ namespace DemonIdol.BlazBlue
     public class BBAudioBridge : MonoBehaviour
     {
         private static BBAudioBridge _instance;
-        public static BBAudioBridge Instance => _instance;
+        public static BBAudioBridge Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = UnityEngine.Object.FindAnyObjectByType<BBAudioBridge>();
+                }
+                return _instance;
+            }
+        }
 
         [Header("Audio Source")]
         [SerializeField] private AudioSource _audioSource;
@@ -41,6 +57,12 @@ namespace DemonIdol.BlazBlue
         [SerializeField] private AudioClip _barrierShatterClip;
         [SerializeField] private AudioClip _rapidCancelClip;
         [SerializeField] private AudioClip _overdriveClip;
+
+        [Header("Impact VFX Prefabs")]
+        [SerializeField] private GameObject _slashVFXPrefab;
+        [SerializeField] private GameObject _bluntVFXPrefab;
+        [SerializeField] private GameObject _arcaneVFXPrefab;
+        [SerializeField] private GameObject _groundCrushVFXPrefab;
 
         private void Awake()
         {
@@ -113,6 +135,70 @@ namespace DemonIdol.BlazBlue
                     if (director != null) director.PlayVoiceDomainSuper();
                     else PlayClipDirect(_overdriveClip);
                     break;
+            }
+        }
+
+        public void PlayWeaponSwing(BBWarriorType warrior, Vector3 worldPosition)
+        {
+            var director = CombatAudioDirector.Instance;
+            switch (warrior)
+            {
+                case BBWarriorType.TwoHanded:
+                case BBWarriorType.Hammer:
+                case BBWarriorType.Brute:
+                    if (director != null) director.PlaySwingHeavy();
+                    else PlayClipDirect(_hitHeavyClip);
+                    break;
+
+                case BBWarriorType.Mage:
+                case BBWarriorType.Sorceress:
+                    if (director != null) director.PlayParry();
+                    else PlayClipDirect(_barrierBlockClip);
+                    break;
+
+                case BBWarriorType.Swordsman:
+                case BBWarriorType.Knight:
+                case BBWarriorType.Ninja:
+                case BBWarriorType.Karate:
+                case BBWarriorType.Spearman:
+                case BBWarriorType.Archer:
+                case BBWarriorType.Crossbow:
+                default:
+                    if (director != null) director.PlaySwingLight();
+                    else PlayClipDirect(_hitLightClip);
+                    break;
+            }
+        }
+
+        public void PlayImpactVFX(Vector3 worldPosition, BBWarriorType warrior, bool isFatal, bool isBlock)
+        {
+            GameObject targetPrefab = _slashVFXPrefab;
+            if (isBlock)
+            {
+                targetPrefab = _bluntVFXPrefab ?? _slashVFXPrefab;
+            }
+            else
+            {
+                switch (warrior)
+                {
+                    case BBWarriorType.Hammer:
+                    case BBWarriorType.Brute:
+                        targetPrefab = isFatal ? (_groundCrushVFXPrefab ?? _bluntVFXPrefab) : _bluntVFXPrefab;
+                        break;
+                    case BBWarriorType.Mage:
+                    case BBWarriorType.Sorceress:
+                        targetPrefab = _arcaneVFXPrefab ?? _slashVFXPrefab;
+                        break;
+                    default:
+                        targetPrefab = _slashVFXPrefab;
+                        break;
+                }
+            }
+
+            if (targetPrefab != null)
+            {
+                var instance = Instantiate(targetPrefab, worldPosition, Quaternion.identity);
+                Destroy(instance, 1.5f);
             }
         }
 

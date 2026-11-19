@@ -408,16 +408,18 @@ MonoBehaviour:
   primarySocket: 18
   primaryPositionOffset: {x: 0, y: 0.04, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
-  primaryScale: {x: 1, y: 1, z: 1}
+  primaryScale: {x: 0.62, y: 0.62, z: 0.62}
   secondaryWeaponPrefab: {fileID: 3360497899579478474, guid: 9ccfc98472b804904bd895a294dbf8b5, type: 3}
   secondarySocket: 15
-  secondaryPositionOffset: {x: 0, y: 0.08, z: -0.05}
+  secondaryPositionOffset: {x: 0, y: 0.06, z: -0.04}
   secondaryRotationOffset: {x: 0, y: 90, z: 0}
-  secondaryScale: {x: 1, y: 1, z: 1}
+  secondaryScale: {x: 0.58, y: 0.58, z: 0.58}
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
+  _primaryTrail: {fileID: 0}
+  _secondaryTrail: {fileID: 0}
 --- !u!1 &761502520416729589
 GameObject:
   m_ObjectHideFlags: 0

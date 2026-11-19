@@ -1159,6 +1159,8 @@ MonoBehaviour:
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
+  _primaryTrail: {fileID: 0}
+  _secondaryTrail: {fileID: 0}
 --- !u!1 &1145150080342878669
 GameObject:
   m_ObjectHideFlags: 0

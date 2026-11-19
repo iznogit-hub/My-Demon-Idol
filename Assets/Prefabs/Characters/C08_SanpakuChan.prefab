@@ -3492,18 +3492,20 @@ MonoBehaviour:
   warriorType: 8
   primaryWeaponPrefab: {fileID: 5068650513579292023, guid: 48e01b39c0e3b4cd481d18f1fd9d084c, type: 3}
   primarySocket: 18
-  primaryPositionOffset: {x: 0, y: 0.04, z: 0}
+  primaryPositionOffset: {x: 0, y: 0.02, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
-  primaryScale: {x: 1, y: 1, z: 1}
+  primaryScale: {x: 0.35, y: 0.35, z: 0.35}
   secondaryWeaponPrefab: {fileID: 5068650513579292023, guid: 48e01b39c0e3b4cd481d18f1fd9d084c, type: 3}
   secondarySocket: 17
-  secondaryPositionOffset: {x: 0, y: 0.04, z: 0}
+  secondaryPositionOffset: {x: 0, y: 0.02, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
-  secondaryScale: {x: 1, y: 1, z: 1}
+  secondaryScale: {x: 0.35, y: 0.35, z: 0.35}
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
+  _primaryTrail: {fileID: 0}
+  _secondaryTrail: {fileID: 0}
 --- !u!1 &8124455944137588270
 GameObject:
   m_ObjectHideFlags: 0

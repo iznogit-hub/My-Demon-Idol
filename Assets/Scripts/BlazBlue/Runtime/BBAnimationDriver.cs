@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
 using DemonIdol.Combat;
+using DemonIdol.BlazBlue.Visual;
 
 namespace DemonIdol.BlazBlue
 {
@@ -27,6 +28,7 @@ namespace DemonIdol.BlazBlue
 
         private RuntimeAnimatorController _originalController;
         private bool _isGraphValid = false;
+        private BBWeaponRig _weaponRig;
 
         private float _attackWeight = 0f;
         private const float BLEND_SPEED_TICKS = 3f;
@@ -35,6 +37,7 @@ namespace DemonIdol.BlazBlue
         {
             if (animator == null) animator = GetComponentInChildren<Animator>();
             if (brain == null) brain = GetComponent<BBFighterBrain>();
+            if (_weaponRig == null) _weaponRig = GetComponent<BBWeaponRig>();
         }
 
         private void OnEnable()
@@ -177,10 +180,30 @@ namespace DemonIdol.BlazBlue
                     brain.currentAttack.TotalTicks,
                     brain.attackTick
                 );
+
+                if (_weaponRig == null) _weaponRig = GetComponent<BBWeaponRig>();
+                if (_weaponRig != null)
+                {
+                    bool isActiveWindow = brain.attackTick >= brain.currentAttack.startupFrames &&
+                                          brain.attackTick < (brain.currentAttack.startupFrames + brain.currentAttack.activeFrames);
+                    _weaponRig.SetWeaponTrailsActive(isActiveWindow);
+
+                    if (brain.attackTick == Mathf.Max(0, brain.currentAttack.startupFrames - 1))
+                    {
+                        if (BBAudioBridge.Instance != null)
+                        {
+                            BBAudioBridge.Instance.PlayWeaponSwing(_weaponRig.warriorType, transform.position);
+                        }
+                    }
+                }
             }
             else
             {
                 BlendToNeutral();
+                if (_weaponRig != null)
+                {
+                    _weaponRig.SetWeaponTrailsActive(false);
+                }
             }
         }
     }

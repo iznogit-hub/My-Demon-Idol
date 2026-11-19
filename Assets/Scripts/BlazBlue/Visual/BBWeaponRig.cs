@@ -53,6 +53,8 @@ namespace DemonIdol.BlazBlue.Visual
         [SerializeField] private GameObject _secondaryInstance;
         [SerializeField] private Transform _primaryBoneTransform;
         [SerializeField] private Transform _secondaryBoneTransform;
+        [SerializeField] private BBWeaponTrail _primaryTrail;
+        [SerializeField] private BBWeaponTrail _secondaryTrail;
 
         public GameObject PrimaryInstance => _primaryInstance;
         public GameObject SecondaryInstance => _secondaryInstance;
@@ -134,6 +136,7 @@ namespace DemonIdol.BlazBlue.Visual
                 _primaryInstance.transform.localRotation = Quaternion.Euler(primaryRotationOffset);
                 _primaryInstance.transform.localScale = primaryScale;
                 SanitizeWeaponInstance(_primaryInstance);
+                _primaryTrail = _primaryInstance.GetComponentInChildren<BBWeaponTrail>();
             }
 
             if (secondaryWeaponPrefab != null && _secondaryBoneTransform != null && _secondaryInstance == null)
@@ -144,7 +147,14 @@ namespace DemonIdol.BlazBlue.Visual
                 _secondaryInstance.transform.localRotation = Quaternion.Euler(secondaryRotationOffset);
                 _secondaryInstance.transform.localScale = secondaryScale;
                 SanitizeWeaponInstance(_secondaryInstance);
+                _secondaryTrail = _secondaryInstance.GetComponentInChildren<BBWeaponTrail>();
             }
+        }
+
+        public void SetWeaponTrailsActive(bool active)
+        {
+            if (_primaryTrail != null) _primaryTrail.SetEmitting(active);
+            if (_secondaryTrail != null) _secondaryTrail.SetEmitting(active);
         }
 
         public void SetWeaponsVisible(bool visible)
