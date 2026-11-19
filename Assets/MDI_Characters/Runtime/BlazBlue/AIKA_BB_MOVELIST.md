@@ -39,7 +39,7 @@ Aika controls space with long-reach karate kicks and throws occult nails that im
 | **5B** | B | `Aika_5B` (13_18 f73–91) | 8 | 4 | 14 | 640 | Mid | −5 | Karate cross; C, 3C, Specials, DD, Jump Cancel on hit |
 | **2B** | 2B | `Aika_2B` (135_02 f470–490) | 9 | 3 | 15 | 560 | Low | −5 | Low front kick; Foot reach 0.56m; C, 3C, Specials, DD |
 | **6B** | 6B | `Aika_6B` (143_24 f164–184) | 20 | 4 | 18 | 800 | Overhead | −8 | Overhead axe kick; Specials on hit, DD |
-| **5C** | C | `Aika_5C` (113_13 f245–265) | 12 | 4 | 16 | 820 | Mid | −7 | Roundhouse kick; **Fatal Counter**, Specials, DD, 2C, 3C |
+| **5C** | C | `Aika_5C` (Karate@Attack1 f0–34) | 12 | 4 | 16 | 820 | Mid | −7 | Karate thrust; **Fatal Counter**, Specials, DD, 2C, 3C |
 | **2C** | 2C | `Aika_2C` (135_02 f492–514) | 10 | 4 | 16 | 720 | Low | −10 | Karate sweep knockdown; Specials, DD |
 | **3C** | 3C | `Aika_3C` (113_13 f219–243) | 12 | 5 | 20 | 780 | Mid | −12 | Launcher kick; Jump cancel on hit, Specials, DD |
 | **j.A** | j.A | `Aika_jA` (13_18 f280–296) | 5 | 3 | 8 | 280 | Overhead | — | j.B, j.C, j.D |

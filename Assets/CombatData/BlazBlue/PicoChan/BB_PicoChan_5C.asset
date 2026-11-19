@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_PicoChan_5C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Heavy Wrecking Hook
+  attackName: Warhammer Smash
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 1652622575574930012, guid: c0088f040bbd9cb4a8b3933d3f304091, type: 3}
+  animationClip: {fileID: 7400000, guid: c52633ad3251d4841878d77a31df9981, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -100,7 +100,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 575efd347b88e41eca3da8cf7383a061, type: 2}
   motionTrack: {fileID: 0}
   clipName: Pico_5C
-  clip: {fileID: 1652622575574930012, guid: c0088f040bbd9cb4a8b3933d3f304091, type: 3}
-  clipFirstFrame: 556
-  clipLastFrame: 574
+  clip: {fileID: 7400000, guid: c52633ad3251d4841878d77a31df9981, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 52
   events: []

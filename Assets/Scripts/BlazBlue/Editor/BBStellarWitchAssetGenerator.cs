@@ -203,6 +203,10 @@ namespace DemonIdol.BlazBlue.Editor
             {
                 fbxPath = "Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanF@MagicAttackOmni01.fbx";
             }
+            else if (fbxTake.StartsWith("Assets/"))
+            {
+                fbxPath = fbxTake;
+            }
             else
             {
                 fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
@@ -216,7 +220,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if (fbxTake.StartsWith("KevinIglesias_") && !clip.name.StartsWith("__preview__")) return clip;
+                        if ((fbxTake.StartsWith("KevinIglesias_") || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }
@@ -423,8 +427,8 @@ namespace DemonIdol.BlazBlue.Editor
                     button = BBButton.C, kind = BBMoveKind.Normal, motion = BBMotion.None,
                     startup = 14, active = 5, recovery = 18, damage = 920, guard = BBGuard.Mid, advOnBlock = -4,
                     hitstun = 24, blockstun = 18, groundOk = true, fatalCounter = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "StellarWitch_5C", fbxTake = "135/135_07", firstFrame = 15, lastFrame = 42,
-                    hitBoxCenter = new Vector2(1.20f, 0.95f), hitBoxSize = new Vector2(1.20f, 0.50f),
+                    clipName = "StellarWitch_5C", fbxTake = "Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Sorceress Warrior Mecanim Animation Pack/Animations/Sorceress@Attack1.FBX", firstFrame = 0, lastFrame = 40,
+                    hitBoxCenter = new Vector2(0.75f, 1.20f), hitBoxSize = new Vector2(0.85f, 0.60f),
                     attribute = BBAttribute.Projectile, gatlingInto = new string[] { "2C", "3C", "5D", "6D" }
                 },
                 new MoveSpec

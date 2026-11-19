@@ -29,7 +29,17 @@ namespace DemonIdol.BlazBlue
     public class BBBattleHUDController : MonoBehaviour
     {
         private static BBBattleHUDController _instance;
-        public static BBBattleHUDController Instance => _instance;
+        public static BBBattleHUDController Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = UnityEngine.Object.FindAnyObjectByType<BBBattleHUDController>();
+                }
+                return _instance;
+            }
+        }
 
         [Header("Fighter References")]
         public BBFighterBrain p1Brain;

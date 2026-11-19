@@ -35,7 +35,7 @@ Reika is a disciplined counter-striker who neutralizes aggressive opponents with
 | **5B** | B | `Reika_5B` (144_01 f60–84) | 8 | 4 | 12 | 550 | Mid | −3 | Karate Straight Punch; C, 3C, Veil Stances, Specials, DD; Jump cancel on hit |
 | **2B** | 2B | `Reika_2B` (144_01 f95–118) | 8 | 4 | 13 | 520 | Low | −5 | Low Sweep Thrust; C, 3C, Veil Stances, Specials, DD |
 | **6B** | 6B | `Reika_6B` (144_01 f130–155)| 19 | 4 | 15 | 680 | Overhead | −5 | Axe Kick Overhead; Specials on hit, DD |
-| **5C** | C | `Reika_5C` (144_02 f15–42) | 11 | 4 | 18 | 780 | Mid | −6 | Heavy Karate Chop; **Fatal Counter**; Specials, DD, 2C, 3C |
+| **5C** | C | `Reika_5C` (Knight@Attack1 f0–25) | 11 | 4 | 18 | 780 | Mid | −6 | Knight Blade Cleave; **Fatal Counter**; Specials, DD, 2C, 3C |
 | **2C** | 2C | `Reika_2C` (144_02 f55–80) | 10 | 4 | 18 | 650 | Low | −8 | Low Sweeping Kick; Knockdown; Specials, DD |
 | **3C** | 3C | `Reika_3C` (144_02 f95–122) | 9 | 4 | 16 | 700 | Mid | −7 | Rising Counter Launcher; Jump cancel on hit; airborne followups |
 | **j.A** | j.A | `Reika_jA` (118_05 f12–28) | 5 | 3 | 8 | 240 | Overhead | 0 | Air palm strike; j.B, j.C, j.D |

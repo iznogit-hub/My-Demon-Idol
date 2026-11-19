@@ -39,7 +39,7 @@ Fina possesses the longest and crispest normal pokes in the cast (`5B` and `2B`)
 | **5B** | B | `Fina_5B` (79_01 f90–112) | 7 | 4 | 12 | 600 | Mid | −3 | Precision straight poke; Best 5B reach in cast; C, 3C, Specials, DD, Jump Cancel on hit |
 | **2B** | 2B | `Fina_2B` (79_01 f120–140) | 7 | 4 | 13 | 580 | Low | −6 | Low footsie poke; Best 2B reach in cast; C, 3C, Specials, DD |
 | **6B** | 6B | `Fina_6B` (80_01 f15–38) | 19 | 4 | 16 | 720 | Overhead | −6 | Step overhead punch; Specials on hit, DD |
-| **5C** | C | `Fina_5C` (80_01 f50–72) | 10 | 4 | 14 | 780 | Mid | −4 | Heavy straight cross; **Fatal Counter**, Specials, DD, 2C, 3C |
+| **5C** | C | `Fina_5C` (2Handed@Attack1 f0–40) | 10 | 4 | 14 | 780 | Mid | −4 | Greatsword Cleave; **Fatal Counter**, Specials, DD, 2C, 3C |
 | **2C** | 2C | `Fina_2C` (80_01 f85–109) | 10 | 4 | 18 | 680 | Low | −9 | Low sweep knockdown; Specials, DD |
 | **3C** | 3C | `Fina_3C` (80_01 f120–145) | 9 | 4 | 16 | 720 | Mid | −8 | Rising kick launcher; Jump cancel on hit |
 | **j.A** | j.A | `Fina_jA` (80_02 f12–30) | 5 | 3 | 8 | 260 | Overhead | — | Air quick tap; j.B, j.C, j.D |

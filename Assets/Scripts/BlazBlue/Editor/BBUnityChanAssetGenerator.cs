@@ -200,6 +200,10 @@ namespace DemonIdol.BlazBlue.Editor
             {
                 fbxPath = "Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect1H01_R.fbx";
             }
+            else if (fbxTake.StartsWith("Assets/"))
+            {
+                fbxPath = fbxTake;
+            }
             else
             {
                 fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
@@ -213,7 +217,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if (fbxTake.StartsWith("KevinIglesias_") && !clip.name.StartsWith("__preview__")) return clip;
+                        if ((fbxTake.StartsWith("KevinIglesias_") || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }
@@ -371,7 +375,7 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "5C", attackName = "Triple Punch End", button = BBButton.C, kind = BBMoveKind.Normal, motion = BBMotion.None,
                     startup = 11, active = 4, recovery = 14, damage = 650, guard = BBGuard.Mid, advOnBlock = -5, hitstun = 18, blockstun = 13,
                     groundOk = true, fatalCounter = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "UChan_5C", fbxTake = "02/02_05", firstFrame = 148, lastFrame = 168, hitBoxCenter = new Vector2(0.52f, 1.10f), hitBoxSize = new Vector2(0.58f, 0.40f),
+                    clipName = "UChan_5C", fbxTake = "Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/Archer Warrior Mecanim Animation Pack/Animations/Archer@Attack1.FBX", firstFrame = 0, lastFrame = 30, hitBoxCenter = new Vector2(0.85f, 1.15f), hitBoxSize = new Vector2(0.90f, 0.45f),
                     attribute = BBAttribute.Body, gatlingInto = new string[] { "2C", "3C", "5D", "6D", "4D" }
                 },
                 new MoveSpec {

@@ -40,7 +40,7 @@ Cultist controls spacetime by summoning dark energy orbs that hover in the arena
 | **5B** | B | `Cultist_5B` (79_04 f60–84) | 8 | 4 | 13 | 520 | Mid | −4 | Curse Straight; Disjointed dark fist; C, 3C, Void Commands, Specials, DD; Jump cancel on hit |
 | **2B** | 2B | `Cultist_2B` (79_04 f95–118) | 8 | 4 | 14 | 500 | Low | −5 | Low Curse Sweep Hook; C, 3C, Void Commands, Specials, DD |
 | **6B** | 6B | `Cultist_6B` (79_04 f130–155)| 20 | 4 | 16 | 700 | Overhead | −6 | Stepping Curse Overhead; Specials on hit, DD |
-| **5C** | C | `Cultist_5C` (135_04 f50–75) | 11 | 4 | 16 | 750 | Mid | −5 | Abyssal Slash; **Fatal Counter**; Void Commands, Specials, DD, 2C, 3C |
+| **5C** | C | `Cultist_5C` (Mage@Attack1 f0–40) | 11 | 4 | 16 | 750 | Mid | −5 | Mage Staff Strike; **Fatal Counter**; Void Commands, Specials, DD, 2C, 3C |
 | **2C** | 2C | `Cultist_2C` (135_04 f90–116)| 10 | 4 | 19 | 620 | Low | −9 | Low Ground Scythe; Knockdown; Void Commands, Specials, DD |
 | **3C** | 3C | `Cultist_3C` (135_04 f130–158)| 10 | 4 | 17 | 680 | Mid | −8 | Rising Void Launcher; Jump cancel on hit; airborne followups |
 | **j.A** | j.A | `Cultist_jA` (118_04 f12–28) | 5 | 3 | 8 | 240 | Overhead | 0 | Air quick rune; j.B, j.C, j.D |

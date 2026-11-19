@@ -203,6 +203,10 @@ namespace DemonIdol.BlazBlue.Editor
             {
                 fbxPath = "Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanF@MagicAttackOmni01.fbx";
             }
+            else if (fbxTake.StartsWith("Assets/"))
+            {
+                fbxPath = fbxTake;
+            }
             else
             {
                 fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
@@ -216,7 +220,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if (fbxTake.StartsWith("KevinIglesias_") && !clip.name.StartsWith("__preview__")) return clip;
+                        if ((fbxTake.StartsWith("KevinIglesias_") || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }
@@ -372,10 +376,10 @@ namespace DemonIdol.BlazBlue.Editor
                     attribute = BBAttribute.Foot, gatlingInto = new string[] { "5C", "2C", "3C", "5D" }
                 },
                 new MoveSpec {
-                    moveId = "5C", attackName = "Heavy Karate Chop", button = BBButton.C, kind = BBMoveKind.Normal, motion = BBMotion.None,
+                    moveId = "5C", attackName = "Knight Blade Cleave", button = BBButton.C, kind = BBMoveKind.Normal, motion = BBMotion.None,
                     startup = 11, active = 4, recovery = 18, damage = 780, guard = BBGuard.Mid, advOnBlock = -6, hitstun = 22, blockstun = 14,
                     groundOk = true, fatalCounter = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "Reika_5C", fbxTake = "144/144_02", firstFrame = 15, lastFrame = 42, hitBoxCenter = new Vector2(0.56f, 1.15f), hitBoxSize = new Vector2(0.58f, 0.40f),
+                    clipName = "Reika_5C", fbxTake = "Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/Knight Warrior Mecanim Animation Pack/Animations/Knight@Attack1.FBX", firstFrame = 0, lastFrame = 25, hitBoxCenter = new Vector2(0.75f, 1.15f), hitBoxSize = new Vector2(0.85f, 0.55f),
                     attribute = BBAttribute.Body, gatlingInto = new string[] { "2C", "3C", "5D", "2D" }
                 },
                 new MoveSpec {

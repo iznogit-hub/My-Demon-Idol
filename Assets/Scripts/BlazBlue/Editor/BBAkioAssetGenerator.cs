@@ -193,6 +193,10 @@ namespace DemonIdol.BlazBlue.Editor
             {
                 fbxPath = "Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect1H01_R.fbx";
             }
+            else if (fbxTake.StartsWith("Assets/"))
+            {
+                fbxPath = fbxTake;
+            }
             else
             {
                 fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
@@ -206,7 +210,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if (fbxTake == "KevinIglesias_Spell" && !clip.name.StartsWith("__preview__")) return clip;
+                        if ((fbxTake == "KevinIglesias_Spell" || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }
@@ -366,7 +370,7 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "5C", attackName = "Stepping Cross", button = BBButton.C, kind = BBMoveKind.Normal, motion = BBMotion.None,
                     startup = 12, active = 4, recovery = 16, damage = 900, guard = BBGuard.Mid, advOnBlock = -6, hitstun = 20, blockstun = 14,
                     groundOk = true, fatalCounter = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "Akio_5C", fbxTake = "144/144_17", firstFrame = 24, lastFrame = 50, hitBoxCenter = new Vector2(0.68f, 1.15f), hitBoxSize = new Vector2(0.75f, 0.45f),
+                    clipName = "Akio_5C", fbxTake = "Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Swordsman Warrior Mecanim Animation Pack/Animations/Swordsman@Attack1.FBX", firstFrame = 0, lastFrame = 35, hitBoxCenter = new Vector2(0.75f, 1.15f), hitBoxSize = new Vector2(0.85f, 0.50f),
                     attribute = BBAttribute.Body, gatlingInto = new string[] { "3C", "5D", "2D", "6D" }
                 },
                 new MoveSpec {

@@ -39,7 +39,7 @@ StellarWitch commands the celestial cosmos to dominate neutral and control space
 | **5B** | B | `StellarWitch_5B` (135_06 f60–84) | 10 | 4 | 12 | 580 | Mid | −2 | Starlight Thrust; 2B, 5C, 2C, 5D |
 | **2B** | 2B | `StellarWitch_2B` (135_06 f95–118) | 9 | 4 | 14 | 540 | Low | −3 | Ground Astral Sweep; low poke; 5C, 2C, 5D |
 | **6B** | 6B | `StellarWitch_6B` (135_06 f130–155)| 21 | 4 | 16 | 780 | Overhead | +2 | Luminescence Crest; Overhead wave; 5C, 5D |
-| **5C** | C | `StellarWitch_5C` (135_07 f15–42) | 14 | 5 | 18 | 920 | Mid | −4 | Starlight Beam; **Fatal Counter**; 2C, 3C, 5D, 6D, specials |
+| **5C** | C | `StellarWitch_5C` (Sorceress@Attack1 f0–40) | 14 | 5 | 18 | 920 | Mid | −4 | Sorceress Wave; **Fatal Counter**; 2C, 3C, 5D, 6D, specials |
 | **2C** | 2C | `StellarWitch_2C` (135_07 f55–80) | 12 | 4 | 20 | 840 | Low | −6 | Cosmic Ring Sweep; Knockdown; 3C, 5D, specials |
 | **3C** | 3C | `StellarWitch_3C` (135_07 f95–122) | 15 | 5 | 22 | 880 | Mid | −7 | Nova Flare Launcher; Jump cancel on hit; 5D, specials |
 | **j.A** | j.A | `StellarWitch_jA` (118_05 f12–28) | 6 | 4 | 9 | 260 | Mid | 0 | Aerial Wand Tap; j.B, j.C, j.D |

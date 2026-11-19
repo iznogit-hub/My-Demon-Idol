@@ -35,7 +35,7 @@ SanpakuChan possesses high movement agility and tricky spatial phasing, using he
 | **5B** | B | `Sanpaku_5B` (14_01 f85–105) | 6 | 4 | 11 | 480 | Mid | −3 | Speed Cross; C, 3C, Crow Steps, Specials, DD; Jump cancel on hit |
 | **2B** | 2B | `Sanpaku_2B` (14_01 f115–133) | 6 | 4 | 12 | 460 | Low | −5 | Low Shin Check; C, 3C, Crow Steps, Specials, DD |
 | **6B** | 6B | `Sanpaku_6B` (118_02 f10–26) | 16 | 3 | 14 | 600 | Overhead | −4 | Instant Hop Overhead (Fastest in cast!); C, Specials, DD |
-| **5C** | C | `Sanpaku_5C` (14_03 f15–35) | 9 | 4 | 13 | 650 | Mid | −4 | Heavy Shadow Hook; **Fatal Counter**; Specials, DD, Crow Steps |
+| **5C** | C | `Sanpaku_5C` (Ninja@Attack1 f0–26) | 9 | 4 | 13 | 650 | Mid | −4 | Twin Ninjato Slice; **Fatal Counter**; Specials, DD, Crow Steps |
 | **2C** | 2C | `Sanpaku_2C` (14_03 f45–67) | 8 | 4 | 16 | 580 | Low | −8 | Slide Sweep; Knockdown; Specials, DD, Crow Steps |
 | **3C** | 3C | `Sanpaku_3C` (14_03 f75–98) | 8 | 4 | 15 | 620 | Mid | −7 | Launcher Kick; Jump cancel on hit; airborne followups |
 | **j.A** | j.A | `Sanpaku_jA` (118_02 f35–50) | 4 | 3 | 7 | 220 | Overhead | 0 | Air quick tap; j.B, j.C, j.D, j.236A |

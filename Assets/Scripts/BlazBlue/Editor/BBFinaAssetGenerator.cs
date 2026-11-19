@@ -207,6 +207,10 @@ namespace DemonIdol.BlazBlue.Editor
             {
                 fbxPath = "Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanF@MagicAttackOmni01.fbx";
             }
+            else if (fbxTake.StartsWith("Assets/"))
+            {
+                fbxPath = fbxTake;
+            }
             else
             {
                 fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
@@ -220,7 +224,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if (fbxTake.StartsWith("KevinIglesias_") && !clip.name.StartsWith("__preview__")) return clip;
+                        if ((fbxTake.StartsWith("KevinIglesias_") || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }
@@ -375,10 +379,10 @@ namespace DemonIdol.BlazBlue.Editor
                     attribute = BBAttribute.Body, gatlingInto = new string[] { "5C", "2C", "3C", "5D" }
                 },
                 new MoveSpec {
-                    moveId = "5C", attackName = "Straight Heavy Cross", button = BBButton.C, kind = BBMoveKind.Normal, motion = BBMotion.None,
+                    moveId = "5C", attackName = "Greatsword Cleave", button = BBButton.C, kind = BBMoveKind.Normal, motion = BBMotion.None,
                     startup = 10, active = 4, recovery = 14, damage = 780, guard = BBGuard.Mid, advOnBlock = -4, hitstun = 22, blockstun = 14,
                     groundOk = true, fatalCounter = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "Fina_5C", fbxTake = "80/80_01", firstFrame = 50, lastFrame = 72, hitBoxCenter = new Vector2(0.58f, 1.15f), hitBoxSize = new Vector2(0.60f, 0.38f),
+                    clipName = "Fina_5C", fbxTake = "Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.95f, 1.20f), hitBoxSize = new Vector2(1.10f, 0.70f),
                     attribute = BBAttribute.Body, gatlingInto = new string[] { "2C", "3C", "5D", "6D", "2D" }
                 },
                 new MoveSpec {

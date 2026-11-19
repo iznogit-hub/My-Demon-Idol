@@ -195,7 +195,7 @@ namespace DemonIdol.BlazBlue.Editor
 
         public static AnimationClip FindClip(string fbxTake, string clipName)
         {
-            string fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
+            string fbxPath = fbxTake.StartsWith("Assets/") ? fbxTake : $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
             var assets = AssetDatabase.LoadAllAssetsAtPath(fbxPath);
             if (assets != null)
             {
@@ -204,6 +204,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
+                        if (fbxTake.StartsWith("Assets/") && !clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }
@@ -358,10 +359,10 @@ namespace DemonIdol.BlazBlue.Editor
                     attribute = BBAttribute.Body, gatlingInto = new string[] { "5C", "2C", "3C", "5D" }
                 },
                 new MoveSpec {
-                    moveId = "5C", attackName = "Heavy Wrecking Hook", button = BBButton.C, kind = BBMoveKind.Normal, motion = BBMotion.None,
+                    moveId = "5C", attackName = "Warhammer Smash", button = BBButton.C, kind = BBMoveKind.Normal, motion = BBMotion.None,
                     startup = 11, active = 4, recovery = 14, damage = 800, guard = BBGuard.Mid, advOnBlock = -5, hitstun = 22, blockstun = 14,
                     groundOk = true, fatalCounter = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "Pico_5C", fbxTake = "86/86_08", firstFrame = 556, lastFrame = 574, hitBoxCenter = new Vector2(0.48f, 0.95f), hitBoxSize = new Vector2(0.52f, 0.36f),
+                    clipName = "Pico_5C", fbxTake = "Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Hammer Warrior Mecanim Animation Pack/Animations/Hammer@Attack1.FBX", firstFrame = 0, lastFrame = 52, hitBoxCenter = new Vector2(0.80f, 1.05f), hitBoxSize = new Vector2(0.95f, 0.70f),
                     attribute = BBAttribute.Body, gatlingInto = new string[] { "2C", "3C", "5D", "6D", "2D" }
                 },
                 new MoveSpec {

@@ -35,7 +35,7 @@ Akio's `D` button initiates a relentless rush-punch combination that overwhelms 
 | **5B** | B | `Akio_5B` (144_20 f123–136) | 8 | 4 | 12 | 600 | Mid | −3 | C, 3C, Specials, DD |
 | **2B** | 2B | `Akio_2B` (144_20 f220–242) | 9 | 3 | 14 | 520 | Low | −5 | C, 3C, Specials, DD |
 | **6B** | 6B | `Akio_6B` (144_20 f148–166) | 20 | 4 | 16 | 750 | Overhead | −6 | Specials on hit, DD |
-| **5C** | C | `Akio_5C` (144_17 f24–50) | 12 | 4 | 16 | 900 | Mid | −6 | **Fatal Counter**, Specials, DD, 3C |
+| **5C** | C | `Akio_5C` (Swordsman@Attack1 f0–35) | 12 | 4 | 16 | 900 | Mid | −6 | **Fatal Counter**, Specials, DD, 3C |
 | **2C** | 2C | `Akio_2C` (135_05 f100–120) | 10 | 4 | 18 | 700 | Low | −10 | Sweep knockdown; Specials, DD |
 | **3C** | 3C | `Akio_3C` (135_07 f140–164) | 12 | 5 | 18 | 750 | Mid | −10 | Launcher; Jump cancel on hit, Specials, DD |
 | **j.A** | j.A | `Akio_jA` (143_23 f42–51) | 5 | 3 | 8 | 320 | Overhead | — | j.B, j.C, j.D |

@@ -35,7 +35,7 @@ UnityChan dominates the vertical space with agile hopping maneuvers and projecti
 | **5B** | B | `UChan_5M` (02_05 f144–162) | 7 | 3 | 12 | 550 | Mid | −3 | Hopping straight; C, 3C, Specials, DD, Jump Cancel on hit |
 | **2B** | 2B | `UChan_2M` (14_02 f630–648) | 8 | 3 | 14 | 580 | Low | −7 | Low check kick; C, 3C, Specials, DD |
 | **6B** | 6B | `UChan_6M` (16_05 f20–40) | 18 | 4 | 14 | 680 | Overhead | −6 | Hop overhead; Specials on hit, DD |
-| **5C** | C | `UChan_Rekka3` (02_05 f148–168)| 11 | 4 | 14 | 650 | Mid | −5 | Triple punch end; **Fatal Counter**, Specials, DD, 2C, 3C |
+| **5C** | C | `UnityChan_5C` (Archer@Attack1 f0–30)| 11 | 4 | 14 | 650 | Mid | −5 | Archer shot; **Fatal Counter**, Specials, DD, 2C, 3C |
 | **2C** | 2C | `UChan_2C` (14_02 f635–655) | 10 | 4 | 18 | 620 | Low | −10 | Low sweep knockdown; Specials, DD |
 | **3C** | 3C | `UChan_2S` (16_01 f16–40) | 9 | 5 | 16 | 700 | Mid | −8 | Hop launcher; Airborne f6+; Jump cancel on hit |
 | **j.A** | j.A | `UChan_jP` (02_05 f124–140) | 4 | 3 | 8 | 240 | Overhead | — | Air tap; j.B, j.C, j.D |

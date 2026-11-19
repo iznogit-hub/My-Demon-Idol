@@ -208,6 +208,10 @@ namespace DemonIdol.BlazBlue.Editor
             {
                 fbxPath = "Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanF@MagicAttackOmni01.fbx";
             }
+            else if (fbxTake.StartsWith("Assets/"))
+            {
+                fbxPath = fbxTake;
+            }
             else
             {
                 fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
@@ -221,7 +225,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if (fbxTake.StartsWith("KevinIglesias_") && !clip.name.StartsWith("__preview__")) return clip;
+                        if ((fbxTake.StartsWith("KevinIglesias_") || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }
@@ -379,7 +383,7 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "5C", attackName = "Roundhouse Kick", button = BBButton.C, kind = BBMoveKind.Normal, motion = BBMotion.None,
                     startup = 12, active = 4, recovery = 16, damage = 820, guard = BBGuard.Mid, advOnBlock = -7, hitstun = 20, blockstun = 15,
                     groundOk = true, fatalCounter = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "Aika_5C", fbxTake = "113/113_13", firstFrame = 245, lastFrame = 265, hitBoxCenter = new Vector2(0.65f, 1.15f), hitBoxSize = new Vector2(0.70f, 0.45f),
+                    clipName = "Aika_5C", fbxTake = "Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Attack1.FBX", firstFrame = 0, lastFrame = 34, hitBoxCenter = new Vector2(0.60f, 1.20f), hitBoxSize = new Vector2(0.65f, 0.40f),
                     attribute = BBAttribute.Foot, gatlingInto = new string[] { "2C", "3C", "5D", "2D", "6D" }
                 },
                 new MoveSpec {

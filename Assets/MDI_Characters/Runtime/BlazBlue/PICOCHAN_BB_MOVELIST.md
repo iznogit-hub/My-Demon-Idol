@@ -38,7 +38,7 @@ PicoChan is the shortest fighter in the cast (hip height 0.76m, forearm 0.21m), 
 | **5B** | B | `Pico_5B` (15_13 f1256–1274) | 8 | 4 | 13 | 720 | Mid | −4 | Crowd hook; C, 3C, Specials, DD, Jump Cancel on hit |
 | **2B** | 2B | `Pico_2B` (15_13 f344–362) | 9 | 4 | 15 | 680 | Low | −8 | Crouch low shin; C, 3C, Specials, DD |
 | **6B** | 6B | `Pico_6B` (17_10 f173–193) | 20 | 4 | 18 | 760 | Overhead | −7 | Overhand hook; Specials on hit, DD |
-| **5C** | C | `Pico_5C` (86_08 f556–574) | 11 | 4 | 14 | 800 | Mid | −5 | Heavy wrecking hook; **Fatal Counter**, Specials, DD, 2C, 3C |
+| **5C** | C | `Pico_5C` (Hammer@Attack1 f0–52) | 11 | 4 | 14 | 800 | Mid | −5 | Warhammer Smash; **Fatal Counter**, Specials, DD, 2C, 3C |
 | **2C** | 2C | `Pico_2C` (15_13 f340–362) | 11 | 4 | 20 | 700 | Low | −10 | Trip sweep knockdown; Specials, DD |
 | **3C** | 3C | `Pico_3C` (15_13 f288–308) | 10 | 4 | 18 | 740 | Mid | −9 | Knee launcher; Jump cancel on hit |
 | **j.A** | j.A | `Pico_jA` (15_13 f765–783) | 5 | 3 | 8 | 300 | Overhead | — | Air quick tap; j.B, j.C, j.D |
