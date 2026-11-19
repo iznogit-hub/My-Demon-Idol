@@ -101,6 +101,24 @@ FINA_CLIPS = {
     "135/135_10": [
         {"name": "Fina_CrouchBlock", "take": "135_10", "first": 40, "last": 60, "loop": 0},
     ],
+    "144/144_20": [
+        {"name": "Fina_5D", "take": "144_20", "first": 15, "last": 38, "loop": 0},
+    ],
+    "135/135_05": [
+        {"name": "Fina_2D", "take": "135_05", "first": 40, "last": 62, "loop": 0},
+    ],
+    "143/143_23": [
+        {"name": "Fina_jD", "take": "143_23", "first": 30, "last": 52, "loop": 0},
+    ],
+    "135/135_09": [
+        {"name": "Fina_236A", "take": "135_09", "first": 15, "last": 38, "loop": 0},
+    ],
+    "144/144_17": [
+        {"name": "Fina_236B", "take": "144_17", "first": 30, "last": 56, "loop": 0},
+    ],
+    "135/135_06": [
+        {"name": "Fina_236236C", "take": "135_06", "first": 50, "last": 90, "loop": 0},
+    ],
 }
 
 

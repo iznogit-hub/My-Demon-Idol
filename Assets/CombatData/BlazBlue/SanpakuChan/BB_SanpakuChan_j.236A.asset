@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
+  animationClip: {fileID: 4745280153066547480, guid: c460f493a9123c8439515a9d3b8e8d89, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: ed71988d0ca844f26bc6fe3e9a7acf15, type: 2}
   motionTrack: {fileID: 0}
-  clipName: HumanF@MagicAttackDirect1H01_R
-  clip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
-  clipFirstFrame: 0
-  clipLastFrame: 40
+  clipName: Sanpaku_j236A
+  clip: {fileID: 4745280153066547480, guid: c460f493a9123c8439515a9d3b8e8d89, type: 3}
+  clipFirstFrame: 25
+  clipLastFrame: 45
   events: []

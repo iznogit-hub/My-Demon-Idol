@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 3094330708855449807, guid: afc0d7b05fc184d49a7e863d9eec0f9e, type: 3}
+  animationClip: {fileID: 4092901547043253891, guid: bb7d06dea28235048bf838bbfa08f66d, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 610a3cd2e94fd41b78f5e94a8b9d6e5b, type: 2}
   motionTrack: {fileID: 0}
-  clipName: HumanF@MagicAttackDirect2H01
-  clip: {fileID: 3094330708855449807, guid: afc0d7b05fc184d49a7e863d9eec0f9e, type: 3}
-  clipFirstFrame: 0
-  clipLastFrame: 45
+  clipName: Fina_236B
+  clip: {fileID: 4092901547043253891, guid: bb7d06dea28235048bf838bbfa08f66d, type: 3}
+  clipFirstFrame: 30
+  clipLastFrame: 56
   events: []

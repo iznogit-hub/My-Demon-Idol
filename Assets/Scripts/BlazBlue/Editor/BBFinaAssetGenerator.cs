@@ -419,14 +419,14 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "5D", attackName = "Plasma Shot (Burst)", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 12, active = 2, recovery = 16, damage = 520, guard = BBGuard.Mid, advOnBlock = -2, hitstun = 20, blockstun = 14,
                     groundOk = true, specialCancel = true, ddCancel = true, rapidCancelable = true, chipPct = 0.08f,
-                    clipName = "HumanF@MagicAttackDirect1H01_R", fbxTake = "KevinIglesias_Direct1H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.85f, 1.10f), hitBoxSize = new Vector2(0.60f, 0.40f),
+                    clipName = "Fina_5D", fbxTake = "144/144_20", firstFrame = 15, lastFrame = 38, hitBoxCenter = new Vector2(0.85f, 1.10f), hitBoxSize = new Vector2(0.60f, 0.40f),
                     attribute = BBAttribute.Projectile, gatlingInto = new string[] { "6D", "2D" }
                 },
                 new MoveSpec {
                     moveId = "2D", attackName = "Low Plasma Shot", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 12, active = 2, recovery = 18, damage = 460, guard = BBGuard.Low, advOnBlock = -4, hitstun = 18, blockstun = 14,
                     groundOk = true, specialCancel = true, ddCancel = true, rapidCancelable = true, chipPct = 0.08f,
-                    clipName = "HumanF@MagicAttackDirect1H01_R", fbxTake = "KevinIglesias_Direct1H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.85f, 0.35f), hitBoxSize = new Vector2(0.60f, 0.35f),
+                    clipName = "Fina_2D", fbxTake = "135/135_05", firstFrame = 40, lastFrame = 62, hitBoxCenter = new Vector2(0.85f, 0.35f), hitBoxSize = new Vector2(0.60f, 0.35f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
@@ -440,21 +440,21 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "j.D", attackName = "Air Plasma Shot", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 10, active = 2, recovery = 14, damage = 420, guard = BBGuard.Overhead, advOnBlock = 0, hitstun = 16, blockstun = 12,
                     airOk = true, groundOk = false, specialCancel = true, ddCancel = true, rapidCancelable = true, chipPct = 0.08f,
-                    clipName = "HumanF@MagicAttackDirect1H01_R", fbxTake = "KevinIglesias_Direct1H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.70f, 0.45f), hitBoxSize = new Vector2(0.55f, 0.40f),
+                    clipName = "Fina_jD", fbxTake = "143/143_23", firstFrame = 30, lastFrame = 52, hitBoxCenter = new Vector2(0.70f, 0.45f), hitBoxSize = new Vector2(0.55f, 0.40f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
                     moveId = "236A", attackName = "Plasma Fireball A", button = BBButton.A, kind = BBMoveKind.Special, motion = BBMotion.M236,
                     startup = 11, active = 2, recovery = 16, damage = 520, guard = BBGuard.Mid, advOnBlock = -2, hitstun = 18, blockstun = 14,
                     groundOk = true, ddCancel = true, rapidCancelable = true, chipPct = 0.08f,
-                    clipName = "HumanF@MagicAttackDirect1H01_R", fbxTake = "KevinIglesias_Direct1H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.85f, 1.10f), hitBoxSize = new Vector2(0.58f, 0.38f),
+                    clipName = "Fina_236A", fbxTake = "135/135_09", firstFrame = 15, lastFrame = 38, hitBoxCenter = new Vector2(0.85f, 1.10f), hitBoxSize = new Vector2(0.58f, 0.38f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
                     moveId = "236B", attackName = "Plasma Fireball B (2-Hit)", button = BBButton.B, kind = BBMoveKind.Special, motion = BBMotion.M236,
                     startup = 14, active = 3, recovery = 18, damage = 680, guard = BBGuard.Mid, advOnBlock = -3, hitstun = 22, blockstun = 15,
                     groundOk = true, ddCancel = true, rapidCancelable = true, chipPct = 0.10f,
-                    clipName = "HumanF@MagicAttackDirect2H01", fbxTake = "KevinIglesias_Direct2H", firstFrame = 0, lastFrame = 45, hitBoxCenter = new Vector2(0.90f, 1.10f), hitBoxSize = new Vector2(0.65f, 0.42f),
+                    clipName = "Fina_236B", fbxTake = "144/144_17", firstFrame = 30, lastFrame = 56, hitBoxCenter = new Vector2(0.90f, 1.10f), hitBoxSize = new Vector2(0.65f, 0.42f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
@@ -475,7 +475,7 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "236236C", attackName = "Neo-Pink Plasma Burst (Beam DD)", button = BBButton.C, kind = BBMoveKind.DistortionDrive, motion = BBMotion.M236236,
                     startup = 12, active = 10, recovery = 22, damage = 2600, guard = BBGuard.Mid, advOnBlock = -12, hitstun = 35, blockstun = 24,
                     groundOk = true, rapidCancelable = true, chipPct = 0.15f, heatCost = 50,
-                    clipName = "HumanF@MagicAttackOmni01", fbxTake = "KevinIglesias_Omni", firstFrame = 0, lastFrame = 50, hitBoxCenter = new Vector2(1.20f, 1.10f), hitBoxSize = new Vector2(1.20f, 0.60f),
+                    clipName = "Fina_236236C", fbxTake = "135/135_06", firstFrame = 50, lastFrame = 90, hitBoxCenter = new Vector2(1.20f, 1.10f), hitBoxSize = new Vector2(1.20f, 0.60f),
                     attribute = BBAttribute.Projectile, invuln = new BBInvulnWindow[] { new BBInvulnWindow(1, 12, BBInvuln.Head | BBInvuln.Body | BBInvuln.Projectile) }
                 },
                 new MoveSpec {

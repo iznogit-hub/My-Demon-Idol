@@ -82,12 +82,14 @@ UNITYCHAN_CLIPS = {
         {"name": "UChan_214B", "take": "91_39", "first": 50, "last": 70, "loop": 0},
     ],
     "118/118_01": [
+        {"name": "UChan_236A", "take": "118_01", "first": 15, "last": 35, "loop": 0},
         {"name": "UChan_jB", "take": "118_01", "first": 88, "last": 106, "loop": 0},
         {"name": "UChan_jD", "take": "118_01", "first": 95, "last": 115, "loop": 0},
         {"name": "UChan_j236236C", "take": "118_01", "first": 88, "last": 118, "loop": 0},
         {"name": "UChan_AirThrow", "take": "118_01", "first": 90, "last": 110, "loop": 0},
     ],
     "118/118_05": [
+        {"name": "UChan_236B", "take": "118_05", "first": 20, "last": 45, "loop": 0},
         {"name": "UChan_jC", "take": "118_05", "first": 64, "last": 82, "loop": 0},
         {"name": "UChan_46C", "take": "118_05", "first": 47, "last": 70, "loop": 0},
         {"name": "UChan_j214B", "take": "118_05", "first": 70, "last": 92, "loop": 0},

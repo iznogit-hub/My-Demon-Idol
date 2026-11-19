@@ -99,7 +99,13 @@ REIKA_CLIPS = {
     ],
     "16/16_12": [
         {"name": "Reika_Intro", "take": "16_12", "first": 10, "last": 40, "loop": 0},
-    ]
+    ],
+    "12/12_04": [
+        {"name": "Reika_236B", "take": "12_04", "first": 140, "last": 165, "loop": 0},
+    ],
+    "135/135_01": [
+        {"name": "Reika_OD_EA", "take": "135_01", "first": 120, "last": 170, "loop": 0},
+    ],
 }
 
 

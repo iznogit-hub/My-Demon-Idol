@@ -444,7 +444,7 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "236B", attackName = "Crimson Crescent Wave", button = BBButton.B, kind = BBMoveKind.Special, motion = BBMotion.M236,
                     startup = 12, active = 3, recovery = 16, damage = 480, guard = BBGuard.Mid, advOnBlock = -2, hitstun = 18, blockstun = 14,
                     groundOk = true, ddCancel = true, rapidCancelable = true, chipPct = 0.08f,
-                    clipName = "HumanF@MagicAttackDirect1H01_R", fbxTake = "KevinIglesias_Direct1H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.85f, 1.10f), hitBoxSize = new Vector2(0.55f, 0.35f),
+                    clipName = "Reika_236B", fbxTake = "12/12_04", firstFrame = 140, lastFrame = 165, hitBoxCenter = new Vector2(0.85f, 1.10f), hitBoxSize = new Vector2(0.55f, 0.35f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
@@ -479,7 +479,7 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "OD_EA", attackName = "Exceed Accel (True Veil Strike)", button = BBButton.D, kind = BBMoveKind.DistortionDrive, motion = BBMotion.None,
                     startup = 10, active = 8, recovery = 22, damage = 2100, guard = BBGuard.Mid, advOnBlock = -14, hitstun = 30, blockstun = 20,
                     groundOk = true, rapidCancelable = true,
-                    clipName = "HumanF@MagicAttackOmni01", fbxTake = "KevinIglesias_Omni", firstFrame = 0, lastFrame = 50, hitBoxCenter = new Vector2(0.55f, 1.15f), hitBoxSize = new Vector2(0.65f, 0.55f),
+                    clipName = "Reika_OD_EA", fbxTake = "135/135_01", firstFrame = 120, lastFrame = 170, hitBoxCenter = new Vector2(0.55f, 1.15f), hitBoxSize = new Vector2(0.65f, 0.55f),
                     attribute = BBAttribute.Body, invuln = new BBInvulnWindow[] { new BBInvulnWindow(1, 10, BBInvuln.Head | BBInvuln.Body | BBInvuln.Foot | BBInvuln.Projectile) }
                 },
                 new MoveSpec {

@@ -107,6 +107,10 @@ SANPAKUCHAN_CLIPS = {
     ],
     "135/135_10": [
         {"name": "Sanpaku_CrouchBlock", "take": "135_10", "first": 40, "last": 60, "loop": 0},
+        {"name": "Sanpaku_236A", "take": "135_10", "first": 50, "last": 72, "loop": 0},
+    ],
+    "118/118_02": [
+        {"name": "Sanpaku_j236A", "take": "118_02", "first": 25, "last": 45, "loop": 0},
     ],
 }
 

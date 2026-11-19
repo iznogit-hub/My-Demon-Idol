@@ -62,6 +62,8 @@ AKIO_CLIPS = {
         {"name": "Akio_236C", "take": "144_17", "first": 24, "last": 50, "loop": 0},
         {"name": "Akio_Throw", "take": "144_17", "first": 26, "last": 48, "loop": 0},
         {"name": "Akio_Dash", "take": "144_17", "first": 20, "last": 40, "loop": 0},
+        {"name": "Akio_236A", "take": "144_17", "first": 20, "last": 36, "loop": 0},
+        {"name": "Akio_236B", "take": "144_17", "first": 24, "last": 48, "loop": 0},
     ],
     "144/144_33": [
         {"name": "Akio_Walk", "take": "144_33", "first": 150, "last": 178, "loop": 1},

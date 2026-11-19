@@ -61,12 +61,29 @@ CULTIST_CLIPS = {
         {"name": "Cultist_Throw", "take": "135_04", "first": 260, "last": 285, "loop": 0},
         {"name": "Cultist_CounterAssault", "take": "135_04", "first": 15, "last": 38, "loop": 0},
         {"name": "Cultist_CrushTrigger", "take": "135_04", "first": 50, "last": 75, "loop": 0},
+        {"name": "Cultist_6D", "take": "135_04", "first": 28, "last": 48, "loop": 0},
     ],
     "118/118_04": [
         {"name": "Cultist_jA", "take": "118_04", "first": 12, "last": 28, "loop": 0},
         {"name": "Cultist_jB", "take": "118_04", "first": 35, "last": 55, "loop": 0},
         {"name": "Cultist_jC", "take": "118_04", "first": 65, "last": 88, "loop": 0},
+        {"name": "Cultist_jD", "take": "118_04", "first": 40, "last": 62, "loop": 0},
         {"name": "Cultist_AirThrow", "take": "118_04", "first": 95, "last": 118, "loop": 0},
+    ],
+    "12/12_04": [
+        {"name": "Cultist_5D", "take": "12_04", "first": 30, "last": 55, "loop": 0},
+        {"name": "Cultist_2D", "take": "12_04", "first": 110, "last": 135, "loop": 0},
+        {"name": "Cultist_4D", "take": "12_04", "first": 75, "last": 98, "loop": 0},
+        {"name": "Cultist_236B", "take": "12_04", "first": 180, "last": 210, "loop": 0},
+    ],
+    "144/144_22": [
+        {"name": "Cultist_214A", "take": "144_22", "first": 20, "last": 44, "loop": 0},
+    ],
+    "144/144_30": [
+        {"name": "Cultist_236236C", "take": "144_30", "first": 40, "last": 80, "loop": 0},
+    ],
+    "135/135_06": [
+        {"name": "Cultist_OD_EA", "take": "135_06", "first": 90, "last": 140, "loop": 0},
     ],
     "91/91_03": [
         {"name": "Cultist_22B", "take": "91_03", "first": 10, "last": 28, "loop": 0},

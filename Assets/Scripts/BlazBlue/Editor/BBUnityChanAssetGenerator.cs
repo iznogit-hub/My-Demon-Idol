@@ -441,14 +441,14 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "236A", attackName = "Aero Plasma Disc", button = BBButton.A, kind = BBMoveKind.Special, motion = BBMotion.M236,
                     startup = 11, active = 1, recovery = 16, damage = 440, guard = BBGuard.Mid, advOnBlock = -2, hitstun = 18, blockstun = 14,
                     groundOk = true, ddCancel = true, rapidCancelable = true, chipPct = 0.08f,
-                    clipName = "HumanF@MagicAttackDirect1H01_R", fbxTake = "KevinIglesias_Direct1H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.85f, 1.05f), hitBoxSize = new Vector2(0.55f, 0.35f),
+                    clipName = "UChan_236A", fbxTake = "118/118_01", firstFrame = 15, lastFrame = 35, hitBoxCenter = new Vector2(0.85f, 1.05f), hitBoxSize = new Vector2(0.55f, 0.35f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
                     moveId = "236B", attackName = "Aero Plasma Disc (Angled)", button = BBButton.B, kind = BBMoveKind.Special, motion = BBMotion.M236,
                     startup = 11, active = 1, recovery = 16, damage = 440, guard = BBGuard.Mid, advOnBlock = -2, hitstun = 18, blockstun = 14,
                     groundOk = true, ddCancel = true, rapidCancelable = true, chipPct = 0.08f,
-                    clipName = "HumanF@MagicAttackDirect1H01_R", fbxTake = "KevinIglesias_Direct1H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.80f, 1.35f), hitBoxSize = new Vector2(0.55f, 0.40f),
+                    clipName = "UChan_236B", fbxTake = "118/118_05", firstFrame = 20, lastFrame = 45, hitBoxCenter = new Vector2(0.80f, 1.35f), hitBoxSize = new Vector2(0.55f, 0.40f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {

@@ -440,14 +440,14 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "236A", attackName = "Crow Feather Needle", button = BBButton.A, kind = BBMoveKind.Special, motion = BBMotion.M236,
                     startup = 11, active = 2, recovery = 15, damage = 420, guard = BBGuard.Mid, advOnBlock = -2, hitstun = 18, blockstun = 14,
                     groundOk = true, ddCancel = true, rapidCancelable = true, chipPct = 0.08f,
-                    clipName = "HumanF@MagicAttackDirect1H01_R", fbxTake = "KevinIglesias_Direct1H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.85f, 1.10f), hitBoxSize = new Vector2(0.55f, 0.35f),
+                    clipName = "Sanpaku_236A", fbxTake = "135/135_10", firstFrame = 50, lastFrame = 72, hitBoxCenter = new Vector2(0.85f, 1.10f), hitBoxSize = new Vector2(0.55f, 0.35f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
                     moveId = "j.236A", attackName = "Air Crow Feather Needle", button = BBButton.A, kind = BBMoveKind.Special, motion = BBMotion.M236,
                     startup = 10, active = 2, recovery = 14, damage = 400, guard = BBGuard.Overhead, advOnBlock = 0, hitstun = 16, blockstun = 12,
                     airOk = true, groundOk = false, ddCancel = true, rapidCancelable = true, chipPct = 0.08f,
-                    clipName = "HumanF@MagicAttackDirect1H01_R", fbxTake = "KevinIglesias_Direct1H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.70f, 0.45f), hitBoxSize = new Vector2(0.55f, 0.35f),
+                    clipName = "Sanpaku_j236A", fbxTake = "118/118_02", firstFrame = 25, lastFrame = 45, hitBoxCenter = new Vector2(0.70f, 0.45f), hitBoxSize = new Vector2(0.55f, 0.35f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {

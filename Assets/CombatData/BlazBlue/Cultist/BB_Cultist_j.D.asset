@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 3094330708855449807, guid: 38a45c96315321348952eec2abacbd04, type: 3}
+  animationClip: {fileID: -8369760172844501406, guid: 28c910262011c624e818933028df0e5b, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 757f2f3a0b5864b40aa696e8c1c0ae4e, type: 2}
   motionTrack: {fileID: 0}
-  clipName: HumanF@CastingEnter01
-  clip: {fileID: 3094330708855449807, guid: 38a45c96315321348952eec2abacbd04, type: 3}
-  clipFirstFrame: 0
-  clipLastFrame: 30
+  clipName: Cultist_jD
+  clip: {fileID: -8369760172844501406, guid: 28c910262011c624e818933028df0e5b, type: 3}
+  clipFirstFrame: 40
+  clipLastFrame: 62
   events: []

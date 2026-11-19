@@ -136,7 +136,7 @@ namespace DemonIdol.BlazBlue.Editor
                 var standBlockClip = FindClip("144/144_08", "Cultist_StandBlock");
                 var crouchBlockClip = FindClip("135/135_08", "Cultist_CrouchBlock");
                 var knockdownClip = FindClip("140/140_02", "Cultist_Knockdown");
-                var introClip = FindClip("KevinIglesias_CastingEnter", "HumanF@CastingEnter01");
+                var introClip = FindClip("12/12_04", "Cultist_5D");
 
                 var overridesList = new List<KeyValuePair<AnimationClip, AnimationClip>>();
                 overrideCtrl.GetOverrides(overridesList);
@@ -428,42 +428,42 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "5D", attackName = "Void Orb (Place)", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 14, active = 2, recovery = 16, damage = 0, guard = BBGuard.Mid, advOnBlock = -2, hitstun = 0, blockstun = 0,
                     groundOk = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "HumanF@CastingEnter01", fbxTake = "KevinIglesias_CastingEnter", firstFrame = 0, lastFrame = 30, hitBoxCenter = new Vector2(0.45f, 1.10f), hitBoxSize = new Vector2(0.45f, 0.45f),
+                    clipName = "Cultist_5D", fbxTake = "12/12_04", firstFrame = 30, lastFrame = 55, hitBoxCenter = new Vector2(0.45f, 1.10f), hitBoxSize = new Vector2(0.45f, 0.45f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
                     moveId = "6D", attackName = "Void Orb (Dash Command)", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 10, active = 2, recovery = 14, damage = 0, guard = BBGuard.Mid, advOnBlock = 0, hitstun = 0, blockstun = 0,
                     groundOk = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "HumanF@CastingIdle01", fbxTake = "KevinIglesias_CastingIdle", firstFrame = 0, lastFrame = 30, hitBoxCenter = new Vector2(0.45f, 1.10f), hitBoxSize = new Vector2(0.45f, 0.45f),
+                    clipName = "Cultist_6D", fbxTake = "135/135_04", firstFrame = 28, lastFrame = 48, hitBoxCenter = new Vector2(0.45f, 1.10f), hitBoxSize = new Vector2(0.45f, 0.45f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
                     moveId = "2D", attackName = "Void Orb (Drop Command)", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 10, active = 2, recovery = 14, damage = 0, guard = BBGuard.Low, advOnBlock = 0, hitstun = 0, blockstun = 0,
                     groundOk = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "HumanF@CastingEnter01", fbxTake = "KevinIglesias_CastingEnter", firstFrame = 0, lastFrame = 30, hitBoxCenter = new Vector2(0.45f, 0.35f), hitBoxSize = new Vector2(0.45f, 0.35f),
+                    clipName = "Cultist_2D", fbxTake = "12/12_04", firstFrame = 110, lastFrame = 135, hitBoxCenter = new Vector2(0.45f, 0.35f), hitBoxSize = new Vector2(0.45f, 0.35f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
                     moveId = "4D", attackName = "Void Orb (Recall Command)", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 10, active = 2, recovery = 14, damage = 0, guard = BBGuard.Mid, advOnBlock = 0, hitstun = 0, blockstun = 0,
                     groundOk = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "HumanF@CastingIdle01", fbxTake = "KevinIglesias_CastingIdle", firstFrame = 0, lastFrame = 30, hitBoxCenter = new Vector2(0.45f, 1.10f), hitBoxSize = new Vector2(0.45f, 0.45f),
+                    clipName = "Cultist_4D", fbxTake = "12/12_04", firstFrame = 75, lastFrame = 98, hitBoxCenter = new Vector2(0.45f, 1.10f), hitBoxSize = new Vector2(0.45f, 0.45f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
                     moveId = "j.D", attackName = "Void Orb (Air Place)", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 12, active = 2, recovery = 14, damage = 0, guard = BBGuard.Overhead, advOnBlock = 0, hitstun = 0, blockstun = 0,
                     airOk = true, groundOk = false, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "HumanF@CastingEnter01", fbxTake = "KevinIglesias_CastingEnter", firstFrame = 0, lastFrame = 30, hitBoxCenter = new Vector2(0.40f, 0.65f), hitBoxSize = new Vector2(0.45f, 0.45f),
+                    clipName = "Cultist_jD", fbxTake = "118/118_04", firstFrame = 40, lastFrame = 62, hitBoxCenter = new Vector2(0.40f, 0.65f), hitBoxSize = new Vector2(0.45f, 0.45f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
                     moveId = "236B", attackName = "Void Skull Shot", button = BBButton.B, kind = BBMoveKind.Special, motion = BBMotion.M236,
                     startup = 13, active = 3, recovery = 18, damage = 550, guard = BBGuard.Mid, advOnBlock = -3, hitstun = 19, blockstun = 14,
                     groundOk = true, ddCancel = true, rapidCancelable = true, chipPct = 0.10f,
-                    clipName = "HumanF@MagicAttackDirect2H01", fbxTake = "KevinIglesias_Direct2H", firstFrame = 0, lastFrame = 45, hitBoxCenter = new Vector2(0.85f, 1.10f), hitBoxSize = new Vector2(0.60f, 0.40f),
+                    clipName = "Cultist_236B", fbxTake = "12/12_04", firstFrame = 180, lastFrame = 210, hitBoxCenter = new Vector2(0.85f, 1.10f), hitBoxSize = new Vector2(0.60f, 0.40f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
@@ -491,14 +491,14 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "214A", attackName = "Dark Ritual", button = BBButton.A, kind = BBMoveKind.Special, motion = BBMotion.M214,
                     startup = 15, active = 20, recovery = 12, damage = 0, guard = BBGuard.Mid, advOnBlock = 0, hitstun = 0, blockstun = 0,
                     groundOk = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "HumanF@CastingIdle01", fbxTake = "KevinIglesias_CastingIdle", firstFrame = 0, lastFrame = 30, hitBoxCenter = new Vector2(0.45f, 1.10f), hitBoxSize = new Vector2(0.45f, 0.45f),
+                    clipName = "Cultist_214A", fbxTake = "144/144_22", firstFrame = 20, lastFrame = 44, hitBoxCenter = new Vector2(0.45f, 1.10f), hitBoxSize = new Vector2(0.45f, 0.45f),
                     attribute = BBAttribute.Body
                 },
                 new MoveSpec {
                     moveId = "236236C", attackName = "Void Cataclysm (DD)", button = BBButton.C, kind = BBMoveKind.DistortionDrive, motion = BBMotion.M236236,
                     startup = 12, active = 10, recovery = 22, damage = 2500, guard = BBGuard.Mid, advOnBlock = -12, hitstun = 35, blockstun = 22,
                     groundOk = true, rapidCancelable = true, chipPct = 0.15f, heatCost = 50,
-                    clipName = "HumanF@MagicAttackOmni01", fbxTake = "KevinIglesias_Omni", firstFrame = 0, lastFrame = 50, hitBoxCenter = new Vector2(0.60f, 1.20f), hitBoxSize = new Vector2(0.80f, 0.80f),
+                    clipName = "Cultist_236236C", fbxTake = "144/144_30", firstFrame = 40, lastFrame = 80, hitBoxCenter = new Vector2(0.60f, 1.20f), hitBoxSize = new Vector2(0.80f, 0.80f),
                     attribute = BBAttribute.Projectile, invuln = new BBInvulnWindow[] { new BBInvulnWindow(1, 12, BBInvuln.Head | BBInvuln.Body | BBInvuln.Foot) }
                 },
                 new MoveSpec {
@@ -512,7 +512,7 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "OD_EA", attackName = "Exceed Accel (Dark Singularity)", button = BBButton.D, kind = BBMoveKind.DistortionDrive, motion = BBMotion.None,
                     startup = 10, active = 8, recovery = 22, damage = 2100, guard = BBGuard.Mid, advOnBlock = -14, hitstun = 30, blockstun = 20,
                     groundOk = true, rapidCancelable = true,
-                    clipName = "HumanF@MagicAttackOmni01", fbxTake = "KevinIglesias_Omni", firstFrame = 0, lastFrame = 50, hitBoxCenter = new Vector2(0.55f, 1.15f), hitBoxSize = new Vector2(0.65f, 0.55f),
+                    clipName = "Cultist_OD_EA", fbxTake = "135/135_06", firstFrame = 90, lastFrame = 140, hitBoxCenter = new Vector2(0.55f, 1.15f), hitBoxSize = new Vector2(0.65f, 0.55f),
                     attribute = BBAttribute.Body, invuln = new BBInvulnWindow[] { new BBInvulnWindow(1, 10, BBInvuln.Head | BBInvuln.Body | BBInvuln.Foot | BBInvuln.Projectile) }
                 },
                 new MoveSpec {

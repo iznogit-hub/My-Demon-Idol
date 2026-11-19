@@ -420,21 +420,21 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "5D", attackName = "Resonance Nail", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 13, active = 1, recovery = 18, damage = 550, guard = BBGuard.Mid, advOnBlock = -3, hitstun = 18, blockstun = 15,
                     groundOk = true, specialCancel = true, ddCancel = true, rapidCancelable = true, chipPct = 0.08f,
-                    clipName = "HumanF@MagicAttackDirect1H01_R", fbxTake = "KevinIglesias_Direct1H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.95f, 1.10f), hitBoxSize = new Vector2(0.60f, 0.35f),
+                    clipName = "Aika_5D", fbxTake = "135/135_10", firstFrame = 40, lastFrame = 60, hitBoxCenter = new Vector2(0.95f, 1.10f), hitBoxSize = new Vector2(0.60f, 0.35f),
                     attribute = BBAttribute.Projectile, gatlingInto = new string[] { "2D", "6D" }
                 },
                 new MoveSpec {
                     moveId = "2D", attackName = "Ground Slide Nail", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 15, active = 1, recovery = 20, damage = 500, guard = BBGuard.Low, advOnBlock = -4, hitstun = 18, blockstun = 14,
                     groundOk = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "HumanF@MagicAttackDirect2H01", fbxTake = "KevinIglesias_Direct2H", firstFrame = 0, lastFrame = 40, hitBoxCenter = new Vector2(0.85f, 0.20f), hitBoxSize = new Vector2(0.70f, 0.30f),
+                    clipName = "Aika_2D", fbxTake = "135/135_05", firstFrame = 85, lastFrame = 105, hitBoxCenter = new Vector2(0.85f, 0.20f), hitBoxSize = new Vector2(0.70f, 0.30f),
                     attribute = BBAttribute.Projectile, gatlingInto = new string[] { "6D" }
                 },
                 new MoveSpec {
                     moveId = "6D", attackName = "Resonance Detonate", button = BBButton.D, kind = BBMoveKind.DriveMove, motion = BBMotion.None,
                     startup = 18, active = 3, recovery = 20, damage = 400, guard = BBGuard.Mid, advOnBlock = -6, hitstun = 20, blockstun = 16,
                     groundOk = true, specialCancel = true, ddCancel = true, rapidCancelable = true,
-                    clipName = "HumanF@MagicAttackOmni01", fbxTake = "KevinIglesias_Omni", firstFrame = 0, lastFrame = 45, hitBoxCenter = new Vector2(0.70f, 1.00f), hitBoxSize = new Vector2(1.20f, 1.20f),
+                    clipName = "Aika_6D", fbxTake = "135/135_09", firstFrame = 25, lastFrame = 50, hitBoxCenter = new Vector2(0.70f, 1.00f), hitBoxSize = new Vector2(1.20f, 1.20f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
@@ -483,7 +483,7 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "632146D", attackName = "Nail Rain", button = BBButton.D, kind = BBMoveKind.DistortionDrive, motion = BBMotion.M632146,
                     startup = 12, active = 30, recovery = 28, damage = 2400, guard = BBGuard.Mid, advOnBlock = -10, hitstun = 45, blockstun = 28,
                     groundOk = true, heatCost = 50, rapidCancelable = true, chipPct = 0.15f,
-                    clipName = "HumanF@MagicAttackOmni01", fbxTake = "KevinIglesias_Omni", firstFrame = 0, lastFrame = 45, hitBoxCenter = new Vector2(0.90f, 1.10f), hitBoxSize = new Vector2(1.80f, 1.80f),
+                    clipName = "Aika_632146D", fbxTake = "135/135_01", firstFrame = 60, lastFrame = 100, hitBoxCenter = new Vector2(0.90f, 1.10f), hitBoxSize = new Vector2(1.80f, 1.80f),
                     attribute = BBAttribute.Projectile, invuln = new BBInvulnWindow[] { new BBInvulnWindow(1, 12, BBInvuln.Head | BBInvuln.Body | BBInvuln.Foot | BBInvuln.Projectile | BBInvuln.Throw) }
                 },
                 new MoveSpec {

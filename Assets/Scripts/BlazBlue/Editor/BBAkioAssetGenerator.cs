@@ -456,14 +456,14 @@ namespace DemonIdol.BlazBlue.Editor
                     moveId = "236A", attackName = "Shadow Kunai (Slow)", button = BBButton.A, kind = BBMoveKind.Special, motion = BBMotion.M236,
                     startup = 12, active = 1, recovery = 20, damage = 600, guard = BBGuard.Mid, advOnBlock = -4, hitstun = 20, blockstun = 17,
                     groundOk = true, ddCancel = true, rapidCancelable = true, chipPct = 0.10f,
-                    clipName = "Akio_236A", fbxTake = "KevinIglesias_Spell", firstFrame = 0, lastFrame = 33, hitBoxCenter = new Vector2(0.80f, 1.10f), hitBoxSize = new Vector2(0.50f, 0.30f),
+                    clipName = "Akio_236A", fbxTake = "144/144_17", firstFrame = 20, lastFrame = 36, hitBoxCenter = new Vector2(0.80f, 1.10f), hitBoxSize = new Vector2(0.50f, 0.30f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {
                     moveId = "236B", attackName = "Shadow Kunai (Fast)", button = BBButton.B, kind = BBMoveKind.Special, motion = BBMotion.M236,
                     startup = 12, active = 1, recovery = 20, damage = 600, guard = BBGuard.Mid, advOnBlock = -4, hitstun = 20, blockstun = 17,
                     groundOk = true, ddCancel = true, rapidCancelable = true, chipPct = 0.10f,
-                    clipName = "Akio_236B", fbxTake = "KevinIglesias_Spell", firstFrame = 0, lastFrame = 33, hitBoxCenter = new Vector2(0.80f, 1.10f), hitBoxSize = new Vector2(0.50f, 0.30f),
+                    clipName = "Akio_236B", fbxTake = "144/144_17", firstFrame = 24, lastFrame = 48, hitBoxCenter = new Vector2(0.80f, 1.10f), hitBoxSize = new Vector2(0.50f, 0.30f),
                     attribute = BBAttribute.Projectile
                 },
                 new MoveSpec {

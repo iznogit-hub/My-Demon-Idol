@@ -103,12 +103,20 @@ AIKA_CLIPS = {
     ],
     "135/135_05": [
         {"name": "Aika_Crouch", "take": "135_05", "first": 80, "last": 92, "loop": 1},
+        {"name": "Aika_2D", "take": "135_05", "first": 85, "last": 105, "loop": 0},
+    ],
+    "135/135_09": [
+        {"name": "Aika_6D", "take": "135_09", "first": 25, "last": 50, "loop": 0},
+    ],
+    "135/135_01": [
+        {"name": "Aika_632146D", "take": "135_01", "first": 60, "last": 100, "loop": 0},
     ],
     "144/144_07": [
         {"name": "Aika_StandBlock", "take": "144_07", "first": 186, "last": 206, "loop": 0},
     ],
     "135/135_10": [
         {"name": "Aika_CrouchBlock", "take": "135_10", "first": 300, "last": 320, "loop": 0},
+        {"name": "Aika_5D", "take": "135_10", "first": 40, "last": 60, "loop": 0},
     ],
     "90/90_18": [
         {"name": "Aika_Knockdown", "take": "90_18", "first": 8, "last": 45, "loop": 0},
