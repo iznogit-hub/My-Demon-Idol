@@ -283,18 +283,16 @@ namespace DemonIdol.Editor
             }
             showcaseCtrl.showcaseCamera = mainCam;
 
-            // Populate fighter definitions from authoritative registry
+            // Populate fighter definitions from project assets
             showcaseCtrl.fighterDefinitions.Clear();
-            var all30 = CharacterRegistry.GetAuthoritative30Roster();
-            if (all30 != null)
+            string[] fighterGuids = AssetDatabase.FindAssets("t:FighterDefinition");
+            foreach (string guid in fighterGuids)
             {
-                for (int i = 0; i < all30.Count; i++)
+                string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+                var fDef = AssetDatabase.LoadAssetAtPath<DemonIdol.Characters.FighterDefinition>(assetPath);
+                if (fDef != null && !showcaseCtrl.fighterDefinitions.Contains(fDef))
                 {
-                    var def = CharacterRegistry.GetCharacterById(all30[i]);
-                    if (def != null && !showcaseCtrl.fighterDefinitions.Contains(def))
-                    {
-                        showcaseCtrl.fighterDefinitions.Add(def);
-                    }
+                    showcaseCtrl.fighterDefinitions.Add(fDef);
                 }
             }
 
