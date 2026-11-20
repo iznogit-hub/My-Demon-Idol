@@ -55,19 +55,53 @@ namespace DemonIdol.Combat
             // C14 Muryotaisu: Cursed Thread Needles
             { "Muryotaisu", new ProjectilePreset { name = "Cursed Thread Needles", speed = 17f, damage = 44f, coreColor = new Color(0.3f, 0.1f, 0.35f), trailColor = new Color(0.5f, 0.2f, 0.6f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab" } },
             // Fighter Kai (Training / Shinobi Default)
-            { "Kai", new ProjectilePreset { name = "Shinobi Star Shuriken", speed = 16f, damage = 45f, coreColor = new Color(1.0f, 0.8f, 0.2f), trailColor = new Color(0.8f, 0.5f, 0.1f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab" } }
+            { "Kai", new ProjectilePreset { name = "Shinobi Star Shuriken", speed = 16f, damage = 45f, coreColor = new Color(1.0f, 0.8f, 0.2f), trailColor = new Color(0.8f, 0.5f, 0.1f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab" } },
+            { "Galahad", new ProjectilePreset { name = "Solar Crest", speed = 13f, damage = 40f, coreColor = new Color(1f, 0.85f, 0.4f), trailColor = new Color(1f, 0.7f, 0.2f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Magic Misc/CFXR4 Falling Stars.prefab" } },
+            { "Vex", new ProjectilePreset { name = "Dune Shard", speed = 15f, damage = 46f, coreColor = new Color(0.8f, 0.55f, 0.2f), trailColor = new Color(0.6f, 0.3f, 0.1f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab" } },
+            { "LordMorvath", new ProjectilePreset { name = "Abyss Orb", speed = 12f, damage = 52f, coreColor = new Color(0.35f, 0.05f, 0.55f), trailColor = new Color(0.2f, 0f, 0.3f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Eerie/CFXR2 Skull Head Alt.prefab" } },
+            { "Morvath", new ProjectilePreset { name = "Abyss Orb", speed = 12f, damage = 52f, coreColor = new Color(0.35f, 0.05f, 0.55f), trailColor = new Color(0.2f, 0f, 0.3f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Eerie/CFXR2 Skull Head Alt.prefab" } },
+            { "CommanderRen", new ProjectilePreset { name = "Iron Bolt", speed = 14f, damage = 48f, coreColor = new Color(0.7f, 0.75f, 0.8f), trailColor = new Color(0.4f, 0.45f, 0.5f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit A (Red).prefab" } },
+            { "Torgrim", new ProjectilePreset { name = "Storm Hammerhead", speed = 11f, damage = 55f, coreColor = new Color(0.5f, 0.7f, 1f), trailColor = new Color(0.3f, 0.5f, 0.9f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Electric/CFXR3 Hit Electric C (Air).prefab" } },
+            { "Hugo", new ProjectilePreset { name = "Highland Spark", speed = 13f, damage = 46f, coreColor = new Color(0.9f, 0.4f, 0.15f), trailColor = new Color(0.7f, 0.2f, 0.05f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Fire/CFXR3 Hit Fire B (Air).prefab" } },
+            { "Granite", new ProjectilePreset { name = "Boulder Chip", speed = 10f, damage = 58f, coreColor = new Color(0.45f, 0.45f, 0.4f), trailColor = new Color(0.3f, 0.3f, 0.28f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab" } },
+            { "Viper", new ProjectilePreset { name = "Viper Fang", speed = 17f, damage = 42f, coreColor = new Color(0.2f, 0.8f, 0.3f), trailColor = new Color(0.1f, 0.5f, 0.15f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Sword Trails/Plain/CFXR4 Sword Hit PLAIN (Cross).prefab" } },
+            { "OfficerK", new ProjectilePreset { name = "Discipline Palm", speed = 15f, damage = 40f, coreColor = new Color(0.85f, 0.85f, 0.9f), trailColor = new Color(0.6f, 0.65f, 0.75f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Misc/CFXR Flash.prefab" } },
+            { "Kira", new ProjectilePreset { name = "Starfall Bolt", speed = 18f, damage = 44f, coreColor = new Color(1f, 0.55f, 0.2f), trailColor = new Color(1f, 0.3f, 0.1f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Electric/CFXR3 Hit Electric C (Air).prefab" } },
+            { "Sentry", new ProjectilePreset { name = "Phalanx Javelin", speed = 16f, damage = 46f, coreColor = new Color(0.75f, 0.7f, 0.4f), trailColor = new Color(0.5f, 0.45f, 0.2f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Sword Trails/Plain/CFXR4 Sword Hit PLAIN (Cross).prefab" } },
+            { "Lyra", new ProjectilePreset { name = "Aether Shard", speed = 14f, damage = 48f, coreColor = new Color(0.7f, 0.85f, 1f), trailColor = new Color(0.5f, 0.4f, 1f), cfxrPrefabPath = "Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Magic Misc/CFXR4 Falling Stars.prefab" } }
         };
+
+        static readonly MDIProjectile[] _pool = new MDIProjectile[8];
+        static int _poolCursor;
+
+        public static MDIProjectile SpawnPooled(string fighterName, FighterController owner, Vector3 spawnPos, int facing)
+        {
+            int slot = _poolCursor;
+            _poolCursor = (_poolCursor + 1) % _pool.Length;
+            MDIProjectile proj = _pool[slot];
+            if (proj == null)
+            {
+                proj = SpawnProjectileForCharacter(fighterName, owner, spawnPos, facing);
+                proj.pooled = true;
+                _pool[slot] = proj;
+                return proj;
+            }
+            ProjectilePreset preset = GetPresetForFighter(fighterName);
+            proj.gameObject.SetActive(true);
+            proj.ResetPooled(preset.name, preset.speed, preset.damage, preset.trailColor, owner, spawnPos, facing);
+            return proj;
+        }
 
         public static ProjectilePreset GetPresetForFighter(string fighterName)
         {
             if (string.IsNullOrEmpty(fighterName)) return _presets["Kai"];
+            string bestKey = null;
             foreach (var kvp in _presets)
             {
-                if (fighterName.IndexOf(kvp.Key, StringComparison.OrdinalIgnoreCase) >= 0)
-                {
-                    return kvp.Value;
-                }
+                if (fighterName.IndexOf(kvp.Key, StringComparison.OrdinalIgnoreCase) < 0) continue;
+                if (bestKey == null || kvp.Key.Length > bestKey.Length) bestKey = kvp.Key;
             }
+            if (bestKey != null) return _presets[bestKey];
             return _presets["Fina"];
         }
 

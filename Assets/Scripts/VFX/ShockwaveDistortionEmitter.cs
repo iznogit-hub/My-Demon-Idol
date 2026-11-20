@@ -13,22 +13,41 @@ namespace DemonIdol.VFX
     public class ShockwaveDistortionEmitter : MonoBehaviour
     {
         private static Material _distortionMaterial;
+        private Material _slotMaterial;
+
+        static readonly ShockwaveDistortionEmitter[] Pool = new ShockwaveDistortionEmitter[6];
+        static int _poolCursor;
 
         public static void EmitShockwave(Vector3 position, float maxRadius = 2.4f, float duration = 0.28f)
         {
-            GameObject waveGo = new GameObject("ShockwaveDistortionRing");
-            waveGo.transform.position = new Vector3(position.x, position.y, 0f);
+            EmitPooled(position, maxRadius, duration);
+        }
 
-            var emitter = waveGo.AddComponent<ShockwaveDistortionEmitter>();
+        public static void EmitPooled(Vector3 position, float maxRadius, float duration)
+        {
+            int slot = _poolCursor;
+            _poolCursor = (_poolCursor + 1) % Pool.Length;
+            var emitter = Pool[slot];
+            if (emitter == null)
+            {
+                GameObject waveGo = new GameObject("ShockwaveDistortionRing");
+                emitter = waveGo.AddComponent<ShockwaveDistortionEmitter>();
+                Pool[slot] = emitter;
+            }
+            emitter.gameObject.SetActive(true);
+            emitter.transform.position = new Vector3(position.x, position.y, 0f);
+            emitter.StopAllCoroutines();
             emitter.StartExpansion(maxRadius, duration);
         }
 
         private void StartExpansion(float maxRadius, float duration)
         {
-            MeshFilter mf = gameObject.AddComponent<MeshFilter>();
-            MeshRenderer mr = gameObject.AddComponent<MeshRenderer>();
+            MeshFilter mf = GetComponent<MeshFilter>();
+            MeshRenderer mr = GetComponent<MeshRenderer>();
+            if (mf == null) mf = gameObject.AddComponent<MeshFilter>();
+            if (mr == null) mr = gameObject.AddComponent<MeshRenderer>();
 
-            mf.mesh = CreateRingMesh();
+            if (mf.sharedMesh == null) mf.sharedMesh = CreateRingMesh();
 
             if (_distortionMaterial == null)
             {
@@ -43,10 +62,13 @@ namespace DemonIdol.VFX
                 }
             }
 
-            Material instanceMat = new Material(_distortionMaterial);
-            mr.material = instanceMat;
+            if (_slotMaterial == null)
+            {
+                _slotMaterial = new Material(_distortionMaterial);
+                mr.sharedMaterial = _slotMaterial;
+            }
 
-            StartCoroutine(ExpandRoutine(instanceMat, maxRadius, duration));
+            StartCoroutine(ExpandRoutine(_slotMaterial, maxRadius, duration));
         }
 
         private IEnumerator ExpandRoutine(Material mat, float maxRadius, float duration)
@@ -81,7 +103,7 @@ namespace DemonIdol.VFX
                 yield return null;
             }
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         private Mesh CreateRingMesh()

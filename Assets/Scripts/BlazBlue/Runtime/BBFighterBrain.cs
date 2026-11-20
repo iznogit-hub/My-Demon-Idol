@@ -39,6 +39,9 @@ namespace DemonIdol.BlazBlue
         public BBAttackData currentAttack;
         public int attackTick = 0;
         public BBHitMask attackHitMask;
+        public float ActiveDamageScale = 1f;
+        public float ActiveReachScale = 1f;
+        public int SignatureHitstopBonus;
 
         public BBInputHistory History { get; private set; } = new BBInputHistory();
         public BBCommandInterpreter Interpreter { get; private set; } = new BBCommandInterpreter();
@@ -397,6 +400,21 @@ namespace DemonIdol.BlazBlue
             currentAttack = attack;
             attackTick = 0;
             attackHitMask.Clear();
+            ActiveDamageScale = 1f;
+            ActiveReachScale = 1f;
+            SignatureHitstopBonus = 0;
+            string charId = fighter != null && fighter.appliedDefinition != null ? fighter.appliedDefinition.id : null;
+            if (BBSignatureTable.TryGet(charId, attack.moveId, out var signature))
+            {
+                ActiveDamageScale = signature.damageScale;
+                ActiveReachScale = signature.reachScale;
+                SignatureHitstopBonus = signature.hitstopBonus;
+                BBContactPresentation.OnPortraitHook?.Invoke(charId, "signature:" + signature.clipToken);
+            }
+            if (BBProjectileCaster.ShouldSpawn(charId, attack.moveId))
+            {
+                BBProjectileCaster.Spawn(fighter, attack.moveId);
+            }
             bbState = attack.startupFrames > 0 ? BBState.AttackStartup : BBState.AttackActive;
             stateTick = 0;
             currentInvuln = BBInvuln.None;
@@ -481,6 +499,18 @@ namespace DemonIdol.BlazBlue
             {
                 int beforeCount = buffer.count;
                 currentAttack.boxes.GetBoxes(attackTick, buffer, posX, posY, facing);
+                if (!Mathf.Approximately(ActiveReachScale, 1f))
+                {
+                    for (int i = beforeCount; i < buffer.count; i++)
+                    {
+                        ref BBWorldBox hit = ref buffer.boxes[i];
+                        if (hit.kind != BBBoxKind.Hit) continue;
+                        float hx = hit.HalfWidth * ActiveReachScale;
+                        float cx = hit.CenterX;
+                        hit.minX = cx - hx;
+                        hit.maxX = cx + hx;
+                    }
+                }
 
                 // Spec 6.4: During active ticks, add extended hurtbox over attacking limb (70% size, 0.04m behind leading edge) unless disjoint
                 if (bbState == BBState.AttackActive)
