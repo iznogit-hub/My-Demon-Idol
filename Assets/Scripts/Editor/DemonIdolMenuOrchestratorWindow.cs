@@ -18,7 +18,7 @@ namespace DemonIdol.EditorTools
     {
         private static readonly string[] CharacterIds = new string[]
         {
-            "C01", "C02", "C03", "C04", "C05", "C06", "C07",
+            "C01", "C02", "C04", "C05", "C06", "C07",
             "C08", "C09", "C10", "C11", "C12", "C13", "C14"
         };
 
@@ -26,7 +26,6 @@ namespace DemonIdol.EditorTools
         {
             "C01 - Akio (Highschool)",
             "C02 - Aika (Highschool)",
-            "C03 - Ren (Blade Rushdown)",
             "C04 - UnityChan (Locomotion)",
             "C05 - Akane (Anime Brawler)",
             "C06 - Cultist (Occult Grappler)",

@@ -115,7 +115,7 @@ namespace DemonIdol.Cutscenes
         private static readonly List<StoryCheckpoint> _defaultCheckpoints = new List<StoryCheckpoint>
         {
             new StoryCheckpoint { checkpointId = CHECKPOINT_ACT1_CLEAR, chapterTitle = "ACT 1: The Empty Stage", opponentName = "C02", introCutsceneSlotId = "S02_ACT1_TRANSITION", victoryCutsceneSlotId = "S03_ACT2_TRANSITION" },
-            new StoryCheckpoint { checkpointId = CHECKPOINT_ACT2_CLEAR, chapterTitle = "ACT 2: Ink and Applause", opponentName = "C03", introCutsceneSlotId = "S03_ACT2_TRANSITION", victoryCutsceneSlotId = "S04_ACT3_TRANSITION" },
+            new StoryCheckpoint { checkpointId = CHECKPOINT_ACT2_CLEAR, chapterTitle = "ACT 2: Ink and Applause", opponentName = "C04", introCutsceneSlotId = "S03_ACT2_TRANSITION", victoryCutsceneSlotId = "S04_ACT3_TRANSITION" },
             new StoryCheckpoint { checkpointId = CHECKPOINT_STORY_CLEAR, chapterTitle = "ACT 3: Curtain of Iron", opponentName = "C06", introCutsceneSlotId = "S05_FINAL_BOSS_INTRO", victoryCutsceneSlotId = "S06_FINAL_BOSS_DEFEAT" }
         };
 

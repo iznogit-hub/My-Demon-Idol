@@ -43,7 +43,6 @@ namespace DemonIdol.BlazBlue.Editor
             string[] charPrefabs = {
                 "Assets/Prefabs/Characters/C01_Akio.prefab",
                 "Assets/Prefabs/Characters/C02_Aika.prefab",
-                "Assets/Prefabs/Characters/C03_Ren.prefab",
                 "Assets/Prefabs/Characters/C04_UnityChan.prefab",
                 "Assets/Prefabs/Characters/C05_Akane.prefab",
                 "Assets/Prefabs/Characters/C06_Cultist.prefab",

@@ -1644,12 +1644,6 @@ namespace DemonIdol.Editor
                 false,
                 lightAtk, medAtk, heavyAtk, driveAtk, jumpAtk, superAtk, throwAtk, lowAtk, templateAnim);
 
-            BuildFighterCombatPrefab(
-                "Fighter_Kai",
-                "Assets/MDI_Characters/Clans/Occult/Kai/Kai.prefab",
-                "Kai",
-                true,
-                lightAtk, medAtk, heavyAtk, driveAtk, jumpAtk, superAtk, throwAtk, lowAtk, templateAnim);
         }
 
         private static void BuildFighterCombatPrefab(

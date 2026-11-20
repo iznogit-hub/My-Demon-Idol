@@ -68,7 +68,7 @@ namespace DemonIdol.Characters.Editor
 
                 new ClanSpec { clanId = "CLAN_OCCULT", clanName = "Occult Clan", stageName = "Whispering Grove", folder = "Occult",
                     primaryColor = new Color(0.5f, 0.1f, 0.7f), secondaryColor = new Color(0.15f, 0.05f, 0.25f), neonHex = "#9D00FF",
-                    fighterIds = new string[] { "OCC_KAI", "OCC_REN", "OCC_REIKA" } },
+                    fighterIds = new string[] { "OCC_REIKA" } },
 
                 new ClanSpec { clanId = "CLAN_NEON", clanName = "Neon Clan", stageName = "Neon Shrine", folder = "Neon",
                     primaryColor = new Color(0.0f, 0.7f, 0.9f), secondaryColor = new Color(0.1f, 0.1f, 0.2f), neonHex = "#00D4FF",
@@ -118,16 +118,6 @@ namespace DemonIdol.Characters.Editor
                     secondaryTint = new Color(0.7f, 0.15f, 0.25f), accentTint = new Color(1.0f, 0.45f, 0.65f) },
 
                 // 3. Occult Clan
-                new FighterSpec { id = "OCC_KAI", displayName = "Kai the Fool", clan = "Occult", gender = FighterGender.Male, folder = "Occult/Kai",
-                    neonHex = "#9D00FF", neonIntensity = 2.4f, accessoryName = "Fool's Feathered Talisman Band", targetBone = HumanoidBoneTarget.Head,
-                    skinTint = new Color(0.96f, 0.88f, 0.82f), hairTint = new Color(0.95f, 0.95f, 0.98f), primaryTint = new Color(0.35f, 0.15f, 0.5f),
-                    secondaryTint = new Color(0.15f, 0.12f, 0.2f), accentTint = new Color(0.7f, 0.2f, 1.0f) },
-
-                new FighterSpec { id = "OCC_REN", displayName = "Ren", clan = "Occult", gender = FighterGender.Male, folder = "Occult/Ren",
-                    neonHex = "#4B0082", neonIntensity = 2.3f, accessoryName = "Cultist Ritual Horn Crest", targetBone = HumanoidBoneTarget.Head,
-                    skinTint = new Color(0.9f, 0.85f, 0.85f), hairTint = new Color(0.25f, 0.15f, 0.35f), primaryTint = new Color(0.18f, 0.1f, 0.25f),
-                    secondaryTint = new Color(0.4f, 0.1f, 0.2f), accentTint = new Color(0.5f, 0.1f, 0.9f) },
-
                 new FighterSpec { id = "OCC_REIKA", displayName = "Reika the Veilweaver", clan = "Occult", gender = FighterGender.Female, folder = "Occult/Reika",
                     neonHex = "#00FFFF", neonIntensity = 2.5f, accessoryName = "Mystic Veil & Prayer Bead Halo", targetBone = HumanoidBoneTarget.Head,
                     skinTint = new Color(0.98f, 0.9f, 0.88f), hairTint = new Color(0.4f, 0.2f, 0.6f), primaryTint = new Color(0.25f, 0.18f, 0.35f),

@@ -147,7 +147,7 @@ namespace DemonIdol.Editor
         // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Narrator & Cutscenes/Log Announcer Roster Commentary", priority = 27)]
         public static void LogRosterCommentary()
         {
-            string[] fighterIds = new[] { "C01", "C02", "C03", "C04", "C05", "C06" };
+            string[] fighterIds = new[] { "C01", "C02", "C04", "C05", "C06" };
             foreach (var id in fighterIds)
             {
                 string quote = DemonLordNarratorManager.Instance.GetFighterCommentary(id);

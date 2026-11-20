@@ -1164,9 +1164,13 @@ namespace DemonIdol.Editor
             bool m01ClearedBefore = scm.HasClearedStory("M01");
             bool m01Act1Before = scm.HasCheckpoint("M01", StoryCheckpointManager.CHECKPOINT_ACT1_CLEAR);
 
-            CharacterRegistry.ReorderCharacters(new List<string> { "C14", "C13", "C12", "C11", "C10", "C09", "C08", "C07", "C06", "C05", "C04", "C03", "C02", "C01" });
+            CharacterRegistry.ReorderCharacters(new List<string> {
+                "C14", "C13", "C12", "C11", "C10", "C09", "C08", "C07", "C06", "C05", "C04", "C02", "C01",
+                "SK08", "SK06", "SK05", "SK03", "SK02",
+                "EX07", "EX06", "EX05", "EX04", "EX03", "EX02", "EX01"
+            });
             var reordered = CharacterRegistry.GetAllCharacters();
-            AssertCondition(reordered[0].id == "C14" && reordered[13].id == "C01", "T2.1: Registry successfully inverted/reordered");
+            AssertCondition(reordered[0].id == "C14" && reordered[reordered.Count - 1].id == "EX01" && reordered.Count == 25, "T2.1: Registry successfully inverted/reordered");
 
             scm.LoadSaveData();
             AssertCondition(scm.HasClearedStory("M01") == m01ClearedBefore && scm.HasCheckpoint("M01", StoryCheckpointManager.CHECKPOINT_ACT1_CLEAR) == m01Act1Before,
@@ -1179,7 +1183,7 @@ namespace DemonIdol.Editor
             {
                 if (!ReferenceEquals(c, null)) countedFourteen++;
             }
-            AssertCondition(countedFourteen == 14, "T3.1: Enumerated exactly 14 definitions without fixed-size array constraints");
+            AssertCondition(countedFourteen == 25, "T3.1: Enumerated exactly 25 definitions without fixed-size array constraints");
 
             CharacterRegistry.RegisterCharacter(dummyM13);
             int countedNineteen = 0;
@@ -1389,7 +1393,7 @@ namespace DemonIdol.Editor
             // Checkpoint D: 18 Playable Fighters via CharacterRegistry
             // -----------------------------------------------------------------------------------------
             var roster18 = CharacterRegistry.GetAuthoritative18Roster();
-            AssertCondition(roster18 != null && (roster18.Count == 18 || roster18.Count == 14),
+            AssertCondition(roster18 != null && roster18.Count == 25,
                 $"D1.1: CharacterRegistry provides authoritative fighters (Count: {roster18?.Count})");
 
             var c01 = CharacterRegistry.GetCharacterById("C01");
@@ -1399,7 +1403,7 @@ namespace DemonIdol.Editor
             AssertCondition(c02 != null && (c02.displayName.StartsWith("Reika") || c02.displayName.StartsWith("Aika")), "D1.3: C02 resolves to Reika the Veilweaver / Aika");
 
             var c03 = CharacterRegistry.GetCharacterById("C03");
-            AssertCondition(c03 != null && (c03.displayName.StartsWith("Arin") || c03.displayName.StartsWith("Ren")), "D1.4: C03 resolves to Arin the Iron Vow / Ren");
+            AssertCondition(c03 == null, "D1.4: C03 Ren is no longer on the roster");
 
             var st01 = MoveSet.CreateSafeInstance<StageDefinition>();
             st01.id = "ST01"; st01.displayName = "Lantern Gate";

@@ -27,14 +27,6 @@ namespace DemonIdol.Combat
             { "F01", "C02" },
             { "Nobara", "C02" },
 
-            // C03 - Ren (Male Hero Protagonist Counterpart)
-            { "Ren", "C03" },
-            { "C12M", "C03" },
-            { "MaleHero", "C03" },
-            { "C03", "C03" },
-            { "M02", "C03" },
-            { "Yuji", "C03" },
-
             // C04 - UnityChan (Gojo homage)
             { "UnityChan", "C04" },
             { "unitychan_dynamic", "C04" },
@@ -124,13 +116,10 @@ namespace DemonIdol.Combat
             { "Nox", "C14" },
             { "M05", "C14" },
             // Synty Sidekicks (8)
-            { "SK01", "SK01" }, { "Valen", "SK01" },
             { "SK02", "SK02" }, { "Galahad", "SK02" },
             { "SK03", "SK03" }, { "Vex", "SK03" },
-            { "SK04", "SK04" },
             { "SK05", "SK05" }, { "LordMorvath", "SK05" }, { "Morvath", "SK05" },
             { "SK06", "SK06" }, { "CommanderRen", "SK06" },
-            { "SK07", "SK07" }, { "Malakar", "SK07" },
             { "SK08", "SK08" }, { "Torgrim", "SK08" },
 
             // External Dota Heroes (8)
@@ -141,7 +130,6 @@ namespace DemonIdol.Combat
             { "EX05", "EX05" }, { "Kira", "EX05" },
             { "EX06", "EX06" }, { "Sentry", "EX06" },
             { "EX07", "EX07" }, { "Lyra", "EX07" },
-            { "EX08", "EX08" }, { "Garrick", "EX08" },
         };
 
         public static string ResolveCanonicalId(string idOrAlias)
@@ -183,7 +171,6 @@ namespace DemonIdol.Combat
             {
                 "C01" => "Akio",
                 "C02" => "Aika",
-                "C03" => "Ren",
                 "C04" => "UnityChan",
                 "C05" => "Akane",
                 "C06" => "Cultist",
@@ -195,13 +182,10 @@ namespace DemonIdol.Combat
                 "C12" => "Fina",
                 "C13" => "SapphiArtchan",
                 "C14" => "Muryotaisu",
-                "SK01" => "Valen",
                 "SK02" => "Galahad",
                 "SK03" => "Vex",
-                "SK04" => "Jin",
                 "SK05" => "LordMorvath",
                 "SK06" => "CommanderRen",
-                "SK07" => "Malakar",
                 "SK08" => "Torgrim",
                 "EX01" => "Hugo",
                 "EX02" => "Granite",
@@ -210,7 +194,6 @@ namespace DemonIdol.Combat
                 "EX05" => "Kira",
                 "EX06" => "Sentry",
                 "EX07" => "Lyra",
-                "EX08" => "Garrick",
 
                 _ => charId ?? "Fighter"
             };
@@ -254,16 +237,6 @@ namespace DemonIdol.Combat
                 domainDesc = "Drives giant nails into the stage floor, triggering linked cursed energy detonations across all distances.",
                 prefabPath = "Assets/Prefabs/Characters/C02_Aika.prefab",
                 signatureStageId = "ST02"
-            },
-            new RosterEntry
-            {
-                id = "C03", name = "Ren", title = "Occult Vanguard Prodigy", archetype = "Male Protagonist / Rushdown",
-                desc = "Charismatic male lead protagonist wielding dark occult martial arts, high-impact counter strikes, and vortex pressure.",
-                speed = 95f, power = 92f, reach = 76f, defense = 80f,
-                domain = "Malevolent Occult Domain",
-                domainDesc = "Concentrates cursed spark into instantaneous double-impact shockwaves, shattering defensive guards.",
-                prefabPath = "Assets/Prefabs/Characters/C12M_Ren.prefab",
-                signatureStageId = "ST03"
             },
             new RosterEntry
             {
@@ -378,16 +351,6 @@ namespace DemonIdol.Combat
             // Synty Sidekicks (8)
             new RosterEntry
             {
-                id = "SK01", name = "Valen", title = "Shadow Scout", archetype = "Ninja / Dual Blades",
-                desc = "Stealthy shinobi darting through shadows, delivering high-speed dual ninjato crossups and evasive smoke teleports.",
-                speed = 92f, power = 78f, reach = 75f, defense = 70f,
-                domain = "Shadow Eclipse Mirage",
-                domainDesc = "Shrouds the battlefield in black mist, blinding the target while shadow reflections strike from all angles.",
-                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK01_Valen.prefab",
-                signatureStageId = "ST04"
-            },
-            new RosterEntry
-            {
                 id = "SK02", name = "Galahad", title = "Sun Templar", archetype = "Knight / Sword & Shield",
                 desc = "Heavily armored righteous paladin deflecting heavy blows with an iron barrier shield and retaliating with holy thrusts.",
                 speed = 74f, power = 88f, reach = 82f, defense = 95f,
@@ -408,16 +371,6 @@ namespace DemonIdol.Combat
             },
             new RosterEntry
             {
-                id = "SK04", name = "Jin", title = "Zen Duelist", archetype = "Karate / Unarmed Kata",
-                desc = "Disciplined martial master chaining lightning palm strikes, precise parries, and aerial roundhouse juggles.",
-                speed = 90f, power = 84f, reach = 70f, defense = 80f,
-                domain = "Tranquil Void Horizon",
-                domainDesc = "Manifests a reflective water domain where every physical counter lands with double hitstun.",
-                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK04_Jin.prefab",
-                signatureStageId = "ST03"
-            },
-            new RosterEntry
-            {
                 id = "SK05", name = "Lord Morvath", title = "Void Warlock", archetype = "Sorceress / Dark Magic",
                 desc = "Malevolent warlock weaving gravitational singularities and corrosive dark orb traps across the screen.",
                 speed = 76f, power = 94f, reach = 88f, defense = 75f,
@@ -435,16 +388,6 @@ namespace DemonIdol.Combat
                 domainDesc = "Locks down the arena within iron palisades, granting temporary super armor on heavy startup frames.",
                 prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK06_CommanderRen.prefab",
                 signatureStageId = "ST02"
-            },
-            new RosterEntry
-            {
-                id = "SK07", name = "Malakar", title = "Archon Seer", archetype = "Mage / Arcane Staff",
-                desc = "Ancient celestial scholar conjuring radiant stasis beams and delayed arcane minefields from afar.",
-                speed = 78f, power = 92f, reach = 92f, defense = 76f,
-                domain = "Chrono Astral Stasis",
-                domainDesc = "Freezes temporal flow around the target, dramatically extending juggle windows and combo potential.",
-                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK07_Malakar.prefab",
-                signatureStageId = "ST01"
             },
             new RosterEntry
             {
@@ -525,16 +468,6 @@ namespace DemonIdol.Combat
                 domain = "Celestial Radiance Sanctum",
                 domainDesc = "Floods the arena with blinding holy light, restoring user health while damaging any enemy in proximity.",
                 prefabPath = "Assets/Prefabs/Characters/DotaHeroes/EX07_Lyra.prefab",
-                signatureStageId = "ST03"
-            },
-            new RosterEntry
-            {
-                id = "EX08", name = "Garrick", title = "Highland Marauder", archetype = "Hammer / Mountain Cleaver",
-                desc = "Fierce northern berserker leaping across the screen to crush guards with colossal two-handed cleavers.",
-                speed = 76f, power = 96f, reach = 86f, defense = 88f,
-                domain = "Glacial Avalanche Slam",
-                domainDesc = "Creates a catastrophic ice eruption freezing the enemy solid on impact for a guaranteed full combo.",
-                prefabPath = "Assets/Prefabs/Characters/DotaHeroes/EX08_Garrick.prefab",
                 signatureStageId = "ST03"
             }
         };

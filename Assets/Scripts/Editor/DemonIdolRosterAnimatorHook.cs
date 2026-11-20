@@ -80,13 +80,6 @@ namespace DemonIdol.Characters.Editor
                 "Assets/Novacorp Studios/Characters/Hikari Series/Aika/Highschool Uniform/Prefab/Aika Highschool Uniform.prefab",
                 "Assets/Novacorp Studios/Characters/Hikari Series/Aika/Highschool Uniform/FBX/Aika Highschool Uniform.fbx"
             ),
-            // C03 Ren (Human Melee Animations)
-            new FighterSpec(
-                "C03", "Ren", "C03_Ren.prefab",
-                "Assets/MDI_Characters/Clans/Occult/Ren/Ren.prefab",
-                "Assets/MDI_Characters/Bases/Ren_Anime/Base_Ren_Anime.fbx",
-                "Assets/MDI_Characters/Runtime/AnimatorOverride_C03_Ren.overrideController"
-            ),
             // C04 UnityChan
             new FighterSpec(
                 "C04", "UnityChan", "C04_UnityChan.prefab",

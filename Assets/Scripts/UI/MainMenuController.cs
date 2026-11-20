@@ -101,15 +101,15 @@ namespace DemonIdol.UI
 
         public static readonly string[] CharacterIds = new[]
         {
-            // Faction 1: Demon Sorcerers (14)
-            "C01", "C02", "C03", "C04", "C05", "C06", "C07",
+            // Faction 1: Demon Sorcerers (13). C03 Ren was removed.
+            "C01", "C02", "C04", "C05", "C06", "C07",
             "C08", "C09", "C10", "C11", "C12", "C13", "C14",
 
-            // Faction 2: Synty Sidekicks (8)
-            "SK01", "SK02", "SK03", "SK04", "SK05", "SK06", "SK07", "SK08",
+            // Faction 2: Synty Sidekicks (5). Valen, Jin, and Malakar were removed. CommanderRen stays.
+            "SK02", "SK03", "SK05", "SK06", "SK08",
 
-            // Faction 3: External Dota Heroes (8)
-            "EX01", "EX02", "EX03", "EX04", "EX05", "EX06", "EX07", "EX08"
+            // Faction 3: External Dota Heroes (7). Garrick was removed.
+            "EX01", "EX02", "EX03", "EX04", "EX05", "EX06", "EX07"
         };
 
         private static readonly string[] StageIds = new[]
@@ -166,12 +166,12 @@ namespace DemonIdol.UI
             if (PlayerPrefs.HasKey("MDI_P1_CharacterId"))
             {
                 string p1Pref = PlayerPrefs.GetString("MDI_P1_CharacterId");
-                if (!string.IsNullOrEmpty(p1Pref)) SelectedP1Id = p1Pref;
+                if (!string.IsNullOrEmpty(p1Pref) && System.Array.IndexOf(CharacterIds, p1Pref) >= 0) SelectedP1Id = p1Pref;
             }
             if (PlayerPrefs.HasKey("MDI_P2_CharacterId"))
             {
                 string p2Pref = PlayerPrefs.GetString("MDI_P2_CharacterId");
-                if (!string.IsNullOrEmpty(p2Pref)) SelectedP2Id = p2Pref;
+                if (!string.IsNullOrEmpty(p2Pref) && System.Array.IndexOf(CharacterIds, p2Pref) >= 0) SelectedP2Id = p2Pref;
             }
 
             SetMenuState(initial);

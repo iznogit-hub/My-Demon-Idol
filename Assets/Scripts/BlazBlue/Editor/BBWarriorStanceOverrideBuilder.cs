@@ -53,15 +53,6 @@ namespace DemonIdol.BlazBlue.Editor
             },
             new WarriorConfig
             {
-                CharacterId = "C03",
-                CharacterName = "Ren",
-                WarriorName = "Brute",
-                AnimationsFolder = "Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations",
-                OverrideControllerPath = "Assets/MDI_Characters/Runtime/BlazBlue/Ren_BB_Override.overrideController",
-                ProfileAssetPath = null
-            },
-            new WarriorConfig
-            {
                 CharacterId = "C04",
                 CharacterName = "UnityChan",
                 WarriorName = "Archer",

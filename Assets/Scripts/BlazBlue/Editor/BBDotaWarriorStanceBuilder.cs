@@ -45,13 +45,10 @@ namespace DemonIdol.BlazBlue.Editor
         public static readonly HeroStanceConfig[] HERO_CONFIGS = new HeroStanceConfig[]
         {
             // 8 Synty Sidekicks
-            new HeroStanceConfig("SK01", "Valen", "Assets/Prefabs/Characters/Sidekicks/SK01_Valen.prefab", "Ninja", $"{BUNDLE_1}/Ninja Warrior Mecanim Animation Pack/Animations"),
             new HeroStanceConfig("SK02", "Galahad", "Assets/Prefabs/Characters/Sidekicks/SK02_Galahad.prefab", "Knight", $"{BUNDLE_2}/Knight Warrior Mecanim Animation Pack/Animations"),
             new HeroStanceConfig("SK03", "Vex", "Assets/Prefabs/Characters/Sidekicks/SK03_Vex.prefab", "Crossbow", $"{BUNDLE_3}/Crossbow Warrior Mecanim Animation Pack/Animations"),
-            new HeroStanceConfig("SK04", "Jin", "Assets/Prefabs/Characters/Sidekicks/SK04_Jin.prefab", "Karate", $"{BUNDLE_1}/Karate Warrior Mecanim Animation Pack/Animations"),
             new HeroStanceConfig("SK05", "LordMorvath", "Assets/Prefabs/Characters/Sidekicks/SK05_LordMorvath.prefab", "2Handed", $"{BUNDLE_2}/2 Handed Warrior Mecanim Animation Pack/Animations"),
             new HeroStanceConfig("SK06", "CommanderRen", "Assets/Prefabs/Characters/Sidekicks/SK06_CommanderRen.prefab", "Spearman", $"{BUNDLE_3}/Spearman Warrior Mecanim Animation Pack/Animations"),
-            new HeroStanceConfig("SK07", "Malakar", "Assets/Prefabs/Characters/Sidekicks/SK07_Malakar.prefab", "Mage", $"{BUNDLE_2}/Mage Warrior Mecanim Animation Pack/Animations"),
             new HeroStanceConfig("SK08", "Torgrim", "Assets/Prefabs/Characters/Sidekicks/SK08_Torgrim.prefab", "Hammer", $"{BUNDLE_3}/Hammer Warrior Mecanim Animation Pack/Animations"),
 
             // 8 External Dota Heroes
@@ -61,8 +58,7 @@ namespace DemonIdol.BlazBlue.Editor
             new HeroStanceConfig("EX04", "OfficerK", "Assets/Prefabs/Characters/DotaHeroes/EX04_OfficerK.prefab", "Karate", $"{BUNDLE_1}/Karate Warrior Mecanim Animation Pack/Animations"),
             new HeroStanceConfig("EX05", "Kira", "Assets/Prefabs/Characters/DotaHeroes/EX05_Kira.prefab", "Swordsman", $"{BUNDLE_3}/Swordsman Warrior Mecanim Animation Pack/Animations"),
             new HeroStanceConfig("EX06", "Sentry", "Assets/Prefabs/Characters/DotaHeroes/EX06_Sentry.prefab", "Spearman", $"{BUNDLE_3}/Spearman Warrior Mecanim Animation Pack/Animations"),
-            new HeroStanceConfig("EX07", "Lyra", "Assets/Prefabs/Characters/DotaHeroes/EX07_Lyra.prefab", "Sorceress", $"{BUNDLE_1}/Sorceress Warrior Mecanim Animation Pack/Animations"),
-            new HeroStanceConfig("EX08", "Garrick", "Assets/Prefabs/Characters/DotaHeroes/EX08_Garrick.prefab", "Brute", $"{BUNDLE_1}/Brute Warrior Mecanim Animation Pack/Animations")
+            new HeroStanceConfig("EX07", "Lyra", "Assets/Prefabs/Characters/DotaHeroes/EX07_Lyra.prefab", "Sorceress", $"{BUNDLE_1}/Sorceress Warrior Mecanim Animation Pack/Animations")
         };
 
         [InitializeOnLoadMethod]
