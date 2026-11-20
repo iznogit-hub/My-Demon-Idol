@@ -360,7 +360,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 2
-  m_Color: {r: 1.0, g: 0.85, b: 0.9, a: 1}
+  m_Color: {r: 1, g: 0.85, b: 0.9, a: 1}
   m_Intensity: 1.35
   m_Range: 32
   m_SpotAngle: 30
@@ -444,7 +444,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6400617421943341513}
+  - {fileID: 6761183000590151615}
   m_Father: {fileID: 400000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1510221700456760122
@@ -455,29 +455,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 831593776576260175}
     m_Modifications:
-    - target: {fileID: 7783131211116990044, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
-      propertyPath: m_Name
-      value: CollegeRaimon_Courtyard
-      objectReference: {fileID: 0}
     - target: {fileID: 5269755544991313029, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5269755544991313029, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.2
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 5269755544991313029, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -100.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5269755544991313029, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.3
+      value: 1.41
       objectReference: {fileID: 0}
     - target: {fileID: 5269755544991313029, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5269755544991313029, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
       propertyPath: m_LocalRotation.x
@@ -485,7 +481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5269755544991313029, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5269755544991313029, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
       propertyPath: m_LocalRotation.z
@@ -493,14 +489,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5269755544991313029, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6295574027373211474, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 41.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7783131211116990044, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
+      propertyPath: m_Name
+      value: CollegeRaimon_Courtyard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
---- !u!4 &6400617421943341513 stripped
+--- !u!4 &6761183000590151615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5269755544991313029, guid: e74149b2c38522a49903fabd76c6afe7, type: 3}
   m_PrefabInstance: {fileID: 1510221700456760122}
