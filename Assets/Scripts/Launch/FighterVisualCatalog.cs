@@ -147,6 +147,150 @@ namespace DemonIdol.Launch
                 Read = "Ancient calamity king of curses with blood crimson robes and malevolent shrine neon.",
                 PrefabAssetPath = "Assets/Prefabs/Characters/C14_Muryotaisu.prefab",
                 ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 15. SK01 Valen
+            new FighterVisualLook
+            {
+                CharacterId = "SK01",
+                DisplayName = "Valen",
+                Read = "Shadow scout shinobi wielding dual ninjato with rapid shadow-step strikes.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK01_Valen.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 16. SK02 Galahad
+            new FighterVisualLook
+            {
+                CharacterId = "SK02",
+                DisplayName = "Galahad",
+                Read = "Sun templar knight encased in radiant plate armor with sword and tower shield.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK02_Galahad.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 17. SK03 Vex
+            new FighterVisualLook
+            {
+                CharacterId = "SK03",
+                DisplayName = "Vex",
+                Read = "Dune raider desert marauder swinging colossal curved scimitars.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK03_Vex.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 18. SK04 Jin
+            new FighterVisualLook
+            {
+                CharacterId = "SK04",
+                DisplayName = "Jin",
+                Read = "Zen martial artist delivering lightning-fast bare-handed kata combos.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK04_Jin.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 19. SK05 Lord Morvath
+            new FighterVisualLook
+            {
+                CharacterId = "SK05",
+                DisplayName = "LordMorvath",
+                Read = "Abyssal warlock channeling dark vortex gravity and void lightning.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK05_LordMorvath.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 20. SK06 Commander Ren
+            new FighterVisualLook
+            {
+                CharacterId = "SK06",
+                DisplayName = "CommanderRen",
+                Read = "Heavily armored field commander wielding massive greatsword cleaves.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK06_CommanderRen.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 21. SK07 Malakar
+            new FighterVisualLook
+            {
+                CharacterId = "SK07",
+                DisplayName = "Malakar",
+                Read = "Archon astral mystic manipulating cosmic stasis staff projections.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK07_Malakar.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 22. SK08 Torgrim
+            new FighterVisualLook
+            {
+                CharacterId = "SK08",
+                DisplayName = "Torgrim",
+                Read = "Mountain storm brawler smashing the arena with an earth-shattering warhammer.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK08_Torgrim.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 23. EX01 Hugo
+            new FighterVisualLook
+            {
+                CharacterId = "EX01",
+                DisplayName = "Hugo",
+                Read = "Unstoppable raging berserker cleaving through defensive guards with dual blades.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/DotaHeroes/EX01_Hugo.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 24. EX02 Granite
+            new FighterVisualLook
+            {
+                CharacterId = "EX02",
+                DisplayName = "Granite",
+                Read = "Ancient stone colossus with impenetrable rock armor and ground-slam quakes.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/DotaHeroes/EX02_Granite.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 25. EX03 Viper
+            new FighterVisualLook
+            {
+                CharacterId = "EX03",
+                DisplayName = "Viper",
+                Read = "Toxic shadow operative stalking opponents with blinding agility and poison daggers.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/DotaHeroes/EX03_Viper.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 26. EX04 Officer K
+            new FighterVisualLook
+            {
+                CharacterId = "EX04",
+                DisplayName = "OfficerK",
+                Read = "Tactical urban security specialist enforcing total crowd control and brutal counter-throws.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/DotaHeroes/EX04_OfficerK.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 27. EX05 Kira
+            new FighterVisualLook
+            {
+                CharacterId = "EX05",
+                DisplayName = "Kira",
+                Read = "High-tech apex ranger dominating long-range airspace with celestial energy arrows.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/DotaHeroes/EX05_Kira.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 28. EX06 Sentry
+            new FighterVisualLook
+            {
+                CharacterId = "EX06",
+                DisplayName = "Sentry",
+                Read = "Discipline phalanx guard wall with extended halberd pike reach and counter-thrusts.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/DotaHeroes/EX06_Sentry.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 29. EX07 Lyra
+            new FighterVisualLook
+            {
+                CharacterId = "EX07",
+                DisplayName = "Lyra",
+                Read = "Arcane warrior valkyrie floating above ground with radiant sword beams.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/DotaHeroes/EX07_Lyra.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
+            },
+            // 30. EX08 Garrick
+            new FighterVisualLook
+            {
+                CharacterId = "EX08",
+                DisplayName = "Garrick",
+                Read = "Relentless highland marauder crushing bone and steel with heavy leaping overheads.",
+                PrefabAssetPath = "Assets/Prefabs/Characters/DotaHeroes/EX08_Garrick.prefab",
+                ResourceParts = new[] { "Head", "Spine", "Accessory" }
             }
         };
 

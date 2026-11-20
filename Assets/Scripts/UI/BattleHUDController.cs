@@ -66,6 +66,7 @@ namespace DemonIdol.UI
         [SerializeField] private Button _btnRematch;
         [SerializeField] private Button _btnRetry;
         [SerializeField] private Button _btnCharacterSelect;
+        [SerializeField] private Button _btnStageSelect;
         [SerializeField] private Button _btnReturnToMenu;
 
         [Header("In-Game Pause Modal")]
@@ -73,6 +74,7 @@ namespace DemonIdol.UI
         [SerializeField] private Button _btnPauseResume;
         [SerializeField] private Button _btnPauseRestart;
         [SerializeField] private Button _btnPauseCharSelect;
+        [SerializeField] private Button _btnPauseStageSelect;
         [SerializeField] private Button _btnPauseMenu;
 
         [Header("Touch HUD Controls")]
@@ -971,11 +973,13 @@ namespace DemonIdol.UI
                 if (_btnRematch == null) _btnRematch = FindButtonRecursive(_victoryModal, "Btn_Rematch", "Button_Rematch");
                 if (_btnRetry == null) _btnRetry = FindButtonRecursive(_victoryModal, "Btn_Retry", "Button_Retry");
                 if (_btnCharacterSelect == null) _btnCharacterSelect = FindButtonRecursive(_victoryModal, "Btn_CharacterSelect", "Button_CharSelect");
+                if (_btnStageSelect == null) _btnStageSelect = FindButtonRecursive(_victoryModal, "Btn_StageSelect", "Button_StageSelect");
                 if (_btnReturnToMenu == null) _btnReturnToMenu = FindButtonRecursive(_victoryModal, "Btn_ReturnToMenu", "Btn_Menu", "Button_ReturnToMenu");
 
                 if (_btnRematch != null) { _btnRematch.onClick.RemoveListener(OnClickRematch); _btnRematch.onClick.AddListener(OnClickRematch); }
                 if (_btnRetry != null) { _btnRetry.onClick.RemoveListener(OnClickRetry); _btnRetry.onClick.AddListener(OnClickRetry); }
                 if (_btnCharacterSelect != null) { _btnCharacterSelect.onClick.RemoveListener(OnClickCharacterSelect); _btnCharacterSelect.onClick.AddListener(OnClickCharacterSelect); }
+                if (_btnStageSelect != null) { _btnStageSelect.onClick.RemoveListener(OnClickStageSelect); _btnStageSelect.onClick.AddListener(OnClickStageSelect); }
                 if (_btnReturnToMenu != null) { _btnReturnToMenu.onClick.RemoveListener(OnClickReturnToMenu); _btnReturnToMenu.onClick.AddListener(OnClickReturnToMenu); }
             }
         }
@@ -1187,7 +1191,7 @@ namespace DemonIdol.UI
             GameObject box = new GameObject("VictoryBox", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
             box.transform.SetParent(modal.transform, false);
             RectTransform boxRt = box.GetComponent<RectTransform>();
-            boxRt.sizeDelta = new Vector2(500f, 380f);
+            boxRt.sizeDelta = new Vector2(500f, 440f);
             boxRt.anchoredPosition = Vector2.zero;
             Image boxImg = box.GetComponent<Image>();
             if (atlas != null) atlas.StylePanel(boxImg, true);
@@ -1197,7 +1201,7 @@ namespace DemonIdol.UI
             GameObject txtGo = new GameObject("Text_Winner", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
             txtGo.transform.SetParent(box.transform, false);
             RectTransform txtRt = txtGo.GetComponent<RectTransform>();
-            txtRt.anchoredPosition = new Vector2(0f, 130f);
+            txtRt.anchoredPosition = new Vector2(0f, 150f);
             txtRt.sizeDelta = new Vector2(460f, 50f);
             _victoryWinnerText = txtGo.GetComponent<Text>();
             _victoryWinnerText.font = font;
@@ -1208,15 +1212,19 @@ namespace DemonIdol.UI
             _victoryWinnerText.color = SumiStyleTokens.BrushGold;
 
             // Buttons — Bloodlines styled
-            _btnRematch = CreateModalButton(box.transform, "Btn_Rematch", "REMATCH", new Vector2(0f, 50f), SumiStyleTokens.ToriiRed, font);
+            _btnRematch = CreateModalButton(box.transform, "Btn_Rematch", "REMATCH", new Vector2(0f, 75f), SumiStyleTokens.ToriiRed, font);
             if (atlas != null) atlas.StyleButton(_btnRematch, 1, true);
             _btnRematch.onClick.AddListener(OnClickRematch);
 
-            _btnCharacterSelect = CreateModalButton(box.transform, "Btn_CharacterSelect", "CHARACTER SELECT", new Vector2(0f, -10f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
+            _btnCharacterSelect = CreateModalButton(box.transform, "Btn_CharacterSelect", "CHARACTER SELECT", new Vector2(0f, 20f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
             if (atlas != null) atlas.StyleButton(_btnCharacterSelect, 2, false);
             _btnCharacterSelect.onClick.AddListener(OnClickCharacterSelect);
 
-            _btnReturnToMenu = CreateModalButton(box.transform, "Btn_ReturnToMenu", "RETURN TO MENU", new Vector2(0f, -70f), SumiStyleTokens.CarbonInkWash, font);
+            _btnStageSelect = CreateModalButton(box.transform, "Btn_StageSelect", "STAGE SELECT", new Vector2(0f, -35f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
+            if (atlas != null) atlas.StyleButton(_btnStageSelect, 2, false);
+            _btnStageSelect.onClick.AddListener(OnClickStageSelect);
+
+            _btnReturnToMenu = CreateModalButton(box.transform, "Btn_ReturnToMenu", "RETURN TO MENU", new Vector2(0f, -90f), SumiStyleTokens.CarbonInkWash, font);
             if (atlas != null) atlas.StyleButton(_btnReturnToMenu, 2, false);
             _btnReturnToMenu.onClick.AddListener(OnClickReturnToMenu);
 
@@ -1308,11 +1316,13 @@ namespace DemonIdol.UI
                 if (_btnPauseResume == null) _btnPauseResume = FindButtonRecursive(_pauseModal, "Btn_PauseResume", "Btn_Resume");
                 if (_btnPauseRestart == null) _btnPauseRestart = FindButtonRecursive(_pauseModal, "Btn_PauseRestart", "Btn_Restart");
                 if (_btnPauseCharSelect == null) _btnPauseCharSelect = FindButtonRecursive(_pauseModal, "Btn_PauseCharSelect", "Btn_CharacterSelect");
+                if (_btnPauseStageSelect == null) _btnPauseStageSelect = FindButtonRecursive(_pauseModal, "Btn_PauseStageSelect", "Btn_StageSelect");
                 if (_btnPauseMenu == null) _btnPauseMenu = FindButtonRecursive(_pauseModal, "Btn_PauseMenu", "Btn_ReturnToMenu");
 
                 if (_btnPauseResume != null) { _btnPauseResume.onClick.RemoveAllListeners(); _btnPauseResume.onClick.AddListener(ToggleInGamePause); }
                 if (_btnPauseRestart != null) { _btnPauseRestart.onClick.RemoveAllListeners(); _btnPauseRestart.onClick.AddListener(() => { ToggleInGamePause(); OnClickRematch(); }); }
                 if (_btnPauseCharSelect != null) { _btnPauseCharSelect.onClick.RemoveAllListeners(); _btnPauseCharSelect.onClick.AddListener(OnClickCharacterSelect); }
+                if (_btnPauseStageSelect != null) { _btnPauseStageSelect.onClick.RemoveAllListeners(); _btnPauseStageSelect.onClick.AddListener(OnClickStageSelect); }
                 if (_btnPauseMenu != null) { _btnPauseMenu.onClick.RemoveAllListeners(); _btnPauseMenu.onClick.AddListener(OnClickReturnToMenu); }
             }
         }
@@ -1339,7 +1349,7 @@ namespace DemonIdol.UI
             GameObject box = new GameObject("PauseBox", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
             box.transform.SetParent(modal.transform, false);
             RectTransform boxRt = box.GetComponent<RectTransform>();
-            boxRt.sizeDelta = new Vector2(460f, 360f);
+            boxRt.sizeDelta = new Vector2(460f, 420f);
             boxRt.anchoredPosition = Vector2.zero;
             Image boxImg = box.GetComponent<Image>();
             if (atlas != null) atlas.StylePanel(boxImg, false);
@@ -1349,7 +1359,7 @@ namespace DemonIdol.UI
             GameObject txtGo = new GameObject("Text_PauseTitle", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
             txtGo.transform.SetParent(box.transform, false);
             RectTransform txtRt = txtGo.GetComponent<RectTransform>();
-            txtRt.anchoredPosition = new Vector2(0f, 130f);
+            txtRt.anchoredPosition = new Vector2(0f, 150f);
             txtRt.sizeDelta = new Vector2(400f, 40f);
             Text pTitle = txtGo.GetComponent<Text>();
             pTitle.font = font;
@@ -1360,11 +1370,11 @@ namespace DemonIdol.UI
             pTitle.color = SumiStyleTokens.BrushGold;
 
             // Buttons — Bloodlines styled
-            _btnPauseResume = CreateModalButton(box.transform, "Btn_PauseResume", "RESUME", new Vector2(0f, 60f), SumiStyleTokens.ToriiRed, font);
+            _btnPauseResume = CreateModalButton(box.transform, "Btn_PauseResume", "RESUME", new Vector2(0f, 80f), SumiStyleTokens.ToriiRed, font);
             if (atlas != null) atlas.StyleButton(_btnPauseResume, 1, true);
             _btnPauseResume.onClick.AddListener(ToggleInGamePause);
 
-            _btnPauseRestart = CreateModalButton(box.transform, "Btn_PauseRestart", "RESTART MATCH", new Vector2(0f, 5f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
+            _btnPauseRestart = CreateModalButton(box.transform, "Btn_PauseRestart", "RESTART MATCH", new Vector2(0f, 25f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
             if (atlas != null) atlas.StyleButton(_btnPauseRestart, 2, false);
             _btnPauseRestart.onClick.AddListener(() =>
             {
@@ -1372,11 +1382,15 @@ namespace DemonIdol.UI
                 OnClickRematch();
             });
 
-            _btnPauseCharSelect = CreateModalButton(box.transform, "Btn_PauseCharSelect", "CHARACTER SELECT", new Vector2(0f, -50f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
+            _btnPauseCharSelect = CreateModalButton(box.transform, "Btn_PauseCharSelect", "CHARACTER SELECT", new Vector2(0f, -30f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
             if (atlas != null) atlas.StyleButton(_btnPauseCharSelect, 2, false);
             _btnPauseCharSelect.onClick.AddListener(OnClickCharacterSelect);
 
-            _btnPauseMenu = CreateModalButton(box.transform, "Btn_PauseMenu", "RETURN TO MENU", new Vector2(0f, -105f), SumiStyleTokens.CarbonInkWash, font);
+            _btnPauseStageSelect = CreateModalButton(box.transform, "Btn_PauseStageSelect", "STAGE SELECT", new Vector2(0f, -85f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
+            if (atlas != null) atlas.StyleButton(_btnPauseStageSelect, 2, false);
+            _btnPauseStageSelect.onClick.AddListener(OnClickStageSelect);
+
+            _btnPauseMenu = CreateModalButton(box.transform, "Btn_PauseMenu", "RETURN TO MENU", new Vector2(0f, -140f), SumiStyleTokens.CarbonInkWash, font);
             if (atlas != null) atlas.StyleButton(_btnPauseMenu, 3, false);
             _btnPauseMenu.onClick.AddListener(OnClickReturnToMenu);
 
@@ -1446,6 +1460,9 @@ namespace DemonIdol.UI
             {
                 DemonIdol.Network.QuantumPvPManager.Instance.LeaveMatch();
             }
+            PlayerPrefs.SetString("MDI_MenuInitialState", "CharacterSelect");
+            PlayerPrefs.SetInt("DemonIdol_ReturnToCharSelect", 1);
+            PlayerPrefs.Save();
             if (BloodTechUIManager.Instance != null)
             {
                 string mode = CharacterSelectUI.Instance != null ? CharacterSelectUI.Instance.ActiveGameMode : "Training";
@@ -1453,10 +1470,28 @@ namespace DemonIdol.UI
             }
             else
             {
-                PlayerPrefs.SetInt("DemonIdol_ReturnToCharSelect", 1);
-                PlayerPrefs.Save();
                 SceneManager.LoadScene("MainMenu");
             }
+        }
+
+        public void OnClickStageSelect()
+        {
+            if (_resultsSubmissionLocked) return;
+            _resultsSubmissionLocked = true;
+            SafePlayButtonClick();
+
+            if (_victoryModal != null) _victoryModal.SetActive(false);
+            if (MatchRoundReferee.Instance != null)
+            {
+                MatchRoundReferee.Instance.StopMatch();
+            }
+            if (DemonIdol.Network.QuantumPvPManager.Instance != null)
+            {
+                DemonIdol.Network.QuantumPvPManager.Instance.LeaveMatch();
+            }
+            PlayerPrefs.SetString("MDI_MenuInitialState", "StageSelect");
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("MainMenu");
         }
 
         public void OnClickReturnToMenu()
@@ -1474,6 +1509,8 @@ namespace DemonIdol.UI
             {
                 DemonIdol.Network.QuantumPvPManager.Instance.LeaveMatch();
             }
+            PlayerPrefs.SetString("MDI_MenuInitialState", "Title");
+            PlayerPrefs.Save();
             LaunchServices.Session.MarkMenu();
             if (BloodTechUIManager.Instance != null)
             {

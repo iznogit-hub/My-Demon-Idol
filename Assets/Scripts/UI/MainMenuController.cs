@@ -49,6 +49,17 @@ namespace DemonIdol.UI
         public Button BtnModeTraining;
         public Button BtnModeBack;
 
+        [Header("Character Select UI - Faction Tabs")]
+        public Button BtnFactionAll;
+        public Button BtnFactionSorcerers;
+        public Button BtnFactionSidekicks;
+        public Button BtnFactionDota;
+        public Image FactionTabHighlightAll;
+        public Image FactionTabHighlightSorcerers;
+        public Image FactionTabHighlightSidekicks;
+        public Image FactionTabHighlightDota;
+        public int ActiveFactionIndex = 0; // 0=All (30), 1=Sorcerers (14), 2=Sidekicks (8), 3=Dota Heroes (8)
+
         [Header("Character Select UI - Roster Grid")]
         public Transform RosterGridRoot;
         public Button[] CharacterButtons;
@@ -88,10 +99,17 @@ namespace DemonIdol.UI
         public Transform PedestalSpawnPoint;
         private GameObject _activePedestalModel;
 
-        private static readonly string[] CharacterIds = new[]
+        public static readonly string[] CharacterIds = new[]
         {
+            // Faction 1: Demon Sorcerers (14)
             "C01", "C02", "C03", "C04", "C05", "C06", "C07",
-            "C08", "C09", "C10", "C11", "C12", "C13", "C14"
+            "C08", "C09", "C10", "C11", "C12", "C13", "C14",
+
+            // Faction 2: Synty Sidekicks (8)
+            "SK01", "SK02", "SK03", "SK04", "SK05", "SK06", "SK07", "SK08",
+
+            // Faction 3: External Dota Heroes (8)
+            "EX01", "EX02", "EX03", "EX04", "EX05", "EX06", "EX07", "EX08"
         };
 
         private static readonly string[] StageIds = new[]
@@ -127,7 +145,35 @@ namespace DemonIdol.UI
 
         private void Start()
         {
-            SetMenuState(MenuState.Title);
+            MenuState initial = MenuState.Title;
+            if (PlayerPrefs.HasKey("MDI_MenuInitialState"))
+            {
+                string stateStr = PlayerPrefs.GetString("MDI_MenuInitialState");
+                PlayerPrefs.DeleteKey("MDI_MenuInitialState");
+                if (System.Enum.TryParse<MenuState>(stateStr, out var parsed))
+                {
+                    initial = parsed;
+                }
+            }
+            else if (PlayerPrefs.GetInt("DemonIdol_ReturnToCharSelect", 0) == 1)
+            {
+                PlayerPrefs.DeleteKey("DemonIdol_ReturnToCharSelect");
+                initial = MenuState.CharacterSelect;
+            }
+
+            if (PlayerPrefs.HasKey("MDI_P1_CharacterId"))
+            {
+                string p1Pref = PlayerPrefs.GetString("MDI_P1_CharacterId");
+                if (!string.IsNullOrEmpty(p1Pref)) SelectedP1Id = p1Pref;
+            }
+            if (PlayerPrefs.HasKey("MDI_P2_CharacterId"))
+            {
+                string p2Pref = PlayerPrefs.GetString("MDI_P2_CharacterId");
+                if (!string.IsNullOrEmpty(p2Pref)) SelectedP2Id = p2Pref;
+            }
+
+            SetMenuState(initial);
+            SetFactionFilter(0);
             UpdateCharacterDossier(SelectedP1Id);
             UpdatePedestalModel(SelectedP1Id);
             UpdateStageDossier(0);
@@ -141,6 +187,11 @@ namespace DemonIdol.UI
             if (BtnModeVersus != null) BtnModeVersus.onClick.AddListener(() => SelectMode("LocalVersus"));
             if (BtnModeTraining != null) BtnModeTraining.onClick.AddListener(() => SelectMode("Training"));
             if (BtnModeBack != null) BtnModeBack.onClick.AddListener(() => SetMenuState(MenuState.Title));
+
+            if (BtnFactionAll != null) BtnFactionAll.onClick.AddListener(() => SetFactionFilter(0));
+            if (BtnFactionSorcerers != null) BtnFactionSorcerers.onClick.AddListener(() => SetFactionFilter(1));
+            if (BtnFactionSidekicks != null) BtnFactionSidekicks.onClick.AddListener(() => SetFactionFilter(2));
+            if (BtnFactionDota != null) BtnFactionDota.onClick.AddListener(() => SetFactionFilter(3));
 
             if (BtnTabP1 != null) BtnTabP1.onClick.AddListener(() => SetSelectingP1(true));
             if (BtnTabP2 != null) BtnTabP2.onClick.AddListener(() => SetSelectingP1(false));
@@ -189,6 +240,7 @@ namespace DemonIdol.UI
 
             if (state == MenuState.CharacterSelect)
             {
+                FilterRosterCards();
                 UpdateRosterHighlights();
                 UpdateCharacterDossier(IsSelectingP2 ? SelectedP2Id : SelectedP1Id);
                 UpdatePedestalModel(IsSelectingP2 ? SelectedP2Id : SelectedP1Id);
@@ -215,6 +267,43 @@ namespace DemonIdol.UI
             UpdateRosterHighlights();
             UpdateCharacterDossier(targetId);
             UpdatePedestalModel(targetId);
+        }
+
+        public void SetFactionFilter(int factionIndex)
+        {
+            ActiveFactionIndex = factionIndex;
+            UpdateFactionTabs();
+            FilterRosterCards();
+        }
+
+        private void UpdateFactionTabs()
+        {
+            Color activeCol = new Color(0.9f, 0.15f, 0.35f, 1f);
+            Color inactiveCol = new Color(0.15f, 0.18f, 0.25f, 0.8f);
+
+            if (FactionTabHighlightAll != null) FactionTabHighlightAll.color = (ActiveFactionIndex == 0) ? activeCol : inactiveCol;
+            if (FactionTabHighlightSorcerers != null) FactionTabHighlightSorcerers.color = (ActiveFactionIndex == 1) ? activeCol : inactiveCol;
+            if (FactionTabHighlightSidekicks != null) FactionTabHighlightSidekicks.color = (ActiveFactionIndex == 2) ? activeCol : inactiveCol;
+            if (FactionTabHighlightDota != null) FactionTabHighlightDota.color = (ActiveFactionIndex == 3) ? activeCol : inactiveCol;
+        }
+
+        public void FilterRosterCards()
+        {
+            if (CharacterButtons == null) return;
+
+            for (int i = 0; i < CharacterButtons.Length && i < CharacterIds.Length; i++)
+            {
+                if (CharacterButtons[i] == null) continue;
+                string id = CharacterIds[i];
+                bool show = ActiveFactionIndex switch
+                {
+                    1 => id.StartsWith("C"),   // Sorcerers (C01-C14)
+                    2 => id.StartsWith("SK"),  // Sidekicks (SK01-SK08)
+                    3 => id.StartsWith("EX"),  // Dota Heroes (EX01-EX08)
+                    _ => true                  // All 30
+                };
+                CharacterButtons[i].gameObject.SetActive(show);
+            }
         }
 
         private void OnCharacterButtonClicked(int index)
@@ -384,8 +473,19 @@ namespace DemonIdol.UI
             PlayerPrefs.SetString("MDI_GameMode", ActiveMode);
             PlayerPrefs.Save();
 
-            // Load Arcade Arena scene
-            SceneManager.LoadScene("ArcadeArena");
+            // Check if PreMatchVSOverlay is present in scene
+            var vsOverlay = FindAnyObjectByType<PreMatchVSOverlay>();
+            if (vsOverlay != null)
+            {
+                vsOverlay.PlayMatchIntro(SelectedP1Id, SelectedP2Id, SelectedStageId, ActiveMode, () =>
+                {
+                    SceneManager.LoadScene("ArcadeArena");
+                });
+            }
+            else
+            {
+                SceneManager.LoadScene("ArcadeArena");
+            }
         }
     }
 }

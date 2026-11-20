@@ -11,6 +11,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using DemonIdol.UI;
 using DemonIdol.Launch;
+using DemonIdol.Combat;
 
 namespace DemonIdol.Editor
 {
@@ -75,6 +76,13 @@ namespace DemonIdol.Editor
             {
                 Debug.LogWarning("[MainMenuBuilder] Please exit Play Mode before building MainMenu scene.");
                 EditorApplication.isPlaying = false;
+                EditorApplication.delayCall += BuildMainMenuScene;
+                return;
+            }
+
+            if (EditorApplication.isCompiling)
+            {
+                Debug.LogWarning("[MainMenuBuilder] Editor is currently compiling scripts, delaying build until compilation completes...");
                 EditorApplication.delayCall += BuildMainMenuScene;
                 return;
             }
@@ -372,42 +380,83 @@ namespace DemonIdol.Editor
             SetRect(tabP2.GetComponent<RectTransform>(), new Vector2(0.52f, 0.05f), new Vector2(0.95f, 0.13f), Vector2.zero, Vector2.zero);
             controller.BtnTabP2 = tabP2;
 
-            // Right Roster Grid Container (2 rows of 7 = 14 fighters)
+            // -------------------------------------------------------------
+            // Faction Filter Tabs (ALL / SORCERERS / SIDEKICKS / DOTA HEROES)
+            // -------------------------------------------------------------
+            GameObject tabsRoot = new GameObject("Faction_Tabs_Root", typeof(RectTransform));
+            tabsRoot.transform.SetParent(charPanel.transform, false);
+            RectTransform tabsRt = tabsRoot.GetComponent<RectTransform>();
+            SetRect(tabsRt, new Vector2(0.40f, 0.88f), new Vector2(0.98f, 0.94f), Vector2.zero, Vector2.zero);
+
+            string[] tabLabels = new[] { "ALL (30)", "SORCERERS (14)", "SIDEKICKS (8)", "DOTA HEROES (8)" };
+            Button[] tabButtons = new Button[4];
+            Image[] tabHighlights = new Image[4];
+
+            for (int t = 0; t < 4; t++)
+            {
+                float tMin = t * 0.25f + 0.005f;
+                float tMax = (t + 1) * 0.25f - 0.005f;
+
+                GameObject tabGo = new GameObject($"Tab_Faction_{t}", typeof(RectTransform));
+                tabGo.transform.SetParent(tabsRoot.transform, false);
+                RectTransform tabRt = tabGo.GetComponent<RectTransform>();
+                SetRect(tabRt, new Vector2(tMin, 0f), new Vector2(tMax, 1f), Vector2.zero, Vector2.zero);
+
+                Image tabBg = tabGo.AddComponent<Image>();
+                tabBg.color = (t == 0) ? new Color(0.9f, 0.15f, 0.35f, 1f) : new Color(0.15f, 0.18f, 0.25f, 0.8f);
+                tabHighlights[t] = tabBg;
+
+                Button tabBtn = tabGo.AddComponent<Button>();
+                tabButtons[t] = tabBtn;
+
+                Text tabTxt = CreateText(tabGo.transform, "Label", tabLabels[t], animeFont, 14, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
+                SetRect(tabTxt.rectTransform, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+            }
+
+            controller.BtnFactionAll = tabButtons[0];
+            controller.BtnFactionSorcerers = tabButtons[1];
+            controller.BtnFactionSidekicks = tabButtons[2];
+            controller.BtnFactionDota = tabButtons[3];
+
+            controller.FactionTabHighlightAll = tabHighlights[0];
+            controller.FactionTabHighlightSorcerers = tabHighlights[1];
+            controller.FactionTabHighlightSidekicks = tabHighlights[2];
+            controller.FactionTabHighlightDota = tabHighlights[3];
+
+            // -------------------------------------------------------------
+            // Right Roster Grid Container (6 columns x 5 rows = 30 fighters)
+            // -------------------------------------------------------------
             GameObject gridRoot = new GameObject("Roster_Grid_Root", typeof(RectTransform));
             gridRoot.transform.SetParent(charPanel.transform, false);
             RectTransform gridRt = gridRoot.GetComponent<RectTransform>();
-            SetRect(gridRt, new Vector2(0.42f, 0.22f), new Vector2(0.97f, 0.88f), Vector2.zero, Vector2.zero);
+            SetRect(gridRt, new Vector2(0.40f, 0.14f), new Vector2(0.98f, 0.86f), Vector2.zero, Vector2.zero);
             controller.RosterGridRoot = gridRoot.transform;
 
-            string[] names = new[]
+            int totalRoster = MainMenuController.CharacterIds.Length;
+            controller.CharacterButtons = new Button[totalRoster];
+            controller.CharacterHighlights = new Image[totalRoster];
+            controller.CharacterNameLabels = new Text[totalRoster];
+
+            for (int i = 0; i < totalRoster; i++)
             {
-                "C01: AKIO", "C02: AIKA", "C03: REN", "C04: UNITYCHAN",
-                "C05: AKANE", "C06: CULTIST", "C07: STELLARWITCH", "C08: SANPAKU",
-                "C09: PICOCHAN", "C10: REIKA", "C11: CASUAL1", "C12: FINA",
-                "C13: SAPPHI", "C14: MURYOTAISU"
-            };
+                int row = i / 6;
+                int col = i % 6;
 
-            controller.CharacterButtons = new Button[14];
-            controller.CharacterHighlights = new Image[14];
-            controller.CharacterNameLabels = new Text[14];
+                float xMin = col * (1f / 6f) + 0.003f;
+                float xMax = (col + 1) * (1f / 6f) - 0.003f;
+                float yMin = (4 - row) * 0.20f + 0.004f;
+                float yMax = (5 - row) * 0.20f - 0.004f;
 
-            for (int i = 0; i < 14; i++)
-            {
-                int row = i / 7;
-                int col = i % 7;
+                string charId = MainMenuController.CharacterIds[i];
+                string displayName = CharacterRegistry.ResolveDefaultDisplayName(charId).ToUpper();
 
-                float xMin = col * (1f / 7f) + 0.005f;
-                float xMax = (col + 1) * (1f / 7f) - 0.005f;
-                float yMin = (1 - row) * 0.48f + 0.02f;
-                float yMax = yMin + 0.46f;
-
-                GameObject cardGo = new GameObject($"Card_Fighter_{i:D2}", typeof(RectTransform));
+                GameObject cardGo = new GameObject($"Card_Fighter_{charId}", typeof(RectTransform));
                 cardGo.transform.SetParent(gridRoot.transform, false);
                 RectTransform cardRt = cardGo.GetComponent<RectTransform>();
                 SetRect(cardRt, new Vector2(xMin, yMin), new Vector2(xMax, yMax), Vector2.zero, Vector2.zero);
 
                 Image cardBg = cardGo.AddComponent<Image>();
-                cardBg.color = new Color(0.1f, 0.12f, 0.18f, 0.95f);
+                cardBg.color = new Color(0.08f, 0.10f, 0.16f, 0.94f);
 
                 Button cardBtn = cardGo.AddComponent<Button>();
                 controller.CharacterButtons[i] = cardBtn;
@@ -418,21 +467,26 @@ namespace DemonIdol.Editor
                 RectTransform hlRt = hlGo.GetComponent<RectTransform>();
                 SetRect(hlRt, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
                 Image hlImg = hlGo.AddComponent<Image>();
-                hlImg.color = (i == 11) ? new Color(0f, 0.9f, 1f, 1f) : new Color(1f, 1f, 1f, 0.1f);
+                hlImg.color = (charId == "C12") ? new Color(0f, 0.9f, 1f, 1f) : new Color(1f, 1f, 1f, 0.12f);
                 controller.CharacterHighlights[i] = hlImg;
 
-                Text nameLabel = CreateText(cardGo.transform, "Label_Name", names[i], animeFont, 13, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
-                SetRect(nameLabel.rectTransform, new Vector2(0.05f, 0.05f), new Vector2(0.95f, 0.35f), Vector2.zero, Vector2.zero);
+                // ID badge top-left
+                Text idLabel = CreateText(cardGo.transform, "Label_Id", charId, animeFont, 11, FontStyle.Normal, TextAnchor.UpperLeft, new Color(1f, 0.85f, 0.3f, 0.85f));
+                SetRect(idLabel.rectTransform, new Vector2(0.06f, 0.65f), new Vector2(0.94f, 0.94f), Vector2.zero, Vector2.zero);
+
+                // Name label bottom
+                Text nameLabel = CreateText(cardGo.transform, "Label_Name", displayName, animeFont, 12, FontStyle.Bold, TextAnchor.LowerCenter, Color.white);
+                SetRect(nameLabel.rectTransform, new Vector2(0.04f, 0.06f), new Vector2(0.96f, 0.60f), Vector2.zero, Vector2.zero);
                 controller.CharacterNameLabels[i] = nameLabel;
             }
 
             // Bottom Navigation for Character Select
-            Button btnCharNext = CreateButton(charPanel.transform, "Btn_CharNext", "PROCEED TO ARENA SELECTION ▶", animeFont, 24, new Color(0.9f, 0.15f, 0.35f, 0.95f), Color.white);
-            SetRect(btnCharNext.GetComponent<RectTransform>(), new Vector2(0.72f, 0.08f), new Vector2(0.72f, 0.08f), new Vector2(460, 60), Vector2.zero);
+            Button btnCharNext = CreateButton(charPanel.transform, "Btn_CharNext", "PROCEED TO ARENA SELECTION ▶", animeFont, 22, new Color(0.9f, 0.15f, 0.35f, 0.95f), Color.white);
+            SetRect(btnCharNext.GetComponent<RectTransform>(), new Vector2(0.60f, 0.05f), new Vector2(0.98f, 0.12f), Vector2.zero, Vector2.zero);
             controller.BtnCharSelectNext = btnCharNext;
 
-            Button btnCharBack = CreateButton(charPanel.transform, "Btn_CharBack", "◀ BACK TO MODES", animeFont, 20, new Color(0.2f, 0.2f, 0.25f, 0.8f), Color.white);
-            SetRect(btnCharBack.GetComponent<RectTransform>(), new Vector2(0.48f, 0.08f), new Vector2(0.48f, 0.08f), new Vector2(220, 60), Vector2.zero);
+            Button btnCharBack = CreateButton(charPanel.transform, "Btn_CharBack", "◀ BACK TO MODES", animeFont, 18, new Color(0.2f, 0.2f, 0.25f, 0.8f), Color.white);
+            SetRect(btnCharBack.GetComponent<RectTransform>(), new Vector2(0.40f, 0.05f), new Vector2(0.58f, 0.12f), Vector2.zero, Vector2.zero);
             controller.BtnCharSelectBack = btnCharBack;
 
             // ==========================================
@@ -516,6 +570,135 @@ namespace DemonIdol.Editor
             Button btnStageBack = CreateButton(stagePanel.transform, "Btn_StageBack", "◀ BACK TO CHARACTERS", animeFont, 20, new Color(0.2f, 0.2f, 0.25f, 0.8f), Color.white);
             SetRect(btnStageBack.GetComponent<RectTransform>(), new Vector2(0.35f, 0.10f), new Vector2(0.35f, 0.10f), new Vector2(260, 70), Vector2.zero);
             controller.BtnStageBack = btnStageBack;
+
+            // ==========================================
+            // 5. Pre-Match VS Splash Overlay
+            // ==========================================
+            SetupPreMatchVSOverlay(canvasGo.transform, animeFont);
+        }
+
+        private static void SetupPreMatchVSOverlay(Transform canvasTransform, Font animeFont)
+        {
+            GameObject overlayGo = new GameObject("Overlay_PreMatchVS", typeof(RectTransform));
+            overlayGo.transform.SetParent(canvasTransform, false);
+            RectTransform ovRt = overlayGo.GetComponent<RectTransform>();
+            SetRect(ovRt, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+
+            Image ovBg = overlayGo.AddComponent<Image>();
+            ovBg.color = new Color(0.02f, 0.02f, 0.05f, 0.96f);
+
+            CanvasGroup cg = overlayGo.AddComponent<CanvasGroup>();
+            cg.alpha = 0f;
+
+            PreMatchVSOverlay vsOverlay = overlayGo.AddComponent<PreMatchVSOverlay>();
+            vsOverlay.OverlayRoot = overlayGo;
+            vsOverlay.CanvasGroup = cg;
+
+            // -------------------------------------------------------------
+            // P1 Challenger Panel (Cyan Accent)
+            // -------------------------------------------------------------
+            GameObject p1Go = new GameObject("Panel_P1_Challenger", typeof(RectTransform));
+            p1Go.transform.SetParent(overlayGo.transform, false);
+            RectTransform p1Rt = p1Go.GetComponent<RectTransform>();
+            SetRect(p1Rt, new Vector2(0f, 0f), new Vector2(0.48f, 1f), Vector2.zero, Vector2.zero);
+            vsOverlay.P1Panel = p1Rt;
+
+            // P1 portrait box
+            GameObject p1PortGo = new GameObject("P1_Portrait", typeof(RectTransform));
+            p1PortGo.transform.SetParent(p1Rt, false);
+            RectTransform p1PortRt = p1PortGo.GetComponent<RectTransform>();
+            SetRect(p1PortRt, new Vector2(0.12f, 0.28f), new Vector2(0.88f, 0.88f), Vector2.zero, Vector2.zero);
+            Image p1PortImg = p1PortGo.AddComponent<Image>();
+            p1PortImg.color = new Color(0.1f, 0.2f, 0.3f, 0.3f);
+            vsOverlay.P1PortraitImage = p1PortImg;
+
+            // P1 texts
+            Text p1Badge = CreateText(p1Rt, "P1_Badge", "[ CHALLENGER // PLAYER 1 ]", animeFont, 18, FontStyle.Bold, TextAnchor.MiddleLeft, new Color(0f, 0.9f, 1f, 1f));
+            SetRect(p1Badge.rectTransform, new Vector2(0.12f, 0.22f), new Vector2(0.88f, 0.26f), Vector2.zero, Vector2.zero);
+
+            Text p1Name = CreateText(p1Rt, "P1_Name", "FINA", animeFont, 44, FontStyle.Bold, TextAnchor.MiddleLeft, Color.white);
+            SetRect(p1Name.rectTransform, new Vector2(0.12f, 0.15f), new Vector2(0.88f, 0.22f), Vector2.zero, Vector2.zero);
+            vsOverlay.P1NameText = p1Name;
+
+            Text p1Title = CreateText(p1Rt, "P1_Title", "HEAVENLY RESTRICTION BRAWLER", animeFont, 20, FontStyle.Normal, TextAnchor.MiddleLeft, new Color(1f, 0.85f, 0.3f, 1f));
+            SetRect(p1Title.rectTransform, new Vector2(0.12f, 0.10f), new Vector2(0.88f, 0.15f), Vector2.zero, Vector2.zero);
+            vsOverlay.P1TitleText = p1Title;
+
+            Text p1Arch = CreateText(p1Rt, "P1_Archetype", "ARCHETYPE: TACTICAL RUSHDOWN", animeFont, 16, FontStyle.Normal, TextAnchor.MiddleLeft, new Color(0.3f, 0.9f, 0.5f, 1f));
+            SetRect(p1Arch.rectTransform, new Vector2(0.12f, 0.06f), new Vector2(0.88f, 0.10f), Vector2.zero, Vector2.zero);
+            vsOverlay.P1ArchetypeText = p1Arch;
+
+            Text p1Domain = CreateText(p1Rt, "P1_Domain", "⚡ DOMAIN: REVERSE HEAVEN BURST", animeFont, 17, FontStyle.Bold, TextAnchor.MiddleLeft, new Color(1f, 0.3f, 0.6f, 1f));
+            SetRect(p1Domain.rectTransform, new Vector2(0.12f, 0.02f), new Vector2(0.88f, 0.06f), Vector2.zero, Vector2.zero);
+            vsOverlay.P1DomainText = p1Domain;
+
+            // -------------------------------------------------------------
+            // P2 Opponent Panel (Crimson Accent)
+            // -------------------------------------------------------------
+            GameObject p2Go = new GameObject("Panel_P2_Opponent", typeof(RectTransform));
+            p2Go.transform.SetParent(overlayGo.transform, false);
+            RectTransform p2Rt = p2Go.GetComponent<RectTransform>();
+            SetRect(p2Rt, new Vector2(0.52f, 0f), new Vector2(1f, 1f), Vector2.zero, Vector2.zero);
+            vsOverlay.P2Panel = p2Rt;
+
+            // P2 portrait box
+            GameObject p2PortGo = new GameObject("P2_Portrait", typeof(RectTransform));
+            p2PortGo.transform.SetParent(p2Rt, false);
+            RectTransform p2PortRt = p2PortGo.GetComponent<RectTransform>();
+            SetRect(p2PortRt, new Vector2(0.12f, 0.28f), new Vector2(0.88f, 0.88f), Vector2.zero, Vector2.zero);
+            Image p2PortImg = p2PortGo.AddComponent<Image>();
+            p2PortImg.color = new Color(0.3f, 0.1f, 0.15f, 0.3f);
+            vsOverlay.P2PortraitImage = p2PortImg;
+
+            // P2 texts
+            Text p2Badge = CreateText(p2Rt, "P2_Badge", "[ OPPONENT // PLAYER 2 ]", animeFont, 18, FontStyle.Bold, TextAnchor.MiddleRight, new Color(1f, 0.25f, 0.35f, 1f));
+            SetRect(p2Badge.rectTransform, new Vector2(0.12f, 0.22f), new Vector2(0.88f, 0.26f), Vector2.zero, Vector2.zero);
+
+            Text p2Name = CreateText(p2Rt, "P2_Name", "STELLARWITCH", animeFont, 44, FontStyle.Bold, TextAnchor.MiddleRight, Color.white);
+            SetRect(p2Name.rectTransform, new Vector2(0.12f, 0.15f), new Vector2(0.88f, 0.22f), Vector2.zero, Vector2.zero);
+            vsOverlay.P2NameText = p2Name;
+
+            Text p2Title = CreateText(p2Rt, "P2_Title", "STELLAR VOID SORCERESS", animeFont, 20, FontStyle.Normal, TextAnchor.MiddleRight, new Color(1f, 0.85f, 0.3f, 1f));
+            SetRect(p2Title.rectTransform, new Vector2(0.12f, 0.10f), new Vector2(0.88f, 0.15f), Vector2.zero, Vector2.zero);
+            vsOverlay.P2TitleText = p2Title;
+
+            Text p2Arch = CreateText(p2Rt, "P2_Archetype", "ARCHETYPE: ZONER / TRAP", animeFont, 16, FontStyle.Normal, TextAnchor.MiddleRight, new Color(0.3f, 0.9f, 0.5f, 1f));
+            SetRect(p2Arch.rectTransform, new Vector2(0.12f, 0.06f), new Vector2(0.88f, 0.10f), Vector2.zero, Vector2.zero);
+            vsOverlay.P2ArchetypeText = p2Arch;
+
+            Text p2Domain = CreateText(p2Rt, "P2_Domain", "⚡ DOMAIN: NEBULA GRAVITY WELL", animeFont, 17, FontStyle.Bold, TextAnchor.MiddleRight, new Color(1f, 0.3f, 0.6f, 1f));
+            SetRect(p2Domain.rectTransform, new Vector2(0.12f, 0.02f), new Vector2(0.88f, 0.06f), Vector2.zero, Vector2.zero);
+            vsOverlay.P2DomainText = p2Domain;
+
+            // -------------------------------------------------------------
+            // Center Clash Emblem
+            // -------------------------------------------------------------
+            GameObject clashGo = new GameObject("Root_CenterClash", typeof(RectTransform));
+            clashGo.transform.SetParent(overlayGo.transform, false);
+            RectTransform clashRt = clashGo.GetComponent<RectTransform>();
+            SetRect(clashRt, new Vector2(0.35f, 0.20f), new Vector2(0.65f, 0.80f), Vector2.zero, Vector2.zero);
+            vsOverlay.CenterClashRoot = clashRt;
+
+            Text kanjiText = CreateText(clashGo.transform, "Text_KanjiClash", "決戦", animeFont, 50, FontStyle.Bold, TextAnchor.MiddleCenter, new Color(1f, 0.2f, 0.3f, 1f));
+            SetRect(kanjiText.rectTransform, new Vector2(0.05f, 0.65f), new Vector2(0.95f, 0.90f), Vector2.zero, Vector2.zero);
+            vsOverlay.KanjiClashText = kanjiText;
+
+            Text vsText = CreateText(clashGo.transform, "Text_VS", "VS", animeFont, 84, FontStyle.Bold, TextAnchor.MiddleCenter, new Color(1f, 0.85f, 0.2f, 1f));
+            SetRect(vsText.rectTransform, new Vector2(0.05f, 0.35f), new Vector2(0.95f, 0.65f), Vector2.zero, Vector2.zero);
+            vsOverlay.VsEmblemText = vsText;
+
+            Text modeBadge = CreateText(clashGo.transform, "Badge_Mode", "[ ARCADE BATTLE ]", animeFont, 20, FontStyle.Bold, TextAnchor.MiddleCenter, new Color(0.2f, 0.85f, 1f, 1f));
+            SetRect(modeBadge.rectTransform, new Vector2(0.05f, 0.22f), new Vector2(0.95f, 0.32f), Vector2.zero, Vector2.zero);
+            vsOverlay.ModeBadgeText = modeBadge;
+
+            Text stageBadge = CreateText(clashGo.transform, "Badge_Stage", "ARENA: REACTOR CORE // TACTICAL EXPANSION", animeFont, 16, FontStyle.Normal, TextAnchor.MiddleCenter, Color.white);
+            SetRect(stageBadge.rectTransform, new Vector2(0.05f, 0.12f), new Vector2(0.95f, 0.22f), Vector2.zero, Vector2.zero);
+            vsOverlay.StageBadgeText = stageBadge;
+
+            Text skipPrompt = CreateText(clashGo.transform, "Text_SkipPrompt", "PRESS ANY KEY OR TAP SCREEN TO SKIP ▶", animeFont, 13, FontStyle.Italic, TextAnchor.MiddleCenter, new Color(0.7f, 0.7f, 0.75f, 0.8f));
+            SetRect(skipPrompt.rectTransform, new Vector2(0.05f, 0.02f), new Vector2(0.95f, 0.10f), Vector2.zero, Vector2.zero);
+
+            overlayGo.SetActive(false);
         }
 
         private static Image CreateStatBar(Transform parent, string id, string label, float yNorm, Color barColor, out Text valueText, Font font)

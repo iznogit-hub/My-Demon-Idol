@@ -171,6 +171,11 @@ namespace DemonIdol.Combat
             return GetCharacterNameShort(charId);
         }
 
+        public static string ResolveDefaultDisplayName(string charId)
+        {
+            return GetCharacterNameShort(charId);
+        }
+
         public static string GetCharacterNameShort(string charId)
         {
             string canon = ResolveCanonicalId(charId);
@@ -369,6 +374,168 @@ namespace DemonIdol.Combat
                 domainDesc = "Opens a barrier-free domain relentlessly shredding everything within 20 meters with thousands of continuous slashes.",
                 prefabPath = "Assets/Prefabs/Characters/C14_Muryotaisu.prefab",
                 signatureStageId = "ST06"
+            },
+            // Synty Sidekicks (8)
+            new RosterEntry
+            {
+                id = "SK01", name = "Valen", title = "Shadow Scout", archetype = "Ninja / Dual Blades",
+                desc = "Stealthy shinobi darting through shadows, delivering high-speed dual ninjato crossups and evasive smoke teleports.",
+                speed = 92f, power = 78f, reach = 75f, defense = 70f,
+                domain = "Shadow Eclipse Mirage",
+                domainDesc = "Shrouds the battlefield in black mist, blinding the target while shadow reflections strike from all angles.",
+                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK01_Valen.prefab",
+                signatureStageId = "ST04"
+            },
+            new RosterEntry
+            {
+                id = "SK02", name = "Galahad", title = "Sun Templar", archetype = "Knight / Sword & Shield",
+                desc = "Heavily armored righteous paladin deflecting heavy blows with an iron barrier shield and retaliating with holy thrusts.",
+                speed = 74f, power = 88f, reach = 82f, defense = 95f,
+                domain = "Radiant Aegis Cathedral",
+                domainDesc = "Erects a golden sanctuary nullifying knockback and empowering broadsword slashes with solar fire.",
+                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK02_Galahad.prefab",
+                signatureStageId = "ST04"
+            },
+            new RosterEntry
+            {
+                id = "SK03", name = "Vex", title = "Dune Raider", archetype = "Brute / Heavy Scimitar",
+                desc = "Hardened desert marauder overwhelming foes with relentless curved scimitar swings and low ankle sweeping kicks.",
+                speed = 82f, power = 90f, reach = 80f, defense = 84f,
+                domain = "Desert Vortex Cataclysm",
+                domainDesc = "Summons a swirling sandstorm vortex pulling the opponent inward and locking their aerial recovery.",
+                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK03_Vex.prefab",
+                signatureStageId = "ST01"
+            },
+            new RosterEntry
+            {
+                id = "SK04", name = "Jin", title = "Zen Duelist", archetype = "Karate / Unarmed Kata",
+                desc = "Disciplined martial master chaining lightning palm strikes, precise parries, and aerial roundhouse juggles.",
+                speed = 90f, power = 84f, reach = 70f, defense = 80f,
+                domain = "Tranquil Void Horizon",
+                domainDesc = "Manifests a reflective water domain where every physical counter lands with double hitstun.",
+                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK04_Jin.prefab",
+                signatureStageId = "ST03"
+            },
+            new RosterEntry
+            {
+                id = "SK05", name = "Lord Morvath", title = "Void Warlock", archetype = "Sorceress / Dark Magic",
+                desc = "Malevolent warlock weaving gravitational singularities and corrosive dark orb traps across the screen.",
+                speed = 76f, power = 94f, reach = 88f, defense = 75f,
+                domain = "Abyssal Singularity Rift",
+                domainDesc = "Rips open a gravitational void that continuously drains opponent super meter and crushes defensive barriers.",
+                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK05_LordMorvath.prefab",
+                signatureStageId = "ST04"
+            },
+            new RosterEntry
+            {
+                id = "SK06", name = "Commander Ren", title = "Iron Vanguard", archetype = "Two-Handed / Heavy Greatsword",
+                desc = "Veteran battle commander sweeping entire swathes of the arena with a colossal greatsword and armor-piercing charges.",
+                speed = 72f, power = 95f, reach = 90f, defense = 92f,
+                domain = "Fortress Bastion Protocol",
+                domainDesc = "Locks down the arena within iron palisades, granting temporary super armor on heavy startup frames.",
+                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK06_CommanderRen.prefab",
+                signatureStageId = "ST02"
+            },
+            new RosterEntry
+            {
+                id = "SK07", name = "Malakar", title = "Archon Seer", archetype = "Mage / Arcane Staff",
+                desc = "Ancient celestial scholar conjuring radiant stasis beams and delayed arcane minefields from afar.",
+                speed = 78f, power = 92f, reach = 92f, defense = 76f,
+                domain = "Chrono Astral Stasis",
+                domainDesc = "Freezes temporal flow around the target, dramatically extending juggle windows and combo potential.",
+                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK07_Malakar.prefab",
+                signatureStageId = "ST01"
+            },
+            new RosterEntry
+            {
+                id = "SK08", name = "Torgrim", title = "Storm Breaker", archetype = "Hammer / Heavy Bruiser",
+                desc = "Mountain titan wielding an apocalyptic warhammer, creating devastating ground shocks and unblockable wall bounces.",
+                speed = 68f, power = 98f, reach = 88f, defense = 90f,
+                domain = "Thunderstruck Mjolnir Wrath",
+                domainDesc = "Calls down lightning pillars across the arena floor, electrifying the ground and triggering bound tornadoes.",
+                prefabPath = "Assets/Prefabs/Characters/Sidekicks/SK08_Torgrim.prefab",
+                signatureStageId = "ST02"
+            },
+            // External Dota Heroes (8)
+            new RosterEntry
+            {
+                id = "EX01", name = "Hugo", title = "Raging Berserker", archetype = "Two-Handed / Dual Blades",
+                desc = "Bloodthirsty warlord delivering unstoppable leaping overhead strikes and furious dual-blade cross slashes.",
+                speed = 84f, power = 94f, reach = 88f, defense = 78f,
+                domain = "Bloodfrenzy Rampage",
+                domainDesc = "Enters a frenzied state where every hit dealt leeches health and boosts movement speed.",
+                prefabPath = "Assets/Prefabs/Characters/DotaHeroes/EX01_Hugo.prefab",
+                signatureStageId = "ST05"
+            },
+            new RosterEntry
+            {
+                id = "EX02", name = "Granite", title = "Sanctuary Golem", archetype = "Brute / Stone Colossus",
+                desc = "Impenetrable ancient guardian pulverizing opponents with colossal granite fists and seismic fissures.",
+                speed = 62f, power = 99f, reach = 86f, defense = 99f,
+                domain = "Tectonic Earthshaker",
+                domainDesc = "Shatters the ground plane into levitating stone boulders that rain down upon the defender.",
+                prefabPath = "Assets/Prefabs/Characters/DotaHeroes/EX02_Granite.prefab",
+                signatureStageId = "ST04"
+            },
+            new RosterEntry
+            {
+                id = "EX03", name = "Viper", title = "Shadow Operative", archetype = "Ninja / Dual Daggers",
+                desc = "Lethal assassin moving with hyper-velocity, applying corrosive venom that steadily drains enemy life and meter.",
+                speed = 95f, power = 80f, reach = 72f, defense = 68f,
+                domain = "Venomous Miasma Ambush",
+                domainDesc = "Engulfs the stage in toxic green smog, causing continuous poison damage and reducing enemy dash speed.",
+                prefabPath = "Assets/Prefabs/Characters/DotaHeroes/EX03_Viper.prefab",
+                signatureStageId = "ST05"
+            },
+            new RosterEntry
+            {
+                id = "EX04", name = "Officer K", title = "Security Enforcer", archetype = "Karate / Tactical Brawler",
+                desc = "Elite tactical combatant combining devastating martial arts counter-throws with high-impact riot kicks.",
+                speed = 86f, power = 85f, reach = 76f, defense = 85f,
+                domain = "Total Lockdown Containment",
+                domainDesc = "Deploys perimeter laser barriers that violently rebound foes into juggles when wall-splatted.",
+                prefabPath = "Assets/Prefabs/Characters/DotaHeroes/EX04_OfficerK.prefab",
+                signatureStageId = "ST06"
+            },
+            new RosterEntry
+            {
+                id = "EX05", name = "Kira", title = "Apex Huntress", archetype = "Archer / Energy Bow",
+                desc = "Futuristic cyber-ranger controlling full screen length with piercing plasma arrows and anti-air volley spreads.",
+                speed = 91f, power = 86f, reach = 95f, defense = 72f,
+                domain = "Starfall Piercing Volley",
+                domainDesc = "Illuminates target with tracking crosshairs before raining down a continuous barrage of plasma bolts.",
+                prefabPath = "Assets/Prefabs/Characters/DotaHeroes/EX05_Kira.prefab",
+                signatureStageId = "ST06"
+            },
+            new RosterEntry
+            {
+                id = "EX06", name = "Sentry", title = "Phalanx Sentinel", archetype = "Spearman / Halberd Pike",
+                desc = "Disciplined spear specialist keeping attackers at bay with immense mid-range pokes and anti-air sweeps.",
+                speed = 75f, power = 88f, reach = 98f, defense = 90f,
+                domain = "Impenetrable Spear Wall",
+                domainDesc = "Surrounds the fighter with animated spirit halberds automatically intercepting incoming projectiles.",
+                prefabPath = "Assets/Prefabs/Characters/DotaHeroes/EX06_Sentry.prefab",
+                signatureStageId = "ST02"
+            },
+            new RosterEntry
+            {
+                id = "EX07", name = "Lyra", title = "Arcane Valkyrie", archetype = "Sorceress / Mystic Focus",
+                desc = "Hovering ethereal champion firing homing mystic shards and performing graceful aerial dive slashes.",
+                speed = 88f, power = 89f, reach = 84f, defense = 78f,
+                domain = "Celestial Radiance Sanctum",
+                domainDesc = "Floods the arena with blinding holy light, restoring user health while damaging any enemy in proximity.",
+                prefabPath = "Assets/Prefabs/Characters/DotaHeroes/EX07_Lyra.prefab",
+                signatureStageId = "ST03"
+            },
+            new RosterEntry
+            {
+                id = "EX08", name = "Garrick", title = "Highland Marauder", archetype = "Hammer / Mountain Cleaver",
+                desc = "Fierce northern berserker leaping across the screen to crush guards with colossal two-handed cleavers.",
+                speed = 76f, power = 96f, reach = 86f, defense = 88f,
+                domain = "Glacial Avalanche Slam",
+                domainDesc = "Creates a catastrophic ice eruption freezing the enemy solid on impact for a guaranteed full combo.",
+                prefabPath = "Assets/Prefabs/Characters/DotaHeroes/EX08_Garrick.prefab",
+                signatureStageId = "ST03"
             }
         };
 
@@ -391,6 +558,20 @@ namespace DemonIdol.Combat
         public static IReadOnlyList<CharacterDefinition> GetAuthoritative18Roster()
         {
             return GetAuthoritative14Roster();
+        }
+
+        public static IReadOnlyList<CharacterDefinition> GetAuthoritative30Roster()
+        {
+            var roster30 = new List<CharacterDefinition>();
+            for (int i = 0; i < _canonical14List.Length; i++)
+            {
+                var def = GetCharacterById(_canonical14List[i].id);
+                if (def != null && !roster30.Exists(r => r.id == def.id))
+                {
+                    roster30.Add(def);
+                }
+            }
+            return roster30;
         }
 
         public static IReadOnlyList<CharacterDefinition> GetAllCharacters()
