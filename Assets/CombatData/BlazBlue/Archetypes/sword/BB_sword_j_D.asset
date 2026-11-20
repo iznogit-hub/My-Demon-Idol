@@ -53,7 +53,7 @@ MonoBehaviour:
   launchVelocity: {x: 0, y: 0}
   screenShakeTrauma: 0.1
   canRapidCancel: 1
-  gatlingCancels: []
+  gatlingCancels: 
   animationClip: {fileID: 7400000, guid: b3d13322675e10d47aa75892a620c7bc, type: 3}
   animationTrigger: JumpAttack
   hitboxOffset: {x: 0.85, y: 0.95, z: 0}
@@ -100,8 +100,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 1e49c9a63fc35daaa848f58f84e7be70, type: 2}
   motionTrack: {fileID: 0}
-  clipName: BB_sword_j_D
-  clip: {fileID: 7400000, guid: b3d13322675e10d47aa75892a620c7bc, type: 3}
+  clipName: Attack1
+  clip: {fileID: 7400000, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 25
   events: []

@@ -409,7 +409,7 @@ namespace DemonIdol.BlazBlue
                 ActiveDamageScale = signature.damageScale;
                 ActiveReachScale = signature.reachScale;
                 SignatureHitstopBonus = signature.hitstopBonus;
-                BBContactPresentation.OnPortraitHook?.Invoke(charId, "signature:" + signature.clipToken);
+                BBContactPresentation.RaisePortraitHook(charId, "signature:" + signature.clipToken);
             }
             if (BBProjectileCaster.ShouldSpawn(charId, attack.moveId))
             {

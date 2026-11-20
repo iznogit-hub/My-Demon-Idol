@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
+  m_Name: BBMove_EX01_j.C
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: j.C
+  attackType: 0
+  hitLevel: 1
+  guardRequirement: 0
+  isDuckableHigh: 0
+  crush: 0
+  crushStartTick: 0
+  crushEndTick: 0
+  hasArmor: 0
+  isAirborneStrikeProtected: 0
+  protectionStartTick: 0
+  protectionEndTick: 0
+  startupFrames: 15
+  activeFrames: 5
+  recoveryFrames: 18
+  hitstunTicks: 17
+  blockstunTicks: 13
+  knockdownDurationTicks: 36
+  hitstopAttacker: 6
+  hitstopDefender: 6
+  hitstopOnBlock: 4
+  counterHitStopBonus: 4
+  advantageOnBlock: -2
+  advantageOnHit: 2
+  advantageOnCounterHit: 6
+  damage: 625
+  chipDamageOnBlock: 0
+  initialProration: 0.9
+  comboDamageDecay: 0.92
+  pushbackOnHit: 1
+  pushbackOnBlock: 0.6
+  isLauncher: 0
+  isBoundTornado: 0
+  causesWallSplat: 0
+  causesWallBounce: 0
+  causesKnockdown: 0
+  isLinear: 1
+  throwTechWindowTicks: 6
+  launchVelocity: {x: 0, y: 0}
+  screenShakeTrauma: 0.1
+  canRapidCancel: 1
+  gatlingCancels: 
+  animationClip: {fileID: 7400000, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
+  animationTrigger: AirHeavy
+  hitboxOffset: {x: 0.95, y: 1.05, z: 0}
+  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  cancelWindow: {x: 15, y: 20}
+  archetype: 0
+  moveId: j.C
+  button: 4
+  kind: 0
+  motion: 0
+  airOk: 1
+  groundOk: 0
+  guard: 0
+  attribute: 2
+  invuln: []
+  fatalCounter: 0
+  hardKnockdown: 0
+  otg: 0
+  groundBounce: 0
+  wallBounce: 0
+  wallStick: 0
+  groundSlide: 0
+  untechableTicks: 18
+  untechableTicksCH: 27
+  airHitVelocity: {x: 1.2, y: 4.5}
+  landingRecovery: 4
+  minDamagePct: 0.08
+  chipPct: 0
+  heatGainOverride: -1
+  heatCost: 0
+  gatlingInto:
+  - 5A
+  - 5B
+  - 5C
+  - 2A
+  - 236A
+  - 236236C
+  specialCancel: 1
+  ddCancel: 1
+  jumpCancelOnHit: 0
+  jumpCancelOnBlock: 0
+  rapidCancelable: 1
+  followUps: []
+  followUpWindow: {x: 0, y: 0}
+  boxes: {fileID: 11400000, guid: 7ea8bee9749f50508448f55068761a48, type: 2}
+  motionTrack: {fileID: 0}
+  clipName: BB_brute_j_C
+  clip: {fileID: 7400000, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 38
+  events: []

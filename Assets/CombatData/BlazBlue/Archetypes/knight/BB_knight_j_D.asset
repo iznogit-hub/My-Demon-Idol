@@ -53,10 +53,10 @@ MonoBehaviour:
   launchVelocity: {x: 0, y: 0}
   screenShakeTrauma: 0.1
   canRapidCancel: 1
-  gatlingCancels: []
+  gatlingCancels: 
   animationClip: {fileID: 7400000, guid: 6683d02f31b83724daa4714c986bd1f5, type: 3}
   animationTrigger: JumpAttack
-  hitboxOffset: {x: 0.80, y: 1.05, z: 0}
+  hitboxOffset: {x: 0.8, y: 1.05, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
   cancelWindow: {x: 10, y: 14}
   archetype: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 3742486528095d70af9a9282f5282c2e, type: 2}
   motionTrack: {fileID: 0}
-  clipName: BB_knight_j_D
-  clip: {fileID: 7400000, guid: 6683d02f31b83724daa4714c986bd1f5, type: 3}
+  clipName: Attack1
+  clip: {fileID: 7400000, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 28
   events: []

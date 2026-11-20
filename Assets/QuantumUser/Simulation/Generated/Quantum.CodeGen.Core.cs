@@ -55,6 +55,9 @@ namespace Quantum {
     Right = 1 << 1,
     Up = 1 << 2,
     Fire = 1 << 3,
+    B = 1 << 4,
+    C = 1 << 5,
+    D = 1 << 6,
   }
   public static unsafe partial class FlagsExtensions {
     public static Boolean IsFlagSet(this InputButtons self, InputButtons flag) {
@@ -514,17 +517,89 @@ namespace Quantum {
     }
   }
   [StructLayout(LayoutKind.Explicit)]
-  public unsafe partial struct Input {
-    public const Int32 SIZE = 48;
+  [System.SerializableAttribute()]
+  public unsafe partial struct QStringUtf8_64 : IQStringUtf8, System.IEquatable<QStringUtf8_64> {
+    public const Int32 SIZE = 64;
     public const Int32 ALIGNMENT = 4;
-    [FieldOffset(12)]
-    public Button Left;
-    [FieldOffset(24)]
-    public Button Right;
-    [FieldOffset(36)]
-    public Button Up;
     [FieldOffset(0)]
+    public UInt16 ByteCount;
+    [FieldOffset(2)]
+    [FixedBufferDynamicLength("ByteCount")]
+    public fixed Byte Bytes[62];
+    public const int MaxByteCount = 62;
+    public QStringUtf8_64(String str) {
+      QStringUtf8.ConstructFrom(str, MaxByteCount, out this);
+    }
+    public readonly System.Int32 Length {
+      get {
+        return QStringUtf8.GetLength(in this);
+      }
+    }
+    public readonly override System.String ToString() {
+      return QStringUtf8.GetString(in this);
+    }
+    public static Boolean CanHold(String str) {
+      return QStringUtf8.CanHold(str, MaxByteCount);
+    }
+    Int32 IQStringUtf8.CompareOrdinal(byte* bytes, UInt16 byteCount) {
+      return QStringUtf8.CompareOrdinal(in this, bytes, byteCount);
+    }
+    public readonly Int32 CompareOrdinal(String str) {
+      return QStringUtf8.CompareOrdinal(in this, str);
+    }
+    public static implicit operator QStringUtf8_64(String str) {
+      return new QStringUtf8_64(str);
+    }
+    public static implicit operator String(QStringUtf8_64 str) {
+      return str.ToString();
+    }
+    public override readonly Boolean Equals(Object obj) {
+      return QStringUtf8.AreEqual(in this, obj);
+    }
+    public readonly Boolean Equals(QStringUtf8_64 str) {
+      return QStringUtf8.CompareOrdinal(in this, str.Bytes, str.ByteCount) == 0;
+    }
+    public readonly Boolean Equals<T>(in T str)
+      where T : unmanaged, IQStringUtf8 {
+      return QStringUtf8.CompareOrdinal(in this, in str) == 0;
+    }
+    public readonly Int32 CompareOrdinal<T>(in T str)
+      where T : unmanaged, IQStringUtf8 {
+      return QStringUtf8.CompareOrdinal(in this, in str);
+    }
+    public override readonly Int32 GetHashCode() {
+      unchecked { 
+        var hash = 20693;
+        hash = hash * 31 + ByteCount.GetHashCode();
+        fixed (Byte* p = Bytes) hash = hash * 31 + HashCodeUtils.GetArrayHashCode(p, this.ByteCount);
+        return hash;
+      }
+    }
+    public static void Serialize(void* ptr, FrameSerializer serializer) {
+        var p = (QStringUtf8_64*)ptr;
+        serializer.Stream.Serialize(&p->ByteCount);
+        Assert.Always(p->ByteCount <= 62, p->ByteCount);
+        serializer.Stream.SerializeBuffer(&p->Bytes[0], p->ByteCount);
+    }
+  }
+  [StructLayout(LayoutKind.Explicit)]
+  public unsafe partial struct Input {
+    public const Int32 SIZE = 84;
+    public const Int32 ALIGNMENT = 4;
+    [FieldOffset(48)]
+    public Button Left;
+    [FieldOffset(60)]
+    public Button Right;
+    [FieldOffset(72)]
+    public Button Up;
+    [FieldOffset(36)]
     public Button Fire;
+    [FieldOffset(0)]
+    public Button B;
+    [FieldOffset(12)]
+    public Button C;
+    [FieldOffset(24)]
+    public Button D;
     public override readonly Int32 GetHashCode() {
       unchecked { 
         var hash = 19249;
@@ -532,6 +607,9 @@ namespace Quantum {
         hash = hash * 31 + Right.GetHashCode();
         hash = hash * 31 + Up.GetHashCode();
         hash = hash * 31 + Fire.GetHashCode();
+        hash = hash * 31 + B.GetHashCode();
+        hash = hash * 31 + C.GetHashCode();
+        hash = hash * 31 + D.GetHashCode();
         return hash;
       }
     }
@@ -544,6 +622,9 @@ namespace Quantum {
         case InputButtons.Right: return Right.IsDown;
         case InputButtons.Up: return Up.IsDown;
         case InputButtons.Fire: return Fire.IsDown;
+        case InputButtons.B: return B.IsDown;
+        case InputButtons.C: return C.IsDown;
+        case InputButtons.D: return D.IsDown;
         default: return false;
       }
     }
@@ -553,11 +634,17 @@ namespace Quantum {
         case InputButtons.Right: return Right.WasPressed;
         case InputButtons.Up: return Up.WasPressed;
         case InputButtons.Fire: return Fire.WasPressed;
+        case InputButtons.B: return B.WasPressed;
+        case InputButtons.C: return C.WasPressed;
+        case InputButtons.D: return D.WasPressed;
         default: return false;
       }
     }
     static partial void SerializeCodeGen(void* ptr, FrameSerializer serializer) {
         var p = (Input*)ptr;
+        Button.Serialize(&p->B, serializer);
+        Button.Serialize(&p->C, serializer);
+        Button.Serialize(&p->D, serializer);
         Button.Serialize(&p->Fire, serializer);
         Button.Serialize(&p->Left, serializer);
         Button.Serialize(&p->Right, serializer);
@@ -566,9 +653,9 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct _globals_ {
-    public const Int32 SIZE = 912;
+    public const Int32 SIZE = 1128;
     public const Int32 ALIGNMENT = 8;
-    [FieldOffset(908)]
+    [FieldOffset(1124)]
     private fixed Byte _alignment_padding_[4];
     [FieldOffset(0)]
     public AssetRef<Map> Map;
@@ -592,14 +679,14 @@ namespace Quantum {
     public Int32 PlayerConnectedCount;
     [FieldOffset(604)]
     [FramePrinter.FixedArrayAttribute(typeof(Input), 6)]
-    private fixed Byte _input_[288];
-    [FieldOffset(896)]
+    private fixed Byte _input_[504];
+    [FieldOffset(1112)]
     public BitSet6 PlayerLastConnectionState;
-    [FieldOffset(904)]
+    [FieldOffset(1120)]
     public Int32 AsteroidsWaveCount;
     public readonly FixedArray<Input> input {
       get {
-        fixed (byte* p = _input_) { return new FixedArray<Input>(p, 48, 6); }
+        fixed (byte* p = _input_) { return new FixedArray<Input>(p, 84, 6); }
       }
     }
     public override readonly Int32 GetHashCode() {
@@ -740,6 +827,40 @@ namespace Quantum {
         FP.Serialize(&p->RespawnTimer, serializer);
     }
   }
+  [StructLayout(LayoutKind.Explicit)]
+  public unsafe partial struct BBMatchState : Quantum.IComponent {
+    public const Int32 SIZE = 152;
+    public const Int32 ALIGNMENT = 8;
+    [FieldOffset(8)]
+    public FP Fighter1HP;
+    [FieldOffset(16)]
+    public FP Fighter2HP;
+    [FieldOffset(0)]
+    public Int32 Round;
+    [FieldOffset(24)]
+    public QStringUtf8_64 Fighter1Id;
+    [FieldOffset(88)]
+    public QStringUtf8_64 Fighter2Id;
+    public override readonly Int32 GetHashCode() {
+      unchecked { 
+        var hash = 8389;
+        hash = hash * 31 + Fighter1HP.GetHashCode();
+        hash = hash * 31 + Fighter2HP.GetHashCode();
+        hash = hash * 31 + Round.GetHashCode();
+        hash = hash * 31 + Fighter1Id.GetHashCode();
+        hash = hash * 31 + Fighter2Id.GetHashCode();
+        return hash;
+      }
+    }
+    public static void Serialize(void* ptr, FrameSerializer serializer) {
+        var p = (BBMatchState*)ptr;
+        serializer.Stream.Serialize(&p->Round);
+        FP.Serialize(&p->Fighter1HP, serializer);
+        FP.Serialize(&p->Fighter2HP, serializer);
+        Quantum.QStringUtf8_64.Serialize(&p->Fighter1Id, serializer);
+        Quantum.QStringUtf8_64.Serialize(&p->Fighter2Id, serializer);
+    }
+  }
   public unsafe partial interface ISignalAsteroidsSpawnShip : ISignal {
     void AsteroidsSpawnShip(Frame f, EntityRef ship);
   }
@@ -786,6 +907,8 @@ namespace Quantum {
       BuildSignalsArrayOnComponentRemoved<Quantum.AsteroidsShip>();
       BuildSignalsArrayOnComponentAdded<Quantum.AsteroidsShipRespawn>();
       BuildSignalsArrayOnComponentRemoved<Quantum.AsteroidsShipRespawn>();
+      BuildSignalsArrayOnComponentAdded<Quantum.BBMatchState>();
+      BuildSignalsArrayOnComponentRemoved<Quantum.BBMatchState>();
       BuildSignalsArrayOnComponentAdded<CharacterController2D>();
       BuildSignalsArrayOnComponentRemoved<CharacterController2D>();
       BuildSignalsArrayOnComponentAdded<CharacterController3D>();
@@ -832,6 +955,9 @@ namespace Quantum {
       i->Right = i->Right.Update(this.Number, input.Right);
       i->Up = i->Up.Update(this.Number, input.Up);
       i->Fire = i->Fire.Update(this.Number, input.Fire);
+      i->B = i->B.Update(this.Number, input.B);
+      i->C = i->C.Update(this.Number, input.C);
+      i->D = i->D.Update(this.Number, input.D);
     }
     public Input* GetPlayerInput(PlayerRef player) {
       if ((int)player >= (int)_globals->input.Length) { throw new System.ArgumentOutOfRangeException("player"); }
@@ -896,6 +1022,7 @@ namespace Quantum {
       typeRegistry.Register(typeof(Quantum.AsteroidsProjectile), Quantum.AsteroidsProjectile.SIZE);
       typeRegistry.Register(typeof(Quantum.AsteroidsShip), Quantum.AsteroidsShip.SIZE);
       typeRegistry.Register(typeof(Quantum.AsteroidsShipRespawn), Quantum.AsteroidsShipRespawn.SIZE);
+      typeRegistry.Register(typeof(Quantum.BBMatchState), Quantum.BBMatchState.SIZE);
       typeRegistry.Register(typeof(Quantum.BitSet1024), Quantum.BitSet1024.SIZE);
       typeRegistry.Register(typeof(Quantum.BitSet128), Quantum.BitSet128.SIZE);
       typeRegistry.Register(typeof(Quantum.BitSet2048), Quantum.BitSet2048.SIZE);
@@ -964,6 +1091,7 @@ namespace Quantum {
       typeRegistry.Register(typeof(PlayerRef), PlayerRef.SIZE);
       typeRegistry.Register(typeof(Ptr), Ptr.SIZE);
       typeRegistry.Register(typeof(QBoolean), QBoolean.SIZE);
+      typeRegistry.Register(typeof(Quantum.QStringUtf8_64), Quantum.QStringUtf8_64.SIZE);
       typeRegistry.Register(typeof(Quantum.Ptr), Quantum.Ptr.SIZE);
       typeRegistry.Register(typeof(QueryOptions), 2);
       typeRegistry.Register(typeof(RNGSession), RNGSession.SIZE);
@@ -978,13 +1106,14 @@ namespace Quantum {
       typeRegistry.Register(typeof(Quantum._globals_), Quantum._globals_.SIZE);
     }
     static partial void InitComponentTypeIdGen() {
-      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 5)
+      ComponentTypeId.Reset(ComponentTypeId.BuiltInComponentCount + 6)
         .AddBuiltInComponents()
         .Add<Quantum.AsteroidsAsteroid>(Quantum.AsteroidsAsteroid.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.AsteroidsPlayerLink>(Quantum.AsteroidsPlayerLink.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.AsteroidsProjectile>(Quantum.AsteroidsProjectile.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.AsteroidsShip>(Quantum.AsteroidsShip.Serialize, null, null, ComponentFlags.None)
         .Add<Quantum.AsteroidsShipRespawn>(Quantum.AsteroidsShipRespawn.Serialize, null, null, ComponentFlags.None)
+        .Add<Quantum.BBMatchState>(Quantum.BBMatchState.Serialize, null, null, ComponentFlags.None)
         .Finish();
     }
     [Preserve()]
@@ -992,6 +1121,7 @@ namespace Quantum {
       FramePrinter.EnsureNotStripped();
       FramePrinter.EnsurePrimitiveNotStripped<CallbackFlags>();
       FramePrinter.EnsurePrimitiveNotStripped<Quantum.InputButtons>();
+      FramePrinter.EnsurePrimitiveNotStripped<Quantum.QStringUtf8_64>();
       FramePrinter.EnsurePrimitiveNotStripped<QueryOptions>();
     }
   }

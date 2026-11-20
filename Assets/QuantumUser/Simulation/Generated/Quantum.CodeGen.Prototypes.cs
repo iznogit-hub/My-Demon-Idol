@@ -129,18 +129,49 @@ namespace Quantum.Prototypes {
     }
   }
   [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.BBMatchState))]
+  public unsafe partial class BBMatchStatePrototype : ComponentPrototype<Quantum.BBMatchState> {
+    public FP Fighter1HP;
+    public FP Fighter2HP;
+    public Int32 Round;
+    [MaxStringByteCount(62, "UTF-8")]
+    public string Fighter1Id;
+    [MaxStringByteCount(62, "UTF-8")]
+    public string Fighter2Id;
+    partial void MaterializeUser(Frame frame, ref Quantum.BBMatchState result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.BBMatchState component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.BBMatchState result, in PrototypeMaterializationContext context = default) {
+        result.Fighter1HP = this.Fighter1HP;
+        result.Fighter2HP = this.Fighter2HP;
+        result.Round = this.Round;
+        PrototypeValidator.AssignQStringUtf8(this.Fighter1Id, 64, in context, out result.Fighter1Id);
+        PrototypeValidator.AssignQStringUtf8(this.Fighter2Id, 64, in context, out result.Fighter2Id);
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
   [Quantum.Prototypes.Prototype(typeof(Quantum.Input))]
   public unsafe partial class InputPrototype : StructPrototype {
     public Button Left;
     public Button Right;
     public Button Up;
     public Button Fire;
+    public Button B;
+    public Button C;
+    public Button D;
     partial void MaterializeUser(Frame frame, ref Quantum.Input result, in PrototypeMaterializationContext context);
     public void Materialize(Frame frame, ref Quantum.Input result, in PrototypeMaterializationContext context = default) {
         result.Left = this.Left;
         result.Right = this.Right;
         result.Up = this.Up;
         result.Fire = this.Fire;
+        result.B = this.B;
+        result.C = this.C;
+        result.D = this.D;
         MaterializeUser(frame, ref result, in context);
     }
   }

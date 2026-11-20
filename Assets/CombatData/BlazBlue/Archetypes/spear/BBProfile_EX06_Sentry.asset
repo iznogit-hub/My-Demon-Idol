@@ -29,6 +29,6 @@ MonoBehaviour:
   crouchPushboxSize: {x: 0.8, y: 1.2}
   airPushboxSize: {x: 0.6, y: 1.3}
   blazBlueOverrideController: {fileID: 22100000, guid: dad5e3b5aa48e43e5a44d1ae7a79969d, type: 2}
-  moveSet: {fileID: 11400000, guid: 05f8cd7ed68052a9ba3d0e9d81857965, type: 2}
+  moveSet: {fileID: 11400000, guid: 691d58ca3149144a2a4a33ff67c1eef3, type: 2}
   maxHealth: 11000
   defenseModifier: 1

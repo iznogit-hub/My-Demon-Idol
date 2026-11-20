@@ -3,6 +3,9 @@ input {
 	button Right;
 	button Up;
 	button Fire;
+	button B;
+	button C;
+	button D;
 }
 
 global {
@@ -35,6 +38,15 @@ component AsteroidsProjectile {
 [CodeGen(UnityWrapperFolder, "Assets/Photon/QuantumAsteroids/View/Generated")]
 component AsteroidsAsteroid {
     asset_ref<EntityPrototype> ChildAsteroid;
+}
+
+[CodeGen(UnityWrapperFolder, "Assets/QuantumUser/View/Generated")]
+component BBMatchState {
+    FP Fighter1HP;
+    FP Fighter2HP;
+    Int32 Round;
+    QStringUtf8<64> Fighter1Id;
+    QStringUtf8<64> Fighter2Id;
 }
 
 signal AsteroidsSpawnShip(EntityRef ship);

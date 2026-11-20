@@ -26,12 +26,16 @@ namespace Quantum
         {
             var buttons = Read();
             Sideband = BBQuantumInputCodec.Pack(buttons);
+            var unpacked = BBQuantumInputCodec.Unpack(Sideband);
             var input = new Input
             {
                 Left = buttons.Left,
                 Right = buttons.Right,
                 Up = buttons.Up,
-                Fire = buttons.A
+                Fire = buttons.A,
+                B = unpacked.B,
+                C = unpacked.C,
+                D = unpacked.D
             };
             callback.SetInput(input, DeterministicInputFlags.Repeatable);
         }
