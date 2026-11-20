@@ -126,3 +126,6 @@ Assets/SimpleAssets/Humans/Guard/RenderPipeline.meta
 *.TIF
 *.psd
 
+# Photon Server Settings (keep local App ID out of git)
+Assets/QuantumUser/Resources/PhotonServerSettings.asset
+
