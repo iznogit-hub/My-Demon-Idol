@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ST03_ST03_SpaceAlienWorlds
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.StageDefinition
   id: ST03
-  displayName: Space Alien Worlds
-  description: Extraterrestrial alien plateau framed by bioluminescent crystal formations and deep violet nebulae.
-  sceneName: Home
-  stagePrefab: {fileID: 3683801319400857962, guid: 4a1a646d8b4f144999f4f58a10719d34, type: 3}
+  displayName: Rooftop Observatory
+  description: High rooftop deck enclosed by chain-link fences, overlooking the sprawling urban metropolis at twilight.
+  sceneName: ArcadeArena
+  stagePrefab: {fileID: 100000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
   thumbnailSprite: {fileID: 0}
   backgroundSprite: {fileID: 0}
-  backgroundResourcePath: Prefabs/Stages/ST03_SpaceAlienWorlds
+  backgroundResourcePath: Prefabs/Stages/ST07_CollegeRaimon
   ufeStageName: Training Room (Prefab)
   signatureArenaAuthored: 1
   playableWidth: 23
@@ -30,6 +30,6 @@ MonoBehaviour:
   cameraMinY: 1
   cameraMaxY: 6.5
   bgmAudioClip: {fileID: 0}
-  bgmTrackName: Alien Worlds BGM
+  bgmTrackName: Skyline Sunset BGM
   p1SpawnPosition: {x: -2.5, y: 0, z: 0}
   p2SpawnPosition: {x: 2.5, y: 0, z: 0}

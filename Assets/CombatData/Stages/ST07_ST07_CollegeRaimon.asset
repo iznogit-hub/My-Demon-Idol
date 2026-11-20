@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.StageDefinition
   id: ST07
   displayName: College Raimon
-  description: Sprawling Japanese high school & college campus courtyard lined with sakura cherry blossoms, school gates, and campus buildings.
+  description: Sprawling Japanese high school & college campus courtyard under a midnight thunderstorm with sakura blossoms.
   sceneName: ArcadeArena
   stagePrefab: {fileID: 100000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
   thumbnailSprite: {fileID: 0}

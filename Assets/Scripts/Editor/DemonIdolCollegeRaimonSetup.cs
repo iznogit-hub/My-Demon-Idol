@@ -139,12 +139,13 @@ namespace DemonIdol.Editor
             decorRoot.transform.SetParent(root.transform, false);
 
             GameObject raimonPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(RAIMON_PREFAB_PATH);
+            GameObject inst = null;
             if (raimonPrefab != null)
             {
-                GameObject inst = (GameObject)PrefabUtility.InstantiatePrefab(raimonPrefab, decorRoot.transform);
+                inst = (GameObject)PrefabUtility.InstantiatePrefab(raimonPrefab, decorRoot.transform);
                 inst.name = "CollegeRaimon_Courtyard";
-                inst.transform.localPosition = new Vector3(-10.2f, -100.2f, 2.3f);
-                inst.transform.localRotation = Quaternion.Euler(0.1f, 0f, 0f);
+                inst.transform.localPosition = new Vector3(0.71f, 0f, 1.41f);
+                inst.transform.localRotation = Quaternion.identity;
                 inst.transform.localScale = Vector3.one;
             }
 
@@ -158,6 +159,15 @@ namespace DemonIdol.Editor
             lComp.range = 32f;
             lComp.intensity = 1.35f;
 
+            // Master Campus Zone Anchor for all 7 derived stages
+            CampusZoneAnchor anchor = root.AddComponent<CampusZoneAnchor>();
+            SerializedObject soAnchor = new SerializedObject(anchor);
+            var campusProp = soAnchor.FindProperty("_campusTransform");
+            var accentLightProp = soAnchor.FindProperty("_accentLight");
+            if (campusProp != null && inst != null) campusProp.objectReferenceValue = inst.transform;
+            if (accentLightProp != null) accentLightProp.objectReferenceValue = lComp;
+            soAnchor.ApplyModifiedProperties();
+
             PrefabUtility.SaveAsPrefabAsset(root, ST07_PREFAB_PATH);
             UnityEngine.Object.DestroyImmediate(root);
             Debug.Log($"<color=#81c784>[College Raimon] Saved Stage Prefab: {ST07_PREFAB_PATH}</color>");
@@ -165,45 +175,66 @@ namespace DemonIdol.Editor
 
         public static void CreateStageDefinition()
         {
+            CreateAllStageDefinitions();
+        }
+
+        public static void CreateAllStageDefinitions()
+        {
             if (!AssetDatabase.IsValidFolder(STAGES_DATA_DIR))
             {
                 if (!AssetDatabase.IsValidFolder("Assets/CombatData")) AssetDatabase.CreateFolder("Assets", "CombatData");
                 AssetDatabase.CreateFolder("Assets/CombatData", "Stages");
             }
 
-            string assetPath = $"{STAGES_DATA_DIR}/ST07_ST07_CollegeRaimon.asset";
-            var stage = AssetDatabase.LoadAssetAtPath<StageDefinition>(assetPath);
-            if (stage == null)
+            var definitions = new (string id, string displayName, string desc, string bgm, string filename)[]
             {
-                stage = ScriptableObject.CreateInstance<StageDefinition>();
-                AssetDatabase.CreateAsset(stage, assetPath);
-            }
-
-            stage.id = "ST07";
-            stage.displayName = "College Raimon";
-            stage.description = "Sprawling Japanese high school & college campus courtyard lined with sakura cherry blossoms, school gates, and campus buildings.";
-            stage.bgmTrackName = "Academy Courtyard BGM";
-            stage.sceneName = "ArcadeArena";
-            stage.playableWidth = 23.0f;
-            stage.wallThreshold = 10.2f;
-            stage.groundSurfaceY = 0.0f;
-            stage.cameraMinZ = -6.5f;
-            stage.cameraMaxZ = -13.5f;
-            stage.cameraMinY = 1.0f;
-            stage.cameraMaxY = 6.5f;
-            stage.signatureArenaAuthored = true;
-            stage.backgroundResourcePath = "Prefabs/Stages/ST07_CollegeRaimon";
-            stage.p1SpawnPosition = new Vector3(-2.5f, 0f, 0f);
-            stage.p2SpawnPosition = new Vector3(2.5f, 0f, 0f);
+                ("ST01", "Central Courtyard", "Iconic central courtyard flanked by the clocktower facade and main academic wing.", "Courtyard High Noon BGM", "ST01_ST01_LowPolyDesert.asset"),
+                ("ST02", "Sakura Main Gate", "Traditional school entrance pillars and wrought iron gates framed by blooming sakura cherry blossoms.", "Sakura Dawn BGM", "ST02_ST02_RTSSciFiHangar.asset"),
+                ("ST03", "Rooftop Observatory", "High rooftop deck enclosed by chain-link fences, overlooking the sprawling urban metropolis at twilight.", "Skyline Sunset BGM", "ST03_ST03_SpaceAlienWorlds.asset"),
+                ("ST04", "Martial Arts Dojo", "Traditional Japanese wooden dojo pavilion with lattice screens, polished decking, and hanging lanterns.", "Dojo Discipline BGM", "ST04_ST04_CartoonCity.asset"),
+                ("ST05", "Athletic Stadium", "Campus athletic field bordered by running tracks, bleacher stands, and high-intensity floodlight towers.", "Stadium Overcast BGM", "ST05_ST05_MetroSubway.asset"),
+                ("ST06", "Transit Promenade", "Modern transit promenade connecting campus walkways, bicycle shelters, and vending kiosks.", "Promenade Dusk BGM", "ST06_ST06_ModernOfficeTower.asset"),
+                ("ST07", "College Raimon", "Sprawling Japanese high school & college campus courtyard under a midnight thunderstorm with sakura blossoms.", "Academy Courtyard BGM", "ST07_ST07_CollegeRaimon.asset")
+            };
 
             GameObject pPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(ST07_PREFAB_PATH);
-            if (pPrefab != null)
+
+            foreach (var def in definitions)
             {
-                stage.stagePrefab = pPrefab;
+                string assetPath = $"{STAGES_DATA_DIR}/{def.filename}";
+                var stage = AssetDatabase.LoadAssetAtPath<StageDefinition>(assetPath);
+                if (stage == null)
+                {
+                    stage = ScriptableObject.CreateInstance<StageDefinition>();
+                    AssetDatabase.CreateAsset(stage, assetPath);
+                }
+
+                stage.id = def.id;
+                stage.displayName = def.displayName;
+                stage.description = def.desc;
+                stage.bgmTrackName = def.bgm;
+                stage.sceneName = "ArcadeArena";
+                stage.playableWidth = 23.0f;
+                stage.wallThreshold = 10.2f;
+                stage.groundSurfaceY = 0.0f;
+                stage.cameraMinZ = -6.5f;
+                stage.cameraMaxZ = -13.5f;
+                stage.cameraMinY = 1.0f;
+                stage.cameraMaxY = 6.5f;
+                stage.signatureArenaAuthored = true;
+                stage.backgroundResourcePath = "Prefabs/Stages/ST07_CollegeRaimon";
+                stage.p1SpawnPosition = new Vector3(-2.5f, 0f, 0f);
+                stage.p2SpawnPosition = new Vector3(2.5f, 0f, 0f);
+
+                if (pPrefab != null)
+                {
+                    stage.stagePrefab = pPrefab;
+                }
+
+                EditorUtility.SetDirty(stage);
             }
 
-            EditorUtility.SetDirty(stage);
-            Debug.Log($"<color=#81c784>[College Raimon] Saved Stage Definition: {assetPath}</color>");
+            Debug.Log($"<color=#81c784>[College Raimon] Saved All 7 Unified Stage Definitions derived from College Raimon campus.</color>");
         }
 
         public static void SetupMainMenuScene()

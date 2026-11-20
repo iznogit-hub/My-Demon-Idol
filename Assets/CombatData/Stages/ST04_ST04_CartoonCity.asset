@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ST04_ST04_CartoonCity
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.StageDefinition
   id: ST04
-  displayName: Cartoon City
-  description: Vibrant stylized downtown street corner, storefront facades, asphalt platform, and sunny daylight.
-  sceneName: Home
-  stagePrefab: {fileID: 4456804628413675552, guid: 6cbed86f6382d4b9b9f70d31e60e3c60, type: 3}
+  displayName: Martial Arts Dojo
+  description: Traditional Japanese wooden dojo pavilion with lattice screens, polished decking, and hanging lanterns.
+  sceneName: ArcadeArena
+  stagePrefab: {fileID: 100000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
   thumbnailSprite: {fileID: 0}
   backgroundSprite: {fileID: 0}
-  backgroundResourcePath: Prefabs/Stages/ST04_CartoonCity
+  backgroundResourcePath: Prefabs/Stages/ST07_CollegeRaimon
   ufeStageName: Training Room (Prefab)
   signatureArenaAuthored: 1
   playableWidth: 23
@@ -30,6 +30,6 @@ MonoBehaviour:
   cameraMinY: 1
   cameraMaxY: 6.5
   bgmAudioClip: {fileID: 0}
-  bgmTrackName: Cartoon City BGM
+  bgmTrackName: Dojo Discipline BGM
   p1SpawnPosition: {x: -2.5, y: 0, z: 0}
   p2SpawnPosition: {x: 2.5, y: 0, z: 0}

@@ -434,13 +434,7 @@ namespace DemonIdol.Editor
 
         private static void GenerateAll6StageDefinitions()
         {
-            CreateOrUpdateStageDef("ST01", "Low Poly Desert", "Sun-baked canyon floor with sandstone mesa spires, wind-sculpted dunes, and warm amber dust haze.", "Desert Mirage BGM", "ST01_LowPolyDesert");
-            CreateOrUpdateStageDef("ST02", "RTS Sci-Fi Game Assets v1", "High-tech industrial gantry platform, modular cyber conduits, cargo units, and neon cyan status lines.", "Cyber Hangar BGM", "ST02_RTSSciFiHangar");
-            CreateOrUpdateStageDef("ST03", "Space Alien Worlds", "Extraterrestrial alien plateau framed by bioluminescent crystal formations and deep violet nebulae.", "Alien Worlds BGM", "ST03_SpaceAlienWorlds");
-            CreateOrUpdateStageDef("ST04", "Cartoon City", "Vibrant stylized downtown street corner, storefront facades, asphalt platform, and sunny daylight.", "Cartoon City BGM", "ST04_CartoonCity");
-            CreateOrUpdateStageDef("ST05", "PixelDrift: Metro Subway", "Gritty retro underground transit platform flanked by subway tracks, rusted pillars, and neon signs.", "Subway Underground BGM", "ST05_MetroSubway");
-            CreateOrUpdateStageDef("ST06", "Modern Office Tower", "High-altitude skyscraper rooftop helipad overlooking a sprawling metropolis skyline at dusk.", "Skyline Tower BGM", "ST06_ModernOfficeTower");
-            CreateOrUpdateStageDef("ST07", "College Raimon", "Sprawling Japanese high school & college campus courtyard lined with sakura cherry blossoms, school gates, and campus buildings.", "Academy Courtyard BGM", "ST07_CollegeRaimon");
+            DemonIdolCollegeRaimonSetup.CreateAllStageDefinitions();
         }
 
         private static void CreateOrUpdateStageDef(string id, string displayName, string desc, string bgm, string prefabName)

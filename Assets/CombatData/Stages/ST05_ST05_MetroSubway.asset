@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ST05_ST05_MetroSubway
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.StageDefinition
   id: ST05
-  displayName: 'PixelDrift: Metro Subway'
-  description: Gritty retro underground transit platform flanked by subway tracks, rusted pillars, and neon signs.
-  sceneName: Home
-  stagePrefab: {fileID: 499820518897075368, guid: 5a61dad5d9168499dae5ddfe46641f35, type: 3}
+  displayName: Athletic Stadium
+  description: Campus athletic field bordered by running tracks, bleacher stands, and high-intensity floodlight towers.
+  sceneName: ArcadeArena
+  stagePrefab: {fileID: 100000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
   thumbnailSprite: {fileID: 0}
   backgroundSprite: {fileID: 0}
-  backgroundResourcePath: Prefabs/Stages/ST05_MetroSubway
+  backgroundResourcePath: Prefabs/Stages/ST07_CollegeRaimon
   ufeStageName: Training Room (Prefab)
   signatureArenaAuthored: 1
   playableWidth: 23
@@ -30,6 +30,6 @@ MonoBehaviour:
   cameraMinY: 1
   cameraMaxY: 6.5
   bgmAudioClip: {fileID: 0}
-  bgmTrackName: Subway Underground BGM
+  bgmTrackName: Stadium Overcast BGM
   p1SpawnPosition: {x: -2.5, y: 0, z: 0}
   p2SpawnPosition: {x: 2.5, y: 0, z: 0}

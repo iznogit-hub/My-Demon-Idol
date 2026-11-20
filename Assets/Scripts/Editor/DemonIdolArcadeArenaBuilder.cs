@@ -34,14 +34,14 @@ namespace DemonIdol.Editor
     public static class DemonIdolArcadeArenaBuilder
     {
         public const string ARENA_SCENE_PATH = "Assets/Scenes/ArcadeArena.unity";
-        public static string ActiveStagePrefabPath = "Assets/Prefabs/Stages/ST01_LowPolyDesert.prefab";
+        public static string ActiveStagePrefabPath = "Assets/Prefabs/Stages/ST07_CollegeRaimon.prefab";
         public static Color ActiveKeyLightColor = new Color(1.0f, 0.96f, 0.90f, 1f);
         public static float ActiveLightIntensity = 1.25f;
 
         private const string MDI_CONTROLLER_PATH = "Assets/MDI_Characters/Runtime/MDI_FighterTemplate.controller";
         private const string C12_PREFAB_PATH = "Assets/Prefabs/Characters/C12_Fina.prefab";
         private const string C07_PREFAB_PATH = "Assets/Prefabs/Characters/C07_StellarWitch.prefab";
-        private const string STAGE_PREFAB_PATH = "Assets/Prefabs/Stages/ST04_InkFortressCathedral.prefab";
+        private const string STAGE_PREFAB_PATH = "Assets/Prefabs/Stages/ST07_CollegeRaimon.prefab";
         private const string URP_VOLUME_PATH = "Assets/Settings/URP_IndoorTemplateVolumeProfile.asset";
 
         // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Arena/Build Clean Arcade Arena (C12 Underwear vs C07 StellarWitch)", priority = 0)]
@@ -129,6 +129,7 @@ namespace DemonIdol.Editor
         private static GameObject SetupStageEnvironment()
         {
             GameObject arenaRoot = new GameObject("Arcade_Stage_Root");
+            arenaRoot.transform.position = new Vector3(-8.85f, -109.2f, 0f);
 
             // 1. Instantiate Backdrop Diorama
             string prefabPath = !string.IsNullOrEmpty(ActiveStagePrefabPath) && File.Exists(ActiveStagePrefabPath)

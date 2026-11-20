@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ST01_ST01_LowPolyDesert
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.StageDefinition
   id: ST01
-  displayName: Low Poly Desert
-  description: Sun-baked canyon floor with sandstone mesa spires, wind-sculpted dunes, and warm amber dust haze.
-  sceneName: Home
-  stagePrefab: {fileID: 7709276281866824714, guid: f6962955abbc94fe1a355eff66d12ae2, type: 3}
+  displayName: Central Courtyard
+  description: Iconic central courtyard flanked by the clocktower facade and main academic wing.
+  sceneName: ArcadeArena
+  stagePrefab: {fileID: 100000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
   thumbnailSprite: {fileID: 0}
   backgroundSprite: {fileID: 0}
-  backgroundResourcePath: Prefabs/Stages/ST01_LowPolyDesert
+  backgroundResourcePath: Prefabs/Stages/ST07_CollegeRaimon
   ufeStageName: Training Room (Prefab)
   signatureArenaAuthored: 1
   playableWidth: 23
@@ -30,6 +30,6 @@ MonoBehaviour:
   cameraMinY: 1
   cameraMaxY: 6.5
   bgmAudioClip: {fileID: 0}
-  bgmTrackName: Desert Mirage BGM
+  bgmTrackName: Courtyard High Noon BGM
   p1SpawnPosition: {x: -2.5, y: 0, z: 0}
   p2SpawnPosition: {x: 2.5, y: 0, z: 0}

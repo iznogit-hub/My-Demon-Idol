@@ -68,32 +68,35 @@ namespace DemonIdol.UI
 
         private static readonly string[] StageSubtitles = new[]
         {
-            "CANYON WASTELAND // SUN-BAKED DUNES",
-            "TACTICAL OUTPOST // SCI-FI GANTRY",
-            "BIOSPHERE PRIME // CRYSTALLINE EXPANSION",
-            "DOWNTOWN METROPOLIS // STYLIZED STREET CORNER",
-            "SUBTERRANEAN RAIL // BOOMER TRANSIT CONCOURSE",
-            "HIGH-RISE SKYLINE // EXECUTIVE PENTHOUSE ROOFTOP"
+            "ACADEMY COURTYARD // CLOCKTOWER PLAZA",
+            "ACADEMY MAIN GATE // SAKURA AVENUE",
+            "CAMPUS ROOFTOP // METROPOLIS SKYLINE",
+            "CAMPUS DOJO // TRADITIONAL PAVILION",
+            "SPORTS COMPLEX // ATHLETIC TRACK",
+            "CAMPUS PROMENADE // TRANSIT EDGE",
+            "ACADEMY COURTYARD // THUNDERSTORM MIDNIGHT"
         };
 
         private static readonly string[] StageHazards = new[]
         {
-            "[ SANDSTORM DUST VEIL • HIGH WALL-SPLAT ACTIVE ]",
-            "[ INDUSTRIAL GANTRY CONDUITS • NEUTRAL ARENA ]",
-            "[ BIOLUMINESCENT SPORES • RESONANT REFLECTION ]",
-            "[ URBAN SIDEWALK CORNER • COMPACT JUGGLE BOUNDS ]",
-            "[ METRO RAIL LINE • FLICKERING TUBE LIGHTING ]",
-            "[ GLASS CURTAIN BALUSTRADE • VERTICAL SKY EXPANSION ]"
+            "[ CLOCKTOWER FACADE • PLANAR 2.5D ARENA ]",
+            "[ CHERRY BLOSSOM SWARM • MORNING DAWN ]",
+            "[ METROPOLIS SKYLINE • DRAMATIC SUNSET ]",
+            "[ TRADITIONAL WOODEN DOJO • LANTERN ACCENTS ]",
+            "[ ATHLETIC BLEACHERS • OVERCAST FLOODLIGHTS ]",
+            "[ TRANSIT PROMENADE • DUSK NEON GLOW ]",
+            "[ SAKURA COURTYARD • MIDNIGHT RAIN REFLECTIONS ]"
         };
 
         private static readonly string[] StageSurfaces = new[]
         {
-            "COMPACTED SANDSTONE & CANYON BED",
-            "REINFORCED INDUSTRIAL ALLOY PLATING",
-            "OBSIDIAN CRYSTAL SLAB",
-            "ASPHALT ROAD & PEDESTRIAN CONCRETE",
-            "RETRO METRO CERAMIC TILES",
-            "POLISHED EXECUTIVE OBSIDIAN COMPOSITE"
+            "WEATHERED COURTYARD STONE PAVERS",
+            "SAKURA-STREWN ASPHALT & STONE PILLARS",
+            "REINFORCED ROOFTOP DECK & GRAVEL",
+            "POLISHED TRADITIONAL DOJO CEDAR DECKING",
+            "SYNTHETIC ATHLETIC RUNNING TRACK",
+            "POLISHED CONCRETE PROMENADE TILES",
+            "RAIN-SLICKED POLISHED STONE WITH WET REFLECTIONS"
         };
 
         private void Awake()
@@ -159,8 +162,8 @@ namespace DemonIdol.UI
             var stages = StageRegistry.GetAllStages();
             if (stages == null || stages.Count == 0) return;
 
-            // Constrain to the 6 approved active battle stages
-            SelectedStageIndex = Mathf.Clamp(index, 0, Mathf.Min(5, stages.Count - 1));
+            // Constrain to the 7 approved active battle stages
+            SelectedStageIndex = Mathf.Clamp(index, 0, Mathf.Min(6, stages.Count - 1));
             DemonIdol.Audio.CombatAudioDirector.Instance?.PlayButtonClick();
 
             StageDefinition stage = stages[SelectedStageIndex];

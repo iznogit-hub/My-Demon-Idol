@@ -279,6 +279,12 @@ namespace DemonIdol.Combat
                             newDiorama.transform.localPosition = Vector3.zero;
                             newDiorama.transform.localRotation = Quaternion.identity;
                         }
+
+                        var zoneAnchor = arenaRoot.GetComponentInChildren<CampusZoneAnchor>();
+                        if (zoneAnchor != null)
+                        {
+                            zoneAnchor.ApplyZone(_activeStageId);
+                        }
                     }
                 }
             }

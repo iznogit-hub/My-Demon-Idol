@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ST06_ST06_ModernOfficeTower
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.StageDefinition
   id: ST06
-  displayName: Modern Office Tower
-  description: High-altitude skyscraper rooftop helipad overlooking a sprawling metropolis skyline at dusk.
-  sceneName: Home
-  stagePrefab: {fileID: 3878894567558075256, guid: 57a7d53f427cc48439b9390d369a3ee0, type: 3}
+  displayName: Transit Promenade
+  description: Modern transit promenade connecting campus walkways, bicycle shelters, and vending kiosks.
+  sceneName: ArcadeArena
+  stagePrefab: {fileID: 100000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
   thumbnailSprite: {fileID: 0}
   backgroundSprite: {fileID: 0}
-  backgroundResourcePath: Prefabs/Stages/ST06_ModernOfficeTower
+  backgroundResourcePath: Prefabs/Stages/ST07_CollegeRaimon
   ufeStageName: Training Room (Prefab)
   signatureArenaAuthored: 1
   playableWidth: 23
@@ -30,6 +30,6 @@ MonoBehaviour:
   cameraMinY: 1
   cameraMaxY: 6.5
   bgmAudioClip: {fileID: 0}
-  bgmTrackName: Skyline Tower BGM
+  bgmTrackName: Promenade Dusk BGM
   p1SpawnPosition: {x: -2.5, y: 0, z: 0}
   p2SpawnPosition: {x: 2.5, y: 0, z: 0}
