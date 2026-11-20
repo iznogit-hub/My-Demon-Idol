@@ -149,6 +149,13 @@ namespace DemonIdol.UI
         [SerializeField] private CanvasGroup _toastGroup;
 
         private SettingsData _current = new SettingsData();
+        public SettingsData Current => _current;
+        public SettingsData settings => _current;
+        public bool reducedGore
+        {
+            get => _current != null && _current.reducedGore;
+            set { if (_current != null) _current.reducedGore = value; }
+        }
         private Coroutine _toastRoutine;
         private bool _isSyncingUI = false;
 

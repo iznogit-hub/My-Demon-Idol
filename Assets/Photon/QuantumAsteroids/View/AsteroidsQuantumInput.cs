@@ -42,6 +42,10 @@ namespace Quantum.Asteroids {
     /// Subscribes to the Quantum input callback when the script is enabled.
     /// </summary>
     private void OnEnable() {
+      if (GetComponent("BBQuantumInput") != null) {
+        enabled = false;
+        return;
+      }
       QuantumCallback.Subscribe(this, (CallbackGameStarted callback) => OnGameStarted(callback));
       QuantumCallback.Subscribe(this, (CallbackGameDestroyed callback) => OnGameDestroyed(callback));
       QuantumCallback.Subscribe(this, (CallbackPollInput callback) => OnPollInput(callback));

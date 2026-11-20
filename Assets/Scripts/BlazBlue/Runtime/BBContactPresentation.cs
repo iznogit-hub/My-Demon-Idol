@@ -20,6 +20,10 @@ namespace DemonIdol.BlazBlue
         public static event System.Action<string, string> OnVideoHook;
         public static event System.Action<string> OnQuoteHook;
 
+        public static void RaisePortraitHook(string id, string token) => OnPortraitHook?.Invoke(id, token);
+        public static void RaiseVideoHook(string id, string token) => OnVideoHook?.Invoke(id, token);
+        public static void RaiseQuoteHook(string text) => OnQuoteHook?.Invoke(text);
+
         static readonly Vector3[] _hitPoints = new Vector3[8];
         static int _hitCursor;
 

@@ -1,3 +1,7 @@
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace DemonIdol.BlazBlue
 {
     /// <summary>
@@ -79,5 +83,49 @@ namespace DemonIdol.BlazBlue
                 clipToken = clip
             };
         }
+
+#if UNITY_EDITOR
+        public static UnityEngine.AnimationClip ResolveClip(string token)
+        {
+            if (string.IsNullOrEmpty(token)) return null;
+            if (token.StartsWith("CMU 79")) return FindSubClip("Assets/Huge Mocap Library/mocap animations/79/79_01.fbx", "MDI_BB_Attack_1");
+            if (token.StartsWith("CMU 80")) return FindSubClip("Assets/Huge Mocap Library/mocap animations/80/80_01.fbx", "MDI_BB_Attack_2");
+            if (token.StartsWith("CMU 81")) return FindSubClip("Assets/Huge Mocap Library/mocap animations/81/81_01.fbx", "MDI_BB_Attack_3");
+            if (token.StartsWith("CMU 83")) return FindSubClip("Assets/Huge Mocap Library/mocap animations/83/83_01.fbx", "MDI_BB_Attack_4");
+            if (token.StartsWith("CMU 86")) return FindSubClip("Assets/Huge Mocap Library/mocap animations/86/86_01.fbx", "MDI_BB_Attack_5");
+            if (token == "KI 1H Attack") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/1H/HumanF@Attack1H01_R.fbx", "HumanF@Attack1H01_R");
+            if (token == "KI 2H") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/2H/HumanF@Attack2H01.fbx", "HumanF@Attack2H01");
+            if (token == "Knight shield") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Shield/HumanF@AttackShield01.fbx", "HumanF@AttackShield01");
+            if (token == "KI spellcast") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect1H01_R.fbx", "HumanF@MagicAttackDirect1H01_R");
+            if (token == "KI spellcast bubble") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect2H01.fbx", "HumanF@MagicAttackDirect2H01");
+            if (token == "KI Magic Omni") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanF@MagicAttackOmni01.fbx", "HumanF@MagicAttackOmni01");
+            if (token.EndsWith(" Attack1"))
+            {
+                string warrior = token.Split(' ')[0];
+                string[] guids = UnityEditor.AssetDatabase.FindAssets(warrior + "@Attack1 t:Model", new[] { "Assets/ExplosiveLLC" });
+                if (guids.Length > 0)
+                {
+                    string p = UnityEditor.AssetDatabase.GUIDToAssetPath(guids[0]);
+                    return FindSubClip(p, "Attack1");
+                }
+            }
+            return null;
+        }
+
+        static UnityEngine.AnimationClip FindSubClip(string fbxPath, string name)
+        {
+            var objs = UnityEditor.AssetDatabase.LoadAllAssetsAtPath(fbxPath);
+            if (objs == null) return null;
+            foreach (var o in objs)
+            {
+                if (o is UnityEngine.AnimationClip c && !c.name.StartsWith("__preview__"))
+                {
+                    if (string.IsNullOrEmpty(name) || c.name == name) return c;
+                }
+            }
+            foreach (var o in objs) if (o is UnityEngine.AnimationClip c && !c.name.StartsWith("__preview__")) return c;
+            return null;
+        }
+#endif
     }
 }
