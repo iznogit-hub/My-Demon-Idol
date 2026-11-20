@@ -11,6 +11,7 @@ namespace DemonIdol.Combat
     {
         [Header("Fighter Identity")]
         public string fighterName = "Kai";
+        public CharacterDefinition appliedDefinition;
         public bool isPlayerControlled = true;
         [System.NonSerialized] public bool externalSimulation = false;
 
@@ -1625,6 +1626,7 @@ namespace DemonIdol.Combat
         public void ApplyCharacterDefinition(CharacterDefinition charDef)
         {
             if (charDef == null) return;
+            appliedDefinition = charDef;
             fighterName = charDef.displayName;
 
             float speedFactor = Mathf.Clamp(charDef.speed / 50f, 0.7f, 1.4f);

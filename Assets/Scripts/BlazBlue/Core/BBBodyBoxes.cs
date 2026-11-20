@@ -24,6 +24,37 @@ namespace DemonIdol.BlazBlue
         public BBBox airPushBox;
         public BBBox[] airHurtBoxes = new BBBox[2]; // Body, Legs (throw immune in air unless air throw)
 
+        public static BBBodyBoxes CreateFromHip(float hipHeight, float weaponReach)
+        {
+            float hip = Mathf.Max(0.7f, hipHeight);
+            float reach = Mathf.Max(0.4f, weaponReach);
+            var b = new BBBodyBoxes();
+            b.standPushBox = new BBBox(0f, hip * 0.95f, 0.34f, hip * 0.95f, BBBoxKind.Push);
+            b.standThrowHurtBox = new BBBox(0f, hip, 0.28f, hip * 0.7f, BBBoxKind.ThrowHurt);
+            b.standHurtBoxes = new BBBox[]
+            {
+                new BBBox(0.02f, hip * 1.62f, 0.18f, 0.16f, BBBoxKind.Hurt, 0, BBAttribute.Head),
+                new BBBox(0.00f, hip * 1.08f, 0.26f, hip * 0.34f, BBBoxKind.Hurt, 0, BBAttribute.Body),
+                new BBBox(0.05f, hip * 0.42f, 0.30f, hip * 0.38f, BBBoxKind.Hurt, 0, BBAttribute.Foot)
+            };
+            b.crouchPushBox = new BBBox(0f, hip * 0.58f, 0.38f, hip * 0.55f, BBBoxKind.Push);
+            b.crouchThrowHurtBox = new BBBox(0f, hip * 0.52f, 0.32f, hip * 0.45f, BBBoxKind.ThrowHurt);
+            b.crouchHurtBoxes = new BBBox[]
+            {
+                new BBBox(0.04f, hip * 1.00f, 0.16f, 0.12f, BBBoxKind.Hurt, 0, BBAttribute.Head),
+                new BBBox(0.02f, hip * 0.68f, 0.28f, hip * 0.24f, BBBoxKind.Hurt, 0, BBAttribute.Body),
+                new BBBox(0.08f, hip * 0.22f, 0.34f, hip * 0.20f, BBBoxKind.Hurt, 0, BBAttribute.Foot)
+            };
+            b.airPushBox = new BBBox(0f, hip * 0.62f, 0.28f, hip * 0.60f, BBBoxKind.Push);
+            b.airHurtBoxes = new BBBox[]
+            {
+                new BBBox(0.00f, hip * 0.80f, 0.22f, 0.16f, BBBoxKind.Hurt, 0, BBAttribute.Head),
+                new BBBox(0.00f, hip * 0.28f, 0.26f, hip * 0.30f, BBBoxKind.Hurt, 0, BBAttribute.Body)
+            };
+            b.standPushBox.hx = Mathf.Max(b.standPushBox.hx, reach * 0.15f);
+            return b;
+        }
+
         public static BBBodyBoxes CreateAkioPreset()
         {
             var b = new BBBodyBoxes();

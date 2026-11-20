@@ -271,7 +271,7 @@ namespace DemonIdol.BlazBlue
 
                 // Successful throw
                 defender.bbState = BBState.Thrown;
-                defender.health = Mathf.Max(0f, defender.health - 800f);
+                defender.ReceiveAuthoritativeDamage(800f);
                 attacker.heat = Mathf.Min(tuning.heatMax, attacker.heat + 5f);
                 attacker.hitstopRemaining = 10;
                 defender.hitstopRemaining = 10;
@@ -322,7 +322,7 @@ namespace DemonIdol.BlazBlue
                         float authoredChip = attacker.currentAttack != null ? attacker.currentAttack.chipPct : 0f;
                         int chip = BBDamageModel.CalculateChipDamage(baseDamage, moveKind, false, authoredChip);
                         float minHp = BBDamageModel.CanChipKO(moveKind) ? 0f : 1f;
-                        defender.health = Mathf.Max(minHp, defender.health - chip);
+                        defender.SetAuthoritativeHealth(Mathf.Max(minHp, defender.health - chip));
 
                         defender.bbState = BBState.Blockstun;
                         defender.blockstunRemaining = blockstun;
@@ -369,7 +369,7 @@ namespace DemonIdol.BlazBlue
                         isDefenderInDanger: defender.gauges.isDanger
                     );
 
-                    defender.health = Mathf.Max(0f, defender.health - scaledDmg);
+                    defender.ReceiveAuthoritativeDamage(scaledDmg);
 
                     // Hitstun with combo duration decay (spec 4.15)
                     int decayedHitstun = attacker.comboState.CalculateDecayedHitstun(hitstun, defender.isGrounded);

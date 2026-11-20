@@ -23,12 +23,13 @@ MonoBehaviour:
   avatar: {fileID: 9000000, guid: 7e0043553097dc34e867f52b292bb164, type: 3}
   portraitSprite: {fileID: 21300000, guid: 8c2b26a1a101446549430df315c9daf4, type: 3}
   bannerSprite: {fileID: 0}
-  speed: 90
-  power: 75
-  reach: 65
-  defense: 70
+  speed: 84
+  power: 74
+  reach: 80
+  defense: 72
   domainName: Void Rift
   domainDescription: Freezes spacetime for 20 combat ticks, shattering enemy barrier integrity with an unavoidable fatal strike.
   moveSet: {fileID: 0}
   videoBindings: {fileID: 0}
+  blazBlueProfile: {fileID: 11400000, guid: 0e4d3fcde7b2521ebcc54d7c2b31492f, type: 2}
   ufeCharacterName: Mike
