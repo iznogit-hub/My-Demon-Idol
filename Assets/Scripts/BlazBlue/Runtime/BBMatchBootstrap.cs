@@ -108,6 +108,12 @@ namespace DemonIdol.BlazBlue
             }
 
             BBHitboxOverlay.IsOverlayActive = training;
+            var canvas = FindFirstObjectByType<Canvas>();
+            if (canvas != null && p1Brain != null && canvas.GetComponentInChildren<BBTouchLayout>(true) == null)
+            {
+                BBTouchLayout.Create(canvas.transform, p1Brain.sampler);
+                BBComboReadout.Create(canvas.transform);
+            }
         }
 
         static void EnsureDrive(BBFighterBrain brain, BBRosterArchetype.Info info)

@@ -297,11 +297,11 @@ namespace DemonIdol.BlazBlue
                                   (defender.fighter != null && BBInputFrame.IsBack(BBInputFrame.WorldToFacingNumpad(defender.History.LatestFrame.numpad, defender.fighter.FacingDirection)));
                 bool isBarrier = defender.CurrentCommand.commandType == BBCommandType.Barrier && defender.barrier > 0f && !defender.gauges.isDanger;
 
-                float baseDamage = attacker.currentAttack != null ? attacker.currentAttack.damage : 300f;
+                float baseDamage = (attacker.currentAttack != null ? attacker.currentAttack.damage : 300f) * Mathf.Max(0.1f, attacker.ActiveDamageScale);
                 int hitstun = attacker.currentAttack != null ? attacker.currentAttack.hitstunTicks : 14;
                 int blockstun = attacker.currentAttack != null ? attacker.currentAttack.blockstunTicks : 9;
-                int hitstopA = attacker.currentAttack != null ? attacker.currentAttack.hitstopAttacker : 8;
-                int hitstopD = attacker.currentAttack != null ? attacker.currentAttack.hitstopDefender : 8;
+                int hitstopA = (attacker.currentAttack != null ? attacker.currentAttack.hitstopAttacker : 8) + attacker.SignatureHitstopBonus;
+                int hitstopD = (attacker.currentAttack != null ? attacker.currentAttack.hitstopDefender : 8) + attacker.SignatureHitstopBonus;
 
                 BBMoveKind moveKind = attacker.currentAttack != null ? attacker.currentAttack.kind : BBMoveKind.Normal;
                 BBButton moveButton = attacker.currentAttack != null ? attacker.currentAttack.button : BBButton.A;
@@ -309,6 +309,7 @@ namespace DemonIdol.BlazBlue
 
                 if (isGuarding)
                 {
+                    int chip = 0;
                     if (isBarrier && defender.barrierSys != null)
                     {
                         defender.barrierSys.ApplyBarrierBlock(baseDamage, currentTick, out float pushbackMult, out int blockstunReduction);
@@ -320,7 +321,7 @@ namespace DemonIdol.BlazBlue
                     {
                         // Regular block takes chip damage (spec 4.19)
                         float authoredChip = attacker.currentAttack != null ? attacker.currentAttack.chipPct : 0f;
-                        int chip = BBDamageModel.CalculateChipDamage(baseDamage, moveKind, false, authoredChip);
+                        chip = BBDamageModel.CalculateChipDamage(baseDamage, moveKind, false, authoredChip);
                         float minHp = BBDamageModel.CanChipKO(moveKind) ? 0f : 1f;
                         defender.SetAuthoritativeHealth(Mathf.Max(minHp, defender.health - chip));
 
@@ -332,6 +333,8 @@ namespace DemonIdol.BlazBlue
                     attacker.hitstopRemaining = hitstopA;
                     defender.hitstopRemaining = hitstopD;
                     attacker.gauges.AddHeatOnHit(moveButton, moveKind, true, tuning);
+                    bool crush = moveButton == BBButton.C || moveKind == BBMoveKind.DistortionDrive;
+                    BBContactPresentation.OnGuard(defender.transform.position, chip > 0, crush);
 
                     // Mark contact on attacker chain state
                     attacker.chainState.madeContact = true;
@@ -380,6 +383,7 @@ namespace DemonIdol.BlazBlue
 
                     attacker.hitstopRemaining = hitstopA;
                     defender.hitstopRemaining = hitstopD;
+                    BBContactPresentation.OnCleanHit(defender.transform.position, attacker, isCounterHit, moveKind == BBMoveKind.DistortionDrive);
 
                     attacker.gauges.AddHeatOnHit(moveButton, moveKind, false, tuning);
                     defender.gauges.AddHeatOnDamageTaken(scaledDmg, tuning);

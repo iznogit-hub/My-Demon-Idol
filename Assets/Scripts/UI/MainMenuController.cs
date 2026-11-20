@@ -47,6 +47,7 @@ namespace DemonIdol.UI
         public Button BtnModeArcade;
         public Button BtnModeVersus;
         public Button BtnModeTraining;
+        public Button BtnModeOnline;
         public Button BtnModeBack;
 
         [Header("Character Select UI - Faction Tabs")]
@@ -188,6 +189,7 @@ namespace DemonIdol.UI
             if (BtnModeArcade != null) BtnModeArcade.onClick.AddListener(() => SelectMode("Arcade"));
             if (BtnModeVersus != null) BtnModeVersus.onClick.AddListener(() => SelectMode("LocalVersus"));
             if (BtnModeTraining != null) BtnModeTraining.onClick.AddListener(() => SelectMode("Training"));
+            if (BtnModeOnline != null) BtnModeOnline.onClick.AddListener(() => SelectMode("Online"));
             if (BtnModeBack != null) BtnModeBack.onClick.AddListener(() => SetMenuState(MenuState.Title));
 
             if (BtnFactionAll != null) BtnFactionAll.onClick.AddListener(() => SetFactionFilter(0));

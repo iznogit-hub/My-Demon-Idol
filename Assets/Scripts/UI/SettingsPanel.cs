@@ -54,6 +54,7 @@ namespace DemonIdol.UI
         public string hitSoundProfile = "3rdStrike"; // "3rdStrike", "AnimeImpact", "HeavyMetal"
         public int colorblindMode = 0; // 0 = None, 1 = Protanopia, 2 = Deuteranopia, 3 = Tritanopia
         public bool highContrastHitboxes = false;
+        public bool reducedGore = false;
         public int touchControlsMode = 0; // 0 = Auto-Detect, 1 = Always On, 2 = Off
         public int controlScheme = 1; // 0 = Classic3Button, 1 = BlazBlue4Button (Default: BlazBlue4Button)
     }
@@ -104,6 +105,7 @@ namespace DemonIdol.UI
         public static string HitSoundProfile => Instance != null ? Instance._current.hitSoundProfile : "3rdStrike";
         public static int ColorblindMode => Instance != null ? Instance._current.colorblindMode : 0;
         public static bool HighContrastHitboxes => Instance != null && Instance._current.highContrastHitboxes;
+        public static bool ReducedGore => Instance != null && Instance._current.reducedGore;
         public static int TouchControlsMode => Instance != null ? Instance._current.touchControlsMode : 0;
         public static DemonIdol.BlazBlue.ControlScheme ActiveControlScheme =>
             (Instance == null || Instance._current.controlScheme == 1)

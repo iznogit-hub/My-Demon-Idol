@@ -18,6 +18,10 @@ namespace DemonIdol.Combat
         public int facingDirection = 1;
         public FighterController owner;
         public AttackData attackData;
+        public bool pooled;
+
+        static readonly MDIProjectile[] Active = new MDIProjectile[8];
+        static int _activeCount;
 
         [Header("Visual & FX")]
         public GameObject impactVfxPrefab;
@@ -25,6 +29,18 @@ namespace DemonIdol.Combat
 
         private float _spawnTime;
         private bool _hasHit = false;
+
+        private void OnEnable()
+        {
+            _spawnTime = Time.time;
+            _hasHit = false;
+            Register();
+        }
+
+        private void OnDisable()
+        {
+            Unregister();
+        }
 
         private void Start()
         {
@@ -42,9 +58,10 @@ namespace DemonIdol.Combat
             // Lifetime check
             if (Time.time - _spawnTime >= lifetime)
             {
-                Destroy(gameObject);
+                Release();
                 return;
             }
+            if (ClashWithOthers()) return;
 
             // Move along X axis strictly
             float dx = facingDirection * speed * Time.deltaTime;
@@ -53,7 +70,7 @@ namespace DemonIdol.Combat
             // Arena boundary clamp check
             if (Mathf.Abs(transform.position.x) > PushbackSolver.ARENA_LIMIT_X + 2.0f)
             {
-                Destroy(gameObject);
+                Release();
                 return;
             }
 
@@ -115,7 +132,75 @@ namespace DemonIdol.Combat
                 HitEffectCoordinator.Instance.SpawnHitBurst(hitPos, false, false);
             }
 
-            Destroy(gameObject, 0.05f);
+            Release();
+        }
+
+        public void ResetPooled(string name, float newSpeed, float damage, Color trail, FighterController newOwner, Vector3 spawnPos, int facing)
+        {
+            projectileName = name;
+            speed = newSpeed;
+            owner = newOwner;
+            trailColor = trail;
+            facingDirection = facing;
+            transform.position = spawnPos;
+            _spawnTime = Time.time;
+            _hasHit = false;
+            if (attackData == null) attackData = ScriptableObject.CreateInstance<AttackData>();
+            attackData.attackName = name;
+            attackData.damage = damage;
+        }
+
+        public static bool Overlaps(MDIProjectile a, MDIProjectile b)
+        {
+            if (a == null || b == null) return false;
+            return Mathf.Abs(a.transform.position.x - b.transform.position.x) < 0.45f
+                && Mathf.Abs(a.transform.position.y - b.transform.position.y) < 0.45f;
+        }
+
+        bool ClashWithOthers()
+        {
+            for (int i = 0; i < _activeCount; i++)
+            {
+                var other = Active[i];
+                if (other == null || other == this || !other.gameObject.activeInHierarchy) continue;
+                if (other.owner == owner) continue;
+                if (!Overlaps(this, other)) continue;
+                Release();
+                other.Release();
+                return true;
+            }
+            return false;
+        }
+
+        void Register()
+        {
+            for (int i = 0; i < _activeCount; i++)
+            {
+                if (Active[i] == this) return;
+            }
+            if (_activeCount < Active.Length) Active[_activeCount++] = this;
+        }
+
+        void Unregister()
+        {
+            for (int i = 0; i < _activeCount; i++)
+            {
+                if (Active[i] != this) continue;
+                Active[i] = Active[_activeCount - 1];
+                Active[_activeCount - 1] = null;
+                _activeCount--;
+                return;
+            }
+        }
+
+        void Release()
+        {
+            if (pooled)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+            Destroy(gameObject);
         }
     }
 }
