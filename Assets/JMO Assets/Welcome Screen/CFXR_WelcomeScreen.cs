@@ -9,22 +9,7 @@ namespace CartoonFX
     {
         static CFXR_WelcomeScreen()
         {
-            EditorApplication.delayCall += () =>
-            {
-                if (SessionState.GetBool("CFXR_WelcomeScreen_Shown", false))
-                {
-                    return;
-                }
-            SessionState.SetBool("CFXR_WelcomeScreen_Shown", true);
-
-                var importer = AssetImporter.GetAtPath(AssetDatabase.GUIDToAssetPath("bfd03f272fe010b4ba558a3bc456ffeb"));
-                if (importer != null && importer.userData == "dontshow")
-                {
-                    return;
-                }
-
-                Open();
-            };
+            // Auto-popup disabled to keep editor clean
         }
 
         [MenuItem("Tools/Cartoon FX Remaster FREE - Welcome Screen")]
