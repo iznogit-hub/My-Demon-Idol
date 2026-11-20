@@ -421,7 +421,11 @@ namespace DemonIdol.BlazBlue
 
             if (animDriver != null)
             {
-                animDriver.PlayAttack(attack);
+                var signatureClip = BBSignatureClipFallback.ClipFor(profile, charId, attack.moveId);
+                if (signatureClip != null)
+                    animDriver.PlayAttackClip(signatureClip, attack.clipFirstFrame, attack.clipLastFrame, attack.TotalTicks, 0);
+                else
+                    animDriver.PlayAttack(attack);
             }
             if (fighter != null && fighter.animator != null && !string.IsNullOrEmpty(attack.animationTrigger))
             {

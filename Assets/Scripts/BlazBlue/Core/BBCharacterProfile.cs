@@ -35,6 +35,11 @@ namespace DemonIdol.BlazBlue
         [Header("Animation Override Asset (Non-Destructive)")]
         public AnimatorOverrideController blazBlueOverrideController;
 
+        [Header("Signature clips (this fighter only)")]
+        public AnimationClip signatureDriveClip;
+        public AnimationClip signatureSpecialClip;
+        public AnimationClip signatureSuperClip;
+
         [Header("MoveSet Configuration")]
         public ScriptableObject moveSet;
 
