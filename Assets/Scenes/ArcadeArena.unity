@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientSkyColor: {r: 0.65, g: 0.72, b: 0.85, a: 1}
+  m_AmbientEquatorColor: {r: 0.45, g: 0.48, b: 0.55, a: 1}
+  m_AmbientGroundColor: {r: 0.28, g: 0.28, b: 0.32, a: 1}
+  m_AmbientIntensity: 1.15
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -199,11 +199,13 @@ MonoBehaviour:
   _btnRematch: {fileID: 0}
   _btnRetry: {fileID: 0}
   _btnCharacterSelect: {fileID: 0}
+  _btnStageSelect: {fileID: 0}
   _btnReturnToMenu: {fileID: 0}
   _pauseModal: {fileID: 0}
   _btnPauseResume: {fileID: 0}
   _btnPauseRestart: {fileID: 0}
   _btnPauseCharSelect: {fileID: 0}
+  _btnPauseStageSelect: {fileID: 0}
   _btnPauseMenu: {fileID: 0}
   _btnBattlePause: {fileID: 0}
   _netcodeRibbon: {fileID: 0}
@@ -712,19 +714,19 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 0.75, g: 0.88, b: 1, a: 1}
-  m_Intensity: 0.45
+  m_Color: {r: 1, g: 0.96, b: 0.9, a: 1}
+  m_Intensity: 1.55
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_Strength: 0.75
+    m_Bias: 0.03
+    m_NormalBias: 0.25
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -1387,7 +1389,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 0}
+  sharedProfile: {fileID: 11400000, guid: c3fe74f4a102d4afb9982bd4080f64ca, type: 2}
 --- !u!1 &1432366568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,6 +1626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hurtbox
   _zone: 1
+  _owner: {fileID: 0}
 --- !u!65 &1538526699
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2111,7 +2114,7 @@ Light:
   serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.96, b: 0.9, a: 1}
-  m_Intensity: 1.25
+  m_Intensity: 1.55
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
@@ -2120,9 +2123,9 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_Strength: 0.75
+    m_Bias: 0.03
+    m_NormalBias: 0.25
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -2332,14 +2335,14 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.126157, g: 0.20337336, b: 0.254717, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 29.405136
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -2354,7 +2357,7 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 120
-  field of view: 44
+  field of view: 37.999996
   orthographic: 0
   orthographic size: 2.1
   m_Depth: 0
@@ -2477,6 +2480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hurtbox
   _zone: 1
+  _owner: {fileID: 0}
 --- !u!65 &1842205775
 BoxCollider:
   m_ObjectHideFlags: 0
