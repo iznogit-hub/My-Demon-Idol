@@ -1,0 +1,13 @@
+{
+    "snapshot": "9D906B0522B2A5168DDF633FC8FAC4658E73F6C61DA5CE86EE04D2E3C58855F7",
+    "meshes": 658,
+    "instances": 10659,
+    "coloredMeshes": 591,
+    "vertices": 1099565,
+    "triangles": 722618,
+    "size": {
+        "x": 1608.0714111328125,
+        "y": 140.92803955078126,
+        "z": 1578.1431884765625
+    }
+}

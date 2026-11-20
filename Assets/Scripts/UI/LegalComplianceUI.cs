@@ -56,9 +56,10 @@ namespace DemonIdol.UI
             "• We DO NOT collect GPS or precise real-time location.\n" +
             "• We DO NOT collect contacts, photos, or personal device files.\n" +
             "• We DO NOT sell, rent, or trade player data to third-party ad brokers.\n\n" +
-            "3. THIRD-PARTY PARTNERS\n" +
+            "3. THIRD-PARTY PARTNERS & ASSET LICENSORS\n" +
             "• Photon Quantum (Exit Games): Multiplayer rollback relay synchronization.\n" +
-            "• Firebase (Google Cloud): Authentication, cloud persistence, and messaging.\n\n" +
+            "• Firebase (Google Cloud): Authentication, cloud persistence, and messaging.\n" +
+            "• BuildVerse: College Raimon 3D environment assets under Unity Asset Store EULA.\n\n" +
             "4. YOUR PRIVACY RIGHTS (GDPR / CCPA)\n" +
             "You have the absolute right to view, export, or delete your account data at any time via the in-game 'Data Deletion' tab or at mydemonidol.com/data-deletion.";
 

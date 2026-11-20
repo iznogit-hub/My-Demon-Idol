@@ -38,7 +38,7 @@ namespace DemonIdol.EditorTools
             "ST04 - Cartoon City (Downtown Street Corner & Sunlit Asphalt)",
             "ST05 - Metro Subway (Gritty Retro Transit Platform & Tracks)",
             "ST06 - Modern Office Tower (Rooftop Penthouse Helipad Dusk)",
-            "ST07 - Foggy Summit Overlook (Mountain Peak)",
+            "ST07 - College Raimon (Japanese School & Campus Courtyard)",
             "ST08 - Demon Lord Sanctum (Throne Room)",
             "ST09 - Volumetric Mist Turbine (Sub-level Vault)",
             "ST10 - Subway Underpass Dais (Concourse)",

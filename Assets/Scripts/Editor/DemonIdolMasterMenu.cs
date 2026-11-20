@@ -68,6 +68,12 @@ namespace DemonIdol.EditorTools
             DemonIdolArcadeArenaBuilder.BuildArcadeArenaScene();
         }
 
+        [MenuItem("Demon Idol/🎬 Scenes/Deploy College Raimon to All 3 Scenes", priority = 22)]
+        public static void DeployCollegeRaimonAllScenes()
+        {
+            DemonIdolCollegeRaimonSetup.ExecuteFullSetup();
+        }
+
         // =====================================================================
         // 3. ROSTER & ANIMATORS
         // =====================================================================

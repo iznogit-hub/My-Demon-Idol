@@ -47,6 +47,7 @@ namespace DemonIdol.UI
             "Flooded Grounds Ambient Soundscapes\n" +
             "Alebardium Bloodlines Audio Toolkit\n\n" +
             "LICENSES & THIRD-PARTY ATTRIBUTIONS\n" +
+            "\"College Raimon\" Japanese campus environment assets by BuildVerse (Unity Asset Store EULA)\n" +
             "Motion capture: Open Motion Project by ACCAD/The Ohio State University, licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)\n" +
             "Fleshy Fight Sounds by will_leamon (opengameart.org), OGA-BY 3.0\n" +
             "\"Low-Poly Katana\" (https://skfb.ly/oWS9S) by AF1Q, licensed under CC BY 4.0\n" +

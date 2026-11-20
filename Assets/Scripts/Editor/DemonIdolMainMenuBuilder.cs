@@ -223,6 +223,17 @@ namespace DemonIdol.Editor
                 }
             }
 
+            // College Raimon Japanese campus backdrop
+            GameObject raimonPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/CollegeRaimon/Prefabs/CollegeRaimon.prefab");
+            if (raimonPrefab != null)
+            {
+                GameObject campusBackdrop = (GameObject)PrefabUtility.InstantiatePrefab(raimonPrefab, pedestalRoot.transform);
+                campusBackdrop.name = "CollegeRaimon_Backdrop";
+                campusBackdrop.transform.localPosition = new Vector3(-6.0f, -0.6f, 16.0f);
+                campusBackdrop.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                campusBackdrop.transform.localScale = Vector3.one;
+            }
+
             return spawnPoint.transform;
         }
 
@@ -498,10 +509,7 @@ namespace DemonIdol.Editor
             Text stageTitle = CreateText(stagePanel.transform, "Stage_Title", "SELECT COMBAT ARENA THEATRE", animeFont, 44, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
             SetRect(stageTitle.rectTransform, new Vector2(0.5f, 0.88f), new Vector2(0.5f, 0.88f), new Vector2(800, 60), Vector2.zero);
 
-            // Stage cards (3 x 2 grid)
-            controller.StageButtons = new Button[6];
-            controller.StageHighlights = new Image[6];
-
+            // Stage cards (4-column grid for ST01 - ST07)
             string[] stageLabels = new[]
             {
                 "ST01: REACTOR CORE",
@@ -509,16 +517,20 @@ namespace DemonIdol.Editor
                 "ST03: NEO SHIBUYA",
                 "ST04: INK FORTRESS",
                 "ST05: METRO SUBWAY",
-                "ST06: OFFICE TOWER"
+                "ST06: OFFICE TOWER",
+                "ST07: COLLEGE RAIMON"
             };
 
-            for (int i = 0; i < 6; i++)
-            {
-                int col = i % 3;
-                int row = i / 3;
+            controller.StageButtons = new Button[stageLabels.Length];
+            controller.StageHighlights = new Image[stageLabels.Length];
 
-                float xMin = 0.15f + col * 0.25f;
-                float xMax = xMin + 0.20f;
+            for (int i = 0; i < stageLabels.Length; i++)
+            {
+                int col = i % 4;
+                int row = i / 4;
+
+                float xMin = 0.08f + col * 0.22f;
+                float xMax = xMin + 0.18f;
                 float yMin = 0.58f - row * 0.18f;
                 float yMax = yMin + 0.14f;
 
@@ -539,7 +551,7 @@ namespace DemonIdol.Editor
                 hlImg.color = (i == 0) ? new Color(1f, 0.85f, 0.2f, 1f) : new Color(1f, 1f, 1f, 0.15f);
                 controller.StageHighlights[i] = hlImg;
 
-                Text lbl = CreateText(stCard.transform, "Label", stageLabels[i], animeFont, 18, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
+                Text lbl = CreateText(stCard.transform, "Label", stageLabels[i], animeFont, 16, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
                 SetRect(lbl.rectTransform, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
             }
 

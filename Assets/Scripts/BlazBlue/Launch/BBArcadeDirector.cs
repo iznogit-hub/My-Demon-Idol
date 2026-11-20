@@ -48,7 +48,7 @@ namespace DemonIdol.BlazBlue
             new ArcadeStage { stageNumber = 5, opponentId = "C08", opponentName = "SanpakuChan", stageId = "ST05", aiDifficulty = BBAIDifficulty.Hard },
             new ArcadeStage { stageNumber = 6, opponentId = "C06", opponentName = "Cultist", stageId = "ST06", aiDifficulty = BBAIDifficulty.Hard },
             new ArcadeStage { stageNumber = 7, opponentId = "C10", opponentName = "Reika", stageId = "ST01", aiDifficulty = BBAIDifficulty.Hard },
-            new ArcadeStage { stageNumber = 8, opponentId = "C07", opponentName = "StellarWitch", stageId = "ST02", aiDifficulty = BBAIDifficulty.Boss }
+            new ArcadeStage { stageNumber = 8, opponentId = "C07", opponentName = "StellarWitch", stageId = "ST07", aiDifficulty = BBAIDifficulty.Boss }
         };
 
         private void Awake()

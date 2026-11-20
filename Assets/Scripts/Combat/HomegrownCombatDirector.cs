@@ -254,6 +254,33 @@ namespace DemonIdol.Combat
                 {
                     FighterCamera2D.Instance.ApplyStageCameraLimits(stage);
                 }
+
+                if (stage.stagePrefab != null || string.Equals(_activeStageId, "ST07", StringComparison.OrdinalIgnoreCase))
+                {
+                    var arenaRoot = GameObject.Find("Arcade_Stage_Root");
+                    if (arenaRoot != null)
+                    {
+                        var oldDiorama = arenaRoot.transform.Find("Backdrop_Diorama");
+                        GameObject pfab = stage.stagePrefab;
+#if UNITY_EDITOR
+                        if (pfab == null)
+                        {
+                            pfab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Stages/ST07_CollegeRaimon.prefab");
+                        }
+#endif
+                        if (pfab != null && (oldDiorama == null || oldDiorama.gameObject.name != pfab.name))
+                        {
+                            if (oldDiorama != null)
+                            {
+                                Destroy(oldDiorama.gameObject);
+                            }
+                            var newDiorama = Instantiate(pfab, arenaRoot.transform);
+                            newDiorama.name = "Backdrop_Diorama";
+                            newDiorama.transform.localPosition = Vector3.zero;
+                            newDiorama.transform.localRotation = Quaternion.identity;
+                        }
+                    }
+                }
             }
         }
 

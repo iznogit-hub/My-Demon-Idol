@@ -1751,6 +1751,7 @@ namespace DemonIdol.Editor
             BuildStagePrefab("ST04_CartoonCity", concreteMat, new Color(1.0f, 0.95f, 0.75f, 1.0f), StageThemeType.CartoonCity);
             BuildStagePrefab("ST05_MetroSubway", metalMat != null ? metalMat : concreteMat, new Color(0.95f, 0.55f, 0.25f, 1.0f), StageThemeType.MetroSubway);
             BuildStagePrefab("ST06_ModernOfficeTower", litMat != null ? litMat : metalMat, new Color(0.35f, 0.65f, 1.0f, 1.0f), StageThemeType.ModernOfficeTower);
+            BuildStagePrefab("ST07_CollegeRaimon", concreteMat, new Color(1.0f, 0.85f, 0.9f, 1.0f), StageThemeType.CollegeRaimon);
             BuildStagePrefab("Stage_CombatArena_Base", concreteMat, new Color(0.9f, 0.9f, 0.9f, 1.0f), StageThemeType.Base);
         }
 
@@ -1762,7 +1763,8 @@ namespace DemonIdol.Editor
             SpaceAlienWorlds,
             CartoonCity,
             MetroSubway,
-            ModernOfficeTower
+            ModernOfficeTower,
+            CollegeRaimon
         }
 
         private static void BuildStagePrefab(string stageName, Material surfaceMat, Color accentColor, StageThemeType theme)
@@ -1954,6 +1956,18 @@ namespace DemonIdol.Editor
                     c1.transform.localPosition = new Vector3(-11.0f, 0f, 3.5f);
                     var c2 = Object.Instantiate(colPrefab, decorRoot.transform);
                     c2.transform.localPosition = new Vector3(11.0f, 0f, 3.5f);
+                }
+            }
+            else if (theme == StageThemeType.CollegeRaimon)
+            {
+                GameObject raimonPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/CollegeRaimon/Prefabs/CollegeRaimon.prefab");
+                if (raimonPrefab != null)
+                {
+                    var inst = (GameObject)PrefabUtility.InstantiatePrefab(raimonPrefab, decorRoot.transform);
+                    inst.name = "CollegeRaimon_Courtyard";
+                    inst.transform.localPosition = new Vector3(-8.0f, 0.0f, 12.0f);
+                    inst.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                    inst.transform.localScale = Vector3.one;
                 }
             }
 

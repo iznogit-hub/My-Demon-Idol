@@ -50,6 +50,9 @@ namespace DemonIdol.Combat
             { "Monolith Crimson Gate", "ST06" },
             { "ST06", "ST06" },
 
+            { "College Raimon", "ST07" },
+            { "College Raimon // Academy Courtyard", "ST07" },
+            { "ST07_CollegeRaimon", "ST07" },
             { "Foggy Summit Overlook", "ST07" },
             { "ST07", "ST07" },
             { "Demon Lord Sanctum", "ST08" },
@@ -149,7 +152,7 @@ namespace DemonIdol.Combat
             EnsureStage("ST04", "Cartoon City", "Vibrant stylized downtown street corner, storefront facades, asphalt platform, and sunny daylight.", "Cartoon City BGM", "Prefabs/Stages/ST04_CartoonCity");
             EnsureStage("ST05", "PixelDrift: Metro Subway", "Gritty retro underground transit platform flanked by subway tracks, rusted pillars, and neon signs.", "Subway Underground BGM", "Prefabs/Stages/ST05_MetroSubway");
             EnsureStage("ST06", "Modern Office Tower", "High-altitude skyscraper rooftop helipad overlooking a sprawling metropolis skyline at dusk.", "Skyline Tower BGM", "Prefabs/Stages/ST06_ModernOfficeTower");
-            EnsureStage("ST07", "Foggy Summit Overlook", "Mountain peak viewpoint overseeing distant futuristic megastructures veiled in fog.", "Foggy Summit Overlook BGM", "Stages/Backgrounds/Stage_07_SummitOverlook");
+            EnsureStage("ST07", "College Raimon", "Sprawling Japanese high school & college campus courtyard lined with sakura cherry blossoms, school gates, and campus buildings.", "Academy Courtyard BGM", "Prefabs/Stages/ST07_CollegeRaimon");
             EnsureStage("ST08", "Demon Lord Sanctum", "Central fortress throne room radiating ominous pink neon energy signatures.", "Demon Lord Sanctum BGM", "Stages/Backgrounds/Stage_08_DemonLordThrone");
             EnsureStage("ST09", "Volumetric Mist Turbine", "Sub-level atmospheric intake vault with subterranean fog and amber lighting.", "Volumetric Mist Turbine BGM", "Stages/Backgrounds/Stage_09_MistTurbine");
             EnsureStage("ST10", "Subway Underpass Dais", "Underground industrial concourse flanked by twin illuminated transport tubes.", "Subway Underpass Dais BGM", "Stages/Backgrounds/Stage_10_SubwayDais");

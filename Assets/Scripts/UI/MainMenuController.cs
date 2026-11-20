@@ -114,7 +114,7 @@ namespace DemonIdol.UI
 
         private static readonly string[] StageIds = new[]
         {
-            "ST01", "ST02", "ST03", "ST04", "ST05", "ST06"
+            "ST01", "ST02", "ST03", "ST04", "ST05", "ST06", "ST07"
         };
 
         private static readonly string[] StageNames = new[]
@@ -124,7 +124,8 @@ namespace DemonIdol.UI
             "NEO SHIBUYA COLOSSEUM // SOUL CONCERT ARENA",
             "INK FORTRESS CATHEDRAL // MYSTIC BASTION",
             "METRO SUBWAY // SUBTERRANEAN RAILWAY",
-            "MODERN OFFICE TOWER // HIGH-RISE EXECUTIVE PENTHOUSE"
+            "MODERN OFFICE TOWER // HIGH-RISE EXECUTIVE PENTHOUSE",
+            "COLLEGE RAIMON // ACADEMY COURTYARD"
         };
 
         private static readonly string[] StageHazards = new[]
@@ -134,7 +135,8 @@ namespace DemonIdol.UI
             "[ RADIANT ANIME SPOTLIGHTS • STANDARD 2.5D PLATFORM ]",
             "[ ANCIENT INK TALISMANS • RESTRICTED RECOVERY ]",
             "[ SUBWAY PLATFORM EDGES • CLOSE QUARTERS BRAWL ]",
-            "[ SKYLINE BALUSTRADE • EXPANDED HORIZONTAL REACH ]"
+            "[ SKYLINE BALUSTRADE • EXPANDED HORIZONTAL REACH ]",
+            "[ SAKURA COURTYARD • ACADEMY GATES & PLANAR ARENA ]"
         };
 
         private void Awake()

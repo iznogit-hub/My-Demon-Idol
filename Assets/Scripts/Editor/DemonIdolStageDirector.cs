@@ -188,6 +188,14 @@ namespace DemonIdol.Editor
                 new Color(0.35f, 0.65f, 1.0f, 1.0f),
                 root => BuildOfficeTowerDiorama(root)
             );
+
+            // Stage 7: College Raimon (Japanese School & Academy Courtyard)
+            BuildSingleStagePrefab(
+                "ST07_CollegeRaimon",
+                concreteMat,
+                new Color(1.0f, 0.85f, 0.9f, 1.0f),
+                root => BuildCollegeRaimonDiorama(root)
+            );
         }
 
         private static void BuildSingleStagePrefab(string stageName, Material groundMat, Color lightColor, Action<GameObject> populateDiorama)
@@ -407,6 +415,19 @@ namespace DemonIdol.Editor
             }
         }
 
+        private static void BuildCollegeRaimonDiorama(GameObject decorRoot)
+        {
+            GameObject raimonPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/CollegeRaimon/Prefabs/CollegeRaimon.prefab");
+            if (raimonPrefab != null)
+            {
+                var inst = (GameObject)PrefabUtility.InstantiatePrefab(raimonPrefab, decorRoot.transform);
+                inst.name = "CollegeRaimon_Courtyard";
+                inst.transform.localPosition = new Vector3(-8.0f, 0.0f, 12.0f);
+                inst.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                inst.transform.localScale = Vector3.one;
+            }
+        }
+
         #endregion
 
         #region StageDefinition ScriptableObjects
@@ -419,6 +440,7 @@ namespace DemonIdol.Editor
             CreateOrUpdateStageDef("ST04", "Cartoon City", "Vibrant stylized downtown street corner, storefront facades, asphalt platform, and sunny daylight.", "Cartoon City BGM", "ST04_CartoonCity");
             CreateOrUpdateStageDef("ST05", "PixelDrift: Metro Subway", "Gritty retro underground transit platform flanked by subway tracks, rusted pillars, and neon signs.", "Subway Underground BGM", "ST05_MetroSubway");
             CreateOrUpdateStageDef("ST06", "Modern Office Tower", "High-altitude skyscraper rooftop helipad overlooking a sprawling metropolis skyline at dusk.", "Skyline Tower BGM", "ST06_ModernOfficeTower");
+            CreateOrUpdateStageDef("ST07", "College Raimon", "Sprawling Japanese high school & college campus courtyard lined with sakura cherry blossoms, school gates, and campus buildings.", "Academy Courtyard BGM", "ST07_CollegeRaimon");
         }
 
         private static void CreateOrUpdateStageDef(string id, string displayName, string desc, string bgm, string prefabName)
