@@ -26,13 +26,13 @@ namespace DemonIdol.Launch
     /// </summary>
     public sealed class OfflineMatchSession
     {
-        static readonly string[] ArcadeOpponents = { "C02", "C03", "C04", "C05", "C06" };
+        static readonly string[] ArcadeOpponents = { "C02", "C04", "C05", "C06" };
 
         public PlayModeKind Mode { get; private set; } = PlayModeKind.Training;
         public MatchFlowStep Step { get; private set; } = MatchFlowStep.Boot;
         public string MatchId { get; private set; }
         public string Player1Id { get; private set; } = "C01";
-        public string Player2Id { get; private set; } = "C03";
+        public string Player2Id { get; private set; } = "C02";
         public string StageId { get; private set; } = "ST01";
         public bool ResultCommitted { get; private set; }
         public int ArcadeIndex { get; private set; }
@@ -87,7 +87,7 @@ namespace DemonIdol.Launch
             }
             else
             {
-                Player2Id = string.IsNullOrEmpty(player2Id) ? "C03" : player2Id;
+                Player2Id = string.IsNullOrEmpty(player2Id) ? "C02" : player2Id;
             }
             StageId = string.IsNullOrEmpty(stageId) ? "ST01" : stageId;
             MatchId = Guid.NewGuid().ToString("N");

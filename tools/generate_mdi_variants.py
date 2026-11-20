@@ -1166,6 +1166,8 @@ def write_masks(cache):
 
 
 def main():
+    print("Variant generation is retired. Assets/Prefabs/Characters/Variants is not recreated.")
+    return
     ensure_dirs()
     guid_map = build_guid_map()
     all_v = variants()

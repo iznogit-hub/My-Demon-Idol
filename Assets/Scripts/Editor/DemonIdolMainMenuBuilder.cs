@@ -399,7 +399,7 @@ namespace DemonIdol.Editor
             RectTransform tabsRt = tabsRoot.GetComponent<RectTransform>();
             SetRect(tabsRt, new Vector2(0.40f, 0.88f), new Vector2(0.98f, 0.94f), Vector2.zero, Vector2.zero);
 
-            string[] tabLabels = new[] { "ALL (30)", "SORCERERS (14)", "SIDEKICKS (8)", "DOTA HEROES (8)" };
+            string[] tabLabels = new[] { "ALL (25)", "SORCERERS (13)", "SIDEKICKS (5)", "DOTA HEROES (7)" };
             Button[] tabButtons = new Button[4];
             Image[] tabHighlights = new Image[4];
 

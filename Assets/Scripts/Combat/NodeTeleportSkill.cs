@@ -11,7 +11,7 @@ namespace DemonIdol.Combat
 {
     /// <summary>
     /// Node-based spatial teleport skill for agile / occult fighters
-    /// (Ren, Cultist, Fina, Akane, Reika, Muryotaisu).
+    /// (Cultist, Fina, Akane, Reika, Muryotaisu).
     /// Instantly translates fighter through spatial blink nodes with boundary collision safety,
     /// departure/arrival VFX, and tactical behind-the-opponent positioning.
     /// </summary>
@@ -19,7 +19,7 @@ namespace DemonIdol.Combat
     {
         private static readonly HashSet<string> _teleportFighters = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            "Ren", "Cultist", "Fina", "Akane", "Reika", "Muryotaisu", "C12M_Ren", "C06_Cultist", "C12_Fina", "C05_Akane", "C12B_Reika", "C14_Muryotaisu"
+            "Cultist", "Fina", "Akane", "Reika", "Muryotaisu", "C06_Cultist", "C12_Fina", "C05_Akane", "C12B_Reika", "C14_Muryotaisu"
         };
 
         public static bool IsTeleportFighter(string fighterName)

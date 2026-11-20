@@ -83,28 +83,6 @@ namespace DemonIdol.BlazBlue.Editor
                 Hitstun = 20,
                 Blockstun = 14
             },
-            // C03 Ren -> Brute
-            new WarriorAttackSpec
-            {
-                CharacterId = "C03",
-                CharacterName = "Ren",
-                WarriorName = "Brute",
-                AttackName = "Brute Slam",
-                MoveId = "5C",
-                FbxPath = "Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX",
-                FirstFrame = 0,
-                LastFrame = 45,
-                HitBoxCenter = new Vector2(0.70f, 1.10f),
-                HitBoxSize = new Vector2(0.80f, 0.60f),
-                Startup = 14,
-                Active = 5,
-                Recovery = 18,
-                Damage = 950,
-                Guard = BBGuard.Mid,
-                AdvOnBlock = -8,
-                Hitstun = 22,
-                Blockstun = 15
-            },
             // C04 UnityChan -> Archer
             new WarriorAttackSpec
             {

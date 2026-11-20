@@ -2,7 +2,7 @@
 """
 tools/validate_menu_flow.py
 
-Comprehensive AAA Menu UI Flow & 30-Hero Roster Validator for My Demon Idol.
+Comprehensive AAA Menu UI Flow & 25-Hero Roster Validator for My Demon Idol.
 Validates:
 1. All 30 Roster Entries in CharacterRegistry & FighterVisualCatalog.
 2. MainMenu.unity hierarchy (30-card matrix, 4 faction tabs, PreMatchVSOverlay).
@@ -18,19 +18,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 AUTHORITATIVE_30 = [
-    # Faction 1: Demon Sorcerers (14)
-    "C01", "C02", "C03", "C04", "C05", "C06", "C07",
+    # Faction 1: Demon Sorcerers (13). C03 Ren removed.
+    "C01", "C02", "C04", "C05", "C06", "C07",
     "C08", "C09", "C10", "C11", "C12", "C13", "C14",
 
-    # Faction 2: Synty Sidekicks (8)
-    "SK01", "SK02", "SK03", "SK04", "SK05", "SK06", "SK07", "SK08",
+    # Faction 2: Synty Sidekicks (5). SK01, SK04, SK07 removed. SK06 CommanderRen stays.
+    "SK02", "SK03", "SK05", "SK06", "SK08",
 
-    # Faction 3: External Dota Heroes (8)
-    "EX01", "EX02", "EX03", "EX04", "EX05", "EX06", "EX07", "EX08"
+    # Faction 3: External Dota Heroes (7). EX08 Garrick removed.
+    "EX01", "EX02", "EX03", "EX04", "EX05", "EX06", "EX07"
 ]
 
 def check_catalog_and_registry():
-    print("--- [1/4] Checking CharacterRegistry & FighterVisualCatalog (30 Heroes) ---")
+    print("--- [1/4] Checking CharacterRegistry & FighterVisualCatalog (25 Heroes) ---")
     reg_path = ROOT / "Assets/Scripts/Data/CharacterRegistry.cs"
     cat_path = ROOT / "Assets/Scripts/Launch/FighterVisualCatalog.cs"
 
@@ -104,7 +104,7 @@ def check_main_menu_scene():
         else:
             print(f"  [PASS] Found faction tab: {tab_name}")
 
-    # Check All 30 Character Cards in Grid
+    # Check All 25 Character Cards in Grid
     cards_found = 0
     for cid in AUTHORITATIVE_30:
         card_name = f"Card_Fighter_{cid}"
@@ -151,7 +151,7 @@ def check_scripts_and_flow_contracts():
         ("MDI_P2_CharacterId", "Persists P2 character across battle rounds"),
         ("MDI_StageId", "Persists chosen stage"),
         ("SetFactionFilter", "Faction tab filtering method"),
-        ("FilterRosterCards", "Filters 30 cards dynamically by faction"),
+        ("FilterRosterCards", "Filters roster cards dynamically by faction"),
         ("PreMatchVSOverlay", "Integrates cinematic VS splash before arena transition")
     ]
     for token, desc in mm_checks:
@@ -206,20 +206,20 @@ def check_faction_math_and_roster():
     sidekicks = [c for c in AUTHORITATIVE_30 if c.startswith("SK")]
     dota = [c for c in AUTHORITATIVE_30 if c.startswith("EX")]
 
-    print(f"  Total Roster Size: {len(AUTHORITATIVE_30)} (Expected: 30)")
+    print(f"  Total Roster Size: {len(AUTHORITATIVE_30)} (Expected: 25)")
     print(f"  Faction 1 [Demon Sorcerers]: {len(sorcerers)} heroes -> {sorcerers}")
     print(f"  Faction 2 [Synty Sidekicks]: {len(sidekicks)} heroes -> {sidekicks}")
     print(f"  Faction 3 [Dota Champions]: {len(dota)} heroes -> {dota}")
 
-    valid = (len(AUTHORITATIVE_30) == 30 and
-             len(sorcerers) == 14 and
-             len(sidekicks) == 8 and
-             len(dota) == 8)
+    valid = (len(AUTHORITATIVE_30) == 25 and
+             len(sorcerers) == 13 and
+             len(sidekicks) == 5 and
+             len(dota) == 7)
 
     if valid:
-        print("  [PASS] All faction distributions match AAA specification exactly.")
+        print("  [PASS] All faction distributions match the 25-fighter roster.")
     else:
-        print("  [FAIL] Faction counts deviate from 14/8/8.")
+        print("  [FAIL] Faction counts deviate from 13/5/7.")
 
     return valid
 

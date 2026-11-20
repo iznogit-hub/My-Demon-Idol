@@ -137,16 +137,6 @@ namespace DemonIdol.BlazBlue.Editor
                 "Assets/Shokubutsu Studio/Low Poly Female Free/Meshes/Smooth Shaded/Female 1.fbx",
                 BBWarriorType.Sorceress,
                 "Warrior_Mage_Staff", HumanBodyBones.RightHand, new Vector3(0f, 0.04f, 0f), Vector3.zero, new Vector3(0.60f, 0.60f, 0.60f)
-            ),
-
-            // EX08: Garrick (Berserker Marauder)
-            new DotaHeroSpec(
-                "EX08", "Garrick", "Iron Berserker", "Frenzy / Marauder",
-                "Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Berserker Fighter Mecanim Animation Pack FREE/Prefabs/Berserker.prefab",
-                "Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Berserker Fighter Mecanim Animation Pack FREE/Characters/Berserker.fbx",
-                BBWarriorType.Brute,
-                "Warrior_Ninja_Sword", HumanBodyBones.RightHand, new Vector3(0f, 0.05f, 0f), Vector3.zero, new Vector3(0.40f, 0.40f, 0.40f),
-                "Warrior_Ninja_Sword", HumanBodyBones.LeftHand, new Vector3(0f, 0.05f, 0f), Vector3.zero, new Vector3(0.40f, 0.40f, 0.40f)
             )
         };
 

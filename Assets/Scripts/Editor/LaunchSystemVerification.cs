@@ -19,7 +19,7 @@ namespace DemonIdol.Editor
             assert(filesExist, "L1.1: Fighter visual catalog paths exist on disk", missing ?? "");
             assert(FighterVisualCatalog.Find("C01") != null && FighterVisualCatalog.Find("C06") != null,
                 "L1.2: Catalog has Kai and Nox", "");
-            assert(FighterVisualCatalog.All.Count == 18 || FighterVisualCatalog.All.Count == 14, "L1.3: Authoritative Clan fighters (C01-C14)", "");
+            assert(FighterVisualCatalog.All.Count == 25, "L1.3: Roster is 25 after Ren, Valen, Jin, Malakar, and Garrick were removed", "");
 
             var session = new OfflineMatchSession();
             bool online = session.TrySelectMode("PvP", out string onlineReason);
@@ -30,7 +30,7 @@ namespace DemonIdol.Editor
             assert(session.Player2Id == "C02", "L2.3: Arcade opponent comes from the arcade order, not the passed id", session.Player2Id);
             assert(session.CommitResult(1), "L2.4: First result commit succeeds", "");
             assert(!session.CommitResult(1), "L2.5: Second result commit is refused", "");
-            assert(session.TryAdvanceArcade(out string next) && next == "C03", "L2.6: Arcade advances to C03", next);
+            assert(session.TryAdvanceArcade(out string next) && next == "C04", "L2.6: Arcade advances to C04", next);
             session.TrySelectMode("LocalVersus", out _);
             session.BeginMatch("C04", "C05", "ST04");
             assert(!session.P2IsCpu && session.Player2Id == "C05", "L2.7: Local Versus keeps the second human", session.Player2Id);

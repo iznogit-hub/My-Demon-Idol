@@ -127,7 +127,7 @@ def main():
     if "m_GameObject: {fileID: 2867569409786181483}\n  m_Enabled: 0" not in pico:
         errors.append("PicoChan child Animator is still enabled")
 
-    for excluded in ("C03_Ren", "C11_Casual1", "C13_SapphiArtchan"):
+    for excluded in ("C11_Casual1", "C13_SapphiArtchan"):
         pref = (ROOT / "Assets/Prefabs/Characters" / f"{excluded}.prefab").read_text()
         if GUID in pref:
             errors.append(excluded + " was switched onto the KI controller")

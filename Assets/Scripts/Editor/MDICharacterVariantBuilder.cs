@@ -20,34 +20,7 @@ namespace DemonIdol.Characters.Editor
         [MenuItem("Demon Idol/Characters/Rebuild Variant Prefabs From Recipe")]
         public static void RebuildFromRecipe()
         {
-            if (!File.Exists(RecipePath))
-            {
-                Debug.LogError("Missing " + RecipePath);
-                return;
-            }
-            var recipe = JsonUtility.FromJson<RecipeFile>(File.ReadAllText(RecipePath));
-            if (recipe == null || recipe.variants == null || recipe.variants.Length == 0)
-            {
-                Debug.LogError("Variant recipe was empty.");
-                return;
-            }
-            Directory.CreateDirectory("Assets/Prefabs/Characters/Variants/Prefabs");
-            int ok = 0;
-            foreach (var variant in recipe.variants)
-            {
-                try
-                {
-                    BuildOne(variant);
-                    ok++;
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogError("Variant " + variant.name + " failed: " + ex);
-                }
-            }
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-            Debug.Log("Rebuilt " + ok + "/" + recipe.variants.Length + " character variants.");
+            Debug.Log("[MDI Variants] Variant prefabs were retired. This menu no longer writes Assets/Prefabs/Characters/Variants.");
         }
 
         static void BuildOne(VariantRecipe variant)

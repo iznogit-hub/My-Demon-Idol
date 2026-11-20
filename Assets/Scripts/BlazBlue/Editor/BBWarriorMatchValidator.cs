@@ -37,7 +37,7 @@ namespace DemonIdol.BlazBlue.Editor
             new MatchupTestSpec { P1Id = "C10", P1Name = "Reika", P1Prefab = "Assets/Prefabs/Characters/C10_Reika.prefab", P2Id = "C06", P2Name = "Cultist", P2Prefab = "Assets/Prefabs/Characters/C06_Cultist.prefab" },
             new MatchupTestSpec { P1Id = "C09", P1Name = "PicoChan", P1Prefab = "Assets/Prefabs/Characters/C09_PicoChan.prefab", P2Id = "C05", P2Name = "Akane", P2Prefab = "Assets/Prefabs/Characters/C05_Akane.prefab" },
             new MatchupTestSpec { P1Id = "C02", P1Name = "Aika", P1Prefab = "Assets/Prefabs/Characters/C02_Aika.prefab", P2Id = "C07", P2Name = "StellarWitch", P2Prefab = "Assets/Prefabs/Characters/C07_StellarWitch.prefab" },
-            new MatchupTestSpec { P1Id = "C03", P1Name = "Ren", P1Prefab = "Assets/Prefabs/Characters/C03_Ren.prefab", P2Id = "C11", P2Name = "Casual1", P2Prefab = "Assets/Prefabs/Characters/C11_Casual1.prefab" }
+            new MatchupTestSpec { P1Id = "C02", P1Name = "Aika", P1Prefab = "Assets/Prefabs/Characters/C02_Aika.prefab", P2Id = "C11", P2Name = "Casual1", P2Prefab = "Assets/Prefabs/Characters/C11_Casual1.prefab" }
         };
 
         [MenuItem("Demon Idol/BlazBlue/Execute Phase 5 (Live Match Validation and Final Polish)")]

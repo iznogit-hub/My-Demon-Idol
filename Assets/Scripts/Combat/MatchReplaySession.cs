@@ -35,7 +35,7 @@ namespace DemonIdol.Combat
         public string timestamp;
         public int randomSeed;
         public string player1CharacterId = "C01";
-        public string player2CharacterId = "C03";
+        public string player2CharacterId = "C02";
         public string stageId = "ST01";
         public int winnerSlot; // 1 = P1, 2 = P2
         public int totalTicks;

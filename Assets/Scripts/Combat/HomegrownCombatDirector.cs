@@ -117,12 +117,12 @@ namespace DemonIdol.Combat
 
             if (_fighter1 == null)
             {
-                _fighter1 = SpawnRuntimeFighter("Player1_Kai", _activeP1Id, new Vector3(-2.5f, 0, 0), Quaternion.Euler(0, 90f, 0), true);
+                _fighter1 = SpawnRuntimeFighter("Player1", _activeP1Id, new Vector3(-2.5f, 0, 0), Quaternion.Euler(0, 90f, 0), true);
             }
 
             if (_fighter2 == null)
             {
-                _fighter2 = SpawnRuntimeFighter("Player2_Dummy", _activeP2Id, new Vector3(2.5f, 0, 0), Quaternion.Euler(0, -90f, 0), false);
+                _fighter2 = SpawnRuntimeFighter("Player2", _activeP2Id, new Vector3(2.5f, 0, 0), Quaternion.Euler(0, -90f, 0), false);
             }
 
             if (_fighter1 != null) _fighter1.gameObject.SetActive(true);
@@ -301,6 +301,9 @@ namespace DemonIdol.Combat
         {
             if (fc == null) return;
             fc.isPlayerControlled = isPlayer;
+
+            if (CharacterRegistry.GetCharacterById(charId) == null)
+                charId = "C02";
 
             var charDef = CharacterRegistry.GetCharacterById(charId);
             if (charDef != null)

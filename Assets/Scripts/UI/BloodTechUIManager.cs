@@ -1276,7 +1276,7 @@ namespace DemonIdol.UI
         public void LaunchDirectTraining1vCPU()
         {
             var p1 = CharacterRegistry.GetCharacterById("C01");
-            var p2 = CharacterRegistry.GetCharacterById("C03");
+            var p2 = CharacterRegistry.GetCharacterById("C02");
             var stage = StageRegistry.GetStageById("ST01");
 
             _activeSelectedMode = "Training";

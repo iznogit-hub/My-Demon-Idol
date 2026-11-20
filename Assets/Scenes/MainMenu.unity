@@ -1379,7 +1379,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: DOTA HEROES (8)
+  m_Text: DOTA HEROES (7)
 --- !u!222 &74211810
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1643,7 +1643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &103041108
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2342,7 +2342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &162815240
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7588,7 +7588,6 @@ MonoBehaviour:
   CharacterButtons:
   - {fileID: 38921177}
   - {fileID: 1416743924}
-  - {fileID: 103041111}
   - {fileID: 1189299279}
   - {fileID: 619367342}
   - {fileID: 1338562297}
@@ -7600,13 +7599,10 @@ MonoBehaviour:
   - {fileID: 177154156}
   - {fileID: 1225634304}
   - {fileID: 1172647328}
-  - {fileID: 2132636164}
   - {fileID: 1750110795}
   - {fileID: 185674855}
-  - {fileID: 1916319947}
   - {fileID: 834097368}
   - {fileID: 968329955}
-  - {fileID: 1984495163}
   - {fileID: 132745600}
   - {fileID: 1650057874}
   - {fileID: 1321661533}
@@ -7615,11 +7611,9 @@ MonoBehaviour:
   - {fileID: 1978938202}
   - {fileID: 386850929}
   - {fileID: 1739048550}
-  - {fileID: 162815243}
   CharacterHighlights:
   - {fileID: 1478860141}
   - {fileID: 1882415992}
-  - {fileID: 1513721414}
   - {fileID: 883322609}
   - {fileID: 756862853}
   - {fileID: 2035757153}
@@ -7631,13 +7625,10 @@ MonoBehaviour:
   - {fileID: 782888467}
   - {fileID: 627634435}
   - {fileID: 1367132356}
-  - {fileID: 330500254}
   - {fileID: 1780533591}
   - {fileID: 1020806594}
-  - {fileID: 2038593238}
   - {fileID: 877905398}
   - {fileID: 138372268}
-  - {fileID: 1033974425}
   - {fileID: 705250084}
   - {fileID: 457488774}
   - {fileID: 1703461689}
@@ -7646,7 +7637,6 @@ MonoBehaviour:
   - {fileID: 362390531}
   - {fileID: 1313061652}
   - {fileID: 1280374413}
-  - {fileID: 1288509584}
   CharacterNameLabels:
   - {fileID: 545839887}
   - {fileID: 1106689912}
@@ -8194,7 +8184,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SORCERERS (14)
+  m_Text: SORCERERS (13)
 --- !u!222 &801242117
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10832,7 +10822,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SIDEKICKS (8)
+  m_Text: SIDEKICKS (5)
 --- !u!222 &1074065919
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16240,7 +16230,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ALL (30)
+  m_Text: ALL (25)
 --- !u!222 &1580878192
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19044,7 +19034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1916319944
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19869,7 +19859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1984495160
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21346,7 +21336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2132636161
 RectTransform:
   m_ObjectHideFlags: 0

@@ -94,19 +94,6 @@ namespace DemonIdol.BlazBlue.Editor
 
         public static readonly SidekickSpec[] SIDEKICK_SPECS = new SidekickSpec[]
         {
-            // SK01: Valen (Shadow Scout / Ninja) - Base Starter_04 (Cowl/Shinobi)
-            new SidekickSpec(
-                "SK01", "Valen", "Shadow Scout", "Rogue / Ninja",
-                PREFAB_STARTER_04, TEX_STARTER_04,
-                new Color(0.70f, 0.72f, 0.85f, 1.0f),
-                new Color(0.40f, 0.42f, 0.55f, 1.0f),
-                new Color(0.55f, 0.65f, 0.90f, 0.65f),
-                new Color(0.06f, 0.05f, 0.12f, 1.0f),
-                "Warrior_Ninja_Sword", HumanBodyBones.RightHand, new Vector3(0f, 0.05f, 0f), Vector3.zero, new Vector3(0.35f, 0.35f, 0.35f),
-                "Warrior_Ninja_Sword", HumanBodyBones.LeftHand, new Vector3(0f, 0.05f, 0f), Vector3.zero, new Vector3(0.35f, 0.35f, 0.35f),
-                "Ninja"
-            ),
-
             // SK02: Galahad (Sun Templar / Knight) - Base Starter_01 (Plate Knight)
             new SidekickSpec(
                 "SK02", "Galahad", "Sun Templar", "Knight / Shield",
@@ -133,19 +120,6 @@ namespace DemonIdol.BlazBlue.Editor
                 "Crossbow"
             ),
 
-            // SK04: Jin (Iron Fist / Karate) - Base Starter_04 (Martial Striker)
-            new SidekickSpec(
-                "SK04", "Jin", "Iron Fist", "Brawler / Martial Arts",
-                PREFAB_STARTER_04, TEX_STARTER_04,
-                new Color(1.05f, 0.82f, 0.75f, 1.0f),
-                new Color(0.72f, 0.45f, 0.40f, 1.0f),
-                new Color(1.00f, 0.60f, 0.40f, 0.75f),
-                new Color(0.15f, 0.05f, 0.05f, 1.0f),
-                "", HumanBodyBones.RightHand, Vector3.zero, Vector3.zero, Vector3.one,
-                "", HumanBodyBones.LeftHand, Vector3.zero, Vector3.zero, Vector3.one,
-                "Karate"
-            ),
-
             // SK05: Lord Morvath (Black Iron Vanguard / Two-Handed Greatsword) - Base Starter_01 (Onyx Heavy Plate)
             new SidekickSpec(
                 "SK05", "LordMorvath", "Black Iron Vanguard", "Vanguard / Greatsword",
@@ -170,19 +144,6 @@ namespace DemonIdol.BlazBlue.Editor
                 "Warrior_Spearman_Spear", HumanBodyBones.RightHand, new Vector3(0f, 0.05f, 0f), Vector3.zero, new Vector3(0.45f, 0.45f, 0.45f),
                 "", HumanBodyBones.LeftHand, Vector3.zero, Vector3.zero, Vector3.one,
                 "Spearman"
-            ),
-
-            // SK07: Malakar (Abyssal Vizier / Mage) - Base Starter_04 (Void Robes / Cowl)
-            new SidekickSpec(
-                "SK07", "Malakar", "Abyssal Vizier", "Dark Arcane / Mage",
-                PREFAB_STARTER_04, TEX_STARTER_04,
-                new Color(0.75f, 0.65f, 0.90f, 1.0f),
-                new Color(0.40f, 0.30f, 0.55f, 1.0f),
-                new Color(0.85f, 0.45f, 1.00f, 0.75f),
-                new Color(0.09f, 0.04f, 0.14f, 1.0f),
-                "Warrior_Mage_Staff", HumanBodyBones.RightHand, new Vector3(0f, 0.05f, 0f), Vector3.zero, new Vector3(0.65f, 0.65f, 0.65f),
-                "", HumanBodyBones.LeftHand, Vector3.zero, Vector3.zero, Vector3.one,
-                "Mage"
             ),
 
             // SK08: Torgrim (Storm Breaker / Hammer) - Base Starter_03 (Mountain Bruiser)

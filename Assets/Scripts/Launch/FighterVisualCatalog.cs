@@ -40,15 +40,6 @@ namespace DemonIdol.Launch
                 PrefabAssetPath = "Assets/Prefabs/Characters/C02_Aika.prefab",
                 ResourceParts = new[] { "Head", "Spine", "Accessory" }
             },
-            // 03. Ren
-            new FighterVisualLook
-            {
-                CharacterId = "C03",
-                DisplayName = "Ren",
-                Read = "Divergent brawler with amber neon and close-quarters combat wraps.",
-                PrefabAssetPath = "Assets/Prefabs/Characters/C03_Ren.prefab",
-                ResourceParts = new[] { "Head", "Spine", "Accessory" }
-            },
             // 04. UnityChan
             new FighterVisualLook
             {
@@ -148,15 +139,6 @@ namespace DemonIdol.Launch
                 PrefabAssetPath = "Assets/Prefabs/Characters/C14_Muryotaisu.prefab",
                 ResourceParts = new[] { "Head", "Spine", "Accessory" }
             },
-            // 15. SK01 Valen
-            new FighterVisualLook
-            {
-                CharacterId = "SK01",
-                DisplayName = "Valen",
-                Read = "Shadow scout shinobi wielding dual ninjato with rapid shadow-step strikes.",
-                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK01_Valen.prefab",
-                ResourceParts = new[] { "Head", "Spine", "Accessory" }
-            },
             // 16. SK02 Galahad
             new FighterVisualLook
             {
@@ -175,15 +157,6 @@ namespace DemonIdol.Launch
                 PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK03_Vex.prefab",
                 ResourceParts = new[] { "Head", "Spine", "Accessory" }
             },
-            // 18. SK04 Jin
-            new FighterVisualLook
-            {
-                CharacterId = "SK04",
-                DisplayName = "Jin",
-                Read = "Zen martial artist delivering lightning-fast bare-handed kata combos.",
-                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK04_Jin.prefab",
-                ResourceParts = new[] { "Head", "Spine", "Accessory" }
-            },
             // 19. SK05 Lord Morvath
             new FighterVisualLook
             {
@@ -200,15 +173,6 @@ namespace DemonIdol.Launch
                 DisplayName = "CommanderRen",
                 Read = "Heavily armored field commander wielding massive greatsword cleaves.",
                 PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK06_CommanderRen.prefab",
-                ResourceParts = new[] { "Head", "Spine", "Accessory" }
-            },
-            // 21. SK07 Malakar
-            new FighterVisualLook
-            {
-                CharacterId = "SK07",
-                DisplayName = "Malakar",
-                Read = "Archon astral mystic manipulating cosmic stasis staff projections.",
-                PrefabAssetPath = "Assets/Prefabs/Characters/Sidekicks/SK07_Malakar.prefab",
                 ResourceParts = new[] { "Head", "Spine", "Accessory" }
             },
             // 22. SK08 Torgrim
@@ -281,15 +245,6 @@ namespace DemonIdol.Launch
                 DisplayName = "Lyra",
                 Read = "Arcane warrior valkyrie floating above ground with radiant sword beams.",
                 PrefabAssetPath = "Assets/Prefabs/Characters/DotaHeroes/EX07_Lyra.prefab",
-                ResourceParts = new[] { "Head", "Spine", "Accessory" }
-            },
-            // 30. EX08 Garrick
-            new FighterVisualLook
-            {
-                CharacterId = "EX08",
-                DisplayName = "Garrick",
-                Read = "Relentless highland marauder crushing bone and steel with heavy leaping overheads.",
-                PrefabAssetPath = "Assets/Prefabs/Characters/DotaHeroes/EX08_Garrick.prefab",
                 ResourceParts = new[] { "Head", "Spine", "Accessory" }
             }
         };

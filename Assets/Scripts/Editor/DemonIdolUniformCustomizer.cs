@@ -15,7 +15,7 @@ public static class DemonIdolUniformCustomizer
     // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Costumes/Focus Characters Folder", priority = 1)]
     public static void FocusCharactersFolder()
     {
-        var ren = AssetDatabase.LoadAssetAtPath<Object>("Assets/Prefabs/Characters/C12M_Ren.prefab");
+        var ren = AssetDatabase.LoadAssetAtPath<Object>("Assets/Prefabs/Characters/C01_Akio.prefab");
         if (ren != null)
         {
             Selection.activeObject = ren;
@@ -39,8 +39,7 @@ public static class DemonIdolUniformCustomizer
         // 1. Ensure Folder Structure & Archive Kiki / Clean C03
         EnsureDirectoryStructure();
 
-        // 2. Setup Training Dummy System (Yellow, Red, Purple)
-        SetupTrainingDummies(toonShader);
+        // Training dummy prefabs were removed. Practice uses a CPU fighter.
 
         // 3. Setup Hero Characters (C12 Fina, C12M Ren, C12B Reika)
         SetupHeroCharacters(toonShader);
@@ -111,16 +110,7 @@ public static class DemonIdolUniformCustomizer
 
     private static void SetupTrainingDummies(Shader toonShader)
     {
-        string kaiSrcPath = "Assets/MDI_Characters/Clans/Occult/Kai/Kai.prefab";
-        string matDir = "Assets/MDI_Characters/Clans/Occult/Kai/";
-
-        var yellowMat = AssetDatabase.LoadAssetAtPath<Material>(matDir + "Material_OCC_KAI.mat");
-        var redMat = AssetDatabase.LoadAssetAtPath<Material>(matDir + "Material_OCC_KAI_Red.mat");
-        var purpMat = AssetDatabase.LoadAssetAtPath<Material>(matDir + "Material_OCC_KAI_Purple.mat");
-
-        CreateDummyPrefab(kaiSrcPath, $"{CHAR_PREFABS_DIR}/TrainingDummy_Yellow.prefab", "Training Dummy (Yellow)", yellowMat, DummyMode.StandStill);
-        CreateDummyPrefab(kaiSrcPath, $"{CHAR_PREFABS_DIR}/TrainingDummy_Red.prefab", "Training Dummy (Red)", redMat, DummyMode.Aggressive);
-        CreateDummyPrefab(kaiSrcPath, $"{CHAR_PREFABS_DIR}/TrainingDummy_Purple.prefab", "Training Dummy (Purple)", purpMat, DummyMode.CounterHitPractice);
+        // Retired. TrainingDummy_Yellow/Red/Purple are not recreated.
     }
 
     private static void CreateDummyPrefab(string srcPath, string dstPath, string dummyName, Material mat, DummyMode mode)
@@ -189,32 +179,7 @@ public static class DemonIdolUniformCustomizer
             Debug.Log("[MDI Costumes] Configured Lead Hero Protagonist: C12_Fina.prefab");
         }
 
-        // 2. C12M_Ren (Male Hero Protagonist Counterpart)
-        string renSrc = "Assets/MDI_Characters/Clans/Occult/Ren/Ren.prefab";
-        string renDst = $"{CHAR_PREFABS_DIR}/C12M_Ren.prefab";
-        string renMatPath = "Assets/MDI_Characters/Clans/Occult/Ren/Material_OCC_REN.mat";
-
-        var renObj = AssetDatabase.LoadAssetAtPath<GameObject>(renSrc);
-        if (renObj != null)
-        {
-            var instance = (GameObject)PrefabUtility.InstantiatePrefab(renObj);
-            instance.name = "C12M_Ren";
-
-            var renMat = AssetDatabase.LoadAssetAtPath<Material>(renMatPath);
-            if (renMat != null)
-            {
-                foreach (var smr in instance.GetComponentsInChildren<SkinnedMeshRenderer>())
-                {
-                    var mats = new Material[smr.sharedMaterials.Length];
-                    for (int i = 0; i < mats.Length; i++) mats[i] = renMat;
-                    smr.sharedMaterials = mats;
-                }
-            }
-
-            PrefabUtility.SaveAsPrefabAsset(instance, renDst);
-            Object.DestroyImmediate(instance);
-            Debug.Log("[MDI Costumes] Configured Male Hero Counterpart: C12M_Ren.prefab");
-        }
+        // C03 Ren and C12M_Ren are retired and are not recreated.
 
         // 3. C12B_Reika (Hero Alt Counterpart)
         string reikaSrc = "Assets/MDI_Characters/Clans/Occult/Reika/Reika.prefab";
