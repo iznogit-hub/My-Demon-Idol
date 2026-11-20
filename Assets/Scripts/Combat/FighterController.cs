@@ -180,6 +180,7 @@ namespace DemonIdol.Combat
         // Events
         public event Action<FighterState> OnStateChanged;
         public event Action<float, float> OnHealthChanged;
+        public void RaiseHealthChanged() => OnHealthChanged?.Invoke(currentHealth, maxHealth);
         public event Action<float, float> OnSuperMeterChanged;
         public event Action<HitResult, AttackData, Vector3> OnHitProcessed;
         public event Action OnRapidCanceled;

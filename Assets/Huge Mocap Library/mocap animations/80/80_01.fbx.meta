@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 31f87819be7c6b144861a3f9eb6f1441
+AssetOrigin:
+  serializedVersion: 1
+  productId: 20282
+  packageName: Huge FBX Mocap Library part 2
+  packageVersion: 1.0
+  assetPath: Assets/Huge Mocap Library/mocap animations/80/80_01.fbx
+  uploadId: 9434
 ModelImporter:
   serializedVersion: 24600
   internalIDToNameTable:
@@ -310,7 +317,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Fina_6B
       takeName: 80_01
-      internalID: 0
+      internalID: 5587484785119262040
       firstFrame: 15
       lastFrame: 38
       wrapMode: 0
@@ -329,7 +336,7 @@ ModelImporter:
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000u
       curves: []
       events: []
       transformMask: []
@@ -339,7 +346,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Fina_5C
       takeName: 80_01
-      internalID: 0
+      internalID: 1738179732048177688
       firstFrame: 50
       lastFrame: 72
       wrapMode: 0
@@ -358,7 +365,7 @@ ModelImporter:
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000u
       curves: []
       events: []
       transformMask: []
@@ -368,7 +375,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Fina_2C
       takeName: 80_01
-      internalID: 0
+      internalID: -5587424985353497834
       firstFrame: 85
       lastFrame: 109
       wrapMode: 0
@@ -387,7 +394,7 @@ ModelImporter:
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000u
       curves: []
       events: []
       transformMask: []
@@ -397,7 +404,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Fina_3C
       takeName: 80_01
-      internalID: 0
+      internalID: -6150870291714067885
       firstFrame: 120
       lastFrame: 145
       wrapMode: 0
@@ -416,7 +423,7 @@ ModelImporter:
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000u
       curves: []
       events: []
       transformMask: []
@@ -426,7 +433,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Fina_Super
       takeName: 80_01
-      internalID: 0
+      internalID: 654746513284652553
       firstFrame: 160
       lastFrame: 195
       wrapMode: 0
@@ -445,7 +452,7 @@ ModelImporter:
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000u
       curves: []
       events: []
       transformMask: []
@@ -455,7 +462,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Fina_OD_EA
       takeName: 80_01
-      internalID: 0
+      internalID: 6735138446305395888
       firstFrame: 160
       lastFrame: 195
       wrapMode: 0
@@ -474,7 +481,36 @@ ModelImporter:
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000u
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: MDI_BB_Attack_2
+      takeName: 80_01
+      internalID: 5985061498969246210
+      firstFrame: 8
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000u
       curves: []
       events: []
       transformMask: []
@@ -1117,10 +1153,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 20282
-  packageName: Huge FBX Mocap Library part 2
-  packageVersion: 1.0
-  assetPath: Assets/Huge Mocap Library/mocap animations/80/80_01.fbx
-  uploadId: 9434

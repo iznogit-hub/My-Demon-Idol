@@ -1302,8 +1302,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35414576530456543,
-            "p1PosY": 0.4228098392486572,
+            "p1PosX": 0.16500014066696167,
+            "p1PosY": 0.00009995698928833008,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackStartup",
@@ -1314,7 +1314,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 139996621
+            "stateHash": 603898651
         },
         {
             "tick": 51,
@@ -1328,8 +1328,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204988479614258,
+            "p1PosX": 0.1700001358985901,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackStartup",
@@ -1340,7 +1340,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 702896462
+            "stateHash": 2448958067
         },
         {
             "tick": 52,
@@ -1354,8 +1354,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackStartup",
@@ -1366,7 +1366,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 324934947
+            "stateHash": 2991743326
         },
         {
             "tick": 53,
@@ -1380,8 +1380,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackStartup",
@@ -1392,7 +1392,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4274200812
+            "stateHash": 25161633
         },
         {
             "tick": 54,
@@ -1406,8 +1406,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackActive",
@@ -1418,7 +1418,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1814668670
+            "stateHash": 4283346235
         },
         {
             "tick": 55,
@@ -1432,8 +1432,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackActive",
@@ -1444,7 +1444,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 796909429
+            "stateHash": 1017480416
         },
         {
             "tick": 56,
@@ -1458,8 +1458,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackActive",
@@ -1470,7 +1470,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3481072784
+            "stateHash": 3965324709
         },
         {
             "tick": 57,
@@ -1484,8 +1484,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackRecovery",
@@ -1496,7 +1496,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 350569234
+            "stateHash": 935206391
         },
         {
             "tick": 58,
@@ -1510,8 +1510,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackRecovery",
@@ -1522,7 +1522,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2447097687
+            "stateHash": 1153364378
         },
         {
             "tick": 59,
@@ -1536,8 +1536,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackRecovery",
@@ -1548,7 +1548,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3451429972
+            "stateHash": 662610393
         },
         {
             "tick": 60,
@@ -1562,8 +1562,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackRecovery",
@@ -1574,7 +1574,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3392231225
+            "stateHash": 592949812
         },
         {
             "tick": 61,
@@ -1588,8 +1588,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackRecovery",
@@ -1600,7 +1600,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1814749078
+            "stateHash": 1534936011
         },
         {
             "tick": 62,
@@ -1614,8 +1614,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackRecovery",
@@ -1626,7 +1626,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4267323771
+            "stateHash": 754997342
         },
         {
             "tick": 63,
@@ -1640,8 +1640,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackRecovery",
@@ -1652,7 +1652,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 71273192
+            "stateHash": 139365997
         },
         {
             "tick": 64,
@@ -1666,8 +1666,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackRecovery",
@@ -1678,7 +1678,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 115123917
+            "stateHash": 3149090600
         },
         {
             "tick": 65,
@@ -1692,8 +1692,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackRecovery",
@@ -1704,7 +1704,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1582860522
+            "stateHash": 2925258975
         },
         {
             "tick": 66,
@@ -1718,8 +1718,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "AttackRecovery",
@@ -1730,7 +1730,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3219216047
+            "stateHash": 994861058
         },
         {
             "tick": 67,
@@ -1744,8 +1744,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -1756,7 +1756,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3288652919
+            "stateHash": 3605081442
         },
         {
             "tick": 68,
@@ -1770,8 +1770,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -1782,7 +1782,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1222666450
+            "stateHash": 1247985863
         },
         {
             "tick": 69,
@@ -1796,8 +1796,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -1808,7 +1808,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 351097077
+            "stateHash": 1555132240
         },
         {
             "tick": 70,
@@ -1822,8 +1822,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -1834,7 +1834,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 423625872
+            "stateHash": 474029325
         },
         {
             "tick": 71,
@@ -1848,8 +1848,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -1860,7 +1860,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 613239107
+            "stateHash": 3877060846
         },
         {
             "tick": 72,
@@ -1874,8 +1874,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -1886,7 +1886,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3723921118
+            "stateHash": 1241893299
         },
         {
             "tick": 73,
@@ -1900,8 +1900,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -1912,7 +1912,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4141442625
+            "stateHash": 2554784348
         },
         {
             "tick": 74,
@@ -1926,8 +1926,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -1938,7 +1938,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3117920316
+            "stateHash": 761422633
         },
         {
             "tick": 75,
@@ -1952,8 +1952,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -1964,7 +1964,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1195685871
+            "stateHash": 3068095338
         },
         {
             "tick": 76,
@@ -1978,8 +1978,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -1990,7 +1990,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1875915274
+            "stateHash": 1615375439
         },
         {
             "tick": 77,
@@ -2004,8 +2004,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2016,7 +2016,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3567716973
+            "stateHash": 3918711448
         },
         {
             "tick": 78,
@@ -2030,8 +2030,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2042,7 +2042,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2504036168
+            "stateHash": 1342268181
         },
         {
             "tick": 79,
@@ -2056,8 +2056,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2068,7 +2068,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2594280059
+            "stateHash": 1433402230
         },
         {
             "tick": 80,
@@ -2082,8 +2082,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2094,7 +2094,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1475315606
+            "stateHash": 187704315
         },
         {
             "tick": 81,
@@ -2108,8 +2108,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2120,7 +2120,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1370316537
+            "stateHash": 2107039396
         },
         {
             "tick": 82,
@@ -2134,8 +2134,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2146,7 +2146,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3210958068
+            "stateHash": 3317194417
         },
         {
             "tick": 83,
@@ -2160,8 +2160,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2172,7 +2172,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1268793031
+            "stateHash": 382281266
         },
         {
             "tick": 84,
@@ -2186,8 +2186,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2198,7 +2198,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 689908706
+            "stateHash": 3414989975
         },
         {
             "tick": 85,
@@ -2212,8 +2212,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2224,7 +2224,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4175896581
+            "stateHash": 2332389152
         },
         {
             "tick": 86,
@@ -2238,8 +2238,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2250,7 +2250,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3414757344
+            "stateHash": 221736413
         },
         {
             "tick": 87,
@@ -2264,8 +2264,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2276,7 +2276,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1500484051
+            "stateHash": 3070539646
         },
         {
             "tick": 88,
@@ -2290,8 +2290,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2302,7 +2302,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 624475246
+            "stateHash": 727873475
         },
         {
             "tick": 89,
@@ -2316,8 +2316,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.35914579033851624,
-            "p1PosY": 0.4204986095428467,
+            "p1PosX": 0.17000015079975128,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2328,7 +2328,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3557619089
+            "stateHash": 3902642604
         },
         {
             "tick": 90,
@@ -2342,8 +2342,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.4074791371822357,
-            "p1PosY": 0.5538320541381836,
+            "p1PosX": 0.21833348274230957,
+            "p1PosY": 0.13343322277069092,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2354,7 +2354,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3705084302
+            "stateHash": 2000870330
         },
         {
             "tick": 91,
@@ -2368,8 +2368,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.4558124542236328,
-            "p1PosY": 0.6816097497940063,
+            "p1PosX": 0.26666682958602905,
+            "p1PosY": 0.2612110376358032,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2380,7 +2380,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1210055638
+            "stateHash": 1474938056
         },
         {
             "tick": 92,
@@ -2394,8 +2394,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.5041458010673523,
-            "p1PosY": 0.8038320541381836,
+            "p1PosX": 0.31500014662742615,
+            "p1PosY": 0.3834332227706909,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2406,7 +2406,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2831114721
+            "stateHash": 1154038043
         },
         {
             "tick": 93,
@@ -2420,8 +2420,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.5524791479110718,
-            "p1PosY": 0.9204987287521362,
+            "p1PosX": 0.36333349347114563,
+            "p1PosY": 0.5000998973846436,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2432,7 +2432,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 594222162
+            "stateHash": 1670122065
         },
         {
             "tick": 94,
@@ -2446,8 +2446,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.6008124947547913,
-            "p1PosY": 1.0316097736358643,
+            "p1PosX": 0.4116668105125427,
+            "p1PosY": 0.6112110614776611,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2458,7 +2458,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2939471882
+            "stateHash": 775553998
         },
         {
             "tick": 95,
@@ -2472,8 +2472,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.649145781993866,
-            "p1PosY": 1.1371654272079468,
+            "p1PosX": 0.4600001573562622,
+            "p1PosY": 0.7167665958404541,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2484,7 +2484,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1794946718
+            "stateHash": 3708114583
         },
         {
             "tick": 96,
@@ -2498,8 +2498,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.6974791288375854,
-            "p1PosY": 1.2371653318405151,
+            "p1PosX": 0.5083335041999817,
+            "p1PosY": 0.816766619682312,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2510,7 +2510,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3086091763
+            "stateHash": 3549636130
         },
         {
             "tick": 97,
@@ -2524,8 +2524,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.7458124756813049,
-            "p1PosY": 1.331609845161438,
+            "p1PosX": 0.5566668510437012,
+            "p1PosY": 0.9112110137939453,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2536,7 +2536,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 27922472
+            "stateHash": 923128086
         },
         {
             "tick": 98,
@@ -2550,8 +2550,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.7941458225250244,
-            "p1PosY": 1.4204987287521362,
+            "p1PosX": 0.6050001382827759,
+            "p1PosY": 1.0000998973846436,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2562,7 +2562,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1750029653
+            "stateHash": 3287230666
         },
         {
             "tick": 99,
@@ -2576,8 +2576,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.8424791693687439,
-            "p1PosY": 1.5038319826126099,
+            "p1PosX": 0.6533334851264954,
+            "p1PosY": 1.0834331512451172,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2588,7 +2588,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3840250498
+            "stateHash": 3897789592
         },
         {
             "tick": 100,
@@ -2602,8 +2602,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.8908124566078186,
-            "p1PosY": 1.5816096067428589,
+            "p1PosX": 0.7016668319702148,
+            "p1PosY": 1.1612108945846558,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2614,7 +2614,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 319922200
+            "stateHash": 1755639024
         },
         {
             "tick": 101,
@@ -2628,8 +2628,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.9391458034515381,
-            "p1PosY": 1.6538318395614624,
+            "p1PosX": 0.7500001788139343,
+            "p1PosY": 1.2334331274032593,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2640,7 +2640,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1849136307
+            "stateHash": 1363322599
         },
         {
             "tick": 102,
@@ -2654,8 +2654,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.9874791502952576,
-            "p1PosY": 1.7204984426498413,
+            "p1PosX": 0.7983335256576538,
+            "p1PosY": 1.3000997304916382,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2666,7 +2666,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1308219792
+            "stateHash": 3442494661
         },
         {
             "tick": 103,
@@ -2680,8 +2680,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.035812497138977,
-            "p1PosY": 1.7816096544265747,
+            "p1PosX": 0.8466668725013733,
+            "p1PosY": 1.3612109422683716,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2692,7 +2692,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 408355874
+            "stateHash": 3428459596
         },
         {
             "tick": 104,
@@ -2706,8 +2706,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.0841457843780518,
-            "p1PosY": 1.8371652364730835,
+            "p1PosX": 0.895000159740448,
+            "p1PosY": 1.4167665243148804,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2718,7 +2718,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2036228438
+            "stateHash": 2210675237
         },
         {
             "tick": 105,
@@ -2732,8 +2732,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.132479190826416,
-            "p1PosY": 1.8871651887893677,
+            "p1PosX": 0.9433335065841675,
+            "p1PosY": 1.4667664766311646,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2744,7 +2744,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 717238131
+            "stateHash": 2561115100
         },
         {
             "tick": 106,
@@ -2758,8 +2758,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.1808124780654907,
-            "p1PosY": 1.9316095113754272,
+            "p1PosX": 0.991666853427887,
+            "p1PosY": 1.5112107992172241,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2770,7 +2770,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 25428518
+            "stateHash": 1495209034
         },
         {
             "tick": 107,
@@ -2784,8 +2784,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.229145884513855,
-            "p1PosY": 1.9704984426498413,
+            "p1PosX": 1.0400002002716064,
+            "p1PosY": 1.5500997304916382,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2796,7 +2796,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1503739683
+            "stateHash": 1268190730
         },
         {
             "tick": 108,
@@ -2810,8 +2810,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.2774791717529297,
-            "p1PosY": 2.0038318634033203,
+            "p1PosX": 1.0883334875106812,
+            "p1PosY": 1.5834330320358276,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2822,7 +2822,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1403532408
+            "stateHash": 4155317744
         },
         {
             "tick": 109,
@@ -2836,8 +2836,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.3258124589920044,
-            "p1PosY": 2.031609296798706,
+            "p1PosX": 1.1366668939590454,
+            "p1PosY": 1.6112107038497925,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2848,7 +2848,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 971078868
+            "stateHash": 423830122
         },
         {
             "tick": 110,
@@ -2862,8 +2862,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.3741458654403687,
-            "p1PosY": 2.0538318157196045,
+            "p1PosX": 1.1850001811981201,
+            "p1PosY": 1.6334329843521118,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2874,7 +2874,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2759775815
+            "stateHash": 655035141
         },
         {
             "tick": 111,
@@ -2888,8 +2888,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.4224791526794434,
-            "p1PosY": 2.070498466491699,
+            "p1PosX": 1.2333335876464844,
+            "p1PosY": 1.6500996351242065,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2900,7 +2900,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 104551496
+            "stateHash": 3243379947
         },
         {
             "tick": 112,
@@ -2914,8 +2914,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.4708125591278076,
-            "p1PosY": 2.0816092491149902,
+            "p1PosX": 1.281666874885559,
+            "p1PosY": 1.6612106561660767,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2926,7 +2926,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2622350868
+            "stateHash": 1087322620
         },
         {
             "tick": 113,
@@ -2940,8 +2940,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.5191458463668823,
-            "p1PosY": 2.087164878845215,
+            "p1PosX": 1.3300001621246338,
+            "p1PosY": 1.6667662858963013,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2952,7 +2952,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2504220704
+            "stateHash": 314608205
         },
         {
             "tick": 114,
@@ -2966,8 +2966,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.567479133605957,
-            "p1PosY": 2.087164878845215,
+            "p1PosX": 1.378333568572998,
+            "p1PosY": 1.6667662858963013,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -2978,7 +2978,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2224013565
+            "stateHash": 30923704
         },
         {
             "tick": 115,
@@ -2992,8 +2992,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.6158125400543213,
-            "p1PosY": 2.0816092491149902,
+            "p1PosX": 1.4266668558120728,
+            "p1PosY": 1.6612106561660767,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3004,7 +3004,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2967085822
+            "stateHash": 1710868592
         },
         {
             "tick": 116,
@@ -3018,8 +3018,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.664145827293396,
-            "p1PosY": 2.070497989654541,
+            "p1PosX": 1.475000262260437,
+            "p1PosY": 1.6500993967056274,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3030,7 +3030,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1604168011
+            "stateHash": 2362941588
         },
         {
             "tick": 117,
@@ -3044,8 +3044,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.7124792337417603,
-            "p1PosY": 2.0538313388824463,
+            "p1PosX": 1.5233335494995117,
+            "p1PosY": 1.6334327459335327,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3056,7 +3056,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 567078920
+            "stateHash": 862212306
         },
         {
             "tick": 118,
@@ -3070,8 +3070,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.760812520980835,
-            "p1PosY": 2.031609296798706,
+            "p1PosX": 1.5716668367385864,
+            "p1PosY": 1.6112104654312134,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3082,7 +3082,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3313478626
+            "stateHash": 3052563030
         },
         {
             "tick": 119,
@@ -3096,8 +3096,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.8091458082199097,
-            "p1PosY": 2.003831624984741,
+            "p1PosX": 1.6200002431869507,
+            "p1PosY": 1.5834327936172485,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3108,7 +3108,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3494606693
+            "stateHash": 1496865805
         },
         {
             "tick": 120,
@@ -3122,8 +3122,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.857479214668274,
-            "p1PosY": 1.9704983234405518,
+            "p1PosX": 1.6683335304260254,
+            "p1PosY": 1.550099492073059,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3134,7 +3134,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2058809482
+            "stateHash": 1320642947
         },
         {
             "tick": 121,
@@ -3148,8 +3148,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.9058125019073486,
-            "p1PosY": 1.9316093921661377,
+            "p1PosX": 1.7166669368743896,
+            "p1PosY": 1.511210560798645,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3160,7 +3160,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1200201520
+            "stateHash": 440972030
         },
         {
             "tick": 122,
@@ -3174,8 +3174,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.954145908355713,
-            "p1PosY": 1.887164831161499,
+            "p1PosX": 1.7650002241134644,
+            "p1PosY": 1.4667659997940063,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3186,7 +3186,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2952318596
+            "stateHash": 4158729247
         },
         {
             "tick": 123,
@@ -3200,8 +3200,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.002479314804077,
-            "p1PosY": 1.8371648788452148,
+            "p1PosX": 1.813333511352539,
+            "p1PosY": 1.4167660474777222,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3212,7 +3212,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2733447049
+            "stateHash": 2267971550
         },
         {
             "tick": 124,
@@ -3226,8 +3226,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.0508124828338623,
-            "p1PosY": 1.781609058380127,
+            "p1PosX": 1.8616669178009033,
+            "p1PosY": 1.3612104654312134,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3238,7 +3238,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1797623824
+            "stateHash": 3826777976
         },
         {
             "tick": 125,
@@ -3252,8 +3252,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.0991458892822266,
-            "p1PosY": 1.7204978466033936,
+            "p1PosX": 1.910000205039978,
+            "p1PosY": 1.30009925365448,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3264,7 +3264,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3539957405
+            "stateHash": 2414392736
         },
         {
             "tick": 126,
@@ -3278,8 +3278,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.147479295730591,
-            "p1PosY": 1.6538314819335938,
+            "p1PosX": 1.9583336114883423,
+            "p1PosY": 1.233432650566101,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3290,7 +3290,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3760469082
+            "stateHash": 2428472670
         },
         {
             "tick": 127,
@@ -3304,8 +3304,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.195812463760376,
-            "p1PosY": 1.5816090106964111,
+            "p1PosX": 2.006666898727417,
+            "p1PosY": 1.1612101793289185,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3316,7 +3316,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2672317706
+            "stateHash": 1065889300
         },
         {
             "tick": 128,
@@ -3330,8 +3330,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.2441458702087402,
-            "p1PosY": 1.503831386566162,
+            "p1PosX": 2.0550003051757813,
+            "p1PosY": 1.0834324359893799,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3342,7 +3342,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3631113749
+            "stateHash": 2594304175
         },
         {
             "tick": 129,
@@ -3356,8 +3356,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.2924792766571045,
-            "p1PosY": 1.4204976558685303,
+            "p1PosX": 2.1033334732055664,
+            "p1PosY": 1.0000990629196167,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3368,7 +3368,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 894264046
+            "stateHash": 1608277549
         },
         {
             "tick": 130,
@@ -3382,8 +3382,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.3408124446868896,
-            "p1PosY": 1.3316090106964111,
+            "p1PosX": 2.1516668796539307,
+            "p1PosY": 0.9112101793289185,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3394,7 +3394,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1086987358
+            "stateHash": 3036734706
         },
         {
             "tick": 131,
@@ -3408,8 +3408,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.389145851135254,
-            "p1PosY": 1.2371644973754883,
+            "p1PosX": 2.200000286102295,
+            "p1PosY": 0.8167656660079956,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3420,7 +3420,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4220985722
+            "stateHash": 452687211
         },
         {
             "tick": 132,
@@ -3434,8 +3434,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.437479257583618,
-            "p1PosY": 1.1371643543243408,
+            "p1PosX": 2.248333692550659,
+            "p1PosY": 0.7167656421661377,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3446,7 +3446,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2233752399
+            "stateHash": 34070854
         },
         {
             "tick": 133,
@@ -3460,8 +3460,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.4858126640319824,
-            "p1PosY": 1.0316089391708374,
+            "p1PosX": 2.2966668605804443,
+            "p1PosY": 0.6112099885940552,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3472,7 +3472,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1073299420
+            "stateHash": 1153014258
         },
         {
             "tick": 134,
@@ -3486,8 +3486,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.5341458320617676,
-            "p1PosY": 0.9204976558685303,
+            "p1PosX": 2.3450002670288086,
+            "p1PosY": 0.5000988245010376,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3498,7 +3498,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 51665897
+            "stateHash": 1962659214
         },
         {
             "tick": 135,
@@ -3512,8 +3512,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.582479238510132,
-            "p1PosY": 0.8038308620452881,
+            "p1PosX": 2.393333673477173,
+            "p1PosY": 0.38343214988708496,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3524,7 +3524,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2348513342
+            "stateHash": 2646901012
         },
         {
             "tick": 136,
@@ -3538,8 +3538,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.630812644958496,
-            "p1PosY": 0.6816085577011108,
+            "p1PosX": 2.441666841506958,
+            "p1PosY": 0.2612098455429077,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3550,7 +3550,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 190625164
+            "stateHash": 4174712132
         },
         {
             "tick": 137,
@@ -3564,8 +3564,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.6791458129882813,
-            "p1PosY": 0.5538307428359985,
+            "p1PosX": 2.4900002479553223,
+            "p1PosY": 0.1334320306777954,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3576,7 +3576,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3861265343
+            "stateHash": 3884577915
         },
         {
             "tick": 138,
@@ -3590,8 +3590,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.7274792194366455,
-            "p1PosY": 0.42049741744995117,
+            "p1PosX": 2.5383336544036865,
+            "p1PosY": 0.00010001659393310547,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3602,7 +3602,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 962223036
+            "stateHash": 625755433
         },
         {
             "tick": 139,
@@ -3616,8 +3616,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.7758126258850098,
-            "p1PosY": 0.2816084623336792,
+            "p1PosX": 2.581666946411133,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3628,7 +3628,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 432233670
+            "stateHash": 3059633182
         },
         {
             "tick": 140,
@@ -3642,8 +3642,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.824145793914795,
-            "p1PosY": 0.13716387748718262,
+            "p1PosX": 2.6200003623962402,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3654,7 +3654,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3729182938
+            "stateHash": 3087113
         },
         {
             "tick": 141,
@@ -3668,7 +3668,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.872479200363159,
+            "p1PosX": 2.6533336639404297,
             "p1PosY": 0.00009995698928833008,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -3680,7 +3680,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 683414826
+            "stateHash": 4082491163
         },
         {
             "tick": 142,
@@ -3694,8 +3694,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.9158124923706055,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 2.681666851043701,
+            "p1PosY": 0.00009995698928833008,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3706,7 +3706,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 435755755
+            "stateHash": 2458209317
         },
         {
             "tick": 143,
@@ -3720,7 +3720,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.954145908355713,
+            "p1PosX": 2.705000400543213,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -3732,7 +3732,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2632515094
+            "stateHash": 3018593505
         },
         {
             "tick": 144,
@@ -3746,7 +3746,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.9874792098999023,
+            "p1PosX": 2.7233335971832275,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -3758,7 +3758,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3874717030
+            "stateHash": 3151634062
         },
         {
             "tick": 145,
@@ -3772,7 +3772,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.015812635421753,
+            "p1PosX": 2.7366669178009033,
             "p1PosY": 0.00009995698928833008,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -3784,7 +3784,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3141717526
+            "stateHash": 3608863427
         },
         {
             "tick": 146,
@@ -3798,7 +3798,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.0391459465026855,
+            "p1PosX": 2.7450003623962402,
             "p1PosY": 0.00009995698928833008,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -3810,7 +3810,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 449346384
+            "stateHash": 4070778798
         },
         {
             "tick": 147,
@@ -3824,7 +3824,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.0574793815612793,
+            "p1PosX": 2.748333692550659,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -3836,7 +3836,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1257360653
+            "stateHash": 1923807500
         },
         {
             "tick": 148,
@@ -3850,7 +3850,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.070812702178955,
+            "p1PosX": 2.748333692550659,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -3862,7 +3862,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2150977662
+            "stateHash": 3453179537
         },
         {
             "tick": 149,
@@ -3876,8 +3876,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.079145908355713,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -3888,7 +3888,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2346573289
+            "stateHash": 3781781678
         },
         {
             "tick": 150,
@@ -3902,8 +3902,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -3914,7 +3914,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2781149049
+            "stateHash": 2813498175
         },
         {
             "tick": 151,
@@ -3928,8 +3928,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -3940,7 +3940,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2966976098
+            "stateHash": 1533296060
         },
         {
             "tick": 152,
@@ -3954,8 +3954,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -3966,7 +3966,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4069038295
+            "stateHash": 986189873
         },
         {
             "tick": 153,
@@ -3980,8 +3980,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -3992,7 +3992,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1873340960
+            "stateHash": 2331439822
         },
         {
             "tick": 154,
@@ -4006,8 +4006,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4018,7 +4018,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1706350557
+            "stateHash": 1233577067
         },
         {
             "tick": 155,
@@ -4032,8 +4032,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4044,7 +4044,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2302169174
+            "stateHash": 1211311048
         },
         {
             "tick": 156,
@@ -4058,8 +4058,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4070,7 +4070,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1710843275
+            "stateHash": 1673074365
         },
         {
             "tick": 157,
@@ -4084,8 +4084,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4096,7 +4096,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2305957364
+            "stateHash": 989047642
         },
         {
             "tick": 158,
@@ -4110,8 +4110,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4122,7 +4122,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4213397953
+            "stateHash": 721256775
         },
         {
             "tick": 159,
@@ -4136,8 +4136,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4148,7 +4148,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 931520682
+            "stateHash": 1927752996
         },
         {
             "tick": 160,
@@ -4162,8 +4162,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4174,7 +4174,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 419619935
+            "stateHash": 3616155865
         },
         {
             "tick": 161,
@@ -4188,8 +4188,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4200,7 +4200,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 248922280
+            "stateHash": 802427766
         },
         {
             "tick": 162,
@@ -4214,8 +4214,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4226,7 +4226,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 400402981
+            "stateHash": 4075456691
         },
         {
             "tick": 163,
@@ -4240,8 +4240,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4252,7 +4252,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1725275038
+            "stateHash": 3991596304
         },
         {
             "tick": 164,
@@ -4266,8 +4266,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4278,7 +4278,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2823898515
+            "stateHash": 1345471813
         },
         {
             "tick": 165,
@@ -4292,8 +4292,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4304,7 +4304,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3161495356
+            "stateHash": 1717533922
         },
         {
             "tick": 166,
@@ -4318,8 +4318,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4330,7 +4330,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2541101385
+            "stateHash": 376488367
         },
         {
             "tick": 167,
@@ -4344,8 +4344,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4356,7 +4356,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2472468530
+            "stateHash": 1125288748
         },
         {
             "tick": 168,
@@ -4370,8 +4370,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4382,7 +4382,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 234768807
+            "stateHash": 3548605153
         },
         {
             "tick": 169,
@@ -4396,8 +4396,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4408,7 +4408,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2797482032
+            "stateHash": 1085933694
         },
         {
             "tick": 170,
@@ -4422,8 +4422,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4434,7 +4434,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1486422445
+            "stateHash": 404874843
         },
         {
             "tick": 171,
@@ -4448,8 +4448,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4460,7 +4460,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 892305382
+            "stateHash": 3678099320
         },
         {
             "tick": 172,
@@ -4474,8 +4474,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4486,7 +4486,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3076265243
+            "stateHash": 2948606829
         },
         {
             "tick": 173,
@@ -4500,8 +4500,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4512,7 +4512,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2745038212
+            "stateHash": 2030477642
         },
         {
             "tick": 174,
@@ -4526,8 +4526,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4538,7 +4538,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2549800849
+            "stateHash": 1351715703
         },
         {
             "tick": 175,
@@ -4552,8 +4552,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4564,7 +4564,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2926538426
+            "stateHash": 1776554772
         },
         {
             "tick": 176,
@@ -4578,8 +4578,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4590,7 +4590,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3467332079
+            "stateHash": 3648963721
         },
         {
             "tick": 177,
@@ -4604,8 +4604,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4616,7 +4616,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2308676216
+            "stateHash": 3751046886
         },
         {
             "tick": 178,
@@ -4630,8 +4630,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4642,7 +4642,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1768621045
+            "stateHash": 3751799203
         },
         {
             "tick": 179,
@@ -4656,8 +4656,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4668,7 +4668,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 194127470
+            "stateHash": 3895002496
         },
         {
             "tick": 180,
@@ -4682,8 +4682,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Crouch",
@@ -4694,7 +4694,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2920598947
+            "stateHash": 3085426677
         },
         {
             "tick": 181,
@@ -4708,8 +4708,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -4720,7 +4720,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1947147232
+            "stateHash": 1805004302
         },
         {
             "tick": 182,
@@ -4734,8 +4734,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -4746,7 +4746,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3057061021
+            "stateHash": 3870914731
         },
         {
             "tick": 183,
@@ -4760,8 +4760,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -4772,7 +4772,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 855279998
+            "stateHash": 3710901168
         },
         {
             "tick": 184,
@@ -4786,8 +4786,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -4798,7 +4798,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3678865027
+            "stateHash": 2359362325
         },
         {
             "tick": 185,
@@ -4812,8 +4812,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -4824,7 +4824,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 551771052
+            "stateHash": 1116468018
         },
         {
             "tick": 186,
@@ -4838,8 +4838,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -4850,7 +4850,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2057518329
+            "stateHash": 2909474367
         },
         {
             "tick": 187,
@@ -4864,8 +4864,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -4876,7 +4876,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2718739322
+            "stateHash": 3363933780
         },
         {
             "tick": 188,
@@ -4890,8 +4890,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -4902,7 +4902,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1302397215
+            "stateHash": 6917401
         },
         {
             "tick": 189,
@@ -4916,8 +4916,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.082479238510132,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 2.748333692550659,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -4928,7 +4928,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3399109992
+            "stateHash": 3195324598
         },
         {
             "tick": 190,
@@ -4942,7 +4942,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 3.0358126163482666,
+            "p1PosX": 2.701667070388794,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -4954,7 +4954,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3390242158
+            "stateHash": 1029958060
         },
         {
             "tick": 191,
@@ -4968,8 +4968,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.9891459941864014,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 2.6550002098083496,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -4980,7 +4980,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2658064568
+            "stateHash": 2269865802
         },
         {
             "tick": 192,
@@ -4994,7 +4994,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.942479372024536,
+            "p1PosX": 2.6083335876464844,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5006,7 +5006,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2172532474
+            "stateHash": 516446444
         },
         {
             "tick": 193,
@@ -5020,8 +5020,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.895812511444092,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 2.561666965484619,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5032,7 +5032,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2493046083
+            "stateHash": 729005969
         },
         {
             "tick": 194,
@@ -5046,7 +5046,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.8491458892822266,
+            "p1PosX": 2.515000343322754,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5058,7 +5058,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2978901035
+            "stateHash": 3339149049
         },
         {
             "tick": 195,
@@ -5072,8 +5072,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.8024792671203613,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 2.4683337211608887,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5084,7 +5084,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1872654591
+            "stateHash": 2280559865
         },
         {
             "tick": 196,
@@ -5098,7 +5098,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.755812644958496,
+            "p1PosX": 2.4216668605804443,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5110,7 +5110,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1436955572
+            "stateHash": 1611694582
         },
         {
             "tick": 197,
@@ -5124,8 +5124,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.709146022796631,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 2.375000238418579,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5136,7 +5136,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4016674630
+            "stateHash": 3242723012
         },
         {
             "tick": 198,
@@ -5150,7 +5150,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.6624794006347656,
+            "p1PosX": 2.328333616256714,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5162,7 +5162,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1217259324
+            "stateHash": 633846778
         },
         {
             "tick": 199,
@@ -5176,8 +5176,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.6158125400543213,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 2.2816669940948486,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5188,7 +5188,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 408024513
+            "stateHash": 3161302611
         },
         {
             "tick": 200,
@@ -5202,7 +5202,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.569145917892456,
+            "p1PosX": 2.2350003719329834,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5214,7 +5214,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1852738145
+            "stateHash": 168142675
         },
         {
             "tick": 201,
@@ -5228,8 +5228,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.522479295730591,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 2.188333749771118,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5240,7 +5240,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1211747745
+            "stateHash": 1449644583
         },
         {
             "tick": 202,
@@ -5254,7 +5254,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.4758126735687256,
+            "p1PosX": 2.141666889190674,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5266,7 +5266,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 87632746
+            "stateHash": 1710461080
         },
         {
             "tick": 203,
@@ -5280,8 +5280,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.4291460514068604,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 2.0950002670288086,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5292,7 +5292,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1744384916
+            "stateHash": 3240214966
         },
         {
             "tick": 204,
@@ -5306,7 +5306,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.382479190826416,
+            "p1PosX": 2.0483336448669434,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5318,7 +5318,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2049920118
+            "stateHash": 244371968
         },
         {
             "tick": 205,
@@ -5332,8 +5332,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.335812568664551,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 2.001667022705078,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5344,7 +5344,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1307850199
+            "stateHash": 4244189525
         },
         {
             "tick": 206,
@@ -5358,7 +5358,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.2891459465026855,
+            "p1PosX": 1.9550002813339233,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5370,7 +5370,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 693353439
+            "stateHash": 4169137565
         },
         {
             "tick": 207,
@@ -5384,8 +5384,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.2424793243408203,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 1.908333659172058,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5396,7 +5396,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1698287331
+            "stateHash": 1797078741
         },
         {
             "tick": 208,
@@ -5410,7 +5410,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.195812702178955,
+            "p1PosX": 1.8616669178009033,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5422,7 +5422,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3092387792
+            "stateHash": 4159236962
         },
         {
             "tick": 209,
@@ -5436,8 +5436,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.1491458415985107,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 1.815000295639038,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5448,7 +5448,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1234016658
+            "stateHash": 3386016192
         },
         {
             "tick": 210,
@@ -5462,7 +5462,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.1024792194366455,
+            "p1PosX": 1.7683336734771729,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5474,7 +5474,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2983530840
+            "stateHash": 2913384462
         },
         {
             "tick": 211,
@@ -5488,8 +5488,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.0558125972747803,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 1.721666932106018,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5500,7 +5500,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4132171509
+            "stateHash": 2557829751
         },
         {
             "tick": 212,
@@ -5514,7 +5514,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 2.009145975112915,
+            "p1PosX": 1.6750003099441528,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5526,7 +5526,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2478069893
+            "stateHash": 3196341063
         },
         {
             "tick": 213,
@@ -5540,8 +5540,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.9624792337417603,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 1.6283336877822876,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5552,7 +5552,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 110074373
+            "stateHash": 3782816179
         },
         {
             "tick": 214,
@@ -5566,7 +5566,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.915812611579895,
+            "p1PosX": 1.5816669464111328,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5578,7 +5578,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1408234822
+            "stateHash": 1570478404
         },
         {
             "tick": 215,
@@ -5592,8 +5592,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.8691459894180298,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 1.5350003242492676,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5604,7 +5604,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1145576784
+            "stateHash": 1663364610
         },
         {
             "tick": 216,
@@ -5618,7 +5618,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.822479248046875,
+            "p1PosX": 1.4883335828781128,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5630,7 +5630,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 48874226
+            "stateHash": 4241832084
         },
         {
             "tick": 217,
@@ -5644,8 +5644,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.7758126258850098,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 1.4416669607162476,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5656,7 +5656,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2203646827
+            "stateHash": 2098287897
         },
         {
             "tick": 218,
@@ -5670,7 +5670,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.7291460037231445,
+            "p1PosX": 1.3950003385543823,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5682,7 +5682,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 728350483
+            "stateHash": 1343893025
         },
         {
             "tick": 219,
@@ -5696,8 +5696,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.6824792623519897,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 1.3483335971832275,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5708,7 +5708,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1126233831
+            "stateHash": 1067412577
         },
         {
             "tick": 220,
@@ -5722,7 +5722,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.6358126401901245,
+            "p1PosX": 1.3016669750213623,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5734,7 +5734,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4052920028
+            "stateHash": 2567662494
         },
         {
             "tick": 221,
@@ -5748,8 +5748,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.5891458988189697,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 1.255000352859497,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5760,7 +5760,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1222193902
+            "stateHash": 4083384236
         },
         {
             "tick": 222,
@@ -5774,7 +5774,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.5424792766571045,
+            "p1PosX": 1.2083336114883423,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5786,7 +5786,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2818302852
+            "stateHash": 124143218
         },
         {
             "tick": 223,
@@ -5800,8 +5800,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.4958126544952393,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 1.161666989326477,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5812,7 +5812,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1173538969
+            "stateHash": 1622745835
         },
         {
             "tick": 224,
@@ -5826,7 +5826,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.4491459131240845,
+            "p1PosX": 1.1150002479553223,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5838,7 +5838,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 689015609
+            "stateHash": 432846059
         },
         {
             "tick": 225,
@@ -5852,8 +5852,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.4024792909622192,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 1.068333625793457,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5864,7 +5864,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1547972089
+            "stateHash": 1934975487
         },
         {
             "tick": 226,
@@ -5878,7 +5878,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.355812668800354,
+            "p1PosX": 1.0216670036315918,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5890,7 +5890,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 859764866
+            "stateHash": 3828252368
         },
         {
             "tick": 227,
@@ -5904,8 +5904,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.3091459274291992,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 0.9750003218650818,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5916,7 +5916,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2663218188
+            "stateHash": 2026880718
         },
         {
             "tick": 228,
@@ -5930,7 +5930,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.262479305267334,
+            "p1PosX": 0.9283336400985718,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5942,7 +5942,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2147738574
+            "stateHash": 412359624
         },
         {
             "tick": 229,
@@ -5956,8 +5956,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.2158125638961792,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 0.8816669583320618,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "WalkCreep",
@@ -5968,7 +5968,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3234787551
+            "stateHash": 3814137213
         },
         {
             "tick": 230,
@@ -5982,7 +5982,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.169145941734314,
+            "p1PosX": 0.8350002765655518,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -5994,7 +5994,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1908544263
+            "stateHash": 1606398789
         },
         {
             "tick": 231,
@@ -6008,8 +6008,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.1274793148040771,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 0.7933336496353149,
+            "p1PosY": 0.0000998377799987793,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -6020,7 +6020,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1674238319
+            "stateHash": 1899981873
         },
         {
             "tick": 232,
@@ -6034,7 +6034,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.0908125638961792,
+            "p1PosX": 0.7566669583320618,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -6046,7 +6046,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3295437942
+            "stateHash": 3832305448
         },
         {
             "tick": 233,
@@ -6060,8 +6060,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.0591459274291992,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 0.7250003218650818,
+            "p1PosY": 0.00009995698928833008,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -6072,7 +6072,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3293514361
+            "stateHash": 669041663
         },
         {
             "tick": 234,
@@ -6086,7 +6086,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.0324792861938477,
+            "p1PosX": 0.6983336210250854,
             "p1PosY": 0.00009995698928833008,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -6098,7 +6098,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4225610091
+            "stateHash": 77299609
         },
         {
             "tick": 235,
@@ -6112,8 +6112,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 1.0108126401901245,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 0.6766669750213623,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -6124,7 +6124,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 253660391
+            "stateHash": 4119867649
         },
         {
             "tick": 236,
@@ -6138,7 +6138,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.994145929813385,
+            "p1PosX": 0.6600002646446228,
             "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -6150,7 +6150,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3659351319
+            "stateHash": 1884495793
         },
         {
             "tick": 237,
@@ -6164,8 +6164,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.9824792742729187,
-            "p1PosY": 0.00009989738464355469,
+            "p1PosX": 0.6483336091041565,
+            "p1PosY": 0.00009995698928833008,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -6176,7 +6176,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 542969084
+            "stateHash": 1447143258
         },
         {
             "tick": 238,
@@ -6190,7 +6190,7 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.9758126139640808,
+            "p1PosX": 0.6416669487953186,
             "p1PosY": 0.00009995698928833008,
             "p1Health": 1000.0,
             "p1Super": 0.0,
@@ -6202,7 +6202,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2883100655
+            "stateHash": 1824658541
         },
         {
             "tick": 239,
@@ -6216,8 +6216,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.9741459488868713,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 0.6400002837181091,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -6228,7 +6228,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 217982714
+            "stateHash": 3656231756
         },
         {
             "tick": 240,
@@ -6242,8 +6242,8 @@
             "p2Button": 0,
             "p2BufMoveX": 0.0,
             "p2BufMoveY": 0.0,
-            "p1PosX": 0.9741459488868713,
-            "p1PosY": 0.00009995698928833008,
+            "p1PosX": 0.6400002837181091,
+            "p1PosY": 0.00009989738464355469,
             "p1Health": 1000.0,
             "p1Super": 0.0,
             "p1State": "Idle",
@@ -6254,7 +6254,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1174762671
+            "stateHash": 1926544353
         }
     ]
 }

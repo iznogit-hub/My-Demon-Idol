@@ -180,7 +180,7 @@ namespace DemonIdol.BlazBlue
             fighter.currentHealth = health;
             if (!Mathf.Approximately(previous, health))
             {
-                fighter.OnHealthChanged?.Invoke(fighter.currentHealth, fighter.maxHealth);
+                fighter.RaiseHealthChanged();
             }
             if (health <= 0f && fighter.State != FighterState.Dead)
             {

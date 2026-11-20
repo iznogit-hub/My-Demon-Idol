@@ -305,7 +305,7 @@ namespace DemonIdol.Combat
                 speed = 93f, power = 85f, reach = 84f, defense = 74f,
                 domain = "Phantom Shadow Slashes",
                 domainDesc = "Drops temperature to absolute zero, freezing opponent hurtboxes into brittle ice crystals.",
-                prefabPath = "Assets/Prefabs/Characters/C12B_Reika.prefab",
+                prefabPath = "Assets/Prefabs/Characters/C10_Reika.prefab",
                 signatureStageId = "ST10"
             },
             new RosterEntry
@@ -509,7 +509,7 @@ namespace DemonIdol.Combat
 
         public static IReadOnlyList<CharacterDefinition> GetAllCharacters()
         {
-            if (_cachedCharacters == null || _cachedCharacters.Count == 0)
+            if (_cachedCharacters == null || _cachedCharacters.Count == 0 || (_cachedCharacters.Count > 0 && _cachedCharacters[0] == null))
             {
                 ReloadRegistry();
             }
@@ -670,6 +670,22 @@ namespace DemonIdol.Combat
         {
             _cachedCharacters = new List<CharacterDefinition>();
 
+#if UNITY_EDITOR
+            try
+            {
+                string[] guids = UnityEditor.AssetDatabase.FindAssets("t:CharacterDefinition", new[] { "Assets/CombatData/Characters" });
+                for (int i = 0; i < guids.Length; i++)
+                {
+                    var def = UnityEditor.AssetDatabase.LoadAssetAtPath<CharacterDefinition>(UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]));
+                    if (def != null && !_cachedCharacters.Contains(def))
+                    {
+                        _cachedCharacters.Add(def);
+                    }
+                }
+            }
+            catch { }
+#endif
+
             // 1. Authoritative 14-Fighter Lineup
             for (int i = 0; i < _canonical14List.Length; i++)
             {
@@ -684,6 +700,31 @@ namespace DemonIdol.Combat
             // 2. Discover any authored CharacterDefinition assets in Resources or Assets
             try
             {
+#if UNITY_EDITOR
+                string[] guids = UnityEditor.AssetDatabase.FindAssets("t:CharacterDefinition", new[] { "Assets/CombatData/Characters" });
+                for (int i = 0; i < guids.Length; i++)
+                {
+                    var def = UnityEditor.AssetDatabase.LoadAssetAtPath<CharacterDefinition>(UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]));
+                    if (def != null)
+                    {
+                        string canonId = ResolveCanonicalId(def.id);
+                        var existing = GetCharacterById(canonId);
+                        if (existing != null)
+                        {
+                            if (def.modelPrefab != null) existing.modelPrefab = def.modelPrefab;
+                            if (def.portraitSprite != null) existing.portraitSprite = def.portraitSprite;
+                            if (def.bannerSprite != null) existing.bannerSprite = def.bannerSprite;
+                            if (def.moveSet != null) existing.moveSet = def.moveSet;
+                            if (def.animatorController != null) existing.animatorController = def.animatorController;
+                            if (def.blazBlueProfile != null) existing.blazBlueProfile = def.blazBlueProfile;
+                        }
+                        else
+                        {
+                            _cachedCharacters.Add(def);
+                        }
+                    }
+                }
+#endif
                 var loaded = Resources.LoadAll<CharacterDefinition>("");
                 if (loaded != null && loaded.Length > 0)
                 {
@@ -700,6 +741,7 @@ namespace DemonIdol.Combat
                                 if (loaded[i].bannerSprite != null) existing.bannerSprite = loaded[i].bannerSprite;
                                 if (loaded[i].moveSet != null) existing.moveSet = loaded[i].moveSet;
                                 if (loaded[i].animatorController != null) existing.animatorController = loaded[i].animatorController;
+                                if (loaded[i].blazBlueProfile != null) existing.blazBlueProfile = loaded[i].blazBlueProfile;
                             }
                             else
                             {

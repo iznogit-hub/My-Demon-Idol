@@ -282,7 +282,7 @@ namespace DemonIdol.Combat
                         {
                             if (oldDiorama != null)
                             {
-                                Destroy(oldDiorama.gameObject);
+                                SafeDestroy(oldDiorama.gameObject);
                             }
                             var newDiorama = Instantiate(pfab, arenaRoot.transform);
                             newDiorama.name = "Backdrop_Diorama";
@@ -375,7 +375,7 @@ namespace DemonIdol.Combat
                     Transform child = fc.transform.GetChild(i);
                     if (child.name.StartsWith("Model_") || child.name.StartsWith("Model"))
                     {
-                        Destroy(child.gameObject);
+                        SafeDestroy(child.gameObject);
                     }
                 }
 
@@ -387,12 +387,12 @@ namespace DemonIdol.Combat
 
                 // Strip duplicate logic/physics components from child model to prevent collision clash
                 // Destroy FighterController FIRST so RequireComponent constraint on CharacterController is released
-                foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) Destroy(subFc);
-                foreach (var cc in model.GetComponentsInChildren<CharacterController>(true)) Destroy(cc);
-                foreach (var mi in model.GetComponentsInChildren<MobileFighterInput>(true)) Destroy(mi);
-                foreach (var hb in model.GetComponentsInChildren<Hitbox>(true)) Destroy(hb.gameObject);
-                foreach (var hb in model.GetComponentsInChildren<Hurtbox>(true)) Destroy(hb.gameObject);
-                foreach (var pb in model.GetComponentsInChildren<FighterPropBinder>(true)) Destroy(pb);
+                foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) SafeDestroy(subFc);
+                foreach (var cc in model.GetComponentsInChildren<CharacterController>(true)) SafeDestroy(cc);
+                foreach (var mi in model.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroy(mi);
+                foreach (var hb in model.GetComponentsInChildren<Hitbox>(true)) SafeDestroy(hb.gameObject);
+                foreach (var hb in model.GetComponentsInChildren<Hurtbox>(true)) SafeDestroy(hb.gameObject);
+                foreach (var pb in model.GetComponentsInChildren<FighterPropBinder>(true)) SafeDestroy(pb);
 
                 // Strip any weapons, wands, staves, props
                 foreach (var t in model.GetComponentsInChildren<Transform>(true))
@@ -408,7 +408,7 @@ namespace DemonIdol.Combat
                         t.name.Contains("Orb") ||
                         t.name.Contains("Gun")))
                     {
-                        Destroy(t.gameObject);
+                        SafeDestroy(t.gameObject);
                     }
                 }
 
@@ -649,6 +649,13 @@ namespace DemonIdol.Combat
             }
 #endif
             return data;
+        }
+
+        private static void SafeDestroy(UnityEngine.Object obj)
+        {
+            if (obj == null) return;
+            if (Application.isPlaying) UnityEngine.Object.Destroy(obj);
+            else UnityEngine.Object.DestroyImmediate(obj);
         }
     }
 }

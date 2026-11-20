@@ -59,12 +59,20 @@ namespace DemonIdol.Combat
         {
             if (_player == null || _dummy == null)
             {
-                var fighters = FindObjectsByType<FighterController>();
-                if (fighters != null && fighters.Length >= 2)
+                if (HomegrownCombatDirector.Instance != null)
                 {
-                    Array.Sort(fighters, (a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
-                    if (_player == null) _player = fighters[0];
-                    if (_dummy == null) _dummy = fighters[1];
+                    if (_player == null) _player = HomegrownCombatDirector.Instance.Fighter1;
+                    if (_dummy == null) _dummy = HomegrownCombatDirector.Instance.Fighter2;
+                }
+                if (_player == null || _dummy == null)
+                {
+                    var fighters = FindObjectsByType<FighterController>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                    if (fighters != null && fighters.Length >= 2)
+                    {
+                        Array.Sort(fighters, (a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
+                        if (_player == null) _player = fighters[0];
+                        if (_dummy == null) _dummy = fighters[1];
+                    }
                 }
             }
 

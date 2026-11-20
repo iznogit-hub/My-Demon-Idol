@@ -20,10 +20,11 @@ namespace DemonIdol.BlazBlue.Editor
         {
             int clips = AppendCmuRanges();
             int filled = FillEmptyOverrideSlots();
+            int baked = BakeLocomotionClips();
             bool casual = RebuildHumanoid("Assets/AnimeGirls/Casual1/SourceFiles/Mesh/AnimeGirl.fbx");
             bool sapphi = RebuildHumanoid("Assets/SapphiArt/SapphiArtchan/OBJ/SapphiArtchan.fbx");
             AssetDatabase.SaveAssets();
-            Debug.Log($"[BBRoster] CMU ranges added {clips}. Empty override slots filled {filled}. Casual1 humanoid {casual}. Sapphi humanoid {sapphi}.");
+            Debug.Log($"[BBRoster] CMU ranges added {clips}. Empty override slots filled {filled}. Locomotion baked {baked}. Casual1 humanoid {casual}. Sapphi humanoid {sapphi}.");
             if (!sapphi)
             {
                 Debug.LogWarning("[BBRoster] SapphiArtchan stayed generic. Open the FBX Rig tab, set Humanoid, and map Hips if the skeleton has no standard humanoid bones.");
@@ -121,6 +122,51 @@ namespace DemonIdol.BlazBlue.Editor
                 if (clip != null) return clip;
             }
             return null;
+        }
+
+        static int BakeLocomotionClips()
+        {
+            string[] warriors = { "Karate", "Swordsman", "Ninja", "Knight", "2Handed", "Hammer", "Spearman", "Mage", "Sorceress", "Archer", "Crossbow", "Brute" };
+            string[] types = { "Idle", "Walk", "Jump", "Fall", "Run" };
+            int modified = 0;
+
+            foreach (var w in warriors)
+            {
+                string[] guids = AssetDatabase.FindAssets(w + "@ t:Model", new[] { "Assets/ExplosiveLLC" });
+                foreach (var g in guids)
+                {
+                    var path = AssetDatabase.GUIDToAssetPath(g);
+                    bool match = false;
+                    foreach (var t in types)
+                    {
+                        if (path.Contains("@" + t) || (t == "Idle" && path.Contains("@Idle1"))) { match = true; break; }
+                    }
+                    if (!match) continue;
+                    var imp = AssetImporter.GetAtPath(path) as ModelImporter;
+                    if (imp == null) continue;
+                    var clips = imp.clipAnimations;
+                    if (clips == null || clips.Length == 0) clips = imp.defaultClipAnimations;
+                    if (clips != null && clips.Length > 0)
+                    {
+                        bool changed = false;
+                        for (int i = 0; i < clips.Length; i++)
+                        {
+                            if (!clips[i].lockRootPositionXZ)
+                            {
+                                clips[i].lockRootPositionXZ = true;
+                                changed = true;
+                            }
+                        }
+                        if (changed)
+                        {
+                            imp.clipAnimations = clips;
+                            imp.SaveAndReimport();
+                            modified++;
+                        }
+                    }
+                }
+            }
+            return modified;
         }
 
         static bool RebuildHumanoid(string path)

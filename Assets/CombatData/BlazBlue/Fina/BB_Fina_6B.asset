@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: -2936779200562753099, guid: 31f87819be7c6b144861a3f9eb6f1441, type: 3}
+  animationClip: {fileID: 5587484785119262040, guid: 31f87819be7c6b144861a3f9eb6f1441, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -99,7 +99,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: e864846bc026642ffb5384bab6a94d16, type: 2}
   motionTrack: {fileID: 0}
   clipName: Fina_6B
-  clip: {fileID: -2936779200562753099, guid: 31f87819be7c6b144861a3f9eb6f1441, type: 3}
+  clip: {fileID: 5587484785119262040, guid: 31f87819be7c6b144861a3f9eb6f1441, type: 3}
   clipFirstFrame: 15
   clipLastFrame: 38
   events: []

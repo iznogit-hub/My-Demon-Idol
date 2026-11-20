@@ -108,7 +108,11 @@ namespace DemonIdol.Combat
 
             // Strip default collider from core visual
             var col = coreMesh.GetComponent<Collider>();
-            if (col != null) UnityEngine.Object.Destroy(col);
+            if (col != null)
+            {
+                if (Application.isPlaying) UnityEngine.Object.Destroy(col);
+                else UnityEngine.Object.DestroyImmediate(col);
+            }
 
             // Styled Material
             var renderer = coreMesh.GetComponent<MeshRenderer>();

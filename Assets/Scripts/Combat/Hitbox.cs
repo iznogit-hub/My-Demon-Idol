@@ -63,9 +63,9 @@ namespace DemonIdol.Combat
 
         public void Deactivate()
         {
-            _collider.enabled = false;
+            if (_collider != null) _collider.enabled = false;
             CurrentAttack = null;
-            _hitTargets.Clear();
+            if (_hitTargets != null) _hitTargets.Clear();
 
             // Reset back to default dimensions
             if (_boxCollider != null)
