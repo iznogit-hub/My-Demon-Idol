@@ -114,3 +114,15 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Ignore large demo environment assets exceeding GitHub limits
+Assets/Santuary/Scenes/
+Assets/Santuary/Scenes.meta
+Assets/Santuary/EnvironmentModels/
+Assets/Santuary/EnvironmentModels.meta
+Assets/SimpleAssets/Humans/Guard/RenderPipeline/
+Assets/SimpleAssets/Humans/Guard/RenderPipeline.meta
+*.tif
+*.TIF
+*.psd
+

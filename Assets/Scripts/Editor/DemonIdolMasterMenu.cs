@@ -113,6 +113,12 @@ namespace DemonIdol.EditorTools
             DemonIdolCharacterPropSanitizer.StripAllPropsAndWeaponsFromAllCharacters();
         }
 
+        [MenuItem("Demon Idol/👥 Roster & Animators/Unify 16 Dota Heroes & Weapons to Anime Toon", priority = 36)]
+        public static void UnifyDotaHeroesAndWeaponsToAnimeToon()
+        {
+            DemonIdol.BlazBlue.Editor.BBDotaToonUnifier.ExecuteDotaToonify();
+        }
+
         // =====================================================================
         // 4. COMBAT & STAGES
         // =====================================================================
