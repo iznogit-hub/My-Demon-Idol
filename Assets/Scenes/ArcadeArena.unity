@@ -299,126 +299,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67494560}
   m_CullTransparentMesh: 1
---- !u!114 &128801755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Defensive Burst
-  attackType: 3
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 3
-  crushStartTick: 0
-  crushEndTick: 8
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 6
-  activeFrames: 3
-  recoveryFrames: 30
-  hitstunTicks: 20
-  blockstunTicks: 14
-  knockdownDurationTicks: 36
-  hitstopAttacker: 9
-  hitstopDefender: 9
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -18
-  advantageOnHit: 0
-  advantageOnCounterHit: 8
-  damage: 0
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 2.5
-  pushbackOnBlock: 1.75
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: BurstShockwave
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 6, y: 12}
-  archetype: 0
---- !u!114 &149342046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Air L
-  attackType: 4
-  hitLevel: 5
-  guardRequirement: 2
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 7
-  activeFrames: 5
-  recoveryFrames: 12
-  hitstunTicks: 18
-  blockstunTicks: 12
-  knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
-  hitstopOnBlock: 4
-  counterHitStopBonus: 4
-  advantageOnBlock: -2
-  advantageOnHit: 4
-  advantageOnCounterHit: 8
-  damage: 35
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.18
-  pushbackOnBlock: 0.126
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: AirLight
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 7, y: 15}
-  archetype: 0
 --- !u!1 &167226523
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,15 +350,15 @@ MonoBehaviour:
   parryActiveTicks: 5
   parryRecoveryTicks: 14
   parryStunTicksOnAttacker: 18
-  moveSet: {fileID: 1886227913}
-  lightAttackData: {fileID: 1095205562}
-  lowAttackData: {fileID: 2141546023}
+  moveSet: {fileID: 0}
+  lightAttackData: {fileID: 0}
+  lowAttackData: {fileID: 0}
   mediumAttackData: {fileID: 0}
-  heavyAttackData: {fileID: 1905795149}
-  driveSkillData: {fileID: 1555932359}
-  jumpAttackData: {fileID: 149342046}
-  domainSuperData: {fileID: 2104392626}
-  throwAttackData: {fileID: 724621082}
+  heavyAttackData: {fileID: 0}
+  driveSkillData: {fileID: 0}
+  jumpAttackData: {fileID: 0}
+  domainSuperData: {fileID: 0}
+  throwAttackData: {fileID: 0}
   opponent: {fileID: 169567838}
   activeHitbox: {fileID: 663455131}
   animator: {fileID: 1080840251076140030}
@@ -594,15 +474,15 @@ MonoBehaviour:
   parryActiveTicks: 5
   parryRecoveryTicks: 14
   parryStunTicksOnAttacker: 18
-  moveSet: {fileID: 1703728055}
-  lightAttackData: {fileID: 1865890417}
-  lowAttackData: {fileID: 1264112374}
+  moveSet: {fileID: 0}
+  lightAttackData: {fileID: 0}
+  lowAttackData: {fileID: 0}
   mediumAttackData: {fileID: 0}
-  heavyAttackData: {fileID: 511678362}
-  driveSkillData: {fileID: 2103373285}
-  jumpAttackData: {fileID: 1813580374}
-  domainSuperData: {fileID: 1167199255}
-  throwAttackData: {fileID: 171782115}
+  heavyAttackData: {fileID: 0}
+  driveSkillData: {fileID: 0}
+  jumpAttackData: {fileID: 0}
+  domainSuperData: {fileID: 0}
+  throwAttackData: {fileID: 0}
   opponent: {fileID: 167226524}
   activeHitbox: {fileID: 1648413793}
   animator: {fileID: 2488031480077237544}
@@ -669,126 +549,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.95, z: 0}
---- !u!114 &171782115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Tactical Throw
-  attackType: 6
-  hitLevel: 6
-  guardRequirement: 3
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 6
-  activeFrames: 2
-  recoveryFrames: 25
-  hitstunTicks: 40
-  blockstunTicks: 0
-  knockdownDurationTicks: 40
-  hitstopAttacker: 5
-  hitstopDefender: 5
-  hitstopOnBlock: 4
-  counterHitStopBonus: 4
-  advantageOnBlock: 0
-  advantageOnHit: 0
-  advantageOnCounterHit: 8
-  damage: 100
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
-  pushbackOnBlock: 0.84000003
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 1
-  isLinear: 1
-  throwTechWindowTicks: 12
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: Throw
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 6, y: 11}
-  archetype: 0
---- !u!114 &175105722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Air H
-  attackType: 4
-  hitLevel: 5
-  guardRequirement: 2
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 12
-  activeFrames: 5
-  recoveryFrames: 12
-  hitstunTicks: 22
-  blockstunTicks: 15
-  knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
-  hitstopOnBlock: 4
-  counterHitStopBonus: 4
-  advantageOnBlock: -5
-  advantageOnHit: 5
-  advantageOnCounterHit: 8
-  damage: 65
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.4
-  pushbackOnBlock: 0.28
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: AirHeavy
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 12, y: 20}
-  archetype: 0
 --- !u!1 &212891212
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,66 +669,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &260363487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Crouching H (Sweep)
-  attackType: 2
-  hitLevel: 2
-  guardRequirement: 1
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 15
-  activeFrames: 3
-  recoveryFrames: 25
-  hitstunTicks: 36
-  blockstunTicks: 15
-  knockdownDurationTicks: 36
-  hitstopAttacker: 8
-  hitstopDefender: 8
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -12
-  advantageOnHit: 0
-  advantageOnCounterHit: 8
-  damage: 65
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.4
-  pushbackOnBlock: 0.28
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 1
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: LowSweepAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 15, y: 21}
-  archetype: 0
 --- !u!1 &280501444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,66 +796,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &336040864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Air H
-  attackType: 4
-  hitLevel: 5
-  guardRequirement: 2
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 12
-  activeFrames: 5
-  recoveryFrames: 12
-  hitstunTicks: 22
-  blockstunTicks: 15
-  knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
-  hitstopOnBlock: 4
-  counterHitStopBonus: 4
-  advantageOnBlock: -5
-  advantageOnHit: 5
-  advantageOnCounterHit: 8
-  damage: 65
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.4
-  pushbackOnBlock: 0.28
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: AirHeavy
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 12, y: 20}
-  archetype: 0
 --- !u!1 &356335566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,66 +956,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &511678362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Standing H
-  attackType: 2
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 11
-  activeFrames: 3
-  recoveryFrames: 20
-  hitstunTicks: 26
-  blockstunTicks: 15
-  knockdownDurationTicks: 36
-  hitstopAttacker: 8
-  hitstopDefender: 8
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -7
-  advantageOnHit: 4
-  advantageOnCounterHit: 8
-  damage: 80
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.4
-  pushbackOnBlock: 0.28
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: HeavyAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 11, y: 17}
-  archetype: 0
 --- !u!1 &565613875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,66 +1101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b90eb9dbbe945e1a25c54fb9f101d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hitbox
---- !u!114 &666291228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Forward H (Overhead)
-  attackType: 2
-  hitLevel: 5
-  guardRequirement: 2
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 23
-  activeFrames: 3
-  recoveryFrames: 22
-  hitstunTicks: 27
-  blockstunTicks: 16
-  knockdownDurationTicks: 36
-  hitstopAttacker: 8
-  hitstopDefender: 8
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -8
-  advantageOnHit: 3
-  advantageOnCounterHit: 8
-  damage: 70
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.4
-  pushbackOnBlock: 0.28
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: OverheadAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 23, y: 29}
-  archetype: 0
 --- !u!1 &685432448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,160 +1211,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716001482}
   m_CullTransparentMesh: 1
---- !u!114 &724621082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Tactical Throw
-  attackType: 6
-  hitLevel: 6
-  guardRequirement: 3
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 6
-  activeFrames: 2
-  recoveryFrames: 25
-  hitstunTicks: 40
-  blockstunTicks: 0
-  knockdownDurationTicks: 40
-  hitstopAttacker: 5
-  hitstopDefender: 5
-  hitstopOnBlock: 4
-  counterHitStopBonus: 4
-  advantageOnBlock: 0
-  advantageOnHit: 0
-  advantageOnCounterHit: 8
-  damage: 100
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
-  pushbackOnBlock: 0.84000003
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 1
-  isLinear: 1
-  throwTechWindowTicks: 12
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: Throw
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 6, y: 11}
-  archetype: 0
---- !u!1 &742468184 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4783173754800423339, guid: f6962955abbc94fe1a355eff66d12ae2, type: 3}
-  m_PrefabInstance: {fileID: 1591863205}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &742468186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742468184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_CustomShadowLayers: 0
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
-  m_RenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_ShadowRenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_Version: 4
-  m_LightLayerMask: 1
-  m_ShadowLayerMask: 1
-  m_RenderingLayers: 1
-  m_ShadowRenderingLayers: 1
---- !u!114 &844180434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Crouching H (Sweep)
-  attackType: 2
-  hitLevel: 2
-  guardRequirement: 1
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 15
-  activeFrames: 3
-  recoveryFrames: 25
-  hitstunTicks: 36
-  blockstunTicks: 15
-  knockdownDurationTicks: 36
-  hitstopAttacker: 8
-  hitstopDefender: 8
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -12
-  advantageOnHit: 0
-  advantageOnCounterHit: 8
-  damage: 65
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.4
-  pushbackOnBlock: 0.28
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 1
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: LowSweepAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 15, y: 21}
-  archetype: 0
 --- !u!1 &1011426975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,66 +1264,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 8, z: 8}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1086800321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Defensive Burst
-  attackType: 3
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 3
-  crushStartTick: 0
-  crushEndTick: 8
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 6
-  activeFrames: 3
-  recoveryFrames: 30
-  hitstunTicks: 20
-  blockstunTicks: 14
-  knockdownDurationTicks: 36
-  hitstopAttacker: 9
-  hitstopDefender: 9
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -18
-  advantageOnHit: 0
-  advantageOnCounterHit: 8
-  damage: 0
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 2.5
-  pushbackOnBlock: 1.75
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: BurstShockwave
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 6, y: 12}
-  archetype: 0
 --- !u!1 &1093959997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,246 +1388,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 0}
---- !u!114 &1095205562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Standing L
-  attackType: 0
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 5
-  activeFrames: 3
-  recoveryFrames: 10
-  hitstunTicks: 16
-  blockstunTicks: 10
-  knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
-  hitstopOnBlock: 4
-  counterHitStopBonus: 4
-  advantageOnBlock: -2
-  advantageOnHit: 4
-  advantageOnCounterHit: 8
-  damage: 35
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.18
-  pushbackOnBlock: 0.126
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 5, y: 11}
-  archetype: 0
---- !u!114 &1167199255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Super Finisher
-  attackType: 5
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 10
-  activeFrames: 3
-  recoveryFrames: 35
-  hitstunTicks: 48
-  blockstunTicks: 20
-  knockdownDurationTicks: 48
-  hitstopAttacker: 12
-  hitstopDefender: 12
-  hitstopOnBlock: 8
-  counterHitStopBonus: 4
-  advantageOnBlock: -17
-  advantageOnHit: 0
-  advantageOnCounterHit: 8
-  damage: 240
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 1.5
-  pushbackOnBlock: 1.05
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 1
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: DomainSuper
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 10, y: 16}
-  archetype: 0
---- !u!114 &1207845140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Forward H (Overhead)
-  attackType: 2
-  hitLevel: 5
-  guardRequirement: 2
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 23
-  activeFrames: 3
-  recoveryFrames: 22
-  hitstunTicks: 27
-  blockstunTicks: 16
-  knockdownDurationTicks: 36
-  hitstopAttacker: 8
-  hitstopDefender: 8
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -8
-  advantageOnHit: 3
-  advantageOnCounterHit: 8
-  damage: 70
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.4
-  pushbackOnBlock: 0.28
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: OverheadAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 23, y: 29}
-  archetype: 0
---- !u!114 &1264112374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Crouching L
-  attackType: 0
-  hitLevel: 2
-  guardRequirement: 1
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 6
-  activeFrames: 2
-  recoveryFrames: 12
-  hitstunTicks: 16
-  blockstunTicks: 10
-  knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
-  hitstopOnBlock: 4
-  counterHitStopBonus: 4
-  advantageOnBlock: -3
-  advantageOnHit: 3
-  advantageOnCounterHit: 8
-  damage: 30
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.18
-  pushbackOnBlock: 0.126
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: LowAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 6, y: 11}
-  archetype: 0
 --- !u!1 &1432366568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,126 +1748,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1555932359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Neutral S (Signature)
-  attackType: 3
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 13
-  activeFrames: 4
-  recoveryFrames: 22
-  hitstunTicks: 30
-  blockstunTicks: 17
-  knockdownDurationTicks: 36
-  hitstopAttacker: 9
-  hitstopDefender: 9
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -8
-  advantageOnHit: 5
-  advantageOnCounterHit: 8
-  damage: 90
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.55
-  pushbackOnBlock: 0.385
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: DriveSkill
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 13, y: 20}
-  archetype: 0
---- !u!114 &1558028596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Down S (Launcher)
-  attackType: 3
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 1
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 10
-  activeFrames: 4
-  recoveryFrames: 28
-  hitstunTicks: 35
-  blockstunTicks: 16
-  knockdownDurationTicks: 36
-  hitstopAttacker: 9
-  hitstopDefender: 9
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -15
-  advantageOnHit: 8
-  advantageOnCounterHit: 8
-  damage: 70
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.55
-  pushbackOnBlock: 0.385
-  isLauncher: 1
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 1.5, y: 9}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: LauncherAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 10, y: 17}
-  archetype: 0
 --- !u!1001 &1591863205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2810,25 +1756,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 685432449}
     m_Modifications:
+    - target: {fileID: 100000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
+      propertyPath: m_Name
+      value: Backdrop_Diorama
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -10.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -100.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99999964
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.0008726948
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2840,7 +1790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2850,20 +1800,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
-      propertyPath: m_Name
-      value: Backdrop_Diorama
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100012, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1591863208}
   m_SourcePrefab: {fileID: 100100000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
 --- !u!4 &1591863206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
   m_PrefabInstance: {fileID: 1591863205}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1591863207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100012, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
+  m_PrefabInstance: {fileID: 1591863205}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1591863208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591863207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &1600702856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2943,66 +1926,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600702856}
   m_CullTransparentMesh: 1
---- !u!114 &1607450739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Forward S (Advancing)
-  attackType: 3
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 17
-  activeFrames: 3
-  recoveryFrames: 26
-  hitstunTicks: 31
-  blockstunTicks: 16
-  knockdownDurationTicks: 36
-  hitstopAttacker: 9
-  hitstopDefender: 9
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -12
-  advantageOnHit: 3
-  advantageOnCounterHit: 8
-  damage: 95
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.55
-  pushbackOnBlock: 0.385
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: AdvancingSkill
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 17, y: 23}
-  archetype: 0
 --- !u!1 &1641917135
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,43 +2067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b90eb9dbbe945e1a25c54fb9f101d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hitbox
---- !u!114 &1703728055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c25885bf7bbc49aebe492dd3a4ec123, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.MoveSet
-  characterId: C12
-  moveSetName: 3-Button Shinobi Tactical Preset
-  archetype: 0
-  standingL: {fileID: 1865890417}
-  crouchingL: {fileID: 1264112374}
-  standingH: {fileID: 511678362}
-  forwardH: {fileID: 1207845140}
-  crouchingH: {fileID: 844180434}
-  neutralS: {fileID: 2103373285}
-  forwardS: {fileID: 1607450739}
-  downS: {fileID: 1558028596}
-  airL: {fileID: 1813580374}
-  airH: {fileID: 175105722}
-  airS: {fileID: 175105722}
-  tacticalThrow: {fileID: 171782115}
-  domainSuper: {fileID: 1167199255}
-  defensiveBurst: {fileID: 128801755}
-  lightAttack: {fileID: 1865890417}
-  mediumAttack: {fileID: 0}
-  heavyAttack: {fileID: 511678362}
-  driveSkill: {fileID: 2103373285}
-  overheadAttack: {fileID: 1207845140}
-  lowSweepAttack: {fileID: 844180434}
-  antiairAttack: {fileID: 1558028596}
-  additionalMoves: []
 --- !u!1 &1738656802
 GameObject:
   m_ObjectHideFlags: 0
@@ -3308,126 +2194,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &1764262344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Down S (Launcher)
-  attackType: 3
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 1
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 10
-  activeFrames: 4
-  recoveryFrames: 28
-  hitstunTicks: 35
-  blockstunTicks: 16
-  knockdownDurationTicks: 36
-  hitstopAttacker: 9
-  hitstopDefender: 9
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -15
-  advantageOnHit: 8
-  advantageOnCounterHit: 8
-  damage: 70
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.55
-  pushbackOnBlock: 0.385
-  isLauncher: 1
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 1.5, y: 9}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: LauncherAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 10, y: 17}
-  archetype: 0
---- !u!114 &1813580374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Air L
-  attackType: 4
-  hitLevel: 5
-  guardRequirement: 2
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 7
-  activeFrames: 5
-  recoveryFrames: 12
-  hitstunTicks: 18
-  blockstunTicks: 12
-  knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
-  hitstopOnBlock: 4
-  counterHitStopBonus: 4
-  advantageOnBlock: -2
-  advantageOnHit: 4
-  advantageOnCounterHit: 8
-  damage: 35
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.18
-  pushbackOnBlock: 0.126
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: AirLight
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 7, y: 15}
-  archetype: 0
 --- !u!1 &1816615407
 GameObject:
   m_ObjectHideFlags: 0
@@ -3566,7 +2332,7 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 2
+  m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_Iso: 200
@@ -3588,9 +2354,9 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 120
-  field of view: 22.895193
+  field of view: 44
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 2.1
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -3615,7 +2381,7 @@ Transform:
   m_GameObject: {fileID: 1840361295}
   serializedVersion: 2
   m_LocalRotation: {x: 0.024432179, y: 0, z: 0, w: 0.9997015}
-  m_LocalPosition: {x: 0, y: 1.4, z: -4.8}
+  m_LocalPosition: {x: -0.05, y: 1.93, z: -6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3732,223 +2498,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8, y: 1.8, z: 0.8}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1865890417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Standing L
-  attackType: 0
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 5
-  activeFrames: 3
-  recoveryFrames: 10
-  hitstunTicks: 16
-  blockstunTicks: 10
-  knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
-  hitstopOnBlock: 4
-  counterHitStopBonus: 4
-  advantageOnBlock: -2
-  advantageOnHit: 4
-  advantageOnCounterHit: 8
-  damage: 35
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.18
-  pushbackOnBlock: 0.126
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 5, y: 11}
-  archetype: 0
---- !u!114 &1886227913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c25885bf7bbc49aebe492dd3a4ec123, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.MoveSet
-  characterId: C07
-  moveSetName: 3-Button Shinobi Tactical Preset
-  archetype: 0
-  standingL: {fileID: 1095205562}
-  crouchingL: {fileID: 2141546023}
-  standingH: {fileID: 1905795149}
-  forwardH: {fileID: 666291228}
-  crouchingH: {fileID: 260363487}
-  neutralS: {fileID: 1555932359}
-  forwardS: {fileID: 1974950625}
-  downS: {fileID: 1764262344}
-  airL: {fileID: 149342046}
-  airH: {fileID: 336040864}
-  airS: {fileID: 336040864}
-  tacticalThrow: {fileID: 724621082}
-  domainSuper: {fileID: 2104392626}
-  defensiveBurst: {fileID: 1086800321}
-  lightAttack: {fileID: 1095205562}
-  mediumAttack: {fileID: 0}
-  heavyAttack: {fileID: 1905795149}
-  driveSkill: {fileID: 1555932359}
-  overheadAttack: {fileID: 666291228}
-  lowSweepAttack: {fileID: 260363487}
-  antiairAttack: {fileID: 1764262344}
-  additionalMoves: []
---- !u!114 &1905795149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Standing H
-  attackType: 2
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 11
-  activeFrames: 3
-  recoveryFrames: 20
-  hitstunTicks: 26
-  blockstunTicks: 15
-  knockdownDurationTicks: 36
-  hitstopAttacker: 8
-  hitstopDefender: 8
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -7
-  advantageOnHit: 4
-  advantageOnCounterHit: 8
-  damage: 80
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.4
-  pushbackOnBlock: 0.28
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: HeavyAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 11, y: 17}
-  archetype: 0
---- !u!114 &1974950625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Forward S (Advancing)
-  attackType: 3
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 17
-  activeFrames: 3
-  recoveryFrames: 26
-  hitstunTicks: 31
-  blockstunTicks: 16
-  knockdownDurationTicks: 36
-  hitstopAttacker: 9
-  hitstopDefender: 9
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -12
-  advantageOnHit: 3
-  advantageOnCounterHit: 8
-  damage: 95
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.55
-  pushbackOnBlock: 0.385
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: AdvancingSkill
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 17, y: 23}
-  archetype: 0
 --- !u!1 &1978096236
 GameObject:
   m_ObjectHideFlags: 0
@@ -4093,186 +2642,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074107092}
   m_CullTransparentMesh: 1
---- !u!114 &2103373285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Neutral S (Signature)
-  attackType: 3
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 13
-  activeFrames: 4
-  recoveryFrames: 22
-  hitstunTicks: 30
-  blockstunTicks: 17
-  knockdownDurationTicks: 36
-  hitstopAttacker: 9
-  hitstopDefender: 9
-  hitstopOnBlock: 6
-  counterHitStopBonus: 4
-  advantageOnBlock: -8
-  advantageOnHit: 5
-  advantageOnCounterHit: 8
-  damage: 90
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.55
-  pushbackOnBlock: 0.385
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: DriveSkill
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 13, y: 20}
-  archetype: 0
---- !u!114 &2104392626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Super Finisher
-  attackType: 5
-  hitLevel: 1
-  guardRequirement: 0
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 10
-  activeFrames: 3
-  recoveryFrames: 35
-  hitstunTicks: 48
-  blockstunTicks: 20
-  knockdownDurationTicks: 48
-  hitstopAttacker: 12
-  hitstopDefender: 12
-  hitstopOnBlock: 8
-  counterHitStopBonus: 4
-  advantageOnBlock: -17
-  advantageOnHit: 0
-  advantageOnCounterHit: 8
-  damage: 240
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 1.5
-  pushbackOnBlock: 1.05
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 1
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: DomainSuper
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 10, y: 16}
-  archetype: 0
---- !u!114 &2141546023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc10efde518de4f788b0b8bf3c572bd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AttackData
-  attackName: Crouching L
-  attackType: 0
-  hitLevel: 2
-  guardRequirement: 1
-  isDuckableHigh: 0
-  crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
-  hasArmor: 0
-  isAirborneStrikeProtected: 0
-  protectionStartTick: 5
-  protectionEndTick: 12
-  startupFrames: 6
-  activeFrames: 2
-  recoveryFrames: 12
-  hitstunTicks: 16
-  blockstunTicks: 10
-  knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
-  hitstopOnBlock: 4
-  counterHitStopBonus: 4
-  advantageOnBlock: -3
-  advantageOnHit: 3
-  advantageOnCounterHit: 8
-  damage: 30
-  chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
-  pushbackOnHit: 0.18
-  pushbackOnBlock: 0.126
-  isLauncher: 0
-  isBoundTornado: 0
-  causesWallSplat: 0
-  causesWallBounce: 0
-  causesKnockdown: 0
-  isLinear: 1
-  throwTechWindowTicks: 6
-  launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
-  canRapidCancel: 1
-  gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
-  animationTrigger: LowAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
-  cancelWindow: {x: 6, y: 11}
-  archetype: 0
 --- !u!1 &21278259004797065
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,8 @@
         "Quantum.Simulation",
         "Quantum.Unity",
         "Photon.Realtime",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

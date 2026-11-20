@@ -143,8 +143,8 @@ namespace DemonIdol.Editor
             {
                 GameObject inst = (GameObject)PrefabUtility.InstantiatePrefab(raimonPrefab, decorRoot.transform);
                 inst.name = "CollegeRaimon_Courtyard";
-                inst.transform.localPosition = new Vector3(-8.0f, 0.0f, 12.0f);
-                inst.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                inst.transform.localPosition = new Vector3(-10.2f, -100.2f, 2.3f);
+                inst.transform.localRotation = Quaternion.Euler(0.1f, 0f, 0f);
                 inst.transform.localScale = Vector3.one;
             }
 
