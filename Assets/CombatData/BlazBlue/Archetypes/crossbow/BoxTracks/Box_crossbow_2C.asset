@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
+  m_Name: Box_crossbow_2C
+  m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
+  tickCount: 34
+  frameStart:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 2
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  boxes:
+  - cx: 1.15
+    cy: 0.92
+    hx: 0.51
+    hy: 0.32
+    kind: 1
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 1.15
+    cy: 0.92
+    hx: 0.51
+    hy: 0.32
+    kind: 1
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 1.15
+    cy: 0.92
+    hx: 0.51
+    hy: 0.32
+    kind: 1
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  keyTicks: []
+  bakeHash: archetype

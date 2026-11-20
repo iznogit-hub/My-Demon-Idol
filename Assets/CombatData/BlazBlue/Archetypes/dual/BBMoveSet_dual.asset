@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39fbfec8de3c4b33b34c085baa785d9, type: 3}
+  m_Name: BBMoveSet_dual
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBMoveSet
+  characterId: dual
+  moves:
+  - {fileID: 11400000, guid: 5ad2e691f10e5a3d986996ac4f3d4724, type: 2}
+  - {fileID: 11400000, guid: 2b2a4067088b5ea097b8e9d13ff33270, type: 2}
+  - {fileID: 11400000, guid: e7568666f1685ca995ca610a17b887c0, type: 2}
+  - {fileID: 11400000, guid: 3ef9de06360a584b8b6dd04737ac49a6, type: 2}
+  - {fileID: 11400000, guid: 5e1e519dc0105ef8b8266c079f0a03f0, type: 2}
+  - {fileID: 11400000, guid: bd12b0c3a1c953c697b1b358b1bdfce2, type: 2}
+  - {fileID: 11400000, guid: 6833bdf8f3e454558927a0f478fb1b9f, type: 2}
+  - {fileID: 11400000, guid: f54e2eca5f4855659f77844be5733c97, type: 2}
+  - {fileID: 11400000, guid: 29538be7cab957e98dd23266fb310aba, type: 2}
+  - {fileID: 11400000, guid: 758cb6b72b4053fcb09c7b9bfd559e3e, type: 2}
+  - {fileID: 11400000, guid: e64aace99ef357298f27d5c469c7dc50, type: 2}
+  - {fileID: 11400000, guid: 79d48fbdebec5208a8d05c74920b2b79, type: 2}
+  - {fileID: 11400000, guid: 5d033fba5dbd55088f134a4308a5b39b, type: 2}
+  - {fileID: 11400000, guid: 0265f831053550b9b3b252eb4a5e0b1d, type: 2}
+  - {fileID: 11400000, guid: daafd7840cd259afa586959e5e28e55d, type: 2}
+  - {fileID: 11400000, guid: 019066ff84905a1790ef240b29b0c663, type: 2}
+  - {fileID: 11400000, guid: c38dfb8fbbcb56c387d520b3bd2145c7, type: 2}
+  - {fileID: 11400000, guid: 648e58c70c935d77b15c24435fb59f5e, type: 2}
+  - {fileID: 11400000, guid: 9084641f760352469ea0b50ab796e8c3, type: 2}
+  - {fileID: 11400000, guid: aa8048bde6cc58e985ff71aabd589871, type: 2}
+  - {fileID: 11400000, guid: 26a4660a0d315d8384dd0b1bc9594111, type: 2}
+  - {fileID: 11400000, guid: 9ed5b4fa865352b3a7cba3f866facc6c, type: 2}
+  - {fileID: 11400000, guid: 24a4b199a5bb5f0ea789676412391460, type: 2}
+  throwForward: {fileID: 0}
+  throwBack: {fileID: 0}
+  throwAir: {fileID: 0}
+  counterAssault: {fileID: 0}
+  crushTrigger: {fileID: 0}
+  burst: {fileID: 0}
+  overdriveStart: {fileID: 0}
+  exceedAccel: {fileID: 0}
+  astralHeat: {fileID: 0}

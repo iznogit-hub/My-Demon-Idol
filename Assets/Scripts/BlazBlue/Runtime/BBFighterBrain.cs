@@ -144,7 +144,153 @@ namespace DemonIdol.BlazBlue
         public void HandleCombatTick(int tick)
         {
             StepInput(tick);
+            if (hitstopRemaining <= 0)
+            {
+                TryExecuteCommand(tick);
+            }
             AdvanceState(tick);
+            MirrorHealthToFighter();
+        }
+
+        public bool TryStartMoveId(string moveId)
+        {
+            var attack = FindAttackByMoveId(moveId);
+            if (attack == null || !CanExecuteMove(attack)) return false;
+            StartAttack(attack);
+            return currentAttack == attack;
+        }
+
+        public void SetAuthoritativeHealth(float value)
+        {
+            health = Mathf.Max(0f, value);
+            MirrorHealthToFighter();
+        }
+
+        public void ReceiveAuthoritativeDamage(float amount)
+        {
+            if (amount <= 0f) return;
+            SetAuthoritativeHealth(health - amount);
+        }
+
+        public void MirrorHealthToFighter()
+        {
+            if (fighter == null) return;
+            if (maxHealth > 0f) fighter.maxHealth = maxHealth;
+            float previous = fighter.currentHealth;
+            fighter.currentHealth = health;
+            if (!Mathf.Approximately(previous, health))
+            {
+                fighter.OnHealthChanged?.Invoke(fighter.currentHealth, fighter.maxHealth);
+            }
+            if (health <= 0f && fighter.State != FighterState.Dead)
+            {
+                fighter.SetState(FighterState.Dead);
+            }
+        }
+
+        void TryExecuteCommand(int tick)
+        {
+            if (!CurrentCommand.IsValid || profile == null) return;
+            if (bbState == BBState.Hitstun || bbState == BBState.Blockstun || bbState == BBState.BarrierBlockstun || bbState == BBState.Thrown)
+                return;
+
+            if (IsDriveCommand(CurrentCommand.commandType))
+            {
+                if (drive != null && drive.TryStartDrive(this, CurrentCommand.facingNumpad, tick))
+                {
+                    ConsumeCurrentCommand();
+                }
+                return;
+            }
+
+            string moveId = MoveIdFor(CurrentCommand);
+            if (string.IsNullOrEmpty(moveId)) return;
+            if (TryStartMoveId(moveId) || TryStartMoveId(FallbackMoveId(CurrentCommand)))
+            {
+                ConsumeCurrentCommand();
+            }
+        }
+
+        static bool IsDriveCommand(BBCommandType type)
+        {
+            return type == BBCommandType.Normal5D
+                || type == BBCommandType.Normal2D
+                || type == BBCommandType.Normal6D
+                || type == BBCommandType.Normal4D
+                || type == BBCommandType.NormalAirD;
+        }
+
+        static string MoveIdFor(BBEvaluatedCommand command)
+        {
+            string button = ButtonLetter(command.button);
+            switch (command.commandType)
+            {
+                case BBCommandType.Normal5A: return "5A";
+                case BBCommandType.Normal5B: return "5B";
+                case BBCommandType.Normal5C: return "5C";
+                case BBCommandType.Normal2A: return "2A";
+                case BBCommandType.Normal2B: return "2B";
+                case BBCommandType.Normal2C: return "2C";
+                case BBCommandType.Normal6A: return "6A";
+                case BBCommandType.Normal6B: return "6B";
+                case BBCommandType.Normal6C: return "6C";
+                case BBCommandType.Normal3C: return "3C";
+                case BBCommandType.NormalAirA: return "j.A";
+                case BBCommandType.NormalAirB: return "j.B";
+                case BBCommandType.NormalAirC: return "j.C";
+                case BBCommandType.Special236: return "236" + button;
+                case BBCommandType.Special214: return "214" + button;
+                case BBCommandType.Special623: return "623" + button;
+                case BBCommandType.Special421: return "421" + button;
+                case BBCommandType.Special22: return "22" + button;
+                case BBCommandType.Special41236: return "41236" + button;
+                case BBCommandType.Special63214: return "63214" + button;
+                case BBCommandType.Special360: return "360" + button;
+                case BBCommandType.SpecialChargeBF: return "46" + button;
+                case BBCommandType.SpecialChargeDU: return "28" + button;
+                case BBCommandType.Distortion236236: return "236236" + button;
+                case BBCommandType.Distortion214214: return "214214" + button;
+                case BBCommandType.Distortion632146: return "632146" + button;
+                case BBCommandType.Throw: return command.facingNumpad == 4 ? "4BC" : "BC";
+                case BBCommandType.CrushTrigger: return "CT";
+                case BBCommandType.CounterAssault: return "CA";
+                default: return null;
+            }
+        }
+
+        static string FallbackMoveId(BBEvaluatedCommand command)
+        {
+            switch (command.commandType)
+            {
+                case BBCommandType.Normal6A: return "5A";
+                case BBCommandType.Normal6B: return "5B";
+                case BBCommandType.Normal6C: return "5C";
+                case BBCommandType.Normal3C: return "5C";
+                case BBCommandType.Normal2A: return "5A";
+                case BBCommandType.Normal2B: return "5B";
+                case BBCommandType.Normal2C: return "5C";
+                case BBCommandType.Special236:
+                case BBCommandType.Special214:
+                case BBCommandType.Special623:
+                case BBCommandType.Special22:
+                    return "236A";
+                case BBCommandType.Distortion236236:
+                case BBCommandType.Distortion214214:
+                case BBCommandType.Distortion632146:
+                    return "236236C";
+                case BBCommandType.Throw:
+                    return "BC";
+                default:
+                    return null;
+            }
+        }
+
+        static string ButtonLetter(BBButton button)
+        {
+            if ((button & BBButton.D) != 0) return "D";
+            if ((button & BBButton.C) != 0) return "C";
+            if ((button & BBButton.B) != 0) return "B";
+            return "A";
         }
 
         public void AdvanceState(int tick)
@@ -258,6 +404,11 @@ namespace DemonIdol.BlazBlue
             if (animDriver != null)
             {
                 animDriver.PlayAttack(attack);
+            }
+            if (fighter != null && fighter.animator != null && !string.IsNullOrEmpty(attack.animationTrigger))
+            {
+                fighter.animator.ResetTrigger(attack.animationTrigger);
+                fighter.animator.SetTrigger(attack.animationTrigger);
             }
 
             if ((attack.button & BBButton.A) != 0)

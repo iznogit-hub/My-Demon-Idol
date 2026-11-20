@@ -32,8 +32,6 @@ namespace DemonIdol.Combat
         public bool autoRefillSuperMeter = true;
         public int dummyRecoveryActionIndex = 0; // 0=None, 1=Reversal Light, 2=Reversal DP/Super, 3=Backdash
 
-        private float _refillTimer = 0f;
-
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -55,17 +53,6 @@ namespace DemonIdol.Combat
 
             // Lab Hotkeys
             HandleHotkeys();
-
-            // Auto-refill meters in training lab
-            if (autoRefillHealth || autoRefillSuperMeter)
-            {
-                _refillTimer += Time.deltaTime;
-                if (_refillTimer >= 1.5f)
-                {
-                    _refillTimer = 0f;
-                    RefillFighters();
-                }
-            }
         }
 
         private void FindFightersIfMissing()
@@ -104,6 +91,10 @@ namespace DemonIdol.Combat
             {
                 if (FrameDataDisplay.Instance != null) FrameDataDisplay.Instance.ToggleVisibility();
             }
+            if (SafeGetKeyDown(KeyCode.H))
+            {
+                DemonIdol.BlazBlue.BBHitboxOverlay.IsOverlayActive = !DemonIdol.BlazBlue.BBHitboxOverlay.IsOverlayActive;
+            }
             if (SafeGetKeyDown(KeyCode.F4))
             {
                 if (HitboxVisualizer.Instance != null) HitboxVisualizer.Instance.ToggleVisibility();
@@ -141,11 +132,11 @@ namespace DemonIdol.Combat
             }
 
             _player.transform.position = p1Pos;
-            _player.ResetToIdle();
+            RefillOnReset(_player);
             _player.SetFacing(1);
 
             _dummy.transform.position = p2Pos;
-            _dummy.ResetToIdle();
+            RefillOnReset(_dummy);
             _dummy.SetFacing(-1);
 
             if (FighterCamera2D.Instance != null)
@@ -155,30 +146,14 @@ namespace DemonIdol.Combat
             }
         }
 
-        private void RefillFighters()
+        private static void RefillOnReset(FighterController fighter)
         {
-            if (_player != null && _player.State == FighterState.Idle)
+            if (fighter == null) return;
+            fighter.ResetToIdle();
+            var brain = fighter.GetComponent<DemonIdol.BlazBlue.BBFighterBrain>();
+            if (brain != null)
             {
-                if (autoRefillHealth && _player.currentHealth < _player.maxHealth)
-                {
-                    _player.ResetToIdle();
-                }
-                if (autoRefillSuperMeter && _player.currentSuperMeter < _player.maxSuperMeter)
-                {
-                    _player.AddSuperMeter(50f);
-                }
-            }
-
-            if (_dummy != null && _dummy.State == FighterState.Idle)
-            {
-                if (autoRefillHealth && _dummy.currentHealth < _dummy.maxHealth)
-                {
-                    _dummy.ResetToIdle();
-                }
-                if (autoRefillSuperMeter && _dummy.currentSuperMeter < _dummy.maxSuperMeter)
-                {
-                    _dummy.AddSuperMeter(50f);
-                }
+                brain.SetAuthoritativeHealth(brain.maxHealth);
             }
         }
     }

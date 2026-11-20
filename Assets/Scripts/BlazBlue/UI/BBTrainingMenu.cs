@@ -82,11 +82,6 @@ namespace DemonIdol.BlazBlue
                 if (dummyBrain != null && !dummyBrain.inOverdrive) dummyBrain.burstMeter = 1000f;
             }
 
-            // Health regeneration in training mode
-            if (dummyBrain != null && dummyBrain.currentHealth < 11000f && dummyBrain.hitstunRemaining <= 0)
-            {
-                dummyBrain.currentHealth = 11000f;
-            }
         }
 
         public void ResetPositions()

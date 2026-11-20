@@ -242,6 +242,9 @@ namespace DemonIdol.Combat
                 MatchRoundReferee.Instance.isTrainingMode = _isTraining;
             }
 
+            // BlazBlue is the only match path. Classic input stays in the project and is turned off here.
+            DemonIdol.BlazBlue.BBMatchBootstrap.EnsureMatch(_isTraining);
+
             // 9. Bind Hit Events to VFX & Audio
             BindHitEvents();
 
