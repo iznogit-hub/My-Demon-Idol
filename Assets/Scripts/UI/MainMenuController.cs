@@ -387,7 +387,13 @@ namespace DemonIdol.UI
 
             if (DossierNameText != null) DossierNameText.text = def.displayName.ToUpper();
             if (DossierTitleText != null) DossierTitleText.text = def.title.ToUpper();
-            if (DossierArchetypeText != null) DossierArchetypeText.text = $"ARCHETYPE: {def.archetype.ToUpper()}";
+            if (DossierArchetypeText != null)
+            {
+                string drive = DemonIdol.BlazBlue.BBSignatureTable.TryBase(charId, out var signature) ? signature.driveName : "";
+                DossierArchetypeText.text = string.IsNullOrEmpty(drive)
+                    ? $"ARCHETYPE: {def.archetype.ToUpper()}"
+                    : $"ARCHETYPE: {def.archetype.ToUpper()}  //  DRIVE: {drive.ToUpper()}";
+            }
             if (DossierDomainText != null) DossierDomainText.text = $"⚡ DOMAIN: {def.domainName.ToUpper()}";
             if (DossierDescText != null) DossierDescText.text = def.description;
 

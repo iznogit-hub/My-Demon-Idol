@@ -137,6 +137,7 @@ namespace DemonIdol.UI
         [SerializeField] private Toggle _hapticsToggle;
         [SerializeField] private Toggle _reducedMotionToggle;
         [SerializeField] private Toggle _reducedFlashingToggle;
+        [SerializeField] private Toggle _reducedGoreToggle;
         [SerializeField] private Toggle _captionsToggle;
 
         [Header("Actions")]
@@ -525,6 +526,19 @@ namespace DemonIdol.UI
                 });
             }
 
+            if (_reducedGoreToggle != null)
+            {
+                _reducedGoreToggle.onValueChanged.RemoveAllListeners();
+                _reducedGoreToggle.isOn = _current.reducedGore;
+                _reducedGoreToggle.onValueChanged.AddListener(val =>
+                {
+                    if (_isSyncingUI) return;
+                    _current.reducedGore = val;
+                    SaveSettings();
+                    ShowToast(val ? "REDUCED GORE: ON" : "REDUCED GORE: OFF");
+                });
+            }
+
             if (_captionsToggle != null)
             {
                 _captionsToggle.onValueChanged.RemoveAllListeners();
@@ -707,6 +721,7 @@ namespace DemonIdol.UI
             _hapticsToggle = CreateToggleControl(boxObj.transform, "Toggle_Haptics", "Haptic Impact Feedback", new Vector2(colRightX, startY - stepY * 5f), font);
             _reducedMotionToggle = CreateToggleControl(boxObj.transform, "Toggle_ReducedMotion", "Reduced Motion (Safe Camera)", new Vector2(colRightX, startY - stepY * 6f), font);
             _reducedFlashingToggle = CreateToggleControl(boxObj.transform, "Toggle_ReducedFlashing", "Reduced Flashing (Photosafety)", new Vector2(colRightX, startY - stepY * 7f), font);
+            _reducedGoreToggle = CreateToggleControl(boxObj.transform, "Toggle_ReducedGore", "Reduced Gore", new Vector2(colRightX, startY - stepY * 9f), font);
             _captionsToggle = CreateToggleControl(boxObj.transform, "Toggle_Captions", "Story Captions & Subtitles", new Vector2(colRightX, startY - stepY * 8f), font);
 
             // Legal Compliance & App Store Policy Buttons

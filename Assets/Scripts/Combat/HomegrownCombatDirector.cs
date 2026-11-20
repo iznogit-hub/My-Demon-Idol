@@ -244,6 +244,14 @@ namespace DemonIdol.Combat
 
             // BlazBlue is the only match path. Classic input stays in the project and is turned off here.
             DemonIdol.BlazBlue.BBMatchBootstrap.EnsureMatch(_isTraining);
+            var screens = DemonIdol.BlazBlue.BBMatchScreenDirector.Instance;
+            if (screens == null)
+            {
+                var screenHost = new GameObject("BBMatchScreenDirector");
+                screens = screenHost.AddComponent<DemonIdol.BlazBlue.BBMatchScreenDirector>();
+            }
+            if (!_isTraining)
+                screens.PlayVersus(_activeP1Id, _activeP2Id, _activeStageId, _p2IsCpu ? "Arcade" : "Versus");
 
             // 9. Bind Hit Events to VFX & Audio
             BindHitEvents();

@@ -48,6 +48,9 @@ namespace DemonIdol.UI
         public Text KanjiClashText;
         public Text StageBadgeText;
         public Text ModeBadgeText;
+        public Text P1DriveText;
+        public Text P2DriveText;
+        public Text CountdownText;
 
         [Header("Timing")]
         public float introDurationSeconds = 1.8f;
@@ -103,6 +106,8 @@ namespace DemonIdol.UI
             if (P1TitleText != null) P1TitleText.text = p1Def != null ? p1Def.title.ToUpper() : "CHALLENGER";
             if (P1ArchetypeText != null) P1ArchetypeText.text = p1Def != null ? $"ARCHETYPE: {p1Def.archetype.ToUpper()}" : "";
             if (P1DomainText != null) P1DomainText.text = p1Def != null ? $"⚡ DOMAIN: {p1Def.domainName.ToUpper()}" : "";
+            ApplyCard(p1Id, P1PortraitImage, P1DriveText, P1NameText);
+            ApplyCard(p2Id, P2PortraitImage, P2DriveText, P2NameText);
 
             if (P2NameText != null) P2NameText.text = p2Def != null ? p2Def.displayName.ToUpper() : p2Id.ToUpper();
             if (P2TitleText != null) P2TitleText.text = p2Def != null ? p2Def.title.ToUpper() : "OPPONENT";
@@ -122,7 +127,7 @@ namespace DemonIdol.UI
             }
 
             // Stage and Mode
-            if (StageBadgeText != null) StageBadgeText.text = $"ARENA: {stageId.ToUpper()} // TOURNAMENT PLATFORM";
+            if (StageBadgeText != null) StageBadgeText.text = "COLLEGE RAIMON // " + (string.IsNullOrEmpty(stageId) ? "ST07" : stageId.ToUpper());
             if (ModeBadgeText != null) ModeBadgeText.text = $"[ {mode.ToUpper()} BATTLE ]";
 
             // Audio Callout
@@ -181,6 +186,69 @@ namespace DemonIdol.UI
             var callback = _onCompleteCallback;
             _onCompleteCallback = null;
             callback?.Invoke();
+        }
+
+        public void SetCountdown(string value)
+        {
+            if (CountdownText != null) CountdownText.text = value;
+        }
+
+        public static PreMatchVSOverlay CreateRuntime()
+        {
+            if (Instance != null) return Instance;
+            var canvasGo = new GameObject("VSCanvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
+            var canvas = canvasGo.GetComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 400;
+            var scaler = canvasGo.GetComponent<CanvasScaler>();
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1920f, 1080f);
+            var host = new GameObject("PreMatchVSOverlay");
+            host.transform.SetParent(canvasGo.transform, false);
+            var overlay = host.AddComponent<PreMatchVSOverlay>();
+            Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            overlay.P1NameText = MakeText(host.transform, "P1Name", font, new Vector2(-420f, 80f));
+            overlay.P2NameText = MakeText(host.transform, "P2Name", font, new Vector2(420f, 80f));
+            overlay.P1DriveText = MakeText(host.transform, "P1Drive", font, new Vector2(-420f, 20f));
+            overlay.P2DriveText = MakeText(host.transform, "P2Drive", font, new Vector2(420f, 20f));
+            overlay.StageBadgeText = MakeText(host.transform, "Stage", font, new Vector2(0f, 220f));
+            overlay.CountdownText = MakeText(host.transform, "Countdown", font, new Vector2(0f, -40f));
+            overlay.ModeBadgeText = MakeText(host.transform, "Mode", font, new Vector2(0f, 160f));
+            return overlay;
+        }
+
+        static void ApplyCard(string id, Image portrait, Text drive, Text name)
+        {
+            var card = DemonIdol.BlazBlue.BBPresentationLibrary.Find(id);
+            DemonIdol.BlazBlue.BBSignatureTable.TryBase(id, out var signature);
+            if (drive != null) drive.text = "DRIVE: " + (card != null && !string.IsNullOrEmpty(card.driveName) ? card.driveName : signature.driveName);
+            if (name != null && card != null && !string.IsNullOrEmpty(card.displayName)) name.text = card.displayName.ToUpper();
+            if (portrait == null) return;
+            if (card != null && card.portrait != null)
+            {
+                portrait.sprite = card.portrait;
+                portrait.color = Color.white;
+            }
+            else if (card != null)
+            {
+                portrait.sprite = null;
+                portrait.color = card.placeholderColor;
+            }
+        }
+
+        static Text MakeText(Transform parent, string label, Font font, Vector2 pos)
+        {
+            var go = new GameObject(label, typeof(RectTransform), typeof(Text));
+            go.transform.SetParent(parent, false);
+            var text = go.GetComponent<Text>();
+            text.font = font;
+            text.fontSize = 36;
+            text.alignment = TextAnchor.MiddleCenter;
+            text.color = Color.white;
+            var rt = go.GetComponent<RectTransform>();
+            rt.anchoredPosition = pos;
+            rt.sizeDelta = new Vector2(520f, 60f);
+            return text;
         }
     }
 }

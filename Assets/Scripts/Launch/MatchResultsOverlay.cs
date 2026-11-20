@@ -25,6 +25,31 @@ namespace DemonIdol.Launch
             Build(winningPlayer, winnerName, grantedXp, firstGrant);
         }
 
+        public void ShowFightResult(int winningPlayer, string winnerName, string quote, DemonIdol.BlazBlue.BBMatchStats stats, DemonIdol.BlazBlue.BBMatchFlow flow)
+        {
+            if (Instance != null && Instance != this)
+            {
+                Instance.ShowFightResult(winningPlayer, winnerName, quote, stats, flow);
+                return;
+            }
+            Instance = this;
+            Build(winningPlayer, winnerName, 0, false);
+            Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            string statsLine = stats == null
+                ? "Stats pending."
+                : "DMG " + stats.P1Damage + " / " + stats.P2Damage
+                  + "   COMBO " + stats.P1MaxCombo + " / " + stats.P2MaxCombo
+                  + "   SUPERS " + stats.P1Supers + " / " + stats.P2Supers;
+            CreateLabel(transform, "ResultsQuote", string.IsNullOrEmpty(quote) ? "Quote slot empty." : quote, new Vector2(0f, 10f), 20, font);
+            CreateLabel(transform, "ResultsStats", statsLine, new Vector2(0f, -30f), 18, font);
+            CreateLabel(transform, "ResultsPose", "WINNER POSE CAMERA", new Vector2(0f, 200f), 16, font);
+            if (flow != null)
+            {
+                flow.WinnerQuoteHook = quote;
+                flow.Screen = DemonIdol.BlazBlue.BBFlowScreen.MatchEnd;
+            }
+        }
+
         public static MatchResultsOverlay CreateOrReuse()
         {
             if (Instance != null)

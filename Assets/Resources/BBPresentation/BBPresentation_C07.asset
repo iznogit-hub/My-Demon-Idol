@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c4a91b2d6f4e0a9c3b1f8d5a7042e6, type: 3}
+  m_Name: BBPresentation_C07
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBCharacterPresentation
+  characterId: C07
+  displayName: StellarWitch
+  driveName: Star Field
+  placeholderColor: {r: 0.95, g: 0.8, b: 0.3, a: 1}
+  portrait: {fileID: 0}
+  versusVideo: {fileID: 0}
+  victoryVideo: {fileID: 0}
+  quote: 
+  driveClip: {fileID: 0}
+  specialClip: {fileID: 0}
+  superClip: {fileID: 0}
