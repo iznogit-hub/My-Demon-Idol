@@ -152,6 +152,54 @@ namespace DemonIdol.EditorTools
             DemonIdolAssetFactory.CreateDefaultAttackData();
         }
 
+        [MenuItem("Demon Idol/🎥 Cameras/Setup All 7 Stage Cameras (College Raimon)", priority = 45)]
+        public static void SetupAllStageCameras()
+        {
+            DemonIdolArcadeArenaBuilder.EnsureAll7StageCamerasInScene();
+        }
+
+        [MenuItem("Demon Idol/🎥 Cameras/Preview ST01 Central Courtyard Camera", priority = 46)]
+        public static void PreviewST01Camera()
+        {
+            DemonIdol.CameraControl.StageCameraManager.Instance?.SwitchToStageCamera("ST01");
+        }
+
+        [MenuItem("Demon Idol/🎥 Cameras/Preview ST02 Sakura Main Gate Camera", priority = 47)]
+        public static void PreviewST02Camera()
+        {
+            DemonIdol.CameraControl.StageCameraManager.Instance?.SwitchToStageCamera("ST02");
+        }
+
+        [MenuItem("Demon Idol/🎥 Cameras/Preview ST03 Rooftop Observatory Camera", priority = 48)]
+        public static void PreviewST03Camera()
+        {
+            DemonIdol.CameraControl.StageCameraManager.Instance?.SwitchToStageCamera("ST03");
+        }
+
+        [MenuItem("Demon Idol/🎥 Cameras/Preview ST04 Martial Arts Dojo Camera", priority = 49)]
+        public static void PreviewST04Camera()
+        {
+            DemonIdol.CameraControl.StageCameraManager.Instance?.SwitchToStageCamera("ST04");
+        }
+
+        [MenuItem("Demon Idol/🎥 Cameras/Preview ST05 Athletic Stadium Camera", priority = 50)]
+        public static void PreviewST05Camera()
+        {
+            DemonIdol.CameraControl.StageCameraManager.Instance?.SwitchToStageCamera("ST05");
+        }
+
+        [MenuItem("Demon Idol/🎥 Cameras/Preview ST06 Transit Promenade Camera", priority = 51)]
+        public static void PreviewST06Camera()
+        {
+            DemonIdol.CameraControl.StageCameraManager.Instance?.SwitchToStageCamera("ST06");
+        }
+
+        [MenuItem("Demon Idol/🎥 Cameras/Preview ST07 Midnight Courtyard Camera", priority = 52)]
+        public static void PreviewST07Camera()
+        {
+            DemonIdol.CameraControl.StageCameraManager.Instance?.SwitchToStageCamera("ST07");
+        }
+
         // =====================================================================
         // 5. MULTIPLAYER & QUANTUM
         // =====================================================================

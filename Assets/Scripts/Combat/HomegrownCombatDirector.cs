@@ -250,7 +250,14 @@ namespace DemonIdol.Combat
             if (stage != null)
             {
                 PushbackSolver.SetArenaBounds(stage.ArenaLimitX, stage.wallThreshold);
-                if (FighterCamera2D.Instance != null)
+                Transform t1 = _fighter1 != null ? _fighter1.transform : null;
+                Transform t2 = _fighter2 != null ? _fighter2.transform : null;
+
+                if (DemonIdol.CameraControl.StageCameraManager.Instance != null)
+                {
+                    DemonIdol.CameraControl.StageCameraManager.Instance.SwitchToStageCamera(_activeStageId, t1, t2);
+                }
+                else if (FighterCamera2D.Instance != null)
                 {
                     FighterCamera2D.Instance.ApplyStageCameraLimits(stage);
                 }

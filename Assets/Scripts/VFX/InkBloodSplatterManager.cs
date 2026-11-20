@@ -202,15 +202,25 @@ namespace DemonIdol.VFX
 
         private GameObject GetFromPool(Queue<GameObject> pool, GameObject prefab, string defaultName)
         {
-            if (pool.Count > 0)
+            while (pool != null && pool.Count > 0)
             {
                 GameObject pooled = pool.Dequeue();
-                pool.Enqueue(pooled); // Circular reuse
-                return pooled;
+                if (pooled != null)
+                {
+                    pool.Enqueue(pooled); // Circular reuse
+                    return pooled;
+                }
             }
 
-            // Fallback if pool is empty
-            GameObject newObj = CreateProceduralDecalObject(defaultName);
+            // Fallback if pool is empty or objects were destroyed
+            GameObject newObj = prefab != null ? 
+                Instantiate(prefab, transform) : 
+                (defaultName.Contains("Burst") ? CreateProceduralBurstParticle(defaultName) : CreateProceduralDecalObject(defaultName));
+            
+            if (newObj != null && pool != null)
+            {
+                pool.Enqueue(newObj);
+            }
             return newObj;
         }
 

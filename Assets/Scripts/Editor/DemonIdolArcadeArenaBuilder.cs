@@ -486,23 +486,117 @@ namespace DemonIdol.Editor
 
         private static Camera SetupSF6Camera(FighterController p1, FighterController p2)
         {
-            GameObject camGo = new GameObject("Main Camera");
-            camGo.tag = "MainCamera";
-            camGo.transform.position = new Vector3(0f, 1.4f, -4.8f);
-            camGo.transform.rotation = Quaternion.Euler(2.8f, 0f, 0f);
+            return SetupAll7StageCameras(p1, p2);
+        }
 
-            Camera cam = camGo.AddComponent<Camera>();
-            cam.fieldOfView = 32f;
-            cam.nearClipPlane = 0.2f;
-            cam.farClipPlane = 120f;
+        public static Camera SetupAll7StageCameras(FighterController p1 = null, FighterController p2 = null)
+        {
+            GameObject camerasRoot = GameObject.Find("Stage_Cameras");
+            if (camerasRoot == null)
+            {
+                camerasRoot = new GameObject("Stage_Cameras");
+            }
 
-            FighterCamera2D cam2D = camGo.AddComponent<FighterCamera2D>();
-            cam2D.SetTargets(p1.transform, p2.transform);
+            var camManager = camerasRoot.GetComponent<DemonIdol.CameraControl.StageCameraManager>();
+            if (camManager == null)
+            {
+                camManager = camerasRoot.AddComponent<DemonIdol.CameraControl.StageCameraManager>();
+            }
 
-            // Audio Listener
-            camGo.AddComponent<AudioListener>();
+            camManager.EnsureCameraRosterConfigured();
 
-            return cam;
+            GameObject mainCamGo = GameObject.Find("Main Camera");
+            if (mainCamGo == null)
+            {
+                mainCamGo = new GameObject("Main Camera");
+                mainCamGo.tag = "MainCamera";
+                mainCamGo.transform.position = new Vector3(-0.05f, 1.93f, -6.5f);
+                mainCamGo.transform.rotation = Quaternion.Euler(2.8f, 0f, 0f);
+
+                Camera mCam = mainCamGo.AddComponent<Camera>();
+                mCam.usePhysicalProperties = true;
+                mCam.sensorSize = new Vector2(36f, 20.25f);
+                mCam.focalLength = 29.405136f;
+                mCam.fieldOfView = 37.999996f;
+                mCam.nearClipPlane = 0.2f;
+                mCam.farClipPlane = 120f;
+                mCam.clearFlags = CameraClearFlags.SolidColor;
+                mCam.backgroundColor = new Color(0.126157f, 0.203373f, 0.254717f, 0f);
+
+                UniversalAdditionalCameraData uacd = mainCamGo.AddComponent<UniversalAdditionalCameraData>();
+                uacd.renderShadows = true;
+
+                FighterCamera2D cam2D = mainCamGo.AddComponent<FighterCamera2D>();
+                if (p1 != null && p2 != null) cam2D.SetTargets(p1.transform, p2.transform);
+
+                mainCamGo.AddComponent<AudioListener>();
+            }
+            mainCamGo.transform.SetParent(camerasRoot.transform, true);
+
+            // Configure each of the 7 Stage Cameras across different areas of College Raimon
+            var entries = camManager.StageCameras;
+            for (int i = 0; i < entries.Count; i++)
+            {
+                var entry = entries[i];
+                if (entry.stageId == "ST07")
+                {
+                    entry.camera = mainCamGo.GetComponent<Camera>();
+                    entry.fighterCamera = mainCamGo.GetComponent<FighterCamera2D>();
+                    continue;
+                }
+
+                string camName = $"Camera_{entry.stageId}_{entry.stageName.Split(' ')[0]}";
+                Transform child = camerasRoot.transform.Find(camName);
+                GameObject camObj = child != null ? child.gameObject : new GameObject(camName);
+                camObj.transform.SetParent(camerasRoot.transform, false);
+
+                camObj.transform.position = entry.basePosition;
+                camObj.transform.rotation = Quaternion.Euler(entry.baseEulerAngles);
+
+                Camera cam = camObj.GetComponent<Camera>();
+                if (cam == null) cam = camObj.AddComponent<Camera>();
+                cam.usePhysicalProperties = true;
+                cam.sensorSize = entry.sensorSize;
+                cam.focalLength = entry.focalLength;
+                cam.fieldOfView = entry.fieldOfView;
+                cam.lensShift = entry.lensShift;
+                cam.nearClipPlane = 0.2f;
+                cam.farClipPlane = 120f;
+                cam.clearFlags = CameraClearFlags.SolidColor;
+                cam.backgroundColor = new Color(0.126157f, 0.203373f, 0.254717f, 0f);
+
+                UniversalAdditionalCameraData uacd = camObj.GetComponent<UniversalAdditionalCameraData>();
+                if (uacd == null) uacd = camObj.AddComponent<UniversalAdditionalCameraData>();
+                uacd.renderShadows = true;
+
+                FighterCamera2D fCam = camObj.GetComponent<FighterCamera2D>();
+                if (fCam == null) fCam = camObj.AddComponent<FighterCamera2D>();
+                if (p1 != null && p2 != null) fCam.SetTargets(p1.transform, p2.transform);
+                fCam.focalLength = entry.focalLength;
+                fCam.lensShift = entry.lensShift;
+                fCam.targetCharacterScreenFraction = entry.characterScreenFraction;
+                fCam.offset = entry.basePosition;
+                fCam.pitchAngle = entry.baseEulerAngles.x;
+
+                AudioListener al = camObj.GetComponent<AudioListener>();
+                if (al == null) al = camObj.AddComponent<AudioListener>();
+                al.enabled = false;
+
+                entry.camera = cam;
+                entry.fighterCamera = fCam;
+
+                // Keep inactive by default until switched
+                camObj.SetActive(false);
+                camObj.tag = "Untagged";
+            }
+
+            EditorUtility.SetDirty(camManager);
+            return mainCamGo.GetComponent<Camera>();
+        }
+
+        public static void EnsureAll7StageCamerasInScene()
+        {
+            SetupAll7StageCameras();
         }
 
         #endregion

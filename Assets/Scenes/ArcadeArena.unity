@@ -2388,7 +2388,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 716001586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1840361300
 MonoBehaviour:
@@ -17003,3 +17003,1151 @@ SceneRoots:
   - {fileID: 370223914}
   - {fileID: 212891217}
   - {fileID: 1539704456}
+
+--- !u!1 &716001585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716001586}
+  - component: {fileID: 716001587}
+  m_Layer: 0
+  m_Name: Stage_Cameras
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &716001586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 716001589}
+  - {fileID: 716001595}
+  - {fileID: 716001601}
+  - {fileID: 716001607}
+  - {fileID: 716001613}
+  - {fileID: 716001619}
+  - {fileID: 1840361299}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &716001587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca3e8a719bee4045a44911be8bd3ba71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.CameraControl.StageCameraManager
+  _stageCameras:
+    - stageId: ST01
+      stageName: Central Courtyard
+      camera: {fileID: 716001590}
+      fighterCamera: {fileID: 716001592}
+      basePosition: {x: -0.05, y: 1.93, z: -6.5}
+      baseEulerAngles: {x: 2.8, y: 0, z: 0}
+      focalLength: 29.405
+      fieldOfView: 38.0
+      sensorSize: {x: 36, y: 20.25}
+      lensShift: {x: 0, y: 0.035}
+      characterScreenFraction: 0.4
+      description: Crisp daylight framing of the academic clock tower facade.
+    - stageId: ST02
+      stageName: Sakura Main Gate
+      camera: {fileID: 716001596}
+      fighterCamera: {fileID: 716001598}
+      basePosition: {x: 0.0, y: 1.7, z: -6.8}
+      baseEulerAngles: {x: 2.8, y: 0, z: 0}
+      focalLength: 27.5
+      fieldOfView: 40.5
+      sensorSize: {x: 36, y: 20.25}
+      lensShift: {x: 0, y: 0.03}
+      characterScreenFraction: 0.38
+      description: Lower, wider framing capturing classical school gates and sakura cherry blossoms.
+    - stageId: ST03
+      stageName: Rooftop Observatory
+      camera: {fileID: 716001602}
+      fighterCamera: {fileID: 716001604}
+      basePosition: {x: 0.0, y: 2.3, z: -6.2}
+      baseEulerAngles: {x: 2.8, y: 0, z: 0}
+      focalLength: 32.0
+      fieldOfView: 35.2
+      sensorSize: {x: 36, y: 20.25}
+      lensShift: {x: 0, y: 0.04}
+      characterScreenFraction: 0.42
+      description: Steeper downward pitch emphasizing rooftop drop-off and sprawling city skyline.
+    - stageId: ST04
+      stageName: Martial Arts Dojo
+      camera: {fileID: 716001608}
+      fighterCamera: {fileID: 716001610}
+      basePosition: {x: 0.0, y: 1.8, z: -6.2}
+      baseEulerAngles: {x: 2.8, y: 0, z: 0}
+      focalLength: 30.5
+      fieldOfView: 36.8
+      sensorSize: {x: 36, y: 20.25}
+      lensShift: {x: 0, y: 0.035}
+      characterScreenFraction: 0.42
+      description: Intimate cinematic framing of traditional wooden columns and warm paper lanterns.
+    - stageId: ST05
+      stageName: Athletic Stadium
+      camera: {fileID: 716001614}
+      fighterCamera: {fileID: 716001616}
+      basePosition: {x: 0.0, y: 2.1, z: -7.2}
+      baseEulerAngles: {x: 2.8, y: 0, z: 0}
+      focalLength: 25.5
+      fieldOfView: 43.2
+      sensorSize: {x: 36, y: 20.25}
+      lensShift: {x: 0, y: 0.025}
+      characterScreenFraction: 0.36
+      description: Expansive sports broadcast wide-angle showing the running track and bleachers.
+    - stageId: ST06
+      stageName: Transit Promenade
+      camera: {fileID: 716001620}
+      fighterCamera: {fileID: 716001622}
+      basePosition: {x: 0.0, y: 1.6, z: -6.6}
+      baseEulerAngles: {x: 2.8, y: 0, z: 0}
+      focalLength: 28.5
+      fieldOfView: 39.0
+      sensorSize: {x: 36, y: 20.25}
+      lensShift: {x: 0, y: 0.03}
+      characterScreenFraction: 0.39
+      description: Street-level modern perspective framing campus walkways and illuminated kiosks.
+    - stageId: ST07
+      stageName: College Raimon (Midnight Rain Courtyard)
+      camera: {fileID: 1840361298}
+      fighterCamera: {fileID: 1840361297}
+      basePosition: {x: -0.05, y: 1.93, z: -6.5}
+      baseEulerAngles: {x: 2.8, y: 0, z: 0}
+      focalLength: 29.405136
+      fieldOfView: 37.999996
+      sensorSize: {x: 36, y: 20.25}
+      lensShift: {x: 0, y: 0.035}
+      characterScreenFraction: 0.40
+      description: User-calibrated baseline camera framing the midnight thunderstorm courtyard.
+  _activeStageId: ST07
+  _activeCamera: {fileID: 1840361298}
+
+--- !u!1 &716001588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716001589}
+  - component: {fileID: 716001590}
+  - component: {fileID: 716001592}
+  - component: {fileID: 716001591}
+  - component: {fileID: 716001593}
+  m_Layer: 0
+  m_Name: Camera_ST01_Courtyard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &716001589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001588}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.024432179, y: 0, z: 0, w: 0.9997015}
+  m_LocalPosition: {x: -0.05, y: 1.93, z: -6.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 716001586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &716001590
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001588}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.126157, g: 0.20337336, b: 0.254717, a: 0}
+  m_projectionMatrixMode: 2
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 29.405
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 20.25}
+  m_LensShift: {x: 0, y: 0.035}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.2
+  far clip plane: 120
+  field of view: 38.0
+  orthographic: 0
+  orthographic size: 2.1
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &716001591
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001588}
+  m_Enabled: 0
+--- !u!114 &716001592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f2545719eee4045a44911be8bd3ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterCamera2D
+  fighter1: {fileID: 169567839}
+  fighter2: {fileID: 167226525}
+  usePhysicalCamera: 1
+  sensorSize: {x: 36, y: 20.25}
+  focalLength: 29.405
+  lensShift: {x: 0, y: 0.035}
+  standardFighterHeight: 1.75
+  targetCharacterScreenFraction: 0.4
+  closeCombatScreenFraction: 0.45
+  wideSpacingScreenFraction: 0.35
+  zoomFactor: 0.45
+  offset: {x: -0.05, y: 1.93, z: -6.5}
+  pitchAngle: 2.8
+  aggressionLeadAmount: 0.35
+  verticalLaunchThresholdY: 2.5
+  minDistanceZ: -6.5
+  maxDistanceZ: -13.5
+  smoothSpeed: 8
+  smoothSpeedY: 3.5
+  smoothSpeedZ: 5.5
+  deadzoneX: 0.06
+  deadzoneY: 0.1
+  deadzoneZ: 0.12
+  hitAccentZoomZ: -9.2
+  counterHitZoomZ: -7.5
+  launchTrackLiftY: 1.4
+  wallAccentZoomZ: -7.8
+  throwAccentZoomZ: -7.2
+  ultimateEntryZoomZ: -5.8
+  koCinematicZoomZ: -5.5
+  traumaDecay: 6
+  maxShakeOffset: 0.035
+  maxShakeAngle: 0
+  masterShakeScale: 0.25
+--- !u!114 &716001593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+
+--- !u!1 &716001594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716001595}
+  - component: {fileID: 716001596}
+  - component: {fileID: 716001598}
+  - component: {fileID: 716001597}
+  - component: {fileID: 716001599}
+  m_Layer: 0
+  m_Name: Camera_ST02_MainGate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &716001595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.01919749, y: 0, z: 0, w: 0.9998157}
+  m_LocalPosition: {x: 0.0, y: 1.7, z: -6.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 716001586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &716001596
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001594}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.126157, g: 0.20337336, b: 0.254717, a: 0}
+  m_projectionMatrixMode: 2
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 27.5
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 20.25}
+  m_LensShift: {x: 0, y: 0.03}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.2
+  far clip plane: 120
+  field of view: 40.5
+  orthographic: 0
+  orthographic size: 2.1
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &716001597
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001594}
+  m_Enabled: 0
+--- !u!114 &716001598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f2545719eee4045a44911be8bd3ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterCamera2D
+  fighter1: {fileID: 169567839}
+  fighter2: {fileID: 167226525}
+  usePhysicalCamera: 1
+  sensorSize: {x: 36, y: 20.25}
+  focalLength: 27.5
+  lensShift: {x: 0, y: 0.03}
+  standardFighterHeight: 1.75
+  targetCharacterScreenFraction: 0.38
+  closeCombatScreenFraction: 0.45
+  wideSpacingScreenFraction: 0.35
+  zoomFactor: 0.45
+  offset: {x: 0.0, y: 1.7, z: -6.8}
+  pitchAngle: 2.8
+  aggressionLeadAmount: 0.35
+  verticalLaunchThresholdY: 2.5
+  minDistanceZ: -6.5
+  maxDistanceZ: -13.5
+  smoothSpeed: 8
+  smoothSpeedY: 3.5
+  smoothSpeedZ: 5.5
+  deadzoneX: 0.06
+  deadzoneY: 0.1
+  deadzoneZ: 0.12
+  hitAccentZoomZ: -9.2
+  counterHitZoomZ: -7.5
+  launchTrackLiftY: 1.4
+  wallAccentZoomZ: -7.8
+  throwAccentZoomZ: -7.2
+  ultimateEntryZoomZ: -5.8
+  koCinematicZoomZ: -5.5
+  traumaDecay: 6
+  maxShakeOffset: 0.035
+  maxShakeAngle: 0
+  masterShakeScale: 0.25
+--- !u!114 &716001599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+
+--- !u!1 &716001600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716001601}
+  - component: {fileID: 716001602}
+  - component: {fileID: 716001604}
+  - component: {fileID: 716001603}
+  - component: {fileID: 716001605}
+  m_Layer: 0
+  m_Name: Camera_ST03_Rooftop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &716001601
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001600}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.03664366, y: 0, z: 0, w: 0.9993284}
+  m_LocalPosition: {x: 0.0, y: 2.3, z: -6.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 716001586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &716001602
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001600}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.126157, g: 0.20337336, b: 0.254717, a: 0}
+  m_projectionMatrixMode: 2
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 32.0
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 20.25}
+  m_LensShift: {x: 0, y: 0.04}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.2
+  far clip plane: 120
+  field of view: 35.2
+  orthographic: 0
+  orthographic size: 2.1
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &716001603
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001600}
+  m_Enabled: 0
+--- !u!114 &716001604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f2545719eee4045a44911be8bd3ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterCamera2D
+  fighter1: {fileID: 169567839}
+  fighter2: {fileID: 167226525}
+  usePhysicalCamera: 1
+  sensorSize: {x: 36, y: 20.25}
+  focalLength: 32.0
+  lensShift: {x: 0, y: 0.04}
+  standardFighterHeight: 1.75
+  targetCharacterScreenFraction: 0.42
+  closeCombatScreenFraction: 0.45
+  wideSpacingScreenFraction: 0.35
+  zoomFactor: 0.45
+  offset: {x: 0.0, y: 2.3, z: -6.2}
+  pitchAngle: 2.8
+  aggressionLeadAmount: 0.35
+  verticalLaunchThresholdY: 2.5
+  minDistanceZ: -6.5
+  maxDistanceZ: -13.5
+  smoothSpeed: 8
+  smoothSpeedY: 3.5
+  smoothSpeedZ: 5.5
+  deadzoneX: 0.06
+  deadzoneY: 0.1
+  deadzoneZ: 0.12
+  hitAccentZoomZ: -9.2
+  counterHitZoomZ: -7.5
+  launchTrackLiftY: 1.4
+  wallAccentZoomZ: -7.8
+  throwAccentZoomZ: -7.2
+  ultimateEntryZoomZ: -5.8
+  koCinematicZoomZ: -5.5
+  traumaDecay: 6
+  maxShakeOffset: 0.035
+  maxShakeAngle: 0
+  masterShakeScale: 0.25
+--- !u!114 &716001605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+
+--- !u!1 &716001606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716001607}
+  - component: {fileID: 716001608}
+  - component: {fileID: 716001610}
+  - component: {fileID: 716001609}
+  - component: {fileID: 716001611}
+  m_Layer: 0
+  m_Name: Camera_ST04_Dojo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &716001607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001606}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.02181489, y: 0, z: 0, w: 0.999762}
+  m_LocalPosition: {x: 0.0, y: 1.8, z: -6.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 716001586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &716001608
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001606}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.126157, g: 0.20337336, b: 0.254717, a: 0}
+  m_projectionMatrixMode: 2
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 30.5
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 20.25}
+  m_LensShift: {x: 0, y: 0.035}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.2
+  far clip plane: 120
+  field of view: 36.8
+  orthographic: 0
+  orthographic size: 2.1
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &716001609
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001606}
+  m_Enabled: 0
+--- !u!114 &716001610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f2545719eee4045a44911be8bd3ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterCamera2D
+  fighter1: {fileID: 169567839}
+  fighter2: {fileID: 167226525}
+  usePhysicalCamera: 1
+  sensorSize: {x: 36, y: 20.25}
+  focalLength: 30.5
+  lensShift: {x: 0, y: 0.035}
+  standardFighterHeight: 1.75
+  targetCharacterScreenFraction: 0.42
+  closeCombatScreenFraction: 0.45
+  wideSpacingScreenFraction: 0.35
+  zoomFactor: 0.45
+  offset: {x: 0.0, y: 1.8, z: -6.2}
+  pitchAngle: 2.8
+  aggressionLeadAmount: 0.35
+  verticalLaunchThresholdY: 2.5
+  minDistanceZ: -6.5
+  maxDistanceZ: -13.5
+  smoothSpeed: 8
+  smoothSpeedY: 3.5
+  smoothSpeedZ: 5.5
+  deadzoneX: 0.06
+  deadzoneY: 0.1
+  deadzoneZ: 0.12
+  hitAccentZoomZ: -9.2
+  counterHitZoomZ: -7.5
+  launchTrackLiftY: 1.4
+  wallAccentZoomZ: -7.8
+  throwAccentZoomZ: -7.2
+  ultimateEntryZoomZ: -5.8
+  koCinematicZoomZ: -5.5
+  traumaDecay: 6
+  maxShakeOffset: 0.035
+  maxShakeAngle: 0
+  masterShakeScale: 0.25
+--- !u!114 &716001611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+
+--- !u!1 &716001612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716001613}
+  - component: {fileID: 716001614}
+  - component: {fileID: 716001616}
+  - component: {fileID: 716001615}
+  - component: {fileID: 716001617}
+  m_Layer: 0
+  m_Name: Camera_ST05_Stadium
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &716001613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001612}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.02617695, y: 0, z: 0, w: 0.9996573}
+  m_LocalPosition: {x: 0.0, y: 2.1, z: -7.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 716001586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &716001614
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001612}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.126157, g: 0.20337336, b: 0.254717, a: 0}
+  m_projectionMatrixMode: 2
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 25.5
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 20.25}
+  m_LensShift: {x: 0, y: 0.025}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.2
+  far clip plane: 120
+  field of view: 43.2
+  orthographic: 0
+  orthographic size: 2.1
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &716001615
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001612}
+  m_Enabled: 0
+--- !u!114 &716001616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f2545719eee4045a44911be8bd3ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterCamera2D
+  fighter1: {fileID: 169567839}
+  fighter2: {fileID: 167226525}
+  usePhysicalCamera: 1
+  sensorSize: {x: 36, y: 20.25}
+  focalLength: 25.5
+  lensShift: {x: 0, y: 0.025}
+  standardFighterHeight: 1.75
+  targetCharacterScreenFraction: 0.36
+  closeCombatScreenFraction: 0.45
+  wideSpacingScreenFraction: 0.35
+  zoomFactor: 0.45
+  offset: {x: 0.0, y: 2.1, z: -7.2}
+  pitchAngle: 2.8
+  aggressionLeadAmount: 0.35
+  verticalLaunchThresholdY: 2.5
+  minDistanceZ: -6.5
+  maxDistanceZ: -13.5
+  smoothSpeed: 8
+  smoothSpeedY: 3.5
+  smoothSpeedZ: 5.5
+  deadzoneX: 0.06
+  deadzoneY: 0.1
+  deadzoneZ: 0.12
+  hitAccentZoomZ: -9.2
+  counterHitZoomZ: -7.5
+  launchTrackLiftY: 1.4
+  wallAccentZoomZ: -7.8
+  throwAccentZoomZ: -7.2
+  ultimateEntryZoomZ: -5.8
+  koCinematicZoomZ: -5.5
+  traumaDecay: 6
+  maxShakeOffset: 0.035
+  maxShakeAngle: 0
+  masterShakeScale: 0.25
+--- !u!114 &716001617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+
+--- !u!1 &716001618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 716001619}
+  - component: {fileID: 716001620}
+  - component: {fileID: 716001622}
+  - component: {fileID: 716001621}
+  - component: {fileID: 716001623}
+  m_Layer: 0
+  m_Name: Camera_ST06_Promenade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &716001619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001618}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.01745241, y: 0, z: 0, w: 0.9998477}
+  m_LocalPosition: {x: 0.0, y: 1.6, z: -6.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 716001586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &716001620
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001618}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.126157, g: 0.20337336, b: 0.254717, a: 0}
+  m_projectionMatrixMode: 2
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 28.5
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 20.25}
+  m_LensShift: {x: 0, y: 0.03}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.2
+  far clip plane: 120
+  field of view: 39.0
+  orthographic: 0
+  orthographic size: 2.1
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &716001621
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001618}
+  m_Enabled: 0
+--- !u!114 &716001622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f2545719eee4045a44911be8bd3ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterCamera2D
+  fighter1: {fileID: 169567839}
+  fighter2: {fileID: 167226525}
+  usePhysicalCamera: 1
+  sensorSize: {x: 36, y: 20.25}
+  focalLength: 28.5
+  lensShift: {x: 0, y: 0.03}
+  standardFighterHeight: 1.75
+  targetCharacterScreenFraction: 0.39
+  closeCombatScreenFraction: 0.45
+  wideSpacingScreenFraction: 0.35
+  zoomFactor: 0.45
+  offset: {x: 0.0, y: 1.6, z: -6.6}
+  pitchAngle: 2.8
+  aggressionLeadAmount: 0.35
+  verticalLaunchThresholdY: 2.5
+  minDistanceZ: -6.5
+  maxDistanceZ: -13.5
+  smoothSpeed: 8
+  smoothSpeedY: 3.5
+  smoothSpeedZ: 5.5
+  deadzoneX: 0.06
+  deadzoneY: 0.1
+  deadzoneZ: 0.12
+  hitAccentZoomZ: -9.2
+  counterHitZoomZ: -7.5
+  launchTrackLiftY: 1.4
+  wallAccentZoomZ: -7.8
+  throwAccentZoomZ: -7.2
+  ultimateEntryZoomZ: -5.8
+  koCinematicZoomZ: -5.5
+  traumaDecay: 6
+  maxShakeOffset: 0.035
+  maxShakeAngle: 0
+  masterShakeScale: 0.25
+--- !u!114 &716001623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716001618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+

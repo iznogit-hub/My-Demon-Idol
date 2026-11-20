@@ -223,6 +223,11 @@ namespace DemonIdol.Combat
                 _accentLight.color = zone.accentLightColor;
                 _accentLight.intensity = zone.accentLightIntensity;
             }
+
+            if (DemonIdol.CameraControl.StageCameraManager.Instance != null && DemonIdol.CameraControl.StageCameraManager.Instance.ActiveStageId != zone.stageId)
+            {
+                DemonIdol.CameraControl.StageCameraManager.Instance.SwitchToStageCamera(zone.stageId);
+            }
         }
     }
 }
