@@ -256,6 +256,7 @@ namespace DemonIdol.BlazBlue.Editor
             // Resolve authentic Avatar from FBX if available
             if (!string.IsNullOrEmpty(spec.FbxPath))
             {
+                AssetDatabase.ImportAsset(spec.FbxPath, ImportAssetOptions.ForceUpdate);
                 var assets = AssetDatabase.LoadAllAssetsAtPath(spec.FbxPath);
                 foreach (var a in assets)
                 {

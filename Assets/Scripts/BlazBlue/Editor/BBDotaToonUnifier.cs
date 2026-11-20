@@ -53,6 +53,7 @@ namespace DemonIdol.BlazBlue.Editor
             string[] searchFolders = new string[]
             {
                 "Assets/Synty/SidekickCharacters",
+                "Assets/Prefabs/Characters/Sidekicks/Materials",
                 "Assets/GAMWILL Character Pack Monster  Bionic Cartoon Zombie Gorilla",
                 "Assets/Santuary/Characters",
                 "Assets/Shady_3d",
