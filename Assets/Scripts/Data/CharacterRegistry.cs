@@ -122,7 +122,26 @@ namespace DemonIdol.Combat
             { "Dante", "C14" },
             { "F03", "C14" },
             { "Nox", "C14" },
-            { "M05", "C14" }
+            { "M05", "C14" },
+            // Synty Sidekicks (8)
+            { "SK01", "SK01" }, { "Valen", "SK01" },
+            { "SK02", "SK02" }, { "Galahad", "SK02" },
+            { "SK03", "SK03" }, { "Vex", "SK03" },
+            { "SK04", "SK04" },
+            { "SK05", "SK05" }, { "LordMorvath", "SK05" }, { "Morvath", "SK05" },
+            { "SK06", "SK06" }, { "CommanderRen", "SK06" },
+            { "SK07", "SK07" }, { "Malakar", "SK07" },
+            { "SK08", "SK08" }, { "Torgrim", "SK08" },
+
+            // External Dota Heroes (8)
+            { "EX01", "EX01" }, { "Hugo", "EX01" },
+            { "EX02", "EX02" }, { "Granite", "EX02" },
+            { "EX03", "EX03" }, { "Viper", "EX03" },
+            { "EX04", "EX04" }, { "OfficerK", "EX04" },
+            { "EX05", "EX05" }, { "Kira", "EX05" },
+            { "EX06", "EX06" }, { "Sentry", "EX06" },
+            { "EX07", "EX07" }, { "Lyra", "EX07" },
+            { "EX08", "EX08" }, { "Garrick", "EX08" },
         };
 
         public static string ResolveCanonicalId(string idOrAlias)
@@ -171,6 +190,23 @@ namespace DemonIdol.Combat
                 "C12" => "Fina",
                 "C13" => "SapphiArtchan",
                 "C14" => "Muryotaisu",
+                "SK01" => "Valen",
+                "SK02" => "Galahad",
+                "SK03" => "Vex",
+                "SK04" => "Jin",
+                "SK05" => "LordMorvath",
+                "SK06" => "CommanderRen",
+                "SK07" => "Malakar",
+                "SK08" => "Torgrim",
+                "EX01" => "Hugo",
+                "EX02" => "Granite",
+                "EX03" => "Viper",
+                "EX04" => "OfficerK",
+                "EX05" => "Kira",
+                "EX06" => "Sentry",
+                "EX07" => "Lyra",
+                "EX08" => "Garrick",
+
                 _ => charId ?? "Fighter"
             };
         }
