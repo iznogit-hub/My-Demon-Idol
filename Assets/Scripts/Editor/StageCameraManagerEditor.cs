@@ -30,7 +30,7 @@ namespace DemonIdol.Editor
             StageCameraManager manager = (StageCameraManager)target;
 
             EditorGUILayout.Space(8);
-            EditorGUILayout.Label("=== CAMPUS STAGE CAMERA SWITCHER ===", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("=== CAMPUS STAGE CAMERA SWITCHER ===", EditorStyles.boldLabel);
             EditorGUILayout.HelpBox("Click any stage below to immediately activate that stage's camera framing, physical lens parameters, and campus zone alignment in the Scene/Game view.", MessageType.Info);
 
             EditorGUILayout.Space(4);
