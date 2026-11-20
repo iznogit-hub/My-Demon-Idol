@@ -15,13 +15,32 @@ namespace DemonIdol.Combat
         [SerializeField] private BodyZone _zone = BodyZone.Torso;
         public BodyZone Zone => _zone;
 
-        public FighterController Owner { get; private set; }
+        [SerializeField] private FighterController _owner;
+        public FighterController Owner
+        {
+            get
+            {
+                if (_owner == null) _owner = GetComponentInParent<FighterController>();
+                return _owner;
+            }
+            private set => _owner = value;
+        }
+
+        private void Awake()
+        {
+            if (_owner == null)
+            {
+                _owner = GetComponentInParent<FighterController>();
+            }
+            Collider col = GetComponent<Collider>();
+            if (col != null) col.isTrigger = true;
+        }
 
         public void Initialize(FighterController owner)
         {
             Owner = owner;
             Collider col = GetComponent<Collider>();
-            col.isTrigger = true;
+            if (col != null) col.isTrigger = true;
         }
     }
 }

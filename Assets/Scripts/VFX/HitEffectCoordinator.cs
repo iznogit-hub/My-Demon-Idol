@@ -18,7 +18,15 @@ namespace DemonIdol.Combat
         {
             get
             {
-                if (_instance == null) return null;
+                if (_instance == null)
+                {
+                    _instance = FindAnyObjectByType<HitEffectCoordinator>();
+                    if (_instance == null)
+                    {
+                        GameObject go = new GameObject("HitEffectCoordinator");
+                        _instance = go.AddComponent<HitEffectCoordinator>();
+                    }
+                }
                 return _instance;
             }
             private set => _instance = value;
@@ -36,6 +44,10 @@ namespace DemonIdol.Combat
         [SerializeField] private GameObject _groundHitPrefab;       // CFXR2 Ground Hit (Knockdown/Bound)
         [SerializeField] private GameObject _bloodSplashPrefab;     // CFXR2 Blood Shape Splash
         [SerializeField] private GameObject _slashSparkPrefab;      // CFXR4 Sword Hit PLAIN (Cross)
+
+        [Header("3D Shockwave Prefabs (Kevin Iglesias)")]
+        [SerializeField] private GameObject _spellShockwaveExplosionPrefab;
+        [SerializeField] private GameObject _spellShockwaveGroundPrefab;
 
         private void Awake()
         {
@@ -179,21 +191,22 @@ namespace DemonIdol.Combat
             if (_fighter1 != null && _fighter2 != null) return;
 
             var fighters = FindObjectsByType<FighterController>();
-            foreach (var f in fighters)
-            {
-                if (f.isPlayerControlled && _fighter1 == null)
-                {
-                    _fighter1 = f;
-                }
-                else if (!f.isPlayerControlled && _fighter2 == null)
-                {
-                    _fighter2 = f;
-                }
-            }
+            if (fighters == null || fighters.Length == 0) return;
 
-            if (_fighter1 != null || _fighter2 != null)
+            if (fighters.Length >= 2)
             {
-                SubscribeFighters();
+                FighterController f1 = fighters[0];
+                FighterController f2 = fighters[1];
+                if (!f1.isPlayerControlled && f2.isPlayerControlled)
+                {
+                    f1 = fighters[1];
+                    f2 = fighters[0];
+                }
+                BindFighters(f1, f2);
+            }
+            else if (fighters.Length == 1 && _fighter1 == null)
+            {
+                BindFighters(fighters[0], null);
             }
         }
 
@@ -265,6 +278,10 @@ namespace DemonIdol.Combat
                 _groundHitPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Liquids/CFXR2 Blood (Directional).prefab");
             if (_slashSparkPrefab == null)
                 _slashSparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Sword Trails/Plain/CFXR4 Sword Hit PLAIN (Cross).prefab");
+            if (_spellShockwaveExplosionPrefab == null)
+                _spellShockwaveExplosionPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Kevin Iglesias/Human Animations/Unity Demo Scenes/Human Spellcasting Animations/Prefabs/Spells/Human_Spell_Shockwave_Explosion.prefab");
+            if (_spellShockwaveGroundPrefab == null)
+                _spellShockwaveGroundPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Kevin Iglesias/Human Animations/Unity Demo Scenes/Human Spellcasting Animations/Prefabs/Spells/Human_Spell_Shockwave_Ground.prefab");
 #endif
         }
 
@@ -368,23 +385,67 @@ namespace DemonIdol.Combat
                 Instantiate(sparkPrefab, hitPoint, Quaternion.identity);
             }
 
-            // Shockwave Distortion Ring on all successful hits, counterhits, and ultras
+            // Determine attack facing direction for directional bursts
+            float facingDir = 1f;
+            if (_fighter1 != null && (_fighter1.State == FighterState.AttackActive || _fighter1.State == FighterState.AttackStartup))
+                facingDir = _fighter1.FacingDirection;
+            else if (_fighter2 != null && (_fighter2.State == FighterState.AttackActive || _fighter2.State == FighterState.AttackStartup))
+                facingDir = _fighter2.FacingDirection;
+
+            bool isHeavyOrSuper = attack != null && (attack.attackType == AttackType.Heavy || attack.attackType == AttackType.DomainSuper);
+
+            // 5. Shockwave Effects: Screen-space distortion ring + 3D particle spell shockwave
             if (result == HitResult.Hit || result == HitResult.CounterHit)
             {
-                bool isHeavyOrSuper = attack != null && (attack.attackType == AttackType.Heavy || attack.attackType == AttackType.DomainSuper);
+                // Screen distortion ring
                 ShockwaveDistortionEmitter.EmitShockwave(hitPoint, isHeavyOrSuper ? 2.8f : 1.8f, isHeavyOrSuper ? 0.32f : 0.22f);
+
+                // 3D spell shockwave blast on heavy/counter/super impacts
+                if ((isHeavyOrSuper || result == HitResult.CounterHit) && _spellShockwaveExplosionPrefab != null)
+                {
+                    GameObject swBlast = Instantiate(_spellShockwaveExplosionPrefab, hitPoint, Quaternion.identity);
+                    Destroy(swBlast, 2.5f);
+                }
             }
 
-            // Spawn Cartoon Blood Shape Splash on flesh impact
-            if ((result == HitResult.Hit || result == HitResult.CounterHit) && _bloodSplashPrefab != null)
+            // 6. Directional Blood Splatter & Ground Decals
+            if (result == HitResult.Hit || result == HitResult.CounterHit)
             {
-                Instantiate(_bloodSplashPrefab, hitPoint, Quaternion.identity);
+                // Directional Cartoon FX blood splash oriented along strike direction
+                if (_bloodSplashPrefab != null)
+                {
+                    Quaternion bloodRot = Quaternion.Euler(UnityEngine.Random.Range(-15f, 15f), facingDir > 0 ? 0f : 180f, UnityEngine.Random.Range(-25f, 25f));
+                    GameObject bloodGo = Instantiate(_bloodSplashPrefab, hitPoint, bloodRot);
+                    float bScale = isHeavyOrSuper ? 1.5f : 1.0f;
+                    if (result == HitResult.CounterHit) bScale *= 1.3f;
+                    bloodGo.transform.localScale = Vector3.one * bScale;
+                    Destroy(bloodGo, 2.0f);
+                }
+
+                // Sumi-e stylized ink / blood airborne burst & persistent ground decals
+                if (InkBloodSplatterManager.Instance != null)
+                {
+                    Color splatColor = (result == HitResult.CounterHit) ? InkBloodSplatterManager.Instance.toriiVermilionColor : InkBloodSplatterManager.Instance.sumieInkColor;
+                    InkBloodSplatterManager.Instance.SpawnAirborneBurst(hitPoint, splatColor, isHeavyOrSuper ? 1.5f : 1.0f);
+
+                    Vector3 groundPos = new Vector3(hitPoint.x + UnityEngine.Random.Range(-0.25f, 0.25f), 0.015f, 0f);
+                    InkBloodSplatterManager.Instance.SpawnGroundDecal(groundPos, splatColor, isHeavyOrSuper ? 1.5f : 1.0f);
+                }
             }
 
-            // Ground hit dust/slam if move knocks down
-            if (attack != null && attack.causesKnockdown && _groundHitPrefab != null)
+            // 7. Ground shockwave / impact dust on knockdowns & bounds
+            if (attack != null && attack.causesKnockdown)
             {
-                Instantiate(_groundHitPrefab, new Vector3(hitPoint.x, 0.05f, 0f), Quaternion.identity);
+                Vector3 groundImpactPos = new Vector3(hitPoint.x, 0.05f, 0f);
+                if (_spellShockwaveGroundPrefab != null)
+                {
+                    GameObject groundSw = Instantiate(_spellShockwaveGroundPrefab, groundImpactPos, Quaternion.identity);
+                    Destroy(groundSw, 3.0f);
+                }
+                else if (_groundHitPrefab != null)
+                {
+                    Instantiate(_groundHitPrefab, groundImpactPos, Quaternion.identity);
+                }
             }
         }
 

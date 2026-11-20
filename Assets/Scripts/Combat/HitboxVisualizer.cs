@@ -53,6 +53,20 @@ namespace DemonIdol.Combat
             SetVisible(!isVisible);
         }
 
+        private void Update()
+        {
+            if (SafeGetKeyDown(KeyCode.F1) || SafeGetKeyDown(KeyCode.F4) || SafeGetKeyDown(KeyCode.H))
+            {
+                ToggleVisibility();
+            }
+        }
+
+        private static bool SafeGetKeyDown(KeyCode key)
+        {
+            try { return UnityEngine.Input.GetKeyDown(key); }
+            catch { return false; }
+        }
+
         private void LateUpdate()
         {
             if (!isVisible && !SettingsPanel.HighContrastHitboxes)
@@ -81,6 +95,14 @@ namespace DemonIdol.Combat
                 var col = hurt.GetComponent<Collider>();
                 if (col != null && col.enabled) _activeHurtboxes.Add(col);
             }
+        }
+
+        private void OnGUI()
+        {
+            if (!isVisible) return;
+            GUI.color = Color.white;
+            GUI.Box(new Rect(10, 10, 280, 50), "<b>[F1] HITBOX VISUALIZER: ON</b>");
+            GUI.Label(new Rect(20, 30, 260, 25), $"Active Hitboxes: {_activeHitboxes.Count} | Hurtboxes: {_activeHurtboxes.Count}");
         }
 
         private void OnDrawGizmos()

@@ -213,15 +213,17 @@ namespace DemonIdol.Combat
             }
             ApplyMoveSet(moveSet);
 
-            Hurtbox[] hurtboxes = GetComponentsInChildren<Hurtbox>();
+            Hurtbox[] hurtboxes = GetComponentsInChildren<Hurtbox>(true);
             foreach (var h in hurtboxes)
             {
                 h.Initialize(this);
             }
 
-            if (activeHitbox != null)
+            Hitbox[] hitboxes = GetComponentsInChildren<Hitbox>(true);
+            foreach (var hb in hitboxes)
             {
-                activeHitbox.Initialize(this);
+                hb.Initialize(this);
+                if (activeHitbox == null) activeHitbox = hb;
             }
         }
 
@@ -233,9 +235,29 @@ namespace DemonIdol.Combat
             }
             CacheAnimatorParams();
 
+            FindOpponentIfMissing();
+
             if (CombatTickEngine.Instance != null)
             {
                 CombatTickEngine.Instance.OnTick += HandleCombatTick;
+            }
+        }
+
+        public void FindOpponentIfMissing()
+        {
+            if (opponent != null) return;
+            FighterController[] fighters = FindObjectsByType<FighterController>(FindObjectsSortMode.None);
+            foreach (var f in fighters)
+            {
+                if (f != this)
+                {
+                    opponent = f;
+                    if (f.opponent == null)
+                    {
+                        f.opponent = this;
+                    }
+                    break;
+                }
             }
         }
 
@@ -319,12 +341,25 @@ namespace DemonIdol.Combat
                 return;
             }
 
-            // Hitstop freeze: holds state without ticking frame countdown
+            if (opponent == null && currentTick % 30 == 0)
+            {
+                FindOpponentIfMissing();
+            }
+
+            // Hitstop freeze: holds state and freezes animator for authentic crunchy impact feel
             if (_hitstopTicksRemaining > 0)
             {
                 _hitstopTicksRemaining--;
+                if (animator != null && animator.speed > 0f)
+                {
+                    animator.speed = 0f;
+                }
                 InputBuf.FreezeAge(1);
                 return;
+            }
+            else if (animator != null && animator.speed == 0f && State != FighterState.Dead)
+            {
+                animator.speed = 1f;
             }
 
             // Recovery protection ticks down

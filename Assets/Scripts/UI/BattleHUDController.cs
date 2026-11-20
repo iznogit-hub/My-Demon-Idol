@@ -132,6 +132,31 @@ namespace DemonIdol.UI
                 DemonIdol.Network.QuantumPvPManager.Instance.OnOpponentDisconnectChanged -= HandleOpponentDisconnectStatus;
                 DemonIdol.Network.QuantumPvPManager.Instance.OnOpponentDisconnectChanged += HandleOpponentDisconnectStatus;
             }
+
+            AutoBindFightersIfMissing();
+        }
+
+        private float _lastFighterSearchTime = -10f;
+
+        public void AutoBindFightersIfMissing()
+        {
+            if (_p1 != null && _p2 != null) return;
+            FighterController[] fighters = FindObjectsByType<FighterController>(FindObjectsSortMode.None);
+            if (fighters.Length >= 2)
+            {
+                FighterController p1Candidate = fighters[0];
+                FighterController p2Candidate = fighters[1];
+                if (!p1Candidate.isPlayerControlled && p2Candidate.isPlayerControlled)
+                {
+                    p1Candidate = fighters[1];
+                    p2Candidate = fighters[0];
+                }
+                BindFighters(p1Candidate, p2Candidate);
+            }
+            else if (fighters.Length == 1 && _p1 == null)
+            {
+                BindFighters(fighters[0], null);
+            }
         }
 
         private void OnDestroy()
@@ -255,6 +280,12 @@ namespace DemonIdol.UI
 
         private void Update()
         {
+            if ((_p1 == null || _p2 == null) && Time.unscaledTime - _lastFighterSearchTime > 1.0f)
+            {
+                _lastFighterSearchTime = Time.unscaledTime;
+                AutoBindFightersIfMissing();
+            }
+
             bool escapePressed = false;
             try
             {
@@ -477,10 +508,15 @@ namespace DemonIdol.UI
 
         private void OnP2HitProcessed(HitResult res, AttackData atk, Vector3 pos)
         {
-            // Reset player combo when dummy hits back
-            _currentComboHits = 0;
-            _currentComboDamage = 0f;
-            if (_comboGroup != null) _comboGroup.alpha = 0f;
+            if (res == HitResult.CounterHit)
+            {
+                ShowCallout("COUNTER HIT!", new Color(1f, 0.25f, 0.2f, 1f));
+            }
+
+            if ((res == HitResult.Hit || res == HitResult.CounterHit) && atk != null)
+            {
+                RegisterComboHit(atk.damage);
+            }
         }
 
         public void RegisterComboHit(float dmg)

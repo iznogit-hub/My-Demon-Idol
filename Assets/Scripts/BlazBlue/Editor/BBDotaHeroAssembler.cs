@@ -315,6 +315,12 @@ namespace DemonIdol.BlazBlue.Editor
             hitCol.center = Vector3.zero;
             hitCol.isTrigger = true;
 
+            Rigidbody hitRb = hitGo.GetComponent<Rigidbody>();
+            if (hitRb == null) hitRb = hitGo.AddComponent<Rigidbody>();
+            hitRb.isKinematic = true;
+            hitRb.useGravity = false;
+            hitRb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+
             Hitbox hitbox = hitGo.GetComponent<Hitbox>();
             if (hitbox == null) hitbox = hitGo.AddComponent<Hitbox>();
 

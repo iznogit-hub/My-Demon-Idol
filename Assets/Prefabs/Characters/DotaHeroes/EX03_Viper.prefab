@@ -800,6 +800,7 @@ GameObject:
   - component: {fileID: 240563841698866147}
   - component: {fileID: 5384263728312294029}
   - component: {fileID: 4706130847203616355}
+  - component: {fileID: 63880584363383591}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -1497,7 +1498,7 @@ Animator:
   m_GameObject: {fileID: 4638855035254473992}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a53208845315ff94cb0c6341bce9348d, type: 3}
-  m_Controller: {fileID: 22100000, guid: 132b6fb0ffd644f44957449cc5969376, type: 2}
+  m_Controller: {fileID: 9100000, guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2493,3 +2494,31 @@ Transform:
   - {fileID: 6779098382105903913}
   m_Father: {fileID: 753689182503550897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+--- !u!54 &63880584363383591
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63880584363329591}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2

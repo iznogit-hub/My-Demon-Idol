@@ -17,15 +17,23 @@ namespace DemonIdol.VFX
         {
             get
             {
-                if (_instance == null) return null;
+                if (_instance == null)
+                {
+                    _instance = FindAnyObjectByType<InkBloodSplatterManager>();
+                    if (_instance == null)
+                    {
+                        GameObject go = new GameObject("InkBloodSplatterManager");
+                        _instance = go.AddComponent<InkBloodSplatterManager>();
+                    }
+                }
                 return _instance;
             }
             private set => _instance = value;
         }
 
         [Header("Palette Tokens")]
-        public Color sumieInkColor = new Color(0.08f, 0.08f, 0.1f, 0.95f);       // #18181B Carbon Ink
-        public Color toriiVermilionColor = new Color(0.78f, 0.24f, 0.18f, 0.95f); // #C73E2E Torii Shrine Red
+        public Color sumieInkColor = new Color(0.72f, 0.12f, 0.12f, 0.95f);       // Deep Crimson Blood
+        public Color toriiVermilionColor = new Color(0.92f, 0.22f, 0.18f, 0.98f); // Blazing Vermilion Counter Blood
         public Color parryGlowColor = new Color(1.0f, 0.95f, 0.75f, 0.95f);       // Golden Talisman White
 
         [Header("Prefabs (Optional - Will use procedural fallback if null)")]
@@ -84,13 +92,32 @@ namespace DemonIdol.VFX
             }
         }
 
+        private float _lastFighterCheck = -10f;
+
         private void Start()
         {
-            // Auto-wire with any active fighters in scene
+            AutoWireFighters();
+        }
+
+        private void Update()
+        {
+            if (Time.unscaledTime - _lastFighterCheck > 2.0f)
+            {
+                _lastFighterCheck = Time.unscaledTime;
+                AutoWireFighters();
+            }
+        }
+
+        public void AutoWireFighters()
+        {
             FighterController[] fighters = FindObjectsByType<FighterController>();
             foreach (var f in fighters)
             {
-                f.OnHitProcessed += HandleFighterHit;
+                if (f != null)
+                {
+                    f.OnHitProcessed -= HandleFighterHit;
+                    f.OnHitProcessed += HandleFighterHit;
+                }
             }
         }
 
