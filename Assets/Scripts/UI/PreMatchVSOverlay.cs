@@ -97,7 +97,7 @@ namespace DemonIdol.UI
             _introRoutine = StartCoroutine(AnimateIntroSequence());
         }
 
-        private void PopulateFighterData(string p1Id, string p2Id, string stageId, string mode)
+        public void PopulateFighterData(string p1Id, string p2Id, string stageId, string mode)
         {
             var p1Def = CharacterRegistry.GetCharacterById(p1Id);
             var p2Def = CharacterRegistry.GetCharacterById(p2Id);
@@ -137,37 +137,104 @@ namespace DemonIdol.UI
             }
         }
 
+        private void SetGroupActive(bool stage, bool namesDrives, bool roundBanner, bool fightBanner)
+        {
+            if (StageBadgeText != null) StageBadgeText.gameObject.SetActive(stage);
+            if (ModeBadgeText != null) ModeBadgeText.gameObject.SetActive(stage);
+
+            if (P1Panel != null) P1Panel.gameObject.SetActive(namesDrives);
+            if (P2Panel != null) P2Panel.gameObject.SetActive(namesDrives);
+            if (P1NameText != null) P1NameText.gameObject.SetActive(namesDrives);
+            if (P1DriveText != null) P1DriveText.gameObject.SetActive(namesDrives);
+            if (P2NameText != null) P2NameText.gameObject.SetActive(namesDrives);
+            if (P2DriveText != null) P2DriveText.gameObject.SetActive(namesDrives);
+
+            if (CountdownText != null)
+            {
+                CountdownText.gameObject.SetActive(roundBanner || fightBanner);
+                if (roundBanner)
+                {
+                    CountdownText.text = "ROUND 1";
+                    CountdownText.fontSize = 76;
+                    CountdownText.color = new Color(1.0f, 0.90f, 0.35f, 1f);
+                    CountdownText.rectTransform.anchoredPosition = new Vector2(0f, 0f);
+                }
+                else if (fightBanner)
+                {
+                    CountdownText.text = "FIGHT";
+                    CountdownText.fontSize = 88;
+                    CountdownText.color = new Color(1.0f, 0.22f, 0.22f, 1f);
+                    CountdownText.rectTransform.anchoredPosition = new Vector2(0f, 0f);
+                }
+            }
+        }
+
         private IEnumerator AnimateIntroSequence()
         {
-            float elapsed = 0f;
+            if (CanvasGroup != null) CanvasGroup.alpha = 1f;
 
-            // Initial positions
-            Vector2 p1Start = new Vector2(-400f, 0f);
-            Vector2 p1End = Vector2.zero;
-            Vector2 p2Start = new Vector2(400f, 0f);
-            Vector2 p2End = Vector2.zero;
-
-            Vector3 vsScaleStart = Vector3.one * 2.5f;
-            Vector3 vsScaleEnd = Vector3.one;
-
-            while (elapsed < introDurationSeconds)
+            // STEP 1: Stage name (1s), centered and cleared before next
+            SetGroupActive(stage: true, namesDrives: false, roundBanner: false, fightBanner: false);
+            if (StageBadgeText != null)
             {
-                elapsed += Time.unscaledDeltaTime;
-                float t = Mathf.Clamp01(elapsed / 0.35f);
-                float smoothT = Mathf.SmoothStep(0f, 1f, t);
-
-                if (CanvasGroup != null) CanvasGroup.alpha = Mathf.Clamp01(elapsed / 0.15f);
-
-                if (P1Panel != null) P1Panel.anchoredPosition = Vector2.Lerp(p1Start, p1End, smoothT);
-                if (P2Panel != null) P2Panel.anchoredPosition = Vector2.Lerp(p2Start, p2End, smoothT);
-
-                if (CenterClashRoot != null)
-                {
-                    CenterClashRoot.localScale = Vector3.Lerp(vsScaleStart, vsScaleEnd, smoothT);
-                }
-
-                yield return null;
+                StageBadgeText.rectTransform.anchoredPosition = new Vector2(0f, 30f);
+                StageBadgeText.fontSize = 52;
             }
+            if (ModeBadgeText != null)
+            {
+                ModeBadgeText.rectTransform.anchoredPosition = new Vector2(0f, -30f);
+                ModeBadgeText.fontSize = 28;
+            }
+            yield return new WaitForSecondsRealtime(1.0f);
+
+            // Clear stage name before next
+            SetGroupActive(stage: false, namesDrives: false, roundBanner: false, fightBanner: false);
+            yield return new WaitForSecondsRealtime(0.05f);
+
+            // STEP 2: The two names with Drives on their own sides near the top (1.5s), then cleared
+            SetGroupActive(stage: false, namesDrives: true, roundBanner: false, fightBanner: false);
+            if (P1NameText != null)
+            {
+                P1NameText.rectTransform.anchoredPosition = new Vector2(-460f, 380f);
+                P1NameText.fontSize = 40;
+            }
+            if (P1DriveText != null)
+            {
+                P1DriveText.rectTransform.anchoredPosition = new Vector2(-460f, 330f);
+                P1DriveText.fontSize = 26;
+            }
+            if (P2NameText != null)
+            {
+                P2NameText.rectTransform.anchoredPosition = new Vector2(460f, 380f);
+                P2NameText.fontSize = 40;
+            }
+            if (P2DriveText != null)
+            {
+                P2DriveText.rectTransform.anchoredPosition = new Vector2(460f, 330f);
+                P2DriveText.fontSize = 26;
+            }
+            yield return new WaitForSecondsRealtime(1.5f);
+
+            // Clear names and drives before next
+            SetGroupActive(stage: false, namesDrives: false, roundBanner: false, fightBanner: false);
+            yield return new WaitForSecondsRealtime(0.05f);
+
+            // STEP 3: "ROUND 1" (1.0s), centered and cleared before next
+            SetGroupActive(stage: false, namesDrives: false, roundBanner: true, fightBanner: false);
+            yield return new WaitForSecondsRealtime(1.0f);
+
+            // Clear ROUND 1 before next
+            SetGroupActive(stage: false, namesDrives: false, roundBanner: false, fightBanner: false);
+            yield return new WaitForSecondsRealtime(0.05f);
+
+            // STEP 4: "FIGHT" once (0.8s), centered, then cleared
+            SetGroupActive(stage: false, namesDrives: false, roundBanner: false, fightBanner: true);
+            yield return new WaitForSecondsRealtime(0.8f);
+
+            // STEP 5: Nothing may cover the fighters after FIGHT
+            SetGroupActive(stage: false, namesDrives: false, roundBanner: false, fightBanner: false);
+            if (CanvasGroup != null) CanvasGroup.alpha = 0f;
+            if (OverlayRoot != null) OverlayRoot.SetActive(false);
 
             CompleteSequence();
         }
@@ -182,6 +249,12 @@ namespace DemonIdol.UI
                 StopCoroutine(_introRoutine);
                 _introRoutine = null;
             }
+
+            // Ensure all overlay text is hidden so nothing covers fighters
+            SetGroupActive(stage: false, namesDrives: false, roundBanner: false, fightBanner: false);
+            if (CanvasGroup != null) CanvasGroup.alpha = 0f;
+            if (OverlayRoot != null) OverlayRoot.SetActive(false);
+            gameObject.SetActive(false);
 
             var callback = _onCompleteCallback;
             _onCompleteCallback = null;
@@ -207,13 +280,18 @@ namespace DemonIdol.UI
             host.transform.SetParent(canvasGo.transform, false);
             var overlay = host.AddComponent<PreMatchVSOverlay>();
             Font font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            overlay.P1NameText = MakeText(host.transform, "P1Name", font, new Vector2(-420f, 80f));
-            overlay.P2NameText = MakeText(host.transform, "P2Name", font, new Vector2(420f, 80f));
-            overlay.P1DriveText = MakeText(host.transform, "P1Drive", font, new Vector2(-420f, 20f));
-            overlay.P2DriveText = MakeText(host.transform, "P2Drive", font, new Vector2(420f, 20f));
-            overlay.StageBadgeText = MakeText(host.transform, "Stage", font, new Vector2(0f, 220f));
-            overlay.CountdownText = MakeText(host.transform, "Countdown", font, new Vector2(0f, -40f));
-            overlay.ModeBadgeText = MakeText(host.transform, "Mode", font, new Vector2(0f, 160f));
+            overlay.P1NameText = MakeText(host.transform, "P1Name", font, new Vector2(-460f, 380f));
+            overlay.P2NameText = MakeText(host.transform, "P2Name", font, new Vector2(460f, 380f));
+            overlay.P1DriveText = MakeText(host.transform, "P1Drive", font, new Vector2(-460f, 330f));
+            overlay.P2DriveText = MakeText(host.transform, "P2Drive", font, new Vector2(460f, 330f));
+            overlay.StageBadgeText = MakeText(host.transform, "Stage", font, new Vector2(0f, 30f));
+            overlay.StageBadgeText.rectTransform.sizeDelta = new Vector2(1000f, 60f);
+            overlay.ModeBadgeText = MakeText(host.transform, "Mode", font, new Vector2(0f, -30f));
+            overlay.ModeBadgeText.rectTransform.sizeDelta = new Vector2(600f, 40f);
+            overlay.CountdownText = MakeText(host.transform, "Countdown", font, new Vector2(0f, 0f));
+
+            // Initially inactive until triggered in order
+            overlay.SetGroupActive(false, false, false, false);
             return overlay;
         }
 

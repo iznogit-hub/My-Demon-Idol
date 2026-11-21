@@ -86,6 +86,11 @@ namespace DemonIdol.BlazBlue
                 EnsureDrive(brain, info);
                 AssignAnimator(fc, brain);
 
+                if (fc.GetComponent<FighterBlobShadow>() == null)
+                {
+                    fc.gameObject.AddComponent<FighterBlobShadow>();
+                }
+
                 brain.MirrorHealthToFighter();
 
                 if (p1Brain == null) p1Brain = brain;

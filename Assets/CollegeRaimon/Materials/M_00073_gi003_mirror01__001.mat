@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_00073_gi003_mirror01__001
-  m_Shader: {fileID: -6465566751694194690, guid: c2c9ad58178bf5944af138017c8b4c83, type: 3}
+  m_Shader: {fileID: 4800000, guid: 54133328f8de7449a8299013f4a5b3a7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -42,10 +42,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Cull: 0
+    - _FlickerSpeed: 3.5
+    - _GrimDarkDesat: 0.28
+    - _HorrorGlowIntensity: 0
+    - _PuddleGloss: 0.92
+    - _PuddleSmoothness: 0.35
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RainRippleScale: 4.5
+    - _RainRippleSpeed: 2.8
+    - _RainRippleStrength: 0.35
+    - _ShadowDarkness: 0.75
+    - _Wetness: 0.85
     m_Colors:
     - _BV_BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HorrorGlowColor: {r: 1, g: 0.85, b: 0.5, a: 1}
+    - _NightAmbientTint: {r: 0.58, g: 0.65, b: 0.82, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3568513376551095787

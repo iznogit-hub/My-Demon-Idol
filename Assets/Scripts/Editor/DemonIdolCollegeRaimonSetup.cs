@@ -90,25 +90,14 @@ namespace DemonIdol.Editor
             root.transform.position = Vector3.zero;
             root.transform.rotation = Quaternion.identity;
 
-            // Combat Floor Platform (32m width, 8m depth, surface at Y=0.0m)
-            GameObject platform = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            platform.name = "Ground_CombatPlatform";
+            // Combat Floor Platform (32m width, 8m depth, surface at Y=0.0m) - Pure invisible collision platform, no grey line
+            GameObject platform = new GameObject("Ground_CombatPlatform");
             platform.transform.SetParent(root.transform, false);
             platform.transform.position = new Vector3(0f, -0.25f, 0f);
-            platform.transform.localScale = new Vector3(32f, 0.5f, 8f);
 
-            var groundCol = platform.GetComponent<BoxCollider>();
-            if (groundCol == null) groundCol = platform.AddComponent<BoxCollider>();
+            var groundCol = platform.AddComponent<BoxCollider>();
             groundCol.center = Vector3.zero;
-            groundCol.size = Vector3.one;
-
-            Material groundMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/charaxters/Ground.mat")
-                ?? AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/Floor.mat");
-            if (groundMat != null)
-            {
-                var mr = platform.GetComponent<MeshRenderer>();
-                if (mr != null) mr.sharedMaterial = groundMat;
-            }
+            groundCol.size = new Vector3(32f, 0.5f, 8f);
 
             // Left & Right Arena Wall Boundaries (±14.0m)
             GameObject leftWall = new GameObject("Boundary_LeftWall");
@@ -144,9 +133,10 @@ namespace DemonIdol.Editor
             {
                 inst = (GameObject)PrefabUtility.InstantiatePrefab(raimonPrefab, decorRoot.transform);
                 inst.name = "CollegeRaimon_Courtyard";
-                inst.transform.localPosition = new Vector3(0.71f, 0f, 1.41f);
-                inst.transform.localRotation = Quaternion.identity;
-                inst.transform.localScale = Vector3.one;
+                float s = 0.65f;
+                inst.transform.localScale = new Vector3(s, s, s);
+                inst.transform.localPosition = new Vector3(-10.2f * s, -100.2f * s, 2.2f);
+                inst.transform.localRotation = Quaternion.Euler(0.1f, 0f, 0f);
             }
 
             // Stage Thematic Point Light (Cherry Blossom Sakura Glow)
@@ -167,6 +157,9 @@ namespace DemonIdol.Editor
             if (campusProp != null && inst != null) campusProp.objectReferenceValue = inst.transform;
             if (accentLightProp != null) accentLightProp.objectReferenceValue = lComp;
             soAnchor.ApplyModifiedProperties();
+
+            // Attach Grim Dark Atmospheric Storm Director
+            root.AddComponent<DemonIdol.VFX.GrimDarkStormDirector>();
 
             PrefabUtility.SaveAsPrefabAsset(root, ST07_PREFAB_PATH);
             UnityEngine.Object.DestroyImmediate(root);

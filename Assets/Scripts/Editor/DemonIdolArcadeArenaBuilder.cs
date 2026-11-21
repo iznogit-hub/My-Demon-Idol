@@ -39,8 +39,8 @@ namespace DemonIdol.Editor
         public static float ActiveLightIntensity = 1.25f;
 
         private const string MDI_CONTROLLER_PATH = "Assets/MDI_Characters/Runtime/MDI_FighterTemplate.controller";
-        private const string C12_PREFAB_PATH = "Assets/Prefabs/Characters/C12_Fina.prefab";
-        private const string C07_PREFAB_PATH = "Assets/Prefabs/Characters/C07_StellarWitch.prefab";
+        private const string C01_PREFAB_PATH = "Assets/Prefabs/Characters/C01_Akio.prefab";
+        private const string C02_PREFAB_PATH = "Assets/Prefabs/Characters/C02_Aika.prefab";
         private const string STAGE_PREFAB_PATH = "Assets/Prefabs/Stages/ST07_CollegeRaimon.prefab";
         private const string URP_VOLUME_PATH = "Assets/Settings/URP_IndoorTemplateVolumeProfile.asset";
 
@@ -129,7 +129,8 @@ namespace DemonIdol.Editor
         private static GameObject SetupStageEnvironment()
         {
             GameObject arenaRoot = new GameObject("Arcade_Stage_Root");
-            arenaRoot.transform.position = new Vector3(-8.85f, -109.2f, 0f);
+            arenaRoot.transform.position = Vector3.zero;
+            arenaRoot.transform.rotation = Quaternion.identity;
 
             // 1. Instantiate Backdrop Diorama
             string prefabPath = !string.IsNullOrEmpty(ActiveStagePrefabPath) && File.Exists(ActiveStagePrefabPath)
@@ -150,26 +151,14 @@ namespace DemonIdol.Editor
                 stageInstance.transform.localRotation = Quaternion.identity;
             }
 
-            // 2. Ground Combat Platform (surface precisely at Y=0.0m)
-            GameObject ground = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            ground.name = "Ground_CombatPlatform";
+            // 2. Ground Combat Platform (surface precisely at Y=0.0m) - purely invisible collision box, no grey line
+            GameObject ground = new GameObject("Ground_CombatPlatform");
             ground.transform.SetParent(arenaRoot.transform, false);
             ground.transform.position = new Vector3(0f, -0.25f, 0f);
-            ground.transform.localScale = new Vector3(32f, 0.5f, 8f);
 
-            var groundCol = ground.GetComponent<BoxCollider>();
-            if (groundCol == null) groundCol = ground.AddComponent<BoxCollider>();
+            var groundCol = ground.AddComponent<BoxCollider>();
             groundCol.center = Vector3.zero;
-            groundCol.size = Vector3.one;
-
-            var groundMr = ground.GetComponent<MeshRenderer>();
-            if (groundMr != null)
-            {
-                Material floorMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/charaxters/Ground.mat")
-                    ?? AssetDatabase.LoadAssetAtPath<Material>("Assets/charaxters/Metal_Black.mat")
-                    ?? AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/Floor.mat");
-                if (floorMat != null) groundMr.sharedMaterial = floorMat;
-            }
+            groundCol.size = new Vector3(32f, 0.5f, 8f);
 
             // 3. Left & Right Arena Wall Boundaries (±14.0m)
             GameObject leftWall = new GameObject("Boundary_LeftWall");
@@ -241,59 +230,58 @@ namespace DemonIdol.Editor
 
         private static FighterController SetupPlayer1Fighter()
         {
-            GameObject go = new GameObject("Fighter_P1_Fina");
-            go.transform.position = new Vector3(-2.5f, 0f, 0f);
+            GameObject go = new GameObject("Fighter_P1_Akio");
+            go.transform.position = new Vector3(-1.70f, 0f, 0f);
             go.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
             go.tag = "Player";
 
             CharacterController cc = go.AddComponent<CharacterController>();
-            cc.center = new Vector3(0, 0.95f, 0);
-            cc.height = 1.9f;
+            cc.center = new Vector3(0, 0.75f, 0);
+            cc.height = 1.5f;
             cc.radius = 0.35f;
 
             FighterController fc = go.AddComponent<FighterController>();
-            fc.fighterName = "01 Fina";
+            fc.fighterName = "Akio";
             fc.isPlayerControlled = true;
 
             // Attach New Input System-enabled Fighter Input
             go.AddComponent<MobileFighterInput>();
+            go.AddComponent<FighterBlobShadow>();
 
             // Hurtbox
             GameObject hbGo = new GameObject("Hurtbox_Torso");
             hbGo.transform.SetParent(go.transform, false);
-            hbGo.transform.localPosition = new Vector3(0, 1.0f, 0);
+            hbGo.transform.localPosition = new Vector3(0, 0.75f, 0);
             BoxCollider hbCol = hbGo.AddComponent<BoxCollider>();
-            hbCol.size = new Vector3(0.8f, 1.8f, 0.8f);
+            hbCol.size = new Vector3(0.7f, 1.4f, 0.7f);
             hbCol.isTrigger = true;
             hbGo.AddComponent<Hurtbox>();
 
             // Hitbox
             GameObject hitGo = new GameObject("Hitbox_Weapon");
             hitGo.transform.SetParent(go.transform, false);
-            hitGo.transform.localPosition = new Vector3(0, 1.2f, 0.7f);
+            hitGo.transform.localPosition = new Vector3(0, 0.9f, 0.6f);
             BoxCollider hitCol = hitGo.AddComponent<BoxCollider>();
-            hitCol.size = new Vector3(1.2f, 1.2f, 1.4f);
+            hitCol.size = new Vector3(1.0f, 1.0f, 1.2f);
             hitCol.isTrigger = true;
             Hitbox hitbox = hitGo.AddComponent<Hitbox>();
             fc.activeHitbox = hitbox;
 
-            // Instantiate Visual Model C12 (Fina)
-            GameObject modelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(C12_PREFAB_PATH)
-                ?? AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Characters/C12_Fina.prefab");
+            // Load and apply CharacterDefinition & Visual Model C01 (Akio)
+            var charDef = AssetDatabase.LoadAssetAtPath<CharacterDefinition>("Assets/CombatData/Characters/CharacterDefinition_C01_Akio.asset");
+            GameObject modelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(C01_PREFAB_PATH)
+                ?? (charDef != null ? charDef.modelPrefab : null);
 
             if (modelPrefab != null)
             {
                 GameObject model = (GameObject)PrefabUtility.InstantiatePrefab(modelPrefab, go.transform);
-                model.name = "Model_C12";
+                model.name = "Model_C01";
                 model.transform.localPosition = Vector3.zero;
                 model.transform.localRotation = Quaternion.identity;
                 model.transform.localScale = Vector3.one;
 
-                // Completely unpack prefab instance so we can cleanly sanitize components
                 PrefabUtility.UnpackPrefabInstance(model, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
 
-                // Strip duplicate logic/physics components from child model to prevent collision clash
-                // Destroy FighterController FIRST so RequireComponent constraint on CharacterController is released
                 foreach (var childFc in model.GetComponentsInChildren<FighterController>(true)) UnityEngine.Object.DestroyImmediate(childFc, true);
                 foreach (var childCc in model.GetComponentsInChildren<CharacterController>(true)) UnityEngine.Object.DestroyImmediate(childCc, true);
                 foreach (var childInput in model.GetComponentsInChildren<MobileFighterInput>(true)) UnityEngine.Object.DestroyImmediate(childInput, true);
@@ -301,26 +289,6 @@ namespace DemonIdol.Editor
                 foreach (var childHb in model.GetComponentsInChildren<Hurtbox>(true)) UnityEngine.Object.DestroyImmediate(childHb.gameObject, true);
                 foreach (var pb in model.GetComponentsInChildren<FighterPropBinder>(true)) UnityEngine.Object.DestroyImmediate(pb, true);
 
-                // Strip any attached weapon props, wands, staves
-                var allT = model.GetComponentsInChildren<Transform>(true);
-                foreach (var t in allT)
-                {
-                    if (t != null && t != model.transform && (
-                        t.name.StartsWith("Prop_") || 
-                        t.name.Contains("Staff") || 
-                        t.name.Contains("Blaster") || 
-                        t.name.Contains("Katana") || 
-                        t.name.Contains("Sword") ||
-                        t.name.Contains("MagicWand") ||
-                        t.name.Contains("Wand") ||
-                        t.name.Contains("Orb") ||
-                        t.name.Contains("Gun")))
-                    {
-                        UnityEngine.Object.DestroyImmediate(t.gameObject);
-                    }
-                }
-
-                // Ensure all renderers are enabled and on the fighter layer
                 foreach (var r in model.GetComponentsInChildren<Renderer>(true))
                 {
                     r.gameObject.layer = go.layer;
@@ -331,14 +299,8 @@ namespace DemonIdol.Editor
                 if (anim != null)
                 {
                     anim.applyRootMotion = false;
-                    anim.runtimeAnimatorController = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/smoky_fox/FinaAnimeGirl/Animations/Locomotion/finna.controller")
-                        ?? AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/AnimeGirls/BaseCharacter/Demo files/AC.controller")
-                        ?? AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(MDI_CONTROLLER_PATH);
-                    var allAssets = AssetDatabase.LoadAllAssetsAtPath("Assets/smoky_fox/FinaAnimeGirl/Model/Fina.fbx");
-                    foreach (var a in allAssets)
-                    {
-                        if (a is Avatar av) { anim.avatar = av; break; }
-                    }
+                    if (charDef != null && charDef.animatorController != null) anim.runtimeAnimatorController = charDef.animatorController;
+                    if (charDef != null && charDef.avatar != null) anim.avatar = charDef.avatar;
                     fc.animator = anim;
                     fc.CacheAnimatorParams();
                 }
@@ -347,15 +309,13 @@ namespace DemonIdol.Editor
                     model.AddComponent<AnimationEventReceiver>();
             }
 
-            // Load and apply CharacterDefinition & MoveSet
-            var charDef = AssetDatabase.LoadAssetAtPath<CharacterDefinition>("Assets/CombatData/Characters/CharacterDefinition_C12_Fina.asset");
             if (charDef != null)
             {
                 fc.ApplyCharacterDefinition(charDef);
             }
             else
             {
-                fc.ApplyMoveSet(MoveSet.CreateSamplePreset("C12"));
+                fc.ApplyMoveSet(MoveSet.CreateSamplePreset("C01"));
             }
 
             return fc;
@@ -363,58 +323,59 @@ namespace DemonIdol.Editor
 
         private static FighterController SetupPlayer2CpuFighter()
         {
-            GameObject go = new GameObject("Fighter_P2_StellarWitch");
-            go.transform.position = new Vector3(2.5f, 0f, 0f);
+            GameObject go = new GameObject("Fighter_P2_Aika");
+            go.transform.position = new Vector3(1.70f, 0f, 0f);
             go.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
 
             CharacterController cc = go.AddComponent<CharacterController>();
-            cc.center = new Vector3(0, 0.95f, 0);
-            cc.height = 1.9f;
+            cc.center = new Vector3(0, 0.75f, 0);
+            cc.height = 1.5f;
             cc.radius = 0.35f;
 
             FighterController fc = go.AddComponent<FighterController>();
-            fc.fighterName = "02 StellarWitch";
+            fc.fighterName = "Aika";
             fc.isPlayerControlled = false;
 
             // Attach CPU AI Controller
             var ai = go.AddComponent<CombatAIController>();
-            ai.personality = CpuPersonality.Zoner;
+            ai.personality = CpuPersonality.Rushdown;
             ai.difficultyOverride = 1;
+            go.AddComponent<FighterBlobShadow>();
 
             // Hurtbox
             GameObject hbGo = new GameObject("Hurtbox_Torso");
             hbGo.transform.SetParent(go.transform, false);
-            hbGo.transform.localPosition = new Vector3(0, 1.0f, 0);
+            hbGo.transform.localPosition = new Vector3(0, 0.75f, 0);
             BoxCollider hbCol = hbGo.AddComponent<BoxCollider>();
-            hbCol.size = new Vector3(0.8f, 1.8f, 0.8f);
+            hbCol.size = new Vector3(0.7f, 1.4f, 0.7f);
             hbCol.isTrigger = true;
             hbGo.AddComponent<Hurtbox>();
 
             // Hitbox
             GameObject hitGo = new GameObject("Hitbox_Weapon");
             hitGo.transform.SetParent(go.transform, false);
-            hitGo.transform.localPosition = new Vector3(0, 1.2f, 0.7f);
+            hitGo.transform.localPosition = new Vector3(0, 0.9f, 0.6f);
             BoxCollider hitCol = hitGo.AddComponent<BoxCollider>();
-            hitCol.size = new Vector3(1.2f, 1.2f, 1.4f);
+            hitCol.size = new Vector3(1.0f, 1.0f, 1.2f);
             hitCol.isTrigger = true;
             Hitbox hitbox = hitGo.AddComponent<Hitbox>();
             fc.activeHitbox = hitbox;
 
-            // Instantiate Visual Model C07 (StellarWitch)
-            GameObject modelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(C07_PREFAB_PATH);
+            // Load and apply CharacterDefinition & Visual Model C02 (Aika)
+            var charDef = AssetDatabase.LoadAssetAtPath<CharacterDefinition>("Assets/CombatData/Characters/CharacterDefinition_C02_Aika.asset");
+            GameObject modelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(C02_PREFAB_PATH)
+                ?? (charDef != null ? charDef.modelPrefab : null);
+
             if (modelPrefab != null)
             {
                 GameObject model = (GameObject)PrefabUtility.InstantiatePrefab(modelPrefab, go.transform);
-                model.name = "Model_C07";
+                model.name = "Model_C02";
                 model.transform.localPosition = Vector3.zero;
                 model.transform.localRotation = Quaternion.identity;
                 model.transform.localScale = Vector3.one;
 
-                // Completely unpack prefab instance so we can cleanly sanitize components
                 PrefabUtility.UnpackPrefabInstance(model, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
 
-                // Strip duplicate logic/physics components from child model to prevent collision clash
-                // Destroy FighterController FIRST so RequireComponent constraint on CharacterController is released
                 foreach (var childFc in model.GetComponentsInChildren<FighterController>(true)) UnityEngine.Object.DestroyImmediate(childFc, true);
                 foreach (var childCc in model.GetComponentsInChildren<CharacterController>(true)) UnityEngine.Object.DestroyImmediate(childCc, true);
                 foreach (var childInput in model.GetComponentsInChildren<MobileFighterInput>(true)) UnityEngine.Object.DestroyImmediate(childInput, true);
@@ -422,26 +383,6 @@ namespace DemonIdol.Editor
                 foreach (var childHb in model.GetComponentsInChildren<Hurtbox>(true)) UnityEngine.Object.DestroyImmediate(childHb.gameObject, true);
                 foreach (var pb in model.GetComponentsInChildren<FighterPropBinder>(true)) UnityEngine.Object.DestroyImmediate(pb, true);
 
-                // Strip any attached weapon props, wands, staves
-                var allT = model.GetComponentsInChildren<Transform>(true);
-                foreach (var t in allT)
-                {
-                    if (t != null && t != model.transform && (
-                        t.name.StartsWith("Prop_") || 
-                        t.name.Contains("Staff") || 
-                        t.name.Contains("Blaster") || 
-                        t.name.Contains("Katana") || 
-                        t.name.Contains("Sword") ||
-                        t.name.Contains("MagicWand") ||
-                        t.name.Contains("Wand") ||
-                        t.name.Contains("Orb") ||
-                        t.name.Contains("Gun")))
-                    {
-                        UnityEngine.Object.DestroyImmediate(t.gameObject);
-                    }
-                }
-
-                // Ensure all renderers are enabled and on the fighter layer
                 foreach (var r in model.GetComponentsInChildren<Renderer>(true))
                 {
                     r.gameObject.layer = go.layer;
@@ -452,12 +393,8 @@ namespace DemonIdol.Editor
                 if (anim != null)
                 {
                     anim.applyRootMotion = false;
-                    anim.runtimeAnimatorController = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(MDI_CONTROLLER_PATH);
-                    var allAssets = AssetDatabase.LoadAllAssetsAtPath("Assets/StellarWitch3D/Meshes/StellarWitch.fbx");
-                    foreach (var a in allAssets)
-                    {
-                        if (a is Avatar av) { anim.avatar = av; break; }
-                    }
+                    if (charDef != null && charDef.animatorController != null) anim.runtimeAnimatorController = charDef.animatorController;
+                    if (charDef != null && charDef.avatar != null) anim.avatar = charDef.avatar;
                     fc.animator = anim;
                     fc.CacheAnimatorParams();
                 }
@@ -466,15 +403,13 @@ namespace DemonIdol.Editor
                     model.AddComponent<AnimationEventReceiver>();
             }
 
-            // Load and apply CharacterDefinition & MoveSet
-            var charDef = AssetDatabase.LoadAssetAtPath<CharacterDefinition>("Assets/CombatData/Characters/CharacterDefinition_C07_StellarWitch.asset");
             if (charDef != null)
             {
                 fc.ApplyCharacterDefinition(charDef);
             }
             else
             {
-                fc.ApplyMoveSet(MoveSet.CreateSamplePreset("C07"));
+                fc.ApplyMoveSet(MoveSet.CreateSamplePreset("C02"));
             }
 
             return fc;
@@ -510,14 +445,14 @@ namespace DemonIdol.Editor
             {
                 mainCamGo = new GameObject("Main Camera");
                 mainCamGo.tag = "MainCamera";
-                mainCamGo.transform.position = new Vector3(-0.05f, 1.93f, -6.5f);
+                mainCamGo.transform.position = new Vector3(-0.05f, 1.10f, -4.15f);
                 mainCamGo.transform.rotation = Quaternion.Euler(2.8f, 0f, 0f);
 
                 Camera mCam = mainCamGo.AddComponent<Camera>();
                 mCam.usePhysicalProperties = true;
                 mCam.sensorSize = new Vector2(36f, 20.25f);
-                mCam.focalLength = 29.405136f;
-                mCam.fieldOfView = 37.999996f;
+                mCam.focalLength = 32.0f;
+                mCam.fieldOfView = 35.0f;
                 mCam.nearClipPlane = 0.2f;
                 mCam.farClipPlane = 120f;
                 mCam.clearFlags = CameraClearFlags.SolidColor;
@@ -528,8 +463,15 @@ namespace DemonIdol.Editor
 
                 FighterCamera2D cam2D = mainCamGo.AddComponent<FighterCamera2D>();
                 if (p1 != null && p2 != null) cam2D.SetTargets(p1.transform, p2.transform);
+                cam2D.focalLength = 32.0f;
+                cam2D.targetCharacterScreenFraction = 0.59f;
+                cam2D.offset = new Vector3(-0.05f, 1.10f, -4.15f);
+                cam2D.minDistanceZ = -3.8f;
+                cam2D.maxDistanceZ = -7.5f;
 
-                mainCamGo.AddComponent<AudioListener>();
+                var mainAl = mainCamGo.GetComponent<AudioListener>();
+                if (mainAl == null) mainAl = mainCamGo.AddComponent<AudioListener>();
+                mainAl.enabled = true;
             }
             mainCamGo.transform.SetParent(camerasRoot.transform, true);
 
@@ -629,7 +571,7 @@ namespace DemonIdol.Editor
             if (p1Prop != null) p1Prop.objectReferenceValue = p1;
             if (p2Prop != null) p2Prop.objectReferenceValue = p2;
             soDir.ApplyModifiedProperties();
-            director.SetMatchContext("C12", "C07", "ST04", p2IsCpu: true, isTraining: false);
+            director.SetMatchContext("C01", "C02", "ST07", p2IsCpu: true, isTraining: false);
 
             // 3. Match Round Referee (auto begins round 1)
             MatchRoundReferee referee = mgrGo.AddComponent<MatchRoundReferee>();
@@ -674,56 +616,181 @@ namespace DemonIdol.Editor
             BattleHUDController hudCtrl = hudPanel.AddComponent<BattleHUDController>();
 
             // --- Top Bar: P1 Health, Timer, P2 Health ---
-            // P1 Bar
-            GameObject p1Bar = CreateBar(hudPanel, "P1_HealthBar", new Vector2(0, 1), new Vector2(0, 1), new Vector2(380, -50), new Vector2(650, 42));
-            Image p1Lag = CreateBarFill(p1Bar, "LagFill", new Color(1f, 0.85f, 0.2f, 0.8f), false);
+            // P1 Portrait Box beside health bar
+            GameObject p1PortraitBox = new GameObject("P1_PortraitBox");
+            p1PortraitBox.transform.SetParent(hudPanel.transform, false);
+            RectTransform p1PortRt = p1PortraitBox.AddComponent<RectTransform>();
+            p1PortRt.anchorMin = new Vector2(0f, 1f);
+            p1PortRt.anchorMax = new Vector2(0f, 1f);
+            p1PortRt.anchoredPosition = new Vector2(50f, -50f);
+            p1PortRt.sizeDelta = new Vector2(72f, 72f);
+            Image p1PortBoxImg = p1PortraitBox.AddComponent<Image>();
+            p1PortBoxImg.color = new Color(0.12f, 0.16f, 0.24f, 0.95f);
+            p1PortBoxImg.raycastTarget = false;
+
+            GameObject p1PortInner = new GameObject("P1_Portrait");
+            p1PortInner.transform.SetParent(p1PortraitBox.transform, false);
+            RectTransform p1PortInnerRt = p1PortInner.AddComponent<RectTransform>();
+            p1PortInnerRt.anchorMin = Vector2.zero;
+            p1PortInnerRt.anchorMax = Vector2.one;
+            p1PortInnerRt.sizeDelta = new Vector2(-6f, -6f);
+            Image p1Portrait = p1PortInner.AddComponent<Image>();
+            var akioDef = AssetDatabase.LoadAssetAtPath<CharacterDefinition>("Assets/CombatData/Characters/CharacterDefinition_C01_Akio.asset");
+            if (akioDef != null && akioDef.portraitSprite != null) p1Portrait.sprite = akioDef.portraitSprite;
+            p1Portrait.color = Color.white;
+            p1Portrait.preserveAspect = true;
+            p1Portrait.raycastTarget = false;
+
+            // P1 Health Bar (red chip-damage lag fill)
+            GameObject p1Bar = CreateBar(hudPanel, "P1_HealthBar", new Vector2(0, 1), new Vector2(0, 1), new Vector2(430, -50), new Vector2(640, 42));
+            Image p1Lag = CreateBarFill(p1Bar, "LagFill", new Color(0.92f, 0.15f, 0.15f, 0.95f), false);
             Image p1Hp = CreateBarFill(p1Bar, "HpFill", new Color(0.1f, 0.9f, 0.35f, 1.0f), false);
-            Text p1Name = CreateText(p1Bar, "C12: FINA", new Vector2(-220, 32), 22, Color.white, FontStyle.Bold);
+            Text p1Name = CreateText(p1Bar, "C01: AKIO", new Vector2(-200, 32), 22, Color.white, FontStyle.Bold);
 
-            // P2 Bar
-            GameObject p2Bar = CreateBar(hudPanel, "P2_HealthBar", new Vector2(1, 1), new Vector2(1, 1), new Vector2(-380, -50), new Vector2(650, 42));
-            Image p2Lag = CreateBarFill(p2Bar, "LagFill", new Color(1f, 0.85f, 0.2f, 0.8f), true);
+            // P2 Portrait Box beside health bar
+            GameObject p2PortraitBox = new GameObject("P2_PortraitBox");
+            p2PortraitBox.transform.SetParent(hudPanel.transform, false);
+            RectTransform p2PortRt = p2PortraitBox.AddComponent<RectTransform>();
+            p2PortRt.anchorMin = new Vector2(1f, 1f);
+            p2PortRt.anchorMax = new Vector2(1f, 1f);
+            p2PortRt.anchoredPosition = new Vector2(-50f, -50f);
+            p2PortRt.sizeDelta = new Vector2(72f, 72f);
+            Image p2PortBoxImg = p2PortraitBox.AddComponent<Image>();
+            p2PortBoxImg.color = new Color(0.24f, 0.12f, 0.16f, 0.95f);
+            p2PortBoxImg.raycastTarget = false;
+
+            GameObject p2PortInner = new GameObject("P2_Portrait");
+            p2PortInner.transform.SetParent(p2PortraitBox.transform, false);
+            RectTransform p2PortInnerRt = p2PortInner.AddComponent<RectTransform>();
+            p2PortInnerRt.anchorMin = Vector2.zero;
+            p2PortInnerRt.anchorMax = Vector2.one;
+            p2PortInnerRt.sizeDelta = new Vector2(-6f, -6f);
+            Image p2Portrait = p2PortInner.AddComponent<Image>();
+            var aikaDef = AssetDatabase.LoadAssetAtPath<CharacterDefinition>("Assets/CombatData/Characters/CharacterDefinition_C02_Aika.asset");
+            if (aikaDef != null && aikaDef.portraitSprite != null) p2Portrait.sprite = aikaDef.portraitSprite;
+            p2Portrait.color = Color.white;
+            p2Portrait.preserveAspect = true;
+            p2Portrait.raycastTarget = false;
+
+            // P2 Health Bar (red chip-damage lag fill)
+            GameObject p2Bar = CreateBar(hudPanel, "P2_HealthBar", new Vector2(1, 1), new Vector2(1, 1), new Vector2(-430, -50), new Vector2(640, 42));
+            Image p2Lag = CreateBarFill(p2Bar, "LagFill", new Color(0.92f, 0.15f, 0.15f, 0.95f), true);
             Image p2Hp = CreateBarFill(p2Bar, "HpFill", new Color(0.1f, 0.9f, 0.35f, 1.0f), true);
-            Text p2Name = CreateText(p2Bar, "C07: STELLAR WITCH", new Vector2(220, 32), 22, Color.white, FontStyle.Bold);
+            Text p2Name = CreateText(p2Bar, "C02: AIKA", new Vector2(200, 32), 22, Color.white, FontStyle.Bold);
 
-            // Timer (Center)
+            // Framed Timer (Center) with dark background and metallic border frame
+            GameObject timerFrameGo = new GameObject("Timer_Frame");
+            timerFrameGo.transform.SetParent(hudPanel.transform, false);
+            RectTransform frameRt = timerFrameGo.AddComponent<RectTransform>();
+            frameRt.anchorMin = new Vector2(0.5f, 1f);
+            frameRt.anchorMax = new Vector2(0.5f, 1f);
+            frameRt.anchoredPosition = new Vector2(0, -50);
+            frameRt.sizeDelta = new Vector2(116, 68);
+            Image frameBorder = timerFrameGo.AddComponent<Image>();
+            frameBorder.color = new Color(0.85f, 0.72f, 0.25f, 0.85f);
+            frameBorder.raycastTarget = false;
+
+            GameObject timerInnerGo = new GameObject("Timer_Background");
+            timerInnerGo.transform.SetParent(timerFrameGo.transform, false);
+            RectTransform innerRt = timerInnerGo.AddComponent<RectTransform>();
+            innerRt.anchorMin = Vector2.zero;
+            innerRt.anchorMax = Vector2.one;
+            innerRt.sizeDelta = new Vector2(-6, -6);
+            Image innerBg = timerInnerGo.AddComponent<Image>();
+            innerBg.color = new Color(0.08f, 0.09f, 0.14f, 0.95f);
+            innerBg.raycastTarget = false;
+
             GameObject timerGo = new GameObject("Round_Timer");
-            timerGo.transform.SetParent(hudPanel.transform, false);
+            timerGo.transform.SetParent(timerInnerGo.transform, false);
             RectTransform timerRt = timerGo.AddComponent<RectTransform>();
-            timerRt.anchorMin = new Vector2(0.5f, 1f);
-            timerRt.anchorMax = new Vector2(0.5f, 1f);
-            timerRt.anchoredPosition = new Vector2(0, -50);
-            timerRt.sizeDelta = new Vector2(120, 60);
+            timerRt.anchorMin = Vector2.zero;
+            timerRt.anchorMax = Vector2.one;
+            timerRt.sizeDelta = Vector2.zero;
             Text timerText = timerGo.AddComponent<Text>();
             timerText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             timerText.text = "99";
             timerText.fontSize = 44;
             timerText.fontStyle = FontStyle.Bold;
             timerText.alignment = TextAnchor.MiddleCenter;
-            timerText.color = new Color(1f, 0.88f, 0.2f, 1f);
+            timerText.color = new Color(1f, 0.90f, 0.35f, 1f);
             timerText.raycastTarget = false;
+
+            // Round Win Markers (2 per side) beside timer
+            Image[] p1WinPips = new Image[2];
+            for (int i = 0; i < 2; i++)
+            {
+                GameObject pip = new GameObject($"P1_WinPip_{i}");
+                pip.transform.SetParent(hudPanel.transform, false);
+                RectTransform pipRt = pip.AddComponent<RectTransform>();
+                pipRt.anchorMin = new Vector2(0.5f, 1f);
+                pipRt.anchorMax = new Vector2(0.5f, 1f);
+                pipRt.anchoredPosition = new Vector2(-75f - (i * 24f), -50f);
+                pipRt.sizeDelta = new Vector2(18f, 18f);
+                Image pipImg = pip.AddComponent<Image>();
+                pipImg.color = new Color(0.20f, 0.22f, 0.28f, 0.85f);
+                pipImg.raycastTarget = false;
+                p1WinPips[i] = pipImg;
+            }
+
+            Image[] p2WinPips = new Image[2];
+            for (int i = 0; i < 2; i++)
+            {
+                GameObject pip = new GameObject($"P2_WinPip_{i}");
+                pip.transform.SetParent(hudPanel.transform, false);
+                RectTransform pipRt = pip.AddComponent<RectTransform>();
+                pipRt.anchorMin = new Vector2(0.5f, 1f);
+                pipRt.anchorMax = new Vector2(0.5f, 1f);
+                pipRt.anchoredPosition = new Vector2(75f + (i * 24f), -50f);
+                pipRt.sizeDelta = new Vector2(18f, 18f);
+                Image pipImg = pip.AddComponent<Image>();
+                pipImg.color = new Color(0.20f, 0.22f, 0.28f, 0.85f);
+                pipImg.raycastTarget = false;
+                p2WinPips[i] = pipImg;
+            }
 
             // Wire HUD Controller via SerializedObject
             SerializedObject soHud = new SerializedObject(hudCtrl);
             var p1NameProp = soHud.FindProperty("_p1NameText");
             var p1HpProp = soHud.FindProperty("_p1HealthFill");
             var p1LagProp = soHud.FindProperty("_p1HealthLagFill");
+            var p1PortProp = soHud.FindProperty("_p1Portrait");
             var p2NameProp = soHud.FindProperty("_p2NameText");
             var p2HpProp = soHud.FindProperty("_p2HealthFill");
             var p2LagProp = soHud.FindProperty("_p2HealthLagFill");
+            var p2PortProp = soHud.FindProperty("_p2Portrait");
             var timerProp = soHud.FindProperty("_timerText");
+            var timerFrameProp = soHud.FindProperty("_timerFrame");
 
             if (p1NameProp != null) p1NameProp.objectReferenceValue = p1Name;
             if (p1HpProp != null) p1HpProp.objectReferenceValue = p1Hp;
             if (p1LagProp != null) p1LagProp.objectReferenceValue = p1Lag;
+            if (p1PortProp != null) p1PortProp.objectReferenceValue = p1Portrait;
             if (p2NameProp != null) p2NameProp.objectReferenceValue = p2Name;
             if (p2HpProp != null) p2HpProp.objectReferenceValue = p2Hp;
             if (p2LagProp != null) p2LagProp.objectReferenceValue = p2Lag;
+            if (p2PortProp != null) p2PortProp.objectReferenceValue = p2Portrait;
             if (timerProp != null) timerProp.objectReferenceValue = timerText;
+            if (timerFrameProp != null) timerFrameProp.objectReferenceValue = frameBorder;
+
+            var p1PipsProp = soHud.FindProperty("_p1WinPips");
+            if (p1PipsProp != null)
+            {
+                p1PipsProp.arraySize = 2;
+                p1PipsProp.GetArrayElementAtIndex(0).objectReferenceValue = p1WinPips[0];
+                p1PipsProp.GetArrayElementAtIndex(1).objectReferenceValue = p1WinPips[1];
+            }
+            var p2PipsProp = soHud.FindProperty("_p2WinPips");
+            if (p2PipsProp != null)
+            {
+                p2PipsProp.arraySize = 2;
+                p2PipsProp.GetArrayElementAtIndex(0).objectReferenceValue = p2WinPips[0];
+                p2PipsProp.GetArrayElementAtIndex(1).objectReferenceValue = p2WinPips[1];
+            }
+
             soHud.ApplyModifiedProperties();
 
             hudCtrl.BindFighters(p1, p2);
-            hudCtrl.SetFighterNames("UNDERWEAR1", "STELLAR WITCH");
+            hudCtrl.SetFighterNames("AKIO", "AIKA");
         }
 
         private static GameObject CreateBar(GameObject parent, string name, Vector2 anchorMin, Vector2 anchorMax, Vector2 pos, Vector2 size)
@@ -750,6 +817,7 @@ namespace DemonIdol.Editor
             rt.anchorMax = Vector2.one;
             rt.sizeDelta = Vector2.zero;
             Image img = fill.AddComponent<Image>();
+            img.sprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f));
             img.color = color;
             img.type = Image.Type.Filled;
             img.fillMethod = Image.FillMethod.Horizontal;

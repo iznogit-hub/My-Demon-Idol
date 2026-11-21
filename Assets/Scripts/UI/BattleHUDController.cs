@@ -36,6 +36,7 @@ namespace DemonIdol.UI
         [SerializeField] private Image _p1SuperFill;
         [SerializeField] private Text _p1DomainReadyText;
         [SerializeField] private Image[] _p1WinPips;
+        [SerializeField] private Image _p1Portrait;
 
         [Header("Player 2 Display")]
         [SerializeField] private Text _p2NameText;
@@ -45,9 +46,11 @@ namespace DemonIdol.UI
         [SerializeField] private Image _p2SuperFill;
         [SerializeField] private Text _p2DomainReadyText;
         [SerializeField] private Image[] _p2WinPips;
+        [SerializeField] private Image _p2Portrait;
 
         [Header("Round Timer & Status")]
         [SerializeField] private Text _timerText;
+        [SerializeField] private Image _timerFrame;
         [SerializeField] private Text _roundBannerText;
         [SerializeField] private CanvasGroup _roundBannerGroup;
 
@@ -209,6 +212,8 @@ namespace DemonIdol.UI
             if (_p1 != null)
             {
                 if (_p1NameText != null) _p1NameText.text = _p1.fighterName.ToUpper();
+                UpdatePortrait(_p1Portrait, _p1.fighterName, _p1.appliedDefinition);
+                if (_p1HealthLagFill != null) _p1HealthLagFill.color = new Color(0.92f, 0.15f, 0.15f, 0.95f);
                 _p1.OnHealthChanged += OnP1HealthChanged;
                 _p1.OnSuperMeterChanged += OnP1SuperChanged;
                 _p1.OnHitProcessed += OnP1HitProcessed;
@@ -226,6 +231,8 @@ namespace DemonIdol.UI
             if (_p2 != null)
             {
                 if (_p2NameText != null) _p2NameText.text = _p2.fighterName.ToUpper();
+                UpdatePortrait(_p2Portrait, _p2.fighterName, _p2.appliedDefinition);
+                if (_p2HealthLagFill != null) _p2HealthLagFill.color = new Color(0.92f, 0.15f, 0.15f, 0.95f);
                 _p2.OnHealthChanged += OnP2HealthChanged;
                 _p2.OnSuperMeterChanged += OnP2SuperChanged;
                 _p2.OnHitProcessed += OnP2HitProcessed;
@@ -382,6 +389,45 @@ namespace DemonIdol.UI
         {
             if (_p1NameText != null && !string.IsNullOrEmpty(p1Name)) _p1NameText.text = p1Name.ToUpper();
             if (_p2NameText != null && !string.IsNullOrEmpty(p2Name)) _p2NameText.text = p2Name.ToUpper();
+            UpdatePortrait(_p1Portrait, p1Name, null);
+            UpdatePortrait(_p2Portrait, p2Name, null);
+        }
+
+        public void UpdatePortrait(Image img, string fighterName, CharacterDefinition def)
+        {
+            if (img == null) return;
+            Sprite sprite = null;
+            if (def != null && def.portraitSprite != null)
+            {
+                sprite = def.portraitSprite;
+            }
+            if (sprite == null && !string.IsNullOrEmpty(fighterName))
+            {
+                var pres = BBPresentationLibrary.Find(fighterName);
+                if (pres != null && pres.portrait != null)
+                {
+                    sprite = pres.portrait;
+                }
+            }
+            if (sprite == null && !string.IsNullOrEmpty(fighterName))
+            {
+                var allMugshots = Resources.LoadAll<Sprite>("UI/Portraits/Mugshots");
+                for (int i = 0; i < allMugshots.Length; i++)
+                {
+                    if (allMugshots[i] != null && allMugshots[i].name.IndexOf(fighterName, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        sprite = allMugshots[i];
+                        break;
+                    }
+                }
+            }
+
+            if (sprite != null)
+            {
+                img.sprite = sprite;
+                img.color = Color.white;
+                img.gameObject.SetActive(true);
+            }
         }
 
         public void UpdateHealth(int player, float cur, float max)
@@ -1028,10 +1074,15 @@ namespace DemonIdol.UI
             // P1 Health Bar — Bloodlines progress bar
             GameObject p1BarGo = CreateRuntimePanel(gameObject, "P1_HealthBar", Color.white, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(380f, -50f), new Vector2(650f, 42f));
             if (atlas != null) atlas.StyleProgressBar(p1BarGo.GetComponent<Image>(), null, 1);
-            _p1HealthLagFill = CreateRuntimeFill(p1BarGo, "LagFill", new Color(0.95f, 0.75f, 0.1f, 1f), Image.FillMethod.Horizontal, false);
+            _p1HealthLagFill = CreateRuntimeFill(p1BarGo, "LagFill", new Color(0.92f, 0.15f, 0.15f, 0.95f), Image.FillMethod.Horizontal, false);
             _p1HealthFill = CreateRuntimeFill(p1BarGo, "HpFill", Color.white, Image.FillMethod.Horizontal, false);
             if (atlas != null) { atlas.StyleProgressBar(null, _p1HealthFill, 1); }
             _p1NameText = CreateRuntimeText(p1BarGo, "Text_P1Name", "KAI", new Vector2(-220f, 32f), 22, Color.white, FontStyle.Bold, font);
+
+            // P1 Portrait Frame beside health bar
+            GameObject p1PortBox = CreateRuntimePanel(gameObject, "P1_PortraitFrame", new Color(0.10f, 0.12f, 0.16f, 0.95f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(46f, -50f), new Vector2(64f, 64f));
+            GameObject p1PortImgGo = CreateRuntimePanel(p1PortBox, "PortraitImg", Color.white, Vector2.zero, Vector2.one, Vector2.zero, new Vector2(-4f, -4f));
+            _p1Portrait = p1PortImgGo.GetComponent<Image>();
 
             // P1 Projectile Meter (1.8s Rapid Recharge)
             GameObject p1ProjBarGo = CreateRuntimePanel(gameObject, "P1_ProjMeter", new Color(0.08f, 0.1f, 0.14f, 0.85f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(300f, -76f), new Vector2(490f, 10f));
@@ -1057,10 +1108,15 @@ namespace DemonIdol.UI
             // P2 Health Bar — Bloodlines progress bar
             GameObject p2BarGo = CreateRuntimePanel(gameObject, "P2_HealthBar", Color.white, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-380f, -50f), new Vector2(650f, 42f));
             if (atlas != null) atlas.StyleProgressBar(p2BarGo.GetComponent<Image>(), null, 1);
-            _p2HealthLagFill = CreateRuntimeFill(p2BarGo, "LagFill", new Color(0.95f, 0.75f, 0.1f, 1f), Image.FillMethod.Horizontal, true);
+            _p2HealthLagFill = CreateRuntimeFill(p2BarGo, "LagFill", new Color(0.92f, 0.15f, 0.15f, 0.95f), Image.FillMethod.Horizontal, true);
             _p2HealthFill = CreateRuntimeFill(p2BarGo, "HpFill", Color.white, Image.FillMethod.Horizontal, true);
             if (atlas != null) { atlas.StyleProgressBar(null, _p2HealthFill, 2); }
             _p2NameText = CreateRuntimeText(p2BarGo, "Text_P2Name", "OPPONENT", new Vector2(220f, 32f), 22, Color.white, FontStyle.Bold, font);
+
+            // P2 Portrait Frame beside health bar
+            GameObject p2PortBox = CreateRuntimePanel(gameObject, "P2_PortraitFrame", new Color(0.10f, 0.12f, 0.16f, 0.95f), new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-46f, -50f), new Vector2(64f, 64f));
+            GameObject p2PortImgGo = CreateRuntimePanel(p2PortBox, "PortraitImg", Color.white, Vector2.zero, Vector2.one, Vector2.zero, new Vector2(-4f, -4f));
+            _p2Portrait = p2PortImgGo.GetComponent<Image>();
 
             // P2 Projectile Meter (1.8s Rapid Recharge)
             GameObject p2ProjBarGo = CreateRuntimePanel(gameObject, "P2_ProjMeter", new Color(0.08f, 0.1f, 0.14f, 0.85f), new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-300f, -76f), new Vector2(490f, 10f));
@@ -1151,6 +1207,7 @@ namespace DemonIdol.UI
             rt.anchorMax = Vector2.one;
             rt.sizeDelta = Vector2.zero;
             Image img = go.GetComponent<Image>();
+            img.sprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f));
             img.color = color;
             img.type = Image.Type.Filled;
             img.fillMethod = fillMethod;

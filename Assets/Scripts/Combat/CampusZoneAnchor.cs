@@ -43,6 +43,11 @@ namespace DemonIdol.Combat
         [SerializeField] private Light _keyLight;
         [SerializeField] private Light _accentLight;
 
+        [Header("Stage Scale")]
+        [Tooltip("Scale slider for College Raimon root backdrop. Baseline = 0.65 for optimal camera framing.")]
+        [Range(0.2f, 2.0f)]
+        public float stageScale = 0.65f;
+
         [Header("Current Active Zone")]
         [SerializeField] private string _activeStageId = "ST07";
 
@@ -158,10 +163,10 @@ namespace DemonIdol.Combat
                 zoneSubtitle = "ACADEMY COURTYARD // THUNDERSTORM MIDNIGHT",
                 campusOffset = new Vector3(0.71f, 0f, 1.41f),
                 campusEulerAngles = new Vector3(0f, 0f, 0f),
-                keyLightColor = new Color(0.65f, 0.72f, 0.95f, 1f),
-                keyLightIntensity = 1.15f,
-                accentLightColor = new Color(1.0f, 0.85f, 0.90f, 1f),
-                accentLightIntensity = 1.35f,
+                keyLightColor = new Color(0.38f, 0.45f, 0.70f, 1f),
+                keyLightIntensity = 0.95f,
+                accentLightColor = new Color(0.28f, 0.42f, 0.68f, 1f),
+                accentLightIntensity = 0.85f,
                 cameraMinMaxZ = new Vector2(-6.5f, -13.5f),
                 cameraPitch = 2.8f,
                 bgmTrackName = "Academy Courtyard BGM",
@@ -208,8 +213,18 @@ namespace DemonIdol.Combat
 
             if (_campusTransform != null)
             {
-                _campusTransform.localPosition = zone.campusOffset;
-                _campusTransform.localRotation = Quaternion.Euler(zone.campusEulerAngles);
+                float s = stageScale;
+                _campusTransform.localScale = new Vector3(s, s, s);
+                if (zone.stageId == "ST07")
+                {
+                    _campusTransform.localPosition = new Vector3(-10.2f * s, -100.2f * s, 2.2f);
+                    _campusTransform.localRotation = Quaternion.Euler(0.1f, 0f, 0f);
+                }
+                else
+                {
+                    _campusTransform.localPosition = zone.campusOffset;
+                    _campusTransform.localRotation = Quaternion.Euler(zone.campusEulerAngles);
+                }
             }
 
             if (_keyLight != null)

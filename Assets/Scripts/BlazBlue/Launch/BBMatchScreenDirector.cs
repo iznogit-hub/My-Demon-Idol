@@ -17,6 +17,7 @@ namespace DemonIdol.BlazBlue
         public BBMatchFlow Flow = new BBMatchFlow();
         public BBMatchStats Stats = new BBMatchStats();
         Text _banner;
+        Coroutine _bannerRoutine;
 
         void Awake()
         {
@@ -35,9 +36,12 @@ namespace DemonIdol.BlazBlue
             referee.OnRoundIntro += round =>
             {
                 if (round == 1) Stats.Reset();
-                ShowBanner(round >= 3 ? "FINAL ROUND" : "ROUND " + round);
+                if (round > 1) ShowBanner(round >= 3 ? "FINAL ROUND" : "ROUND " + round);
             };
-            referee.OnFightBegun += () => ShowBanner("FIGHT");
+            referee.OnFightBegun += () =>
+            {
+                if (referee.CurrentRound > 1) ShowBanner("FIGHT");
+            };
             referee.OnRoundEnded += (winner, reason) =>
             {
                 bool isPerfect = false;
@@ -71,24 +75,29 @@ namespace DemonIdol.BlazBlue
             if (overlay == null)
                 overlay = PreMatchVSOverlay.CreateRuntime();
             overlay.PlayMatchIntro(Flow.P1Id, Flow.P2Id, Flow.StageId, Flow.Mode, () => Flow.BeginFight());
-            StartCoroutine(Countdown(overlay));
-        }
-
-        IEnumerator Countdown(PreMatchVSOverlay overlay)
-        {
-            for (int n = 3; n >= 1; n--)
-            {
-                if (overlay != null) overlay.SetCountdown(n.ToString());
-                yield return new WaitForSecondsRealtime(0.6f);
-            }
-            if (overlay != null) overlay.SetCountdown("FIGHT");
         }
 
         public void ShowBanner(string text)
         {
             EnsureBanner();
-            if (_banner != null) _banner.text = text;
+            if (_banner != null)
+            {
+                _banner.text = text;
+                _banner.gameObject.SetActive(true);
+                if (_bannerRoutine != null) StopCoroutine(_bannerRoutine);
+                _bannerRoutine = StartCoroutine(ClearBannerAfter(0.8f));
+            }
             Flow.Screen = text == "FIGHT" ? BBFlowScreen.Fight : BBFlowScreen.RoundIntro;
+        }
+
+        IEnumerator ClearBannerAfter(float delay)
+        {
+            yield return new WaitForSecondsRealtime(delay);
+            if (_banner != null)
+            {
+                _banner.text = "";
+                _banner.gameObject.SetActive(false);
+            }
         }
 
         public void ShowResults(int winnerPlayer)

@@ -101,13 +101,13 @@ namespace DemonIdol.CameraControl
             {
                 stageId = "ST01",
                 stageName = "Central Courtyard & Clocktower Plaza",
-                basePosition = new Vector3(-0.05f, 1.93f, -6.5f),
+                basePosition = new Vector3(-0.05f, 1.15f, -4.6f),
                 baseEulerAngles = new Vector3(2.8f, 0f, 0f),
-                focalLength = 29.405f,
-                fieldOfView = 38.0f,
+                focalLength = 32.0f,
+                fieldOfView = 35.0f,
                 sensorSize = new Vector2(36.0f, 20.25f),
                 lensShift = new Vector2(0f, 0.035f),
-                characterScreenFraction = 0.40f,
+                characterScreenFraction = 0.58f,
                 description = "Crisp daylight framing of the iconic academic clock tower facade."
             });
 
@@ -115,27 +115,27 @@ namespace DemonIdol.CameraControl
             {
                 stageId = "ST02",
                 stageName = "Academy Main Gate & Sakura Avenue",
-                basePosition = new Vector3(0.0f, 1.70f, -6.8f),
+                basePosition = new Vector3(0.0f, 1.15f, -4.8f),
                 baseEulerAngles = new Vector3(2.2f, 0f, 0f),
-                focalLength = 27.5f,
-                fieldOfView = 40.5f,
+                focalLength = 32.0f,
+                fieldOfView = 35.0f,
                 sensorSize = new Vector2(36.0f, 20.25f),
                 lensShift = new Vector2(0f, 0.030f),
-                characterScreenFraction = 0.38f,
-                description = "Lower, wider framing capturing the classical school gates and sakura cherry blossoms."
+                characterScreenFraction = 0.58f,
+                description = "Lower framing capturing the classical school gates and sakura cherry blossoms."
             });
 
             _stageCameras.Add(new StageCameraEntry
             {
                 stageId = "ST03",
                 stageName = "Rooftop Observatory & Skyline Deck",
-                basePosition = new Vector3(0.0f, 2.30f, -6.2f),
-                baseEulerAngles = new Vector3(4.2f, 0f, 0f),
+                basePosition = new Vector3(0.0f, 1.25f, -4.6f),
+                baseEulerAngles = new Vector3(3.5f, 0f, 0f),
                 focalLength = 32.0f,
-                fieldOfView = 35.2f,
+                fieldOfView = 35.0f,
                 sensorSize = new Vector2(36.0f, 20.25f),
                 lensShift = new Vector2(0f, 0.040f),
-                characterScreenFraction = 0.42f,
+                characterScreenFraction = 0.58f,
                 description = "Steeper downward pitch emphasizing rooftop drop-off and sprawling city skyline."
             });
 
@@ -143,13 +143,13 @@ namespace DemonIdol.CameraControl
             {
                 stageId = "ST04",
                 stageName = "Martial Arts Dojo & Traditional Pavilion",
-                basePosition = new Vector3(0.0f, 1.80f, -6.2f),
+                basePosition = new Vector3(0.0f, 1.15f, -4.6f),
                 baseEulerAngles = new Vector3(2.5f, 0f, 0f),
-                focalLength = 30.5f,
-                fieldOfView = 36.8f,
+                focalLength = 32.0f,
+                fieldOfView = 35.0f,
                 sensorSize = new Vector2(36.0f, 20.25f),
                 lensShift = new Vector2(0f, 0.035f),
-                characterScreenFraction = 0.42f,
+                characterScreenFraction = 0.58f,
                 description = "Intimate cinematic framing of traditional Japanese wooden columns and warm paper lanterns."
             });
 
@@ -157,27 +157,27 @@ namespace DemonIdol.CameraControl
             {
                 stageId = "ST05",
                 stageName = "Athletic Stadium & Sports Track",
-                basePosition = new Vector3(0.0f, 2.10f, -7.2f),
-                baseEulerAngles = new Vector3(3.0f, 0f, 0f),
-                focalLength = 25.5f,
-                fieldOfView = 43.2f,
+                basePosition = new Vector3(0.0f, 1.20f, -4.8f),
+                baseEulerAngles = new Vector3(2.8f, 0f, 0f),
+                focalLength = 30.0f,
+                fieldOfView = 37.0f,
                 sensorSize = new Vector2(36.0f, 20.25f),
                 lensShift = new Vector2(0f, 0.025f),
-                characterScreenFraction = 0.36f,
-                description = "Expansive sports broadcast wide-angle showing the running track and floodlight bleachers."
+                characterScreenFraction = 0.56f,
+                description = "Sports framing showing the running track and floodlight bleachers."
             });
 
             _stageCameras.Add(new StageCameraEntry
             {
                 stageId = "ST06",
                 stageName = "Transit Promenade & Campus Edge",
-                basePosition = new Vector3(0.0f, 1.60f, -6.6f),
+                basePosition = new Vector3(0.0f, 1.15f, -4.6f),
                 baseEulerAngles = new Vector3(2.0f, 0f, 0f),
-                focalLength = 28.5f,
-                fieldOfView = 39.0f,
+                focalLength = 32.0f,
+                fieldOfView = 35.0f,
                 sensorSize = new Vector2(36.0f, 20.25f),
                 lensShift = new Vector2(0f, 0.030f),
-                characterScreenFraction = 0.39f,
+                characterScreenFraction = 0.58f,
                 description = "Street-level modern perspective framing campus walkways and illuminated kiosks."
             });
 
@@ -185,14 +185,14 @@ namespace DemonIdol.CameraControl
             {
                 stageId = "ST07",
                 stageName = "College Raimon (Midnight Rain Courtyard)",
-                basePosition = new Vector3(-0.05f, 1.93f, -6.5f),
+                basePosition = new Vector3(-0.05f, 1.05f, -3.55f),
                 baseEulerAngles = new Vector3(2.8f, 0f, 0f),
-                focalLength = 29.405136f,
-                fieldOfView = 37.999996f,
+                focalLength = 32.0f,
+                fieldOfView = 35.0f,
                 sensorSize = new Vector2(36.0f, 20.25f),
                 lensShift = new Vector2(0f, 0.035f),
-                characterScreenFraction = 0.40f,
-                description = "User-calibrated baseline camera framing the midnight thunderstorm courtyard."
+                characterScreenFraction = 0.59f,
+                description = "Calibrated 59% character screen height framing the midnight thunderstorm courtyard."
             });
         }
 
@@ -246,8 +246,7 @@ namespace DemonIdol.CameraControl
 
                 targetCam.gameObject.SetActive(true);
                 targetCam.tag = "MainCamera";
-                var aList = targetCam.GetComponent<AudioListener>();
-                if (aList != null) aList.enabled = true;
+                EnsureSingleActiveAudioListener(targetCam);
 
                 _activeCamera = targetCam;
 
@@ -271,6 +270,8 @@ namespace DemonIdol.CameraControl
                     fCam.targetCharacterScreenFraction = targetEntry.characterScreenFraction;
                     fCam.offset = new Vector3(targetEntry.basePosition.x, targetEntry.basePosition.y, targetEntry.basePosition.z);
                     fCam.pitchAngle = targetEntry.baseEulerAngles.x;
+                    fCam.minDistanceZ = -3.2f;
+                    fCam.maxDistanceZ = -7.0f;
                     fCam.ConfigurePhysicalCamera();
                 }
             }
@@ -281,6 +282,7 @@ namespace DemonIdol.CameraControl
                 if (mainCam != null)
                 {
                     _activeCamera = mainCam;
+                    EnsureSingleActiveAudioListener(mainCam);
                     mainCam.transform.position = targetEntry.basePosition;
                     mainCam.transform.rotation = Quaternion.Euler(targetEntry.baseEulerAngles);
 
@@ -302,6 +304,8 @@ namespace DemonIdol.CameraControl
                         fCam.targetCharacterScreenFraction = targetEntry.characterScreenFraction;
                         fCam.offset = new Vector3(targetEntry.basePosition.x, targetEntry.basePosition.y, targetEntry.basePosition.z);
                         fCam.pitchAngle = targetEntry.baseEulerAngles.x;
+                        fCam.minDistanceZ = -3.2f;
+                        fCam.maxDistanceZ = -7.0f;
                         fCam.ConfigurePhysicalCamera();
                     }
                 }
@@ -311,6 +315,26 @@ namespace DemonIdol.CameraControl
             CampusZoneAnchor.Instance?.ApplyZone(targetEntry.stageId);
 
             Debug.Log($"<color=#00e676>[StageCameraManager] Active Stage Camera: {targetEntry.stageId} - {targetEntry.stageName} (FL={targetEntry.focalLength:F1}mm, FOV={targetEntry.fieldOfView:F1}°)</color>");
+        }
+
+        public static void EnsureSingleActiveAudioListener(Camera activeCam)
+        {
+            if (activeCam == null) return;
+            var activeListener = activeCam.GetComponent<AudioListener>();
+            if (activeListener == null)
+            {
+                activeListener = activeCam.gameObject.AddComponent<AudioListener>();
+            }
+            activeListener.enabled = true;
+
+            var allListeners = UnityEngine.Object.FindObjectsByType<AudioListener>(FindObjectsSortMode.None);
+            for (int i = 0; i < allListeners.Length; i++)
+            {
+                if (allListeners[i] != null && allListeners[i] != activeListener)
+                {
+                    allListeners[i].enabled = false;
+                }
+            }
         }
 
         #region Context Menu Previews for Unity Editor

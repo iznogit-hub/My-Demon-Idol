@@ -59,22 +59,22 @@ namespace DemonIdol.Combat
         [Tooltip("Heroic lens shift (Y offset raises horizon line to anchor grounded fighters)")]
         public Vector2 lensShift = new Vector2(0f, 0.035f);
 
-        [Header("Character Height Framing Calibration (40% Screen Size)")]
+        [Header("Character Height Framing Calibration (55-65% Screen Size)")]
         [Tooltip("Standard character height in meters")]
-        public float standardFighterHeight = 1.75f;
-        [Tooltip("Target fraction of vertical viewport occupied by characters in neutral combat (0.40 = 40%)")]
-        [Range(0.25f, 0.60f)]
-        public float targetCharacterScreenFraction = 0.40f;
-        [Tooltip("Close combat zoom push-in fraction (0.45 = 45% screen size at throw range)")]
-        public float closeCombatScreenFraction = 0.45f;
-        [Tooltip("Max spacing pull-out fraction (0.35 = 35% screen size corner-to-corner)")]
-        public float wideSpacingScreenFraction = 0.35f;
+        public float standardFighterHeight = 1.35f;
+        [Tooltip("Target fraction of vertical viewport occupied by characters in neutral combat (0.59 = 59%)")]
+        [Range(0.25f, 0.75f)]
+        public float targetCharacterScreenFraction = 0.59f;
+        [Tooltip("Close combat zoom push-in fraction (0.64 = 64% screen size at throw range)")]
+        public float closeCombatScreenFraction = 0.64f;
+        [Tooltip("Max spacing pull-out fraction (0.54 = 54% screen size corner-to-corner)")]
+        public float wideSpacingScreenFraction = 0.54f;
         [Tooltip("Zoom sensitivity relative to fighter distance (legacy compatibility)")]
         public float zoomFactor = 0.45f;
 
         [Header("SF6 Dynamic Handling")]
         [Tooltip("Grounded camera offset relative to midpoint")]
-        public Vector3 offset = new Vector3(0f, 1.25f, -10.8f);
+        public Vector3 offset = new Vector3(-0.05f, 1.05f, -3.55f);
         [Tooltip("Heroic upward pitch angle in degrees")]
         public float pitchAngle = 2.8f;
         [Tooltip("Asymmetric aggression lead bias towards the advancing/attacking fighter")]
@@ -84,9 +84,9 @@ namespace DemonIdol.Combat
 
         [Header("Camera Distance Limits")]
         [Tooltip("Minimum camera distance Z (tight framing when close)")]
-        public float minDistanceZ = -6.5f;
+        public float minDistanceZ = -3.2f;
         [Tooltip("Maximum camera distance Z (widest framing at max spacing)")]
-        public float maxDistanceZ = -18.5f;
+        public float maxDistanceZ = -7.0f;
 
         [Header("Damping & Interpolation Speeds")]
         public float smoothSpeed = 8.0f;
@@ -414,8 +414,8 @@ namespace DemonIdol.Combat
         public void ApplyStageCameraLimits(StageDefinition stage)
         {
             if (stage == null) return;
-            minDistanceZ = Mathf.Clamp(stage.cameraMinZ, -8.5f, -4.2f);
-            maxDistanceZ = Mathf.Clamp(stage.cameraMaxZ, -14.0f, -8.0f);
+            minDistanceZ = Mathf.Clamp(stage.cameraMinZ, -8.0f, -3.8f);
+            maxDistanceZ = Mathf.Clamp(stage.cameraMaxZ, -14.0f, -7.5f);
             _stageArenaLimitX = stage.ArenaLimitX;
         }
 
@@ -467,11 +467,11 @@ namespace DemonIdol.Combat
             float reqFrustumHeight = standardFighterHeight / Mathf.Max(0.1f, targetFraction);
             float verticalCalibratedZ = -(reqFrustumHeight * 0.5f / tanFovY);
 
-            // Horizontal bounds requirement: both fighters + generous margin (1.25m) must fit inside view
-            float requiredHalfWidth = (fighterDistance * 0.5f) + 1.25f;
+            // Horizontal bounds requirement: both fighters + snug margin (0.35m) fit inside view
+            float requiredHalfWidth = (fighterDistance * 0.5f) + 0.35f;
             float horizontalRequiredZ = -(requiredHalfWidth / tanFovX);
 
-            // Dynamic depth satisfying both 40% vertical height and full horizontal visibility
+            // Dynamic depth satisfying both 55-65% vertical height and full horizontal visibility
             float baseZ = Mathf.Min(verticalCalibratedZ, horizontalRequiredZ);
             baseZ = Mathf.Clamp(baseZ, maxDistanceZ, minDistanceZ);
 
