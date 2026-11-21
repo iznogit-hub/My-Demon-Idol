@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_EX02_214A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 214A
+  attackName: Spinning Perimeter
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 18
-  activeFrames: 5
-  recoveryFrames: 20
+  startupFrames: 17
+  activeFrames: 3
+  recoveryFrames: 32
   hitstunTicks: 17
   blockstunTicks: 13
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 598
+  damage: 1050
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
+  animationClip: {fileID: 1827226128182048838, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
   animationTrigger: AdvancingSkill
-  hitboxOffset: {x: 1.1, y: 1.1, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.85, y: 1.2, z: 0}
+  hitboxSize: {x: 0.95, y: 0.5, z: 1}
   cancelWindow: {x: 18, y: 23}
   archetype: 0
   moveId: 214A
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 2
   airOk: 0
   groundOk: 1
-  guard: 1
+  guard: 0
   attribute: 4
   invuln: []
   fatalCounter: 0
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 9251324bf11e5fea9cd75e233e7068e6, type: 2}
+  boxes: {fileID: 11400000, guid: a80fd0cf4130c4f24ba893c187e7a821, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_hammer_214A
-  clip: {fileID: 7400000, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
+  clip: {fileID: 1827226128182048838, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 36
   events: []

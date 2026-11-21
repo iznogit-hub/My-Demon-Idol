@@ -91,7 +91,7 @@ namespace DemonIdol.BlazBlue.Editor
             public int missingCount;
             public int offPackCount;
             public int placeholderCount;
-            public bool isReady => missingCount == 0 && placeholderCount == 0;
+            public bool isReady => missingCount == 0 && placeholderCount == 0 && sharedCount == 0;
             public List<TrackedRow> rows = new List<TrackedRow>();
         }
 
@@ -157,7 +157,7 @@ namespace DemonIdol.BlazBlue.Editor
                 }
             }
 
-            var usedClips = new HashSet<AnimationClip>();
+            var usedAttackClips = new Dictionary<AnimationClip, string>();
 
             // 1. Normals
             var normalInputs = new[]
@@ -184,7 +184,7 @@ namespace DemonIdol.BlazBlue.Editor
             {
                 movesById.TryGetValue(inp, out var atk);
                 AnimationClip clip = ResolveClip(def, inp, atk, profile, overrideMap);
-                var row = CreateRow(def, inp, key, pad, inp, atk, clip, fallbackName, usedClips);
+                var row = CreateRow(def, inp, key, pad, inp, atk, clip, fallbackName, usedAttackClips, isAttack: true);
                 summary.rows.Add(row);
             }
 
@@ -192,6 +192,7 @@ namespace DemonIdol.BlazBlue.Editor
             var throwInputs = new[]
             {
                 ("BC", "O", "R2", "BC", "Forward Ground Throw"),
+                ("6BC", "D+O", "Forward+R2", "6BC", "Forward Command Throw"),
                 ("4BC", "A+O", "Back+R2", "4BC", "Back Throw"),
                 ("j.BC", "Air+O", "Air+R2", "j.BC", "Air Throw")
             };
@@ -199,12 +200,10 @@ namespace DemonIdol.BlazBlue.Editor
             foreach (var (inp, key, pad, mId, desc) in throwInputs)
             {
                 movesById.TryGetValue(mId, out var atk);
-                if (atk == null && mId == "4BC") movesById.TryGetValue("BC", out atk);
                 AnimationClip clip = ResolveClip(def, mId, atk, profile, overrideMap);
                 if (clip == null && overrideMap.TryGetValue("HumanF@AttackShield01", out var sc)) clip = sc;
                 if (clip == null && overrideMap.TryGetValue("HumanM@AttackShield01", out var sm)) clip = sm;
-                var row = CreateRow(def, inp, key, pad, mId, atk, clip, desc, usedClips);
-                if (mId == "4BC" && row.status == "OK" && atk != null && movesById.ContainsKey("BC")) row.status = "SHARED";
+                var row = CreateRow(def, inp, key, pad, mId, atk, clip, desc, usedAttackClips, isAttack: true);
                 summary.rows.Add(row);
             }
 
@@ -239,7 +238,7 @@ namespace DemonIdol.BlazBlue.Editor
             {
                 movesById.TryGetValue(mId, out var atk);
                 AnimationClip clip = ResolveClip(def, mId, atk, profile, overrideMap);
-                var row = CreateRow(def, inp, key, pad, mId, atk, clip, defName, usedClips);
+                var row = CreateRow(def, inp, key, pad, mId, atk, clip, defName, usedAttackClips, isAttack: true);
                 summary.rows.Add(row);
             }
 
@@ -284,7 +283,7 @@ namespace DemonIdol.BlazBlue.Editor
                 }
 
                 AnimationClip clip = ResolveClip(def, mId, atk, profile, overrideMap);
-                var row = CreateRow(def, inp, key, pad, mId, atk, clip, sName, usedClips);
+                var row = CreateRow(def, inp, key, pad, mId, atk, clip, sName, usedAttackClips, isAttack: false);
                 summary.rows.Add(row);
             }
 
@@ -318,7 +317,7 @@ namespace DemonIdol.BlazBlue.Editor
                 if (overrideMap.TryGetValue(origF, out var cf)) clip = cf;
                 else if (overrideMap.TryGetValue(origM, out var cm)) clip = cm;
 
-                var row = CreateRow(def, inp, key, pad, mId, null, clip, lName, usedClips);
+                var row = CreateRow(def, inp, key, pad, mId, null, clip, lName, usedAttackClips, isAttack: false);
                 summary.rows.Add(row);
             }
 
@@ -330,9 +329,11 @@ namespace DemonIdol.BlazBlue.Editor
                 {
                     case "OK": summary.okCount++; break;
                     case "FALLBACK": summary.fallbackCount++; break;
-                    case "SHARED": summary.sharedCount++; break;
+                    case "SHARED":
+                    case "SHARED-ATTACK": summary.sharedCount++; break;
                     case "MISSING": summary.missingCount++; break;
-                    case "OFF-PACK": summary.offPackCount++; break;
+                    case "OFF-PACK":
+                    case "OFF-PRIMARY": summary.offPackCount++; break;
                     case "PLACEHOLDER": summary.placeholderCount++; break;
                 }
             }
@@ -346,19 +347,19 @@ namespace DemonIdol.BlazBlue.Editor
                 || id == "2A" || id == "2B" || id == "2C" || id == "2D"
                 || id == "6A" || id == "6B" || id == "6C" || id == "3C"
                 || id == "j.A" || id == "j.B" || id == "j.C" || id == "j.D"
-                || id == "BC" || id == "4BC" || id == "j.BC";
+                || id == "BC" || id == "6BC" || id == "4BC" || id == "j.BC";
         }
 
         private static AnimationClip ResolveClip(FighterDef def, string moveId, BBAttackData atk, BBCharacterProfile profile, Dictionary<string, AnimationClip> overrideMap)
         {
-            var sigClip = BBSignatureClipFallback.ClipFor(profile, def.id, moveId);
-            if (sigClip != null) return sigClip;
-
             if (atk != null)
             {
                 if (atk.clip != null) return atk.clip;
                 if (atk.animationClip != null) return atk.animationClip;
             }
+
+            var sigClip = BBSignatureClipFallback.ClipFor(profile, def.id, moveId);
+            if (sigClip != null) return sigClip;
 
             // Normals from overrideMap
             if (moveId == "5A" && (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var a) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out a))) return a;
@@ -377,7 +378,7 @@ namespace DemonIdol.BlazBlue.Editor
                 if (overrideMap.TryGetValue("HumanF@AttackPolearm01", out var c2p) || overrideMap.TryGetValue("HumanM@AttackPolearm01", out c2p)) return c2p;
                 if (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var c2a) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out c2a)) return c2a;
             }
-            if (moveId == "BC" || moveId == "4BC" || moveId == "j.BC")
+            if (moveId == "BC" || moveId == "4BC" || moveId == "j.BC" || moveId == "6BC")
             {
                 if (overrideMap.TryGetValue("HumanF@AttackShield01", out var t) || overrideMap.TryGetValue("HumanM@AttackShield01", out t)) return t;
                 if (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var ta) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out ta)) return ta;
@@ -428,7 +429,8 @@ namespace DemonIdol.BlazBlue.Editor
             BBAttackData atk,
             AnimationClip clip,
             string fallbackName,
-            HashSet<AnimationClip> usedClips)
+            Dictionary<AnimationClip, string> usedAttackClips,
+            bool isAttack)
         {
             int defaultStartup = atk != null ? atk.startupFrames : 0;
             int defaultActive = atk != null ? atk.activeFrames : 0;
@@ -485,24 +487,63 @@ namespace DemonIdol.BlazBlue.Editor
                     bool isHumanPack = (def.primaryPack == "Human Spell Casting Animations" || def.primaryPack == "Human Melee Animations" || def.secondaryPack == "Human Spell Casting Animations" || def.secondaryPack == "Human Melee Animations");
                     bool clipIsHumanPack = (row.sourcePack == "Human Spell Casting Animations" || row.sourcePack == "Human Melee Animations");
 
-                    if (row.sourcePack != def.primaryPack && row.sourcePack != def.secondaryPack && !(isHumanPack && clipIsHumanPack) && !row.sourcePack.Contains("Warrior") && !row.sourcePack.Contains("Martial") && !row.sourcePack.Contains("Fighter"))
+                    bool isOffPack = row.sourcePack != def.primaryPack && row.sourcePack != def.secondaryPack && !(isHumanPack && clipIsHumanPack) && !row.sourcePack.Contains("Warrior") && !row.sourcePack.Contains("Martial") && !row.sourcePack.Contains("Fighter");
+                    bool isSecondaryBorrow = (row.sourcePack == def.secondaryPack);
+
+                    // Check if ground and air versions share the clip (explicitly permitted by spec)
+                    bool isAirGroundPair = (input.StartsWith("j.") && (input == "j.A" || input == "j.B" || input == "j.C" || input == "j.D"));
+
+                    if (isOffPack)
                     {
                         row.status = "OFF-PACK";
                         row.notes = $"Clip source [{row.sourcePack}] is outside fighter's assigned pack [{def.primaryPack}].";
                     }
-                    else if (usedClips.Contains(clip))
+                    else if (isAttack)
                     {
-                        row.status = "SHARED";
-                        row.notes = $"Reuses clip [{clip.name}] shared with another moveset slot.";
+                        if (usedAttackClips.TryGetValue(clip, out var prevInput))
+                        {
+                            string matchingGround = "5" + input.Substring(2);
+                            if (isAirGroundPair && prevInput == matchingGround)
+                            {
+                                row.status = "OK";
+                                row.notes = "Ground/air version pair (permitted by spec).";
+                            }
+                            else
+                            {
+                                row.status = "SHARED-ATTACK";
+                                row.notes = $"Reuses clip [{clip.name}] shared with moveset slot [{prevInput}].";
+                            }
+                        }
+                        else if (isSecondaryBorrow)
+                        {
+                            row.status = "OFF-PRIMARY";
+                            row.notes = $"Borrowed from secondary pack [{def.secondaryPack}] (OFF-PRIMARY).";
+                        }
+                        else
+                        {
+                            row.status = "OK";
+                            row.notes = $"Genuine clip from {row.sourcePack}.";
+                        }
+
+                        if (!usedAttackClips.ContainsKey(clip))
+                        {
+                            usedAttackClips[clip] = input;
+                        }
                     }
                     else
                     {
-                        row.status = "OK";
-                        row.notes = $"Genuine clip from {row.sourcePack}.";
+                        if (isSecondaryBorrow)
+                        {
+                            row.status = "OFF-PRIMARY";
+                            row.notes = $"Borrowed from secondary pack [{def.secondaryPack}] (OFF-PRIMARY).";
+                        }
+                        else
+                        {
+                            row.status = "OK";
+                            row.notes = $"Genuine clip from {row.sourcePack}.";
+                        }
                     }
                 }
-
-                usedClips.Add(clip);
             }
 
             return row;
@@ -591,7 +632,7 @@ namespace DemonIdol.BlazBlue.Editor
             sb.AppendLine("## 2. Roster-Wide Non-OK Moves & Inputs (Grouped by Issue)");
             sb.AppendLine();
 
-            var issues = new[] { "MISSING", "PLACEHOLDER", "OFF-PACK", "SHARED", "FALLBACK" };
+            var issues = new[] { "MISSING", "PLACEHOLDER", "SHARED-ATTACK", "SHARED", "OFF-PRIMARY", "OFF-PACK", "FALLBACK" };
             foreach (var issue in issues)
             {
                 var filtered = allRows.FindAll(r => r.status == issue);

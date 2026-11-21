@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Aika_6BC
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Karate Sweep Throw
+  attackName: Forward Throw
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,8 +24,8 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 7
-  activeFrames: 2
+  startupFrames: 13
+  activeFrames: 3
   recoveryFrames: 24
   hitstunTicks: 30
   blockstunTicks: 0
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
+  animationClip: {fileID: -6844052188305811177, guid: 856648ace9d2a6a4c994614a9ababdb1, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.45, y: 1.1, z: 0}
+  hitboxSize: {x: 0.5, y: 0.6, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 6BC
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 0
   groundOk: 1
-  guard: 0
+  guard: 3
   attribute: 2
   invuln: []
   fatalCounter: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 112f72dd9103d4da698ee897a85e9f0b, type: 2}
   motionTrack: {fileID: 0}
   clipName: Aika_Throw
-  clip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
+  clip: {fileID: -6844052188305811177, guid: 856648ace9d2a6a4c994614a9ababdb1, type: 3}
   clipFirstFrame: 36
   clipLastFrame: 58
   events: []

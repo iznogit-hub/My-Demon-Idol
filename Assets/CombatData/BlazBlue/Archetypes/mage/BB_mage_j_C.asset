@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_mage_j_C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: j.C
+  attackName: Aerial Dual Burst
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 12
-  activeFrames: 4
-  recoveryFrames: 16
+  startupFrames: 31
+  activeFrames: 3
+  recoveryFrames: 62
   hitstunTicks: 16
   blockstunTicks: 12
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 375
+  damage: 880
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 3094330708855449807, guid: 8f2199c73306dcc439cb3d6c3a6b920b, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: afc0d7b05fc184d49a7e863d9eec0f9e, type: 3}
   animationTrigger: AirHeavy
-  hitboxOffset: {x: 0.9, y: 1, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.95, y: 0.75, z: 0}
+  hitboxSize: {x: 0.85, y: 0.55, z: 1}
   cancelWindow: {x: 12, y: 16}
   archetype: 0
   moveId: j.C
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 1
   groundOk: 0
-  guard: 0
+  guard: 2
   attribute: 2
   invuln: []
   fatalCounter: 0
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 76a458e4af8a5a22999ec78f8b96d295, type: 2}
+  boxes: {fileID: 11400000, guid: 8ce524afd30654dadba3f968fecf8f83, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_mage_j_C
-  clip: {fileID: 3094330708855449807, guid: 8f2199c73306dcc439cb3d6c3a6b920b, type: 3}
+  clip: {fileID: 3094330708855449807, guid: afc0d7b05fc184d49a7e863d9eec0f9e, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 38
   events: []

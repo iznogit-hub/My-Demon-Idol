@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_crossbow_236A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 236A
+  attackName: Flurry Rush
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 16
+  startupFrames: 8
   activeFrames: 3
-  recoveryFrames: 16
+  recoveryFrames: 15
   hitstunTicks: 15
   blockstunTicks: 11
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 360
+  damage: 950
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 
   animationClip: {fileID: 7400000, guid: 8de5c91b801a1ed4e8ba5d60ee3c51d8, type: 3}
   animationTrigger: DriveSkill
-  hitboxOffset: {x: 1.15, y: 0.92, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.7, y: 1.2, z: 0}
+  hitboxSize: {x: 0.8, y: 0.5, z: 1}
   cancelWindow: {x: 16, y: 19}
   archetype: 0
   moveId: 236A
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 1
   airOk: 0
   groundOk: 1
-  guard: 1
+  guard: 0
   attribute: 4
   invuln: []
   fatalCounter: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 654164ee076d5e448680722fc1d3047b, type: 2}
+  boxes: {fileID: 11400000, guid: 3867b203b71db4beab4e436eecd635ce, type: 2}
   motionTrack: {fileID: 0}
   clipName: Attack1
   clip: {fileID: 7400000, guid: 8de5c91b801a1ed4e8ba5d60ee3c51d8, type: 3}

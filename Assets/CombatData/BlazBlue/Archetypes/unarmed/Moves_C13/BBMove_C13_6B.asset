@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_C13_6B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 6B
+  attackName: Void Orb
   attackType: 0
   hitLevel: 1
   guardRequirement: 2
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 8
+  startupFrames: 23
   activeFrames: 3
-  recoveryFrames: 8
+  recoveryFrames: 46
   hitstunTicks: 15
   blockstunTicks: 11
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 294
+  damage: 700
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 3094330708855449807, guid: 11465aac7c22a75458afa08d7ee99e6a, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: c817d2bc0a7ac96498d32fa36a62bd88, type: 3}
   animationTrigger: OverheadAttack
-  hitboxOffset: {x: 0.55, y: 0.92, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.85, y: 1.3, z: 0}
+  hitboxSize: {x: 0.75, y: 0.55, z: 1}
   cancelWindow: {x: 8, y: 11}
   archetype: 0
   moveId: 6B
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 0
   groundOk: 1
-  guard: 2
+  guard: 0
   attribute: 2
   invuln: []
   fatalCounter: 0
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 026f94146ad45e3697293cd63767a754, type: 2}
+  boxes: {fileID: 11400000, guid: d5bd00916424149a189bccfb54d36884, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_unarmed_6B
-  clip: {fileID: 3094330708855449807, guid: 11465aac7c22a75458afa08d7ee99e6a, type: 3}
+  clip: {fileID: 3094330708855449807, guid: c817d2bc0a7ac96498d32fa36a62bd88, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 38
   events: []

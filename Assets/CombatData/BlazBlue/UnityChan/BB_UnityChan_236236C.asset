@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_UnityChan_236236C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Aero Flurry
+  attackName: Super Combo
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -25,8 +25,8 @@ MonoBehaviour:
   protectionStartTick: 5
   protectionEndTick: 12
   startupFrames: 14
-  activeFrames: 8
-  recoveryFrames: 20
+  activeFrames: 3
+  recoveryFrames: 27
   hitstunTicks: 40
   blockstunTicks: 25
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -12
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 2400
+  damage: 2500
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: 8de5c91b801a1ed4e8ba5d60ee3c51d8, type: 3}
+  animationClip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.8, y: 1.25, z: 0}
+  hitboxSize: {x: 0.9, y: 0.65, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 236236C
@@ -98,7 +98,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 8df42347096074d23a4986844943927a, type: 2}
   motionTrack: {fileID: 0}
   clipName: UChan_Super
-  clip: {fileID: 7400000, guid: 8de5c91b801a1ed4e8ba5d60ee3c51d8, type: 3}
+  clip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 811
   clipLastFrame: 845
   events: []

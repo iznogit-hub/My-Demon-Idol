@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_SanpakuChan_6B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Instant Hop Overhead
+  attackName: Lunging Elbow
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 16
+  startupFrames: 8
   activeFrames: 3
-  recoveryFrames: 14
+  recoveryFrames: 13
   hitstunTicks: 18
   blockstunTicks: 14
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -4
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 600
+  damage: 700
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: 84737158b8acdfd46a09c0013aadaca7, type: 3}
+  animationClip: {fileID: -5688743124508784422, guid: 530d2e18a17d67f46954ba13359771f0, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.65, y: 1.25, z: 0}
+  hitboxSize: {x: 0.65, y: 0.5, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 6B
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 0
   groundOk: 1
-  guard: 2
+  guard: 0
   attribute: 2
   invuln: []
   fatalCounter: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 62787a17162774b82aa84e852430313a, type: 2}
   motionTrack: {fileID: 0}
   clipName: Sanpaku_6B
-  clip: {fileID: 7400000, guid: 84737158b8acdfd46a09c0013aadaca7, type: 3}
+  clip: {fileID: -5688743124508784422, guid: 530d2e18a17d67f46954ba13359771f0, type: 3}
   clipFirstFrame: 10
   clipLastFrame: 26
   events: []

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Fina_3C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Rising Kick Launcher
+  attackName: Rising Launcher
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 9
-  activeFrames: 4
-  recoveryFrames: 16
+  startupFrames: 32
+  activeFrames: 3
+  recoveryFrames: 65
   hitstunTicks: 28
   blockstunTicks: 15
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -8
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 720
+  damage: 800
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
+  animationClip: {fileID: 8731120772228546310, guid: d0e421e647be9d049b57aa57cb216a9f, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.55, y: 1.4, z: 0}
+  hitboxSize: {x: 0.6, y: 0.7, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 3C
@@ -98,7 +98,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 8132fb228ca6f4055b65642f9a0f8f75, type: 2}
   motionTrack: {fileID: 0}
   clipName: Fina_3C
-  clip: {fileID: 7400000, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
+  clip: {fileID: 8731120772228546310, guid: d0e421e647be9d049b57aa57cb216a9f, type: 3}
   clipFirstFrame: 120
   clipLastFrame: 145
   events: []

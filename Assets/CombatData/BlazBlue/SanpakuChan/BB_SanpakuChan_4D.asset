@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_SanpakuChan_4D
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Crow Step (Back)
+  attackName: Back Drive
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 10
-  activeFrames: 1
-  recoveryFrames: 12
+  startupFrames: 16
+  activeFrames: 3
+  recoveryFrames: 31
   hitstunTicks: 0
   blockstunTicks: 0
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: 0
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 0
+  damage: 800
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: 84737158b8acdfd46a09c0013aadaca7, type: 3}
+  animationClip: {fileID: 6769801902334409569, guid: eac2bc49ba9b7264b8097df108027519, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.75, y: 1.2, z: 0}
+  hitboxSize: {x: 0.75, y: 0.5, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 4D
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 574da5beac5a14493953025d6d028811, type: 2}
   motionTrack: {fileID: 0}
   clipName: Sanpaku_4D
-  clip: {fileID: 7400000, guid: 84737158b8acdfd46a09c0013aadaca7, type: 3}
+  clip: {fileID: 6769801902334409569, guid: eac2bc49ba9b7264b8097df108027519, type: 3}
   clipFirstFrame: 30
   clipLastFrame: 44
   events: []

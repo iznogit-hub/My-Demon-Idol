@@ -38,16 +38,16 @@ namespace DemonIdol.BlazBlue
             switch (characterId)
             {
                 case "C01": signature = Make("Iron Rush", "236A", "236236C", 1.05f, 0, 0.90f, 2, "MA Atk P 1"); break;
-                case "C02": signature = Make("Resonance Nail", "236A", "236236C", 0.95f, -1, 1.05f, 1, "MA Atk K 3"); break;
+                case "C02": signature = Make("Resonance Nail", "236B", "236236C", 0.95f, -1, 1.05f, 1, "MA Atk K 3"); break;
                 case "C04": signature = Make("Aero Hop", "236A", "236236C", 0.90f, -1, 1.25f, 1, "MA Atk K 2"); break;
                 case "C05": signature = Make("Echoing Mandate", "214A", "236236C", 0.92f, 1, 1.20f, 2, "Spearman Attack1"); break;
-                case "C06": signature = Make("Cursed Veil", "236A", "236236C", 1.10f, 2, 0.95f, 3, "KI Magic Omni"); break;
-                case "C07": signature = Make("Star Field", "22C", "236236C", 1.00f, 0, 1.10f, 3, "KI Magic Direct 1H L"); break;
-                case "C08": signature = Make("Sanpaku Cross", "623B", "236236C", 1.08f, 0, 0.80f, 2, "Ninja Attack1"); break;
-                case "C09": signature = Make("Cyber Clinch", "623B", "236236C", 1.20f, 2, 1.15f, 4, "Heavy Punch"); break;
-                case "C10": signature = Make("Veil Riposte", "214A", "236236C", 1.00f, 1, 0.85f, 2, "Knight shield"); break;
+                case "C06": signature = Make("Cursed Veil", "236B", "236236C", 1.10f, 2, 0.95f, 3, "KI Magic Omni"); break;
+                case "C07": signature = Make("Star Field", "236A", "236236C", 1.00f, 0, 1.10f, 3, "KI Magic Direct 1H L"); break;
+                case "C08": signature = Make("Sanpaku Cross", "236A", "236236B", 1.08f, 0, 0.80f, 2, "Ninja Attack1"); break;
+                case "C09": signature = Make("Cyber Clinch", "623C", "236236B", 1.20f, 2, 1.15f, 4, "Heavy Punch"); break;
+                case "C10": signature = Make("Veil Riposte", "236B", "236236C", 1.00f, 1, 0.85f, 2, "Knight shield"); break;
                 case "C11": signature = Make("Casual Draw", "236A", "22C", 0.88f, 0, 1.18f, 1, "Female Punch"); break;
-                case "C12": signature = Make("Hero Cleave", "623B", "236236C", 1.15f, 1, 1.08f, 4, "MA Atk K 1"); break;
+                case "C12": signature = Make("Hero Cleave", "623C", "236236C", 1.15f, 1, 1.08f, 4, "MA Atk K 1"); break;
                 case "C13": signature = Make("Idol Beat", "22C", "214A", 0.84f, -1, 0.70f, 1, "KI spellcast bubble"); break;
                 case "C14": signature = Make("Shrine Slash", "214A", "623B", 1.25f, 2, 1.12f, 5, "2Handed Attack1"); break;
                 case "SK02": signature = Make("Aegis", "623B", "236236C", 1.02f, 2, 0.88f, 3, "Knight Attack1"); break;

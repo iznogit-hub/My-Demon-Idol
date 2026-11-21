@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_SK06_5C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 5C
+  attackName: Mighty Slash
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 16
-  activeFrames: 5
-  recoveryFrames: 18
+  startupFrames: 19
+  activeFrames: 3
+  recoveryFrames: 38
   hitstunTicks: 17
   blockstunTicks: 13
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 648
+  damage: 900
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  animationClip: {fileID: 3060872287085348379, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   animationTrigger: HeavyAttack
-  hitboxOffset: {x: 1.05, y: 1, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.85, y: 1.15, z: 0}
+  hitboxSize: {x: 0.85, y: 0.55, z: 1}
   cancelWindow: {x: 16, y: 21}
   archetype: 0
   moveId: 5C
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 6dde153ce1bf52389c5907c09bba8942, type: 2}
+  boxes: {fileID: 11400000, guid: e677cf5c53f284a8dbdb1c8f8c006171, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_twohand_5C
-  clip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  clip: {fileID: 3060872287085348379, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 27
   events: []

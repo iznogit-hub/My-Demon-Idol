@@ -59,12 +59,11 @@ namespace DemonIdol.BlazBlue.Tests
     [InitializeOnLoad]
     public static class ClassicMatchRecorder
     {
-        // Auto-run test suites on compilation
         public const string GOLDEN_DIR = "Assets/Scripts/BlazBlue/Tests/Golden";
 
         static ClassicMatchRecorder()
         {
-            CheckAndRecord();
+            // Do not auto-run tests and re-generate assets on every domain reload
         }
 
         private static void CheckAndRecord()

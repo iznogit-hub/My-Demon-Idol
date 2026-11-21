@@ -195,6 +195,8 @@ namespace DemonIdol.BlazBlue.Editor
 
         public static AnimationClip FindClip(string fbxTake, string clipName)
         {
+            var masterClip = BBWarriorMasterRemapper.GetClipForFighterMove("C09", clipName);
+            if (masterClip != null) return masterClip;
             // Approved pack: Heavy Fighter FREE
             string fbxPath = fbxTake.StartsWith("Assets/") ? fbxTake : "Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Heavy Fighter Mecanim Animation Pack FREE/Animations/Heavy@Punch.FBX";
             var assets = AssetDatabase.LoadAllAssetsAtPath(fbxPath);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_mage_2B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 2B
+  attackName: Ground Rift
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 11
-  activeFrames: 4
-  recoveryFrames: 16
+  startupFrames: 18
+  activeFrames: 3
+  recoveryFrames: 35
   hitstunTicks: 16
   blockstunTicks: 12
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 270
+  damage: 550
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 3094330708855449807, guid: b98582042c1292a4e81193a2e417a4d2, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 8d26d2134d6483544803dba1a2b66a11, type: 3}
   animationTrigger: LowAttack
-  hitboxOffset: {x: 0.9, y: 1, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.75, y: 0.3, z: 0}
+  hitboxSize: {x: 0.7, y: 0.4, z: 1}
   cancelWindow: {x: 11, y: 15}
   archetype: 0
   moveId: 2B
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 79bb47f057c45218ad4c6a2112fe7f35, type: 2}
+  boxes: {fileID: 11400000, guid: c9831bdbf494043859b776762671370f, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_mage_2B
-  clip: {fileID: 3094330708855449807, guid: b98582042c1292a4e81193a2e417a4d2, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 8d26d2134d6483544803dba1a2b66a11, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 38
   events: []

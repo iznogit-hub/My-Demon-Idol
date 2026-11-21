@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_EX04_2D
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 2D
+  attackName: Crouch Drive
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 7
+  startupFrames: 16
   activeFrames: 3
-  recoveryFrames: 8
+  recoveryFrames: 31
   hitstunTicks: 15
   blockstunTicks: 11
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 266
+  damage: 800
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,15 +54,15 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: 6769801902334409569, guid: eac2bc49ba9b7264b8097df108027519, type: 3}
   animationTrigger: DriveSkill
-  hitboxOffset: {x: 0.55, y: 0.92, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.7, y: 0.3, z: 0}
+  hitboxSize: {x: 0.75, y: 0.45, z: 1}
   cancelWindow: {x: 7, y: 10}
   archetype: 0
   moveId: 2D
   button: 8
-  kind: 3
+  kind: 0
   motion: 0
   airOk: 0
   groundOk: 1
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 9cc607031d945402b7f10e8374224723, type: 2}
+  boxes: {fileID: 11400000, guid: 4632b0e41a901448791b81dec93b6892, type: 2}
   motionTrack: {fileID: 0}
   clipName: Attack1
-  clip: {fileID: 7400000, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clip: {fileID: 6769801902334409569, guid: eac2bc49ba9b7264b8097df108027519, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 27
   events: []

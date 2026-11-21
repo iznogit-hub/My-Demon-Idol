@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_EX04_5B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 5B
+  attackName: Straight Punch
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 7
+  startupFrames: 12
   activeFrames: 3
-  recoveryFrames: 8
+  recoveryFrames: 23
   hitstunTicks: 15
   blockstunTicks: 11
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 280
+  damage: 600
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
+  animationClip: {fileID: -3119484255079415707, guid: 023c0ac4fb3503c4391f65943ceda058, type: 3}
   animationTrigger: MediumAttack
-  hitboxOffset: {x: 0.55, y: 0.92, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.65, y: 1.2, z: 0}
+  hitboxSize: {x: 0.6, y: 0.4, z: 1}
   cancelWindow: {x: 7, y: 10}
   archetype: 0
   moveId: 5B
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: d8513b4d11fc50f7a7a82c2ae6690bec, type: 2}
+  boxes: {fileID: 11400000, guid: 1f52e8cce3d044262996c009f918b2fb, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_unarmed_5B
-  clip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
+  clip: {fileID: -3119484255079415707, guid: 023c0ac4fb3503c4391f65943ceda058, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 12
   events: []

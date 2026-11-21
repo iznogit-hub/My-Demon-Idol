@@ -194,6 +194,8 @@ namespace DemonIdol.BlazBlue.Editor
 
         public static AnimationClip FindClip(string fbxTake, string clipName)
         {
+            var masterClip = BBWarriorMasterRemapper.GetClipForFighterMove("C12", clipName);
+            if (masterClip != null) return masterClip;
             string fbxPath;
             if (fbxTake == "KevinIglesias_Direct1H")
             {

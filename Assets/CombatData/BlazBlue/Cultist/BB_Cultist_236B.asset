@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Cultist_236B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Void Skull Shot
+  attackName: Sorcery Burst
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 13
+  startupFrames: 17
   activeFrames: 3
-  recoveryFrames: 18
+  recoveryFrames: 32
   hitstunTicks: 19
   blockstunTicks: 14
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -3
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 550
+  damage: 1100
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
+  animationClip: {fileID: 1827226128182048838, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.95, y: 1.25, z: 0}
+  hitboxSize: {x: 1, y: 0.6, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 236B
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: ca9b7a76ca4c94f0cbee93a233bcb423, type: 2}
   motionTrack: {fileID: 0}
   clipName: Cultist_236B
-  clip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
+  clip: {fileID: 1827226128182048838, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
   clipFirstFrame: 180
   clipLastFrame: 210
   events: []

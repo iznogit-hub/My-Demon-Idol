@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 13
-  activeFrames: 1
-  recoveryFrames: 18
+  startupFrames: 14
+  activeFrames: 3
+  recoveryFrames: 27
   hitstunTicks: 18
   blockstunTicks: 15
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -3
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 550
+  damage: 850
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
+  animationClip: {fileID: -1965278401889439510, guid: 41c671c664a454d42a876d6a1b7ae937, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.8, y: 1.1, z: 0}
+  hitboxSize: {x: 0.75, y: 0.55, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 5D
@@ -97,7 +97,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: fcefb95adff4e472e9b36283f47975c4, type: 2}
   motionTrack: {fileID: 0}
   clipName: Aika_5D
-  clip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
+  clip: {fileID: -1965278401889439510, guid: 41c671c664a454d42a876d6a1b7ae937, type: 3}
   clipFirstFrame: 40
   clipLastFrame: 60
   events: []

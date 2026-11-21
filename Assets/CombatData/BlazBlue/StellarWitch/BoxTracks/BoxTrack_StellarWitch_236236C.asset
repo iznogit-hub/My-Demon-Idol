@@ -12,1896 +12,480 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BoxTrack_StellarWitch_236236C
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 76
-  frameStart: 00000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000f00000013000000170000001b0000001f00000023000000270000002b0000002f00000033000000370000003b0000003f00000043000000470000004b0000004f00000053000000570000005b0000005f00000063000000670000006b0000006f00000073000000770000007b0000007f0000008300000086000000890000008c0000008f0000009200000095000000980000009b0000009e000000a1000000a4000000a7000000aa000000ad000000b0000000b3000000b6000000b9000000bc000000bf000000c2000000c5000000c8000000cb000000ce000000d1000000d4000000d7000000da000000dd000000e0000000e3000000e6000000e9000000ec000000i
+  tickCount: 56
+  frameStart: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000140000001600000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b000000i
   boxes:
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
     kind: 0
     hitIndex: 0
-    attribute: 4
+    attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
+  - cx: 0
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 1
+    cy: 1.25
+    hx: 0.65
+    hy: 0.65
     kind: 1
     hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
+  - cx: 1
+    cy: 1.25
+    hx: 0.65
+    hy: 0.65
     kind: 1
     hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
+  - cx: 1
+    cy: 1.25
+    hx: 0.65
+    hy: 0.65
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
   - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
+    cy: 0.85
+    hx: 0.25
+    hy: 0.85
+    kind: 0
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 2.8
-    cy: 0.95
-    hx: 4.5
-    hy: 1.2
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0
     cy: 0.85
-    hx: 0.54
-    hy: 1.25
+    hx: 0.25
+    hy: 0.85
     kind: 0
     hitIndex: 0
     attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
-    flags: 0
-  - cx: 0
-    cy: 0.75
-    hx: 0.56
-    hy: 1.5
-    kind: 2
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.54
-    hy: 1.25
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.25
-    hx: 0.48
-    hy: 0.5
-    kind: 0
-    hitIndex: 0
-    attribute: 4
     flags: 0
   keyTicks: 
   bakeHash: Bake_StellarWitch_236236C_11_30_35

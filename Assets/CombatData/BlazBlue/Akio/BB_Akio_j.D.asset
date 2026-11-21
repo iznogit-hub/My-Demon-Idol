@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Akio_j.D
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Dive Punch
+  attackName: Jumping Drive
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 10
-  activeFrames: 4
-  recoveryFrames: 12
+  startupFrames: 28
+  activeFrames: 3
+  recoveryFrames: 57
   hitstunTicks: 22
   blockstunTicks: 14
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: 0
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 650
+  damage: 850
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,15 +54,15 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
+  animationClip: {fileID: -7717323663351677407, guid: 036e616ba2a20464cb5d9c8f24cefde6, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.75, y: 0.75, z: 0}
+  hitboxSize: {x: 0.75, y: 0.55, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: j.D
   button: 8
-  kind: 3
+  kind: 0
   motion: 0
   airOk: 1
   groundOk: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: d81dfa7c0e288450b833ef02f32bee26, type: 2}
   motionTrack: {fileID: 0}
   clipName: Akio_jD
-  clip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
+  clip: {fileID: -7717323663351677407, guid: 036e616ba2a20464cb5d9c8f24cefde6, type: 3}
   clipFirstFrame: 60
   clipLastFrame: 80
   events: []

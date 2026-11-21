@@ -24,8 +24,8 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 7
-  activeFrames: 2
+  startupFrames: 13
+  activeFrames: 3
   recoveryFrames: 24
   hitstunTicks: 30
   blockstunTicks: 0
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
+  animationClip: {fileID: 7432994204363946627, guid: 6272bb48c1ac5e14da58bb4402c9e46f, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.45, y: 1.1, z: 0}
+  hitboxSize: {x: 0.5, y: 0.6, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 4BC
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 0
   groundOk: 1
-  guard: 0
+  guard: 3
   attribute: 2
   invuln: []
   fatalCounter: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: b5050a45c45d045da8effbc66cb33226, type: 2}
   motionTrack: {fileID: 0}
   clipName: Akio_Throw
-  clip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
+  clip: {fileID: 7432994204363946627, guid: 6272bb48c1ac5e14da58bb4402c9e46f, type: 3}
   clipFirstFrame: 26
   clipLastFrame: 48
   events: []

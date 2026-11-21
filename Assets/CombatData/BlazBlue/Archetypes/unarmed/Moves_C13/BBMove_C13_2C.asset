@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_C13_2C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 2C
+  attackName: Abyssal Geyser
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 8
+  startupFrames: 19
   activeFrames: 3
-  recoveryFrames: 8
+  recoveryFrames: 36
   hitstunTicks: 15
   blockstunTicks: 11
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 336
+  damage: 750
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 3094330708855449807, guid: 6ce5c8cc7157f2542b78acd83e609475, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 72b86c822a91b5c4da93cfdd8382c30e, type: 3}
   animationTrigger: LowSweepAttack
-  hitboxOffset: {x: 0.55, y: 0.92, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.85, y: 0.3, z: 0}
+  hitboxSize: {x: 0.8, y: 0.45, z: 1}
   cancelWindow: {x: 8, y: 11}
   archetype: 0
   moveId: 2C
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 69198d4b52305d129494de3d868166bb, type: 2}
+  boxes: {fileID: 11400000, guid: 2dba8b8d0b6c944958d9018b45417573, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_unarmed_2C
-  clip: {fileID: 3094330708855449807, guid: 6ce5c8cc7157f2542b78acd83e609475, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 72b86c822a91b5c4da93cfdd8382c30e, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 38
   events: []

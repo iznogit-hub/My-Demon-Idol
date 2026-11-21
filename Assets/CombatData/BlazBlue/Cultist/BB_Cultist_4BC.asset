@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Cultist_4BC
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Back Void Rift Throw
+  attackName: Back Throw
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 7
-  activeFrames: 2
-  recoveryFrames: 24
+  startupFrames: 21
+  activeFrames: 3
+  recoveryFrames: 42
   hitstunTicks: 25
   blockstunTicks: 0
   knockdownDurationTicks: 36
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: ef751e951ed91ed4fbc94d82726c9eed, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.45, y: 1.1, z: 0}
+  hitboxSize: {x: 0.5, y: 0.6, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 4BC
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 0
   groundOk: 1
-  guard: 0
+  guard: 3
   attribute: 2
   invuln: []
   fatalCounter: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 3ba3266b2f01846a790bfc40e2310e2f, type: 2}
   motionTrack: {fileID: 0}
   clipName: Cultist_Throw
-  clip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
+  clip: {fileID: 3094330708855449807, guid: ef751e951ed91ed4fbc94d82726c9eed, type: 3}
   clipFirstFrame: 260
   clipLastFrame: 285
   events: []

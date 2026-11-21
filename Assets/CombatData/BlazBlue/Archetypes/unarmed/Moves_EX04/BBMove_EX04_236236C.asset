@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_EX04_236236C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 236236C
+  attackName: Acrobatic Storm
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 13
+  startupFrames: 14
   activeFrames: 3
-  recoveryFrames: 8
+  recoveryFrames: 27
   hitstunTicks: 15
   blockstunTicks: 11
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 672
+  damage: 2500
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: DomainSuper
-  hitboxOffset: {x: 0.55, y: 0.92, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.8, y: 1.25, z: 0}
+  hitboxSize: {x: 0.9, y: 0.65, z: 1}
   cancelWindow: {x: 13, y: 16}
   archetype: 0
   moveId: 236236C
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 7
   airOk: 0
   groundOk: 1
-  guard: 1
+  guard: 0
   attribute: 4
   invuln: []
   fatalCounter: 0
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 720ff9bd432457aca67f6cc2b43637ec, type: 2}
+  boxes: {fileID: 11400000, guid: ae7bd1e91a2044298880a1c90b30e9f9, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_unarmed_236236C
-  clip: {fileID: 7400000, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 27
   events: []

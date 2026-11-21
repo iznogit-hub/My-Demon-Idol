@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_archer_5A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 5A
+  attackName: Quick Strike
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 11
+  startupFrames: 15
   activeFrames: 3
-  recoveryFrames: 16
+  recoveryFrames: 30
   hitstunTicks: 15
   blockstunTicks: 11
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 196
+  damage: 300
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 8ca4ee804edcfc74cb82e44d624e7eca, type: 3}
+  animationClip: {fileID: 1827226128182048838, guid: 8ca4ee804edcfc74cb82e44d624e7eca, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 1.2, y: 0.92, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.65, y: 1.25, z: 0}
+  hitboxSize: {x: 0.6, y: 0.4, z: 1}
   cancelWindow: {x: 11, y: 14}
   archetype: 0
   moveId: 5A
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: e8b61a00c01e5ecbac3775e41420bc3f, type: 2}
+  boxes: {fileID: 11400000, guid: 48e69de8f609f4b9180106ce9e0ebba2, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_archer_5A
-  clip: {fileID: 7400000, guid: 8ca4ee804edcfc74cb82e44d624e7eca, type: 3}
+  clip: {fileID: 1827226128182048838, guid: 8ca4ee804edcfc74cb82e44d624e7eca, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 24
   events: []

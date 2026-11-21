@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_PicoChan_2A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Body Hook
+  attackName: Male Punch
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 6
+  startupFrames: 10
   activeFrames: 3
-  recoveryFrames: 11
+  recoveryFrames: 19
   hitstunTicks: 12
   blockstunTicks: 12
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 340
+  damage: 280
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: 27a6a9f585a42884db1c7631777bc9bd, type: 3}
+  animationClip: {fileID: 7400000, guid: 635d947060dd41649bbcfe7bc1ebb900, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.5, y: 0.4, z: 0}
+  hitboxSize: {x: 0.5, y: 0.35, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 2A
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 0
   groundOk: 1
-  guard: 0
+  guard: 1
   attribute: 2
   invuln: []
   fatalCounter: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 2112cd96cc96047129007f364194c2f5, type: 2}
   motionTrack: {fileID: 0}
   clipName: Pico_2A
-  clip: {fileID: 7400000, guid: 27a6a9f585a42884db1c7631777bc9bd, type: 3}
+  clip: {fileID: 7400000, guid: 635d947060dd41649bbcfe7bc1ebb900, type: 3}
   clipFirstFrame: 376
   clipLastFrame: 394
   events: []

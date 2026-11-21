@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_C05_2A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 2A
+  attackName: Low Poke
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 9
+  startupFrames: 21
   activeFrames: 3
-  recoveryFrames: 14
+  recoveryFrames: 42
   hitstunTicks: 15
   blockstunTicks: 11
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 221
+  damage: 280
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 408142c06e2d48c4db8065d1fbbcc8eb, type: 3}
   animationTrigger: LowAttack
-  hitboxOffset: {x: 1.15, y: 0.95, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.6, y: 0.35, z: 0}
+  hitboxSize: {x: 0.55, y: 0.35, z: 1}
   cancelWindow: {x: 9, y: 12}
   archetype: 0
   moveId: 2A
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 3685e47136d65230877c86617c25e11e, type: 2}
+  boxes: {fileID: 11400000, guid: 09a4b8830bf1b4efbad4345a0ad95e41, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_spear_2A
-  clip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 408142c06e2d48c4db8065d1fbbcc8eb, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 27
   events: []

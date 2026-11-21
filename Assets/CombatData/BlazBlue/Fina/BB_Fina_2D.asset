@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Fina_2D
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Low Plasma Shot
+  attackName: Crouch Drive
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 12
-  activeFrames: 2
-  recoveryFrames: 18
+  startupFrames: 16
+  activeFrames: 3
+  recoveryFrames: 31
   hitstunTicks: 18
   blockstunTicks: 14
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -4
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 460
+  damage: 800
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
+  animationClip: {fileID: 6769801902334409569, guid: eac2bc49ba9b7264b8097df108027519, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.7, y: 0.3, z: 0}
+  hitboxSize: {x: 0.75, y: 0.45, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 2D
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 0b0a1adeb17f64432b159c2636f6ebc8, type: 2}
   motionTrack: {fileID: 0}
   clipName: Fina_2D
-  clip: {fileID: 7400000, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
+  clip: {fileID: 6769801902334409569, guid: eac2bc49ba9b7264b8097df108027519, type: 3}
   clipFirstFrame: 40
   clipLastFrame: 62
   events: []

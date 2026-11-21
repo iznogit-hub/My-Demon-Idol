@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_mage_236236C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 236236C
+  attackName: Final Cataclysm
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 18
-  activeFrames: 4
-  recoveryFrames: 16
+  startupFrames: 25
+  activeFrames: 3
+  recoveryFrames: 50
   hitstunTicks: 16
   blockstunTicks: 12
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 720
+  damage: 2500
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: f933ebfa1a6efc94fada1443b124ad3b, type: 3}
   animationTrigger: DomainSuper
-  hitboxOffset: {x: 0.9, y: 1, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 1, y: 1.25, z: 0}
+  hitboxSize: {x: 1.3, y: 1.3, z: 1}
   cancelWindow: {x: 18, y: 22}
   archetype: 0
   moveId: 236236C
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 7
   airOk: 0
   groundOk: 1
-  guard: 1
+  guard: 0
   attribute: 4
   invuln: []
   fatalCounter: 0
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 05ea52fc6bbb5a0290445195585a12f8, type: 2}
+  boxes: {fileID: 11400000, guid: 1bd4ec30368f046989e76e0d40c682fd, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_mage_236236C
-  clip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
+  clip: {fileID: 3094330708855449807, guid: f933ebfa1a6efc94fada1443b124ad3b, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 32
   events: []

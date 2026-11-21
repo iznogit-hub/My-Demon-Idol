@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_EX01_5D
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 5D
+  attackName: Warrior Drive
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 15
-  activeFrames: 5
-  recoveryFrames: 18
+  startupFrames: 26
+  activeFrames: 3
+  recoveryFrames: 53
   hitstunTicks: 17
   blockstunTicks: 13
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 550
+  damage: 850
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,15 +54,15 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
   animationTrigger: DriveSkill
-  hitboxOffset: {x: 0.95, y: 1.05, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.9, y: 1.1, z: 0}
+  hitboxSize: {x: 0.95, y: 0.55, z: 1}
   cancelWindow: {x: 15, y: 20}
   archetype: 0
   moveId: 5D
   button: 8
-  kind: 3
+  kind: 0
   motion: 0
   airOk: 0
   groundOk: 1
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 982c266fa6b9520385290b8b86440495, type: 2}
+  boxes: {fileID: 11400000, guid: 68b0b951c7ae5412ba7a21969ecfed38, type: 2}
   motionTrack: {fileID: 0}
   clipName: Attack1
-  clip: {fileID: 7400000, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 36
   events: []

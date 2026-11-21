@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_sword_2C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 2C
+  attackName: Ground Cleave
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 10
-  activeFrames: 4
-  recoveryFrames: 12
+  startupFrames: 31
+  activeFrames: 3
+  recoveryFrames: 62
   hitstunTicks: 16
   blockstunTicks: 12
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 408
+  damage: 750
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
   animationTrigger: LowSweepAttack
-  hitboxOffset: {x: 0.85, y: 0.95, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.8, y: 0.3, z: 0}
+  hitboxSize: {x: 0.75, y: 0.45, z: 1}
   cancelWindow: {x: 10, y: 14}
   archetype: 0
   moveId: 2C
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: a4312a086c105c26aebe2e7642bbfb07, type: 2}
+  boxes: {fileID: 11400000, guid: ce04baf13d06d414ba7507f65115ab41, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_sword_2C
-  clip: {fileID: 7400000, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 26
   events: []

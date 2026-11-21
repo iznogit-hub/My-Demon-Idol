@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_EX02_236A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 236A
+  attackName: Advancing Flurry
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 18
-  activeFrames: 5
-  recoveryFrames: 20
+  startupFrames: 16
+  activeFrames: 3
+  recoveryFrames: 31
   hitstunTicks: 17
   blockstunTicks: 13
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 624
+  damage: 950
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
+  animationClip: {fileID: 1827226128182048838, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
   animationTrigger: DriveSkill
-  hitboxOffset: {x: 1.1, y: 1.1, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.85, y: 1.25, z: 0}
+  hitboxSize: {x: 0.9, y: 0.55, z: 1}
   cancelWindow: {x: 18, y: 23}
   archetype: 0
   moveId: 236A
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 1
   airOk: 0
   groundOk: 1
-  guard: 1
+  guard: 0
   attribute: 4
   invuln: []
   fatalCounter: 0
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 27f939a2d25f5ad9ab47af84f3e76d4e, type: 2}
+  boxes: {fileID: 11400000, guid: b827e726e026e40dc97b735dac5b969d, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_hammer_236A
-  clip: {fileID: 7400000, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
+  clip: {fileID: 1827226128182048838, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 36
   events: []

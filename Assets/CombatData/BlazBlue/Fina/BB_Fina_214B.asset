@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Fina_214B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Advancing Stepping Kick
+  attackName: Male Punch
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -25,8 +25,8 @@ MonoBehaviour:
   protectionStartTick: 5
   protectionEndTick: 12
   startupFrames: 10
-  activeFrames: 4
-  recoveryFrames: 15
+  activeFrames: 3
+  recoveryFrames: 19
   hitstunTicks: 18
   blockstunTicks: 14
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -5
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 760
+  damage: 1050
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
+  animationClip: {fileID: 7400000, guid: 635d947060dd41649bbcfe7bc1ebb900, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.7, y: 1.2, z: 0}
+  hitboxSize: {x: 0.8, y: 0.5, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 214B
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 5cb559db980204b9a837996b2e58dac3, type: 2}
   motionTrack: {fileID: 0}
   clipName: Fina_214B
-  clip: {fileID: 7400000, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
+  clip: {fileID: 7400000, guid: 635d947060dd41649bbcfe7bc1ebb900, type: 3}
   clipFirstFrame: 50
   clipLastFrame: 75
   events: []

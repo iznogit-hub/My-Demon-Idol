@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_sorceress_5D
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: 5D
+  attackName: Drive Nova
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 11
-  activeFrames: 4
-  recoveryFrames: 15
+  startupFrames: 30
+  activeFrames: 3
+  recoveryFrames: 61
   hitstunTicks: 16
   blockstunTicks: 12
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 341
+  damage: 850
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,15 +54,15 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 6ce5c8cc7157f2542b78acd83e609475, type: 3}
   animationTrigger: DriveSkill
-  hitboxOffset: {x: 0.9, y: 0.94, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.9, y: 1.1, z: 0}
+  hitboxSize: {x: 1.1, y: 1.1, z: 1}
   cancelWindow: {x: 11, y: 15}
   archetype: 0
   moveId: 5D
   button: 8
-  kind: 3
+  kind: 0
   motion: 0
   airOk: 0
   groundOk: 1
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 9c3c890d662e52d5923566a71029ec4b, type: 2}
+  boxes: {fileID: 11400000, guid: c70606579f8b24eda8c85e2bd59b677e, type: 2}
   motionTrack: {fileID: 0}
   clipName: Attack1
-  clip: {fileID: 7400000, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 6ce5c8cc7157f2542b78acd83e609475, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 32
   events: []

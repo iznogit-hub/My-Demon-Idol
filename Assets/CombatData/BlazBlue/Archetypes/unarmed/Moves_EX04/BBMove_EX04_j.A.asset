@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_EX04_j.A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: j.A
+  attackName: Jumping Light
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 5
+  startupFrames: 10
   activeFrames: 3
-  recoveryFrames: 8
+  recoveryFrames: 17
   hitstunTicks: 15
   blockstunTicks: 11
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 196
+  damage: 320
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   animationTrigger: AirLight
-  hitboxOffset: {x: 0.55, y: 0.92, z: 0}
-  hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
+  hitboxOffset: {x: 0.5, y: 0.8, z: 0}
+  hitboxSize: {x: 0.5, y: 0.4, z: 1}
   cancelWindow: {x: 5, y: 8}
   archetype: 0
   moveId: j.A
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 1
   groundOk: 0
-  guard: 0
+  guard: 2
   attribute: 2
   invuln: []
   fatalCounter: 0
@@ -98,10 +98,10 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 2921f6dfa0485432bba787881ffab87a, type: 2}
+  boxes: {fileID: 11400000, guid: c2b560c3efaaa473299f93c804abb2eb, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_unarmed_j_A
-  clip: {fileID: 7400000, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 27
   events: []

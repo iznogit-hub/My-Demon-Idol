@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_PicoChan_46C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Charged Straight
+  attackName: Jab Special
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 16
-  activeFrames: 5
-  recoveryFrames: 20
+  startupFrames: 10
+  activeFrames: 3
+  recoveryFrames: 17
   hitstunTicks: 24
   blockstunTicks: 18
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -12
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 1020
+  damage: 1100
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: 27a6a9f585a42884db1c7631777bc9bd, type: 3}
+  animationClip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.75, y: 1.2, z: 0}
+  hitboxSize: {x: 0.85, y: 0.55, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 46C
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: cc6fa61a5179c4dc58ae5fe88f2103d2, type: 2}
   motionTrack: {fileID: 0}
   clipName: Pico_Charge
-  clip: {fileID: 7400000, guid: 27a6a9f585a42884db1c7631777bc9bd, type: 3}
+  clip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   clipFirstFrame: 1502
   clipLastFrame: 1524
   events: []

@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 24
-  activeFrames: 4
-  recoveryFrames: 18
+  startupFrames: 8
+  activeFrames: 3
+  recoveryFrames: 13
   hitstunTicks: 28
   blockstunTicks: 24
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: 0
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 1000
+  damage: 850
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,15 +54,15 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 7400000, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
+  animationClip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.75, y: 1.2, z: 0}
+  hitboxSize: {x: 0.8, y: 0.6, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: AB
-  button: 4
-  kind: 1
+  button: 1
+  kind: 2
   motion: 0
   airOk: 0
   groundOk: 1
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 0c0c315f555bb426582d29c6533075ce, type: 2}
   motionTrack: {fileID: 0}
   clipName: Fina_CrushTrigger
-  clip: {fileID: 7400000, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
+  clip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 10
   clipLastFrame: 32
   events: []

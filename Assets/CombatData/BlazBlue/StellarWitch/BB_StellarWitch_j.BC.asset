@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_StellarWitch_j.BC
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Aerial Starlight Throw
+  attackName: Air Throw
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 4
-  activeFrames: 2
-  recoveryFrames: 24
+  startupFrames: 17
+  activeFrames: 3
+  recoveryFrames: 34
   hitstunTicks: 30
   blockstunTicks: 0
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: 0
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 1000
+  damage: 1200
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -54,10 +54,10 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 39df77266a31a2547b7cc6c67a54a62c, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.45, y: 1.1, z: 0}
+  hitboxSize: {x: 0.5, y: 0.6, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: j.BC
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 1
   groundOk: 0
-  guard: 0
+  guard: 3
   attribute: 2
   invuln: []
   fatalCounter: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 37db5ab710eac4ae6a67d92d0f09b4ce, type: 2}
   motionTrack: {fileID: 0}
   clipName: StellarWitch_AirThrow
-  clip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 39df77266a31a2547b7cc6c67a54a62c, type: 3}
   clipFirstFrame: 95
   clipLastFrame: 118
   events: []
