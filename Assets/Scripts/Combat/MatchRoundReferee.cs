@@ -42,6 +42,9 @@ namespace DemonIdol.Combat
         [SerializeField] private FighterController _fighter1;
         [SerializeField] private FighterController _fighter2;
 
+        public FighterController Fighter1 => _fighter1;
+        public FighterController Fighter2 => _fighter2;
+
         [Header("Match Settings")]
         [SerializeField] private int _roundDurationSeconds = 99;
         [SerializeField] private int _winsRequired = 2; // Best 2 out of 3

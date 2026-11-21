@@ -272,6 +272,10 @@ namespace DemonIdol.BlazBlue
                 // Successful throw
                 defender.bbState = BBState.Thrown;
                 defender.ReceiveAuthoritativeDamage(800f);
+                if (BBMatchScreenDirector.Instance != null && BBMatchScreenDirector.Instance.Stats != null)
+                {
+                    BBMatchScreenDirector.Instance.Stats.RegisterHit(attacker == p1Brain, 800, false);
+                }
                 attacker.heat = Mathf.Min(tuning.heatMax, attacker.heat + 5f);
                 attacker.hitstopRemaining = 10;
                 defender.hitstopRemaining = 10;
@@ -373,6 +377,10 @@ namespace DemonIdol.BlazBlue
                     );
 
                     defender.ReceiveAuthoritativeDamage(scaledDmg);
+                    if (BBMatchScreenDirector.Instance != null && BBMatchScreenDirector.Instance.Stats != null)
+                    {
+                        BBMatchScreenDirector.Instance.Stats.RegisterHit(attacker == p1Brain, scaledDmg, moveKind == BBMoveKind.DistortionDrive);
+                    }
 
                     // Hitstun with combo duration decay (spec 4.15)
                     int decayedHitstun = attacker.comboState.CalculateDecayedHitstun(hitstun, defender.isGrounded);

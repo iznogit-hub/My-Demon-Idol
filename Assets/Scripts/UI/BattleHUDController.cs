@@ -602,7 +602,13 @@ namespace DemonIdol.UI
 
         public void ShowRoundEnded(RoundWinner winner, EndReason reason)
         {
-            string text = reason == EndReason.TimeOut ? "TIME OVER" : "K.O.!";
+            bool isPerfect = false;
+            if (winner == RoundWinner.Player1 && _p1 != null)
+                isPerfect = _p1.currentHealth >= _p1.maxHealth;
+            else if (winner == RoundWinner.Player2 && _p2 != null)
+                isPerfect = _p2.currentHealth >= _p2.maxHealth;
+
+            string text = isPerfect ? "PERFECT" : (reason == EndReason.TimeOut ? "TIME OVER" : "K.O.!");
             PlayBanner(text, new Color(0.9f, 0.15f, 0.15f, 1f), 2.0f);
             UpdateWinPips();
         }

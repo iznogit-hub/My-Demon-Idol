@@ -571,6 +571,16 @@ namespace DemonIdol.Combat
                     targetZ = koCinematicZoomZ;
                     break;
 
+                case CameraState.Results:
+                    Transform winFocus = _focusedTarget != null ? _focusedTarget : (p1.y < p2.y ? fighter2 : fighter1);
+                    if (winFocus != null)
+                    {
+                        targetX = Mathf.Clamp(winFocus.position.x, -maxCamX, maxCamX);
+                        targetY = winFocus.position.y + 1.1f;
+                        targetZ = -4.5f;
+                    }
+                    break;
+
                 case CameraState.BaseCombatFrame:
                 default:
                     break;

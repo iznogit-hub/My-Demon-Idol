@@ -36,5 +36,17 @@ namespace DemonIdol.BlazBlue
             _p1Combo = 0;
             _p2Combo = 0;
         }
+
+        public void Reset()
+        {
+            P1Damage = 0;
+            P2Damage = 0;
+            P1MaxCombo = 0;
+            P2MaxCombo = 0;
+            P1Supers = 0;
+            P2Supers = 0;
+            _p1Combo = 0;
+            _p2Combo = 0;
+        }
     }
 }

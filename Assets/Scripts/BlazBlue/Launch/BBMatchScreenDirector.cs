@@ -32,14 +32,38 @@ namespace DemonIdol.BlazBlue
         {
             var referee = MatchRoundReferee.Instance;
             if (referee == null) return;
-            referee.OnRoundIntro += round => ShowBanner(round >= 3 ? "FINAL ROUND" : "ROUND " + round);
+            referee.OnRoundIntro += round =>
+            {
+                if (round == 1) Stats.Reset();
+                ShowBanner(round >= 3 ? "FINAL ROUND" : "ROUND " + round);
+            };
             referee.OnFightBegun += () => ShowBanner("FIGHT");
-            referee.OnRoundEnded += (winner, reason) => ShowBanner(reason == EndReason.TimeOut ? "TIME" : "KO");
+            referee.OnRoundEnded += (winner, reason) =>
+            {
+                bool isPerfect = false;
+                var sim = BBMatchSim.Instance;
+                if (sim != null)
+                {
+                    if (winner == RoundWinner.Player1 && sim.p1Brain != null)
+                        isPerfect = sim.p1Brain.health >= sim.p1Brain.maxHealth;
+                    else if (winner == RoundWinner.Player2 && sim.p2Brain != null)
+                        isPerfect = sim.p2Brain.health >= sim.p2Brain.maxHealth;
+                }
+                else
+                {
+                    if (winner == RoundWinner.Player1 && referee.Fighter1 != null)
+                        isPerfect = referee.Fighter1.currentHealth >= referee.Fighter1.maxHealth;
+                    else if (winner == RoundWinner.Player2 && referee.Fighter2 != null)
+                        isPerfect = referee.Fighter2.currentHealth >= referee.Fighter2.maxHealth;
+                }
+                ShowBanner(isPerfect ? "PERFECT" : (reason == EndReason.TimeOut ? "TIME" : "KO"));
+            };
             referee.OnMatchFinished += winner => ShowResults(winner == RoundWinner.Player2 ? 2 : 1);
         }
 
         public void PlayVersus(string p1, string p2, string stageId, string mode)
         {
+            Stats.Reset();
             Flow.ConfirmCharacters(p1, p2);
             Flow.StageId = string.IsNullOrEmpty(stageId) ? "ST07" : stageId;
             Flow.Mode = mode;
@@ -70,10 +94,57 @@ namespace DemonIdol.BlazBlue
         public void ShowResults(int winnerPlayer)
         {
             string winnerId = winnerPlayer == 2 ? Flow.P2Id : Flow.P1Id;
-            Flow.ReportRound(winnerPlayer, Stats.P1Damage == 0 || Stats.P2Damage == 0, false);
+            bool perfect = Stats.P1Damage == 0 || Stats.P2Damage == 0;
+            var sim = BBMatchSim.Instance;
+            if (sim != null)
+            {
+                if (winnerPlayer == 1 && sim.p1Brain != null) perfect |= sim.p1Brain.health >= sim.p1Brain.maxHealth;
+                else if (winnerPlayer == 2 && sim.p2Brain != null) perfect |= sim.p2Brain.health >= sim.p2Brain.maxHealth;
+            }
+            Flow.ReportRound(winnerPlayer, perfect, false);
             var card = BBPresentationLibrary.Find(winnerId);
             string quote = card != null && !string.IsNullOrEmpty(card.quote) ? card.quote : "Quote slot empty.";
             string name = card != null ? card.displayName : winnerId;
+
+            // Move camera to frame winner and play victory or idle clip behind results panel
+            Transform winnerTransform = null;
+            Animator winnerAnimator = null;
+            BBAnimationDriver winnerDriver = null;
+
+            if (sim != null)
+            {
+                var brain = winnerPlayer == 2 ? sim.p2Brain : sim.p1Brain;
+                if (brain != null)
+                {
+                    winnerTransform = brain.transform;
+                    winnerAnimator = brain.fighter != null ? brain.fighter.animator : brain.GetComponentInChildren<Animator>();
+                    winnerDriver = brain.animDriver;
+                }
+            }
+            if (winnerTransform == null && MatchRoundReferee.Instance != null)
+            {
+                var fc = winnerPlayer == 2 ? MatchRoundReferee.Instance.Fighter2 : MatchRoundReferee.Instance.Fighter1;
+                if (fc != null)
+                {
+                    winnerTransform = fc.transform;
+                    winnerAnimator = fc.animator;
+                }
+            }
+
+            if (winnerTransform != null && FighterCamera2D.Instance != null)
+            {
+                FighterCamera2D.Instance.RequestState(CameraState.Results, 999f, winnerTransform);
+            }
+
+            if (winnerDriver != null)
+            {
+                winnerDriver.BlendToNeutral();
+            }
+            if (winnerAnimator != null)
+            {
+                winnerAnimator.SetTrigger("Victory");
+            }
+
             MatchResultsOverlay.CreateOrReuse().ShowFightResult(winnerPlayer, name, quote, Stats, Flow);
             BBContactPresentation.RaiseWinner(winnerId);
         }
