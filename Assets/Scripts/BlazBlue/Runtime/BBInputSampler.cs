@@ -93,8 +93,9 @@ namespace DemonIdol.BlazBlue
                 }
             }
 
-            // 2. Gamepad Input
-            var pad = Gamepad.current;
+            // 2. Gamepad Input. P1 reads pad 0. P2 reads pad 1 when a second pad is connected.
+            // Both fighters must not share Gamepad.current or one pad drives both humans.
+            var pad = SelectGamepad(playerIndex);
             if (pad != null)
             {
                 // D-pad & Left Stick
@@ -153,6 +154,17 @@ namespace DemonIdol.BlazBlue
             // Clear one-shot virtual masks
             virtualPressedMask = 0;
             virtualReleasedMask = 0;
+        }
+
+        /// <summary>
+        /// Pad 0 belongs to player index 0. Later indexes only see their own pad.
+        /// </summary>
+        public static Gamepad SelectGamepad(int playerIndex)
+        {
+            if (playerIndex < 0) return null;
+            var pads = Gamepad.all;
+            if (playerIndex >= pads.Count) return null;
+            return pads[playerIndex];
         }
 
         /// <summary>

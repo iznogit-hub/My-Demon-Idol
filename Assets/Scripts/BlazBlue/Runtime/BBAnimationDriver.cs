@@ -32,6 +32,7 @@ namespace DemonIdol.BlazBlue
 
         private float _attackWeight = 0f;
         private const float BLEND_SPEED_TICKS = 3f;
+        private AnimationClip _activeAttackClip;
 
         private void Awake()
         {
@@ -106,6 +107,7 @@ namespace DemonIdol.BlazBlue
         public void PlayAttackClip(AnimationClip clip, int firstFrame, int lastFrame, int totalTicks, int tickInMove)
         {
             if (!_isGraphValid || clip == null) return;
+            _activeAttackClip = clip;
 
             // Ping-pong playables if clip changed
             ref AnimationClipPlayable activePlayable = ref (_usingPlayableA ? ref _attackPlayableA : ref _attackPlayableB);
@@ -171,10 +173,17 @@ namespace DemonIdol.BlazBlue
         {
             if (!_isGraphValid || brain == null) return;
 
-            if (brain.currentAttack != null && brain.currentAttack.clip != null)
+            bool attacking = brain.bbState == BBState.AttackStartup
+                || brain.bbState == BBState.AttackActive
+                || brain.bbState == BBState.AttackRecovery;
+            AnimationClip attackClip = null;
+            if (attacking && brain.currentAttack != null)
+                attackClip = brain.currentAttack.clip != null ? brain.currentAttack.clip : _activeAttackClip;
+
+            if (attacking && attackClip != null && brain.currentAttack != null)
             {
                 PlayAttackClip(
-                    brain.currentAttack.clip,
+                    attackClip,
                     brain.currentAttack.clipFirstFrame,
                     brain.currentAttack.clipLastFrame,
                     brain.currentAttack.TotalTicks,
@@ -196,15 +205,38 @@ namespace DemonIdol.BlazBlue
                         }
                     }
                 }
+                return;
             }
-            else
+
+            _activeAttackClip = null;
+            if (_attackWeight > 0f)
             {
-                BlendToNeutral();
-                if (_weaponRig != null)
+                _attackWeight = Mathf.MoveTowards(_attackWeight, 0f, 1.0f / BLEND_SPEED_TICKS);
+                if (_mixer.IsValid())
                 {
-                    _weaponRig.SetWeaponTrailsActive(false);
+                    _mixer.SetInputWeight(1, _attackWeight);
+                    _mixer.SetInputWeight(0, 1.0f - _attackWeight);
                 }
             }
+            if (_weaponRig != null)
+                _weaponRig.SetWeaponTrailsActive(false);
+
+            // The graph is manual. Without this, walk/crouch/jump parameters never advance and the pose stays idle.
+            if (_graph.IsValid())
+                _graph.Evaluate(CombatTickEngine.TICK_DELTA_TIME);
+        }
+
+        public string CurrentClipLabel()
+        {
+            if (_attackWeight > 0.05f && _activeAttackClip != null)
+                return _activeAttackClip.name;
+            if (animator != null && animator.GetCurrentAnimatorClipInfoCount(0) > 0)
+            {
+                var clips = animator.GetCurrentAnimatorClipInfo(0);
+                if (clips.Length > 0 && clips[0].clip != null)
+                    return clips[0].clip.name;
+            }
+            return brain != null ? brain.bbState.ToString() : "none";
         }
 
         /// <summary>

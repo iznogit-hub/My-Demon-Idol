@@ -27,7 +27,7 @@ namespace DemonIdol.Editor
                 "L2.1: Online mode is rejected", onlineReason);
             assert(session.TrySelectMode("Arcade", out _), "L2.2: Arcade mode is accepted", "");
             string first = session.BeginMatch("C01", "C06", "ST01");
-            assert(session.Player2Id == "C02", "L2.3: Arcade opponent comes from the arcade order, not the passed id", session.Player2Id);
+            assert(session.Player2Id == "C06", "L2.3: Arcade keeps the opponent picked in the menu", session.Player2Id);
             assert(session.CommitResult(1), "L2.4: First result commit succeeds", "");
             assert(!session.CommitResult(1), "L2.5: Second result commit is refused", "");
             assert(session.TryAdvanceArcade(out string next) && next == "C04", "L2.6: Arcade advances to C04", next);

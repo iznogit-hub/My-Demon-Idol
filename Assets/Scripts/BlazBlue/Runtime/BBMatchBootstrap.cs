@@ -15,14 +15,25 @@ namespace DemonIdol.BlazBlue
         [Header("Runtime Status")]
         public bool isBlazBlueActive = false;
 
+        bool _bootstrapped;
+
         private void Awake()
         {
-            InitializeScheme();
+            // Do not bootstrap here. Awake runs before HomegrownCombatDirector
+            // has applied the picked roster, and AddComponent would do the same.
+        }
+
+        private void Start()
+        {
+            if (_bootstrapped) return;
+            var director = FindFirstObjectByType<HomegrownCombatDirector>();
+            if (director != null && director.isActiveAndEnabled)
+                return;
+            BootstrapBlazBlueFighters(false);
         }
 
         public void InitializeScheme()
         {
-            isBlazBlueActive = true;
             BootstrapBlazBlueFighters(false);
         }
 
@@ -34,12 +45,51 @@ namespace DemonIdol.BlazBlue
                 var hostObj = new GameObject("BBMatchBootstrap");
                 host = hostObj.AddComponent<BBMatchBootstrap>();
             }
-            host.isBlazBlueActive = true;
             host.BootstrapBlazBlueFighters(training);
+        }
+
+        /// <summary>
+        /// P1 is the director's first fighter. FindObjectsByType order is not a player slot.
+        /// </summary>
+        public static int ResolvePlayerIndex(FighterController fc)
+        {
+            var director = HomegrownCombatDirector.Instance;
+            FighterController slot1 = director != null ? director.Fighter1 : null;
+            FighterController slot2 = director != null ? director.Fighter2 : null;
+            return ResolvePlayerIndex(fc, slot1, slot2);
+        }
+
+        public static int ResolvePlayerIndex(FighterController fc, FighterController slot1, FighterController slot2)
+        {
+            if (fc == null) return 0;
+            if (slot1 != null && fc == slot1) return 0;
+            if (slot2 != null && fc == slot2) return 1;
+            string name = fc.gameObject.name;
+            if (name.IndexOf("P1", StringComparison.OrdinalIgnoreCase) >= 0) return 0;
+            if (name.IndexOf("P2", StringComparison.OrdinalIgnoreCase) >= 0) return 1;
+            return fc.isPlayerControlled ? 0 : 1;
+        }
+
+        public static Canvas FindBattleCanvas()
+        {
+            var canvases = FindObjectsByType<Canvas>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            Canvas fallback = null;
+            for (int i = 0; i < canvases.Length; i++)
+            {
+                Canvas canvas = canvases[i];
+                if (canvas == null || !canvas.isActiveAndEnabled || !canvas.gameObject.activeInHierarchy)
+                    continue;
+                if (canvas.gameObject.name == "Battle_HUD_Canvas")
+                    return canvas;
+                if (fallback == null && canvas.renderMode != RenderMode.WorldSpace)
+                    fallback = canvas;
+            }
+            return fallback;
         }
 
         public void BootstrapBlazBlueFighters(bool training)
         {
+            _bootstrapped = true;
             isBlazBlueActive = true;
             var fighters = FindObjectsByType<FighterController>(FindObjectsSortMode.None);
             BBFighterBrain p1Brain = null;
@@ -56,15 +106,21 @@ namespace DemonIdol.BlazBlue
                 var classicInput = fc.GetComponent<MobileFighterInput>();
                 if (classicInput != null) classicInput.enabled = false;
 
+                var classicAi = fc.GetComponent<CombatAIController>();
+                if (classicAi != null) classicAi.enabled = false;
+
                 var sampler = fc.GetComponent<BBInputSampler>();
                 if (sampler == null) sampler = fc.gameObject.AddComponent<BBInputSampler>();
                 sampler.isPlayerControlled = fc.isPlayerControlled;
-                sampler.playerIndex = i;
+                sampler.playerIndex = ResolvePlayerIndex(fc);
 
                 var brain = fc.GetComponent<BBFighterBrain>();
                 if (brain == null) brain = fc.gameObject.AddComponent<BBFighterBrain>();
                 brain.fighter = fc;
                 brain.sampler = sampler;
+
+                if (!fc.isPlayerControlled && fc.GetComponent<BBAIController>() == null)
+                    fc.gameObject.AddComponent<BBAIController>();
 
                 var definition = fc.appliedDefinition;
                 if (definition == null)
@@ -93,8 +149,8 @@ namespace DemonIdol.BlazBlue
 
                 brain.MirrorHealthToFighter();
 
-                if (p1Brain == null) p1Brain = brain;
-                else if (p2Brain == null) p2Brain = brain;
+                if (sampler.playerIndex == 0) p1Brain = brain;
+                else p2Brain = brain;
             }
 
             if (p1Brain != null && p2Brain != null)
@@ -113,9 +169,11 @@ namespace DemonIdol.BlazBlue
             }
 
             BBHitboxOverlay.IsOverlayActive = training;
-            var canvas = FindFirstObjectByType<Canvas>();
-            if (canvas != null && p1Brain != null && canvas.GetComponentInChildren<BBTouchLayout>(true) == null)
+            var canvas = FindBattleCanvas();
+            if (canvas != null && p1Brain != null && BBTouchLayout.ShouldShowTouchControls()
+                && canvas.GetComponentInChildren<BBTouchLayout>(true) == null)
             {
+                UiEventSystemInputBootstrap.ReconcileLoadedEventSystems();
                 BBTouchLayout.Create(canvas.transform, p1Brain.sampler);
                 BBComboReadout.Create(canvas.transform);
             }

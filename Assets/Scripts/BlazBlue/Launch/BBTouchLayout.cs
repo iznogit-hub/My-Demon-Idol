@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DemonIdol.UI;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 
 namespace DemonIdol.BlazBlue
 {
@@ -24,6 +27,25 @@ namespace DemonIdol.BlazBlue
         private bool _padDown = false;
         private bool _padLeft = false;
         private bool _padRight = false;
+
+        public static bool ShouldShowTouchControls(bool isMobilePlatform, bool simulatorMobile, bool hasTouchHardware)
+        {
+            return isMobilePlatform || simulatorMobile || hasTouchHardware;
+        }
+
+        public static bool ShouldShowTouchControls()
+        {
+            bool simulatorMobile = false;
+#if UNITY_EDITOR
+            simulatorMobile = UnityEngine.Device.Application.isMobilePlatform
+                || UnityEngine.Device.SystemInfo.deviceType == DeviceType.Handheld;
+#endif
+            bool touchHardware = SystemInfo.deviceType == DeviceType.Handheld;
+#if ENABLE_INPUT_SYSTEM
+            if (Touchscreen.current != null) touchHardware = true;
+#endif
+            return ShouldShowTouchControls(Application.isMobilePlatform, simulatorMobile, touchHardware);
+        }
 
         public void Bind(BBInputSampler sampler)
         {

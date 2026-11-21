@@ -75,7 +75,23 @@ namespace DemonIdol.UI
 
             StandaloneInputModule legacy = eventSystem.GetComponent<StandaloneInputModule>();
             if (legacy == null || !UsesMissingDefaultAxes(legacy.horizontalAxis, legacy.verticalAxis))
+            {
+#if ENABLE_INPUT_SYSTEM
+                // ArcadeArena's EventSystem has no module at all. Adding one in edit mode
+                // would dirty the shipped scene, so this only happens while playing.
+                if (Application.isPlaying && legacy == null && eventSystem.GetComponent<BaseInputModule>() == null)
+                {
+                    InputSystemUIInputModule created = eventSystem.gameObject.AddComponent<InputSystemUIInputModule>();
+                    if (!BindProjectUiActions(created))
+                    {
+                        if (created.actionsAsset == null || created.move == null || created.move.action == null)
+                            created.AssignDefaultActions();
+                    }
+                    created.enabled = true;
+                }
+#endif
                 return;
+            }
 
 #if ENABLE_INPUT_SYSTEM
             InputSystemUIInputModule module = eventSystem.GetComponent<InputSystemUIInputModule>();

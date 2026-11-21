@@ -76,7 +76,9 @@ namespace DemonIdol.Launch
         public string BeginMatch(string player1Id, string player2Id, string stageId)
         {
             Player1Id = string.IsNullOrEmpty(player1Id) ? "C01" : player1Id;
-            if (Mode == PlayModeKind.Arcade)
+            // An explicit menu pick always wins. The arcade ladder is only the
+            // fallback when the caller did not name an opponent (profiler / empty slot).
+            if (Mode == PlayModeKind.Arcade && string.IsNullOrEmpty(player2Id))
             {
                 int arcadeSlot = ArcadeIndex;
                 if (arcadeSlot < 0)

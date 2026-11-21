@@ -115,6 +115,9 @@ InitTestScene*.unity*
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
 
+# Local scratch space. Never commit.
+/scratch/
+
 # Ignore large demo environment assets exceeding GitHub limits
 Assets/Santuary/Scenes/
 Assets/Santuary/Scenes.meta
