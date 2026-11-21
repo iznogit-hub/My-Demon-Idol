@@ -42,39 +42,54 @@ namespace DemonIdol.BlazBlue
             var kb = Keyboard.current;
             if (kb != null)
             {
-                // Directions
-                if (kb.wKey.isPressed || kb.upArrowKey.isPressed) stick.y += 1f;
-                if (kb.sKey.isPressed || kb.downArrowKey.isPressed) stick.y -= 1f;
-                if (kb.aKey.isPressed || kb.leftArrowKey.isPressed) stick.x -= 1f;
-                if (kb.dKey.isPressed || kb.rightArrowKey.isPressed) stick.x += 1f;
+                if (playerIndex == 0)
+                {
+                    // P1 Directions: WASD
+                    if (kb.wKey.isPressed) stick.y += 1f;
+                    if (kb.sKey.isPressed) stick.y -= 1f;
+                    if (kb.aKey.isPressed) stick.x -= 1f;
+                    if (kb.dKey.isPressed) stick.x += 1f;
 
-                // Buttons: J=A, K=B, L=C, I=D, T=Taunt
-                if (kb.jKey.isPressed) held |= (byte)BBButton.A;
-                if (kb.kKey.isPressed) held |= (byte)BBButton.B;
-                if (kb.lKey.isPressed) held |= (byte)BBButton.C;
-                if (kb.iKey.isPressed) held |= (byte)BBButton.D;
-                if (kb.tKey.isPressed) held |= (byte)BBButton.Taunt;
+                    // P1 Buttons: J=A, K=B, L=C, Space/I=D, T=Taunt
+                    if (kb.jKey.isPressed) held |= (byte)BBButton.A;
+                    if (kb.kKey.isPressed) held |= (byte)BBButton.B;
+                    if (kb.lKey.isPressed) held |= (byte)BBButton.C;
+                    if (kb.spaceKey.isPressed || kb.iKey.isPressed) held |= (byte)BBButton.D;
+                    if (kb.tKey.isPressed) held |= (byte)BBButton.Taunt;
 
-                // Keyboard Macros
-                // Semicolon (;) = Throw (B+C)
-                if (kb.semicolonKey.isPressed)
-                {
-                    held |= (byte)(BBButton.B | BBButton.C);
+                    // P1 Keyboard Macros:
+                    // U = A+B (Crush Trigger)
+                    if (kb.uKey.isPressed) held |= (byte)(BBButton.A | BBButton.B);
+                    // O = B+C (Throw)
+                    if (kb.oKey.isPressed) held |= (byte)(BBButton.B | BBButton.C);
+                    // P = A+B+C (Burst)
+                    if (kb.pKey.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C);
+                    // Semicolon (;) = A+B+C+D (Overdrive)
+                    if (kb.semicolonKey.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D);
                 }
-                // U = Barrier / Crush Trigger (A+B)
-                if (kb.uKey.isPressed)
+                else
                 {
-                    held |= (byte)(BBButton.A | BBButton.B);
-                }
-                // O = Rapid Cancel (A+B+C)
-                if (kb.oKey.isPressed)
-                {
-                    held |= (byte)(BBButton.A | BBButton.B | BBButton.C);
-                }
-                // P = Burst / Overdrive (A+B+C+D)
-                if (kb.pKey.isPressed)
-                {
-                    held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D);
+                    // P2 Directions: Arrow Keys
+                    if (kb.upArrowKey.isPressed) stick.y += 1f;
+                    if (kb.downArrowKey.isPressed) stick.y -= 1f;
+                    if (kb.leftArrowKey.isPressed) stick.x -= 1f;
+                    if (kb.rightArrowKey.isPressed) stick.x += 1f;
+
+                    // P2 Buttons: Numpad 1=A, Numpad 2=B, Numpad 3=C, Numpad 0/Enter=D
+                    if (kb.numpad1Key.isPressed) held |= (byte)BBButton.A;
+                    if (kb.numpad2Key.isPressed) held |= (byte)BBButton.B;
+                    if (kb.numpad3Key.isPressed) held |= (byte)BBButton.C;
+                    if (kb.numpad0Key.isPressed || kb.numpadEnterKey.isPressed) held |= (byte)BBButton.D;
+
+                    // P2 Macros:
+                    // Numpad 4 = A+B (Crush Trigger)
+                    if (kb.numpad4Key.isPressed) held |= (byte)(BBButton.A | BBButton.B);
+                    // Numpad 5 = B+C (Throw)
+                    if (kb.numpad5Key.isPressed) held |= (byte)(BBButton.B | BBButton.C);
+                    // Numpad 6 = A+B+C (Burst)
+                    if (kb.numpad6Key.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C);
+                    // Numpad Plus = A+B+C+D (Overdrive)
+                    if (kb.numpadPlusKey.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D);
                 }
             }
 
@@ -94,17 +109,25 @@ namespace DemonIdol.BlazBlue
                     stick = padStick;
                 }
 
-                // Face Buttons: West=A (Square/X), North=B (Triangle/Y), East=C (Circle/B), South=D (Cross/A)
+                // Standard Fighting Game Layout:
+                // West = A (Square/X)
                 if (pad.buttonWest.isPressed)  held |= (byte)BBButton.A;
+                // North = B (Triangle/Y)
                 if (pad.buttonNorth.isPressed) held |= (byte)BBButton.B;
-                if (pad.buttonEast.isPressed)  held |= (byte)BBButton.C;
-                if (pad.buttonSouth.isPressed) held |= (byte)BBButton.D;
+                // Right Shoulder = C (R1/RB)
+                if (pad.rightShoulder.isPressed) held |= (byte)BBButton.C;
+                // East = D (Circle/B)
+                if (pad.buttonEast.isPressed)  held |= (byte)BBButton.D;
 
-                // Shoulders & Triggers (Macros)
-                if (pad.leftShoulder.isPressed)  held |= (byte)(BBButton.A | BBButton.B); // Barrier / Crush
-                if (pad.rightShoulder.isPressed) held |= (byte)(BBButton.B | BBButton.C); // Throw
-                if (pad.leftTrigger.isPressed)   held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D); // Burst / OD
-                if (pad.rightTrigger.isPressed)  held |= (byte)(BBButton.A | BBButton.B | BBButton.C); // Rapid Cancel
+                // Gamepad Macros:
+                // L1 / LB = A+B (Crush Trigger)
+                if (pad.leftShoulder.isPressed) held |= (byte)(BBButton.A | BBButton.B);
+                // R2 / RT = B+C (Throw)
+                if (pad.rightTrigger.isPressed) held |= (byte)(BBButton.B | BBButton.C);
+                // L2 / LT = A+B+C (Burst)
+                if (pad.leftTrigger.isPressed)  held |= (byte)(BBButton.A | BBButton.B | BBButton.C);
+                // R3 = A+B+C+D (Overdrive)
+                if (pad.rightStickButton.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D);
             }
 
             // 3. Virtual Touch Overlay Input

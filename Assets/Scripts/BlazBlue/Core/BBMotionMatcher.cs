@@ -23,6 +23,7 @@ namespace DemonIdol.BlazBlue
 
         /// <summary>
         /// Quarter-Circle Forward (236): Down (2) -> Down-Forward (3) -> Forward (6).
+        /// Strict ordered sequence: 2 then 3 then 6 within window (default 22 frames).
         /// </summary>
         public static bool Is236(BBMotionEdge[] edges, int count, int currentTick, int window = DEFAULT_WINDOW_236)
         {
@@ -39,20 +40,20 @@ namespace DemonIdol.BlazBlue
                 switch (step)
                 {
                     case 0:
-                        if (e.numpad == 6 || e.numpad == 3 || e.numpad == 9)
+                        if (e.numpad == 6)
                         {
                             endTick = e.tick;
                             step = 1;
                         }
                         break;
                     case 1:
-                        if (e.numpad == 3 || e.numpad == 2)
+                        if (e.numpad == 3)
                         {
                             step = 2;
                         }
                         break;
                     case 2:
-                        if (e.numpad == 2 || e.numpad == 1 || e.numpad == 3)
+                        if (e.numpad == 2)
                         {
                             return (endTick - e.tick) <= window;
                         }
@@ -65,6 +66,7 @@ namespace DemonIdol.BlazBlue
 
         /// <summary>
         /// Quarter-Circle Back (214): Down (2) -> Down-Back (1) -> Back (4).
+        /// Strict ordered sequence: 2 then 1 then 4 within window (default 22 frames).
         /// </summary>
         public static bool Is214(BBMotionEdge[] edges, int count, int currentTick, int window = DEFAULT_WINDOW_236)
         {
@@ -81,20 +83,20 @@ namespace DemonIdol.BlazBlue
                 switch (step)
                 {
                     case 0:
-                        if (e.numpad == 4 || e.numpad == 1 || e.numpad == 7)
+                        if (e.numpad == 4)
                         {
                             endTick = e.tick;
                             step = 1;
                         }
                         break;
                     case 1:
-                        if (e.numpad == 1 || e.numpad == 2)
+                        if (e.numpad == 1)
                         {
                             step = 2;
                         }
                         break;
                     case 2:
-                        if (e.numpad == 2 || e.numpad == 3 || e.numpad == 1)
+                        if (e.numpad == 2)
                         {
                             return (endTick - e.tick) <= window;
                         }
@@ -107,13 +109,13 @@ namespace DemonIdol.BlazBlue
 
         /// <summary>
         /// Dragon Punch (623): Forward (6) -> Down (2) -> Down-Forward (3).
-        /// Also accepts 636 and optional 323 shortcut.
+        /// Strict ordered sequence: 6 then 2 then 3 within window (default 22 frames).
+        /// Lone 3 or 2/3 flickering does NOT count.
         /// </summary>
-        public static bool Is623(BBMotionEdge[] edges, int count, int currentTick, int window = DEFAULT_WINDOW_623, bool allow323Shortcut = true)
+        public static bool Is623(BBMotionEdge[] edges, int count, int currentTick, int window = DEFAULT_WINDOW_623, bool allow323Shortcut = false)
         {
             if (count < 3) return false;
 
-            // Check standard 623 / 636
             int step = 0; // 0 = looking for 3, 1 = looking for 2, 2 = looking for 6
             int endTick = -1;
 
@@ -125,20 +127,20 @@ namespace DemonIdol.BlazBlue
                 switch (step)
                 {
                     case 0:
-                        if (e.numpad == 3 || e.numpad == 6)
+                        if (e.numpad == 3)
                         {
                             endTick = e.tick;
                             step = 1;
                         }
                         break;
                     case 1:
-                        if (e.numpad == 2 || e.numpad == 1 || e.numpad == 3)
+                        if (e.numpad == 2)
                         {
                             step = 2;
                         }
                         break;
                     case 2:
-                        if (e.numpad == 6 || (allow323Shortcut && e.numpad == 3))
+                        if (e.numpad == 6)
                         {
                             return (endTick - e.tick) <= window;
                         }

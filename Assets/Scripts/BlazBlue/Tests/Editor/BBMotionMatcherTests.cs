@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using DemonIdol.Combat;
 
 namespace DemonIdol.BlazBlue.Tests
 {
@@ -25,7 +26,13 @@ namespace DemonIdol.BlazBlue.Tests
             suite.Test_ChargeBackForward();
             suite.Test_InputHistory_NegativeEdge();
             suite.Test_CommandInterpreter_PriorityHierarchy();
-            Debug.Log("<color=#00e676>[BBMotionMatcherTests] ALL 13 MOTION MATCHER & INPUT TESTS PASSED!</color>");
+            suite.Test_3PlusA_Gives2A();
+            suite.Test_HoldingSD_ThenA_GivesNormal();
+            suite.Test_Real236A_GivesSpecial();
+            suite.Test_AD_WalkLocomotion();
+            suite.Test_W_JumpLocomotion();
+            suite.Test_S_CrouchLocomotion();
+            Debug.Log("<color=#00e676>[BBMotionMatcherTests] ALL 19 MOTION MATCHER, INPUT & LOCOMOTION TESTS PASSED!</color>");
         }
         private BBMotionEdge[] CreateEdges(params (sbyte numpad, int tick)[] inputs)
         {
@@ -61,17 +68,17 @@ namespace DemonIdol.BlazBlue.Tests
         [Test]
         public void Test_623_DragonPunch_StandardAndShortcuts()
         {
-            // Standard: 6 -> 2 -> 3
+            // Standard strict DP: 6 -> 2 -> 3
             var std = CreateEdges((6, 5), (2, 10), (3, 15));
             Assert.IsTrue(BBMotionMatcher.Is623(std, std.Length, currentTick: 15));
 
-            // Running DP: 6 -> 3 -> 6
-            var run = CreateEdges((6, 5), (3, 10), (6, 15));
-            Assert.IsTrue(BBMotionMatcher.Is623(run, run.Length, currentTick: 15));
+            // Lone 3 does not trigger 623
+            var lone3 = CreateEdges((3, 15));
+            Assert.IsFalse(BBMotionMatcher.Is623(lone3, lone3.Length, currentTick: 15));
 
-            // Crouch shortcut: 3 -> 2 -> 3
-            var crouch = CreateEdges((3, 5), (2, 10), (3, 15));
-            Assert.IsTrue(BBMotionMatcher.Is623(crouch, crouch.Length, currentTick: 15, allow323Shortcut: true));
+            // Flicker between 2 and 3 does NOT trigger 623 without 6
+            var flicker = CreateEdges((2, 5), (3, 10), (2, 12), (3, 15));
+            Assert.IsFalse(BBMotionMatcher.Is623(flicker, flicker.Length, currentTick: 15));
         }
 
         [Test]
@@ -227,6 +234,150 @@ namespace DemonIdol.BlazBlue.Tests
 
             cmd = interpreter.Evaluate(history, 12, 1, isGrounded: true, isInAttack: false, isInBlockstun: false, isGuarding: false);
             Assert.AreEqual(BBCommandType.Normal5A, cmd.commandType);
+        }
+
+        [Test]
+        public void Test_3PlusA_Gives2A()
+        {
+            var interpreter = new BBCommandInterpreter();
+            var history = new BBInputHistory();
+
+            // Down-Forward (3) + A pressed
+            history.PushFrame(new BBInputFrame
+            {
+                numpad = 3,
+                held = (byte)BBButton.A,
+                pressed = (byte)BBButton.A
+            }, tick: 10, facingDirection: 1);
+
+            var cmd = interpreter.Evaluate(history, 10, 1, isGrounded: true, isInAttack: false, isInBlockstun: false, isGuarding: false);
+            Assert.AreEqual(BBCommandType.Normal2A, cmd.commandType, "3+A must produce Normal2A crouching normal");
+
+            // Down-Forward (3) + C pressed
+            history.Clear();
+            history.PushFrame(new BBInputFrame
+            {
+                numpad = 3,
+                held = (byte)BBButton.C,
+                pressed = (byte)BBButton.C
+            }, tick: 15, facingDirection: 1);
+
+            var cmd3C = interpreter.Evaluate(history, 15, 1, isGrounded: true, isInAttack: false, isInBlockstun: false, isGuarding: false);
+            Assert.AreEqual(BBCommandType.Normal3C, cmd3C.commandType, "3+C must produce Normal3C sweep");
+        }
+
+        [Test]
+        public void Test_HoldingSD_ThenA_GivesNormal()
+        {
+            var interpreter = new BBCommandInterpreter();
+            var history = new BBInputHistory();
+
+            // Holding S (2), then S+D (3), then press A while holding S+D
+            history.PushFrame(new BBInputFrame { numpad = 2 }, 1, 1);
+            history.PushFrame(new BBInputFrame { numpad = 3 }, 5, 1);
+            history.PushFrame(new BBInputFrame { numpad = 2 }, 8, 1);
+            history.PushFrame(new BBInputFrame
+            {
+                numpad = 3,
+                held = (byte)BBButton.A,
+                pressed = (byte)BBButton.A
+            }, tick: 12, facingDirection: 1);
+
+            var cmd = interpreter.Evaluate(history, 12, 1, isGrounded: true, isInAttack: false, isInBlockstun: false, isGuarding: false);
+            Assert.AreEqual(BBCommandType.Normal2A, cmd.commandType, "Holding S+D and pressing A must produce crouching normal 2A, NOT a special move");
+        }
+
+        [Test]
+        public void Test_Real236A_GivesSpecial()
+        {
+            var interpreter = new BBCommandInterpreter();
+            var history = new BBInputHistory();
+
+            // Real 236: 2 (Down) -> 3 (Down-Forward) -> 6+A (Forward + A)
+            history.PushFrame(new BBInputFrame { numpad = 2 }, 1, 1);
+            history.PushFrame(new BBInputFrame { numpad = 3 }, 5, 1);
+            history.PushFrame(new BBInputFrame
+            {
+                numpad = 6,
+                held = (byte)BBButton.A,
+                pressed = (byte)BBButton.A
+            }, tick: 10, facingDirection: 1);
+
+            var cmd = interpreter.Evaluate(history, 10, 1, isGrounded: true, isInAttack: false, isInBlockstun: false, isGuarding: false);
+            Assert.AreEqual(BBCommandType.Special236, cmd.commandType, "A real 236A sequence must execute Special236");
+            Assert.AreEqual(BBButton.A, cmd.button);
+        }
+
+        [Test]
+        public void Test_AD_WalkLocomotion()
+        {
+            var go = new GameObject("TestFighter_Walk");
+            var brain = go.AddComponent<BBFighterBrain>();
+            var fighter = go.AddComponent<FighterController>();
+            fighter.SetFacing(1);
+            brain.fighter = fighter;
+            brain.isGrounded = true;
+            brain.bbState = BBState.Neutral;
+
+            // D key: numpad 6 (Forward)
+            brain.History.PushFrame(new BBInputFrame { numpad = 6 }, 1, 1);
+            brain.AdvanceState(1);
+            Assert.AreEqual(BBState.WalkForward, brain.bbState, "Holding D (6) must transition to WalkForward");
+
+            // A key: numpad 4 (Backward)
+            brain.History.PushFrame(new BBInputFrame { numpad = 4 }, 2, 1);
+            brain.AdvanceState(2);
+            Assert.AreEqual(BBState.WalkBackward, brain.bbState, "Holding A (4) must transition to WalkBackward");
+
+            Object.DestroyImmediate(go);
+        }
+
+        [Test]
+        public void Test_W_JumpLocomotion()
+        {
+            var go = new GameObject("TestFighter_Jump");
+            var brain = go.AddComponent<BBFighterBrain>();
+            var fighter = go.AddComponent<FighterController>();
+            fighter.SetFacing(1);
+            brain.fighter = fighter;
+            brain.isGrounded = true;
+            brain.bbState = BBState.Neutral;
+
+            // W key: numpad 8 (Up)
+            brain.History.PushFrame(new BBInputFrame { numpad = 8 }, 1, 1);
+            brain.AdvanceState(1);
+            Assert.AreEqual(BBState.JumpStartup, brain.bbState, "Pressing W (8) must enter JumpStartup");
+
+            // After prejump ticks (4), transition to Airborne
+            for (int t = 2; t <= 5; t++)
+            {
+                brain.History.PushFrame(new BBInputFrame { numpad = 8 }, t, 1);
+                brain.AdvanceState(t);
+            }
+            Assert.AreEqual(BBState.Airborne, brain.bbState, "After 4 prejump frames, fighter must become Airborne");
+            Assert.IsFalse(brain.isGrounded, "Airborne fighter must not be grounded");
+            Assert.Greater(brain.simVelocity.y, 0f, "Jump launch velocity Y must be positive");
+
+            Object.DestroyImmediate(go);
+        }
+
+        [Test]
+        public void Test_S_CrouchLocomotion()
+        {
+            var go = new GameObject("TestFighter_Crouch");
+            var brain = go.AddComponent<BBFighterBrain>();
+            var fighter = go.AddComponent<FighterController>();
+            fighter.SetFacing(1);
+            brain.fighter = fighter;
+            brain.isGrounded = true;
+            brain.bbState = BBState.Neutral;
+
+            // S key: numpad 2 (Down)
+            brain.History.PushFrame(new BBInputFrame { numpad = 2 }, 1, 1);
+            brain.AdvanceState(1);
+            Assert.AreEqual(BBState.Crouching, brain.bbState, "Holding S (2) must transition to Crouching");
+
+            Object.DestroyImmediate(go);
         }
     }
 }

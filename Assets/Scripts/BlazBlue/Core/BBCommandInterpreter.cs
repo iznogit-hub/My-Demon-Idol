@@ -286,8 +286,13 @@ namespace DemonIdol.BlazBlue
                             case BBButton.D: return CreateCommand(BBCommandType.Normal6D, activeBtn, currentFacingNumpad, currentTick, false);
                         }
                     }
-                    else if (currentFacingNumpad == 2 || currentFacingNumpad == 1)
+                    else if (currentFacingNumpad == 2 || currentFacingNumpad == 1 || currentFacingNumpad == 3)
                     {
+                        if (currentFacingNumpad == 3 && activeBtn == BBButton.C)
+                        {
+                            return CreateCommand(BBCommandType.Normal3C, activeBtn, currentFacingNumpad, currentTick, false);
+                        }
+
                         switch (activeBtn)
                         {
                             case BBButton.A: return CreateCommand(BBCommandType.Normal2A, activeBtn, currentFacingNumpad, currentTick, false);
@@ -295,11 +300,6 @@ namespace DemonIdol.BlazBlue
                             case BBButton.C: return CreateCommand(BBCommandType.Normal2C, activeBtn, currentFacingNumpad, currentTick, false);
                             case BBButton.D: return CreateCommand(BBCommandType.Normal2D, activeBtn, currentFacingNumpad, currentTick, false);
                         }
-                    }
-                    else if (currentFacingNumpad == 3)
-                    {
-                        if (activeBtn == BBButton.C)
-                            return CreateCommand(BBCommandType.Normal3C, activeBtn, currentFacingNumpad, currentTick, false);
                     }
                     else if (currentFacingNumpad == 4)
                     {

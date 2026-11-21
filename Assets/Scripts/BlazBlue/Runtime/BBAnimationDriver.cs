@@ -206,5 +206,91 @@ namespace DemonIdol.BlazBlue
                 }
             }
         }
+
+        /// <summary>
+        /// Updates Layer 0 locomotion parameters (Speed, MoveX, IsGrounded, IsCrouch, IsBlocking, Jump, Dash)
+        /// on both AnimatorControllerPlayable and the underlying Animator.
+        /// </summary>
+        public void UpdateLocomotionState(BBState state, sbyte facingNumpad, bool isGrounded)
+        {
+            if (animator == null) return;
+
+            switch (state)
+            {
+                case BBState.WalkForward:
+                    SetParamFloat("MoveX", 1f);
+                    SetParamFloat("Speed", 1f);
+                    SetParamBool("IsCrouch", false);
+                    SetParamBool("IsGrounded", true);
+                    SetParamBool("IsBlocking", false);
+                    break;
+
+                case BBState.WalkBackward:
+                    SetParamFloat("MoveX", -1f);
+                    SetParamFloat("Speed", 1f);
+                    SetParamBool("IsCrouch", false);
+                    SetParamBool("IsGrounded", true);
+                    SetParamBool("IsBlocking", true);
+                    break;
+
+                case BBState.Crouching:
+                    SetParamFloat("MoveX", 0f);
+                    SetParamFloat("Speed", 0f);
+                    SetParamBool("IsCrouch", true);
+                    SetParamBool("IsGrounded", true);
+                    SetParamBool("IsBlocking", facingNumpad == 1 || facingNumpad == 4);
+                    break;
+
+                case BBState.Neutral:
+                    SetParamFloat("MoveX", 0f);
+                    SetParamFloat("Speed", 0f);
+                    SetParamBool("IsCrouch", false);
+                    SetParamBool("IsGrounded", true);
+                    SetParamBool("IsBlocking", facingNumpad == 4);
+                    break;
+
+                case BBState.ForwardDash:
+                    SetParamTrigger("ForwardDash");
+                    SetParamFloat("Speed", 2f);
+                    SetParamBool("IsCrouch", false);
+                    SetParamBool("IsGrounded", true);
+                    SetParamBool("IsBlocking", false);
+                    break;
+
+                case BBState.Backdash:
+                    SetParamTrigger("Backdash");
+                    SetParamFloat("Speed", 2f);
+                    SetParamBool("IsCrouch", false);
+                    SetParamBool("IsGrounded", true);
+                    SetParamBool("IsBlocking", false);
+                    break;
+
+                case BBState.JumpStartup:
+                case BBState.Airborne:
+                    SetParamTrigger("Jump");
+                    SetParamBool("IsGrounded", false);
+                    SetParamBool("IsCrouch", false);
+                    SetParamBool("IsBlocking", false);
+                    break;
+            }
+        }
+
+        private void SetParamFloat(string name, float val)
+        {
+            if (_controllerPlayable.IsValid()) _controllerPlayable.SetFloat(name, val);
+            if (animator != null) animator.SetFloat(name, val);
+        }
+
+        private void SetParamBool(string name, bool val)
+        {
+            if (_controllerPlayable.IsValid()) _controllerPlayable.SetBool(name, val);
+            if (animator != null) animator.SetBool(name, val);
+        }
+
+        private void SetParamTrigger(string name)
+        {
+            if (_controllerPlayable.IsValid()) _controllerPlayable.SetTrigger(name);
+            if (animator != null) animator.SetTrigger(name);
+        }
     }
 }

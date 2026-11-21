@@ -191,11 +191,33 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        private static readonly System.Collections.Generic.HashSet<string> s_LoggedMissingMoves = new System.Collections.Generic.HashSet<string>();
+        private sbyte jumpDirection = 8;
+
         void TryExecuteCommand(int tick)
         {
             if (!CurrentCommand.IsValid || profile == null) return;
             if (bbState == BBState.Hitstun || bbState == BBState.Blockstun || bbState == BBState.BarrierBlockstun || bbState == BBState.Thrown)
                 return;
+
+            if (CurrentCommand.commandType == BBCommandType.ForwardDash)
+            {
+                if (isGrounded && CanDash())
+                {
+                    StartDash(BBState.ForwardDash);
+                    ConsumeCurrentCommand();
+                }
+                return;
+            }
+            if (CurrentCommand.commandType == BBCommandType.Backdash)
+            {
+                if (isGrounded && CanDash())
+                {
+                    StartDash(BBState.Backdash);
+                    ConsumeCurrentCommand();
+                }
+                return;
+            }
 
             if (IsDriveCommand(CurrentCommand.commandType))
             {
@@ -208,9 +230,36 @@ namespace DemonIdol.BlazBlue
 
             string moveId = MoveIdFor(CurrentCommand);
             if (string.IsNullOrEmpty(moveId)) return;
-            if (TryStartMoveId(moveId) || TryStartMoveId(FallbackMoveId(CurrentCommand)))
+            string fallback = FallbackMoveId(CurrentCommand);
+            if (TryStartMoveId(moveId) || (!string.IsNullOrEmpty(fallback) && TryStartMoveId(fallback)))
             {
                 ConsumeCurrentCommand();
+            }
+            else
+            {
+                string charId = fighter != null && fighter.appliedDefinition != null ? fighter.appliedDefinition.id : (profile != null ? profile.characterId : "unknown");
+                string key = $"{charId}:{moveId}";
+                if (s_LoggedMissingMoves.Add(key))
+                {
+                    UnityEngine.Debug.LogWarning($"[BBFighterBrain] Missing move '{moveId}' for fighter '{charId}'. No action taken.");
+                }
+                ConsumeCurrentCommand();
+            }
+        }
+
+        bool CanDash()
+        {
+            return bbState == BBState.Neutral || bbState == BBState.WalkForward || bbState == BBState.WalkBackward || bbState == BBState.Crouching;
+        }
+
+        void StartDash(BBState dashState)
+        {
+            bbState = dashState;
+            stateTick = 0;
+            if (animDriver != null)
+            {
+                sbyte facingNumpad = fighter != null ? BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, fighter.FacingDirection) : (sbyte)5;
+                animDriver.UpdateLocomotionState(bbState, facingNumpad, isGrounded);
             }
         }
 
@@ -272,11 +321,6 @@ namespace DemonIdol.BlazBlue
                 case BBCommandType.Normal2A: return "5A";
                 case BBCommandType.Normal2B: return "5B";
                 case BBCommandType.Normal2C: return "5C";
-                case BBCommandType.Special236:
-                case BBCommandType.Special214:
-                case BBCommandType.Special623:
-                case BBCommandType.Special22:
-                    return "236A";
                 case BBCommandType.Distortion236236:
                 case BBCommandType.Distortion214214:
                 case BBCommandType.Distortion632146:
@@ -391,6 +435,102 @@ namespace DemonIdol.BlazBlue
                         stateTick = 0;
                     }
                     break;
+
+                case BBState.ForwardDash:
+                    int dashDuration = profile != null ? profile.forwardDashDurationTicks : (tuning != null ? tuning.dashDurationTicks : 12);
+                    if (stateTick >= dashDuration)
+                    {
+                        bbState = BBState.Neutral;
+                        stateTick = 0;
+                    }
+                    break;
+
+                case BBState.Backdash:
+                    int bdashDuration = profile != null ? profile.backdashDurationTicks : (tuning != null ? tuning.backdashDurationTicks : 14);
+                    int bdashInvuln = profile != null ? profile.backdashInvulnTicks : (tuning != null ? tuning.backdashInvulnTicks : 5);
+                    currentInvuln = stateTick < bdashInvuln ? BBInvuln.Strike | BBInvuln.Throw : BBInvuln.None;
+                    if (stateTick >= bdashDuration)
+                    {
+                        bbState = BBState.Neutral;
+                        stateTick = 0;
+                        currentInvuln = BBInvuln.None;
+                    }
+                    break;
+
+                case BBState.JumpStartup:
+                    int prejump = tuning != null ? tuning.jumpPrejumpTicks : 4;
+                    if (stateTick >= prejump)
+                    {
+                        bbState = BBState.Airborne;
+                        isGrounded = false;
+                        stateTick = 0;
+                        float vLaunch = profile != null ? profile.jumpVerticalLaunch : (tuning != null ? tuning.jumpVerticalLaunch : 8.0f);
+                        float hSpeed = profile != null ? profile.jumpHorizontalSpeed : (tuning != null ? tuning.jumpHorizontalSpeed : 3.2f);
+                        int facing = fighter != null ? fighter.FacingDirection : 1;
+                        simVelocity.y = vLaunch;
+                        if (jumpDirection == 9) simVelocity.x = facing * hSpeed;
+                        else if (jumpDirection == 7) simVelocity.x = -facing * hSpeed;
+                        else simVelocity.x = 0f;
+                        if (animDriver != null)
+                        {
+                            sbyte facingNumpad = fighter != null ? BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, fighter.FacingDirection) : (sbyte)5;
+                            animDriver.UpdateLocomotionState(bbState, facingNumpad, isGrounded);
+                        }
+                    }
+                    break;
+            }
+
+            if (isGrounded &&
+                bbState != BBState.AttackStartup && bbState != BBState.AttackActive && bbState != BBState.AttackRecovery &&
+                bbState != BBState.Hitstun && bbState != BBState.Blockstun && bbState != BBState.BarrierBlockstun &&
+                bbState != BBState.Thrown && bbState != BBState.ForwardDash && bbState != BBState.Backdash &&
+                bbState != BBState.JumpStartup && (fighter == null || fighter.State != FighterState.Dead))
+            {
+                sbyte facingNumpad = fighter != null ? BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, fighter.FacingDirection) : (sbyte)5;
+                UpdateGroundLocomotion(facingNumpad);
+            }
+        }
+
+        void UpdateGroundLocomotion(sbyte facingNumpad)
+        {
+            if (facingNumpad == 7 || facingNumpad == 8 || facingNumpad == 9)
+            {
+                bbState = BBState.JumpStartup;
+                stateTick = 0;
+                jumpDirection = facingNumpad;
+                if (animDriver != null)
+                {
+                    animDriver.UpdateLocomotionState(bbState, facingNumpad, isGrounded);
+                }
+                return;
+            }
+
+            BBState targetState;
+            if (facingNumpad == 1 || facingNumpad == 2 || facingNumpad == 3)
+            {
+                targetState = BBState.Crouching;
+            }
+            else if (facingNumpad == 6)
+            {
+                targetState = BBState.WalkForward;
+            }
+            else if (facingNumpad == 4)
+            {
+                targetState = BBState.WalkBackward;
+            }
+            else
+            {
+                targetState = BBState.Neutral;
+            }
+
+            if (bbState != targetState)
+            {
+                bbState = targetState;
+                stateTick = 0;
+            }
+            if (animDriver != null)
+            {
+                animDriver.UpdateLocomotionState(bbState, facingNumpad, isGrounded);
             }
         }
 

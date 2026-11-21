@@ -219,6 +219,26 @@ namespace DemonIdol.BlazBlue
                         float bdashSpeed = brain.profile != null ? brain.profile.backdashSpeed : 7.0f;
                         pos.x -= facing * bdashSpeed * CombatTickEngine.TICK_DELTA_TIME;
                         break;
+
+                    case BBState.Airborne:
+                        float grav = brain.tuning != null ? brain.tuning.gravity : 20.0f;
+                        brain.simVelocity.y -= grav * CombatTickEngine.TICK_DELTA_TIME;
+                        pos.x += brain.simVelocity.x * CombatTickEngine.TICK_DELTA_TIME;
+                        pos.y += brain.simVelocity.y * CombatTickEngine.TICK_DELTA_TIME;
+                        if (pos.y <= 0f)
+                        {
+                            pos.y = 0f;
+                            brain.simVelocity = Vector2.zero;
+                            brain.isGrounded = true;
+                            brain.bbState = BBState.Neutral;
+                            brain.stateTick = 0;
+                            if (brain.animDriver != null)
+                            {
+                                sbyte numpad = brain.fighter != null ? BBInputFrame.WorldToFacingNumpad(brain.History.LatestFrame.numpad, brain.fighter.FacingDirection) : (sbyte)5;
+                                brain.animDriver.UpdateLocomotionState(brain.bbState, numpad, brain.isGrounded);
+                            }
+                        }
+                        break;
                 }
             }
 

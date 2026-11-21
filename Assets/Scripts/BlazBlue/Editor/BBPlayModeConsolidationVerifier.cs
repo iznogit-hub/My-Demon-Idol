@@ -93,6 +93,12 @@ namespace DemonIdol.BlazBlue.Editor
 
         private static void OnEditorUpdate()
         {
+            if (File.Exists("export_tracker.trigger"))
+            {
+                try { File.Delete("export_tracker.trigger"); } catch { }
+                BBMovesetTrackerExporter.ExportMovesetTracker();
+            }
+
             if (File.Exists("run_tests_final.trigger"))
             {
                 try { File.Delete("run_tests_final.trigger"); } catch { }
