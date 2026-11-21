@@ -375,7 +375,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44461709}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7666ab0c2fea34bc8aa251c3dedb53e3, type: 3}
   m_Name: 
@@ -790,16 +790,28 @@ PrefabInstance:
       value: Backdrop_Diorama
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6.6299996
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -65.22749
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -857,6 +869,10 @@ PrefabInstance:
       propertyPath: _keyMoonLight
       value: 
       objectReference: {fileID: 2112748171}
+    - target: {fileID: 6761183000590151615, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -65.22749
+      objectReference: {fileID: 0}
     - target: {fileID: 6761183000590151615, guid: d707ca11e9e041bb848696298f2a0cb7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1

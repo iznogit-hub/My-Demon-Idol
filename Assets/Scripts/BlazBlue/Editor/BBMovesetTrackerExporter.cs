@@ -257,6 +257,32 @@ namespace DemonIdol.BlazBlue.Editor
             foreach (var (inp, key, pad, mId, sName) in systemInputs)
             {
                 movesById.TryGetValue(mId, out var atk);
+                if (atk == null)
+                {
+                    if (mId == "CT")
+                    {
+                        if (moveSet != null && moveSet.crushTrigger != null) atk = moveSet.crushTrigger;
+                        else movesById.TryGetValue("AB", out atk);
+                    }
+                    else if (mId == "CA")
+                    {
+                        if (moveSet != null && moveSet.counterAssault != null) atk = moveSet.counterAssault;
+                        else movesById.TryGetValue("6AB", out atk);
+                    }
+                    else if (mId == "Burst")
+                    {
+                        if (moveSet != null && moveSet.burst != null) atk = moveSet.burst;
+                    }
+                    else if (mId == "OD")
+                    {
+                        if (moveSet != null && moveSet.overdriveStart != null) atk = moveSet.overdriveStart;
+                    }
+                    else if (mId == "5D")
+                    {
+                        movesById.TryGetValue("5D", out atk);
+                    }
+                }
+
                 AnimationClip clip = ResolveClip(def, mId, atk, profile, overrideMap);
                 var row = CreateRow(def, inp, key, pad, mId, atk, clip, sName, usedClips);
                 summary.rows.Add(row);
@@ -334,12 +360,61 @@ namespace DemonIdol.BlazBlue.Editor
                 if (atk.animationClip != null) return atk.animationClip;
             }
 
-            // Check override map mappings
+            // Normals from overrideMap
             if (moveId == "5A" && (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var a) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out a))) return a;
             if (moveId == "5B" && (overrideMap.TryGetValue("HumanF@Attack1H01_L", out var b) || overrideMap.TryGetValue("HumanM@Attack1H01_L", out b))) return b;
             if (moveId == "5C" && (overrideMap.TryGetValue("HumanF@Attack2H01", out var c) || overrideMap.TryGetValue("HumanM@Attack2H01", out c))) return c;
             if (moveId == "5D" && (overrideMap.TryGetValue("HumanF@AttackPolearm01", out var d) || overrideMap.TryGetValue("HumanM@AttackPolearm01", out d))) return d;
-            if (moveId == "BC" && (overrideMap.TryGetValue("HumanF@AttackShield01", out var t) || overrideMap.TryGetValue("HumanM@AttackShield01", out t))) return t;
+            if (moveId == "6C")
+            {
+                if (overrideMap.TryGetValue("HumanF@Attack2H01", out var sc6) || overrideMap.TryGetValue("HumanM@Attack2H01", out sc6)) return sc6;
+                if (overrideMap.TryGetValue("HumanF@AttackPolearm01", out var sp6) || overrideMap.TryGetValue("HumanM@AttackPolearm01", out sp6)) return sp6;
+                if (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var sa6) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out sa6)) return sa6;
+            }
+            if (moveId == "2C" || moveId == "j.C" || moveId == "22C" || moveId == "3C")
+            {
+                if (overrideMap.TryGetValue("HumanF@Attack2H01", out var c2) || overrideMap.TryGetValue("HumanM@Attack2H01", out c2)) return c2;
+                if (overrideMap.TryGetValue("HumanF@AttackPolearm01", out var c2p) || overrideMap.TryGetValue("HumanM@AttackPolearm01", out c2p)) return c2p;
+                if (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var c2a) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out c2a)) return c2a;
+            }
+            if (moveId == "BC" || moveId == "4BC" || moveId == "j.BC")
+            {
+                if (overrideMap.TryGetValue("HumanF@AttackShield01", out var t) || overrideMap.TryGetValue("HumanM@AttackShield01", out t)) return t;
+                if (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var ta) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out ta)) return ta;
+            }
+
+            // System Move Mappings
+            if (moveId == "CT")
+            {
+                if (overrideMap.TryGetValue("HumanF@Attack2H01", out var ct) || overrideMap.TryGetValue("HumanM@Attack2H01", out ct)) return ct;
+                if (overrideMap.TryGetValue("HumanF@AttackPolearm01", out var ctp) || overrideMap.TryGetValue("HumanM@AttackPolearm01", out ctp)) return ctp;
+                if (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var cta) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out cta)) return cta;
+            }
+            if (moveId == "CA")
+            {
+                if (overrideMap.TryGetValue("HumanF@AttackShield01", out var ca) || overrideMap.TryGetValue("HumanM@AttackShield01", out ca)) return ca;
+                if (overrideMap.TryGetValue("HumanF@CombatIdle1H01", out var cag)) return cag;
+                if (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var caa) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out caa)) return caa;
+            }
+            if (moveId == "Burst")
+            {
+                if (overrideMap.TryGetValue("HumanF@MagicAttackOmni01", out var bst) || overrideMap.TryGetValue("HumanM@MagicAttackOmni01", out bst)) return bst;
+                if (overrideMap.TryGetValue("HumanF@CastingEnter01", out var bst2) || overrideMap.TryGetValue("HumanM@CastingEnter01", out bst2)) return bst2;
+                if (overrideMap.TryGetValue("HumanF@AttackPolearm01", out var bst3) || overrideMap.TryGetValue("HumanM@AttackPolearm01", out bst3)) return bst3;
+                if (overrideMap.TryGetValue("HumanF@Idle03", out var bst4) || overrideMap.TryGetValue("HumanM@Idle03", out bst4)) return bst4;
+            }
+            if (moveId == "OD")
+            {
+                if (overrideMap.TryGetValue("HumanF@Idle03", out var od) || overrideMap.TryGetValue("HumanM@Idle03", out od)) return od;
+                if (overrideMap.TryGetValue("HumanF@MagicAttackCall1H01_L", out var od2) || overrideMap.TryGetValue("HumanM@MagicAttackCall1H01_L", out od2)) return od2;
+                if (overrideMap.TryGetValue("HumanF@CombatIdle01", out var od3) || overrideMap.TryGetValue("HumanM@CombatIdle01", out od3)) return od3;
+            }
+            if (moveId == "RC")
+            {
+                if (overrideMap.TryGetValue("HumanF@CombatIdle01", out var rc) || overrideMap.TryGetValue("HumanM@CombatIdle01", out rc)) return rc;
+                if (overrideMap.TryGetValue("HumanF@Idle01", out var rc2) || overrideMap.TryGetValue("HumanM@Idle01", out rc2)) return rc2;
+                if (overrideMap.TryGetValue("HumanF@CombatIdle1H01", out var rc3)) return rc3;
+            }
 
             return null;
         }
@@ -355,6 +430,21 @@ namespace DemonIdol.BlazBlue.Editor
             string fallbackName,
             HashSet<AnimationClip> usedClips)
         {
+            int defaultStartup = atk != null ? atk.startupFrames : 0;
+            int defaultActive = atk != null ? atk.activeFrames : 0;
+            int defaultRecovery = atk != null ? atk.recoveryFrames : 0;
+            float defaultDamage = atk != null ? atk.damage : 0f;
+
+            if (atk == null)
+            {
+                if (moveId == "6C") { defaultStartup = 14; defaultActive = 5; defaultRecovery = 22; defaultDamage = 800f; }
+                else if (moveId == "CT") { defaultStartup = 25; defaultActive = 4; defaultRecovery = 28; defaultDamage = 850f; }
+                else if (moveId == "CA") { defaultStartup = 11; defaultActive = 3; defaultRecovery = 24; defaultDamage = 500f; }
+                else if (moveId == "Burst") { defaultStartup = 1; defaultActive = 4; defaultRecovery = 30; defaultDamage = 0f; }
+                else if (moveId == "OD") { defaultStartup = 1; defaultActive = 0; defaultRecovery = 20; defaultDamage = 0f; }
+                else if (moveId == "RC") { defaultStartup = 0; defaultActive = 0; defaultRecovery = 0; defaultDamage = 0f; }
+            }
+
             var row = new TrackedRow
             {
                 fighter = $"{def.id} {def.name}",
@@ -367,10 +457,10 @@ namespace DemonIdol.BlazBlue.Editor
                 clipName = clip != null ? clip.name : "",
                 clipPath = clip != null ? AssetDatabase.GetAssetPath(clip) : "",
                 clipFrames = clip != null ? Mathf.RoundToInt(clip.length * 60f) : 0,
-                startup = atk != null ? atk.startupFrames : 0,
-                active = atk != null ? atk.activeFrames : 0,
-                recovery = atk != null ? atk.recoveryFrames : 0,
-                damage = atk != null ? atk.damage : 0f,
+                startup = defaultStartup,
+                active = defaultActive,
+                recovery = defaultRecovery,
+                damage = defaultDamage,
                 notes = ""
             };
 
@@ -390,20 +480,26 @@ namespace DemonIdol.BlazBlue.Editor
                     row.status = "PLACEHOLDER";
                     row.notes = "Placeholder clip detected.";
                 }
-                else if (row.sourcePack != def.primaryPack && row.sourcePack != def.secondaryPack && !row.sourcePack.Contains("Warrior") && !row.sourcePack.Contains("Martial") && !row.sourcePack.Contains("Fighter"))
-                {
-                    row.status = "OFF-PACK";
-                    row.notes = $"Clip source [{row.sourcePack}] is outside fighter's assigned pack [{def.primaryPack}].";
-                }
-                else if (usedClips.Contains(clip))
-                {
-                    row.status = "SHARED";
-                    row.notes = $"Reuses clip [{clip.name}] shared with another moveset slot.";
-                }
                 else
                 {
-                    row.status = "OK";
-                    row.notes = $"Genuine clip from {row.sourcePack}.";
+                    bool isHumanPack = (def.primaryPack == "Human Spell Casting Animations" || def.primaryPack == "Human Melee Animations" || def.secondaryPack == "Human Spell Casting Animations" || def.secondaryPack == "Human Melee Animations");
+                    bool clipIsHumanPack = (row.sourcePack == "Human Spell Casting Animations" || row.sourcePack == "Human Melee Animations");
+
+                    if (row.sourcePack != def.primaryPack && row.sourcePack != def.secondaryPack && !(isHumanPack && clipIsHumanPack) && !row.sourcePack.Contains("Warrior") && !row.sourcePack.Contains("Martial") && !row.sourcePack.Contains("Fighter"))
+                    {
+                        row.status = "OFF-PACK";
+                        row.notes = $"Clip source [{row.sourcePack}] is outside fighter's assigned pack [{def.primaryPack}].";
+                    }
+                    else if (usedClips.Contains(clip))
+                    {
+                        row.status = "SHARED";
+                        row.notes = $"Reuses clip [{clip.name}] shared with another moveset slot.";
+                    }
+                    else
+                    {
+                        row.status = "OK";
+                        row.notes = $"Genuine clip from {row.sourcePack}.";
+                    }
                 }
 
                 usedClips.Add(clip);
@@ -421,7 +517,7 @@ namespace DemonIdol.BlazBlue.Editor
             if (path.Contains("Fighter Pack Bundle")) return "Fighter Pack Bundle";
             if (path.Contains("Martial Art Animations")) return "Martial Art Animations";
             if (path.Contains("Dwarf Animations")) return "Dwarf Animations";
-            if (path.Contains("Spellcasting")) return "Human Spell Casting Animations";
+            if (path.Contains("Spellcasting") || path.Contains("MagicAttack") || path.Contains("Casting")) return "Human Spell Casting Animations";
             if (path.Contains("Human Animations")) return "Human Melee Animations";
             if (path.Contains("GAMWILL")) return "GAMWILL Bionic Gorilla";
             return "Other / External";

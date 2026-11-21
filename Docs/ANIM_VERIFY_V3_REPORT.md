@@ -1,13 +1,13 @@
 # Animation Consolidation & Verification Fix Pass V3 Report
 
-**Date:** 2026-11-21 23:37:19  
+**Date:** 2026-11-22 00:23:31  
 **Branch:** `main`  
 **Target Scene:** `Assets/Scenes/ArcadeArena.unity` (ST07 College Raimon)  
 
 ## 1. Play Mode 25-Fighter Proof Suite
 
 === PLAY MODE 25-FIGHTER VERIFICATION REPORT ===
-Timestamp: 21-11-2026 22:36:08
+Timestamp: 22-11-2026 00:18:43
 Stage: College Raimon (ST07)
 ------------------------------------------------------------------------------------------------------------------------
 | **C01** | Akio           | vs Aika           | LightAttack     | PASS | P2 HP: 10000 -> 7500 (-2500) | Hit Spark: Yes | Feet-to-Floor: 0.043m | Debug Circles: No |
@@ -71,28 +71,28 @@ FAILED: 0
 
 | Fighter ID | Name | Screenshot Filename | File Size | Status |
 |:---:|---|---|:---:|:---:|
-| **C01** | Akio | `verify_v3_C01_Akio.png` | 1441 KB | **VERIFIED** |
-| **C02** | Aika | `verify_v3_C02_Aika.png` | 1396 KB | **VERIFIED** |
-| **C04** | UnityChan | `verify_v3_C04_UnityChan.png` | 1499 KB | **VERIFIED** |
-| **C05** | Akane | `verify_v3_C05_Akane.png` | 1570 KB | **VERIFIED** |
-| **C06** | Cultist | `verify_v3_C06_Cultist.png` | 1615 KB | **VERIFIED** |
-| **C07** | StellarWitch | `verify_v3_C07_StellarWitch.png` | 1533 KB | **VERIFIED** |
-| **C08** | SanpakuChan | `verify_v3_C08_SanpakuChan.png` | 1459 KB | **VERIFIED** |
-| **C09** | PicoChan | `verify_v3_C09_PicoChan.png` | 1479 KB | **VERIFIED** |
-| **C10** | Reika | `verify_v3_C10_Reika.png` | 1607 KB | **VERIFIED** |
-| **C11** | Casual1 | `verify_v3_C11_Casual1.png` | 1382 KB | **VERIFIED** |
-| **C12** | Fina | `verify_v3_C12_Fina.png` | 1452 KB | **VERIFIED** |
-| **C13** | SapphiArtchan | `verify_v3_C13_SapphiArtchan.png` | 1458 KB | **VERIFIED** |
-| **C14** | Muryotaisu | `verify_v3_C14_Muryotaisu.png` | 1487 KB | **VERIFIED** |
-| **SK02** | Galahad | `verify_v3_SK02_Galahad.png` | 1515 KB | **VERIFIED** |
-| **SK03** | Vex | `verify_v3_SK03_Vex.png` | 1586 KB | **VERIFIED** |
-| **SK05** | LordMorvath | `verify_v3_SK05_LordMorvath.png` | 1600 KB | **VERIFIED** |
-| **SK06** | CommanderRen | `verify_v3_SK06_CommanderRen.png` | 1543 KB | **VERIFIED** |
-| **SK08** | Torgrim | `verify_v3_SK08_Torgrim.png` | 1643 KB | **VERIFIED** |
-| **EX01** | Hugo | `verify_v3_EX01_Hugo.png` | 1731 KB | **VERIFIED** |
-| **EX02** | Granite | `verify_v3_EX02_Granite.png` | 1753 KB | **VERIFIED** |
-| **EX03** | Viper | `verify_v3_EX03_Viper.png` | 1507 KB | **VERIFIED** |
-| **EX04** | OfficerK | `verify_v3_EX04_OfficerK.png` | 1520 KB | **VERIFIED** |
-| **EX05** | Kira | `verify_v3_EX05_Kira.png` | 1619 KB | **VERIFIED** |
-| **EX06** | Sentry | `verify_v3_EX06_Sentry.png` | 1623 KB | **VERIFIED** |
-| **EX07** | Lyra | `verify_v3_EX07_Lyra.png` | 1417 KB | **VERIFIED** |
+| **C01** | Akio | `verify_v3_C01_Akio.png` | 508 KB | **VERIFIED** |
+| **C02** | Aika | `verify_v3_C02_Aika.png` | 469 KB | **VERIFIED** |
+| **C04** | UnityChan | `verify_v3_C04_UnityChan.png` | 588 KB | **VERIFIED** |
+| **C05** | Akane | `verify_v3_C05_Akane.png` | 703 KB | **VERIFIED** |
+| **C06** | Cultist | `verify_v3_C06_Cultist.png` | 747 KB | **VERIFIED** |
+| **C07** | StellarWitch | `verify_v3_C07_StellarWitch.png` | 697 KB | **VERIFIED** |
+| **C08** | SanpakuChan | `verify_v3_C08_SanpakuChan.png` | 591 KB | **VERIFIED** |
+| **C09** | PicoChan | `verify_v3_C09_PicoChan.png` | 587 KB | **VERIFIED** |
+| **C10** | Reika | `verify_v3_C10_Reika.png` | 1098 KB | **VERIFIED** |
+| **C11** | Casual1 | `verify_v3_C11_Casual1.png` | 475 KB | **VERIFIED** |
+| **C12** | Fina | `verify_v3_C12_Fina.png` | 522 KB | **VERIFIED** |
+| **C13** | SapphiArtchan | `verify_v3_C13_SapphiArtchan.png` | 532 KB | **VERIFIED** |
+| **C14** | Muryotaisu | `verify_v3_C14_Muryotaisu.png` | 731 KB | **VERIFIED** |
+| **SK02** | Galahad | `verify_v3_SK02_Galahad.png` | 695 KB | **VERIFIED** |
+| **SK03** | Vex | `verify_v3_SK03_Vex.png` | 819 KB | **VERIFIED** |
+| **SK05** | LordMorvath | `verify_v3_SK05_LordMorvath.png` | 817 KB | **VERIFIED** |
+| **SK06** | CommanderRen | `verify_v3_SK06_CommanderRen.png` | 743 KB | **VERIFIED** |
+| **SK08** | Torgrim | `verify_v3_SK08_Torgrim.png` | 844 KB | **VERIFIED** |
+| **EX01** | Hugo | `verify_v3_EX01_Hugo.png` | 1189 KB | **VERIFIED** |
+| **EX02** | Granite | `verify_v3_EX02_Granite.png` | 1195 KB | **VERIFIED** |
+| **EX03** | Viper | `verify_v3_EX03_Viper.png` | 567 KB | **VERIFIED** |
+| **EX04** | OfficerK | `verify_v3_EX04_OfficerK.png` | 999 KB | **VERIFIED** |
+| **EX05** | Kira | `verify_v3_EX05_Kira.png` | 735 KB | **VERIFIED** |
+| **EX06** | Sentry | `verify_v3_EX06_Sentry.png` | 723 KB | **VERIFIED** |
+| **EX07** | Lyra | `verify_v3_EX07_Lyra.png` | 534 KB | **VERIFIED** |

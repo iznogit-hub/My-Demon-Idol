@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DemonIdol.Combat;
 
 namespace DemonIdol.BlazBlue
 {
@@ -144,7 +145,7 @@ namespace DemonIdol.BlazBlue
 
             ResolveBrains();
 
-            int tick = CombatTickEngine.Instance != null ? CombatTickEngine.Instance.currentTick : Time.frameCount;
+            int tick = CombatTickEngine.Instance != null ? CombatTickEngine.Instance.CurrentTick : Time.frameCount;
             _p1.UpdateInput(tick);
             _p2.UpdateInput(tick);
 
@@ -212,7 +213,7 @@ namespace DemonIdol.BlazBlue
                 string inputStr = DirectionArrow(pt.lastNumpad) + " " + ButtonString(pt.lastButtons);
                 string cmd = pt.brain.CurrentCommand.IsValid ? pt.brain.CurrentCommand.commandType.ToString() : currentMove;
                 string clip = pt.brain.currentAttack != null && pt.brain.currentAttack.clip != null ? pt.brain.currentAttack.clip.name : "";
-                string result = pt.brain.attackHitMask.Count > 0 ? "Hit" : "Active";
+                string result = pt.brain.attackHitMask.mask != 0u ? "Hit" : "Active";
 
                 _logWriter.WriteLine($"{tick},P{pt.playerIndex + 1},{fighter},{inputStr},{cmd},{currentMove},{clip},{result}");
                 _logWriter.Flush();

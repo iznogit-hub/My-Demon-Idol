@@ -96,6 +96,15 @@ namespace DemonIdol.BlazBlue.Editor
             if (File.Exists("export_tracker.trigger"))
             {
                 try { File.Delete("export_tracker.trigger"); } catch { }
+                AssetDatabase.Refresh();
+                EditorPrefs.SetBool("MDI_PendingExportTracker", true);
+                return;
+            }
+
+            if (EditorPrefs.GetBool("MDI_PendingExportTracker", false))
+            {
+                if (EditorApplication.isCompiling || EditorApplication.isUpdating) return;
+                EditorPrefs.DeleteKey("MDI_PendingExportTracker");
                 BBMovesetTrackerExporter.ExportMovesetTracker();
             }
 

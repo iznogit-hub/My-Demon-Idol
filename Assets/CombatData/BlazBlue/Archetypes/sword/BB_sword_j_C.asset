@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 3094330708855449807, guid: ef751e951ed91ed4fbc94d82726c9eed, type: 3}
+  animationClip: {fileID: 7400000, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   animationTrigger: AirHeavy
   hitboxOffset: {x: 0.85, y: 0.95, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: f224388f6c2651b3bc4489cfcad68244, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_sword_j_C
-  clip: {fileID: 3094330708855449807, guid: ef751e951ed91ed4fbc94d82726c9eed, type: 3}
+  clip: {fileID: 7400000, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 26
   events: []
