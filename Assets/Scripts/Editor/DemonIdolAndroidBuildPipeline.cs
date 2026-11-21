@@ -24,6 +24,8 @@ namespace DemonIdol.Editor
         // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Build/Build macOS Standalone (Fast Local Test)", priority = 10)]
         public static void BuildMacOS()
         {
+            PrepareMacOSPlayerSettings();
+
             string outDir = Path.GetFullPath("Builds/macOS");
             if (!Directory.Exists(outDir)) Directory.CreateDirectory(outDir);
             string outPath = Path.Combine(outDir, "MyDemonIdol.app");
@@ -33,12 +35,36 @@ namespace DemonIdol.Editor
                 scenes = BuildScenes,
                 locationPathName = outPath,
                 target = BuildTarget.StandaloneOSX,
-                options = BuildOptions.Development | BuildOptions.EnableDeepProfilingSupport
+                options = BuildOptions.Development
             };
 
             Debug.Log($"<color=#00e676>[BuildPipeline] Building macOS Standalone to: {outPath}...</color>");
             BuildReport report = BuildPipeline.BuildPlayer(opt);
             LogReport(report, "macOS Standalone");
+        }
+
+        [MenuItem("Demon Idol/📱 Build Pipeline/Apply macOS Standalone Settings", priority = 59)]
+        public static void ApplyMacOSSettingsMenu()
+        {
+            PrepareMacOSPlayerSettings();
+            AssetDatabase.SaveAssets();
+            Debug.Log($"<color=#00e676>[BuildPipeline] Applied macOS Standalone Settings: bundleId={PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Standalone)}, version={PlayerSettings.bundleVersion}, arch={PlayerSettings.GetArchitecture(NamedBuildTarget.Standalone)}</color>");
+        }
+
+        public static void PrepareMacOSPlayerSettings()
+        {
+            PlayerSettings.companyName = "Celestial Soul";
+            PlayerSettings.productName = "My Demon Idol";
+            PlayerSettings.bundleVersion = "0.1.0";
+            PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Standalone, "com.celestialsoul.mydemonidol");
+            try
+            {
+                PlayerSettings.SetArchitecture(NamedBuildTarget.Standalone, 2); // 2 = Universal (ARM64 + x64)
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning("[BuildPipeline] SetArchitecture(Standalone, 2) warning: " + ex.Message);
+            }
         }
 
         // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Build/Build Android APK (Development)", priority = 11)]
