@@ -21,5 +21,5 @@ MonoBehaviour:
   victoryVideo: {fileID: 0}
   quote: 
   driveClip: {fileID: 7400000, guid: 8ca4ee804edcfc74cb82e44d624e7eca, type: 3}
-  specialClip: {fileID: 3094330708855449807, guid: 11465aac7c22a75458afa08d7ee99e6a, type: 3}
-  superClip: {fileID: 5985061498969246210, guid: 31f87819be7c6b144861a3f9eb6f1441, type: 3}
+  specialClip: {fileID: 7400000, guid: 714c40c75ea542248aea545b08b8bc50, type: 3}
+  superClip: {fileID: 7400000, guid: 8ca4ee804edcfc74cb82e44d624e7eca, type: 3}

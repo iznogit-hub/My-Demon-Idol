@@ -3731,6 +3731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hurtbox
   _zone: 1
+  _owner: {fileID: 0}
 --- !u!1 &5674236391244278038
 GameObject:
   m_ObjectHideFlags: 0
@@ -5481,7 +5482,7 @@ Animator:
   m_GameObject: {fileID: 8862449341055988924}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 78f96db9601fc9042acedb885675b143, type: 3}
-  m_Controller: {fileID: 9100000, guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4, type: 2}
+  m_Controller: {fileID: 22100000, guid: 3aedb18fbb1b546f8865f3403608f592, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5531,6 +5532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterController
   fighterName: Fina
+  appliedDefinition: {fileID: 0}
   isPlayerControlled: 1
   maxHealth: 1000
   maxSuperMeter: 100

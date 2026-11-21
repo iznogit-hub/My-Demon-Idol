@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: b3d13322675e10d47aa75892a620c7bc, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
   animationTrigger: JumpAttack
   hitboxOffset: {x: 0.55, y: 0.92, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 042b920abd535dee8b2545bdabca3fc9, type: 2}
   motionTrack: {fileID: 0}
   clipName: HumanF@MagicAttackDirect2H01
-  clip: {fileID: 3094330708855449807, guid: afc0d7b05fc184d49a7e863d9eec0f9e, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 18
+  clipLastFrame: 29
   events: []

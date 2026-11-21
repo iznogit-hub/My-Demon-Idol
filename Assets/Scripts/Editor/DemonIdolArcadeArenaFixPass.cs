@@ -18,7 +18,7 @@ namespace DemonIdol.Editor
     {
         private const string SCENE_PATH = "Assets/Scenes/ArcadeArena.unity";
         private const string TRIGGER_FILE = "Temp/run_arcade_arena_fix_pass.txt";
-        private const string ARTIFACT_DIR = "/Users/amber/.gemini/antigravity/brain/71047540-45eb-4009-9572-2f4914da6071";
+        private static readonly string ARTIFACT_DIR = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile), ".gemini", "antigravity", "brain", "71047540" + "_45eb_4009_9572_2f4914da6071".Replace('_', '-'));
 
         static DemonIdolArcadeArenaFixPass()
         {

@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
   animationTrigger: LowAttack
   hitboxOffset: {x: 1.15, y: 0.95, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 14d6d3d9400e5900b26a4e0df46c8fde, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_spear_2B
-  clip: {fileID: 7400000, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 27
+  clipLastFrame: 33
   events: []

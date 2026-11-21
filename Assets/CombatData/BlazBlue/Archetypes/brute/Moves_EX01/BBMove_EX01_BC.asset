@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
+  animationClip: {fileID: -1072464929596767778, guid: 8fa4ce5c51d783f498abee6f91cf3903, type: 3}
   animationTrigger: Throw
   hitboxOffset: {x: 0.95, y: 1.05, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: f0d9731aa15157c9b7faf109c8645975, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_brute_BC
-  clip: {fileID: 7400000, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
+  clip: {fileID: -1072464929596767778, guid: 8fa4ce5c51d783f498abee6f91cf3903, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 38
+  clipLastFrame: 18
   events: []

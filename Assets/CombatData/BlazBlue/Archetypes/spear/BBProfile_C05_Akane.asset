@@ -31,7 +31,7 @@ MonoBehaviour:
   blazBlueOverrideController: {fileID: 22100000, guid: c9f420a7ae96446e3ba3708689af2631, type: 2}
   signatureDriveClip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
   signatureSpecialClip: {fileID: 3094330708855449807, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
-  signatureSuperClip: {fileID: 8976197992841701070, guid: dbd6a12c39fedbe449fd7b32724394a4, type: 3}
+  signatureSuperClip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
   moveSet: {fileID: 11400000, guid: 538fd30d9d7054b209038aeb80df1c28, type: 2}
   maxHealth: 11000
   defenseModifier: 1

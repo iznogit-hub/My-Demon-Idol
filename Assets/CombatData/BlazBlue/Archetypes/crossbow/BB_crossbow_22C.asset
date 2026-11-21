@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
+  animationClip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   animationTrigger: HeavyAttack
   hitboxOffset: {x: 1.15, y: 0.92, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 23fce4404ea35e8d8d5e121da7232879, type: 2}
   motionTrack: {fileID: 0}
   clipName: Attack1
-  clip: {fileID: 7400000, guid: 714c40c75ea542248aea545b08b8bc50, type: 3}
+  clip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 36
+  clipLastFrame: 12
   events: []

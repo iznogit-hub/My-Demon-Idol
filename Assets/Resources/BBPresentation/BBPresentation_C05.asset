@@ -22,4 +22,4 @@ MonoBehaviour:
   quote: 
   driveClip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
   specialClip: {fileID: 3094330708855449807, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
-  superClip: {fileID: 8976197992841701070, guid: dbd6a12c39fedbe449fd7b32724394a4, type: 3}
+  superClip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}

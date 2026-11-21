@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2855608673045439984}
+  - component: {fileID: 2844043867897447}
   m_Layer: 0
   m_Name: calf_r
   m_TagString: Untagged
@@ -34,6 +35,33 @@ Transform:
   - {fileID: 4607252480020169315}
   m_Father: {fileID: 3882191100430605445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2844043867897447
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2844043867843447}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &253050396740815121
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +367,7 @@ Animator:
   m_GameObject: {fileID: 909871151342833027}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: aebf1eba44565b04ebee549db0eb5aa7, type: 2}
-  m_Controller: {fileID: 9100000, guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4, type: 2}
+  m_Controller: {fileID: 22100000, guid: 0ac0cecdada0f4c03b397ad5f209beba, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -389,6 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterController
   fighterName: Vex
+  appliedDefinition: {fileID: 0}
   isPlayerControlled: 1
   maxHealth: 1000
   maxSuperMeter: 100
@@ -1387,7 +1416,6 @@ GameObject:
   - component: {fileID: 1715607087771232873}
   - component: {fileID: 3344377808494881841}
   - component: {fileID: 3014517843522757424}
-  - component: {fileID: 2844043867897447}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -2384,6 +2412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hurtbox
   _zone: 1
+  _owner: {fileID: 0}
 --- !u!1 &6530777263252789509
 GameObject:
   m_ObjectHideFlags: 0
@@ -6314,31 +6343,3 @@ Transform:
   - {fileID: 3340920256083961584}
   m_Father: {fileID: 7422647700414358669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
---- !u!54 &2844043867897447
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2844043867843447}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2

@@ -80,6 +80,9 @@ namespace DemonIdol.BlazBlue.Editor
         [MenuItem("Demon Idol/🚀 Playability/Build 16 Dota Stances & Controllers", priority = 12)]
         public static void BuildAllDotaStances()
         {
+            BBAnimationConsolidationManager.ExecuteConsolidation();
+            BBAnimationConsolidationManager.ExecuteVerificationSuite();
+
             Debug.Log("<color=#00e676>=============================================================</color>");
             Debug.Log("<color=#00e676>  DEMON IDOL: BUILD 16 DOTA HERO STANCE OVERRIDES            </color>");
             Debug.Log("<color=#00e676>=============================================================</color>");
@@ -90,7 +93,7 @@ namespace DemonIdol.BlazBlue.Editor
             var baseController = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(BASE_CONTROLLER_PATH);
             if (baseController == null)
             {
-                Debug.LogError($"[BBDotaWarriorStanceBuilder] Master controller not found at {BASE_CONTROLLER_PATH}!");
+                Debug.LogError($"[BBDotaWarriorStanceBuilder v2] Master controller not found at {BASE_CONTROLLER_PATH}!");
                 return;
             }
 

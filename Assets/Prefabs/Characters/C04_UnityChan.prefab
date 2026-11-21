@@ -2232,7 +2232,7 @@ Animator:
   m_GameObject: {fileID: 100096}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
-  m_Controller: {fileID: 9100000, guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4, type: 2}
+  m_Controller: {fileID: 22100000, guid: a5bc0701b0d1843418a62e7f0e859093, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2314,6 +2314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterController
   fighterName: UnityChan
+  appliedDefinition: {fileID: 0}
   isPlayerControlled: 1
   maxHealth: 1000
   maxSuperMeter: 100
@@ -7601,3 +7602,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hurtbox
   _zone: 1
+  _owner: {fileID: 0}

@@ -51,7 +51,7 @@ Animator:
   m_GameObject: {fileID: 100616}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c17302b294b179d45afeabff23af8b13, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9bf82b2ef50339940a186ed20f4bcbb6, type: 2}
+  m_Controller: {fileID: 22100000, guid: 0547cf0830665bfdafd6fc1a91c92fd2, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterController
   fighterName: SapphiArtchan
+  appliedDefinition: {fileID: 0}
   isPlayerControlled: 1
   maxHealth: 1000
   maxSuperMeter: 100
@@ -2214,6 +2215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hurtbox
   _zone: 1
+  _owner: {fileID: 0}
 --- !u!1 &2514003149498292195
 GameObject:
   m_ObjectHideFlags: 0
@@ -5413,7 +5415,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6395571815370514931}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.42553034, y: 0.56473356, z: 0.42553034, w: 0.56473356}
+  m_LocalRotation: {x: -0.42553028, y: 0.5647335, z: 0.42553028, w: 0.5647335}
   m_LocalPosition: {x: -0.17727691, y: -0.013402609, z: 0.025741484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

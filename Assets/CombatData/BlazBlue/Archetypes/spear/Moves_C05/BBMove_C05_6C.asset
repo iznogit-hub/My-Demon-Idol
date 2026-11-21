@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
+  animationClip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
   animationTrigger: LauncherAttack
   hitboxOffset: {x: 1.15, y: 0.95, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: ce9d06308f67535a980fc980e23424cd, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_spear_6C
-  clip: {fileID: 7400000, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
+  clip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 30
+  clipLastFrame: 27
   events: []

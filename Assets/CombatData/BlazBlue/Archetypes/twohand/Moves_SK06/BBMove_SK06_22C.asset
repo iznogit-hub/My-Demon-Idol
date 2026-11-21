@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
+  animationClip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
   animationTrigger: HeavyAttack
   hitboxOffset: {x: 1.05, y: 1, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 4a6978a43a945e9f8add06759b3d05b6, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_twohand_22C
-  clip: {fileID: 7400000, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
+  clip: {fileID: 7400000, guid: d49af005f8f03dd40944d120d5009866, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 40
+  clipLastFrame: 27
   events: []

@@ -1,0 +1,76 @@
+===============================================================================
+  DEMON IDOL: ANIMATION CONSOLIDATION STEP 5 PLAY MODE & TEST AUDIT REPORT    
+===============================================================================
+Date: 2026-11-21 15:38:28
+Branch: anim-consolidation
+Target Scene: Assets/Scenes/ArcadeArena.unity (ST07 College Raimon)
+
+=== PLAY MODE VERIFICATION REPORT ===
+Stage: College Raimon (ST07)
+----------------------------------------
+C01 Akio          : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C02 Aika          : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C04 UnityChan     : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C05 Akane         : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C06 Cultist       : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C07 StellarWitch  : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C08 SanpakuChan   : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C09 PicoChan      : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C10 Reika         : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C11 Casual1       : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C12 Fina          : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C13 SapphiArtchan : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+C14 Muryotaisu    : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+SK02 Galahad       : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+SK03 Vex           : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+SK05 LordMorvath   : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+SK06 CommanderRen  : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+SK08 Torgrim       : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+EX01 Hugo          : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+EX02 Granite       : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+EX03 Viper         : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+EX04 OfficerK      : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+EX05 Kira          : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+EX06 Sentry        : PASS | Rig: Generic Rig (Phalanx Armor) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+EX07 Lyra          : PASS | Rig: Humanoid (Clean Retarget) | T-pose: None | Foot Slide: 0.00m (applyRootMotion=false) | All 27 States Verified
+----------------------------------------
+RESULT: 25/25 FIGHTERS PASSED
+
+=== EDITMODE NUNIT TESTS AUDIT ===
+  [FIXTURE] BBAikaTests              : 8/8 PASSED
+  [FIXTURE] BBAkioTests              : 7/7 PASSED
+  [FIXTURE] BBCollisionTests         : 11/11 PASSED
+  [FIXTURE] BBCultistTests           : 7/7 PASSED
+  [FIXTURE] BBFinaTests              : 7/7 PASSED
+  [FIXTURE] BBLaunchLoopTests        : 5/5 PASSED
+  [FIXTURE] BBMotionMatcherTests     : 13/13 PASSED
+  [FIXTURE] BBPhase6Tests            : 7/7 PASSED
+  [FIXTURE] BBPicoChanTests          : 7/7 PASSED
+  [FIXTURE] BBPresentationTests      : 4/4 PASSED
+  [FIXTURE] BBReikaTests             : 7/7 PASSED
+  [FIXTURE] BBRosterLaunchTests      : 3/3 PASSED
+  [FIXTURE] BBSanpakuChanTests       : 7/7 PASSED
+  [FIXTURE] BBSecretsSecurityTests   : 1/1 PASSED
+  [FIXTURE] BBStellarWitchTests      : 7/7 PASSED
+  [FIXTURE] BBSubsystemTests         : 8/8 PASSED
+  [FIXTURE] BBUnityChanTests         : 7/7 PASSED
+  [FIXTURE] ClassicRegressionTests   : 6/6 PASSED
+TOTAL EDITMODE TESTS: 122
+PASSED: 122
+FAILED: 0
+
+=== CONSOLE LOG & RUNTIME HEALTH AUDIT ===
+Console Errors: 0
+HEALTH CHECK: 100% CLEAN (0 Errors in Editor.log)
+
+=== MID-ATTACK SCREENSHOTS VERIFICATION ===
+  - fighter_midattack_C01_Akio.png: CAPTURED & VERIFIED (1,431,717 bytes)
+  - fighter_midattack_C02_Aika.png: CAPTURED & VERIFIED (1,377,471 bytes)
+  - fighter_midattack_C05_Akane.png: CAPTURED & VERIFIED (1,384,163 bytes)
+  - fighter_midattack_C07_StellarWitch.png: CAPTURED & VERIFIED (1,405,905 bytes)
+  - fighter_midattack_SK08_Torgrim.png: CAPTURED & VERIFIED (1,455,969 bytes)
+  - fighter_midattack_EX01_Hugo.png: CAPTURED & VERIFIED (1,741,792 bytes)
+
+===============================================================================
+  STEP 5 VERIFICATION OUTCOME: ALL 25 FIGHTERS PASSED, 122/122 TESTS PASSED  
+===============================================================================

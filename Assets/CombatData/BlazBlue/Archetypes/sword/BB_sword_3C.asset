@@ -53,8 +53,8 @@ MonoBehaviour:
   launchVelocity: {x: 0, y: 0}
   screenShakeTrauma: 0.1
   canRapidCancel: 1
-  gatlingCancels: []
-  animationClip: {fileID: 7400000, guid: b3d13322675e10d47aa75892a620c7bc, type: 3}
+  gatlingCancels: 
+  animationClip: {fileID: 7400000, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   animationTrigger: LowSweepAttack
   hitboxOffset: {x: 0.85, y: 0.95, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 24ef99d317735326be1f10f35d113076, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_sword_3C
-  clip: {fileID: 7400000, guid: b3d13322675e10d47aa75892a620c7bc, type: 3}
+  clip: {fileID: 7400000, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 26
+  clipLastFrame: 28
   events: []

@@ -53,10 +53,10 @@ MonoBehaviour:
   launchVelocity: {x: 0, y: 0}
   screenShakeTrauma: 0.1
   canRapidCancel: 1
-  gatlingCancels: []
-  animationClip: {fileID: 7400000, guid: 6fdb1182b412d014e8f6c12f3296fd26, type: 3}
+  gatlingCancels: 
+  animationClip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
   animationTrigger: OverheadAttack
-  hitboxOffset: {x: 0.90, y: 1.00, z: 0}
+  hitboxOffset: {x: 0.9, y: 1, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
   cancelWindow: {x: 13, y: 17}
   archetype: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: f2bd7e60f15259299a83fd7932271003, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_mage_6B
-  clip: {fileID: 7400000, guid: 6fdb1182b412d014e8f6c12f3296fd26, type: 3}
+  clip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 33
+  clipLastFrame: 32
   events: []

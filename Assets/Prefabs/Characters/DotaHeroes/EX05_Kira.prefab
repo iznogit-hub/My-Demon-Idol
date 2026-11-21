@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7162211075479282275}
+  - component: {fileID: 29556168027714019}
   m_Layer: 0
   m_Name: Hair.004
   m_TagString: Untagged
@@ -32,6 +33,33 @@ Transform:
   - {fileID: 4598012755736173853}
   m_Father: {fileID: 5138757134666544775}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &29556168027714019
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29556168027660019}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &38202341335477993
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +645,7 @@ Animator:
   m_GameObject: {fileID: 320340291970175949}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: cf95e60a8a288e848b5bf3490397dee0, type: 3}
-  m_Controller: {fileID: 9100000, guid: b7c4e1a09d2f4c6e8a1b3d5f7091c2e4, type: 2}
+  m_Controller: {fileID: 22100000, guid: 069bd6240d7f7417ca91242cad4f3de0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -642,6 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterController
   fighterName: Kira
+  appliedDefinition: {fileID: 0}
   isPlayerControlled: 1
   maxHealth: 1000
   maxSuperMeter: 100
@@ -1937,6 +1966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hurtbox
   _zone: 1
+  _owner: {fileID: 0}
 --- !u!1 &940760802046729585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6564,7 +6594,6 @@ GameObject:
   - component: {fileID: 8438706233225370136}
   - component: {fileID: 1923987897388589839}
   - component: {fileID: 1189106420966494447}
-  - component: {fileID: 29556168027714019}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -13797,31 +13826,3 @@ Transform:
   - {fileID: 8586969173862886503}
   m_Father: {fileID: 2125678934687670463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
---- !u!54 &29556168027714019
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29556168027660019}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2

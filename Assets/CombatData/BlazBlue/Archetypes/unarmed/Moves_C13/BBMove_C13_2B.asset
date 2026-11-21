@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: b3d13322675e10d47aa75892a620c7bc, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 11465aac7c22a75458afa08d7ee99e6a, type: 3}
   animationTrigger: LowAttack
   hitboxOffset: {x: 0.55, y: 0.92, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 38aedb882df35363918894beb64e8a51, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_unarmed_2B
-  clip: {fileID: 7400000, guid: b3d13322675e10d47aa75892a620c7bc, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 11465aac7c22a75458afa08d7ee99e6a, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 17
+  clipLastFrame: 33
   events: []

@@ -53,8 +53,8 @@ MonoBehaviour:
   launchVelocity: {x: 0, y: 0}
   screenShakeTrauma: 0.1
   canRapidCancel: 1
-  gatlingCancels: []
-  animationClip: {fileID: 7400000, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
+  gatlingCancels: 
+  animationClip: {fileID: -2848545796736985332, guid: 4001c0c0bd7783f49b26d816310b87b2, type: 3}
   animationTrigger: JumpAttack
   hitboxOffset: {x: 1.15, y: 0.92, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: d53fcb696814551e85ae24dfe7e161b3, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_crossbow_j_B
-  clip: {fileID: 7400000, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
+  clip: {fileID: -2848545796736985332, guid: 4001c0c0bd7783f49b26d816310b87b2, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 32
+  clipLastFrame: 22
   events: []

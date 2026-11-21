@@ -53,10 +53,10 @@ MonoBehaviour:
   launchVelocity: {x: 0, y: 0}
   screenShakeTrauma: 0.1
   canRapidCancel: 1
-  gatlingCancels: []
-  animationClip: {fileID: 7400000, guid: 6683d02f31b83724daa4714c986bd1f5, type: 3}
+  gatlingCancels: 
+  animationClip: {fileID: 3094330708855449807, guid: fcae9c41b8da9dc46974f5351a44bb66, type: 3}
   animationTrigger: DriveSkill
-  hitboxOffset: {x: 0.80, y: 1.05, z: 0}
+  hitboxOffset: {x: 0.8, y: 1.05, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
   cancelWindow: {x: 12, y: 16}
   archetype: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: a05458ec4889598399d4069b68db0ffa, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_knight_236A
-  clip: {fileID: 7400000, guid: 6683d02f31b83724daa4714c986bd1f5, type: 3}
+  clip: {fileID: 3094330708855449807, guid: fcae9c41b8da9dc46974f5351a44bb66, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 30
+  clipLastFrame: 26
   events: []

@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
+  animationClip: {fileID: 7400000, guid: c52633ad3251d4841878d77a31df9981, type: 3}
   animationTrigger: JumpAttack
   hitboxOffset: {x: 1.1, y: 1.1, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 65ab5a047b63596992dafefc495d07c0, type: 2}
   motionTrack: {fileID: 0}
   clipName: MDI_BB_Attack_4
-  clip: {fileID: 8420383630626951743, guid: 4cb813e0df571d34686ef2da68652022, type: 3}
+  clip: {fileID: 7400000, guid: c52633ad3251d4841878d77a31df9981, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 41
+  clipLastFrame: 42
   events: []
