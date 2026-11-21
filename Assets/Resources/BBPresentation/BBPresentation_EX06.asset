@@ -20,6 +20,6 @@ MonoBehaviour:
   versusVideo: {fileID: 0}
   victoryVideo: {fileID: 0}
   quote: 
-  driveClip: {fileID: 0}
-  specialClip: {fileID: 0}
-  superClip: {fileID: 0}
+  driveClip: {fileID: 6221427910989041387, guid: 777098bd6e8a69345896043aecfea1a3, type: 3}
+  specialClip: {fileID: 6720303635017113406, guid: 4b2f0f2d5d01a5549a29150fd4232454, type: 3}
+  superClip: {fileID: 6221427910989041387, guid: 777098bd6e8a69345896043aecfea1a3, type: 3}

@@ -54,13 +54,13 @@ namespace DemonIdol.BlazBlue
                 case "SK03": signature = Make("Dune Cleaver", "236A", "623B", 1.18f, 1, 1.00f, 4, "Brute Attack1"); break;
                 case "SK05": signature = Make("Abyss Orbit", "236A", "22C", 1.12f, 2, 1.00f, 3, "Mage Attack1"); break;
                 case "SK06": signature = Make("Bastion", "623B", "214A", 1.16f, 3, 1.10f, 4, "2Handed Attack1"); break;
-                case "SK08": signature = Make("Storm Break", "22C", "623B", 1.22f, 2, 1.18f, 5, "Hammer Attack1"); break;
-                case "EX01": signature = Make("Highland Swing", "214A", "236236C", 1.14f, 2, 0.98f, 4, "Brute Attack1"); break;
+                case "SK08": signature = Make("Storm Break", "22C", "623B", 1.22f, 2, 1.18f, 5, "CMU 81 slam"); break;
+                case "EX01": signature = Make("Highland Swing", "214A", "236236C", 1.14f, 2, 0.98f, 4, "Heavy Punch"); break;
                 case "EX02": signature = Make("Granite Drop", "623B", "22C", 1.28f, 3, 1.20f, 5, "CMU 83 slam"); break;
                 case "EX03": signature = Make("Viper Edge", "236A", "214A", 1.00f, -1, 0.92f, 2, "Swordsman Attack1"); break;
                 case "EX04": signature = Make("Discipline", "623B", "236A", 0.98f, 0, 0.62f, 2, "Karate Attack1"); break;
                 case "EX05": signature = Make("Starfall", "236A", "22C", 0.86f, 0, 1.30f, 1, "Archer Attack1"); break;
-                case "EX06": signature = Make("Phalanx", "236A", "623B", 0.94f, 1, 1.28f, 2, "Spearman Attack1"); break;
+                case "EX06": signature = Make("Phalanx", "236A", "623B", 0.94f, 1, 1.28f, 2, "Guard Attack"); break;
                 case "EX07": signature = Make("Aether", "236A", "214A", 1.04f, 0, 1.02f, 3, "Sorceress Attack1"); break;
                 default:
                     signature = default;
@@ -99,6 +99,9 @@ namespace DemonIdol.BlazBlue
             if (token == "KI spellcast") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect1H01_R.fbx", "HumanF@MagicAttackDirect1H01_R");
             if (token == "KI spellcast bubble") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect2H01.fbx", "HumanF@MagicAttackDirect2H01");
             if (token == "KI Magic Omni") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanF@MagicAttackOmni01.fbx", "HumanF@MagicAttackOmni01");
+            if (token == "Heavy Punch") return FindSubClip("Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Heavy Fighter Mecanim Animation Pack FREE/Animations/Heavy@Punch.FBX", "Punch");
+            if (token == "Guard Attack") return FindSubClip("Assets/SimpleAssets/Humans/Guard/Animations/Guard_Attack.fbx", "Attack");
+            if (token == "Guard Cast") return FindSubClip("Assets/SimpleAssets/Humans/Guard/Animations/Guard_Cast Spell.fbx", "Cast Spell");
             if (token.EndsWith(" Attack1"))
             {
                 string warrior = token.Split(' ')[0];

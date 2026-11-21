@@ -29,6 +29,9 @@ MonoBehaviour:
   crouchPushboxSize: {x: 0.8, y: 1.2}
   airPushboxSize: {x: 0.6, y: 1.3}
   blazBlueOverrideController: {fileID: 22100000, guid: 056cbdd8f2dc44041975cd5761235c58, type: 2}
+  signatureDriveClip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
+  signatureSpecialClip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
+  signatureSuperClip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
   moveSet: {fileID: 11400000, guid: f3df961165c551d2a2e8db6fd4181ad1, type: 2}
   maxHealth: 11000
   defenseModifier: 1

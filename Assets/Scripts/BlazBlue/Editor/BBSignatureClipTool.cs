@@ -18,9 +18,20 @@ namespace DemonIdol.BlazBlue.Editor
                 if (!BBSignatureTable.TryBase(id, out var signature)) continue;
                 var profile = FindProfile(id);
                 var card = FindCard(id);
-                var drive = FindClip(clips, signature.clipToken);
+                var drive = BBSignatureTable.ResolveClip(signature.clipToken);
+                if (drive == null) drive = FindClip(clips, signature.clipToken);
                 var special = drive;
                 var superClip = drive;
+
+                if (id == "EX06")
+                {
+                    var cast = BBSignatureTable.ResolveClip("Guard Cast");
+                    var atk = BBSignatureTable.ResolveClip("Guard Attack");
+                    drive = cast != null ? cast : drive;
+                    special = atk != null ? atk : drive;
+                    superClip = cast != null ? cast : drive;
+                }
+
                 if (profile != null)
                 {
                     profile.signatureDriveClip = drive;
@@ -36,7 +47,10 @@ namespace DemonIdol.BlazBlue.Editor
                     EditorUtility.SetDirty(card);
                 }
                 if (profile != null && profile.blazBlueOverrideController != null && drive != null)
+                {
                     AssignOverride(profile.blazBlueOverrideController, drive);
+                    EditorUtility.SetDirty(profile.blazBlueOverrideController);
+                }
                 if (drive != null) assigned++;
             }
             AssetDatabase.SaveAssets();

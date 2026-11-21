@@ -28,6 +28,8 @@ namespace DemonIdol.BlazBlue
             if (key.Contains("cmu 80") && name.Contains("mdi_bb_attack_2")) return true;
             if (key.Contains("cmu 83") && name.Contains("mdi_bb_attack_4")) return true;
             if (key.Contains("cmu 86") && name.Contains("mdi_bb_attack_5")) return true;
+            if (key.Contains("guard") && name.Contains("guard")) return true;
+            if (key.Contains("heavy") && name.Contains("heavy")) return true;
             return false;
         }
 
