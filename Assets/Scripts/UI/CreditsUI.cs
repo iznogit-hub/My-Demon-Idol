@@ -47,6 +47,17 @@ namespace DemonIdol.UI
             "Flooded Grounds Ambient Soundscapes\n" +
             "Alebardium Bloodlines Audio Toolkit\n\n" +
             "LICENSES & THIRD-PARTY ATTRIBUTIONS\n" +
+            "Kevin Iglesias — Basic Motions & Humanoid Animation Asset Suites (Asset Store EULA)\n" +
+            "ExplosiveLLC — Warrior Pack Bundle & RPG Character Animation PRO Suites (Asset Store EULA)\n" +
+            "Jean Moreno — Cartoon FX Remaster (CFXR) Particle Effects & Shaders (Asset Store EULA)\n" +
+            "Synty Studios — Synty Modular 3D Polygon Environment & Character Asset Suites (Asset Store EULA)\n" +
+            "lilToon (lilxyzw) — lilToon Shader Suite, Licensed under MIT License (Copyright © 2020-2024 lilxyzw)\n" +
+            "SimpleAssets — SimpleAssets Medieval Guard 3D Character Model & Animations (Asset Store EULA)\n" +
+            "Santuary — Santuary Soundscapes, Ambient Audio & Environment Design\n" +
+            "Huge Mocap Library (CMU) — Carnegie Mellon University Motion Capture Database (Public Domain)\n" +
+            "unity-chan (UCL 2.0) — Unity-Chan (Kohaku Otori) 3D Model, Motion Library & Voice Assets\n" +
+            "  © Unity Technologies Japan/UCL (Unity-Chan License 2.0 - https://unity-chan.com/contents/license_en/)\n" +
+            "  This work is provided under the Unity-Chan License Terms and Conditions (UCL 2.0).\n" +
             "\"College Raimon\" Japanese campus environment assets by BuildVerse (Unity Asset Store EULA)\n" +
             "Motion capture: Open Motion Project by ACCAD/The Ohio State University, licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)\n" +
             "Fleshy Fight Sounds by will_leamon (opengameart.org), OGA-BY 3.0\n" +
@@ -70,6 +81,7 @@ namespace DemonIdol.UI
         [SerializeField] private RectTransform _contentRect;
         [SerializeField] private Button _btnClose;
         [SerializeField] private float _scrollSpeed = 40f;
+        [SerializeField] private Image _unityChanLogo;
 
         [Header("Video Background Loop")]
         [SerializeField] private VideoPlayer _bgVideoPlayer;
@@ -218,14 +230,14 @@ namespace DemonIdol.UI
             _contentRect = contentObj.GetComponent<RectTransform>();
             _contentRect.anchorMin = new Vector2(0.5f, 0.5f);
             _contentRect.anchorMax = new Vector2(0.5f, 0.5f);
-            _contentRect.sizeDelta = new Vector2(700f, 1600f);
+            _contentRect.sizeDelta = new Vector2(700f, 2200f);
             _contentRect.anchoredPosition = new Vector2(0f, -250f);
 
             // Credits Text
             GameObject txtObj = new GameObject("Text_Credits", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
             txtObj.transform.SetParent(contentObj.transform, false);
             RectTransform trt = txtObj.GetComponent<RectTransform>();
-            trt.anchorMin = Vector2.zero;
+            trt.anchorMin = new Vector2(0f, 0.08f);
             trt.anchorMax = Vector2.one;
             trt.sizeDelta = Vector2.zero;
             _creditsText = txtObj.GetComponent<Text>();
@@ -235,6 +247,39 @@ namespace DemonIdol.UI
             _creditsText.alignment = TextAnchor.UpperCenter;
             _creditsText.color = SumiStyleTokens.SumiOffWhite;
             _creditsText.lineSpacing = 1.2f;
+
+            // Unity-Chan License Logo & Notice (UCL 2.0 Compliance)
+            GameObject logoObj = new GameObject("Image_UnityChanLogo", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            logoObj.transform.SetParent(contentObj.transform, false);
+            RectTransform lrt = logoObj.GetComponent<RectTransform>();
+            lrt.anchorMin = new Vector2(0.5f, 0.05f);
+            lrt.anchorMax = new Vector2(0.5f, 0.05f);
+            lrt.pivot = new Vector2(0.5f, 0.5f);
+            lrt.sizeDelta = new Vector2(260f, 85f);
+            lrt.anchoredPosition = Vector2.zero;
+            _unityChanLogo = logoObj.GetComponent<Image>();
+            _unityChanLogo.preserveAspect = true;
+            Sprite logoSprite = ResolveUnityChanLogoSprite();
+            if (logoSprite != null)
+            {
+                _unityChanLogo.sprite = logoSprite;
+                _unityChanLogo.color = Color.white;
+            }
+
+            GameObject uclTxtObj = new GameObject("Text_UnityChanNotice", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
+            uclTxtObj.transform.SetParent(contentObj.transform, false);
+            RectTransform urt = uclTxtObj.GetComponent<RectTransform>();
+            urt.anchorMin = new Vector2(0.5f, 0.015f);
+            urt.anchorMax = new Vector2(0.5f, 0.015f);
+            urt.pivot = new Vector2(0.5f, 0.5f);
+            urt.sizeDelta = new Vector2(680f, 36f);
+            urt.anchoredPosition = Vector2.zero;
+            Text uclTxt = uclTxtObj.GetComponent<Text>();
+            uclTxt.font = font;
+            uclTxt.text = "This work is provided under the Unity-Chan License Terms and Conditions (UCL 2.0).\n© Unity Technologies Japan/UCL";
+            uclTxt.fontSize = 11;
+            uclTxt.alignment = TextAnchor.MiddleCenter;
+            uclTxt.color = new Color(0.85f, 0.85f, 0.85f, 0.9f);
 
             // Header Banner
             GameObject hdrObj = new GameObject("Header_Credits", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
@@ -275,6 +320,58 @@ namespace DemonIdol.UI
             ctxt.fontSize = 18;
             ctxt.alignment = TextAnchor.MiddleCenter;
             ctxt.color = Color.white;
+        }
+
+        private static Sprite s_cachedLogoSprite;
+
+        private Sprite ResolveUnityChanLogoSprite()
+        {
+            if (s_cachedLogoSprite != null) return s_cachedLogoSprite;
+
+            var resSprite = Resources.Load<Sprite>("UI/UnityChanLogo");
+            if (resSprite != null)
+            {
+                s_cachedLogoSprite = resSprite;
+                return s_cachedLogoSprite;
+            }
+
+#if UNITY_EDITOR
+            var editorSprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/unity-chan!/Unity-chan! Model/SplashScreen/Logo/Light_Silhouette.png");
+            if (editorSprite != null)
+            {
+                s_cachedLogoSprite = editorSprite;
+                return s_cachedLogoSprite;
+            }
+#endif
+
+            string[] paths = new string[]
+            {
+                System.IO.Path.Combine(Application.streamingAssetsPath, "UI/UnityChanLogo.png"),
+                System.IO.Path.Combine(Application.dataPath, "unity-chan!/Unity-chan! Model/SplashScreen/Logo/Light_Silhouette.png"),
+                System.IO.Path.Combine(Application.dataPath, "Resources/UI/UnityChanLogo.png")
+            };
+
+            for (int i = 0; i < paths.Length; i++)
+            {
+                if (System.IO.File.Exists(paths[i]))
+                {
+                    try
+                    {
+                        byte[] bytes = System.IO.File.ReadAllBytes(paths[i]);
+                        Texture2D tex = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+                        if (tex.LoadImage(bytes))
+                        {
+                            s_cachedLogoSprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+                            return s_cachedLogoSprite;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogWarning("[CreditsUI] Failed loading logo: " + ex.Message);
+                    }
+                }
+            }
+            return null;
         }
     }
 }

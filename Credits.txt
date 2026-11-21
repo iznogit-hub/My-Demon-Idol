@@ -1,5 +1,32 @@
 # My Demon Idol - Credits & Attribution
 
+## Third-Party Assets, Engines & Libraries
+- **Kevin Iglesias**:
+  - Humanoid animation libraries and Basic Motions asset suites (Asset Store EULA).
+- **ExplosiveLLC**:
+  - Warrior Pack Bundle animations and RPG Character Animation PRO suites (Asset Store EULA).
+- **JMO Cartoon FX (Jean Moreno)**:
+  - Cartoon FX Remaster (CFXR) particle effects, visual hitsparks, and dynamic shaders.
+- **Synty Studios**:
+  - Synty modular 3D environment, prop, and character asset packs (Asset Store EULA).
+- **lilToon (lilxyzw)**:
+  - lilToon shading suite and custom lighting model, licensed under the MIT License:
+    Copyright (c) 2020-2024 lilxyzw
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+- **SimpleAssets Guard**:
+  - SimpleAssets Medieval Guard 3D character model, rig, and animation set.
+- **Santuary**:
+  - Santuary soundscapes, ambient environments, and audio design.
+- **Huge Mocap Library (CMU)**:
+  - Carnegie Mellon University (CMU) Motion Capture Database / Huge Mocap Library mocap clips and locomotion conversions (Public Domain / Free for commercial use).
+- **unity-chan (UCL 2.0)**:
+  - Unity-Chan (Kohaku Otori) 3D Model, Motion Library, and Voice Assets.
+  - Notice: This work is provided under the Unity-Chan License Terms and Conditions (UCL 2.0).
+  - Copyright: © Unity Technologies Japan/UCL
+  - License URL: https://unity-chan.com/contents/license_en/
+  - License Logo: Unity-Chan Official License Logo (Light Silhouette / Dark Silhouette) displayed in-game in the credits screen.
+
 ## Audio & Soundtrack
 - **Dynamic Combat Sound Effects (SFX)**:
   - Whiff (Light / Heavy): Custom procedural synthesis + high-fidelity 16-bit PCM (CC0 / Public Domain)
