@@ -54,6 +54,7 @@ namespace DemonIdol.BlazBlue.Visual
             trailRenderer.endWidth = endWidth;
             trailRenderer.emitting = false;
             trailRenderer.autodestruct = false;
+            trailRenderer.Clear();
 
             // Soft alpha gradient
             Gradient gradient = new Gradient();

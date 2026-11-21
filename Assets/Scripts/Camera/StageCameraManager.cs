@@ -187,7 +187,7 @@ namespace DemonIdol.CameraControl
                 stageName = "College Raimon (Midnight Rain Courtyard)",
                 basePosition = new Vector3(-0.05f, 1.05f, -3.55f),
                 baseEulerAngles = new Vector3(2.8f, 0f, 0f),
-                focalLength = 32.0f,
+                focalLength = 50.0f,
                 fieldOfView = 35.0f,
                 sensorSize = new Vector2(36.0f, 20.25f),
                 lensShift = new Vector2(0f, 0.035f),

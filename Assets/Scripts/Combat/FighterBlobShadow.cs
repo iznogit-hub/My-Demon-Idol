@@ -16,7 +16,7 @@ namespace DemonIdol.Combat
         [Header("Shadow Dimensions")]
         public float baseRadiusX = 0.95f;
         public float baseRadiusZ = 0.45f;
-        public float groundY = 0.015f;
+        public float groundY = 0.04f;
 
         [Header("Airborne Attenuation")]
         public float maxJumpHeight = 3.5f;
@@ -68,7 +68,7 @@ namespace DemonIdol.Combat
         {
             if (_blobTexture != null) return _blobTexture;
 
-            const int size = 64;
+            const int size = 128;
             _blobTexture = new Texture2D(size, size, TextureFormat.RGBA32, false);
             _blobTexture.name = "SoftBlobShadow_Radial";
             _blobTexture.wrapMode = TextureWrapMode.Clamp;
@@ -86,15 +86,14 @@ namespace DemonIdol.Combat
                     float distSq = dx * dx + dy * dy;
 
                     float alpha = 0f;
-                    if (distSq < 1.0f)
+                    if (distSq < 0.85f)
                     {
-                        float dist = Mathf.Sqrt(distSq);
-                        // Smooth cubic hermite falloff from center to edge
+                        float dist = Mathf.Sqrt(distSq) / Mathf.Sqrt(0.85f);
                         alpha = Mathf.SmoothStep(1.0f, 0.0f, dist);
-                        alpha *= alpha; // Gaussian-like soft curve
+                        alpha = alpha * alpha; // Soft falloff
                     }
 
-                    colors[y * size + x] = new Color(0f, 0f, 0f, alpha);
+                    colors[y * size + x] = new Color(1f, 1f, 1f, alpha);
                 }
             }
 
@@ -126,7 +125,7 @@ namespace DemonIdol.Combat
                 }
             }
 
-            _shadowQuad.transform.SetParent(null, false);
+            _shadowQuad.transform.SetParent(transform, false);
             _shadowQuad.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
 
             _renderer = _shadowQuad.GetComponent<MeshRenderer>();
@@ -135,11 +134,11 @@ namespace DemonIdol.Combat
             _renderer.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
             _renderer.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
 
-            // Prefer Sprites/Default or URP Unlit transparent
-            Shader shader = Shader.Find("Sprites/Default")
-                ?? Shader.Find("Universal Render Pipeline/Unlit")
+            // Prefer URP Unlit transparent shader
+            Shader shader = Shader.Find("Universal Render Pipeline/Unlit")
                 ?? Shader.Find("Universal Render Pipeline/Particles/Unlit")
-                ?? Shader.Find("Unlit/Transparent");
+                ?? Shader.Find("Unlit/Transparent")
+                ?? Shader.Find("Sprites/Default");
 
             if (shader != null)
             {
@@ -150,6 +149,8 @@ namespace DemonIdol.Combat
 
                 if (_shadowMaterial.HasProperty("_BaseMap"))
                     _shadowMaterial.SetTexture("_BaseMap", tex);
+                if (_shadowMaterial.HasProperty("_MainTex"))
+                    _shadowMaterial.SetTexture("_MainTex", tex);
 
                 // Set transparent surface mode for URP
                 if (_shadowMaterial.HasProperty("_Surface"))
@@ -157,11 +158,13 @@ namespace DemonIdol.Combat
                 if (_shadowMaterial.HasProperty("_Blend"))
                     _shadowMaterial.SetFloat("_Blend", 0f); // Alpha blend
 
-                _shadowMaterial.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+                _shadowMaterial.SetOverrideTag("RenderType", "Transparent");
+                _shadowMaterial.renderQueue = 3000;
                 _shadowMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
                 _shadowMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
                 _shadowMaterial.SetInt("_ZWrite", 0);
-                _shadowMaterial.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+                _shadowMaterial.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+                _shadowMaterial.EnableKeyword("_ALPHABLEND_ON");
 
                 _renderer.sharedMaterial = _shadowMaterial;
             }
@@ -181,7 +184,12 @@ namespace DemonIdol.Combat
             float currentAlpha = Mathf.Lerp(baseAlpha, minAlphaAtPeak, jumpT);
 
             _shadowQuad.transform.position = new Vector3(targetPos.x, groundY, targetPos.z);
-            _shadowQuad.transform.localScale = new Vector3(baseRadiusX * 2f * currentScale, baseRadiusZ * 2f * currentScale, 1f);
+            _shadowQuad.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+
+            Vector3 parentScale = transform.lossyScale;
+            float invSx = Mathf.Abs(parentScale.x) > 0.001f ? (1f / Mathf.Abs(parentScale.x)) : 1f;
+            float invSz = Mathf.Abs(parentScale.z) > 0.001f ? (1f / Mathf.Abs(parentScale.z)) : 1f;
+            _shadowQuad.transform.localScale = new Vector3(baseRadiusX * 2f * currentScale * invSx, baseRadiusZ * 2f * currentScale * invSz, 1f);
 
             if (_renderer != null)
             {
@@ -194,10 +202,33 @@ namespace DemonIdol.Combat
             }
         }
 
+        public static Vector3 GetFighterGroundCenter(Transform target)
+        {
+            if (target == null) return Vector3.zero;
+            var anim = target.GetComponentInChildren<Animator>();
+            if (anim != null && anim.isHuman)
+            {
+                var hips = anim.GetBoneTransform(HumanBodyBones.Hips);
+                if (hips != null)
+                {
+                    return new Vector3(hips.position.x, target.position.y, hips.position.z);
+                }
+            }
+            Transform hipTransform = target.Find("Hips") 
+                ?? target.Find("Armature/Hips") 
+                ?? target.Find("root/pelvis")
+                ?? target.Find("Root/Hip");
+            if (hipTransform != null)
+            {
+                return new Vector3(hipTransform.position.x, target.position.y, hipTransform.position.z);
+            }
+            return target.position;
+        }
+
         private void LateUpdate()
         {
             if (fighterTarget == null) fighterTarget = transform;
-            UpdateShadowTransform(fighterTarget.position);
+            UpdateShadowTransform(GetFighterGroundCenter(fighterTarget));
         }
     }
 }

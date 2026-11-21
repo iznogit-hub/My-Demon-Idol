@@ -217,8 +217,8 @@ namespace DemonIdol.Combat
                 _campusTransform.localScale = new Vector3(s, s, s);
                 if (zone.stageId == "ST07")
                 {
-                    _campusTransform.localPosition = new Vector3(-10.2f * s, -100.2f * s, 2.2f);
-                    _campusTransform.localRotation = Quaternion.Euler(0.1f, 0f, 0f);
+                    _campusTransform.localPosition = new Vector3(-10.2f * s, -100.35f * s, 2.2f);
+                    _campusTransform.localRotation = Quaternion.identity;
                 }
                 else
                 {

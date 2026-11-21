@@ -11,7 +11,7 @@
 | **C04** | UnityChan | Standard | `1.000` | 1.300m | 1.669m | -12.5% | Clear (>140px below bar) | **PASS** |
 | **C05** | Akane | Standard | `1.632` | 1.411m | 1.769m | -5.0% | Clear (>140px below bar) | **PASS** |
 | **C06** | Cultist | Standard | `1.000` | 1.546m | 1.771m | +4.0% | Clear (>140px below bar) | **PASS** |
-| **C07** | StellarWitch | Standard | `1.158` | 1.411m | 1.847m | -5.0% | Clear (>140px below bar) | **PASS** |
+| **C07** | StellarWitch | Standard | `1.158` | 1.545m | 1.981m | +4.0% | Clear (>140px below bar) | **PASS** |
 | **C08** | SanpakuChan | Standard | `1.432` | 1.411m | 1.750m | -5.0% | Clear (>140px below bar) | **PASS** |
 | **C09** | PicoChan | Standard | `1.233` | 1.411m | 1.853m | -5.0% | Clear (>140px below bar) | **PASS** |
 | **C10** | Reika | Standard | `1.429` | 1.411m | 2.075m | -5.0% | Borderline | **PASS** |
@@ -29,5 +29,5 @@
 | **EX03** | Viper | Standard | `1.000` | 1.620m | 2.024m | +9.1% | Clear (>140px below bar) | **PASS** |
 | **EX04** | OfficerK | Standard | `1.000` | 1.309m | 1.623m | -11.9% | Clear (>140px below bar) | **PASS** |
 | **EX05** | Kira | Standard | `1.000` | 1.524m | 1.993m | +2.6% | Clear (>140px below bar) | **PASS** |
-| **EX06** | Sentry | Standard | `0.866` | 1.560m | 1.733m | +5.0% | Clear (>140px below bar) | **PASS** |
+| **EX06** | Sentry | Standard | `0.783` | 1.411m | 1.568m | -5.0% | Clear (>140px below bar) | **PASS** |
 | **EX07** | Lyra | Standard | `0.685` | 1.560m | 1.962m | +5.0% | Clear (>140px below bar) | **PASS** |

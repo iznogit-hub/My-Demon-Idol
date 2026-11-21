@@ -12,7 +12,7 @@ namespace DemonIdol.BlazBlue
     /// </summary>
     public class BBHitboxOverlay : MonoBehaviour
     {
-        public static bool IsOverlayActive = true;
+        public static bool IsOverlayActive = false;
 
         [Header("Visualization Settings")]
         public bool showHurtBoxes = true;
@@ -26,6 +26,16 @@ namespace DemonIdol.BlazBlue
         private void Awake()
         {
             CreateLineMaterial();
+        }
+
+        private void Update()
+        {
+            if (UnityEngine.Input.GetKeyDown(KeyCode.F1))
+            {
+                IsOverlayActive = !IsOverlayActive;
+                BBFrameMeter.IsMeterVisible = IsOverlayActive;
+                Debug.Log($"<color=#00e676>[BBHitboxOverlay] Debug Overlay (F1) toggled: {IsOverlayActive}</color>");
+            }
         }
 
         private void CreateLineMaterial()

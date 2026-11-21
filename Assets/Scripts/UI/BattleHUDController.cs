@@ -47,6 +47,8 @@ namespace DemonIdol.UI
         [SerializeField] private Text _p2DomainReadyText;
         [SerializeField] private Image[] _p2WinPips;
         [SerializeField] private Image _p2Portrait;
+        public Image P1Portrait => _p1Portrait;
+        public Image P2Portrait => _p2Portrait;
 
         [Header("Round Timer & Status")]
         [SerializeField] private Text _timerText;
@@ -422,11 +424,30 @@ namespace DemonIdol.UI
                 }
             }
 
+            if (sprite == null && !string.IsNullOrEmpty(fighterName))
+            {
+#if UNITY_EDITOR
+                string[] files = System.IO.Directory.Exists("Assets/CombatData/Characters") 
+                    ? System.IO.Directory.GetFiles("Assets/CombatData/Characters", $"*{fighterName}*.asset") 
+                    : System.Array.Empty<string>();
+                if (files.Length > 0)
+                {
+                    var loadedDef = UnityEditor.AssetDatabase.LoadAssetAtPath<CharacterDefinition>(files[0]);
+                    if (loadedDef != null && loadedDef.portraitSprite != null) sprite = loadedDef.portraitSprite;
+                }
+#endif
+            }
+
             if (sprite != null)
             {
                 img.sprite = sprite;
                 img.color = Color.white;
+                img.type = Image.Type.Simple;
                 img.gameObject.SetActive(true);
+            }
+            else
+            {
+                img.color = new Color(0.12f, 0.15f, 0.20f, 0.9f);
             }
         }
 
@@ -466,8 +487,14 @@ namespace DemonIdol.UI
 
         private void OnP1HealthChanged(float cur, float max)
         {
+            SanitizeBarFill(_p1HealthFill, new Color(0.15f, 0.85f, 0.25f, 1f));
+            SanitizeBarFill(_p1HealthLagFill, new Color(0.92f, 0.15f, 0.15f, 0.95f));
             _p1TargetFill = max > 0 ? Mathf.Clamp01(cur / max) : 0f;
-            if (_p1HealthFill != null) _p1HealthFill.fillAmount = _p1TargetFill;
+            if (_p1HealthFill != null)
+            {
+                _p1HealthFill.type = Image.Type.Filled;
+                _p1HealthFill.fillAmount = _p1TargetFill;
+            }
 
             if (_p1LagRoutine != null) StopCoroutine(_p1LagRoutine);
             _p1LagRoutine = StartCoroutine(DrainLagBar(_p1HealthLagFill, _p1TargetFill));
@@ -475,8 +502,14 @@ namespace DemonIdol.UI
 
         private void OnP2HealthChanged(float cur, float max)
         {
+            SanitizeBarFill(_p2HealthFill, new Color(0.15f, 0.85f, 0.25f, 1f));
+            SanitizeBarFill(_p2HealthLagFill, new Color(0.92f, 0.15f, 0.15f, 0.95f));
             _p2TargetFill = max > 0 ? Mathf.Clamp01(cur / max) : 0f;
-            if (_p2HealthFill != null) _p2HealthFill.fillAmount = _p2TargetFill;
+            if (_p2HealthFill != null)
+            {
+                _p2HealthFill.type = Image.Type.Filled;
+                _p2HealthFill.fillAmount = _p2TargetFill;
+            }
 
             if (_p2LagRoutine != null) StopCoroutine(_p2LagRoutine);
             _p2LagRoutine = StartCoroutine(DrainLagBar(_p2HealthLagFill, _p2TargetFill));
@@ -815,11 +848,50 @@ namespace DemonIdol.UI
 
         #region Buttons
 
+        private static Sprite _solidWhiteSprite;
+        public static Sprite GetSolidWhiteSprite()
+        {
+            if (_solidWhiteSprite == null || _solidWhiteSprite.texture == null)
+            {
+                Texture2D tex = Texture2D.whiteTexture;
+                _solidWhiteSprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+            }
+            return _solidWhiteSprite;
+        }
+
+        public static void SanitizeBarFill(Image img, Color defaultColor)
+        {
+            if (img == null) return;
+            img.sprite = GetSolidWhiteSprite();
+            img.material = null;
+            img.type = Image.Type.Filled;
+            img.fillMethod = Image.FillMethod.Horizontal;
+            if (img.color.a < 0.1f) img.color = defaultColor;
+        }
+
         public void EnsureHUDComponents()
         {
             if (_p1HealthFill == null)
             {
                 EnsureRuntimeHUDHierarchy();
+            }
+
+            // Always enforce clean solid sprite and null material on all health & lag bars
+            SanitizeBarFill(_p1HealthFill, new Color(0.15f, 0.85f, 0.25f, 1f));
+            SanitizeBarFill(_p1HealthLagFill, new Color(0.92f, 0.15f, 0.15f, 0.95f));
+            SanitizeBarFill(_p2HealthFill, new Color(0.15f, 0.85f, 0.25f, 1f));
+            SanitizeBarFill(_p2HealthLagFill, new Color(0.92f, 0.15f, 0.15f, 0.95f));
+            SanitizeBarFill(_p1ProjFill, new Color(0.1f, 0.85f, 1.0f, 1f));
+            SanitizeBarFill(_p2ProjFill, new Color(0.1f, 0.85f, 1.0f, 1f));
+            SanitizeBarFill(_p1SuperFill, Color.white);
+            SanitizeBarFill(_p2SuperFill, Color.white);
+
+            // Reposition pause button away from P2 portrait
+            Transform existingPause = transform.Find("Btn_BattlePause");
+            if (existingPause != null)
+            {
+                RectTransform prt = existingPause.GetComponent<RectTransform>();
+                if (prt != null) prt.anchoredPosition = new Vector2(-15f, -125f);
             }
 
             // Touch Pause Button (Top Right)
@@ -841,8 +913,8 @@ namespace DemonIdol.UI
                     rt.anchorMin = new Vector2(1f, 1f);
                     rt.anchorMax = new Vector2(1f, 1f);
                     rt.pivot = new Vector2(1f, 1f);
-                    rt.anchoredPosition = new Vector2(-25f, -25f);
-                    rt.sizeDelta = new Vector2(70f, 40f);
+                    rt.anchoredPosition = new Vector2(-15f, -125f);
+                    rt.sizeDelta = new Vector2(70f, 32f);
 
                     Image img = pauseBtnObj.GetComponent<Image>();
                     _btnBattlePause = pauseBtnObj.GetComponent<Button>();
@@ -1072,17 +1144,19 @@ namespace DemonIdol.UI
             Color goldAccent = new Color(1f, 0.84f, 0f, 1f);
 
             // P1 Health Bar — Bloodlines progress bar
-            GameObject p1BarGo = CreateRuntimePanel(gameObject, "P1_HealthBar", Color.white, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(380f, -50f), new Vector2(650f, 42f));
+            GameObject p1BarGo = CreateRuntimePanel(gameObject, "P1_HealthBar", new Color(0.08f, 0.10f, 0.14f, 0.90f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(380f, -50f), new Vector2(650f, 42f));
             if (atlas != null) atlas.StyleProgressBar(p1BarGo.GetComponent<Image>(), null, 1);
             _p1HealthLagFill = CreateRuntimeFill(p1BarGo, "LagFill", new Color(0.92f, 0.15f, 0.15f, 0.95f), Image.FillMethod.Horizontal, false);
-            _p1HealthFill = CreateRuntimeFill(p1BarGo, "HpFill", Color.white, Image.FillMethod.Horizontal, false);
-            if (atlas != null) { atlas.StyleProgressBar(null, _p1HealthFill, 1); }
+            _p1HealthFill = CreateRuntimeFill(p1BarGo, "HpFill", new Color(0.15f, 0.85f, 0.25f, 1f), Image.FillMethod.Horizontal, false);
+            _p1HealthFill.type = Image.Type.Filled;
+            _p1HealthFill.material = null;
             _p1NameText = CreateRuntimeText(p1BarGo, "Text_P1Name", "KAI", new Vector2(-220f, 32f), 22, Color.white, FontStyle.Bold, font);
 
             // P1 Portrait Frame beside health bar
             GameObject p1PortBox = CreateRuntimePanel(gameObject, "P1_PortraitFrame", new Color(0.10f, 0.12f, 0.16f, 0.95f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(46f, -50f), new Vector2(64f, 64f));
             GameObject p1PortImgGo = CreateRuntimePanel(p1PortBox, "PortraitImg", Color.white, Vector2.zero, Vector2.one, Vector2.zero, new Vector2(-4f, -4f));
             _p1Portrait = p1PortImgGo.GetComponent<Image>();
+            _p1Portrait.type = Image.Type.Simple;
 
             // P1 Projectile Meter (1.8s Rapid Recharge)
             GameObject p1ProjBarGo = CreateRuntimePanel(gameObject, "P1_ProjMeter", new Color(0.08f, 0.1f, 0.14f, 0.85f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(300f, -76f), new Vector2(490f, 10f));
@@ -1106,17 +1180,19 @@ namespace DemonIdol.UI
             }
 
             // P2 Health Bar — Bloodlines progress bar
-            GameObject p2BarGo = CreateRuntimePanel(gameObject, "P2_HealthBar", Color.white, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-380f, -50f), new Vector2(650f, 42f));
+            GameObject p2BarGo = CreateRuntimePanel(gameObject, "P2_HealthBar", new Color(0.08f, 0.10f, 0.14f, 0.90f), new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-380f, -50f), new Vector2(650f, 42f));
             if (atlas != null) atlas.StyleProgressBar(p2BarGo.GetComponent<Image>(), null, 1);
             _p2HealthLagFill = CreateRuntimeFill(p2BarGo, "LagFill", new Color(0.92f, 0.15f, 0.15f, 0.95f), Image.FillMethod.Horizontal, true);
-            _p2HealthFill = CreateRuntimeFill(p2BarGo, "HpFill", Color.white, Image.FillMethod.Horizontal, true);
-            if (atlas != null) { atlas.StyleProgressBar(null, _p2HealthFill, 2); }
+            _p2HealthFill = CreateRuntimeFill(p2BarGo, "HpFill", new Color(0.15f, 0.85f, 0.25f, 1f), Image.FillMethod.Horizontal, true);
+            _p2HealthFill.type = Image.Type.Filled;
+            _p2HealthFill.material = null;
             _p2NameText = CreateRuntimeText(p2BarGo, "Text_P2Name", "OPPONENT", new Vector2(220f, 32f), 22, Color.white, FontStyle.Bold, font);
 
             // P2 Portrait Frame beside health bar
             GameObject p2PortBox = CreateRuntimePanel(gameObject, "P2_PortraitFrame", new Color(0.10f, 0.12f, 0.16f, 0.95f), new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-46f, -50f), new Vector2(64f, 64f));
             GameObject p2PortImgGo = CreateRuntimePanel(p2PortBox, "PortraitImg", Color.white, Vector2.zero, Vector2.one, Vector2.zero, new Vector2(-4f, -4f));
             _p2Portrait = p2PortImgGo.GetComponent<Image>();
+            _p2Portrait.type = Image.Type.Simple;
 
             // P2 Projectile Meter (1.8s Rapid Recharge)
             GameObject p2ProjBarGo = CreateRuntimePanel(gameObject, "P2_ProjMeter", new Color(0.08f, 0.1f, 0.14f, 0.85f), new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-300f, -76f), new Vector2(490f, 10f));

@@ -12,7 +12,7 @@ namespace DemonIdol.BlazBlue
     /// </summary>
     public class BBFrameMeter : MonoBehaviour
     {
-        public static bool IsMeterVisible = true;
+        public static bool IsMeterVisible = false;
 
         public enum FrameType : byte
         {

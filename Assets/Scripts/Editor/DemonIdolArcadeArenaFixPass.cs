@@ -110,13 +110,13 @@ namespace DemonIdol.Editor
                 zoneAnchor.ApplyZone("ST07");
             }
 
-            var courtyard = GameObject.Find("CollegeRaimon_Courtyard");
+            var courtyard = GameObject.Find("Backdrop_Diorama") ?? GameObject.Find("CollegeRaimon_Courtyard");
             if (courtyard != null)
             {
                 float s = 0.65f;
                 courtyard.transform.localScale = new Vector3(s, s, s);
-                courtyard.transform.localPosition = new Vector3(-10.2f * s, -100.2f * s, 2.2f);
-                courtyard.transform.localRotation = Quaternion.Euler(0.1f, 0f, 0f);
+                courtyard.transform.localPosition = new Vector3(-10.2f * s, -100.35f * s, 2.2f);
+                courtyard.transform.localRotation = Quaternion.identity;
             }
 
             // 3. Ensure Main Camera optics and distance (REQ 1: 55-65% screen height)
@@ -185,13 +185,13 @@ namespace DemonIdol.Editor
             var aikaDef = CharacterRegistry.GetCharacterById("C02");
 
             // Ensure courtyard diorama is grounded at Y=0 and scaled to 0.65
-            var courtyard = GameObject.Find("CollegeRaimon_Courtyard");
+            var courtyard = GameObject.Find("Backdrop_Diorama") ?? GameObject.Find("CollegeRaimon_Courtyard");
             if (courtyard != null)
             {
                 float s = 0.65f;
                 courtyard.transform.localScale = new Vector3(s, s, s);
-                courtyard.transform.localPosition = new Vector3(-10.2f * s, -100.2f * s, 2.2f);
-                courtyard.transform.localRotation = Quaternion.Euler(0.1f, 0f, 0f);
+                courtyard.transform.localPosition = new Vector3(-10.2f * s, -100.35f * s, 2.2f);
+                courtyard.transform.localRotation = Quaternion.identity;
             }
 
             if (p1 != null)
