@@ -58,6 +58,13 @@ namespace DemonIdol.Audio
         [SerializeField] private AudioClip _loopChorus;
         [SerializeField] private AudioClip _loopOutro;
 
+        [Header("Projectile SFX Clips")]
+        [SerializeField] private AudioClip _projFireClip;
+        [SerializeField] private AudioClip _projImpactClip;
+
+        [Header("Menu Soundtrack")]
+        [SerializeField] private AudioClip _bgmMenuTrack;
+
         [Header("UI SFX Clips")]
         [SerializeField] private AudioClip _btnClickClip;
         [SerializeField] private AudioClip _btnHoverClip;
@@ -140,7 +147,23 @@ namespace DemonIdol.Audio
             if (_victoryClip == null) _victoryClip = Resources.Load<AudioClip>("Audio/victory") ?? Resources.Load<AudioClip>("Audio/Announcer/victory");
 
 #if UNITY_EDITOR
-            // Auto-load Cyberpunk Sci-Fi soundtrack and authentic Deadly Kombat combat sound effects
+            // Auto-load project audio assets from Assets/Audio/
+            if (_hitLightClip == null) _hitLightClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_hit_light.wav");
+            if (_hitHeavyClip == null) _hitHeavyClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_hit_heavy.wav");
+            if (_swingLightClip == null) _swingLightClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_whiff_light.wav");
+            if (_swingHeavyClip == null) _swingHeavyClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_whiff_heavy.wav");
+            if (_blockClip == null) _blockClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_guard.wav");
+            if (_projFireClip == null) _projFireClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_proj_fire.wav");
+            if (_projImpactClip == null) _projImpactClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_proj_impact.wav");
+            if (_victoryClip == null) _victoryClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_ko.wav");
+            if (_round1Clip == null) _round1Clip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_round1.wav");
+            if (_round2Clip == null) _round2Clip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_round2.wav");
+            if (_fightClip == null) _fightClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_fight.wav");
+            if (_btnClickClip == null) _btnClickClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_menu_select.wav");
+            if (_bgmMenuTrack == null) _bgmMenuTrack = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/BGM/bgm_menu.wav");
+            if (_bgmFullTrack == null) _bgmFullTrack = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/BGM/bgm_fight.wav");
+
+            // Fallback to legacy Cyberpunk Sci-Fi soundtrack if present
             if (_bgmFullTrack == null)
             {
                 _bgmFullTrack = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Cyberpunk Sci-fi Soundtrack - Go To Miami/01 - Go To Miami.ogg");
@@ -180,6 +203,8 @@ namespace DemonIdol.Audio
             if (_rapidCancelClip == null) _rapidCancelClip = GenerateWhoosh("SFX_RapidCancel", 0.20f, 350f, 1800f);
             if (_swingLightClip == null) _swingLightClip = GenerateWhoosh("SFX_SwingLight", 0.12f, 250f, 800f);
             if (_swingHeavyClip == null) _swingHeavyClip = GenerateWhoosh("SFX_SwingHeavy", 0.22f, 180f, 500f);
+            if (_projFireClip == null) _projFireClip = GenerateWhoosh("SFX_ProjFire", 0.18f, 400f, 1400f);
+            if (_projImpactClip == null) _projImpactClip = GenerateImpactTone("SFX_ProjImpact", 0.24f, 320f, 60f, 0.45f, 3.2f);
             if (_landClip == null) _landClip = GenerateImpactTone("SFX_Land", 0.15f, 120f, 40f, 0.30f, 3.5f);
             if (_footstepClip == null) _footstepClip = GenerateImpactTone("SFX_Footstep", 0.06f, 300f, 80f, 0.25f, 5.0f);
             if (_domainActivationClip == null) _domainActivationClip = GenerateImpactTone("SFX_DomainActivation", 0.8f, 80f, 40f, 0.6f, 1.2f);
@@ -196,7 +221,7 @@ namespace DemonIdol.Audio
             // If music source still has no clip, generate ambient fight drone
             if (_musicSource != null && _musicSource.clip == null)
             {
-                _musicSource.clip = GenerateAmbientDrone("Procedural_AmbientDrone", 4.0f, 65f);
+                _musicSource.clip = _bgmFullTrack ?? GenerateAmbientDrone("Procedural_AmbientDrone", 4.0f, 65f);
             }
         }
 
@@ -332,6 +357,11 @@ namespace DemonIdol.Audio
 
         private void Update()
         {
+            // Sync dynamic volume with SettingsPanel
+            float master = SettingsPanel.MasterVolume;
+            SetMusicVolume(SettingsPanel.MusicVolume * master);
+            SetSFXVolume(SettingsPanel.SfxVolume * master);
+
             if (!_isPlaying) return;
 
             float songPosition = (float)(AudioSettings.dspTime - _dspStartTime);
@@ -379,12 +409,20 @@ namespace DemonIdol.Audio
         public void PlayButtonClick() => PlayWithRandomPitch(_btnClickClip, 0.98f, 1.02f);
         public void PlayButtonHover() => PlayWithRandomPitch(_btnHoverClip, 0.98f, 1.02f);
 
+        // Projectile Audio Hooks
+        public void PlayProjectileFire() => PlayWithRandomPitch(_projFireClip, 0.95f, 1.05f);
+        public void PlayProjectileImpact() => PlayWithRandomPitch(_projImpactClip, 0.95f, 1.05f);
+
         // Deadly Kombat Round Announcements
         public void PlayRound1() => PlayOneShotDirect(_round1Clip);
         public void PlayRound2() => PlayOneShotDirect(_round2Clip);
         public void PlayFinalRound() => PlayOneShotDirect(_finalRoundClip);
         public void PlayFight() => PlayOneShotDirect(_fightClip);
         public void PlayVictorySound() => PlayOneShotDirect(_victoryClip);
+
+        // Menu and Battle Music Tracks
+        public void PlayMenuMusic() => SwitchToMusicLoop(_bgmMenuTrack ?? _bgmFullTrack);
+        public void PlayCombatMusic() => SwitchToMusicLoop(_bgmFullTrack);
 
         // Cyberpunk Dynamic Momentum Music Loops
         public void PlayIntroLoop() => SwitchToMusicLoop(_loopIntro ?? _bgmFullTrack);

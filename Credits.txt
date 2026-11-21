@@ -1,0 +1,22 @@
+# My Demon Idol - Credits & Attribution
+
+## Audio & Soundtrack
+- **Dynamic Combat Sound Effects (SFX)**:
+  - Whiff (Light / Heavy): Custom procedural synthesis + high-fidelity 16-bit PCM (CC0 / Public Domain)
+  - Hit (Light / Heavy): Crunchy mechanical/organic impact synthesis (CC0 / Public Domain)
+  - Guard / Parry: Resonant metallic clash & solid block transient (CC0 / Public Domain)
+  - Projectile Fire & Impact: Synthesized elemental energy whoosh and burst (CC0 / Public Domain)
+  - Knockout (KO) / Victory: Sub-bass detonation layered with harmonic brass chord (CC0 / Public Domain)
+  - Round Calls ("Round 1", "Round 2", "Fight"): Chime synth announcer calls (CC0 / Public Domain)
+  - Menu UI Select / Hover: Snappy high-frequency interface blips (CC0 / Public Domain)
+  - Voice grunts and exertion cues: UnityChan Voice Library (© Unity Technologies Japan / UCL - Unity-Chan License)
+
+- **Soundtrack (BGM)**:
+  - Menu Theme: "Cyber Menu Arp" (120 BPM, CC0 / Public Domain)
+  - Battle Theme: "Cyberpunk 128 Combat Drive" (128 BPM 4-on-the-floor synth battle loop, CC0 / Public Domain)
+  - Additional Soundtrack Loops: "Go To Miami" by Cyberpunk Sci-Fi Soundtrack Library (Asset Store EULA / CC-BY)
+
+## Core Engine & Architecture
+- BlazBlue 4-button Combat Engine by Demon Idol Team
+- Quantum Predict/Rollback Simulation Integration
+- Universal Render Pipeline (URP) Custom Mobile Profiles

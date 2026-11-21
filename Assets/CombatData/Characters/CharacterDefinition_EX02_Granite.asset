@@ -20,7 +20,7 @@ MonoBehaviour:
   description: 'Dota 2 style hero: Granite, the Earth Vanguard. Equipped with Hammer stance.'
   modelPrefab: {fileID: 4840724585598804740, guid: 9735302b9edf144938034e073e91d0df, type: 3}
   animatorController: {fileID: 0}
-  avatar: {fileID: 0}
+  avatar: {fileID: 9000000, guid: d5e33f8b3c2446949b1649c33339e801, type: 3}
   portraitSprite: {fileID: 0}
   bannerSprite: {fileID: 0}
   speed: 64

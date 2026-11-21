@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DemonIdol.Combat;
 using DemonIdol.Launch;
+using DemonIdol.Audio;
 
 namespace DemonIdol.UI
 {
@@ -180,6 +181,13 @@ namespace DemonIdol.UI
             UpdateCharacterDossier(SelectedP1Id);
             UpdatePedestalModel(SelectedP1Id);
             UpdateStageDossier(0);
+
+            if (CombatAudioDirector.Instance == null)
+            {
+                var audioHost = new GameObject("CombatAudioDirector");
+                audioHost.AddComponent<CombatAudioDirector>();
+            }
+            CombatAudioDirector.Instance.PlayMenuMusic();
         }
 
         private void WireEvents()
@@ -236,6 +244,7 @@ namespace DemonIdol.UI
         public void SetMenuState(MenuState state)
         {
             CurrentState = state;
+            CombatAudioDirector.Instance?.PlayButtonClick();
 
             if (TitlePanel != null) TitlePanel.SetActive(state == MenuState.Title);
             if (ModeSelectPanel != null) ModeSelectPanel.SetActive(state == MenuState.ModeSelect);

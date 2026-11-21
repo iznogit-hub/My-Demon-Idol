@@ -1,15 +1,29 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DemonIdol.UI;
 
 namespace DemonIdol.BlazBlue
 {
     /// <summary>
-    /// On-screen A B C D and a stick. Writes the existing BBInputSampler virtual masks.
+    /// On-screen A B C D, virtual D-pad, and hold-to-pause controls.
+    /// Fully calibrated for mobile phone landscape viewports with safe area margins.
+    /// Writes the existing BBInputSampler virtual masks and stick vectors.
     /// </summary>
     public class BBTouchLayout : MonoBehaviour
     {
         public BBInputSampler target;
+
+        private bool _isHoldingPause = false;
+        private float _pauseHoldTimer = 0f;
+        private const float PAUSE_HOLD_DURATION = 0.8f;
+        private Text _pauseLabelText;
+
+        // D-pad input tracking
+        private bool _padUp = false;
+        private bool _padDown = false;
+        private bool _padLeft = false;
+        private bool _padRight = false;
 
         public void Bind(BBInputSampler sampler)
         {
@@ -32,10 +46,70 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        public void SetDirection(int x, int y, bool held)
+        {
+            if (x < 0) _padLeft = held;
+            if (x > 0) _padRight = held;
+            if (y < 0) _padDown = held;
+            if (y > 0) _padUp = held;
+
+            float stickX = (_padRight ? 1f : 0f) - (_padLeft ? 1f : 0f);
+            float stickY = (_padUp ? 1f : 0f) - (_padDown ? 1f : 0f);
+
+            SetStick(new Vector2(stickX, stickY));
+        }
+
         public void SetStick(Vector2 stick)
         {
             if (target == null) return;
             target.virtualStickInput = stick;
+        }
+
+        public void SetPauseHeld(bool held)
+        {
+            _isHoldingPause = held;
+            if (!held)
+            {
+                _pauseHoldTimer = 0f;
+                if (_pauseLabelText != null) _pauseLabelText.text = "PAUSE";
+            }
+        }
+
+        private void Update()
+        {
+            if (_isHoldingPause)
+            {
+                _pauseHoldTimer += Time.unscaledDeltaTime;
+                float progress = Mathf.Clamp01(_pauseHoldTimer / PAUSE_HOLD_DURATION);
+                if (_pauseLabelText != null)
+                {
+                    _pauseLabelText.text = $"PAUSE {(int)(progress * 100)}%";
+                }
+
+                if (_pauseHoldTimer >= PAUSE_HOLD_DURATION)
+                {
+                    _isHoldingPause = false;
+                    _pauseHoldTimer = 0f;
+                    if (_pauseLabelText != null) _pauseLabelText.text = "PAUSED";
+                    TriggerPause();
+                }
+            }
+        }
+
+        private void TriggerPause()
+        {
+            if (BattleHUDController.Instance != null)
+            {
+                BattleHUDController.Instance.ToggleInGamePause();
+            }
+            else if (BloodTechUIManager.Instance != null)
+            {
+                BloodTechUIManager.Instance.ToggleLocalPause(true);
+            }
+            else
+            {
+                Time.timeScale = Time.timeScale > 0f ? 0f : 1f;
+            }
         }
 
         public static BBTouchLayout Create(Transform parent, BBInputSampler sampler)
@@ -49,14 +123,81 @@ namespace DemonIdol.BlazBlue
             rect.anchorMax = Vector2.one;
             rect.offsetMin = Vector2.zero;
             rect.offsetMax = Vector2.zero;
-            CreateButton(layout, root.transform, "A", BBButton.A, new Vector2(-80f, 80f));
-            CreateButton(layout, root.transform, "B", BBButton.B, new Vector2(-80f, 170f));
-            CreateButton(layout, root.transform, "C", BBButton.C, new Vector2(-170f, 80f));
-            CreateButton(layout, root.transform, "D", BBButton.D, new Vector2(-170f, 170f));
+
+            // Safe Area & Screen Margins
+            Rect safe = Screen.safeArea;
+            float safeLeft = Mathf.Max(24f, safe.xMin);
+            float safeRight = Mathf.Max(24f, Screen.width - safe.xMax);
+            float safeBottom = Mathf.Max(24f, safe.yMin);
+
+            // 1. Virtual D-Pad (Left side, non-overlapping with health bars)
+            Vector2 dpadOrigin = new Vector2(safeLeft + 80f, safeBottom + 80f);
+            CreateDPad(layout, root.transform, dpadOrigin);
+
+            // 2. Action Buttons A, B, C, D (Right side, minimum 76x76 touch target)
+            Vector2 rightOrigin = new Vector2(-safeRight - 40f, safeBottom + 40f);
+            CreateButton(layout, root.transform, "A", BBButton.A, new Vector2(rightOrigin.x, rightOrigin.y), new Color(0.85f, 0.20f, 0.25f, 0.85f));
+            CreateButton(layout, root.transform, "B", BBButton.B, new Vector2(rightOrigin.x, rightOrigin.y + 90f), new Color(0.20f, 0.50f, 0.90f, 0.85f));
+            CreateButton(layout, root.transform, "C", BBButton.C, new Vector2(rightOrigin.x - 90f, rightOrigin.y), new Color(0.95f, 0.75f, 0.20f, 0.85f));
+            CreateButton(layout, root.transform, "D", BBButton.D, new Vector2(rightOrigin.x - 90f, rightOrigin.y + 90f), new Color(0.65f, 0.25f, 0.85f, 0.85f));
+
+            // 3. Hold-to-Pause Button (Top right, safe under status bar)
+            CreateHoldPauseButton(layout, root.transform, new Vector2(-safeRight - 20f, -40f));
+
             return layout;
         }
 
-        static void CreateButton(BBTouchLayout layout, Transform parent, string label, BBButton button, Vector2 corner)
+        static void CreateDPad(BBTouchLayout layout, Transform parent, Vector2 origin)
+        {
+            var dpadGo = new GameObject("VirtualDPad", typeof(RectTransform));
+            dpadGo.transform.SetParent(parent, false);
+            var rt = dpadGo.GetComponent<RectTransform>();
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.zero;
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.anchoredPosition = origin;
+            rt.sizeDelta = new Vector2(180f, 180f);
+
+            CreateDPadDirection(layout, dpadGo.transform, "UP", 0, 1, new Vector2(0f, 55f), "▲");
+            CreateDPadDirection(layout, dpadGo.transform, "DOWN", 0, -1, new Vector2(0f, -55f), "▼");
+            CreateDPadDirection(layout, dpadGo.transform, "LEFT", -1, 0, new Vector2(-55f, 0f), "◀");
+            CreateDPadDirection(layout, dpadGo.transform, "RIGHT", 1, 0, new Vector2(55f, 0f), "▶");
+        }
+
+        static void CreateDPadDirection(BBTouchLayout layout, Transform parent, string name, int x, int y, Vector2 pos, string arrow)
+        {
+            var go = new GameObject("Pad_" + name, typeof(RectTransform), typeof(Image), typeof(Button));
+            go.transform.SetParent(parent, false);
+            var rt = go.GetComponent<RectTransform>();
+            rt.anchorMin = new Vector2(0.5f, 0.5f);
+            rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.anchoredPosition = pos;
+            rt.sizeDelta = new Vector2(56f, 56f);
+
+            var image = go.GetComponent<Image>();
+            image.color = new Color(0.12f, 0.14f, 0.20f, 0.80f);
+
+            var textGo = new GameObject("Arrow", typeof(RectTransform), typeof(Text));
+            textGo.transform.SetParent(go.transform, false);
+            var text = textGo.GetComponent<Text>();
+            text.text = arrow;
+            text.alignment = TextAnchor.MiddleCenter;
+            text.color = Color.white;
+            text.fontSize = 22;
+            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            var textRect = textGo.GetComponent<RectTransform>();
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.offsetMin = Vector2.zero;
+            textRect.offsetMax = Vector2.zero;
+
+            var trigger = go.AddComponent<EventTrigger>();
+            Add(trigger, EventTriggerType.PointerDown, () => layout.SetDirection(x, y, true));
+            Add(trigger, EventTriggerType.PointerUp, () => layout.SetDirection(x, y, false));
+        }
+
+        static void CreateButton(BBTouchLayout layout, Transform parent, string label, BBButton button, Vector2 corner, Color btnColor)
         {
             var go = new GameObject("Touch_" + label, typeof(RectTransform), typeof(Image), typeof(Button));
             go.transform.SetParent(parent, false);
@@ -65,15 +206,17 @@ namespace DemonIdol.BlazBlue
             rt.anchorMax = new Vector2(1f, 0f);
             rt.pivot = new Vector2(1f, 0f);
             rt.anchoredPosition = corner;
-            rt.sizeDelta = new Vector2(72f, 72f);
+            rt.sizeDelta = new Vector2(76f, 76f);
             var image = go.GetComponent<Image>();
-            image.color = new Color(0.1f, 0.1f, 0.14f, 0.72f);
+            image.color = btnColor;
             var textGo = new GameObject("Label", typeof(RectTransform), typeof(Text));
             textGo.transform.SetParent(go.transform, false);
             var text = textGo.GetComponent<Text>();
             text.text = label;
             text.alignment = TextAnchor.MiddleCenter;
             text.color = Color.white;
+            text.fontStyle = FontStyle.Bold;
+            text.fontSize = 28;
             text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             var textRect = textGo.GetComponent<RectTransform>();
             textRect.anchorMin = Vector2.zero;
@@ -83,6 +226,42 @@ namespace DemonIdol.BlazBlue
             var trigger = go.AddComponent<EventTrigger>();
             Add(trigger, EventTriggerType.PointerDown, () => layout.SetButton(button, true));
             Add(trigger, EventTriggerType.PointerUp, () => layout.SetButton(button, false));
+        }
+
+        static void CreateHoldPauseButton(BBTouchLayout layout, Transform parent, Vector2 anchoredPos)
+        {
+            var go = new GameObject("Touch_HoldPause", typeof(RectTransform), typeof(Image), typeof(Button));
+            go.transform.SetParent(parent, false);
+            var rt = go.GetComponent<RectTransform>();
+            rt.anchorMin = new Vector2(1f, 1f);
+            rt.anchorMax = new Vector2(1f, 1f);
+            rt.pivot = new Vector2(1f, 1f);
+            rt.anchoredPosition = anchoredPos;
+            rt.sizeDelta = new Vector2(100f, 44f);
+
+            var image = go.GetComponent<Image>();
+            image.color = new Color(0.18f, 0.18f, 0.24f, 0.85f);
+
+            var textGo = new GameObject("Label", typeof(RectTransform), typeof(Text));
+            textGo.transform.SetParent(go.transform, false);
+            var text = textGo.GetComponent<Text>();
+            text.text = "PAUSE";
+            text.alignment = TextAnchor.MiddleCenter;
+            text.color = Color.white;
+            text.fontSize = 14;
+            text.fontStyle = FontStyle.Bold;
+            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            var textRect = textGo.GetComponent<RectTransform>();
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.offsetMin = Vector2.zero;
+            textRect.offsetMax = Vector2.zero;
+
+            layout._pauseLabelText = text;
+
+            var trigger = go.AddComponent<EventTrigger>();
+            Add(trigger, EventTriggerType.PointerDown, () => layout.SetPauseHeld(true));
+            Add(trigger, EventTriggerType.PointerUp, () => layout.SetPauseHeld(false));
         }
 
         static void Add(EventTrigger trigger, EventTriggerType type, UnityEngine.Events.UnityAction call)

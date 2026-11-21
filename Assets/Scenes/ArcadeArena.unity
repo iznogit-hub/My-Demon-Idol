@@ -3564,7 +3564,7 @@ MonoBehaviour:
   aggressionLeadAmount: 0.35
   verticalLaunchThresholdY: 2.5
   minDistanceZ: -6.5
-  maxDistanceZ: -13.5
+  maxDistanceZ: -18.5
   smoothSpeed: 8
   smoothSpeedY: 3.5
   smoothSpeedZ: 5.5

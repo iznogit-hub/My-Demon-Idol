@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2062860577754548370}
+  - component: {fileID: 214568616596405657}
   m_Layer: 0
   m_Name: Cloak.R.001
   m_TagString: Untagged
@@ -32,6 +33,33 @@ Transform:
   - {fileID: 2399626384127574232}
   m_Father: {fileID: 63065295655106068}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &214568616596405657
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214568616596351657}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &374385598335612549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,6 +1435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.Hurtbox
   _zone: 1
+  _owner: {fileID: 0}
 --- !u!1 &2522894653742052542
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,6 +2667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterController
   fighterName: Sentry
+  appliedDefinition: {fileID: 0}
   isPlayerControlled: 1
   maxHealth: 1000
   maxSuperMeter: 100
@@ -3063,7 +3093,6 @@ GameObject:
   - component: {fileID: 8580279775979791083}
   - component: {fileID: 2485107419050725077}
   - component: {fileID: 71284890957501173}
-  - component: {fileID: 214568616596405657}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -6959,31 +6988,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2822003049557969000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
---- !u!54 &214568616596405657
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214568616596351657}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2

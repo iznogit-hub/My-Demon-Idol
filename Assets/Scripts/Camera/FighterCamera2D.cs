@@ -86,7 +86,7 @@ namespace DemonIdol.Combat
         [Tooltip("Minimum camera distance Z (tight framing when close)")]
         public float minDistanceZ = -6.5f;
         [Tooltip("Maximum camera distance Z (widest framing at max spacing)")]
-        public float maxDistanceZ = -13.5f;
+        public float maxDistanceZ = -18.5f;
 
         [Header("Damping & Interpolation Speeds")]
         public float smoothSpeed = 8.0f;

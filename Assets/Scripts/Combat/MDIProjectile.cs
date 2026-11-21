@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using DemonIdol.Combat;
+using DemonIdol.Audio;
 
 namespace DemonIdol.Combat
 {
@@ -119,6 +120,7 @@ namespace DemonIdol.Combat
 
             // Deliver strike to target
             target.ReceiveIncomingStrike(owner, attackData, null);
+            CombatAudioDirector.Instance?.PlayProjectileImpact();
 
             // Spawn impact VFX
             Vector3 hitPos = transform.position;
@@ -148,6 +150,7 @@ namespace DemonIdol.Combat
             if (attackData == null) attackData = ScriptableObject.CreateInstance<AttackData>();
             attackData.attackName = name;
             attackData.damage = damage;
+            CombatAudioDirector.Instance?.PlayProjectileFire();
         }
 
         public static bool Overlaps(MDIProjectile a, MDIProjectile b)
