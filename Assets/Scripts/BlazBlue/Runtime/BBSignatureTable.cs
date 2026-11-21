@@ -94,11 +94,15 @@ namespace DemonIdol.BlazBlue
             if (token.StartsWith("CMU 83")) return FindSubClip("Assets/Huge Mocap Library/mocap animations/83/83_01.fbx", "MDI_BB_Attack_4");
             if (token.StartsWith("CMU 86")) return FindSubClip("Assets/Huge Mocap Library/mocap animations/86/86_01.fbx", "MDI_BB_Attack_5");
             if (token == "KI 1H Attack") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/1H/HumanF@Attack1H01_R.fbx", "HumanF@Attack1H01_R");
+            if (token == "KI 1H Left") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/1H/HumanF@Attack1H01_L.fbx", "HumanF@Attack1H01_L");
             if (token == "KI 2H") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/2H/HumanF@Attack2H01.fbx", "HumanF@Attack2H01");
+            if (token == "KI Polearm") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Polearm/HumanF@AttackPolearm01.fbx", "HumanF@AttackPolearm01");
             if (token == "Knight shield") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Shield/HumanF@AttackShield01.fbx", "HumanF@AttackShield01");
             if (token == "KI spellcast") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect1H01_R.fbx", "HumanF@MagicAttackDirect1H01_R");
+            if (token == "KI Magic Direct 1H L") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect1H01_L.fbx", "HumanF@MagicAttackDirect1H01_L");
             if (token == "KI spellcast bubble") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect2H01.fbx", "HumanF@MagicAttackDirect2H01");
             if (token == "KI Magic Omni") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanF@MagicAttackOmni01.fbx", "HumanF@MagicAttackOmni01");
+            if (token == "KI Magic Call") return FindSubClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Call/HumanF@MagicAttackCall1H01_L.fbx", "HumanF@MagicAttackCall1H01_L");
             if (token == "Heavy Punch") return FindSubClip("Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Heavy Fighter Mecanim Animation Pack FREE/Animations/Heavy@Punch.FBX", "Punch");
             if (token == "Guard Attack") return FindSubClip("Assets/SimpleAssets/Humans/Guard/Animations/Guard_Attack.fbx", "Attack");
             if (token == "Guard Cast") return FindSubClip("Assets/SimpleAssets/Humans/Guard/Animations/Guard_Cast Spell.fbx", "Cast Spell");

@@ -268,6 +268,12 @@ namespace DemonIdol.EditorTools
         {
             DemonIdolCharacterShowcaseCapture.CaptureRosterShowcase();
         }
+
+        [MenuItem("Demon Idol/🧪 Verification & Audit/Capture Online Match Screenshots", priority = 77)]
+        public static void CaptureOnlineMatch()
+        {
+            DemonIdolOnlineMatchCapture.CaptureOnlineMatchScreens();
+        }
     }
 }
 #endif

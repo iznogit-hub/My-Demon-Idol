@@ -313,8 +313,9 @@ namespace DemonIdol.Network
                 if (!string.IsNullOrEmpty(quantumAppId))
                 {
                     appSettings.AppIdQuantum = quantumAppId;
-                    if (string.IsNullOrEmpty(appSettings.AppIdRealtime)) appSettings.AppIdRealtime = quantumAppId;
                 }
+                appSettings.AppIdRealtime = string.Empty;
+                appSettings.AppIdFusion = string.Empty;
 
                 if (!string.IsNullOrEmpty(preferredRegion))
                 {
@@ -442,10 +443,12 @@ namespace DemonIdol.Network
 
         private void HandleOnlineMatchFinished(RoundWinner matchWinner)
         {
-            if (PvPMatchController.Instance != null)
+            int winnerIndex = matchWinner == RoundWinner.Player1 ? 1 : (matchWinner == RoundWinner.Player2 ? 2 : 0);
+
+            // BlazBlue match flow results authority (BBMatchFlow)
+            if (DemonIdol.BlazBlue.BBMatchScreenDirector.Instance != null)
             {
-                int winnerIndex = matchWinner == RoundWinner.Player1 ? 1 : (matchWinner == RoundWinner.Player2 ? 2 : 0);
-                PvPMatchController.Instance.HandleMatchFinished(winnerIndex);
+                DemonIdol.BlazBlue.BBMatchScreenDirector.Instance.ShowResults(winnerIndex);
             }
 
             if (FirestoreService.Instance != null && FirebaseAuthService.Instance != null)

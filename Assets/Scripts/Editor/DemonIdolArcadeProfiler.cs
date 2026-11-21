@@ -153,6 +153,10 @@ namespace DemonIdol.Editor
             float avgFps = 1000f / Mathf.Max(0.001f, avgMs);
             float worstFps = 1000f / Mathf.Max(0.001f, maxMs);
 
+            EditorUtility.UnloadUnusedAssetsImmediate();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
             long allocBytes = Profiler.GetTotalAllocatedMemoryLong();
             long reservedBytes = Profiler.GetTotalReservedMemoryLong();
             long gcBytes = GC.GetTotalMemory(false);

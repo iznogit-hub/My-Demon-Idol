@@ -30,8 +30,8 @@ MonoBehaviour:
   airPushboxSize: {x: 0.6, y: 1.3}
   blazBlueOverrideController: {fileID: 22100000, guid: e8ff0abb9641644979df7925f128c76f, type: 2}
   signatureDriveClip: {fileID: 4870231688008920224, guid: 9d6082279fad4084eb6d6a848e1f9fff, type: 3}
-  signatureSpecialClip: {fileID: 4870231688008920224, guid: 9d6082279fad4084eb6d6a848e1f9fff, type: 3}
-  signatureSuperClip: {fileID: 4870231688008920224, guid: 9d6082279fad4084eb6d6a848e1f9fff, type: 3}
+  signatureSpecialClip: {fileID: 7400000, guid: c52633ad3251d4841878d77a31df9981, type: 3}
+  signatureSuperClip: {fileID: 8420383630626951743, guid: 4cb813e0df571d34686ef2da68652022, type: 3}
   moveSet: {fileID: 11400000, guid: a7f6b48e1b09b425c8ab2fb00a43c142, type: 2}
   maxHealth: 11000
   defenseModifier: 1

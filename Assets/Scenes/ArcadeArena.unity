@@ -207,6 +207,7 @@ MonoBehaviour:
   _btnPauseCharSelect: {fileID: 0}
   _btnPauseStageSelect: {fileID: 0}
   _btnPauseMenu: {fileID: 0}
+  _btnPauseMovelist: {fileID: 0}
   _btnBattlePause: {fileID: 0}
   _netcodeRibbon: {fileID: 0}
   _pingStatusDot: {fileID: 0}
@@ -610,6 +611,9 @@ MonoBehaviour:
   _loopDrop: {fileID: 0}
   _loopChorus: {fileID: 0}
   _loopOutro: {fileID: 0}
+  _projFireClip: {fileID: 0}
+  _projImpactClip: {fileID: 0}
+  _bgmMenuTrack: {fileID: 0}
   _btnClickClip: {fileID: 0}
   _btnHoverClip: {fileID: 0}
   _voiceGruntLight: {fileID: 0}
