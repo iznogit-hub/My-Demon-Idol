@@ -8,7 +8,7 @@ namespace DemonIdol.Editor
 {
     public static class DemonIdolQuantumSetup
     {
-        public const string QUANTUM_APP_ID = "41ec9a7a-e464-4f50-bf82-b6899ce7f59a";
+        public const string QUANTUM_APP_ID = "";
 
         // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Quantum/Configure Photon Quantum", priority = 20)]
         public static void ConfigureQuantum()

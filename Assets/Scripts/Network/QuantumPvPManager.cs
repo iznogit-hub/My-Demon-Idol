@@ -60,7 +60,7 @@ namespace DemonIdol.Network
         }
 
         [Header("Photon Quantum Configuration")]
-        public string quantumAppId = "41ec9a7a-e464-4f50-bf82-b6899ce7f59a";
+        public string quantumAppId = "";
         public string preferredRegion = ""; // empty = best ping region
 
         [Header("Authentication")]
@@ -314,11 +314,6 @@ namespace DemonIdol.Network
                 {
                     appSettings.AppIdQuantum = quantumAppId;
                     if (string.IsNullOrEmpty(appSettings.AppIdRealtime)) appSettings.AppIdRealtime = quantumAppId;
-                }
-                else if (string.IsNullOrEmpty(appSettings.AppIdQuantum))
-                {
-                    appSettings.AppIdQuantum = "41ec9a7a-e464-4f50-bf82-b6899ce7f59a";
-                    if (string.IsNullOrEmpty(appSettings.AppIdRealtime)) appSettings.AppIdRealtime = "41ec9a7a-e464-4f50-bf82-b6899ce7f59a";
                 }
 
                 if (!string.IsNullOrEmpty(preferredRegion))

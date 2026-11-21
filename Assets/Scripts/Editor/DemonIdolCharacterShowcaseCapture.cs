@@ -4,7 +4,7 @@ using System.IO;
 
 public static class DemonIdolCharacterShowcaseCapture
 {
-    private const string OUTPUT_DIR = "/Users/amber/.gemini/antigravity/brain/dd77d1a5-afbd-4c73-9398-88a8ea41254c";
+    private const string OUTPUT_DIR = "Screenshots";
 
     // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Verification/Capture Current Roster Showcase", priority = 10)]
     public static void CaptureRosterShowcase()

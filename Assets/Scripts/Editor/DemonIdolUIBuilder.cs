@@ -2088,7 +2088,7 @@ namespace DemonIdol.Editor
             byte[] bytes = tex.EncodeToPNG();
             Object.DestroyImmediate(tex);
 
-            string outPath = "/Users/amber/.gemini/antigravity/brain/dd77d1a5-afbd-4c73-9398-88a8ea41254c/ninety_anime_render.png";
+            string outPath = System.IO.Path.Combine(Application.dataPath, "../Screenshots/ninety_anime_render.png");
             System.IO.File.WriteAllBytes(outPath, bytes);
             Debug.Log($"[90s Anime] Saved 90s character render to {outPath}");
         }
