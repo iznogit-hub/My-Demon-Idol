@@ -46,7 +46,12 @@ namespace DemonIdol.Cutscenes
         public const string DAILY_ROUTINE = "videos/Demon_lord_idol_daily_routine_a9877cdb_1080p.mp4";
         public const string SPEAKING_TO_CAMERA = "videos/Gothic_idol_speaking_to_camera_0f99ebe4_1080p.mp4";
         public const string UMBRELLA_SPEAKING = "videos/Girl_holding_umbrella_speaking_70d09446_1080p.mp4";
-        public const string TUTORIAL_HOW_TO_PLAY = ""; // Empty: no recorded combat video; runs in-engine procedural tutorial panel
+        public const string TUTORIAL_HOW_TO_PLAY =
+            "1. Move: 4/6 walk, 44/66 dash, 7/8/9 jump, hold back to guard.\n" +
+            "2. Normals: A (Light), B (Medium), C (Heavy) chain in gatling order.\n" +
+            "3. Drive: Press D for unique archetype mechanics and signature property.\n" +
+            "4. Specials & Supers: 236/623/214 + button for specials, 236236C super costs 50 Heat.\n" +
+            "5. Throw: Press B+C together at close range to break opponent guard.";
         public const string DOJO_INTERSTITIAL = "videos/Monster_floating_on_game_screen_e0aa4105_1080p.mp4";
         public const string LOADING_SCREEN_LOOP = DOJO_INTERSTITIAL;
         public const string MATCH_LAUNCH_COUNTDOWN = "Cinematics/MY_DEMON_IDOL_launch_countdown.mp4";

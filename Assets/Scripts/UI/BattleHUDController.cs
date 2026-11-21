@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DemonIdol.BlazBlue;
 using DemonIdol.Combat;
 using DemonIdol.Launch;
 
@@ -76,6 +77,7 @@ namespace DemonIdol.UI
         [SerializeField] private Button _btnPauseCharSelect;
         [SerializeField] private Button _btnPauseStageSelect;
         [SerializeField] private Button _btnPauseMenu;
+        [SerializeField] private Button _btnPauseMovelist;
 
         [Header("Touch HUD Controls")]
         [SerializeField] private Button _btnBattlePause;
@@ -1320,17 +1322,30 @@ namespace DemonIdol.UI
             if (_pauseModal != null)
             {
                 if (_btnPauseResume == null) _btnPauseResume = FindButtonRecursive(_pauseModal, "Btn_PauseResume", "Btn_Resume");
+                if (_btnPauseMovelist == null) _btnPauseMovelist = FindButtonRecursive(_pauseModal, "Btn_PauseMovelist", "Btn_Movelist");
                 if (_btnPauseRestart == null) _btnPauseRestart = FindButtonRecursive(_pauseModal, "Btn_PauseRestart", "Btn_Restart");
                 if (_btnPauseCharSelect == null) _btnPauseCharSelect = FindButtonRecursive(_pauseModal, "Btn_PauseCharSelect", "Btn_CharacterSelect");
                 if (_btnPauseStageSelect == null) _btnPauseStageSelect = FindButtonRecursive(_pauseModal, "Btn_PauseStageSelect", "Btn_StageSelect");
                 if (_btnPauseMenu == null) _btnPauseMenu = FindButtonRecursive(_pauseModal, "Btn_PauseMenu", "Btn_ReturnToMenu");
 
                 if (_btnPauseResume != null) { _btnPauseResume.onClick.RemoveAllListeners(); _btnPauseResume.onClick.AddListener(ToggleInGamePause); }
+                if (_btnPauseMovelist != null) { _btnPauseMovelist.onClick.RemoveAllListeners(); _btnPauseMovelist.onClick.AddListener(OnClickPauseMovelist); }
                 if (_btnPauseRestart != null) { _btnPauseRestart.onClick.RemoveAllListeners(); _btnPauseRestart.onClick.AddListener(() => { ToggleInGamePause(); OnClickRematch(); }); }
                 if (_btnPauseCharSelect != null) { _btnPauseCharSelect.onClick.RemoveAllListeners(); _btnPauseCharSelect.onClick.AddListener(OnClickCharacterSelect); }
                 if (_btnPauseStageSelect != null) { _btnPauseStageSelect.onClick.RemoveAllListeners(); _btnPauseStageSelect.onClick.AddListener(OnClickStageSelect); }
                 if (_btnPauseMenu != null) { _btnPauseMenu.onClick.RemoveAllListeners(); _btnPauseMenu.onClick.AddListener(OnClickReturnToMenu); }
             }
+        }
+
+        public void OnClickPauseMovelist()
+        {
+            SafePlayButtonClick();
+            string charId = !string.IsNullOrEmpty(LaunchServices.Session.Player1Id)
+                ? LaunchServices.Session.Player1Id
+                : "C01";
+            if (BBMatchSim.Instance != null && BBMatchSim.Instance.p1Brain != null && BBMatchSim.Instance.p1Brain.profile != null)
+                charId = BBMatchSim.Instance.p1Brain.profile.characterId;
+            BBMovelistModal.Show(charId, transform.parent != null ? transform.parent : transform);
         }
 
         private GameObject BuildPauseModal()
@@ -1355,7 +1370,7 @@ namespace DemonIdol.UI
             GameObject box = new GameObject("PauseBox", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
             box.transform.SetParent(modal.transform, false);
             RectTransform boxRt = box.GetComponent<RectTransform>();
-            boxRt.sizeDelta = new Vector2(460f, 420f);
+            boxRt.sizeDelta = new Vector2(460f, 480f);
             boxRt.anchoredPosition = Vector2.zero;
             Image boxImg = box.GetComponent<Image>();
             if (atlas != null) atlas.StylePanel(boxImg, false);
@@ -1365,7 +1380,7 @@ namespace DemonIdol.UI
             GameObject txtGo = new GameObject("Text_PauseTitle", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
             txtGo.transform.SetParent(box.transform, false);
             RectTransform txtRt = txtGo.GetComponent<RectTransform>();
-            txtRt.anchoredPosition = new Vector2(0f, 150f);
+            txtRt.anchoredPosition = new Vector2(0f, 180f);
             txtRt.sizeDelta = new Vector2(400f, 40f);
             Text pTitle = txtGo.GetComponent<Text>();
             pTitle.font = font;
@@ -1376,11 +1391,15 @@ namespace DemonIdol.UI
             pTitle.color = SumiStyleTokens.BrushGold;
 
             // Buttons — Bloodlines styled
-            _btnPauseResume = CreateModalButton(box.transform, "Btn_PauseResume", "RESUME", new Vector2(0f, 80f), SumiStyleTokens.ToriiRed, font);
+            _btnPauseResume = CreateModalButton(box.transform, "Btn_PauseResume", "RESUME", new Vector2(0f, 115f), SumiStyleTokens.ToriiRed, font);
             if (atlas != null) atlas.StyleButton(_btnPauseResume, 1, true);
             _btnPauseResume.onClick.AddListener(ToggleInGamePause);
 
-            _btnPauseRestart = CreateModalButton(box.transform, "Btn_PauseRestart", "RESTART MATCH", new Vector2(0f, 25f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
+            _btnPauseMovelist = CreateModalButton(box.transform, "Btn_PauseMovelist", "COMMAND LIST", new Vector2(0f, 60f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
+            if (atlas != null) atlas.StyleButton(_btnPauseMovelist, 2, false);
+            _btnPauseMovelist.onClick.AddListener(OnClickPauseMovelist);
+
+            _btnPauseRestart = CreateModalButton(box.transform, "Btn_PauseRestart", "RESTART MATCH", new Vector2(0f, 5f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
             if (atlas != null) atlas.StyleButton(_btnPauseRestart, 2, false);
             _btnPauseRestart.onClick.AddListener(() =>
             {
@@ -1388,15 +1407,15 @@ namespace DemonIdol.UI
                 OnClickRematch();
             });
 
-            _btnPauseCharSelect = CreateModalButton(box.transform, "Btn_PauseCharSelect", "CHARACTER SELECT", new Vector2(0f, -30f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
+            _btnPauseCharSelect = CreateModalButton(box.transform, "Btn_PauseCharSelect", "CHARACTER SELECT", new Vector2(0f, -50f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
             if (atlas != null) atlas.StyleButton(_btnPauseCharSelect, 2, false);
             _btnPauseCharSelect.onClick.AddListener(OnClickCharacterSelect);
 
-            _btnPauseStageSelect = CreateModalButton(box.transform, "Btn_PauseStageSelect", "STAGE SELECT", new Vector2(0f, -85f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
+            _btnPauseStageSelect = CreateModalButton(box.transform, "Btn_PauseStageSelect", "STAGE SELECT", new Vector2(0f, -105f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
             if (atlas != null) atlas.StyleButton(_btnPauseStageSelect, 2, false);
             _btnPauseStageSelect.onClick.AddListener(OnClickStageSelect);
 
-            _btnPauseMenu = CreateModalButton(box.transform, "Btn_PauseMenu", "RETURN TO MENU", new Vector2(0f, -140f), SumiStyleTokens.CarbonInkWash, font);
+            _btnPauseMenu = CreateModalButton(box.transform, "Btn_PauseMenu", "RETURN TO MENU", new Vector2(0f, -160f), SumiStyleTokens.CarbonInkWash, font);
             if (atlas != null) atlas.StyleButton(_btnPauseMenu, 3, false);
             _btnPauseMenu.onClick.AddListener(OnClickReturnToMenu);
 

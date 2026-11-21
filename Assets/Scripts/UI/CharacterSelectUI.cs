@@ -69,6 +69,7 @@ namespace DemonIdol.UI
         [Header("Action Buttons")]
         [SerializeField] private Button _btnDeploy;
         [SerializeField] private Button _btnBackToModes;
+        [SerializeField] private Button _btnMovelist;
         [SerializeField] private Text _deployButtonText;
 
         [Header("Runtime Prefab References")]
@@ -346,11 +347,94 @@ namespace DemonIdol.UI
                 }
                 nameTxt.text = charName.ToUpper();
                 nameList.Add(nameTxt);
+
+                // Button on hovered/fighter card to open Movelist
+                Transform existingMoveBtn = cardGo.transform.Find("Btn_CardMovelist");
+                GameObject moveBtnGo = existingMoveBtn != null ? existingMoveBtn.gameObject : new GameObject("Btn_CardMovelist", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button));
+                if (existingMoveBtn == null) moveBtnGo.transform.SetParent(cardGo.transform, false);
+                RectTransform mbrt = moveBtnGo.GetComponent<RectTransform>();
+                mbrt.anchorMin = new Vector2(0.5f, 0.05f);
+                mbrt.anchorMax = new Vector2(0.5f, 0.05f);
+                mbrt.pivot = new Vector2(0.5f, 0f);
+                mbrt.sizeDelta = new Vector2(cardW - 16f, 22f);
+                Image mbImg = moveBtnGo.GetComponent<Image>();
+                mbImg.color = new Color(0.15f, 0.22f, 0.35f, 0.95f);
+                Button mBtn = moveBtnGo.GetComponent<Button>();
+                string fighterId = characters[i].id;
+                mBtn.onClick.RemoveAllListeners();
+                mBtn.onClick.AddListener(() => BBMovelistModal.Show(fighterId, transform));
+
+                Transform existingBtnTxt = moveBtnGo.transform.Find("Text");
+                GameObject btnTxtGo = existingBtnTxt != null ? existingBtnTxt.gameObject : new GameObject("Text", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
+                if (existingBtnTxt == null) btnTxtGo.transform.SetParent(moveBtnGo.transform, false);
+                RectTransform btRt = btnTxtGo.GetComponent<RectTransform>();
+                btRt.anchorMin = Vector2.zero;
+                btRt.anchorMax = Vector2.one;
+                btRt.offsetMin = Vector2.zero;
+                btRt.offsetMax = Vector2.zero;
+                Text bt = btnTxtGo.GetComponent<Text>();
+                bt.font = font;
+                bt.text = "MOVES [?]";
+                bt.fontSize = 11;
+                bt.fontStyle = FontStyle.Bold;
+                bt.alignment = TextAnchor.MiddleCenter;
+                bt.color = new Color(1f, 0.85f, 0.4f, 1f);
             }
 
             _rosterButtons = btnList.ToArray();
             _rosterHighlights = hlList.ToArray();
             _rosterNames = nameList.ToArray();
+            EnsureDossierMovelistButton(font);
+        }
+
+        private void EnsureDossierMovelistButton(Font font)
+        {
+            if (_btnMovelist != null) return;
+            Transform existing = transform.Find("Btn_Movelist");
+            if (existing != null)
+            {
+                _btnMovelist = existing.GetComponent<Button>();
+            }
+            else
+            {
+                GameObject go = new GameObject("Btn_Movelist", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button));
+                go.transform.SetParent(transform, false);
+                RectTransform rt = go.GetComponent<RectTransform>();
+                rt.anchorMin = new Vector2(0.5f, 0.05f);
+                rt.anchorMax = new Vector2(0.5f, 0.05f);
+                rt.anchoredPosition = new Vector2(-180f, 40f);
+                rt.sizeDelta = new Vector2(240f, 48f);
+                Image img = go.GetComponent<Image>();
+                img.color = new Color(0.12f, 0.35f, 0.55f, 0.95f);
+                _btnMovelist = go.GetComponent<Button>();
+
+                GameObject txtGo = new GameObject("Text", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
+                txtGo.transform.SetParent(go.transform, false);
+                RectTransform trt = txtGo.GetComponent<RectTransform>();
+                trt.anchorMin = Vector2.zero;
+                trt.anchorMax = Vector2.one;
+                trt.offsetMin = Vector2.zero;
+                trt.offsetMax = Vector2.zero;
+                Text txt = txtGo.GetComponent<Text>();
+                txt.font = font;
+                txt.text = "COMMAND LIST ▶";
+                txt.fontSize = 18;
+                txt.fontStyle = FontStyle.Bold;
+                txt.alignment = TextAnchor.MiddleCenter;
+                txt.color = Color.white;
+            }
+            if (_btnMovelist != null)
+            {
+                _btnMovelist.onClick.RemoveAllListeners();
+                _btnMovelist.onClick.AddListener(OnClickMovelist);
+            }
+        }
+
+        public void OnClickMovelist()
+        {
+            CharacterDefinition activeDisplayDef = IsSelectingP2 ? SelectedP2Definition : SelectedP1Definition;
+            string charId = activeDisplayDef != null ? activeDisplayDef.id : "C01";
+            BBMovelistModal.Show(charId, transform);
         }
 
         public void OpenForMode(string mode)
