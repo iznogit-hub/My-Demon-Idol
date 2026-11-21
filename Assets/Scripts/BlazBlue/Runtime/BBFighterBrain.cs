@@ -43,6 +43,8 @@ namespace DemonIdol.BlazBlue
         public float ActiveReachScale = 1f;
         public int SignatureHitstopBonus;
 
+        [System.NonSerialized] public BBFighterBrain opponentBrain;
+
         public BBInputHistory History { get; private set; } = new BBInputHistory();
         public BBCommandInterpreter Interpreter { get; private set; } = new BBCommandInterpreter();
         public BBEvaluatedCommand CurrentCommand { get; private set; }
@@ -115,15 +117,27 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        public void ReleaseSoloTick()
+        {
+            if (CombatTickEngine.Instance != null)
+                CombatTickEngine.Instance.OnTick -= HandleCombatTick;
+        }
+
         public void StepInput(int tick)
         {
             if (fighter == null) return;
 
-            if (sampler != null)
+            BBInputFrame frame;
+            bool human = sampler != null && sampler.isPlayerControlled;
+            if (human)
             {
-                BBInputFrame frame = sampler.SampleFrameForTick(tick, fighter.FacingDirection);
-                History.PushFrame(frame, tick, fighter.FacingDirection);
+                frame = sampler.SampleFrameForTick(tick, fighter.FacingDirection);
             }
+            else
+            {
+                frame = SampleCpuFrame(tick);
+            }
+            History.PushFrame(frame, tick, fighter.FacingDirection);
 
             bool inAttack = bbState == BBState.AttackStartup || bbState == BBState.AttackActive || bbState == BBState.AttackRecovery;
             bool inBlockstun = bbState == BBState.Blockstun || bbState == BBState.BarrierBlockstun;
@@ -142,6 +156,13 @@ namespace DemonIdol.BlazBlue
             {
                 barrierSys.NotifyBarrierPressed(tick);
             }
+        }
+
+        BBInputFrame SampleCpuFrame(int tick)
+        {
+            var ai = GetComponent<BBAIController>();
+            if (ai == null) ai = gameObject.AddComponent<BBAIController>();
+            return ai.GenerateInput(this, opponentBrain, tick);
         }
 
         public void HandleCombatTick(int tick)

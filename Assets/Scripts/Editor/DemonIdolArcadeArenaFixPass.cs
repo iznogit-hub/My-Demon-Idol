@@ -48,29 +48,23 @@ namespace DemonIdol.Editor
 
             try
             {
-                // 1. Rebuild and sanitize College Raimon ST07 prefab
-                DemonIdolCollegeRaimonSetup.ExecuteFullSetup();
-
-                // 2. Rebuild clean ArcadeArena.unity scene
-                DemonIdolArcadeArenaBuilder.BuildArcadeArenaScene();
-
-                // 3. Open scene and sanitize all components
+                // Screenshots only. Do not rebuild, move the camera or backdrop, or save ArcadeArena.
                 if (EditorSceneManager.GetActiveScene().path != SCENE_PATH)
                 {
                     EditorSceneManager.OpenScene(SCENE_PATH, OpenSceneMode.Single);
                 }
 
-                SanitizeSceneComponents();
-                EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
-
-                // 4. Perform visual capture pass
                 PerformCaptures();
 
-                Debug.Log("<color=#00e676>[ArcadeArenaFixPass] COMPLETED SUCCESSFULLY! All 3 screenshots captured and verified.</color>");
+                Debug.Log("<color=#00e676>[ArcadeArenaFixPass] Captures finished. Shipped scene was not saved.</color>");
             }
             catch (Exception ex)
             {
                 Debug.LogError($"[ArcadeArenaFixPass] Error during fix pass: {ex}");
+            }
+            finally
+            {
+                ShippedSceneGuard.DiscardEdits(SCENE_PATH);
             }
         }
 

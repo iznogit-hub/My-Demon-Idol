@@ -166,12 +166,10 @@ namespace DemonIdol.BlazBlue.Editor
             Debug.Log("[Step 5] Calling NormalizeAndAuditScales...");
             NormalizeAndAuditScales();
 
-            // 4. Configure camera, stage, audio listener, and streetlamp glow toggle
-            Debug.Log("[Step 5] Calling SanitizeArenaAndCamera...");
-            SanitizeArenaAndCamera();
-
-            Debug.Log("[Step 5] Saving Scene...");
-            EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
+            // Camera, backdrop, and match components are adjusted only inside play mode.
+            // That state is thrown away when play mode exits. Never save ArcadeArena from here.
+            Debug.Log("[Step 5] Not modifying or saving the shipped scene.");
+            DemonIdol.Editor.ShippedSceneGuard.DiscardEdits(SCENE_PATH);
 
             // 5. Ensure output directories exist
             Debug.Log("[Step 5] Creating directories...");
@@ -237,6 +235,7 @@ namespace DemonIdol.BlazBlue.Editor
                 if (p != null)
                 {
                     var go = UnityEngine.Object.Instantiate(p, Vector3.zero, Quaternion.identity);
+                    go.hideFlags = HideFlags.HideAndDontSave;
                     akioHeadHeight = MeasureHeadHeight(go, out akioTop);
                     UnityEngine.Object.DestroyImmediate(go);
                 }
@@ -264,6 +263,7 @@ namespace DemonIdol.BlazBlue.Editor
                 if (p == null) continue;
 
                 var go = UnityEngine.Object.Instantiate(p, Vector3.zero, Quaternion.identity);
+                go.hideFlags = HideFlags.HideAndDontSave;
                 float head = MeasureHeadHeight(go, out float top);
                 Vector3 currentScale = p.transform.localScale;
                 UnityEngine.Object.DestroyImmediate(go);
@@ -421,6 +421,7 @@ namespace DemonIdol.BlazBlue.Editor
             }
 
             var tempGo = UnityEngine.Object.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            tempGo.hideFlags = HideFlags.HideAndDontSave;
             var anim = tempGo.GetComponentInChildren<Animator>();
             anim.applyRootMotion = false;
 
@@ -485,88 +486,11 @@ namespace DemonIdol.BlazBlue.Editor
             return (idleFinal, a5Final, b5Final, adv236Final);
         }
 
-        private static void SanitizeArenaAndCamera()
-        {
-            var stormDir = UnityEngine.Object.FindAnyObjectByType<GrimDarkStormDirector>();
-            if (stormDir != null)
-            {
-                stormDir.EnableStreetlampGlow = false;
-                stormDir.StopAllCoroutines();
-                stormDir.enabled = false;
-            }
-
-            var zoneAnchor = UnityEngine.Object.FindAnyObjectByType<CampusZoneAnchor>();
-            if (zoneAnchor != null)
-            {
-                zoneAnchor.stageScale = 0.65f;
-                zoneAnchor.ApplyZone("ST07");
-            }
-
-            var courtyard = GameObject.Find("Backdrop_Diorama") ?? GameObject.Find("CollegeRaimon_Courtyard");
-            if (courtyard != null)
-            {
-                float s = 0.65f;
-                courtyard.transform.localScale = new Vector3(s, s, s);
-                courtyard.transform.localPosition = new Vector3(-10.2f * s, -100.35f * s, 2.2f);
-                courtyard.transform.localRotation = Quaternion.identity;
-            }
-
-            // Disable gameplay combat controllers so they don't spawn fighters or projectiles during verification
-            var homegrown = UnityEngine.Object.FindAnyObjectByType<HomegrownCombatDirector>();
-            if (homegrown != null) homegrown.enabled = false;
-            var tickEngine = UnityEngine.Object.FindAnyObjectByType<CombatTickEngine>();
-            if (tickEngine != null) tickEngine.enabled = false;
-            var referee = MatchRoundReferee.Instance ?? UnityEngine.Object.FindAnyObjectByType<MatchRoundReferee>();
-            if (referee != null) referee.enabled = false;
-            var ais = UnityEngine.Object.FindObjectsByType<CombatAIController>(FindObjectsSortMode.None);
-            foreach (var ai in ais) ai.enabled = false;
-
-            // Clean scene objects thoroughly
-            var allGos = Resources.FindObjectsOfTypeAll<GameObject>();
-            foreach (var go in allGos)
-            {
-                if (go == null || EditorUtility.IsPersistent(go)) continue;
-                if (go.hideFlags.HasFlag(HideFlags.NotEditable) || go.hideFlags.HasFlag(HideFlags.HideAndDontSave)) continue;
-                string rname = go.name;
-                if (rname.Contains("Projectile") || rname.Contains("Contact_BlobShadow") || rname.Contains("CFXR Hit D 3D") || rname.Contains("CoreGlow") || rname.Contains("Shinobi"))
-                {
-                    UnityEngine.Object.DestroyImmediate(go);
-                }
-            }
-
-            Camera mainCam = Camera.main ?? UnityEngine.Object.FindAnyObjectByType<Camera>();
-            if (mainCam != null)
-            {
-                mainCam.transform.position = new Vector3(-0.05f, 1.05f, -3.55f);
-                mainCam.transform.rotation = Quaternion.Euler(2.8f, 0f, 0f);
-                mainCam.usePhysicalProperties = true;
-                mainCam.sensorSize = new Vector2(36f, 20.25f);
-                mainCam.focalLength = 32.0f;
-                mainCam.fieldOfView = 35.0f;
-
-                var fCam = mainCam.GetComponent<FighterCamera2D>();
-                if (fCam != null)
-                {
-                    fCam.standardFighterHeight = 1.35f;
-                    fCam.targetCharacterScreenFraction = 0.59f;
-                    fCam.closeCombatScreenFraction = 0.64f;
-                    fCam.wideSpacingScreenFraction = 0.54f;
-                    fCam.offset = new Vector3(-0.05f, 1.05f, -3.55f);
-                    fCam.pitchAngle = 2.8f;
-                    fCam.minDistanceZ = -3.2f;
-                    fCam.maxDistanceZ = -7.0f;
-                    fCam.focalLength = 32.0f;
-                    fCam.ConfigurePhysicalCamera();
-                }
-
-                StageCameraManager.EnsureSingleActiveAudioListener(mainCam);
-            }
-        }
-
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void RunPlayModeVerification()
         {
             if (!EditorPrefs.GetBool(PREF_KEY_RUNNING, false)) return;
+            if (EditorPrefs.GetBool(DemonIdol.Editor.MatchLoopVerifier.RunKey, false)) return;
 
             Debug.Log("<color=#00e676>[BBPlayModeConsolidationVerifier] STARTING 25-FIGHTER PROOF SUITE IN PLAY MODE...</color>");
 

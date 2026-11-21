@@ -51,12 +51,17 @@ namespace DemonIdol.BlazBlue
             if (tuning == null) tuning = BBSystemTuning.Default;
         }
 
+        bool _boundToClock;
+
         private void OnEnable()
         {
-            if (CombatTickEngine.Instance != null)
-            {
-                CombatTickEngine.Instance.OnTick += Tick;
-            }
+            TryBindClock();
+        }
+
+        private void Update()
+        {
+            // The clock may not exist yet when this component is enabled.
+            if (!_boundToClock) TryBindClock();
         }
 
         private void OnDisable()
@@ -65,12 +70,30 @@ namespace DemonIdol.BlazBlue
             {
                 CombatTickEngine.Instance.OnTick -= Tick;
             }
+            _boundToClock = false;
+        }
+
+        void TryBindClock()
+        {
+            if (_boundToClock || CombatTickEngine.Instance == null) return;
+            CombatTickEngine.Instance.OnTick += Tick;
+            _boundToClock = true;
         }
 
         public void RegisterFighters(BBFighterBrain p1, BBFighterBrain p2)
         {
             p1Brain = p1;
             p2Brain = p2;
+            if (p1 != null)
+            {
+                p1.opponentBrain = p2;
+                p1.ReleaseSoloTick();
+            }
+            if (p2 != null)
+            {
+                p2.opponentBrain = p1;
+                p2.ReleaseSoloTick();
+            }
         }
 
         /// <summary>

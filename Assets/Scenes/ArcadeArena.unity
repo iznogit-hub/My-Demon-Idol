@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 44461714}
   - component: {fileID: 44461713}
   - component: {fileID: 44461712}
+  - component: {fileID: 44461715}
   - component: {fileID: 44461711}
   - component: {fileID: 44461710}
   m_Layer: 0
@@ -368,6 +369,19 @@ MonoBehaviour:
   _voiceGruntHeavy: {fileID: 0}
   _voiceDomainSuper: {fileID: 0}
   _voiceKODefeat: {fileID: 0}
+--- !u!114 &44461715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44461709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2a90a7753a9473a8c2f4b1bba2a717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBMatchBootstrap
+  isBlazBlueActive: 0
 --- !u!114 &44461711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,7 +389,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44461709}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7666ab0c2fea34bc8aa251c3dedb53e3, type: 3}
   m_Name: 
@@ -392,7 +406,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44461709}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51682106a16d249b794275978a434f21, type: 3}
   m_Name: 
@@ -406,7 +420,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44461709}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 661dfb35443d94aa5b68c6333d760fea, type: 3}
   m_Name: 
@@ -5023,7 +5037,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445400463}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78d8093a28ec14b7e8831ca592e742b3, type: 3}
   m_Name: 

@@ -53,6 +53,64 @@ namespace DemonIdol.Combat
         public string ActiveP2Id => _activeP2Id;
         public string ActiveStageId => _activeStageId;
 
+        public struct MatchLaunchRoster
+        {
+            public string P1Id;
+            public string P2Id;
+            public string StageId;
+            public bool P2IsCpu;
+            public bool IsTraining;
+        }
+
+        /// <summary>
+        /// A match begun from the menu (MatchId set) uses that session.
+        /// A fresh session still has the C01/C02 defaults and no MatchId, so PlayerPrefs win.
+        /// </summary>
+        public static MatchLaunchRoster ResolveLaunchRoster()
+        {
+            var roster = new MatchLaunchRoster
+            {
+                P1Id = "C01",
+                P2Id = "C02",
+                StageId = "ST07",
+                P2IsCpu = true,
+                IsTraining = false
+            };
+
+            OfflineMatchSession session = LaunchServices.Session;
+            bool sessionBegun = session != null && !string.IsNullOrEmpty(session.MatchId);
+            if (sessionBegun)
+            {
+                if (!string.IsNullOrEmpty(session.Player1Id)) roster.P1Id = session.Player1Id;
+                if (!string.IsNullOrEmpty(session.Player2Id)) roster.P2Id = session.Player2Id;
+                if (!string.IsNullOrEmpty(session.StageId)) roster.StageId = session.StageId;
+                roster.P2IsCpu = session.P2IsCpu;
+                roster.IsTraining = session.Mode == PlayModeKind.Training;
+            }
+            else
+            {
+                string p1Pref = PlayerPrefs.GetString("MDI_P1_CharacterId", "");
+                string p2Pref = PlayerPrefs.GetString("MDI_P2_CharacterId", "");
+                string stagePref = PlayerPrefs.GetString("MDI_StageId", "");
+                string modePref = PlayerPrefs.GetString("MDI_GameMode", "");
+                if (!string.IsNullOrEmpty(p1Pref)) roster.P1Id = p1Pref;
+                if (!string.IsNullOrEmpty(p2Pref)) roster.P2Id = p2Pref;
+                if (!string.IsNullOrEmpty(stagePref)) roster.StageId = stagePref;
+                if (!string.IsNullOrEmpty(modePref))
+                {
+                    PlayModeKind mode = OfflineMatchSession.ParseMode(modePref);
+                    roster.P2IsCpu = mode != PlayModeKind.LocalVersus;
+                    roster.IsTraining = mode == PlayModeKind.Training;
+                }
+            }
+
+            if (CharacterRegistry.GetCharacterById(roster.P1Id) == null)
+                roster.P1Id = "C01";
+            if (CharacterRegistry.GetCharacterById(roster.P2Id) == null)
+                roster.P2Id = "C02";
+            return roster;
+        }
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -133,34 +191,12 @@ namespace DemonIdol.Combat
         {
             EnsureFighterReferences();
 
-            // 1. Read context from LaunchServices.Session if populated
-            if (LaunchServices.Session != null)
-            {
-                if (!string.IsNullOrEmpty(LaunchServices.Session.Player1Id)) _activeP1Id = LaunchServices.Session.Player1Id;
-                if (!string.IsNullOrEmpty(LaunchServices.Session.Player2Id)) _activeP2Id = LaunchServices.Session.Player2Id;
-                if (!string.IsNullOrEmpty(LaunchServices.Session.StageId)) _activeStageId = LaunchServices.Session.StageId;
-                _p2IsCpu = LaunchServices.Session.P2IsCpu;
-                _isTraining = LaunchServices.Session.Mode == PlayModeKind.Training;
-            }
-            else
-            {
-                // Fallback to PlayerPrefs saved by MainMenuController
-                if (PlayerPrefs.HasKey("MDI_P1_CharacterId"))
-                {
-                    string p1Pref = PlayerPrefs.GetString("MDI_P1_CharacterId");
-                    if (!string.IsNullOrEmpty(p1Pref)) _activeP1Id = p1Pref;
-                }
-                if (PlayerPrefs.HasKey("MDI_P2_CharacterId"))
-                {
-                    string p2Pref = PlayerPrefs.GetString("MDI_P2_CharacterId");
-                    if (!string.IsNullOrEmpty(p2Pref)) _activeP2Id = p2Pref;
-                }
-                if (PlayerPrefs.HasKey("MDI_StageId"))
-                {
-                    string stPref = PlayerPrefs.GetString("MDI_StageId");
-                    if (!string.IsNullOrEmpty(stPref)) _activeStageId = stPref;
-                }
-            }
+            MatchLaunchRoster roster = ResolveLaunchRoster();
+            _activeP1Id = roster.P1Id;
+            _activeP2Id = roster.P2Id;
+            _activeStageId = roster.StageId;
+            _p2IsCpu = roster.P2IsCpu;
+            _isTraining = roster.IsTraining;
 
             // 2. Configure P1
             if (_fighter1 != null)
@@ -308,13 +344,16 @@ namespace DemonIdol.Combat
             }
         }
 
-        private void ConfigureFighter(FighterController fc, string charId, bool isPlayer)
+        public static void ConfigureFighter(FighterController fc, string charId, bool isPlayer)
         {
             if (fc == null) return;
             fc.isPlayerControlled = isPlayer;
 
+            string canonical = CharacterRegistry.ResolveCanonicalId(charId);
+            if (!string.IsNullOrEmpty(canonical))
+                charId = canonical;
             if (CharacterRegistry.GetCharacterById(charId) == null)
-                charId = "C02";
+                charId = isPlayer ? "C01" : "C02";
 
             var charDef = CharacterRegistry.GetCharacterById(charId);
             if (charDef != null)
@@ -367,7 +406,7 @@ namespace DemonIdol.Combat
             {
 #if UNITY_EDITOR
                 string canonId = CharacterRegistry.ResolveCanonicalId(charId);
-                string[] found = System.IO.Directory.GetFiles("Assets/Prefabs/Characters", $"{canonId}*.prefab");
+                string[] found = System.IO.Directory.GetFiles("Assets/Prefabs/Characters", canonId + "*.prefab", System.IO.SearchOption.AllDirectories);
                 if (found != null && found.Length > 0)
                 {
                     prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(found[0]);
