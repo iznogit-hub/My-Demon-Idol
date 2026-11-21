@@ -78,7 +78,7 @@ namespace DemonIdol.Combat
 
             if (Instance != null && Instance != this)
             {
-                Destroy(gameObject);
+                DemonIdol.Audio.CombatAudioDirector.DestroyDuplicateComponent(this);
                 return;
             }
             Instance = this;

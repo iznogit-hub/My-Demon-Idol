@@ -40,10 +40,48 @@ namespace DemonIdol.Combat
 
             if (Instance != null && Instance != this)
             {
-                Destroy(gameObject);
+                DemonIdol.Audio.CombatAudioDirector.DestroyDuplicateComponent(this);
                 return;
             }
             Instance = this;
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+                Instance = null;
+        }
+
+        /// <summary>
+        /// Returns the live clock, re-enabling a disabled one or creating a dedicated object
+        /// when the match host was destroyed.
+        /// </summary>
+        public static CombatTickEngine EnsureRunning()
+        {
+            if (Instance != null)
+            {
+                if (!Instance.gameObject.activeSelf)
+                    Instance.gameObject.SetActive(true);
+                if (!Instance.enabled)
+                    Instance.enabled = true;
+                return Instance;
+            }
+
+            if (!Application.isPlaying)
+                return null;
+
+            var existing = FindAnyObjectByType<CombatTickEngine>(FindObjectsInactive.Include);
+            if (existing != null)
+            {
+                if (!existing.gameObject.activeSelf)
+                    existing.gameObject.SetActive(true);
+                existing.enabled = true;
+                Instance = existing;
+                return existing;
+            }
+
+            var go = new GameObject("CombatTickEngine");
+            return go.AddComponent<CombatTickEngine>();
         }
 
         private void Update()
