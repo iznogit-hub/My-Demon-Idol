@@ -21,7 +21,6 @@ namespace DemonIdol.Editor
             "Assets/Scenes/ArcadeArena.unity"
         };
 
-        // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Build/Build macOS Standalone (Fast Local Test)", priority = 10)]
         public static void BuildMacOS()
         {
             PrepareMacOSPlayerSettings();
@@ -43,7 +42,6 @@ namespace DemonIdol.Editor
             LogReport(report, "macOS Standalone");
         }
 
-        [MenuItem("Demon Idol/📱 Build Pipeline/Apply macOS Standalone Settings", priority = 59)]
         public static void ApplyMacOSSettingsMenu()
         {
             PrepareMacOSPlayerSettings();
@@ -67,7 +65,6 @@ namespace DemonIdol.Editor
             }
         }
 
-        // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Build/Build Android APK (Development)", priority = 11)]
         public static void BuildAndroidApk()
         {
             PrepareAndroidPlayerSettings(isAppBundle: false);
@@ -89,7 +86,6 @@ namespace DemonIdol.Editor
             LogReport(report, "Android APK");
         }
 
-        // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Build/Build Android AAB (Google Play Release)", priority = 12)]
         public static void BuildAndroidAab()
         {
             PrepareAndroidPlayerSettings(isAppBundle: true);

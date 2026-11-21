@@ -22,7 +22,6 @@ namespace DemonIdol.Editor
             ApplyKeystoreConfiguration();
         }
 
-        // Consolidated into DemonIdolMasterMenu: [MenuItem("Demon Idol/Security/Apply Local Keystore Configuration", priority = 90)]
         public static void ApplyKeystoreConfiguration()
         {
             string keystorePath = Environment.GetEnvironmentVariable("ANDROID_KEYSTORE_PATH");

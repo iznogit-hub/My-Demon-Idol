@@ -12,11 +12,10 @@ namespace DemonIdol.BlazBlue.Tests
     [TestFixture]
     public class BBAkioTests
     {
-        [MenuItem("Demon Idol/BlazBlue/Run BBAkio Tests")]
         public static void RunAllTestsMenu()
         {
             // Ensure assets are generated first
-            BBAkioAssetGenerator.GenerateAllAkioAssets();
+            // Assets already generated
 
             var suite = new BBAkioTests();
             suite.Test_Akio_Assets_Exist_And_Valid();
@@ -32,9 +31,9 @@ namespace DemonIdol.BlazBlue.Tests
         [Test]
         public void Test_Akio_Assets_Exist_And_Valid()
         {
-            BBAkioAssetGenerator.GenerateAllAkioAssets();
+            // Assets already generated
 
-            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{BBAkioAssetGenerator.AKIO_ROOT}/BBMoveSet_C01_Akio.asset");
+            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{"Assets/CombatData/BlazBlue/Akio"}/BBMoveSet_C01_Akio.asset");
             Assert.IsNotNull(moveSet, "Akio BBMoveSet asset must exist.");
             Assert.IsTrue(moveSet.moves.Length >= 30, $"Akio should have at least 30 moves, found {moveSet.moves.Length}.");
 
@@ -113,7 +112,7 @@ namespace DemonIdol.BlazBlue.Tests
             Assert.AreEqual(3, drive.CurrentResource, "Momentum must remain infinite (3) during Overdrive.");
 
             // 4th hit 5D_4 frame data verification
-            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{BBAkioAssetGenerator.AKIO_ROOT}/BBMoveSet_C01_Akio.asset");
+            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{"Assets/CombatData/BlazBlue/Akio"}/BBMoveSet_C01_Akio.asset");
             BBAttackData move5D_4 = null;
             for (int i = 0; i < moveSet.moves.Length; i++)
             {
@@ -148,7 +147,7 @@ namespace DemonIdol.BlazBlue.Tests
         [Test]
         public void Test_Akio_RevolverAction_Chains()
         {
-            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{BBAkioAssetGenerator.AKIO_ROOT}/BBMoveSet_C01_Akio.asset");
+            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{"Assets/CombatData/BlazBlue/Akio"}/BBMoveSet_C01_Akio.asset");
             var move5A = FindMove(moveSet, "5A");
             var move5B = FindMove(moveSet, "5B");
             var move5C = FindMove(moveSet, "5C");
@@ -182,7 +181,7 @@ namespace DemonIdol.BlazBlue.Tests
         [Test]
         public void Test_Akio_10_Trial_Challenges()
         {
-            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{BBAkioAssetGenerator.AKIO_ROOT}/BBMoveSet_C01_Akio.asset");
+            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{"Assets/CombatData/BlazBlue/Akio"}/BBMoveSet_C01_Akio.asset");
 
             // Verify all moves needed for the 10 trials exist and can connect
             string[][] trialRoutes = new string[][]

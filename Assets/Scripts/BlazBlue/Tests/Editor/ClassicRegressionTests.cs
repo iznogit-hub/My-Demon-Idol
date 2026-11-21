@@ -9,7 +9,6 @@ namespace DemonIdol.BlazBlue.Tests
     [TestFixture]
     public class ClassicRegressionTests
     {
-        [MenuItem("Demon Idol/BlazBlue/Run Classic Regression Suite")]
         public static void RunAllTestsMenu()
         {
             var suite = new ClassicRegressionTests();

@@ -9,7 +9,6 @@ namespace DemonIdol.BlazBlue.Tests
     [TestFixture]
     public class BBMotionMatcherTests
     {
-        [MenuItem("Demon Idol/BlazBlue/Run BBMotionMatcher Tests")]
         public static void RunAllTestsMenu()
         {
             var suite = new BBMotionMatcherTests();

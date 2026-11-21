@@ -11,7 +11,6 @@ namespace DemonIdol.BlazBlue.Tests
     [TestFixture]
     public class BBPhase6Tests
     {
-        [MenuItem("Demon Idol/BlazBlue/Run BBPhase6 Tests")]
         public static void RunAllTestsMenu()
         {
             var suite = new BBPhase6Tests();

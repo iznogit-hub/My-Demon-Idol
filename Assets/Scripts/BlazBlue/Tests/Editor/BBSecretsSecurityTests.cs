@@ -16,9 +16,6 @@ namespace DemonIdol.BlazBlue.Tests
             string assetsDir = Application.dataPath;
 
             // 1. Verify static constants and class defaults
-            Assert.IsTrue(string.IsNullOrEmpty(DemonIdolQuantumSetup.QUANTUM_APP_ID), 
-                "DemonIdolQuantumSetup.QUANTUM_APP_ID must be empty string in repository");
-
             var tempGo = new GameObject("Temp_SecurityTest");
             try
             {

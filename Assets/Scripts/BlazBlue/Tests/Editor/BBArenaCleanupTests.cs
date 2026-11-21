@@ -16,6 +16,7 @@ namespace DemonIdol.BlazBlue.Tests
         {
             EditorApplication.delayCall += () =>
             {
+                if (EditorApplication.isPlayingOrWillChangePlaymode) return;
                 try
                 {
                     BBArenaCleanupTests.RunAllTestsMenu();
@@ -31,9 +32,8 @@ namespace DemonIdol.BlazBlue.Tests
     [TestFixture]
     public class BBArenaCleanupTests
     {
-        private const string SCENE_PATH = "Assets/Scenes/ArcadeArena.unity";
+        private const string SCENE_PATH = "Assets/Scenes/BattleArena.unity";
 
-        [MenuItem("Demon Idol/BlazBlue/Run BBArena Cleanup Tests")]
         public static void RunAllTestsMenu()
         {
             var suite = new BBArenaCleanupTests();

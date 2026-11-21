@@ -27,7 +27,6 @@ namespace DemonIdol.BlazBlue.Editor
             }
         }
 
-        [MenuItem("Demon Idol/BlazBlue/Run Master Test Suite")]
         public static void RunAllSuites()
         {
             Debug.Log("<color=#00e676>[BBAllTestsRunner] STARTING MASTER COMBAT & FIGHTER TEST RUNNER...</color>");
@@ -50,7 +49,8 @@ namespace DemonIdol.BlazBlue.Editor
                 BBCollisionTests.RunAllTestsMenu,
                 BBMotionMatcherTests.RunAllTestsMenu,
                 BBPhase6Tests.RunAllTestsMenu,
-                BBSubsystemTests.RunAllTestsMenu
+                BBSubsystemTests.RunAllTestsMenu,
+                DemonIdolRebuildGuardTests.RunSceneIntegrityCheck
             };
 
             foreach (var suite in suites)
@@ -70,7 +70,7 @@ namespace DemonIdol.BlazBlue.Editor
             }
 
             // Master Remap & Export Tracker to guarantee 0 collisions & clean state
-            BBWarriorMasterRemapper.ExecuteMasterRemap();
+            // BBWarriorMasterRemapper archived
 
             Debug.Log($"<color=#00e676><b>[BBAllTestsRunner] TEST RUN COMPLETE! {passedSuites} Passed, {failedSuites} Failed out of {suites.Length} Suites!</b></color>");
         }

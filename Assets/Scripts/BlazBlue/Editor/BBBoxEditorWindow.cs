@@ -14,7 +14,6 @@ namespace DemonIdol.BlazBlue.Editor
     /// </summary>
     public class BBBoxEditorWindow : EditorWindow
     {
-        [MenuItem("Demon Idol/BlazBlue/Box Editor")]
         public static void OpenWindow()
         {
             var win = GetWindow<BBBoxEditorWindow>("BB Box Editor");

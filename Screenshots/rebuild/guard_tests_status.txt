@@ -1,0 +1,6 @@
+PASS: Guard_BattleArena_MatchHostAndComponents
+PASS: Guard_MainMenu_SingleEventSystemWithInputSystemUI
+PASS: Guard_CharacterSelect_SingleEventSystemWithInputSystemUI
+PASS: Guard_BuildSettings_ExactlyThreeScenesInOrder
+PASS: Guard_NoMenuItemOutsideDemonIdolMenu
+TOTAL: 5 Passed, 0 Failed out of 5 Guard Tests

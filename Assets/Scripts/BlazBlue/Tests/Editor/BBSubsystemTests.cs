@@ -9,7 +9,6 @@ namespace DemonIdol.BlazBlue.Tests
     [TestFixture]
     public class BBSubsystemTests
     {
-        [MenuItem("Demon Idol/BlazBlue/Run BBSubsystem Tests")]
         public static void RunAllTestsMenu()
         {
             var suite = new BBSubsystemTests();

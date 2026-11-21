@@ -233,7 +233,6 @@ namespace DemonIdol.BlazBlue.Tests
             HandleCombatTickMethod.Invoke(p2, new object[] { tick });
         }
 
-        [MenuItem("Demon Idol/BlazBlue/Record 6 Classic Golden Matches")]
         public static void RecordAllGoldenMatches()
         {
             if (!Directory.Exists(GOLDEN_DIR))

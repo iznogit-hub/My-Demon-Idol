@@ -19,7 +19,6 @@ namespace DemonIdol.BlazBlue.Editor
     {
         public const string BUILD_OUTPUT_DIR = "Builds";
 
-        [MenuItem("Demon Idol/BlazBlue/Build/Verify Mobile Certification Baseline")]
         public static bool VerifyMobileCertificationBaseline()
         {
             Debug.Log("<color=#00e676>[BBBuildPipeline] Verifying Mobile Certification Baseline...</color>");
@@ -59,7 +58,6 @@ namespace DemonIdol.BlazBlue.Editor
             return pass;
         }
 
-        [MenuItem("Demon Idol/BlazBlue/Build/Build Android AAB (Headless Test)")]
         public static void BuildAndroidAAB()
         {
             if (!VerifyMobileCertificationBaseline())
@@ -93,7 +91,6 @@ namespace DemonIdol.BlazBlue.Editor
             PrintBuildReport(report, "Android AAB");
         }
 
-        [MenuItem("Demon Idol/BlazBlue/Build/Build iOS Xcode Project (Headless Test)")]
         public static void BuildIOS()
         {
             if (!VerifyMobileCertificationBaseline())

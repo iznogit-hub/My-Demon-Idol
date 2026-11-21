@@ -39,7 +39,6 @@ namespace DemonIdol.BlazBlue.Editor
             public string moveType;
         }
 
-        [MenuItem("MDI/Generate Animation Clip Inventory")]
         public static void GenerateInventory()
         {
             Debug.Log("<color=#00e676>[BBClipInventoryTool] Scanning all approved animation packs...</color>");

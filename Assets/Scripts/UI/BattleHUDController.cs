@@ -1621,7 +1621,11 @@ namespace DemonIdol.UI
             PlayerPrefs.SetString("MDI_MenuInitialState", "CharacterSelect");
             PlayerPrefs.SetInt("DemonIdol_ReturnToCharSelect", 1);
             PlayerPrefs.Save();
-            if (BloodTechUIManager.Instance != null)
+            if (Application.CanStreamedLevelBeLoaded("CharacterSelect"))
+            {
+                SceneManager.LoadScene("CharacterSelect");
+            }
+            else if (BloodTechUIManager.Instance != null)
             {
                 string mode = CharacterSelectUI.Instance != null ? CharacterSelectUI.Instance.ActiveGameMode : "Training";
                 BloodTechUIManager.Instance.TransitionToCharacterSelect(mode);

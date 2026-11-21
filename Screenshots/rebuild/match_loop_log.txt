@@ -1,0 +1,38 @@
+[MatchLoop] MainMenu loaded for phase 'arcade'
+[MatchLoop] Capturing 01_main_menu.png...
+screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/01_main_menu.png
+[MatchLoop] MainMenu: Clicking Arcade...
+[MatchLoop] CharacterSelect loaded for phase 'arcade'
+[MatchLoop] Capturing 02_character_select.png (with C07 highlighted and 3D preview)...
+screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/02_character_select.png
+[MatchLoop] Selecting C07 vs EX01 on grid
+=== arcade expected C07 vs EX01 ===
+director=True p1=C07 p2=EX01 tickEngine=True tick=24 sim=True
+P1 C07 slot=0 human=True state=Neutral clip=Idle
+P2 EX01 slot=1 human=False state=WalkBackward clip=WalkSlow
+[MatchLoop] Capturing 03_battle_arena_round_start.png (C07 vs EX01, round call visible)...
+screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/03_battle_arena_round_start.png
+walk tick=81 p1=C07 slot=0 human=True state=WalkForward clip=Walk p2=EX01 slot=1 human=False state=Neutral clip=Idle
+release tick=85 p1=C07 slot=0 human=True state=Neutral clip=Idle p2=EX01 slot=1 human=False state=Neutral clip=Idle
+crouch tick=94 p1=C07 slot=0 human=True state=Crouching clip=HumanF@Idle01 p2=EX01 slot=1 human=False state=Neutral clip=Idle
+release tick=99 p1=C07 slot=0 human=True state=Neutral clip=HumanF@Idle01 p2=EX01 slot=1 human=False state=Neutral clip=Idle
+jump tick=107 p1=C07 slot=0 human=True state=Airborne clip=Land p2=EX01 slot=1 human=False state=Neutral clip=Idle
+release tick=113 p1=C07 slot=0 human=True state=Airborne clip=Land p2=EX01 slot=1 human=False state=WalkForward clip=Walk
+A tick=168 p1=C07 slot=0 human=True state=AttackStartup clip=HumanF@MagicAttackDirect1H01_R p2=EX01 slot=1 human=False state=Crouching clip=Idle
+[MatchLoop] Capturing 04_battle_arena_mid_combo.png (hit spark, combo counter, HP drop)...
+screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/04_battle_arena_mid_combo.png
+release tick=196 p1=C07 slot=0 human=True state=AttackRecovery clip=HumanF@MagicAttackDirect1H01_R p2=EX01 slot=1 human=False state=Crouching clip=Idle
+PASS arcade: tick=196 walk=True jump=True attack=True
+[MatchLoop] Capturing 05_battle_arena_pause_menu.png...
+screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/05_battle_arena_pause_menu.png
+[MatchLoop] Capturing 06_battle_arena_results_screen.png...
+screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/06_battle_arena_results_screen.png
+[MatchLoop] Transitioning from Results / Pause to CharacterSelect for Versus phase...
+[MatchLoop] CharacterSelect loaded for phase 'versus'
+[MatchLoop] Selecting SK02 vs C12 on grid
+=== versus expected SK02 vs C12 ===
+director=True p1=SK02 p2=C12 tickEngine=True tick=24 sim=True
+P1 SK02 slot=0 human=True state=Neutral clip=Idle
+P2 C12 slot=1 human=True state=Neutral clip=Idle
+PASS versus: tick=24 p1=SK02 p2=C12
+ALL PHASES PASSED SUCCESSFULLY

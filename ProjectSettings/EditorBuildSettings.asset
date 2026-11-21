@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 7734f06fd0aa2483ead0b9f2133d7513
   - enabled: 1
-    path: Assets/Scenes/ArcadeArena.unity
-    guid: 70acfc63621f94e34b09b761193c69b0
+    path: Assets/Scenes/CharacterSelect.unity
+    guid: 8397ce1de8c0d4c81a6fe34608744b5e
+  - enabled: 1
+    path: Assets/Scenes/BattleArena.unity
+    guid: eccd03bb7a3f747f288c075b94561fa1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

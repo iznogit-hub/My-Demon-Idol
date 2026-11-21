@@ -95,7 +95,6 @@ namespace DemonIdol.BlazBlue.Editor
             public List<TrackedRow> rows = new List<TrackedRow>();
         }
 
-        [MenuItem("MDI/Export Moveset Tracker")]
         public static void ExportMovesetTrackerMenu()
         {
             ExportMovesetTracker();

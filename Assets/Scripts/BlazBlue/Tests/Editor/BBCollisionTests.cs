@@ -28,7 +28,6 @@ namespace DemonIdol.BlazBlue.Tests
     [TestFixture]
     public class BBCollisionTests
     {
-        [MenuItem("Demon Idol/BlazBlue/Run BBCollision Tests")]
         public static void RunAllTestsMenu()
         {
             var suite = new BBCollisionTests();

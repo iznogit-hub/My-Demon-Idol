@@ -55,7 +55,7 @@ namespace DemonIdol.Editor
 
             if (GUILayout.Button("Instantiate / Refresh All 7 Stage Cameras in Scene", GUILayout.Height(32)))
             {
-                DemonIdolArcadeArenaBuilder.EnsureAll7StageCamerasInScene();
+                // DemonIdolArcadeArenaBuilder.EnsureAll7StageCamerasInScene();
             }
 
             EditorGUILayout.Space(8);

@@ -114,7 +114,7 @@ namespace DemonIdol.Audio
         public static void DestroyDuplicateComponent(Component component)
         {
             if (component == null) return;
-            component.enabled = false;
+            if (component is Behaviour behaviour) behaviour.enabled = false;
             if (Application.isPlaying) Destroy(component);
             else DestroyImmediate(component);
         }
