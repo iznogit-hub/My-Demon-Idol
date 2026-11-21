@@ -115,14 +115,21 @@ namespace DemonIdol.Combat
         {
             if (Instance != null && Instance != this)
             {
-                Destroy(gameObject);
+                DemonIdol.Audio.CombatAudioDirector.DestroyDuplicateComponent(this);
                 return;
             }
             Instance = this;
         }
 
+        private void OnDestroy()
+        {
+            if (Instance == this)
+                Instance = null;
+        }
+
         private void Start()
         {
+            CombatTickEngine.EnsureRunning();
             EnsureFighterReferences();
             InitializeHomegrownMatch();
             if (MatchRoundReferee.Instance != null && MatchRoundReferee.Instance.State == MatchState.Inactive)

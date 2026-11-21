@@ -75,8 +75,13 @@ namespace DemonIdol.BlazBlue
 
         void TryBindClock()
         {
-            if (_boundToClock || CombatTickEngine.Instance == null) return;
-            CombatTickEngine.Instance.OnTick += Tick;
+            if (_boundToClock && CombatTickEngine.Instance == null)
+                _boundToClock = false;
+            if (_boundToClock) return;
+            CombatTickEngine clock = CombatTickEngine.EnsureRunning();
+            if (clock == null) return;
+            clock.OnTick -= Tick;
+            clock.OnTick += Tick;
             _boundToClock = true;
         }
 

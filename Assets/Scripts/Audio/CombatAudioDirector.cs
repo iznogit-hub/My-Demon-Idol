@@ -82,28 +82,47 @@ namespace DemonIdol.Audio
         {
             if (Instance != null && Instance != this)
             {
-                Destroy(gameObject);
+                // The main menu spawns a dedicated audio object and marks it DontDestroyOnLoad.
+                // This component also lives on Combat_Managers next to the tick engine.
+                // Destroying the whole GameObject here deletes the match clock.
+                DestroyDuplicateComponent(this);
                 return;
             }
             Instance = this;
-            if (Application.isPlaying) DontDestroyOnLoad(gameObject);
+            if (Application.isPlaying && !SharesMatchHost(gameObject))
+                DontDestroyOnLoad(gameObject);
 
             EnsureSources();
             FulfillMissingClips();
             ApplyInitialVolumes();
         }
 
-        private void Start()
-        {
-            StartConductor();
-        }
-
         private void OnDestroy()
         {
-            if (_instance == this)
-            {
-                _instance = null;
-            }
+            if (Instance == this)
+                Instance = null;
+        }
+
+        public static bool SharesMatchHost(GameObject host)
+        {
+            if (host == null) return false;
+            return host.GetComponent<DemonIdol.Combat.CombatTickEngine>() != null
+                || host.GetComponent<DemonIdol.Combat.HomegrownCombatDirector>() != null
+                || host.GetComponent<DemonIdol.Combat.MatchRoundReferee>() != null;
+        }
+
+        public static void DestroyDuplicateComponent(Component component)
+        {
+            if (component == null) return;
+            component.enabled = false;
+            if (Application.isPlaying) Destroy(component);
+            else DestroyImmediate(component);
+        }
+
+        private void Start()
+        {
+            if (Instance != this) return;
+            StartConductor();
         }
 
         private void EnsureSources()

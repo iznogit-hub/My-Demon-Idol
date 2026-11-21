@@ -57,7 +57,7 @@ namespace DemonIdol.Editor
         {
             if (!EditorPrefs.GetBool(RunKey, false))
                 return;
-            if (UnityEngine.Object.FindFirstObjectByType<MatchLoopRunner>() != null)
+            if (UnityEngine.Object.FindAnyObjectByType<MatchLoopRunner>() != null)
                 return;
             var go = new GameObject("MatchLoopRunner");
             UnityEngine.Object.DontDestroyOnLoad(go);
@@ -69,6 +69,9 @@ namespace DemonIdol.Editor
     {
         string _handled;
         bool _driving;
+        bool _sawWalk;
+        bool _sawJump;
+        bool _sawAttack;
         Key[] _held = System.Array.Empty<Key>();
         readonly StringBuilder _log = new StringBuilder();
 
@@ -118,7 +121,7 @@ namespace DemonIdol.Editor
         IEnumerator LaunchFromMenu(string phase)
         {
             yield return null;
-            MainMenuController menu = UnityEngine.Object.FindFirstObjectByType<MainMenuController>();
+            MainMenuController menu = UnityEngine.Object.FindAnyObjectByType<MainMenuController>();
             if (menu == null)
             {
                 Finish("FAIL MainMenuController was not in the MainMenu scene.");
@@ -156,6 +159,9 @@ namespace DemonIdol.Editor
         {
             string expectP1 = phase == "versus" ? "SK02" : "C07";
             string expectP2 = phase == "versus" ? "C12" : "EX01";
+            _sawWalk = false;
+            _sawJump = false;
+            _sawAttack = false;
             _log.AppendLine("=== " + phase + " expected " + expectP1 + " vs " + expectP2 + " ===");
 
             float deadline = Time.realtimeSinceStartup + 15f;
@@ -198,7 +204,7 @@ namespace DemonIdol.Editor
             LogFighter("P1", liveSim.p1Brain);
             LogFighter("P2", liveSim.p2Brain);
             _driving = true;
-            BBTouchLayout touch = UnityEngine.Object.FindFirstObjectByType<BBTouchLayout>();
+            BBTouchLayout touch = UnityEngine.Object.FindAnyObjectByType<BBTouchLayout>();
             string touchParent = touch != null && touch.transform.parent != null ? touch.transform.parent.name : "none";
             _log.AppendLine("touchLayout=" + (touch != null) + " parent=" + touchParent
                 + " shouldShow=" + BBTouchLayout.ShouldShowTouchControls()
@@ -230,6 +236,15 @@ namespace DemonIdol.Editor
 
             _held = System.Array.Empty<Key>();
             _driving = false;
+            int finalTick = CombatTickEngine.Instance != null ? CombatTickEngine.Instance.CurrentTick : -1;
+            if (finalTick <= 0 || !_sawWalk || !_sawJump || !_sawAttack)
+            {
+                _log.AppendLine("FAIL tick=" + finalTick + " walk=" + _sawWalk + " jump=" + _sawJump + " attack=" + _sawAttack);
+                WriteLog();
+                Finish("FAIL input did not advance the match");
+                yield break;
+            }
+            _log.AppendLine("PASS tick=" + finalTick + " walk jump attack");
             WriteLog();
 
             if (phase != "versus")
@@ -248,6 +263,15 @@ namespace DemonIdol.Editor
                 yield return null;
             BBFighterBrain p1 = sim != null ? sim.p1Brain : null;
             BBFighterBrain p2 = sim != null ? sim.p2Brain : null;
+            if (p1 != null)
+            {
+                if (label == "walk" && (p1.bbState == BBState.WalkForward || p1.bbState == BBState.WalkBackward))
+                    _sawWalk = true;
+                if (label == "jump" && (p1.bbState == BBState.JumpStartup || p1.bbState == BBState.Airborne))
+                    _sawJump = true;
+                if (label == "A" && (p1.bbState == BBState.AttackStartup || p1.bbState == BBState.AttackActive || p1.bbState == BBState.AttackRecovery))
+                    _sawAttack = true;
+            }
             _log.AppendLine(label
                 + " tick=" + (CombatTickEngine.Instance != null ? CombatTickEngine.Instance.CurrentTick : -1)
                 + " p1=" + Describe(p1)
