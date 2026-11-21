@@ -121,15 +121,15 @@ namespace DemonIdol.BlazBlue.Editor
             var overrideCtrl = AssetDatabase.LoadAssetAtPath<AnimatorOverrideController>(overrideCtrlPath);
             if (overrideCtrl != null)
             {
-                var walkClip = FindClip("144/144_33", "Akio_Walk");
-                var dashClip = FindClip("144/144_17", "Akio_Dash");
-                var jumpClip = FindClip("75/75_16", "Akio_Jump");
-                var crouchClip = FindClip("135/135_05", "Akio_Crouch");
-                var standBlockClip = FindClip("144/144_07", "Akio_StandBlock");
-                var crouchBlockClip = FindClip("135/135_10", "Akio_CrouchBlock");
-                var knockdownClip = FindClip("90/90_18", "Akio_Knockdown");
-                var getUpClip = FindClip("111/111_06", "Akio_GetUp");
-                var introClip = FindClip("144/144_33", "Akio_Intro");
+                var walkClip = FindClip("Assets/Martial Art Animations Sample/Animations/Walk_F.fbx", "Walk_F");
+                var dashClip = FindClip("Assets/Martial Art Animations Sample/Animations/Quickstep_F.fbx", "Quickstep_F");
+                var jumpClip = FindClip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Jump.FBX", "Karate@Jump");
+                var crouchClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var standBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var crouchBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var knockdownClip = FindClip("Assets/Martial Art Animations Sample/Animations/Knock_A.fbx", "Knock_A");
+                var getUpClip = FindClip("Assets/Martial Art Animations Sample/Animations/GetUp_A.fbx", "GetUp_A");
+                var introClip = FindClip("Assets/Martial Art Animations Sample/Animations/Taunt.fbx", "Taunt");
 
                 var overridesList = new List<KeyValuePair<AnimationClip, AnimationClip>>();
                 overrideCtrl.GetOverrides(overridesList);
@@ -199,7 +199,8 @@ namespace DemonIdol.BlazBlue.Editor
             }
             else
             {
-                fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
+                // Approved pack: Martial Art Animations Sample
+                fbxPath = "Assets/Martial Art Animations Sample/Animations/Atk_P_1.fbx";
             }
 
             var assets = AssetDatabase.LoadAllAssetsAtPath(fbxPath);
@@ -210,7 +211,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if ((fbxTake == "KevinIglesias_Spell" || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
+                        if (!clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }

@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: 8ca4ee804edcfc74cb82e44d624e7eca, type: 3}
+  animationClip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
   animationTrigger: LowSweepAttack
   hitboxOffset: {x: 1.2, y: 0.92, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 664180c078b95ed08c055e824b14c081, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_archer_3C
-  clip: {fileID: 7400000, guid: 8ca4ee804edcfc74cb82e44d624e7eca, type: 3}
+  clip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 24
   events: []

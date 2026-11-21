@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: -1787333864185567447, guid: 5def7c5ef2cab3a4e9b0234fc7f42de8, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 377b9531f5e4b4c3ca4e627ed3487dcf, type: 2}
   motionTrack: {fileID: 0}
   clipName: StellarWitch_5A
-  clip: {fileID: -1787333864185567447, guid: 5def7c5ef2cab3a4e9b0234fc7f42de8, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
   clipFirstFrame: 10
   clipLastFrame: 25
   events: []

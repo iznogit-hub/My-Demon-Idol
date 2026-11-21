@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 5537257042089702839, guid: 2b1de0dad8aff6249b3869786e3d3cae, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 408142c06e2d48c4db8065d1fbbcc8eb, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -95,7 +95,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: c04f209a048da430e9df99ffc5e86b13, type: 2}
   motionTrack: {fileID: 0}
   clipName: Reika_Throw
-  clip: {fileID: 5537257042089702839, guid: 2b1de0dad8aff6249b3869786e3d3cae, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 408142c06e2d48c4db8065d1fbbcc8eb, type: 3}
   clipFirstFrame: 175
   clipLastFrame: 200
   events: []

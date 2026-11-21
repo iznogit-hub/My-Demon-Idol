@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 6637440569036576042, guid: 18b8a74bf6bab184399988a2b854ed05, type: 3}
+  animationClip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -98,7 +98,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: eb10ebf7b4a4843d2aa3803379461521, type: 2}
   motionTrack: {fileID: 0}
   clipName: Cultist_623C
-  clip: {fileID: 6637440569036576042, guid: 18b8a74bf6bab184399988a2b854ed05, type: 3}
+  clip: {fileID: 7400000, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
   clipFirstFrame: 170
   clipLastFrame: 200
   events: []

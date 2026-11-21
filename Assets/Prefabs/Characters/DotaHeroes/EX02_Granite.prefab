@@ -1743,7 +1743,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.315711, y: 1.315711, z: 1.315711}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7222328456523660943}

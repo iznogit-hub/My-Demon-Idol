@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 39df77266a31a2547b7cc6c67a54a62c, type: 3}
   animationTrigger: OverheadAttack
   hitboxOffset: {x: 0.8, y: 1.05, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: ba22507ff07e5d60a0ff03e72becd292, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_knight_6B
-  clip: {fileID: 7400000, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 39df77266a31a2547b7cc6c67a54a62c, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 20
   events: []

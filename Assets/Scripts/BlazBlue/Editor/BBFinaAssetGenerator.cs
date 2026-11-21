@@ -129,14 +129,14 @@ namespace DemonIdol.BlazBlue.Editor
 
             if (overrideCtrl != null)
             {
-                var walkClip = FindClip("16/16_04", "Fina_Walk");
-                var dashClip = FindClip("16/16_04", "Fina_Dash");
-                var jumpClip = FindClip("16/16_06", "Fina_Jump");
-                var crouchClip = FindClip("139/139_09", "Fina_Crouch");
-                var standBlockClip = FindClip("144/144_07", "Fina_StandBlock");
-                var crouchBlockClip = FindClip("135/135_10", "Fina_CrouchBlock");
-                var knockdownClip = FindClip("140/140_01", "Fina_Knockdown");
-                var introClip = FindClip("16/16_03", "Fina_Intro");
+                var walkClip = FindClip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@WalkForward.FBX", "2Handed@WalkForward");
+                var dashClip = FindClip("Assets/Martial Art Animations Sample/Animations/Quickstep_F.fbx", "Quickstep_F");
+                var jumpClip = FindClip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Jump.FBX", "Karate@Jump");
+                var crouchClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var standBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var crouchBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var knockdownClip = FindClip("Assets/Martial Art Animations Sample/Animations/Knock_A.fbx", "Knock_A");
+                var introClip = FindClip("Assets/Martial Art Animations Sample/Animations/Taunt.fbx", "Taunt");
 
                 var overridesList = new List<KeyValuePair<AnimationClip, AnimationClip>>();
                 overrideCtrl.GetOverrides(overridesList);
@@ -213,7 +213,8 @@ namespace DemonIdol.BlazBlue.Editor
             }
             else
             {
-                fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
+                // Approved pack: 2 Handed Warrior
+                fbxPath = "Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX";
             }
 
             var assets = AssetDatabase.LoadAllAssetsAtPath(fbxPath);
@@ -224,7 +225,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if ((fbxTake.StartsWith("KevinIglesias_") || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
+                        if (!clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }

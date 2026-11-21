@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
+  animationClip: {fileID: 3094330708855449807, guid: 6ce5c8cc7157f2542b78acd83e609475, type: 3}
   animationTrigger: LowSweepAttack
   hitboxOffset: {x: 0.9, y: 0.94, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 1b3b107f7c545dc6981f104631d90cf9, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_sorceress_3C
-  clip: {fileID: 7400000, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
+  clip: {fileID: 3094330708855449807, guid: 6ce5c8cc7157f2542b78acd83e609475, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 32
   events: []

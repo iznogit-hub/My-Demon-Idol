@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: -1493910586372402139, guid: 2ef76d8b7c190f649a4e54e6c0618ccf, type: 3}
+  animationClip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -98,7 +98,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 3875b757add4843b5834bcdd41917f1c, type: 2}
   motionTrack: {fileID: 0}
   clipName: Aika_3C
-  clip: {fileID: -1493910586372402139, guid: 2ef76d8b7c190f649a4e54e6c0618ccf, type: 3}
+  clip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
   clipFirstFrame: 219
   clipLastFrame: 243
   events: []

@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 4917453130385077109, guid: b4e89af5f837194428560a6f0dc97b6b, type: 3}
+  animationClip: {fileID: 7400000, guid: 27a6a9f585a42884db1c7631777bc9bd, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 1b6863c48808242c4b10c543ecf95a43, type: 2}
   motionTrack: {fileID: 0}
   clipName: Pico_2B
-  clip: {fileID: 4917453130385077109, guid: b4e89af5f837194428560a6f0dc97b6b, type: 3}
+  clip: {fileID: 7400000, guid: 27a6a9f585a42884db1c7631777bc9bd, type: 3}
   clipFirstFrame: 344
   clipLastFrame: 362
   events: []

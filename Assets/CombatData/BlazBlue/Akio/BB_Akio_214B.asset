@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 1506501145554947495, guid: bb7d06dea28235048bf838bbfa08f66d, type: 3}
+  animationClip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -98,7 +98,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 356db0d74551b462594f89169feea280, type: 2}
   motionTrack: {fileID: 0}
   clipName: Akio_214B
-  clip: {fileID: 1506501145554947495, guid: bb7d06dea28235048bf838bbfa08f66d, type: 3}
+  clip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   clipFirstFrame: 40
   clipLastFrame: 62
   events: []

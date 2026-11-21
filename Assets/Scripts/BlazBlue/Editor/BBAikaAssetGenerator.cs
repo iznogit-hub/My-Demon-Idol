@@ -129,15 +129,15 @@ namespace DemonIdol.BlazBlue.Editor
 
             if (overrideCtrl != null)
             {
-                var walkClip = FindClip("144/144_33", "Aika_Walk");
-                var dashClip = FindClip("144/144_17", "Aika_Dash");
-                var jumpClip = FindClip("75/75_16", "Aika_Jump");
-                var crouchClip = FindClip("135/135_05", "Aika_Crouch");
-                var standBlockClip = FindClip("144/144_07", "Aika_StandBlock");
-                var crouchBlockClip = FindClip("135/135_10", "Aika_CrouchBlock");
-                var knockdownClip = FindClip("90/90_18", "Aika_Knockdown");
-                var getUpClip = FindClip("114/114_02", "Aika_GetUp");
-                var introClip = FindClip("74/74_01", "Aika_Intro");
+                var walkClip = FindClip("Assets/Martial Art Animations Sample/Animations/Walk_F.fbx", "Walk_F");
+                var dashClip = FindClip("Assets/Martial Art Animations Sample/Animations/Quickstep_F.fbx", "Quickstep_F");
+                var jumpClip = FindClip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Jump.FBX", "Karate@Jump");
+                var crouchClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var standBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var crouchBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var knockdownClip = FindClip("Assets/Martial Art Animations Sample/Animations/Knock_A.fbx", "Knock_A");
+                var getUpClip = FindClip("Assets/Martial Art Animations Sample/Animations/GetUp_A.fbx", "GetUp_A");
+                var introClip = FindClip("Assets/Martial Art Animations Sample/Animations/Taunt.fbx", "Taunt");
 
                 var overridesList = new List<KeyValuePair<AnimationClip, AnimationClip>>();
                 overrideCtrl.GetOverrides(overridesList);
@@ -214,7 +214,8 @@ namespace DemonIdol.BlazBlue.Editor
             }
             else
             {
-                fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
+                // Approved pack: Martial Art Animations Sample
+                fbxPath = "Assets/Martial Art Animations Sample/Animations/Atk_K_1.fbx";
             }
 
             var assets = AssetDatabase.LoadAllAssetsAtPath(fbxPath);
@@ -225,7 +226,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if ((fbxTake.StartsWith("KevinIglesias_") || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
+                        if (!clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }

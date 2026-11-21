@@ -129,14 +129,14 @@ namespace DemonIdol.BlazBlue.Editor
 
             if (overrideCtrl != null)
             {
-                var walkClip = FindClip("16/16_21", "Cultist_Walk");
-                var dashClip = FindClip("16/16_21", "Cultist_Dash");
-                var jumpClip = FindClip("143/143_07", "Cultist_Jump");
-                var crouchClip = FindClip("139/139_10", "Cultist_Crouch");
-                var standBlockClip = FindClip("144/144_08", "Cultist_StandBlock");
-                var crouchBlockClip = FindClip("135/135_08", "Cultist_CrouchBlock");
-                var knockdownClip = FindClip("140/140_02", "Cultist_Knockdown");
-                var introClip = FindClip("12/12_04", "Cultist_5D");
+                var walkClip = FindClip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/Mage Warrior Mecanim Animation Pack/Animations/Mage@WalkForward.FBX", "Mage@WalkForward");
+                var dashClip = FindClip("Assets/Martial Art Animations Sample/Animations/Quickstep_F.fbx", "Quickstep_F");
+                var jumpClip = FindClip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Jump.FBX", "Karate@Jump");
+                var crouchClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var standBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var crouchBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var knockdownClip = FindClip("Assets/Martial Art Animations Sample/Animations/Knock_A.fbx", "Knock_A");
+                var introClip = FindClip("Assets/Martial Art Animations Sample/Animations/Taunt.fbx", "Taunt");
 
                 var overridesList = new List<KeyValuePair<AnimationClip, AnimationClip>>();
                 overrideCtrl.GetOverrides(overridesList);
@@ -221,7 +221,8 @@ namespace DemonIdol.BlazBlue.Editor
             }
             else
             {
-                fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
+                // Approved pack: Mage Warrior
+                fbxPath = "Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/Mage Warrior Mecanim Animation Pack/Animations/Mage@Attack1.FBX";
             }
 
             var assets = AssetDatabase.LoadAllAssetsAtPath(fbxPath);
@@ -232,7 +233,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if ((fbxTake.StartsWith("KevinIglesias_") || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
+                        if (!clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }

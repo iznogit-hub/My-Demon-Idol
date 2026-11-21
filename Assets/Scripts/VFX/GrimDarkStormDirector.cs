@@ -58,6 +58,19 @@ namespace DemonIdol.VFX
         [Header("Rain Particle System")]
         [SerializeField] private ParticleSystem _rainParticleSystem;
 
+        [Header("Debug Toggles")]
+        [Tooltip("Toggle streetlamp yellow glow circles in Game view. When disabled (default), hides the yellow discs on the College Raimon streetlamps.")]
+        [SerializeField] private bool _enableStreetlampGlow = false;
+        public bool EnableStreetlampGlow
+        {
+            get => _enableStreetlampGlow;
+            set
+            {
+                _enableStreetlampGlow = value;
+                ApplyStreetlampGlow();
+            }
+        }
+
         private float _nextStrikeTime = 5.0f;
         private Coroutine _strikeRoutine;
         private float _currentLightningIntensity = 0f;
@@ -66,6 +79,7 @@ namespace DemonIdol.VFX
         {
             Instance = this;
             EnsureReferences();
+            ApplyStreetlampGlow();
         }
 
         private void OnEnable()
@@ -73,12 +87,43 @@ namespace DemonIdol.VFX
             Instance = this;
             ApplyAtmosphericSettings();
             ResetGlobalShaderVariables();
+            ApplyStreetlampGlow();
 
             if (Application.isPlaying)
             {
                 StartRainAudio();
                 ScheduleNextStrike();
             }
+        }
+
+        private void OnValidate()
+        {
+            ApplyStreetlampGlow();
+        }
+
+        public void ApplyStreetlampGlow()
+        {
+            float targetIntensity = _enableStreetlampGlow ? 1.8f : 0.0f;
+            string[] lampMatNames = new string[]
+            {
+                "M_00003_ao016_streetlight_1_",
+                "M_00002_ao016_streetlight_light_1",
+                "M_00001_ao017_polelight_1_",
+                "M_00000_ao017_lighton_",
+                "M_00038_ao018_lighton_",
+                "M_00041_ao018b_lighton_"
+            };
+
+#if UNITY_EDITOR
+            foreach (var matName in lampMatNames)
+            {
+                var mat = UnityEditor.AssetDatabase.LoadAssetAtPath<Material>($"Assets/CollegeRaimon/Materials/{matName}.mat");
+                if (mat != null && mat.HasProperty("_HorrorGlowIntensity"))
+                {
+                    mat.SetFloat("_HorrorGlowIntensity", targetIntensity);
+                }
+            }
+#endif
         }
 
         private void OnDisable()

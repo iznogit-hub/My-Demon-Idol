@@ -115,7 +115,7 @@ namespace DemonIdol.BlazBlue.Editor
         static List<AnimationClip> LoadClips()
         {
             var list = new List<AnimationClip>();
-            string[] roots = { "Assets/Kevin Iglesias", "Assets/ExplosiveLLC", "Assets/Huge Mocap Library" };
+            string[] roots = { "Assets/Kevin Iglesias", "Assets/ExplosiveLLC", "Assets/Martial Art Animations Sample" };
             string[] guids = AssetDatabase.FindAssets("t:AnimationClip", roots);
             for (int i = 0; i < guids.Length; i++)
             {

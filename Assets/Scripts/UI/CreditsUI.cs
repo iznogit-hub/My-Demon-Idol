@@ -54,7 +54,6 @@ namespace DemonIdol.UI
             "lilToon (lilxyzw) — lilToon Shader Suite, Licensed under MIT License (Copyright © 2020-2024 lilxyzw)\n" +
             "SimpleAssets — SimpleAssets Medieval Guard 3D Character Model & Animations (Asset Store EULA)\n" +
             "Santuary — Santuary Soundscapes, Ambient Audio & Environment Design\n" +
-            "Huge Mocap Library (CMU) — Carnegie Mellon University Motion Capture Database (Public Domain)\n" +
             "unity-chan (UCL 2.0) — Unity-Chan (Kohaku Otori) 3D Model, Motion Library & Voice Assets\n" +
             "  © Unity Technologies Japan/UCL (Unity-Chan License 2.0 - https://unity-chan.com/contents/license_en/)\n" +
             "  This work is provided under the Unity-Chan License Terms and Conditions (UCL 2.0).\n" +

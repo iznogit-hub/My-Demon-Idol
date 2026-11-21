@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 4659868534781366789, guid: e0d19447a01da784d888ae11bfdc81e2, type: 3}
+  animationClip: {fileID: 7400000, guid: 84737158b8acdfd46a09c0013aadaca7, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1, z: 0}
   hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
@@ -107,7 +107,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 611fe41763d634444bc5b0192bad0c9e, type: 2}
   motionTrack: {fileID: 0}
   clipName: Sanpaku_5A
-  clip: {fileID: 4659868534781366789, guid: e0d19447a01da784d888ae11bfdc81e2, type: 3}
+  clip: {fileID: 7400000, guid: 84737158b8acdfd46a09c0013aadaca7, type: 3}
   clipFirstFrame: 10
   clipLastFrame: 24
   events: []

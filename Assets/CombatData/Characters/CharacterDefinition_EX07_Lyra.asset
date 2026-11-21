@@ -21,7 +21,7 @@ MonoBehaviour:
   modelPrefab: {fileID: 8066289093787289664, guid: 646866b935dd1444f8a681a3b011ed64, type: 3}
   animatorController: {fileID: 0}
   avatar: {fileID: 0}
-  portraitSprite: {fileID: 0}
+  portraitSprite: {fileID: 21300000, guid: 1fc80d81845fea159d6fc226b3670592, type: 3}
   bannerSprite: {fileID: 0}
   speed: 88
   power: 89

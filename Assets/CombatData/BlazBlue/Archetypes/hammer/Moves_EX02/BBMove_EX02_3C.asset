@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 7400000, guid: c52633ad3251d4841878d77a31df9981, type: 3}
+  animationClip: {fileID: 7400000, guid: 27a6a9f585a42884db1c7631777bc9bd, type: 3}
   animationTrigger: LowSweepAttack
   hitboxOffset: {x: 1.1, y: 1.1, z: 0}
   hitboxSize: {x: 0.8, y: 0.6, z: 0.6}
@@ -101,7 +101,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: b9459008aeff5488a59a849a3c168142, type: 2}
   motionTrack: {fileID: 0}
   clipName: BB_hammer_3C
-  clip: {fileID: 7400000, guid: c52633ad3251d4841878d77a31df9981, type: 3}
+  clip: {fileID: 7400000, guid: 27a6a9f585a42884db1c7631777bc9bd, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 42
   events: []

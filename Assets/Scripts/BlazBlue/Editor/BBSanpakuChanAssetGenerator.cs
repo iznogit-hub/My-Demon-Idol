@@ -129,14 +129,14 @@ namespace DemonIdol.BlazBlue.Editor
 
             if (overrideCtrl != null)
             {
-                var walkClip = FindClip("16/16_20", "Sanpaku_Walk");
-                var dashClip = FindClip("16/16_20", "Sanpaku_Dash");
-                var jumpClip = FindClip("143/143_06", "Sanpaku_Jump");
-                var crouchClip = FindClip("139/139_09", "Sanpaku_Crouch");
-                var standBlockClip = FindClip("144/144_07", "Sanpaku_StandBlock");
-                var crouchBlockClip = FindClip("135/135_10", "Sanpaku_CrouchBlock");
-                var knockdownClip = FindClip("140/140_01", "Sanpaku_Knockdown");
-                var introClip = FindClip("16/16_11", "Sanpaku_Intro");
+                var walkClip = FindClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Movement/Run/HumanF@Run01_Forward.fbx", "HumanF@Run01_Forward");
+                var dashClip = FindClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Movement/Strafe/StrafeRun/HumanF@StrafeRun01_Right.fbx", "HumanF@StrafeRun01_Right");
+                var jumpClip = FindClip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Ninja Warrior Mecanim Animation Pack/Animations/Ninja@Jump.FBX", "Ninja@Jump");
+                var crouchClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var standBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var crouchBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var knockdownClip = FindClip("Assets/Martial Art Animations Sample/Animations/Knock_A.fbx", "Knock_A");
+                var introClip = FindClip("Assets/Martial Art Animations Sample/Animations/Taunt.fbx", "Taunt");
 
                 var overridesList = new List<KeyValuePair<AnimationClip, AnimationClip>>();
                 overrideCtrl.GetOverrides(overridesList);
@@ -205,7 +205,8 @@ namespace DemonIdol.BlazBlue.Editor
             }
             else
             {
-                fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
+                // Approved pack: Ninja Warrior
+                fbxPath = "Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Ninja Warrior Mecanim Animation Pack/Animations/Ninja@Attack1.FBX";
             }
 
             var assets = AssetDatabase.LoadAllAssetsAtPath(fbxPath);
@@ -216,7 +217,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if ((fbxTake.StartsWith("KevinIglesias_") || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
+                        if (!clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }

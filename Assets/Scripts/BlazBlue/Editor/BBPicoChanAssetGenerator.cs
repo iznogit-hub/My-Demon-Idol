@@ -130,14 +130,14 @@ namespace DemonIdol.BlazBlue.Editor
 
             if (overrideCtrl != null)
             {
-                var walkClip = FindClip("111/111_34", "Pico_Walk");
-                var dashClip = FindClip("17/17_10", "Pico_Dash");
-                var jumpClip = FindClip("143/143_06", "Pico_Jump");
-                var crouchClip = FindClip("139/139_09", "Pico_Crouch");
-                var standBlockClip = FindClip("144/144_07", "Pico_StandBlock");
-                var crouchBlockClip = FindClip("135/135_10", "Pico_CrouchBlock");
-                var knockdownClip = FindClip("140/140_01", "Pico_Knockdown");
-                var introClip = FindClip("111/111_34", "Pico_Intro");
+                var walkClip = FindClip("Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Heavy Fighter Mecanim Animation Pack FREE/Animations/Heavy@WalkForward.FBX", "Heavy@WalkForward");
+                var dashClip = FindClip("Assets/Martial Art Animations Sample/Animations/Quickstep_F.fbx", "Quickstep_F");
+                var jumpClip = FindClip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Jump.FBX", "Brute@Jump");
+                var crouchClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var standBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var crouchBlockClip = FindClip("Assets/Martial Art Animations Sample/Animations/Guard_Idle.fbx", "Guard_Idle");
+                var knockdownClip = FindClip("Assets/Martial Art Animations Sample/Animations/Knock_A.fbx", "Knock_A");
+                var introClip = FindClip("Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Heavy Fighter Mecanim Animation Pack FREE/Animations/Heavy@Idle.FBX", "Heavy@Idle");
 
                 var overridesList = new List<KeyValuePair<AnimationClip, AnimationClip>>();
                 overrideCtrl.GetOverrides(overridesList);
@@ -195,7 +195,8 @@ namespace DemonIdol.BlazBlue.Editor
 
         public static AnimationClip FindClip(string fbxTake, string clipName)
         {
-            string fbxPath = fbxTake.StartsWith("Assets/") ? fbxTake : $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
+            // Approved pack: Heavy Fighter FREE
+            string fbxPath = fbxTake.StartsWith("Assets/") ? fbxTake : "Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Heavy Fighter Mecanim Animation Pack FREE/Animations/Heavy@Punch.FBX";
             var assets = AssetDatabase.LoadAllAssetsAtPath(fbxPath);
             if (assets != null)
             {
@@ -204,7 +205,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if (fbxTake.StartsWith("Assets/") && !clip.name.StartsWith("__preview__")) return clip;
+                        if (!clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }

@@ -18,28 +18,28 @@ namespace DemonIdol.BlazBlue.Editor
         [MenuItem("Demon Idol/BlazBlue/Bind Roster Clips And Avatars")]
         public static void Bind()
         {
-            int clips = AppendCmuRanges();
+            int clips = AppendApprovedPackRanges();
             int filled = FillEmptyOverrideSlots();
             int baked = BakeLocomotionClips();
             bool casual = RebuildHumanoid("Assets/AnimeGirls/Casual1/SourceFiles/Mesh/AnimeGirl.fbx");
             bool sapphi = RebuildHumanoid("Assets/SapphiArt/SapphiArtchan/OBJ/SapphiArtchan.fbx");
             AssetDatabase.SaveAssets();
-            Debug.Log($"[BBRoster] CMU ranges added {clips}. Empty override slots filled {filled}. Locomotion baked {baked}. Casual1 humanoid {casual}. Sapphi humanoid {sapphi}.");
+            Debug.Log($"[BBRoster] Approved pack ranges added {clips}. Empty override slots filled {filled}. Locomotion baked {baked}. Casual1 humanoid {casual}. Sapphi humanoid {sapphi}.");
             if (!sapphi)
             {
                 Debug.LogWarning("[BBRoster] SapphiArtchan stayed generic. Open the FBX Rig tab, set Humanoid, and map Hips if the skeleton has no standard humanoid bones.");
             }
         }
 
-        static int AppendCmuRanges()
+        static int AppendApprovedPackRanges()
         {
             string[] files =
             {
-                "Assets/Huge Mocap Library/mocap animations/79/79_01.fbx",
-                "Assets/Huge Mocap Library/mocap animations/80/80_01.fbx",
-                "Assets/Huge Mocap Library/mocap animations/81/81_01.fbx",
-                "Assets/Huge Mocap Library/mocap animations/83/83_01.fbx",
-                "Assets/Huge Mocap Library/mocap animations/86/86_01.fbx"
+                "Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Attack1.FBX",
+                "Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/Knight Warrior Mecanim Animation Pack/Animations/Knight@Attack1.FBX",
+                "Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Swordsman Warrior Mecanim Animation Pack/Animations/Swordsman@Attack1.FBX",
+                "Assets/Martial Art Animations Sample/Animations/Atk_P_1.fbx",
+                "Assets/Martial Art Animations Sample/Animations/Atk_K_1.fbx"
             };
             int added = 0;
             for (int i = 0; i < files.Length; i++)

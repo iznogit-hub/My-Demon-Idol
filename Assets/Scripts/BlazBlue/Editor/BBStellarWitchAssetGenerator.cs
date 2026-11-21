@@ -129,14 +129,14 @@ namespace DemonIdol.BlazBlue.Editor
 
             if (overrideCtrl != null)
             {
-                var walkClip = FindClip("16/16_22", "StellarWitch_Walk");
-                var dashClip = FindClip("16/16_22", "StellarWitch_Dash");
-                var jumpClip = FindClip("143/143_08", "StellarWitch_Jump");
-                var crouchClip = FindClip("139/139_11", "StellarWitch_Crouch");
-                var standBlockClip = FindClip("144/144_09", "StellarWitch_StandBlock");
-                var crouchBlockClip = FindClip("135/135_09", "StellarWitch_CrouchBlock");
-                var knockdownClip = FindClip("140/140_03", "StellarWitch_Knockdown");
-                var introClip = FindClip("16/16_12", "StellarWitch_Intro");
+                var walkClip = FindClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Movement/Run/HumanF@Run01_Forward.fbx", "HumanF@Run01_Forward");
+                var dashClip = FindClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Movement/Strafe/StrafeRun/HumanF@StrafeRun01_Right.fbx", "HumanF@StrafeRun01_Right");
+                var jumpClip = FindClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/HumanF@CastingEnter01.fbx", "HumanF@CastingEnter01");
+                var crouchClip = FindClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Shield/HumanF@ShieldBlock01.fbx", "HumanF@ShieldBlock01");
+                var standBlockClip = FindClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Shield/HumanF@ShieldBlock01.fbx", "HumanF@ShieldBlock01");
+                var crouchBlockClip = FindClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Shield/HumanF@ShieldBlock01.fbx", "HumanF@ShieldBlock01");
+                var knockdownClip = FindClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/HumanF@Death01.fbx", "HumanF@Death01");
+                var introClip = FindClip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/HumanF@CastingExit01.fbx", "HumanF@CastingExit01");
 
                 var overridesList = new List<KeyValuePair<AnimationClip, AnimationClip>>();
                 overrideCtrl.GetOverrides(overridesList);
@@ -209,7 +209,8 @@ namespace DemonIdol.BlazBlue.Editor
             }
             else
             {
-                fbxPath = $"Assets/Huge Mocap Library/mocap animations/{fbxTake}.fbx";
+                // Approved pack: Human Spell Casting Animations
+                fbxPath = "Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Directional/HumanF@MagicAttackDirect1H01_R.fbx";
             }
 
             var assets = AssetDatabase.LoadAllAssetsAtPath(fbxPath);
@@ -220,7 +221,7 @@ namespace DemonIdol.BlazBlue.Editor
                     if (assets[i] is AnimationClip clip)
                     {
                         if (clip.name == clipName) return clip;
-                        if ((fbxTake.StartsWith("KevinIglesias_") || fbxTake.StartsWith("Assets/")) && !clip.name.StartsWith("__preview__")) return clip;
+                        if (!clip.name.StartsWith("__preview__")) return clip;
                     }
                 }
             }

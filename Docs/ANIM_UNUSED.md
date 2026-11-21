@@ -71,15 +71,14 @@ The following non-approved controllers were **retained** because they are active
 
 ---
 
-## 4. Unused Animation Packs Available for Removal Decision
+## 4. Pack Dependency Audit & Status (Step 6 Verification Fix Pass)
 
-The following animation and asset libraries reside in the project outside the 11 approved packs and are **no longer referenced by any fighter animation in the BlazBlue combat path**. Per project safety directives, they have been preserved on disk awaiting user decision:
+> [!IMPORTANT]
+> **No packs are deleted this round.** All candidate packs remain on disk awaiting explicit user decision. An exhaustive recheck of all 4 candidate packs for prefab, model, material, and code dependencies was conducted:
 
-| Unused Animation Pack | Directory Path | On-Disk Size | Total Animation Files | Prior Usage | Recommendation |
-|---|---|:---:|:---:|---|---|
-| **Huge Mocap Library** | `Assets/Huge Mocap Library` | **2.7 GB** | 2,711 FBX files | Raw CMU optical mocap trials (79, 80, 81, 83, 86). Fully replaced by approved Warrior/Martial Art sets. | **Candidate for deletion** to save 2.7 GB repository size. |
-| **Stylized 3D Monster Pack** | `Assets/Stylized3DMonster` | **569 MB** | 30 monster folders | Free trial monster meshes, animations, and textures. Not referenced by fighter combat. | **Candidate for deletion** to save 569 MB. |
-| **SimpleAssets Guard Pack** | `Assets/SimpleAssets` | **222 MB** | 4 guard animations & prefabs | Low-poly mobile guard models. Replaced by Spearman/Knight sets. | **Candidate for deletion** if guard NPCs not needed. |
-| **Bionic Cartoon Zombie Gorilla** | `Assets/GAMWILL Character Pack Monster  Bionic Cartoon Zombie Gorilla` | **39 MB** | 1 controller & anims | Hugo prototype model. Replaced by approved Brute Warrior set. | **Candidate for deletion** or archive. |
-
-**Total Potential Disk Space Savings:** **~3.53 GB** (3,530 MB).
+| Candidate Pack | Directory Path | Size | Dependency Recheck Findings | Classification & Status |
+|---|---|:---:|---|---|
+| **Bionic Cartoon Zombie Gorilla** | `Assets/GAMWILL Character Pack Monster  Bionic Cartoon Zombie Gorilla` | **39 MB** | **REQUIRED FOR EX01 HUGO**: Provides the primary 3D mesh (`HUGO_T_Pose.fbx`), skeleton, materials (`HUGO_DIFFUSE.mat`, `HUGO_NORMAL.mat`), and prefab components for fighter `EX01 Hugo`. Deleting this pack would break EX01 Hugo's model and rendering. | **REQUIRED** — **DO NOT DELETE** |
+| **SimpleAssets Guard Pack** | `Assets/SimpleAssets` | **222 MB** | **REQUIRED FOR EX06 SENTRY**: Provides the 3D character mesh (`Guard_Rig.fbx`), weapon models, and mobile materials (`Guard_Yellow (Mobile).mat`, `Guard_Weapons_Yellow (Mobile).mat`) for fighter `EX06 Sentry` (`EX06_Sentry.prefab`, `CharacterDefinition_EX06_Sentry.asset`). | **REQUIRED** — **DO NOT DELETE** |
+| **Stylized 3D Monster Pack** | `Assets/Stylized3DMonster` | **569 MB** | **Zero external references**: No scenes, prefabs, materials, or scripts reference any asset in this directory. 30 unreferenced controllers were cleaned up. Ready for safe removal when user decides. | **Unreferenced / Safe to Delete** (Awaiting user decision) |
+| **Huge Mocap Library** | `Assets/Huge Mocap Library` | **2.7 GB** | **Zero active model/material references**: All 25 fighter animation sets have been migrated to the 11 approved packs. All editor tools (`BB*AssetGenerator`, `BBRosterClipBinder`, `BBSignatureClipTool`, `CreditsUI`) have been purged of mocap paths. Ready for safe removal when user decides. | **Unreferenced / Safe to Delete** (Awaiting user decision) |
