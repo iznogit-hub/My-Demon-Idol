@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 12
-  activeFrames: 3
-  recoveryFrames: 22
-  hitstunTicks: 19
+  startupFrames: 14
+  activeFrames: 4
+  recoveryFrames: 18
+  hitstunTicks: 18
   blockstunTicks: 16
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: 0
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 1050
+  damage: 1080
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 1827226128182048838, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1.2, z: 0}
-  hitboxSize: {x: 0.85, y: 0.5, z: 1}
+  hitboxOffset: {x: 0.95, y: 1.2, z: 0}
+  hitboxSize: {x: 1.5, y: 0.8, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 214A
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 203cd879572d04c31820cceb90208d78, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Sorceress_Wave
-  clip: {fileID: -998496362607748373, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
+  clipName: HumanM@MagicAttackDirect1H01_R - Cast
+  clip: {fileID: 3094330708855449807, guid: c2160d1a58a158543817a3f1c504dc91, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 11
+  clipLastFrame: 28
   events: []

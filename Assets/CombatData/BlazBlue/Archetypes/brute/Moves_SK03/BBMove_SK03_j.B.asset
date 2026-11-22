@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 5
+  startupFrames: 8
   activeFrames: 3
-  recoveryFrames: 8
-  hitstunTicks: 17
+  recoveryFrames: 5
+  hitstunTicks: 16
   blockstunTicks: 13
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 9
+  hitstopDefender: 9
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -103,5 +103,5 @@ MonoBehaviour:
   clipName: BB_brute_j_B
   clip: {fileID: -998496362607748373, guid: 84737158b8acdfd46a09c0013aadaca7, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 36
+  clipLastFrame: 8
   events: []

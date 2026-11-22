@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 12
-  activeFrames: 3
-  recoveryFrames: 22
-  hitstunTicks: 19
+  startupFrames: 15
+  activeFrames: 4
+  recoveryFrames: 18
+  hitstunTicks: 18
   blockstunTicks: 16
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -6
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 1100
+  damage: 1140
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 1827226128182048838, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.7, y: 1.2, z: 0}
-  hitboxSize: {x: 0.8, y: 0.5, z: 1}
+  hitboxOffset: {x: 0.95, y: 1.2, z: 0}
+  hitboxSize: {x: 1.5, y: 0.8, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 214B
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 93fa6a7780ca4433abc96b037a00a8d0, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Punch
-  clip: {fileID: 7400000, guid: 32c188adf73f86148880cd1517bb3cb9, type: 3}
+  clipName: UMATOBI00
+  clip: {fileID: 7400000, guid: 8bf916c92a6742d4ea62fd210c3fd0e6, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 22
+  clipLastFrame: 38
   events: []

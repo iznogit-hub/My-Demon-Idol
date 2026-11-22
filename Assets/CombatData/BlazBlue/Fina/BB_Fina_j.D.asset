@@ -27,11 +27,11 @@ MonoBehaviour:
   startupFrames: 28
   activeFrames: 3
   recoveryFrames: 57
-  hitstunTicks: 16
+  hitstunTicks: 18
   blockstunTicks: 12
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: 0
@@ -96,6 +96,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Fina_jD
   clip: {fileID: -7717323663351677407, guid: 036e616ba2a20464cb5d9c8f24cefde6, type: 3}
-  clipFirstFrame: 30
-  clipLastFrame: 52
+  clipFirstFrame: 0
+  clipLastFrame: 44
   events: []

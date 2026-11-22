@@ -27,11 +27,11 @@ MonoBehaviour:
   startupFrames: 11
   activeFrames: 3
   recoveryFrames: 20
-  hitstunTicks: 17
+  hitstunTicks: 16
   blockstunTicks: 13
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 9
+  hitstopDefender: 9
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -103,5 +103,5 @@ MonoBehaviour:
   clipName: BB_brute_j_B
   clip: {fileID: -998496362607748373, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 22
+  clipLastFrame: 17
   events: []

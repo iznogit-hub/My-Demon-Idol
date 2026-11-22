@@ -27,11 +27,11 @@ MonoBehaviour:
   startupFrames: 26
   activeFrames: 3
   recoveryFrames: 53
-  hitstunTicks: 0
+  hitstunTicks: 18
   blockstunTicks: 0
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -12
@@ -96,6 +96,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Reika_jD
   clip: {fileID: 3094330708855449807, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
-  clipFirstFrame: 80
-  clipLastFrame: 105
+  clipFirstFrame: 0
+  clipLastFrame: 41
   events: []

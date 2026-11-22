@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 8
+  startupFrames: 13
   activeFrames: 3
-  recoveryFrames: 15
-  hitstunTicks: 15
+  recoveryFrames: 10
+  hitstunTicks: 18
   blockstunTicks: 11
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -103,5 +103,5 @@ MonoBehaviour:
   clipName: Attack1
   clip: {fileID: 7400000, guid: 8de5c91b801a1ed4e8ba5d60ee3c51d8, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 18
+  clipLastFrame: 13
   events: []

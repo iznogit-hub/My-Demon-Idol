@@ -27,11 +27,11 @@ MonoBehaviour:
   startupFrames: 16
   activeFrames: 3
   recoveryFrames: 31
-  hitstunTicks: 17
+  hitstunTicks: 18
   blockstunTicks: 13
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -103,5 +103,5 @@ MonoBehaviour:
   clipName: BB_twohand_236A
   clip: {fileID: 1827226128182048838, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 27
+  clipLastFrame: 25
   events: []

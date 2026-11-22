@@ -24,10 +24,10 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 31
+  startupFrames: 7
   activeFrames: 3
-  recoveryFrames: 62
-  hitstunTicks: 17
+  recoveryFrames: 86
+  hitstunTicks: 12
   blockstunTicks: 13
   knockdownDurationTicks: 36
   hitstopAttacker: 6
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 650
+  damage: 350
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92

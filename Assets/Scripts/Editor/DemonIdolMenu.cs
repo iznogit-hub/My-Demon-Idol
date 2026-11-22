@@ -89,31 +89,31 @@ namespace DemonIdol.Editor
         [MenuItem("Demon Idol/Verify/Run Batch 1 Proof", priority = 33)]
         public static void RunBatch1Proof()
         {
-            Batch1PolishProofRunner.StartProof();
+            BBBatchProofRunner.RunBatch1Proof();
         }
 
         [MenuItem("Demon Idol/Verify/Run Batch 2 Proof", priority = 34)]
         public static void RunBatch2Proof()
         {
-            Batch2PolishProofRunner.StartProof();
+            BBBatchProofRunner.RunBatch2Proof();
         }
 
         [MenuItem("Demon Idol/Verify/Run Batch 3 Proof", priority = 35)]
         public static void RunBatch3Proof()
         {
-            Batch3PolishProofRunner.StartProof();
+            BBBatchProofRunner.RunBatch3Proof();
         }
 
         [MenuItem("Demon Idol/Verify/Run Batch 4 Proof", priority = 36)]
         public static void RunBatch4Proof()
         {
-            Batch4PolishProofRunner.StartProof();
+            BBBatchProofRunner.RunBatch4Proof();
         }
 
         [MenuItem("Demon Idol/Verify/Run Batch 5 Proof", priority = 37)]
         public static void RunBatch5Proof()
         {
-            Batch5PolishProofRunner.StartProof();
+            BBBatchProofRunner.RunBatch5Proof();
         }
 
         // =========================================================================
@@ -135,6 +135,18 @@ namespace DemonIdol.Editor
         public static void RunClipInventory()
         {
             BBClipInventoryTool.GenerateInventory();
+        }
+
+        [MenuItem("Demon Idol/Fighters/Measure Impact Frames", priority = 43)]
+        public static void MeasureImpactFrames()
+        {
+            DemonIdol.BlazBlue.Editor.BBImpactFrameMeasurer.MeasureAllAttackClips();
+        }
+
+        [MenuItem("Demon Idol/Fighters/Apply Clip Mapping", priority = 44)]
+        public static void ApplyClipMapping()
+        {
+            DemonIdol.BlazBlue.Editor.BBClipMappingTool.ApplyClipMapping();
         }
 
         [MenuItem("Demon Idol/Fighters/Apply Batch 1 Polish", priority = 43)]

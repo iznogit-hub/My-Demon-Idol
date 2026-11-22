@@ -260,7 +260,7 @@ namespace DemonIdol.Editor
                 _driving = true;
 
                 // 1. Walk forward
-                yield return Hold("walk", new[] { Key.D }, 35, liveSim);
+                yield return Hold("walk", new[] { Key.D }, 20, liveSim);
                 yield return Hold("release", System.Array.Empty<Key>(), 8, liveSim);
 
                 // 2. Crouch
@@ -268,19 +268,19 @@ namespace DemonIdol.Editor
                 yield return Hold("release", System.Array.Empty<Key>(), 8, liveSim);
 
                 // 3. Jump
-                yield return Hold("jump", new[] { Key.W }, 15, liveSim);
-                yield return Hold("release", System.Array.Empty<Key>(), 10, liveSim);
+                yield return Hold("jump", new[] { Key.W }, 30, liveSim);
+                yield return Hold("release", System.Array.Empty<Key>(), 8, liveSim);
 
-                // Wait until grounded
+                // Wait until grounded and recovered
                 float landTimeout = Time.realtimeSinceStartup + 3f;
-                while (liveSim.p1Brain != null && !liveSim.p1Brain.isGrounded && Time.realtimeSinceStartup < landTimeout)
+                while (liveSim.p1Brain != null && (!liveSim.p1Brain.isGrounded || liveSim.p1Brain.bbState == BBState.Hitstun || liveSim.p1Brain.bbState == BBState.Blockstun) && Time.realtimeSinceStartup < landTimeout)
                 {
                     yield return null;
                 }
-                yield return new WaitForSecondsRealtime(0.1f);
+                yield return new WaitForSecondsRealtime(0.05f);
 
                 // 4. Attack A (5A)
-                yield return Hold("A", new[] { Key.J }, 25, liveSim);
+                yield return Hold("A", new[] { Key.J }, 40, liveSim);
 
                 // 5. Mid-combo presentation & hit spark
                 if (liveSim.p2Brain != null && liveSim.p2Brain.fighter != null)
@@ -382,35 +382,27 @@ namespace DemonIdol.Editor
                         if (label == "walk")
                         {
                             p1.sampler.virtualStickInput = new Vector2(1f, 0f);
-                            p1.sampler.InjectFrame(new BBInputFrame { numpad = 6, held = 0, pressed = 0, released = 0 });
                         }
                         else if (label == "crouch")
                         {
                             p1.sampler.virtualStickInput = new Vector2(0f, -1f);
-                            p1.sampler.InjectFrame(new BBInputFrame { numpad = 2, held = 0, pressed = 0, released = 0 });
                         }
                         else if (label == "jump")
                         {
                             p1.sampler.virtualStickInput = new Vector2(0f, 1f);
-                            p1.sampler.InjectFrame(new BBInputFrame { numpad = 8, held = 0, pressed = 0, released = 0 });
                         }
                         else if (label == "A")
                         {
                             p1.sampler.virtualStickInput = Vector2.zero;
                             p1.sampler.virtualHeldMask |= (byte)BBButton.A;
                             p1.sampler.virtualPressedMask |= (byte)BBButton.A;
-                            p1.sampler.InjectFrame(new BBInputFrame { numpad = 5, held = (byte)BBButton.A, pressed = (byte)BBButton.A, released = 0 });
-                            if (p1.bbState != BBState.AttackStartup && p1.bbState != BBState.AttackActive && p1.bbState != BBState.AttackRecovery)
-                            {
-                                p1.TryStartMoveId("5A");
-                            }
                         }
                         else if (label == "release")
                         {
                             p1.sampler.virtualStickInput = Vector2.zero;
                             p1.sampler.virtualHeldMask = 0;
                             p1.sampler.virtualPressedMask = 0;
-                            p1.sampler.InjectFrame(new BBInputFrame { numpad = 5, held = 0, pressed = 0, released = (byte)BBButton.A });
+                            p1.sampler.virtualReleasedMask |= (byte)BBButton.A;
                         }
                     }
 

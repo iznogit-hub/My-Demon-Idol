@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 5
+  startupFrames: 16
   activeFrames: 3
-  recoveryFrames: 8
-  hitstunTicks: 35
+  recoveryFrames: 4
+  hitstunTicks: 32
   blockstunTicks: 22
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 16
+  hitstopDefender: 16
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -14
@@ -47,7 +47,7 @@ MonoBehaviour:
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 0
+  causesKnockdown: 1
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
     endTick: 14
     mask: 60
   fatalCounter: 0
-  hardKnockdown: 0
+  hardKnockdown: 1
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -99,6 +99,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Fina_Super
   clip: {fileID: -998496362607748373, guid: 84737158b8acdfd46a09c0013aadaca7, type: 3}
-  clipFirstFrame: 160
-  clipLastFrame: 195
+  clipFirstFrame: 0
+  clipLastFrame: 8
   events: []

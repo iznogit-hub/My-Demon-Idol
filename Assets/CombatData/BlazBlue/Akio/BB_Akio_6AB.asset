@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 26
+  startupFrames: 11
   activeFrames: 3
-  recoveryFrames: 51
-  hitstunTicks: 28
+  recoveryFrames: 66
+  hitstunTicks: 16
   blockstunTicks: 18
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 9
+  hitstopDefender: 9
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: 0
@@ -96,6 +96,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Akio_CounterAssault
   clip: {fileID: 3094330708855449807, guid: d4532f1415d75034a8a42ade4be07f5c, type: 3}
-  clipFirstFrame: 123
-  clipLastFrame: 136
+  clipFirstFrame: 0
+  clipLastFrame: 40
   events: []

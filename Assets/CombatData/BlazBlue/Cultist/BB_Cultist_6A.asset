@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 23
+  startupFrames: 7
   activeFrames: 3
-  recoveryFrames: 46
-  hitstunTicks: 19
+  recoveryFrames: 62
+  hitstunTicks: 12
   blockstunTicks: 14
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 6
+  hitstopDefender: 6
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -6
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 650
+  damage: 350
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -105,6 +105,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Cultist_6A
   clip: {fileID: 3094330708855449807, guid: 5e777c22f4914c24bb1ab4df99f3832e, type: 3}
-  clipFirstFrame: 15
-  clipLastFrame: 38
+  clipFirstFrame: 0
+  clipLastFrame: 36
   events: []

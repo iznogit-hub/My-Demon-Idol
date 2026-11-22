@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 10
-  activeFrames: 3
-  recoveryFrames: 20
-  hitstunTicks: 17
+  startupFrames: 13
+  activeFrames: 4
+  recoveryFrames: 16
+  hitstunTicks: 18
   blockstunTicks: 14
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 950
+  damage: 1040
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 7400000, guid: 27a6a9f585a42884db1c7631777bc9bd, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.7, y: 1.2, z: 0}
-  hitboxSize: {x: 0.8, y: 0.5, z: 1}
+  hitboxOffset: {x: 0.95, y: 0.5, z: 0}
+  hitboxSize: {x: 1.5, y: 0.8, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 236A
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 11fa1f33d1f5e460ebca927aeb400fe9, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Punch
-  clip: {fileID: 7400000, guid: 27a6a9f585a42884db1c7631777bc9bd, type: 3}
+  clipName: SLIDE00
+  clip: {fileID: 7400000, guid: a3657ebe445392e44a81a7b112b9cf0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 16
+  clipLastFrame: 41
   events: []

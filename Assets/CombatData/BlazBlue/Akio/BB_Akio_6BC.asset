@@ -27,17 +27,17 @@ MonoBehaviour:
   startupFrames: 13
   activeFrames: 3
   recoveryFrames: 24
-  hitstunTicks: 30
+  hitstunTicks: 22
   blockstunTicks: 0
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 12
+  hitstopDefender: 12
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: 0
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 1200
+  damage: 950
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -51,7 +51,7 @@ MonoBehaviour:
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
+  screenShakeTrauma: 0.4
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: -6844052188305811177, guid: 856648ace9d2a6a4c994614a9ababdb1, type: 3}
@@ -96,6 +96,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Akio_Throw
   clip: {fileID: -6844052188305811177, guid: 856648ace9d2a6a4c994614a9ababdb1, type: 3}
-  clipFirstFrame: 26
-  clipLastFrame: 48
+  clipFirstFrame: 0
+  clipLastFrame: 20
   events: []

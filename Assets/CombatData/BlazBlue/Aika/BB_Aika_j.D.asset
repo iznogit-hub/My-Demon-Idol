@@ -30,8 +30,8 @@ MonoBehaviour:
   hitstunTicks: 18
   blockstunTicks: 14
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: 0
@@ -96,6 +96,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Aika_jD
   clip: {fileID: -1965278401889439510, guid: 41c671c664a454d42a876d6a1b7ae937, type: 3}
-  clipFirstFrame: 110
-  clipLastFrame: 126
+  clipFirstFrame: 0
+  clipLastFrame: 22
   events: []

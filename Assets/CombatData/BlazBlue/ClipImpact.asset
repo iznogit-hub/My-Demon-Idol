@@ -1,0 +1,443 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba7fc35d2c084d9086cd5ddb2fdb129, type: 3}
+  m_Name: ClipImpact
+  m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBClipImpactAsset
+  entries:
+  - clipName: Atk_P_1
+    impactFrame60: 10
+    impactTime: 0.16666667
+    maxVelocity: 0
+  - clipName: Atk_P_2
+    impactFrame60: 12
+    impactTime: 0.2
+    maxVelocity: 0
+  - clipName: Grab_Break_A
+    impactFrame60: 16
+    impactTime: 0.26666668
+    maxVelocity: 0
+  - clipName: Grab_Break_B
+    impactFrame60: 16
+    impactTime: 0.26666668
+    maxVelocity: 0
+  - clipName: Dodge_B
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: Grab_Hit_B
+    impactFrame60: 13
+    impactTime: 0.21666667
+    maxVelocity: 0
+  - clipName: Atk_K_1
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: Atk_K_2
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: Atk_K_3
+    impactFrame60: 28
+    impactTime: 0.46666667
+    maxVelocity: 0
+  - clipName: Atk_P_3
+    impactFrame60: 14
+    impactTime: 0.23333333
+    maxVelocity: 0
+  - clipName: Quickstep_F
+    impactFrame60: 8
+    impactTime: 0.13333334
+    maxVelocity: 0
+  - clipName: HumanF@CombatIdle1H01
+    impactFrame60: 26
+    impactTime: 0.43333334
+    maxVelocity: 0
+  - clipName: Quickstep_B
+    impactFrame60: 8
+    impactTime: 0.13333334
+    maxVelocity: 0
+  - clipName: Grab_Hit_A
+    impactFrame60: 13
+    impactTime: 0.21666667
+    maxVelocity: 0
+  - clipName: Dodge_F
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: Ninja_Slash1
+    impactFrame60: 12
+    impactTime: 0.2
+    maxVelocity: 0
+  - clipName: Karate_Palm
+    impactFrame60: 8
+    impactTime: 0.13333334
+    maxVelocity: 0
+  - clipName: Punch
+    impactFrame60: 13
+    impactTime: 0.21666667
+    maxVelocity: 0
+  - clipName: Karate_Roundhouse
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: Attack1
+    impactFrame60: 22
+    impactTime: 0.36666667
+    maxVelocity: 0
+  - clipName: Ninja_Slash2
+    impactFrame60: 5
+    impactTime: 0.083333336
+    maxVelocity: 0
+  - clipName: Grab_Start
+    impactFrame60: 15
+    impactTime: 0.25
+    maxVelocity: 0
+  - clipName: HumanF@Attack1H01_R
+    impactFrame60: 21
+    impactTime: 0.35
+    maxVelocity: 0
+  - clipName: HumanF@AttackShield01
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: HumanF@Attack2H01
+    impactFrame60: 31
+    impactTime: 0.51666665
+    maxVelocity: 0
+  - clipName: Ninja_Cross
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: Brute_Hook
+    impactFrame60: 18
+    impactTime: 0.3
+    maxVelocity: 0
+  - clipName: Brute_Uppercut
+    impactFrame60: 11
+    impactTime: 0.18333334
+    maxVelocity: 0
+  - clipName: Brute_DoubleSlam
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: HumanM@CombatIdle1H01
+    impactFrame60: 26
+    impactTime: 0.43333334
+    maxVelocity: 0
+  - clipName: Karate_Jab
+    impactFrame60: 14
+    impactTime: 0.23333333
+    maxVelocity: 0
+  - clipName: HumanM@AttackShield01
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: HumanF@Attack1H01_L
+    impactFrame60: 21
+    impactTime: 0.35
+    maxVelocity: 0
+  - clipName: HumanM@AttackPolearm01
+    impactFrame60: 26
+    impactTime: 0.43333334
+    maxVelocity: 0
+  - clipName: Archer_QuickDraw
+    impactFrame60: 15
+    impactTime: 0.25
+    maxVelocity: 0
+  - clipName: Archer_PowerShot
+    impactFrame60: 4
+    impactTime: 0.06666667
+    maxVelocity: 0
+  - clipName: Archer_Volley
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: HumanF@AttackPolearm01
+    impactFrame60: 26
+    impactTime: 0.43333334
+    maxVelocity: 0
+  - clipName: HumanM@Attack2H01
+    impactFrame60: 31
+    impactTime: 0.51666665
+    maxVelocity: 0
+  - clipName: HumanM@Attack1H01_R
+    impactFrame60: 21
+    impactTime: 0.35
+    maxVelocity: 0
+  - clipName: HumanM@Attack1H01_L
+    impactFrame60: 21
+    impactTime: 0.35
+    maxVelocity: 0
+  - clipName: Hammer_Quake
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: TwoHanded_Sweep
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: Knight_Slash
+    impactFrame60: 16
+    impactTime: 0.26666668
+    maxVelocity: 0
+  - clipName: Spearman_Lance
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: TwoHanded_Slam
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: Knight_Cleave
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: TwoHanded_Slash
+    impactFrame60: 9
+    impactTime: 0.15
+    maxVelocity: 0
+  - clipName: HumanM@CombatDamage01
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: Hammer_Swing
+    impactFrame60: 18
+    impactTime: 0.3
+    maxVelocity: 0
+  - clipName: Hammer_Smash
+    impactFrame60: 15
+    impactTime: 0.25
+    maxVelocity: 0
+  - clipName: Swordsman_Cleave
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: Knight_ShieldBash
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: Swordsman_Slash1
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: Sorceress_Wave
+    impactFrame60: 9
+    impactTime: 0.15
+    maxVelocity: 0
+  - clipName: Sorceress_Nova
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackDirect1H01_R - Cast
+    impactFrame60: 18
+    impactTime: 0.3
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackDirect1H01_L - Cast
+    impactFrame60: 18
+    impactTime: 0.3
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackDirect2H01 - Cast
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackCall1H01_L
+    impactFrame60: 26
+    impactTime: 0.43333334
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackOmni01
+    impactFrame60: 30
+    impactTime: 0.5
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackDirect1H01_R
+    impactFrame60: 23
+    impactTime: 0.38333333
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackDirect1H01_L
+    impactFrame60: 23
+    impactTime: 0.38333333
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackDirect2H01
+    impactFrame60: 31
+    impactTime: 0.51666665
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackOmni01
+    impactFrame60: 30
+    impactTime: 0.5
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackDirect1H01_R
+    impactFrame60: 23
+    impactTime: 0.38333333
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackDirect1H01_L
+    impactFrame60: 23
+    impactTime: 0.38333333
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackDirect2H01
+    impactFrame60: 31
+    impactTime: 0.51666665
+    maxVelocity: 0
+  - clipName: Mage_Eruption
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: Mage_StaffPoke
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: Sorceress_Burst
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: Mage_OrbCast
+    impactFrame60: 9
+    impactTime: 0.15
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackOmni01 - Cast
+    impactFrame60: 25
+    impactTime: 0.41666666
+    maxVelocity: 0
+  - clipName: Spearman_Thrust1
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: Spearman_Sweep
+    impactFrame60: 5
+    impactTime: 0.083333336
+    maxVelocity: 0
+  - clipName: Swordsman_Thrust
+    impactFrame60: 6
+    impactTime: 0.1
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackCall1H01_L - Cast
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackDirect1H01_R - Cast
+    impactFrame60: 18
+    impactTime: 0.3
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackDirect1H01_L - Cast
+    impactFrame60: 18
+    impactTime: 0.3
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackDirect2H01 - Cast
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackCall1H01_L
+    impactFrame60: 26
+    impactTime: 0.43333334
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackOmni01 - Cast
+    impactFrame60: 25
+    impactTime: 0.41666666
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackDirect1H01_R - Load
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackDirect1H01_L - Load
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackDirect2H01 - Load
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackOmni01 - Load
+    impactFrame60: 31
+    impactTime: 0.51666665
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackDirect1H01_R - Load
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackDirect1H01_L - Load
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackDirect2H01 - Load
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: UMATOBI00
+    impactFrame60: 24
+    impactTime: 0.4
+    maxVelocity: 0
+  - clipName: SLIDE00
+    impactFrame60: 26
+    impactTime: 0.43333334
+    maxVelocity: 0
+  - clipName: HANDUP00_R
+    impactFrame60: 15
+    impactTime: 0.25
+    maxVelocity: 0
+  - clipName: Crossbow_Snapshot
+    impactFrame60: 15
+    impactTime: 0.25
+    maxVelocity: 0
+  - clipName: Crossbow_Burst
+    impactFrame60: 6
+    impactTime: 0.1
+    maxVelocity: 0
+  - clipName: Crossbow_Scatter
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
+  - clipName: HumanF@CastingDamage01
+    impactFrame60: 21
+    impactTime: 0.35
+    maxVelocity: 0
+  - clipName: HumanF@CastingEnter01
+    impactFrame60: 13
+    impactTime: 0.21666667
+    maxVelocity: 0
+  - clipName: HumanF@CastingExit01
+    impactFrame60: 23
+    impactTime: 0.38333333
+    maxVelocity: 0
+  - clipName: HumanF@CastingIdle01
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackCall1H01_L - Cast
+    impactFrame60: 17
+    impactTime: 0.28333333
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackCall1H01_L - Load
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackOmni01 - Load
+    impactFrame60: 31
+    impactTime: 0.51666665
+    maxVelocity: 0
+  - clipName: HumanM@CastingDamage01
+    impactFrame60: 21
+    impactTime: 0.35
+    maxVelocity: 0
+  - clipName: HumanM@CastingEnter01
+    impactFrame60: 13
+    impactTime: 0.21666667
+    maxVelocity: 0
+  - clipName: HumanM@CastingExit01
+    impactFrame60: 23
+    impactTime: 0.38333333
+    maxVelocity: 0
+  - clipName: HumanM@CastingIdle01
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0
+  - clipName: HumanM@MagicAttackCall1H01_L - Load
+    impactFrame60: 32
+    impactTime: 0.53333336
+    maxVelocity: 0

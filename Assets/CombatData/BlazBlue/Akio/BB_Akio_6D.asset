@@ -27,11 +27,11 @@ MonoBehaviour:
   startupFrames: 12
   activeFrames: 3
   recoveryFrames: 21
-  hitstunTicks: 20
+  hitstunTicks: 18
   blockstunTicks: 15
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -5
@@ -96,6 +96,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Akio_6D
   clip: {fileID: 1827226128182048838, guid: 84737158b8acdfd46a09c0013aadaca7, type: 3}
-  clipFirstFrame: 20
-  clipLastFrame: 40
+  clipFirstFrame: 0
+  clipLastFrame: 18
   events: []
