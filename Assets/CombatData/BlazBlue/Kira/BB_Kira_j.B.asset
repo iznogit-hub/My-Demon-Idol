@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 8
-  activeFrames: 5
-  recoveryFrames: 5
+  startupFrames: 9
+  activeFrames: 3
+  recoveryFrames: 13
   hitstunTicks: 16
   blockstunTicks: 14
   knockdownDurationTicks: 36
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.95, y: -0.2, z: 0}
+  hitboxSize: {x: 1.5, y: 1.4, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: j.B
@@ -94,10 +94,10 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 2523358977269850285}
   motionTrack: {fileID: 0}
-  clipName: Swordsman_Thrust
-  clip: {fileID: -998496362607748373, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
+  clipName: Atk_K_1
+  clip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 7
+  clipLastFrame: 27
   events: []
 --- !u!114 &2523358977269850285
 MonoBehaviour:
@@ -111,48 +111,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BB_Kira_j.B_Boxes
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 18
-  frameStart: 00000000000000000000000000000000000000000000000000000000000000000000000001000000020000000300000004000000050000000500000005000000050000000500000005000000i
+  tickCount: 25
+  frameStart: 0000000000000000000000000000000000000000000000000000000000000000000000000000000001000000020000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 0.95
+    cy: -0.2
+    hx: 0.75
+    hy: 0.7
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 0.95
+    cy: -0.2
+    hx: 0.75
+    hy: 0.7
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 0.95
+    cy: -0.2
+    hx: 0.75
+    hy: 0.7
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
-    kind: 1
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
-    kind: 1
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  keyTicks: 08000000i
+  keyTicks: 09000000i
   bakeHash: 

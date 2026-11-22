@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.65, y: 1.25, z: 0}
-  hitboxSize: {x: 1.3, y: 0.6, z: 1}
+  hitboxOffset: {x: 0.75, y: 0.4, z: 0}
+  hitboxSize: {x: 1.4, y: 0.6, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 2A
@@ -94,10 +94,10 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 4862138730640165173}
   motionTrack: {fileID: 0}
-  clipName: Ninja_Slash2
-  clip: {fileID: -998496362607748373, guid: 84737158b8acdfd46a09c0013aadaca7, type: 3}
+  clipName: Atk_P_1
+  clip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 6
+  clipLastFrame: 15
   events: []
 --- !u!114 &4862138730640165173
 MonoBehaviour:
@@ -114,25 +114,25 @@ MonoBehaviour:
   tickCount: 16
   frameStart: 0000000000000000000000000000000000000000000000000100000002000000030000000300000003000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0.65
-    cy: 1.25
-    hx: 0.65
+  - cx: 0.75
+    cy: 0.4
+    hx: 0.7
     hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.65
-    cy: 1.25
-    hx: 0.65
+  - cx: 0.75
+    cy: 0.4
+    hx: 0.7
     hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.65
-    cy: 1.25
-    hx: 0.65
+  - cx: 0.75
+    cy: 0.4
+    hx: 0.7
     hy: 0.3
     kind: 1
     hitIndex: 0

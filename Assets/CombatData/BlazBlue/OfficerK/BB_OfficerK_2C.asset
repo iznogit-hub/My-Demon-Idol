@@ -12,50 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BB_OfficerK_2C_Boxes
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 60
-  frameStart: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000400000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000i
+  tickCount: 37
+  frameStart: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000i
   boxes:
-  - cx: 0.85
+  - cx: 1.1
     cy: 0.35
-    hx: 0.7
-    hy: 0.25
+    hx: 0.8
+    hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.85
+  - cx: 1.1
     cy: 0.35
-    hx: 0.7
-    hy: 0.25
+    hx: 0.8
+    hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.85
+  - cx: 1.1
     cy: 0.35
-    hx: 0.7
-    hy: 0.25
+    hx: 0.8
+    hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.85
+  - cx: 1.1
     cy: 0.35
-    hx: 0.7
-    hy: 0.25
+    hx: 0.8
+    hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.85
-    cy: 0.35
-    hx: 0.7
-    hy: 0.25
-    kind: 1
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  keyTicks: 10000000i
+  keyTicks: 0e000000i
   bakeHash: 
 --- !u!114 &11400000
 MonoBehaviour:
@@ -81,9 +73,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 16
-  activeFrames: 5
-  recoveryFrames: 39
+  startupFrames: 14
+  activeFrames: 4
+  recoveryFrames: 19
   hitstunTicks: 22
   blockstunTicks: 18
   knockdownDurationTicks: 36
@@ -94,7 +86,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 850
+  damage: 880
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -113,8 +105,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.85, y: 0.35, z: 0}
-  hitboxSize: {x: 1.4, y: 0.5, z: 1}
+  hitboxOffset: {x: 1.1, y: 0.35, z: 0}
+  hitboxSize: {x: 1.6, y: 0.6, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 2C
@@ -151,8 +143,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: -1157366518975559864}
   motionTrack: {fileID: 0}
-  clipName: Karate_Roundhouse
-  clip: {fileID: 3060872287085348379, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Atk_K_3
+  clip: {fileID: -7717323663351677407, guid: 036e616ba2a20464cb5d9c8f24cefde6, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 24
+  clipLastFrame: 44
   events: []

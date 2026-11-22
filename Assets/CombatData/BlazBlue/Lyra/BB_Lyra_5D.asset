@@ -12,50 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BB_Lyra_5D_Boxes
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 52
-  frameStart: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000400000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000i
+  tickCount: 34
+  frameStart: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000i
   boxes:
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1
+    cy: 1.1
+    hx: 0.75
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1
+    cy: 1.1
+    hx: 0.75
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1
+    cy: 1.1
+    hx: 0.75
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1
+    cy: 1.1
+    hx: 0.75
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
-    kind: 1
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  keyTicks: 11000000i
+  keyTicks: 0e000000i
   bakeHash: 
 --- !u!114 &11400000
 MonoBehaviour:
@@ -81,9 +73,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 17
-  activeFrames: 5
-  recoveryFrames: 30
+  startupFrames: 14
+  activeFrames: 4
+  recoveryFrames: 16
   hitstunTicks: 18
   blockstunTicks: 18
   knockdownDurationTicks: 36
@@ -94,7 +86,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 800
+  damage: 830
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -113,8 +105,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 1, y: 1.1, z: 0}
+  hitboxSize: {x: 1.5, y: 0.7, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 5D
@@ -151,8 +143,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: -9031783012040870060}
   motionTrack: {fileID: 0}
-  clipName: Sorceress_Burst
-  clip: {fileID: 1827226128182048838, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
+  clipName: HumanF@MagicAttackOmni01 - Load
+  clip: {fileID: 3094330708855449807, guid: 6fdb1182b412d014e8f6c12f3296fd26, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 21
+  clipLastFrame: 49
   events: []

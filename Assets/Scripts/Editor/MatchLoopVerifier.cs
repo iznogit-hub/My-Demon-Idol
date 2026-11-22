@@ -260,7 +260,7 @@ namespace DemonIdol.Editor
                 _driving = true;
 
                 // 1. Walk forward
-                yield return Hold("walk", new[] { Key.D }, 35, liveSim);
+                yield return Hold("walk", new[] { Key.D }, 20, liveSim);
                 yield return Hold("release", System.Array.Empty<Key>(), 8, liveSim);
 
                 // 2. Crouch
@@ -268,19 +268,19 @@ namespace DemonIdol.Editor
                 yield return Hold("release", System.Array.Empty<Key>(), 8, liveSim);
 
                 // 3. Jump
-                yield return Hold("jump", new[] { Key.W }, 15, liveSim);
-                yield return Hold("release", System.Array.Empty<Key>(), 10, liveSim);
+                yield return Hold("jump", new[] { Key.W }, 30, liveSim);
+                yield return Hold("release", System.Array.Empty<Key>(), 8, liveSim);
 
-                // Wait until grounded
+                // Wait until grounded and recovered
                 float landTimeout = Time.realtimeSinceStartup + 3f;
-                while (liveSim.p1Brain != null && !liveSim.p1Brain.isGrounded && Time.realtimeSinceStartup < landTimeout)
+                while (liveSim.p1Brain != null && (!liveSim.p1Brain.isGrounded || liveSim.p1Brain.bbState == BBState.Hitstun || liveSim.p1Brain.bbState == BBState.Blockstun) && Time.realtimeSinceStartup < landTimeout)
                 {
                     yield return null;
                 }
-                yield return new WaitForSecondsRealtime(0.1f);
+                yield return new WaitForSecondsRealtime(0.05f);
 
                 // 4. Attack A (5A)
-                yield return Hold("A", new[] { Key.J }, 25, liveSim);
+                yield return Hold("A", new[] { Key.J }, 40, liveSim);
 
                 // 5. Mid-combo presentation & hit spark
                 if (liveSim.p2Brain != null && liveSim.p2Brain.fighter != null)
