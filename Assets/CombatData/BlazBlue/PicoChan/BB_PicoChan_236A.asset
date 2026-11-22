@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_PicoChan_236A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Female Punch
+  attackName: Rocket Punch
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 8
+  startupFrames: 10
   activeFrames: 3
-  recoveryFrames: 15
-  hitstunTicks: 18
-  blockstunTicks: 16
+  recoveryFrames: 20
+  hitstunTicks: 17
+  blockstunTicks: 14
   knockdownDurationTicks: 36
   hitstopAttacker: 5
   hitstopDefender: 5
@@ -41,7 +41,7 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: d8e2aa4413e3b4924a030662061f68b1, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Pico_236A
-  clip: {fileID: 7400000, guid: 8de5c91b801a1ed4e8ba5d60ee3c51d8, type: 3}
-  clipFirstFrame: 37
-  clipLastFrame: 57
+  clipName: Punch
+  clip: {fileID: 7400000, guid: 32c188adf73f86148880cd1517bb3cb9, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 22
   events: []

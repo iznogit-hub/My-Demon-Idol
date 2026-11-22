@@ -45,6 +45,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2111be4c63d7e42be8b1b9580ef50d6d, type: 2}
   - {fileID: 11400000, guid: edfce9243c8274fdbab544ece9b5e44a, type: 2}
   - {fileID: 11400000, guid: c9de2c63299b847adb67235733815526, type: 2}
+  - {fileID: 11400000, guid: e82aba0c2aaee49d5a14f06b33b96548, type: 2}
   throwForward: {fileID: 11400000, guid: 156a2455b2b2e46178cf6770ac092ed1, type: 2}
   throwBack: {fileID: 11400000, guid: 0b46693b22945401b98dbf7ff5517261, type: 2}
   throwAir: {fileID: 11400000, guid: 2111be4c63d7e42be8b1b9580ef50d6d, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Casual1_5C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Crossbow Burst
+  attackName: High Roundhouse
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,24 +24,24 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 12
-  activeFrames: 4
-  recoveryFrames: 16
-  hitstunTicks: 19
-  blockstunTicks: 14
+  startupFrames: 13
+  activeFrames: 3
+  recoveryFrames: 25
+  hitstunTicks: 20
+  blockstunTicks: 17
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 7
+  hitstopDefender: 7
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -5
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 750
+  damage: 900
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1.5
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 8b3579cbe35974c0d88705b099b17033, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Casual1_5C
-  clip: {fileID: 7400000, guid: 714c40c75ea542248aea545b08b8bc50, type: 3}
+  clipName: Atk_K_2
+  clip: {fileID: -2848545796736985332, guid: 4001c0c0bd7783f49b26d816310b87b2, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 34
+  clipLastFrame: 22
   events: []

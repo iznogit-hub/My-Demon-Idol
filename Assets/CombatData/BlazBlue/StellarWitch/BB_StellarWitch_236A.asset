@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_StellarWitch_236A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Star Bolt
+  attackName: Comet Fire
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -26,9 +26,9 @@ MonoBehaviour:
   protectionEndTick: 12
   startupFrames: 9
   activeFrames: 3
-  recoveryFrames: 16
-  hitstunTicks: 22
-  blockstunTicks: 16
+  recoveryFrames: 18
+  hitstunTicks: 16
+  blockstunTicks: 13
   knockdownDurationTicks: 36
   hitstopAttacker: 5
   hitstopDefender: 5
@@ -41,7 +41,7 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: a1b101980901240cc984d8cde9aacb9e, type: 2}
   motionTrack: {fileID: 0}
-  clipName: StellarWitch_236A
-  clip: {fileID: -998496362607748373, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
-  clipFirstFrame: 10
-  clipLastFrame: 40
+  clipName: Sorceress_Burst
+  clip: {fileID: 1827226128182048838, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 21
   events: []

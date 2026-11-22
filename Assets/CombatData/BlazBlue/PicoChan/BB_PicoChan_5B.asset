@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_PicoChan_5B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Straight Punch
+  attackName: Haymaker Hook
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 12
+  startupFrames: 11
   activeFrames: 3
-  recoveryFrames: 23
-  hitstunTicks: 15
-  blockstunTicks: 13
+  recoveryFrames: 20
+  hitstunTicks: 18
+  blockstunTicks: 15
   knockdownDurationTicks: 36
   hitstopAttacker: 5
   hitstopDefender: 5
@@ -41,7 +41,7 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: df5a284581a694032b2fa7d42263b93a, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Pico_5B
-  clip: {fileID: -3119484255079415707, guid: 023c0ac4fb3503c4391f65943ceda058, type: 3}
-  clipFirstFrame: 1256
-  clipLastFrame: 1274
+  clipName: Brute_Hook
+  clip: {fileID: 1827226128182048838, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 22
   events: []

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Reika_5D
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Drive Polearm
+  attackName: Veil Riposte
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 26
+  startupFrames: 18
   activeFrames: 3
-  recoveryFrames: 53
-  hitstunTicks: 0
-  blockstunTicks: 0
+  recoveryFrames: 32
+  hitstunTicks: 25
+  blockstunTicks: 22
   knockdownDurationTicks: 36
   hitstopAttacker: 5
   hitstopDefender: 5
@@ -41,7 +41,7 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 94b1525890bf845c0a03a4b7e6e5c15f, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Reika_5D
-  clip: {fileID: 3094330708855449807, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
-  clipFirstFrame: 10
-  clipLastFrame: 35
+  clipName: Knight_Cleave
+  clip: {fileID: 3060872287085348379, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 24
   events: []
