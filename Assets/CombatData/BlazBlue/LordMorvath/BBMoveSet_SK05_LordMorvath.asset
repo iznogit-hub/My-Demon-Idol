@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39fbfec8de3c4b33b34c085baa785d9, type: 3}
+  m_Name: BBMoveSet_SK05_LordMorvath
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBMoveSet
+  characterId: C01
+  moves:
+  - {fileID: 11400000, guid: e08e5d506d87a4623b86c743423cbe47, type: 2}
+  - {fileID: 11400000, guid: 24ebda836ffc34d80990d6a1ca0eae3f, type: 2}
+  - {fileID: 11400000, guid: 81813265d13cb4328b54e0ec667e46f0, type: 2}
+  - {fileID: 11400000, guid: b8cd1fa1f1bfb46d798c22ff79410781, type: 2}
+  - {fileID: 11400000, guid: 4662205a2ee79427ba344a5ee7a28503, type: 2}
+  - {fileID: 11400000, guid: 988c0d05464114b889772c8a9ba6333e, type: 2}
+  - {fileID: 11400000, guid: 150f2da8760da4b58a14bb6d1af9472d, type: 2}
+  - {fileID: 11400000, guid: 4745ce67173214b5a85a075a5a4ef0e1, type: 2}
+  - {fileID: 11400000, guid: 450081dffc3644caaaf2c7fe977acf56, type: 2}
+  - {fileID: 11400000, guid: e1b007c91b25d45f8b8be0306a5f8061, type: 2}
+  - {fileID: 11400000, guid: 675628d86466f494489d868514f54ecc, type: 2}
+  - {fileID: 11400000, guid: 92be76348d26742d996b1466dcbada77, type: 2}
+  - {fileID: 11400000, guid: 4c34e27e698e04bd6a383125800c0b19, type: 2}
+  - {fileID: 11400000, guid: 39c9589fc81ae424a995b1168277361d, type: 2}
+  throwForward: {fileID: 0}
+  throwBack: {fileID: 0}
+  throwAir: {fileID: 0}
+  counterAssault: {fileID: 0}
+  crushTrigger: {fileID: 0}
+  burst: {fileID: 0}
+  overdriveStart: {fileID: 0}
+  exceedAccel: {fileID: 0}
+  astralHeat: {fileID: 0}

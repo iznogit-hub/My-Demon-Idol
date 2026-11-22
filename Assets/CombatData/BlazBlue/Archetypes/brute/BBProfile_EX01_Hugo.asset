@@ -32,6 +32,6 @@ MonoBehaviour:
   signatureDriveClip: {fileID: 7400000, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
   signatureSpecialClip: {fileID: 7400000, guid: 32c188adf73f86148880cd1517bb3cb9, type: 3}
   signatureSuperClip: {fileID: 7400000, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
-  moveSet: {fileID: 11400000, guid: 7fce203636361496b95f3a6b28596b9f, type: 2}
+  moveSet: {fileID: 11400000, guid: 0a1bd16a586ea499ba66d81e6338792e, type: 2}
   maxHealth: 11000
   defenseModifier: 1
