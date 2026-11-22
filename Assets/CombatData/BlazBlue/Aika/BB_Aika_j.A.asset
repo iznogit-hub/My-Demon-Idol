@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Aika_j.A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Jump Fist
+  attackName: Air Snap Kick
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 17
+  startupFrames: 8
   activeFrames: 3
-  recoveryFrames: 34
-  hitstunTicks: 14
-  blockstunTicks: 10
+  recoveryFrames: 14
+  hitstunTicks: 15
+  blockstunTicks: 12
   knockdownDurationTicks: 36
   hitstopAttacker: 5
   hitstopDefender: 5
@@ -41,7 +41,7 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -97,8 +97,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 25b20ca669897495ab0890a3056b329c, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Aika_jA
-  clip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
-  clipFirstFrame: 280
-  clipLastFrame: 296
+  clipName: Karate_Roundhouse
+  clip: {fileID: 3060872287085348379, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 24
   events: []

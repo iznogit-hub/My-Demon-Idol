@@ -406,6 +406,7 @@ namespace DemonIdol.BlazBlue
                         stateTick = 0;
                         chainState.Reset();
                         comboState.Reset();
+                        if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
                     }
                     break;
 
@@ -417,6 +418,30 @@ namespace DemonIdol.BlazBlue
                         stateTick = 0;
                         chainState.Reset();
                         comboState.Reset();
+                        if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
+                    }
+                    break;
+
+                case BBState.DownWait:
+                    if (hitstunRemaining > 0) hitstunRemaining--;
+                    if (hitstunRemaining <= 0)
+                    {
+                        bbState = BBState.Wakeup;
+                        stateTick = 0;
+                        hitstunRemaining = 24;
+                        if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
+                    }
+                    break;
+
+                case BBState.Wakeup:
+                    if (hitstunRemaining > 0) hitstunRemaining--;
+                    if (hitstunRemaining <= 0)
+                    {
+                        bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
+                        stateTick = 0;
+                        chainState.Reset();
+                        comboState.Reset();
+                        if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
                     }
                     break;
 

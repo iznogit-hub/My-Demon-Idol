@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Aika_214B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Reap
+  attackName: Spinning Roundhouse
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,10 +24,10 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 8
+  startupFrames: 12
   activeFrames: 3
-  recoveryFrames: 15
-  hitstunTicks: 22
+  recoveryFrames: 22
+  hitstunTicks: 19
   blockstunTicks: 16
   knockdownDurationTicks: 36
   hitstopAttacker: 5
@@ -37,11 +37,11 @@ MonoBehaviour:
   advantageOnBlock: -8
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 1050
+  damage: 1100
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: fc205b2c2489342848d17b2b5e3a25e2, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Aika_214B
-  clip: {fileID: 7400000, guid: 8de5c91b801a1ed4e8ba5d60ee3c51d8, type: 3}
-  clipFirstFrame: 34
-  clipLastFrame: 54
+  clipName: Grab_Break_B
+  clip: {fileID: 6769801902334409569, guid: eac2bc49ba9b7264b8097df108027519, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 20
   events: []

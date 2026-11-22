@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_C05_j.C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Aerial Heavy
+  attackName: Air Downward Cleave
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 19
+  startupFrames: 14
   activeFrames: 3
-  recoveryFrames: 38
-  hitstunTicks: 15
-  blockstunTicks: 11
+  recoveryFrames: 25
+  hitstunTicks: 21
+  blockstunTicks: 18
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 7
+  hitstopDefender: 7
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -41,8 +41,8 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
-  pushbackOnHit: 1
-  pushbackOnBlock: 0.6
+  pushbackOnHit: 1.5
+  pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
   causesWallSplat: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 593dd05f6593b4c89a7dbd1b4d1f3e05, type: 2}
   motionTrack: {fileID: 0}
-  clipName: BB_spear_j_C
-  clip: {fileID: 3060872287085348379, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  clipName: HumanM@Attack2H01
+  clip: {fileID: 3094330708855449807, guid: a3b2bd75dc433e742844e9c7e0ecb01e, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 27
+  clipLastFrame: 38
   events: []

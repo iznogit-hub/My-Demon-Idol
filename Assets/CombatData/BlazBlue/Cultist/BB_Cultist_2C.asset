@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Cultist_2C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Abyssal Geyser
+  attackName: Ground Glyph Eruption
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 19
+  startupFrames: 14
   activeFrames: 3
-  recoveryFrames: 36
-  hitstunTicks: 25
-  blockstunTicks: 14
+  recoveryFrames: 28
+  hitstunTicks: 21
+  blockstunTicks: 18
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 7
+  hitstopDefender: 7
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -9
@@ -41,13 +41,13 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1.5
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 0
+  causesKnockdown: 1
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
@@ -70,7 +70,7 @@ MonoBehaviour:
   attribute: 4
   invuln: []
   fatalCounter: 0
-  hardKnockdown: 0
+  hardKnockdown: 1
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 5150b4443a9b44ce48eac57d319cd731, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Cultist_2C
+  clipName: HumanM@MagicAttackDirect2H01 - Cast
   clip: {fileID: 3094330708855449807, guid: bc8cbcd09bf81b646b58bf68f9f55d95, type: 3}
-  clipFirstFrame: 90
-  clipLastFrame: 116
+  clipFirstFrame: 0
+  clipLastFrame: 23
   events: []

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Aika_2C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Karate Sweep
+  attackName: Sweep Kick
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 16
+  startupFrames: 13
   activeFrames: 3
-  recoveryFrames: 31
+  recoveryFrames: 26
   hitstunTicks: 20
-  blockstunTicks: 14
+  blockstunTicks: 17
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 7
+  hitstopDefender: 7
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -10
@@ -41,13 +41,13 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1.5
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 0
+  causesKnockdown: 1
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
@@ -70,7 +70,7 @@ MonoBehaviour:
   attribute: 2
   invuln: []
   fatalCounter: 0
-  hardKnockdown: 0
+  hardKnockdown: 1
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 02ad9e7aa1bfc41e5bd7ec361348d4fe, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Aika_2C
+  clipName: Grab_Break_A
   clip: {fileID: -413915583566188894, guid: 35e6a374d022a054caefeae0a79e193c, type: 3}
-  clipFirstFrame: 492
-  clipLastFrame: 514
+  clipFirstFrame: 0
+  clipLastFrame: 20
   events: []

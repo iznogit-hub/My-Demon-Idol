@@ -379,6 +379,7 @@ namespace DemonIdol.BlazBlue
 
                         defender.bbState = BBState.Blockstun;
                         defender.blockstunRemaining = blockstun;
+                        if (defender.animDriver != null) defender.animDriver.UpdateLocomotionState(defender.bbState, 4, defender.isGrounded);
                         PushbackSolver.ApplyPushback(attacker.fighter, defender.fighter, 0.3f, attacker.fighter.FacingDirection, 1.0f);
                     }
 
@@ -434,8 +435,17 @@ namespace DemonIdol.BlazBlue
                     int decayedHitstun = attacker.comboState.CalculateDecayedHitstun(hitstun, defender.isGrounded);
                     if (isCounterHit) decayedHitstun = Mathf.RoundToInt(decayedHitstun * 1.5f);
 
-                    defender.bbState = BBState.Hitstun;
-                    defender.hitstunRemaining = decayedHitstun;
+                    if (attacker.currentAttack != null && (attacker.currentAttack.causesKnockdown || attacker.currentAttack.hardKnockdown))
+                    {
+                        defender.bbState = BBState.DownWait;
+                        defender.hitstunRemaining = attacker.currentAttack.knockdownDurationTicks > 0 ? attacker.currentAttack.knockdownDurationTicks : 36;
+                    }
+                    else
+                    {
+                        defender.bbState = BBState.Hitstun;
+                        defender.hitstunRemaining = decayedHitstun;
+                    }
+                    if (defender.animDriver != null) defender.animDriver.UpdateLocomotionState(defender.bbState, 5, defender.isGrounded);
 
                     attacker.hitstopRemaining = hitstopA;
                     defender.hitstopRemaining = hitstopD;

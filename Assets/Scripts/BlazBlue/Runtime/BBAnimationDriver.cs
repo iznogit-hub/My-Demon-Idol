@@ -304,6 +304,31 @@ namespace DemonIdol.BlazBlue
                     SetParamBool("IsCrouch", false);
                     SetParamBool("IsBlocking", false);
                     break;
+
+                case BBState.Hitstun:
+                    SetParamTrigger("HitMid");
+                    SetParamBool("IsGrounded", isGrounded);
+                    SetParamBool("IsBlocking", false);
+                    break;
+
+                case BBState.Blockstun:
+                case BBState.BarrierBlockstun:
+                    SetParamTrigger("StandBlock");
+                    SetParamBool("IsBlocking", true);
+                    SetParamBool("IsGrounded", isGrounded);
+                    break;
+
+                case BBState.DownWait:
+                    SetParamTrigger("Knockdown");
+                    SetParamBool("IsGrounded", true);
+                    SetParamBool("IsBlocking", false);
+                    break;
+
+                case BBState.Wakeup:
+                    SetParamTrigger("StandUpBack");
+                    SetParamBool("IsGrounded", true);
+                    SetParamBool("IsBlocking", false);
+                    break;
             }
         }
 

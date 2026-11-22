@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_C05_236A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Advancing Flurry
+  attackName: Lunging Lancer
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 16
+  startupFrames: 9
   activeFrames: 3
-  recoveryFrames: 31
-  hitstunTicks: 15
-  blockstunTicks: 11
+  recoveryFrames: 18
+  hitstunTicks: 16
+  blockstunTicks: 13
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 5
+  hitstopDefender: 5
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -42,7 +42,7 @@ MonoBehaviour:
   initialProration: 0.9
   comboDamageDecay: 0.92
   pushbackOnHit: 1
-  pushbackOnBlock: 0.6
+  pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
   causesWallSplat: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 69c6f68afaf97444092503e676aba85e, type: 2}
   motionTrack: {fileID: 0}
-  clipName: BB_spear_236A
-  clip: {fileID: 1827226128182048838, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
+  clipName: Attack1
+  clip: {fileID: 7400000, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 33
+  clipLastFrame: 20
   events: []

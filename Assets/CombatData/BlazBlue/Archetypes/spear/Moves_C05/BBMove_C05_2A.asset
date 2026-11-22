@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_C05_2A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Low Poke
+  attackName: Low Spear Poke
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 21
+  startupFrames: 8
   activeFrames: 3
-  recoveryFrames: 42
+  recoveryFrames: 16
   hitstunTicks: 15
-  blockstunTicks: 11
+  blockstunTicks: 12
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 5
+  hitstopDefender: 5
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -42,7 +42,7 @@ MonoBehaviour:
   initialProration: 0.9
   comboDamageDecay: 0.92
   pushbackOnHit: 1
-  pushbackOnBlock: 0.6
+  pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
   causesWallSplat: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 09a4b8830bf1b4efbad4345a0ad95e41, type: 2}
   motionTrack: {fileID: 0}
-  clipName: BB_spear_2A
+  clipName: HumanF@Attack1H01_R
   clip: {fileID: 3094330708855449807, guid: 408142c06e2d48c4db8065d1fbbcc8eb, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 27
+  clipLastFrame: 26
   events: []

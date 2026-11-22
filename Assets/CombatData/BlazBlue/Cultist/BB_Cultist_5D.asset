@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Cultist_5D
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Drive Nova
+  attackName: Hex Field Drive
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 30
+  startupFrames: 18
   activeFrames: 3
-  recoveryFrames: 61
-  hitstunTicks: 0
-  blockstunTicks: 0
+  recoveryFrames: 32
+  hitstunTicks: 25
+  blockstunTicks: 22
   knockdownDurationTicks: 36
   hitstopAttacker: 5
   hitstopDefender: 5
@@ -41,7 +41,7 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: f6f97ff627a3d46fd8c4c05d3befe076, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Cultist_5D
+  clipName: HumanM@MagicAttackOmni01
   clip: {fileID: 3094330708855449807, guid: b98582042c1292a4e81193a2e417a4d2, type: 3}
-  clipFirstFrame: 30
-  clipLastFrame: 55
+  clipFirstFrame: 0
+  clipLastFrame: 38
   events: []

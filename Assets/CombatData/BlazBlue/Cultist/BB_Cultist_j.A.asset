@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Cultist_j.A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Aerial Spark
+  attackName: Air Dark Needle
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 23
+  startupFrames: 8
   activeFrames: 3
-  recoveryFrames: 46
-  hitstunTicks: 12
-  blockstunTicks: 9
+  recoveryFrames: 14
+  hitstunTicks: 15
+  blockstunTicks: 12
   knockdownDurationTicks: 36
   hitstopAttacker: 5
   hitstopDefender: 5
@@ -41,7 +41,7 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -97,8 +97,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: d2ea8da1d021d4231b5324934d9a5e3a, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Cultist_jA
-  clip: {fileID: 3094330708855449807, guid: 0ec27b2ee6dda6d459311de3c0df0adb, type: 3}
-  clipFirstFrame: 12
-  clipLastFrame: 28
+  clipName: HumanM@MagicAttackDirect1H01_R - Load
+  clip: {fileID: 3094330708855449807, guid: 3763882290e6e4348831adc7e32fa919, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 40
   events: []

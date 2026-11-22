@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Aika_5D
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Resonance Nail
+  attackName: Acrobatic Drive
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 14
+  startupFrames: 18
   activeFrames: 3
-  recoveryFrames: 27
-  hitstunTicks: 18
-  blockstunTicks: 15
+  recoveryFrames: 32
+  hitstunTicks: 25
+  blockstunTicks: 22
   knockdownDurationTicks: 36
   hitstopAttacker: 5
   hitstopDefender: 5
@@ -41,7 +41,7 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -96,8 +96,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: fcefb95adff4e472e9b36283f47975c4, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Aika_5D
+  clipName: Atk_P_3
   clip: {fileID: -1965278401889439510, guid: 41c671c664a454d42a876d6a1b7ae937, type: 3}
-  clipFirstFrame: 40
-  clipLastFrame: 60
+  clipFirstFrame: 0
+  clipLastFrame: 18
   events: []

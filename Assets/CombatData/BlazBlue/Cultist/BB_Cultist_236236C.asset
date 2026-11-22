@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Cultist_236236C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Mage Eruption
+  attackName: Cataclysmic Void Nova
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 19
-  activeFrames: 3
-  recoveryFrames: 38
-  hitstunTicks: 35
-  blockstunTicks: 22
+  startupFrames: 14
+  activeFrames: 4
+  recoveryFrames: 30
+  hitstunTicks: 22
+  blockstunTicks: 19
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 12
+  hitstopDefender: 12
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -12
@@ -41,13 +41,13 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1.5
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 0
+  causesKnockdown: 1
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
     endTick: 12
     mask: 56
   fatalCounter: 0
-  hardKnockdown: 0
+  hardKnockdown: 1
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -92,13 +92,13 @@ MonoBehaviour:
   ddCancel: 0
   jumpCancelOnHit: 0
   jumpCancelOnBlock: 0
-  rapidCancelable: 1
+  rapidCancelable: 0
   followUps: []
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: b302bafd3efad4590b899ee8ef282b5b, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Cultist_236236C
-  clip: {fileID: 3060872287085348379, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
-  clipFirstFrame: 40
-  clipLastFrame: 80
+  clipName: Sorceress_Nova
+  clip: {fileID: 3060872287085348379, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 24
   events: []

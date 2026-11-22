@@ -86,6 +86,12 @@ namespace DemonIdol.Editor
             BBAllTestsRunner.RunAllSuites();
         }
 
+        [MenuItem("Demon Idol/Verify/Run Batch 1 Proof", priority = 33)]
+        public static void RunBatch1Proof()
+        {
+            Batch1PolishProofRunner.StartProof();
+        }
+
         // =========================================================================
         // FIGHTERS
         // =========================================================================
@@ -105,6 +111,12 @@ namespace DemonIdol.Editor
         public static void RunClipInventory()
         {
             BBClipInventoryTool.GenerateInventory();
+        }
+
+        [MenuItem("Demon Idol/Fighters/Apply Batch 1 Polish", priority = 43)]
+        public static void ApplyBatch1Polish()
+        {
+            Batch1CharacterPolishTool.ApplyBatch1Polish();
         }
 
         // =========================================================================

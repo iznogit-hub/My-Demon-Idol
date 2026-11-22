@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_UnityChan_2B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Low Kick
+  attackName: Crouching Low Kick
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 17
+  startupFrames: 10
   activeFrames: 3
-  recoveryFrames: 34
-  hitstunTicks: 14
-  blockstunTicks: 11
+  recoveryFrames: 20
+  hitstunTicks: 17
+  blockstunTicks: 14
   knockdownDurationTicks: 36
   hitstopAttacker: 5
   hitstopDefender: 5
@@ -41,7 +41,7 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 798aff975358a42aabcb910ef28121bb, type: 2}
   motionTrack: {fileID: 0}
-  clipName: UChan_2B
+  clipName: Atk_K_1
   clip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
-  clipFirstFrame: 630
-  clipLastFrame: 648
+  clipFirstFrame: 0
+  clipLastFrame: 22
   events: []
