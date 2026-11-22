@@ -9,8 +9,8 @@ namespace DemonIdol.BlazBlue.Visual
     public enum BBWarriorType
     {
         None,
-        Swordsman,    // C01 Akio (One-Handed Sword)
-        Karate,       // C02 Aika (Unarmed Karate Kata)
+        Swordsman,    // One-Handed Sword
+        Karate,       // Unarmed Karate Kata
         Brute,        // C03 Ren (Heavy Brawler)
         Archer,       // C04 UnityChan (Bow & Arrow)
         Spearman,     // C05 Akane (Spear / Halberd)

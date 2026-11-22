@@ -21,7 +21,7 @@ MonoBehaviour:
     hy: 0.45
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
   - cx: 0.95
     cy: 0.05
@@ -29,7 +29,7 @@ MonoBehaviour:
     hy: 0.45
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
   - cx: 0.95
     cy: 0.05
@@ -37,7 +37,7 @@ MonoBehaviour:
     hy: 0.45
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
   keyTicks: 0b000000i
   bakeHash: Bake_StellarWitch_j.B_9_4_12

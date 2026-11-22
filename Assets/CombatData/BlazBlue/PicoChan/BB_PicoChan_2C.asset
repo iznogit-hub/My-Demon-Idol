@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: -2848545796736985332, guid: 4001c0c0bd7783f49b26d816310b87b2, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.65, y: 0.35, z: 0}
-  hitboxSize: {x: 1.3, y: 0.5, z: 1}
+  hitboxOffset: {x: 0.85, y: 0.35, z: 0}
+  hitboxSize: {x: 1.4, y: 0.5, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 2C

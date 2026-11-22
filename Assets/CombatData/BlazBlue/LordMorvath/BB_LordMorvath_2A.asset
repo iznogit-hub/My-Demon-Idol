@@ -15,29 +15,29 @@ MonoBehaviour:
   tickCount: 56
   frameStart: 000000000000000000000000000000000000000000000000000000000000000001000000020000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0.55
+  - cx: 0.65
     cy: 1.25
-    hx: 0.55
+    hx: 0.65
     hy: 0.3
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
-  - cx: 0.55
+  - cx: 0.65
     cy: 1.25
-    hx: 0.55
+    hx: 0.65
     hy: 0.3
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
-  - cx: 0.55
+  - cx: 0.65
     cy: 1.25
-    hx: 0.55
+    hx: 0.65
     hy: 0.3
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
   keyTicks: 07000000i
   bakeHash: 
@@ -97,8 +97,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.55, y: 1.25, z: 0}
-  hitboxSize: {x: 1.1, y: 0.6, z: 1}
+  hitboxOffset: {x: 0.65, y: 1.25, z: 0}
+  hitboxSize: {x: 1.3, y: 0.6, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 2A

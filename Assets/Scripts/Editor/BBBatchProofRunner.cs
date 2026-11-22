@@ -9,15 +9,31 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DemonIdol.BlazBlue;
+using DemonIdol.BlazBlue.Editor;
 using DemonIdol.Combat;
 using DemonIdol.Launch;
 
 namespace DemonIdol.Editor
 {
+    [InitializeOnLoad]
     public static class BBBatchProofRunner
     {
-        public const string ScreenshotBaseDir = "Screenshots/fightfeel/batch2";
+        public const string TRIGGER_BATCH1 = "run_batch1_proof.trigger";
+        public const string TRIGGER_BATCH2 = "run_batch2_proof.trigger";
+        public const string TRIGGER_BATCH3 = "run_batch3_proof.trigger";
+        public const string TRIGGER_BATCH4 = "run_batch4_proof.trigger";
+        public const string TRIGGER_BATCH5 = "run_batch5_proof.trigger";
+        public const string TRIGGER_APPLY_MAPPING = "apply_clip_mapping.trigger";
+        public const string TRIGGER_EXPORT_TRACKER = "export_tracker.trigger";
+
+        public static string CurrentScreenshotBaseDir = "Screenshots/fightfeel/batch1";
+
+        public static readonly string[] Batch1Fighters = new string[] { "C01", "C02", "C04", "C05", "C06" };
         public static readonly string[] Batch2Fighters = new string[] { "C07", "C08", "C09", "C10", "C11" };
+        public static readonly string[] Batch3Fighters = new string[] { "C12", "C13", "C14", "SK02", "SK03" };
+        public static readonly string[] Batch4Fighters = new string[] { "SK05", "SK06", "SK08", "EX01", "EX02" };
+        public static readonly string[] Batch5Fighters = new string[] { "EX03", "EX04", "EX05", "EX06", "EX07" };
+
         public static readonly string[] RequiredMoves = new string[]
         {
             "5A", "5B", "5C", "2A", "2B", "2C", "j.A", "j.B", "j.C", "5D", "BC", "236A", "214B", "236236C"
@@ -36,23 +52,96 @@ namespace DemonIdol.Editor
 
         public static List<MoveLogResult> RawResults = new List<MoveLogResult>();
 
+        static BBBatchProofRunner()
+        {
+            EditorApplication.update -= OnEditorUpdate;
+            EditorApplication.update += OnEditorUpdate;
+        }
+
+        private static void OnEditorUpdate()
+        {
+            if (File.Exists(TRIGGER_APPLY_MAPPING))
+            {
+                try { File.Delete(TRIGGER_APPLY_MAPPING); } catch { }
+                BBClipMappingTool.ApplyClipMapping();
+            }
+            if (File.Exists(TRIGGER_EXPORT_TRACKER))
+            {
+                try { File.Delete(TRIGGER_EXPORT_TRACKER); } catch { }
+                BBMovesetTrackerExporter.ExportMovesetTracker();
+            }
+            if (File.Exists(TRIGGER_BATCH1))
+            {
+                try { File.Delete(TRIGGER_BATCH1); } catch { }
+                RunBatch1Proof();
+            }
+            if (File.Exists(TRIGGER_BATCH2))
+            {
+                try { File.Delete(TRIGGER_BATCH2); } catch { }
+                RunBatch2Proof();
+            }
+            if (File.Exists(TRIGGER_BATCH3))
+            {
+                try { File.Delete(TRIGGER_BATCH3); } catch { }
+                RunBatch3Proof();
+            }
+            if (File.Exists(TRIGGER_BATCH4))
+            {
+                try { File.Delete(TRIGGER_BATCH4); } catch { }
+                RunBatch4Proof();
+            }
+            if (File.Exists(TRIGGER_BATCH5))
+            {
+                try { File.Delete(TRIGGER_BATCH5); } catch { }
+                RunBatch5Proof();
+            }
+        }
+
+        public static void RunBatch1Proof()
+        {
+            CurrentScreenshotBaseDir = "Screenshots/fightfeel/batch1";
+            RunBatchProofGeneric("BATCH 1", Batch1Fighters);
+        }
+
         public static void RunBatch2Proof()
         {
-            Debug.Log("<color=#00e676>[BBBatchProofRunner] ====================================================</color>");
-            Debug.Log("<color=#00e676>[BBBatchProofRunner] STARTING BATCH 2 FIGHT-FEEL PROOF RUNNER...</color>");
-            Debug.Log("<color=#00e676>[BBBatchProofRunner] Testing C07, C08, C09, C10, C11 in BOTH P1 and P2 slots</color>");
-            Debug.Log("<color=#00e676>[BBBatchProofRunner] ====================================================</color>");
+            CurrentScreenshotBaseDir = "Screenshots/fightfeel/batch2";
+            RunBatchProofGeneric("BATCH 2", Batch2Fighters);
+        }
+
+        public static void RunBatch3Proof()
+        {
+            CurrentScreenshotBaseDir = "Screenshots/fightfeel/batch3";
+            RunBatchProofGeneric("BATCH 3", Batch3Fighters);
+        }
+
+        public static void RunBatch4Proof()
+        {
+            CurrentScreenshotBaseDir = "Screenshots/fightfeel/batch4";
+            RunBatchProofGeneric("BATCH 4", Batch4Fighters);
+        }
+
+        public static void RunBatch5Proof()
+        {
+            CurrentScreenshotBaseDir = "Screenshots/fightfeel/batch5";
+            RunBatchProofGeneric("BATCH 5", Batch5Fighters);
+        }
+
+        private static void RunBatchProofGeneric(string batchName, string[] fighters)
+        {
+            Debug.Log($"<color=#00e676>[BBBatchProofRunner] ====================================================</color>");
+            Debug.Log($"<color=#00e676>[BBBatchProofRunner] STARTING {batchName} FIGHT-FEEL PROOF RUNNER...</color>");
+            Debug.Log($"<color=#00e676>[BBBatchProofRunner] Testing {string.Join(", ", fighters)} in BOTH P1 and P2 slots</color>");
+            Debug.Log($"<color=#00e676>[BBBatchProofRunner] ====================================================</color>");
 
             RawResults.Clear();
 
-            // Run proof pass for each fighter in Batch 2
-            foreach (var fighterId in Batch2Fighters)
+            foreach (var fighterId in fighters)
             {
                 RunFighterSlotProof(fighterId, 0); // As Player 1
                 RunFighterSlotProof(fighterId, 1); // As Player 2
             }
 
-            // Summary of raw logs
             Debug.Log("<color=#00e676>[BBBatchProofRunner] ==================== RAW LOG REPORT ====================</color>");
             int total = RawResults.Count;
             int hits = 0;
@@ -66,8 +155,9 @@ namespace DemonIdol.Editor
 
         public static void RunFighterSlotProof(string fighterId, int slot)
         {
-            string p1Id = slot == 0 ? fighterId : "C01";
-            string p2Id = slot == 1 ? fighterId : "C01";
+            string dummyId = fighterId == "C07" ? "C01" : "C07";
+            string p1Id = slot == 0 ? fighterId : dummyId;
+            string p2Id = slot == 1 ? fighterId : dummyId;
 
             PlayerPrefs.SetString("MDI_P1_CharacterId", p1Id);
             PlayerPrefs.SetString("MDI_P2_CharacterId", p2Id);
@@ -97,55 +187,52 @@ namespace DemonIdol.Editor
             var targetSampler = targetFighter.GetComponent<BBInputSampler>();
             var sim = BBMatchSim.Instance;
 
-            // Check C07 Model_C07 FighterController component removal and foot height
-            if (fighterId == "C07")
+            // Check nested FighterController removal
+            var targetModelChild = targetFighter.transform.Find("Model_" + fighterId);
+            if (targetModelChild != null)
             {
-                var modelChild = targetFighter.transform.Find("Model_C07");
-                if (modelChild != null)
+                var nestedFc = targetModelChild.GetComponent<FighterController>();
+                if (nestedFc != null)
                 {
-                    var nestedFc = modelChild.GetComponent<FighterController>();
-                    if (nestedFc != null)
-                    {
-                        Debug.LogError($"[BBBatchProofRunner] VIOLATION: Model_C07 still has nested FighterController!");
-                    }
-                    else
-                    {
-                        Debug.Log($"<color=#00e676>[BBBatchProofRunner] PASS: Nested FighterController on Model_C07 is confirmed removed.</color>");
-                    }
+                    Debug.LogError($"[BBBatchProofRunner] VIOLATION: Model_{fighterId} still has nested FighterController!");
                 }
-
-                // Check foot height from floor (floor is Y = 0)
-                float footY = targetFighter.transform.position.y;
-                var anim = targetFighter.GetComponentInChildren<Animator>();
-                if (anim != null && anim.isHuman)
+                else
                 {
-                    var leftToes = anim.GetBoneTransform(HumanBodyBones.LeftToes);
-                    var rightToes = anim.GetBoneTransform(HumanBodyBones.RightToes);
-                    if (leftToes != null && rightToes != null)
-                    {
-                        footY = Mathf.Min(leftToes.position.y, rightToes.position.y);
-                    }
-                    else
-                    {
-                        var leftFoot = anim.GetBoneTransform(HumanBodyBones.LeftFoot);
-                        var rightFoot = anim.GetBoneTransform(HumanBodyBones.RightFoot);
-                        if (leftFoot != null && rightFoot != null)
-                        {
-                            footY = Mathf.Min(leftFoot.position.y, rightFoot.position.y) - 0.08f;
-                        }
-                    }
+                    Debug.Log($"<color=#00e676>[BBBatchProofRunner] PASS: Nested FighterController on Model_{fighterId} is confirmed removed.</color>");
                 }
-                float modelScale = targetFighter.transform.localScale.x;
-                if (anim != null && anim.transform != targetFighter.transform)
-                {
-                    modelScale = anim.transform.localScale.x;
-                }
-                Debug.Log($"<color=#00e676>[BBBatchProofRunner] C07 foot height in slot P{slot + 1}: {footY:F3}m (allowed <= 0.05m)</color>");
-                Debug.Log($"<color=#00e676>[BBBatchProofRunner] C07 scale in slot P{slot + 1}: {modelScale:F4} (expected 1.1575)</color>");
             }
 
+            // Check foot height from floor (floor is Y = 0)
+            float footY = targetFighter.transform.position.y;
+            var anim = targetFighter.GetComponentInChildren<Animator>();
+            if (anim != null && anim.isHuman)
+            {
+                var leftToes = anim.GetBoneTransform(HumanBodyBones.LeftToes);
+                var rightToes = anim.GetBoneTransform(HumanBodyBones.RightToes);
+                if (leftToes != null && rightToes != null)
+                {
+                    footY = Mathf.Min(leftToes.position.y, rightToes.position.y);
+                }
+                else
+                {
+                    var leftFoot = anim.GetBoneTransform(HumanBodyBones.LeftFoot);
+                    var rightFoot = anim.GetBoneTransform(HumanBodyBones.RightFoot);
+                    if (leftFoot != null && rightFoot != null)
+                    {
+                        footY = Mathf.Min(leftFoot.position.y, rightFoot.position.y) - 0.08f;
+                    }
+                }
+            }
+            float modelScale = targetFighter.transform.localScale.x;
+            if (anim != null && anim.transform != targetFighter.transform)
+            {
+                modelScale = anim.transform.localScale.x;
+            }
+            Debug.Log($"<color=#00e676>[BBBatchProofRunner] {fighterId} foot height in slot P{slot + 1}: {footY:F3}m (allowed <= 0.05m)</color>");
+            Debug.Log($"<color=#00e676>[BBBatchProofRunner] {fighterId} scale in slot P{slot + 1}: {modelScale:F4}</color>");
+
             // Capture Idle screenshot
-            string charDir = Path.Combine(ScreenshotBaseDir, fighterId);
+            string charDir = Path.Combine(CurrentScreenshotBaseDir, fighterId);
             if (!Directory.Exists(charDir)) Directory.CreateDirectory(charDir);
 
             if (slot == 0)
@@ -205,12 +292,10 @@ namespace DemonIdol.Editor
             // Capture Block and Knockdown screenshots
             if (slot == 0)
             {
-                // Reposition
                 targetFighter.transform.position = new Vector3(-1.25f * 0.5f, 0f, 0f);
                 dummyFighter.transform.position = new Vector3(1.25f * 0.5f, 0f, 0f);
                 dummyBrain.health = dummyBrain.maxHealth;
 
-                // Dummy blocks by holding back (4: negative X for dummy at P2)
                 var dummySampler = dummyFighter.GetComponent<BBInputSampler>();
                 if (dummySampler != null)
                 {

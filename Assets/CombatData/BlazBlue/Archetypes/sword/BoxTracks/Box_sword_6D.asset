@@ -17,32 +17,32 @@ MonoBehaviour:
   boxes:
   - cx: 0.85
     cy: 0.95
-    hx: 0.45
-    hy: 0.32
+    hx: 0.4
+    hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0.85
     cy: 0.95
-    hx: 0.45
-    hy: 0.32
+    hx: 0.4
+    hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0.85
     cy: 0.95
-    hx: 0.45
-    hy: 0.32
+    hx: 0.4
+    hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0.85
     cy: 0.95
-    hx: 0.45
-    hy: 0.32
+    hx: 0.4
+    hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2

@@ -22,7 +22,7 @@ namespace DemonIdol.BlazBlue
         {
             switch (id)
             {
-                case "C01": return Make(id, "Iron Rush", BBWarriorType.Karate, 0.95f, 0.55f, "unarmed");
+                case "C01": return Make(id, "Iron Rush", BBWarriorType.Karate, 0.95f, 0.70f, "unarmed");
                 case "C02": return Make(id, "Resonance Nail", BBWarriorType.Karate, 0.92f, 0.55f, "unarmed");
                 case "C04": return Make(id, "Aero Hop", BBWarriorType.Karate, 0.90f, 0.55f, "unarmed");
                 case "C05": return Make(id, "Echoing Mandate", BBWarriorType.Spearman, 0.88f, 1.15f, "spear");

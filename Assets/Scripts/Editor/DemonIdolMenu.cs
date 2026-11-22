@@ -86,10 +86,34 @@ namespace DemonIdol.Editor
             BBAllTestsRunner.RunAllSuites();
         }
 
-        [MenuItem("Demon Idol/Verify/Run Batch 2 Proof", priority = 33)]
+        [MenuItem("Demon Idol/Verify/Run Batch 1 Proof", priority = 33)]
+        public static void RunBatch1Proof()
+        {
+            BBBatchProofRunner.RunBatch1Proof();
+        }
+
+        [MenuItem("Demon Idol/Verify/Run Batch 2 Proof", priority = 34)]
         public static void RunBatch2Proof()
         {
             BBBatchProofRunner.RunBatch2Proof();
+        }
+
+        [MenuItem("Demon Idol/Verify/Run Batch 3 Proof", priority = 35)]
+        public static void RunBatch3Proof()
+        {
+            BBBatchProofRunner.RunBatch3Proof();
+        }
+
+        [MenuItem("Demon Idol/Verify/Run Batch 4 Proof", priority = 36)]
+        public static void RunBatch4Proof()
+        {
+            BBBatchProofRunner.RunBatch4Proof();
+        }
+
+        [MenuItem("Demon Idol/Verify/Run Batch 5 Proof", priority = 37)]
+        public static void RunBatch5Proof()
+        {
+            BBBatchProofRunner.RunBatch5Proof();
         }
 
         // =========================================================================
