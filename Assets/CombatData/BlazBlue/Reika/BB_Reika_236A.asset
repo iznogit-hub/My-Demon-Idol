@@ -18,29 +18,29 @@ MonoBehaviour:
   guardRequirement: 0
   isDuckableHigh: 0
   crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
+  crushStartTick: 0
+  crushEndTick: 0
   hasArmor: 0
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
   startupFrames: 12
-  activeFrames: 4
-  recoveryFrames: 15
-  hitstunTicks: 18
-  blockstunTicks: 15
+  activeFrames: 3
+  recoveryFrames: 20
+  hitstunTicks: 17
+  blockstunTicks: 16
   knockdownDurationTicks: 36
-  hitstopAttacker: 10
-  hitstopDefender: 10
-  hitstopOnBlock: 4
+  hitstopAttacker: 11
+  hitstopDefender: 11
+  hitstopOnBlock: 11
   counterHitStopBonus: 4
-  advantageOnBlock: -2
-  advantageOnHit: 4
+  advantageOnBlock: -6
+  advantageOnHit: -5
   advantageOnCounterHit: 8
-  damage: 1040
+  damage: 1007
   chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
+  initialProration: 0.89
+  comboDamageDecay: 0.89
   pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
@@ -66,6 +66,7 @@ MonoBehaviour:
   motion: 1
   airOk: 0
   groundOk: 1
+  attackLevel: 3
   guard: 0
   attribute: 2
   invuln: []
@@ -79,7 +80,7 @@ MonoBehaviour:
   untechableTicks: 18
   untechableTicksCH: 27
   airHitVelocity: {x: 1.5, y: 5}
-  landingRecovery: 4
+  landingRecovery: 0
   minDamagePct: 0.08
   chipPct: 0
   heatGainOverride: -1
@@ -98,4 +99,5 @@ MonoBehaviour:
   clip: {fileID: 1827226128182048838, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 20
+  measuredImpactFrame: 19
   events: []

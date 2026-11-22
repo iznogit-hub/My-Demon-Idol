@@ -12,43 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BB_Hugo_214B_Boxes
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 38
-  frameStart: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000i
+  tickCount: 39
+  frameStart: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000i
   boxes:
-  - cx: 1.15
-    cy: 1.15
-    hx: 0.825
-    hy: 0.35
+  - cx: 0.7205882
+    cy: 1.35
+    hx: 0.5147059
+    hy: 0.45
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 1.15
-    cy: 1.15
-    hx: 0.825
-    hy: 0.35
+  - cx: 0.7205882
+    cy: 1.35
+    hx: 0.5147059
+    hy: 0.45
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 1.15
-    cy: 1.15
-    hx: 0.825
-    hy: 0.35
+  - cx: 0.7205882
+    cy: 1.35
+    hx: 0.5147059
+    hy: 0.45
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 1.15
-    cy: 1.15
-    hx: 0.825
-    hy: 0.35
+  - cx: 0.7205882
+    cy: 1.35
+    hx: 0.5147059
+    hy: 0.45
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  keyTicks: 0f000000i
-  bakeHash: 
+  keyTicks: 10000000i
+  bakeHash: Bake_EX01_214B_16_4_19
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,28 +67,28 @@ MonoBehaviour:
   guardRequirement: 0
   isDuckableHigh: 0
   crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
+  crushStartTick: 0
+  crushEndTick: 0
   hasArmor: 0
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 15
+  startupFrames: 16
   activeFrames: 4
   recoveryFrames: 19
-  hitstunTicks: 18
-  blockstunTicks: 15
+  hitstunTicks: 19
+  blockstunTicks: 18
   knockdownDurationTicks: 36
-  hitstopAttacker: 10
-  hitstopDefender: 10
-  hitstopOnBlock: 4
+  hitstopAttacker: 12
+  hitstopDefender: 12
+  hitstopOnBlock: 12
   counterHitStopBonus: 4
-  advantageOnBlock: -2
-  advantageOnHit: 4
+  advantageOnBlock: -4
+  advantageOnHit: -3
   advantageOnCounterHit: 8
-  damage: 1190
+  damage: 1008
   chipDamageOnBlock: 0
-  initialProration: 0.85
+  initialProration: 0.92
   comboDamageDecay: 0.92
   pushbackOnHit: 1
   pushbackOnBlock: 0.8
@@ -96,7 +96,7 @@ MonoBehaviour:
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 1
+  causesKnockdown: 0
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
@@ -115,11 +115,12 @@ MonoBehaviour:
   motion: 2
   airOk: 0
   groundOk: 1
-  guard: 0
+  attackLevel: 4
+  guard: 2
   attribute: 2
   invuln: []
   fatalCounter: 0
-  hardKnockdown: 1
+  hardKnockdown: 0
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -128,7 +129,7 @@ MonoBehaviour:
   untechableTicks: 18
   untechableTicksCH: 27
   airHitVelocity: {x: 1.5, y: 5}
-  landingRecovery: 4
+  landingRecovery: 0
   minDamagePct: 0.08
   chipPct: 0
   heatGainOverride: -1
@@ -147,4 +148,5 @@ MonoBehaviour:
   clip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 22
+  measuredImpactFrame: 22
   events: []

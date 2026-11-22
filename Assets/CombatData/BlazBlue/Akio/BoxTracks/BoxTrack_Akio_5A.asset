@@ -15,29 +15,29 @@ MonoBehaviour:
   tickCount: 16
   frameStart: 0000000000000000000000000000000000000000000000000100000002000000030000000300000003000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0.65
-    cy: 1.25
-    hx: 0.65
-    hy: 0.3
+  - cx: 0.5051203
+    cy: 1.05
+    hx: 0.2645868
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.65
-    cy: 1.25
-    hx: 0.65
-    hy: 0.3
+  - cx: 0.5051203
+    cy: 1.05
+    hx: 0.2645868
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.65
-    cy: 1.25
-    hx: 0.65
-    hy: 0.3
+  - cx: 0.5051203
+    cy: 1.05
+    hx: 0.2645868
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
   keyTicks: 05000000i
-  bakeHash: Bake_Akio_5A_6_3_8
+  bakeHash: Bake_C01_5A_5_3_8

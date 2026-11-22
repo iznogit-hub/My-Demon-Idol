@@ -18,36 +18,36 @@ MonoBehaviour:
   guardRequirement: 0
   isDuckableHigh: 0
   crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
+  crushStartTick: 0
+  crushEndTick: 0
   hasArmor: 0
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 17
+  startupFrames: 8
   activeFrames: 5
-  recoveryFrames: 26
-  hitstunTicks: 32
-  blockstunTicks: 29
+  recoveryFrames: 40
+  hitstunTicks: 21
+  blockstunTicks: 20
   knockdownDurationTicks: 36
-  hitstopAttacker: 16
-  hitstopDefender: 16
-  hitstopOnBlock: 4
+  hitstopAttacker: 13
+  hitstopDefender: 13
+  hitstopOnBlock: 13
   counterHitStopBonus: 4
-  advantageOnBlock: -16
-  advantageOnHit: 4
+  advantageOnBlock: -24
+  advantageOnHit: -23
   advantageOnCounterHit: 8
-  damage: 2400
+  damage: 2300
   chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
+  initialProration: 0.94
+  comboDamageDecay: 0.94
   pushbackOnHit: 1.5
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 1
+  causesKnockdown: 0
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
@@ -66,14 +66,15 @@ MonoBehaviour:
   motion: 7
   airOk: 0
   groundOk: 1
+  attackLevel: 5
   guard: 0
   attribute: 2
   invuln:
-  - startTick: 1
-    endTick: 16
-    mask: 56
+  - startTick: 0
+    endTick: 8
+    mask: 7
   fatalCounter: 0
-  hardKnockdown: 1
+  hardKnockdown: 0
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -82,7 +83,7 @@ MonoBehaviour:
   untechableTicks: 18
   untechableTicksCH: 27
   airHitVelocity: {x: 1.5, y: 5}
-  landingRecovery: 4
+  landingRecovery: 0
   minDamagePct: 0.08
   chipPct: 0.12
   heatGainOverride: -1
@@ -101,4 +102,5 @@ MonoBehaviour:
   clip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 22
+  measuredImpactFrame: 22
   events: []

@@ -18,29 +18,29 @@ MonoBehaviour:
   guardRequirement: 0
   isDuckableHigh: 0
   crush: 0
-  crushStartTick: 4
-  crushEndTick: 18
+  crushStartTick: 0
+  crushEndTick: 0
   hasArmor: 0
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 5
+  startupFrames: 6
   activeFrames: 3
-  recoveryFrames: 8
+  recoveryFrames: 9
   hitstunTicks: 12
-  blockstunTicks: 9
+  blockstunTicks: 11
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
-  hitstopOnBlock: 4
+  hitstopAttacker: 9
+  hitstopDefender: 9
+  hitstopOnBlock: 9
   counterHitStopBonus: 4
-  advantageOnBlock: -2
-  advantageOnHit: 4
+  advantageOnBlock: 0
+  advantageOnHit: 1
   advantageOnCounterHit: 8
   damage: 270
   chipDamageOnBlock: 0
-  initialProration: 0.85
-  comboDamageDecay: 0.92
+  initialProration: 0.8
+  comboDamageDecay: 0.8
   pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
@@ -66,6 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 0
   groundOk: 1
+  attackLevel: 1
   guard: 0
   attribute: 2
   invuln: []
@@ -79,7 +80,7 @@ MonoBehaviour:
   untechableTicks: 18
   untechableTicksCH: 27
   airHitVelocity: {x: 1.5, y: 5}
-  landingRecovery: 4
+  landingRecovery: 0
   minDamagePct: 0.08
   chipPct: 0
   heatGainOverride: -1
@@ -98,6 +99,7 @@ MonoBehaviour:
   clip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 12
+  measuredImpactFrame: 12
   events: []
 --- !u!114 &8960795803951859696
 MonoBehaviour:
@@ -111,32 +113,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BB_Casual1_2A_Boxes
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 16
-  frameStart: 0000000000000000000000000000000000000000000000000100000002000000030000000300000003000000030000000300000003000000030000000300000003000000i
+  tickCount: 18
+  frameStart: 00000000000000000000000000000000000000000000000000000000010000000200000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0.7
-    cy: 0.4
-    hx: 0.675
+  - cx: 0.46316913
+    cy: 0.5
+    hx: 0.24408457
     hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.7
-    cy: 0.4
-    hx: 0.675
+  - cx: 0.46316913
+    cy: 0.5
+    hx: 0.24408457
     hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.7
-    cy: 0.4
-    hx: 0.675
+  - cx: 0.46316913
+    cy: 0.5
+    hx: 0.24408457
     hy: 0.3
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  keyTicks: 05000000i
-  bakeHash: 
+  keyTicks: 06000000i
+  bakeHash: Bake_C11_2A_6_3_9

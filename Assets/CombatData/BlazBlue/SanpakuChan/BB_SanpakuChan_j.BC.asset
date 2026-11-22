@@ -27,12 +27,12 @@ MonoBehaviour:
   startupFrames: 7
   activeFrames: 3
   recoveryFrames: 23
-  hitstunTicks: 18
-  blockstunTicks: 15
+  hitstunTicks: 12
+  blockstunTicks: 11
   knockdownDurationTicks: 36
-  hitstopAttacker: 11
-  hitstopDefender: 11
-  hitstopOnBlock: 4
+  hitstopAttacker: 9
+  hitstopDefender: 9
+  hitstopOnBlock: 9
   counterHitStopBonus: 4
   advantageOnBlock: 0
   advantageOnHit: 4
@@ -47,7 +47,7 @@ MonoBehaviour:
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 0
+  causesKnockdown: 1
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
@@ -66,12 +66,12 @@ MonoBehaviour:
   motion: 0
   airOk: 1
   groundOk: 0
-  attackLevel: -1
-  guard: 3
+  attackLevel: 1
+  guard: 0
   attribute: 2
   invuln: []
   fatalCounter: 0
-  hardKnockdown: 0
+  hardKnockdown: 1
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -99,4 +99,5 @@ MonoBehaviour:
   clip: {fileID: 3094330708855449807, guid: 6683d02f31b83724daa4714c986bd1f5, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 27
+  measuredImpactFrame: -1
   events: []

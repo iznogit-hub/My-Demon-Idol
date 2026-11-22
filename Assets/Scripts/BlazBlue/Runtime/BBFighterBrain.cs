@@ -536,8 +536,11 @@ namespace DemonIdol.BlazBlue
 
                 case BBState.Blockstun:
                 case BBState.BarrierBlockstun:
-                    if (blockstunRemaining > 0) blockstunRemaining--;
-                    if (blockstunRemaining <= 0)
+                    if (blockstunRemaining > 0)
+                    {
+                        blockstunRemaining--;
+                    }
+                    else
                     {
                         bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
                         stateTick = 0;
@@ -548,8 +551,11 @@ namespace DemonIdol.BlazBlue
                     break;
 
                 case BBState.Hitstun:
-                    if (hitstunRemaining > 0) hitstunRemaining--;
-                    if (hitstunRemaining <= 0)
+                    if (hitstunRemaining > 0)
+                    {
+                        hitstunRemaining--;
+                    }
+                    else
                     {
                         bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
                         stateTick = 0;

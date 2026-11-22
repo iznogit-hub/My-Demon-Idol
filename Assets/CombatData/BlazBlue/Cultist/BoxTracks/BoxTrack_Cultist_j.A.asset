@@ -15,29 +15,29 @@ MonoBehaviour:
   tickCount: 19
   frameStart: 0000000000000000000000000000000000000000000000000000000001000000020000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0.85
-    cy: -0.2
-    hx: 0.7
-    hy: 0.7
+  - cx: 0.6732276
+    cy: 0.75
+    hx: 0.42388406
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.85
-    cy: -0.2
-    hx: 0.7
-    hy: 0.7
+  - cx: 0.6732276
+    cy: 0.75
+    hx: 0.42388406
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.85
-    cy: -0.2
-    hx: 0.7
-    hy: 0.7
+  - cx: 0.6732276
+    cy: 0.75
+    hx: 0.42388406
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
   keyTicks: 06000000i
-  bakeHash: Bake_Cultist_j.A_5_3_8
+  bakeHash: Bake_C06_j.A_6_3_10

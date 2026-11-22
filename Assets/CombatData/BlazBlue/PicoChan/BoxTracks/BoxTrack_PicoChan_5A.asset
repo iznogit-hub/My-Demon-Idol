@@ -15,29 +15,29 @@ MonoBehaviour:
   tickCount: 18
   frameStart: 00000000000000000000000000000000000000000000000000000000010000000200000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0.75
-    cy: 1.25
-    hx: 0.725
-    hy: 0.325
+  - cx: 0.48218045
+    cy: 1.05
+    hx: 0.25257072
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.75
-    cy: 1.25
-    hx: 0.725
-    hy: 0.325
+  - cx: 0.48218045
+    cy: 1.05
+    hx: 0.25257072
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.75
-    cy: 1.25
-    hx: 0.725
-    hy: 0.325
+  - cx: 0.48218045
+    cy: 1.05
+    hx: 0.25257072
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
   keyTicks: 06000000i
-  bakeHash: Bake_PicoChan_5A_5_3_9
+  bakeHash: Bake_C09_5A_6_3_9

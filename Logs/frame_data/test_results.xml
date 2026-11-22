@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-22 22:40:11Z" end-time="2026-11-22 22:41:22Z" duration="71.357252">
+  <test-suite type="TestSuite" id="1023" name="My Demon Idol" fullname="My Demon Idol" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-22 22:40:11Z" end-time="2026-11-22 22:41:22Z" duration="71.357252" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1035" name="MDI.Tests.PlayMode.dll" fullname="/Users/amber/My Demon Idol/Library/ScriptAssemblies/MDI.Tests.PlayMode.dll" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-22 22:40:11Z" end-time="2026-11-22 22:41:22Z" duration="71.353093" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35299" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1036" name="DemonIdol" fullname="DemonIdol" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-22 22:40:11Z" end-time="2026-11-22 22:41:22Z" duration="71.346773" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1037" name="Tests" fullname="DemonIdol.Tests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-22 22:40:11Z" end-time="2026-11-22 22:41:22Z" duration="71.338249" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1038" name="PlayMode" fullname="DemonIdol.Tests.PlayMode" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-22 22:40:11Z" end-time="2026-11-22 22:41:22Z" duration="71.329926" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1033" name="BBFrameDataPlayTests" fullname="DemonIdol.Tests.PlayMode.BBFrameDataPlayTests" classname="DemonIdol.Tests.PlayMode.BBFrameDataPlayTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-22 22:40:11Z" end-time="2026-11-22 22:41:22Z" duration="71.321247" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1034" name="RunAllFrameDataGates" fullname="DemonIdol.Tests.PlayMode.BBFrameDataPlayTests.RunAllFrameDataGates" methodname="RunAllFrameDataGates" classname="DemonIdol.Tests.PlayMode.BBFrameDataPlayTests" runstate="Runnable" seed="254445597" result="Passed" start-time="2026-11-22 22:40:11Z" end-time="2026-11-22 22:41:22Z" duration="71.276428" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[
+IgnoreFailingMessages:true
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/smile1@unitychan.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/disstract2@unitychan.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/MTH_U.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/sap@unitychan.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/MTH_E.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/conf@unitychan.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/MTH_A.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/SURPRISE.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/angry1@unitychan.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/eye_close@unitychan.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/smile2@unitychan.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/MTH_I.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/angry2@unitychan.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/ASHAMED.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/disstract1@unitychan.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/MTH_O.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/unity-chan!/Unity-chan! Model/Art/Animations/FaceAnimation/default@unitychan.anim" contains a AnimationClip object at version 4, below the supported minimum (6). Open and re-save the file to upgrade.
+Serialized file "Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr spikes impact mesh.asset" contains a Mesh object at version 9, below the supported minimum (10). Open and re-save the file to upgrade.
+Serialized file "Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr ring mesh.asset" contains a Mesh object at version 9, below the supported minimum (10). Open and re-save the file to upgrade.
+<color=#00e676>[BBFrameDataPlayTests] Gate 1 PASSED: 350/350 moves match formula.</color>
+[BBMatchBootstrap] Fighter P1 (C01): model=resolved, profile=BBProfile_C01_Akio, moves=34 resolved
+[BBMatchBootstrap] Fighter P2 (C02): model=resolved, profile=BBProfile_C02_Aika, moves=31 resolved
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+[CombatAudioDirector] PlayBlock SFX
+<color=#00e676>[ON_BLOCK_CONTACT] tick=349 atkTick=5 atkState=AttackActive defBStun=11</color>
+<color=#00e676>[ON_BLOCK_ATK_RECOVER] t=369 atkTick=0 atkState=Neutral curAtk=null</color>
+<color=#00e676>[ON_BLOCK_DEF_RECOVER] t=370 defBStun=0 defState=WalkBackward</color>
+<color=#00e676>[ON_BLOCK_RESULT] atkRec=369 defRec=370 measured=1 authored=1</color>
+[BBMatchBootstrap] Fighter P2 (C01): model=resolved, profile=BBProfile_C01_Akio, moves=34 resolved
+[BBMatchBootstrap] Fighter P1 (C02): model=resolved, profile=BBProfile_C02_Aika, moves=31 resolved
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+[CombatAudioDirector] PlayBlock SFX
+<color=#00e676>[ON_BLOCK_CONTACT] tick=325 atkTick=5 atkState=AttackActive defBStun=11</color>
+<color=#00e676>[ON_BLOCK_ATK_RECOVER] t=345 atkTick=0 atkState=Neutral curAtk=null</color>
+<color=#00e676>[ON_BLOCK_DEF_RECOVER] t=346 defBStun=0 defState=WalkBackward</color>
+<color=#00e676>[ON_BLOCK_RESULT] atkRec=345 defRec=346 measured=1 authored=1</color>
+[BBMatchBootstrap] Fighter P2 (C01): model=resolved, profile=BBProfile_C01_Akio, moves=34 resolved
+[BBMatchBootstrap] Fighter P1 (C02): model=resolved, profile=BBProfile_C02_Aika, moves=31 resolved
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+[CombatAudioDirector] PlayBlock SFX
+<color=#00e676>[ON_BLOCK_CONTACT] tick=332 atkTick=6 atkState=AttackActive defBStun=11</color>
+<color=#00e676>[ON_BLOCK_ATK_RECOVER] t=353 atkTick=0 atkState=Neutral curAtk=null</color>
+<color=#00e676>[ON_BLOCK_DEF_RECOVER] t=353 defBStun=0 defState=WalkBackward</color>
+<color=#00e676>[ON_BLOCK_RESULT] atkRec=353 defRec=353 measured=0 authored=0</color>
+[BBMatchBootstrap] Fighter P1 (C01): model=resolved, profile=BBProfile_C01_Akio, moves=34 resolved
+[BBMatchBootstrap] Fighter P2 (C02): model=resolved, profile=BBProfile_C02_Aika, moves=31 resolved
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+[CombatAudioDirector] PlayBlock SFX
+<color=#00e676>[ON_BLOCK_CONTACT] tick=333 atkTick=6 atkState=AttackActive defBStun=11</color>
+<color=#00e676>[ON_BLOCK_ATK_RECOVER] t=354 atkTick=0 atkState=Neutral curAtk=null</color>
+<color=#00e676>[ON_BLOCK_DEF_RECOVER] t=354 defBStun=0 defState=WalkBackward</color>
+<color=#00e676>[ON_BLOCK_RESULT] atkRec=354 defRec=354 measured=0 authored=0</color>
+[BBMatchBootstrap] Fighter P2 (C01): model=resolved, profile=BBProfile_C01_Akio, moves=34 resolved
+[BBMatchBootstrap] Fighter P1 (SK08): model=resolved, profile=BBProfile_SK08_Torgrim, moves=14 resolved
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+[CombatAudioDirector] PlayBlock SFX
+<color=#00e676>[ON_BLOCK_CONTACT] tick=340 atkTick=6 atkState=AttackActive defBStun=11</color>
+<color=#00e676>[ON_BLOCK_DEF_RECOVER] t=361 defBStun=0 defState=WalkBackward</color>
+<color=#00e676>[ON_BLOCK_ATK_RECOVER] t=362 atkTick=0 atkState=Neutral curAtk=null</color>
+<color=#00e676>[ON_BLOCK_RESULT] atkRec=362 defRec=361 measured=-1 authored=-1</color>
+[BBMatchBootstrap] Fighter P2 (SK08): model=resolved, profile=BBProfile_SK08_Torgrim, moves=14 resolved
+[BBMatchBootstrap] Fighter P1 (C01): model=resolved, profile=BBProfile_C01_Akio, moves=34 resolved
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK08' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+[CombatAudioDirector] PlayBlock SFX
+<color=#00e676>[ON_BLOCK_CONTACT] tick=339 atkTick=6 atkState=AttackActive defBStun=11</color>
+<color=#00e676>[ON_BLOCK_DEF_RECOVER] t=360 defBStun=0 defState=WalkBackward</color>
+<color=#00e676>[ON_BLOCK_ATK_RECOVER] t=361 atkTick=0 atkState=Neutral curAtk=null</color>
+<color=#00e676>[ON_BLOCK_RESULT] atkRec=361 defRec=360 measured=-1 authored=-1</color>
+[BBMatchBootstrap] Fighter P1 (SK02): model=resolved, profile=BBProfile_SK02_Galahad, moves=14 resolved
+[BBMatchBootstrap] Fighter P2 (C01): model=resolved, profile=BBProfile_C01_Akio, moves=34 resolved
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+[CombatAudioDirector] PlayBlock SFX
+<color=#00e676>[ON_BLOCK_CONTACT] tick=339 atkTick=6 atkState=AttackActive defBStun=11</color>
+<color=#00e676>[ON_BLOCK_ATK_RECOVER] t=360 atkTick=0 atkState=Neutral curAtk=null</color>
+<color=#00e676>[ON_BLOCK_DEF_RECOVER] t=360 defBStun=0 defState=WalkBackward</color>
+<color=#00e676>[ON_BLOCK_RESULT] atkRec=360 defRec=360 measured=0 authored=0</color>
+[BBMatchBootstrap] Fighter P1 (C01): model=resolved, profile=BBProfile_C01_Akio, moves=34 resolved
+[BBMatchBootstrap] Fighter P2 (SK02): model=resolved, profile=BBProfile_SK02_Galahad, moves=14 resolved
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootL' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+'Model_SK02' AnimationEvent 'FootR' on animation 'Walk' has no receiver! Are you missing a component?
+[CombatAudioDirector] PlayBlock SFX
+<color=#00e676>[ON_BLOCK_CONTACT] tick=339 atkTick=6 atkState=AttackActive defBStun=11</color>
+<color=#00e676>[ON_BLOCK_ATK_RECOVER] t=360 atkTick=0 atkState=Neutral curAtk=null</color>
+<color=#00e676>[ON_BLOCK_DEF_RECOVER] t=360 defBStun=0 defState=WalkBackward</color>
+<color=#00e676>[ON_BLOCK_RESULT] atkRec=360 defRec=360 measured=0 authored=0</color>
+[BBMatchBootstrap] Fighter P2 (C01): model=resolved, profile=BBProfile_C01_Akio, moves=34 resolved
+[BBMatchBootstrap] Fighter P1 (C12): model=resolved, profile=BBProfile_C12_Fina, moves=30 resolved
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+[CombatAudioDirector] PlayBlock SFX
+<color=#00e676>[ON_BLOCK_CONTACT] tick=313 atkTick=5 atkState=AttackActive defBStun=11</color>
+<color=#00e676>[ON_BLOCK_ATK_RECOVER] t=334 atkTick=0 atkState=Neutral curAtk=null</color>
+<color=#00e676>[ON_BLOCK_DEF_RECOVER] t=334 defBStun=0 defState=WalkBackward</color>
+<color=#00e676>[ON_BLOCK_RESULT] atkRec=334 defRec=334 measured=0 authored=0</color>
+[BBMatchBootstrap] Fighter P1 (C01): model=resolved, profile=BBProfile_C01_Akio, moves=34 resolved
+[BBMatchBootstrap] Fighter P2 (C12): model=resolved, profile=BBProfile_C12_Fina, moves=30 resolved
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+<color=#00e676>[StageCameraManager] Active Stage Camera: ST07 - College Raimon (Midnight Rain Courtyard) (FL=32.0mm, FOV=35.0°)</color>
+[CombatAudioDirector] PlayBlock SFX
+<color=#00e676>[ON_BLOCK_CONTACT] tick=313 atkTick=5 atkState=AttackActive defBStun=11</color>
+<color=#00e676>[ON_BLOCK_ATK_RECOVER] t=334 atkTick=0 atkState=Neutral curAtk=null</color>
+<color=#00e676>[ON_BLOCK_DEF_RECOVER] t=334 defBStun=0 defState=WalkBackward</color>
+<color=#00e676>[ON_BLOCK_RESULT] atkRec=334 defRec=334 measured=0 authored=0</color>
+<color=#00e676>[BBFrameDataPlayTests] Gate 2 PASSED: 10/10 measured advantages matched +/- 0.</color>
+<color=#00e676>[BBFrameDataPlayTests] Gate 3 PASSED: 70/70 moves within 1 tick.</color>
+<color=#00e676>[BBFrameDataPlayTests] ALL GATES PASSED! Report saved to /Users/amber/My Demon Idol/Assets/../Logs/frame_data/REPORT.md and /Users/amber/My Demon Idol/Assets/../REPORT.md</color>
+Saving results to: /Users/amber/Library/Application Support/Celestial Soul/My Demon Idol/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

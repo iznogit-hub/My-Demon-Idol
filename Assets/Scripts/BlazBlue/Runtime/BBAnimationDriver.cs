@@ -103,9 +103,14 @@ namespace DemonIdol.BlazBlue
         }
 
         /// <summary>
-        /// Plays an attack clip deterministically seeked to the exact frame time.
+        /// Plays an attack clip deterministically seeked using piecewise linear time-warp:
+        /// clip start -> tick 0
+        /// measured impact frame -> first active tick
+        /// clipLastFrame -> end of recovery
+        /// Never sample past clipLastFrame.
+        /// If recovery is longer than the clip has frames left, hold the last pose and blend 3 ticks to idle.
         /// </summary>
-        public void PlayAttackClip(AnimationClip clip, int firstFrame, int lastFrame, int totalTicks, int tickInMove)
+        public void PlayAttackClip(AnimationClip clip, int firstFrame, int lastFrame, int startupTicks, int totalTicks, int tickInMove, int measuredImpactFrame)
         {
             if (!_isGraphValid || clip == null) return;
             _activeAttackClip = clip;
@@ -126,23 +131,55 @@ namespace DemonIdol.BlazBlue
                 _graph.Connect(activePlayable, 0, _mixer, 1);
             }
 
-            // Calculate deterministic seek time using real clip frameRate and scaled playback speed
-            float fps = clip.frameRate > 0f ? clip.frameRate : 30f;
-            float startSec = firstFrame > 0 ? (firstFrame / fps) : 0f;
-            float clipDuration = (lastFrame > firstFrame && lastFrame > 0) ? ((lastFrame - firstFrame) / fps) : (clip.length - startSec);
-            float targetDuration = totalTicks > 0 ? (totalTicks / 60.0f) : clipDuration;
-            float speed = (clipDuration > 0f && targetDuration > 0f) ? Mathf.Clamp(clipDuration / targetDuration, 0.85f, 1.15f) : 1.0f;
-            float seekTime = startSec + ((tickInMove / 60.0f) * speed);
-            seekTime = Mathf.Clamp(seekTime, 0f, clip.length);
+            const float EngineFps = 60.0f;
+            float t0 = (firstFrame > 0) ? (firstFrame / EngineFps) : 0f;
+            float tLast = (lastFrame > firstFrame && lastFrame > 0) ? (lastFrame / EngineFps) : clip.length;
+            tLast = Mathf.Min(tLast, clip.length);
 
+            // Impact frame in the clip (in 60Hz ticks, defaults to ~40% of clip duration if not specified)
+            int impactFrame = measuredImpactFrame > 0 ? measuredImpactFrame : Mathf.RoundToInt((lastFrame > 0 ? lastFrame : clip.length * EngineFps) * 0.40f);
+            float tImpact = impactFrame / EngineFps;
+            tImpact = Mathf.Clamp(tImpact, t0, tLast);
+
+            int tickActive = Mathf.Max(1, startupTicks);
+            int tickEnd = Mathf.Max(tickActive + 1, totalTicks - 1);
+
+            float seekTime;
+            if (tickInMove <= tickActive)
+            {
+                float u = (float)tickInMove / tickActive;
+                seekTime = Mathf.Lerp(t0, tImpact, u);
+            }
+            else
+            {
+                float u = (float)(tickInMove - tickActive) / (tickEnd - tickActive);
+                seekTime = Mathf.Lerp(tImpact, tLast, u);
+            }
+
+            // Never sample past clipLastFrame
+            seekTime = Mathf.Clamp(seekTime, t0, tLast);
             activePlayable.SetTime(seekTime);
 
-            // Blend weight towards 1.0 during active attack
-            _attackWeight = Mathf.MoveTowards(_attackWeight, 1.0f, 1.0f / BLEND_SPEED_TICKS);
+            // If recovery is longer than the clip has frames left or at end of recovery, hold last pose and blend 3 ticks to idle
+            if (tickInMove >= tickEnd - 3)
+            {
+                _attackWeight = Mathf.MoveTowards(_attackWeight, 0f, 1.0f / 3.0f);
+            }
+            else
+            {
+                _attackWeight = Mathf.MoveTowards(_attackWeight, 1.0f, 1.0f / BLEND_SPEED_TICKS);
+            }
+
             _mixer.SetInputWeight(1, _attackWeight);
             _mixer.SetInputWeight(0, 1.0f - _attackWeight);
 
             _graph.Evaluate(CombatTickEngine.TICK_DELTA_TIME);
+        }
+
+        public void PlayAttackClip(AnimationClip clip, int firstFrame, int lastFrame, int totalTicks, int tickInMove)
+        {
+            int defaultStartup = Mathf.Max(1, Mathf.RoundToInt(totalTicks * 0.35f));
+            PlayAttackClip(clip, firstFrame, lastFrame, defaultStartup, totalTicks, tickInMove, -1);
         }
 
         public void PlayAttack(BBAttackData attack)
@@ -151,7 +188,7 @@ namespace DemonIdol.BlazBlue
             var clipToPlay = attack.clip != null ? attack.clip : attack.animationClip;
             if (clipToPlay != null)
             {
-                PlayAttackClip(clipToPlay, attack.clipFirstFrame, attack.clipLastFrame, attack.TotalTicks, 0);
+                PlayAttackClip(clipToPlay, attack.clipFirstFrame, attack.clipLastFrame, attack.startupFrames, attack.TotalTicks, 0, attack.measuredImpactFrame);
             }
         }
 
@@ -191,12 +228,16 @@ namespace DemonIdol.BlazBlue
 
             if (attacking && attackClip != null && brain.currentAttack != null)
             {
+                var currentAtk = brain.currentAttack;
+                int impactFrame = (currentAtk is BBAttackData bbAtk) ? bbAtk.measuredImpactFrame : -1;
                 PlayAttackClip(
                     attackClip,
-                    brain.currentAttack.clipFirstFrame,
-                    brain.currentAttack.clipLastFrame,
-                    brain.currentAttack.TotalTicks,
-                    brain.attackTick
+                    currentAtk.clipFirstFrame,
+                    currentAtk.clipLastFrame,
+                    currentAtk.startupFrames,
+                    currentAtk.TotalTicks,
+                    brain.attackTick,
+                    impactFrame
                 );
 
                 if (_weaponRig == null) _weaponRig = GetComponent<BBWeaponRig>();

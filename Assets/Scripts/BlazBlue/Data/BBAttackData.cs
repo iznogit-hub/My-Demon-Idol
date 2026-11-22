@@ -91,6 +91,7 @@ namespace DemonIdol.BlazBlue
         public AnimationClip clip;                        // Sub-clip asset inside FBX
         public int clipFirstFrame;
         public int clipLastFrame;
+        public int measuredImpactFrame = -1;              // Measured peak limb extension / impact frame
         public BBEvent[] events = new BBEvent[0];         // SFX/VFX/Camera events at tick N
     }
 

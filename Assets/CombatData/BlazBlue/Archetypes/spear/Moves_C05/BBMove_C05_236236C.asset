@@ -24,30 +24,30 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 20
+  startupFrames: 6
   activeFrames: 5
-  recoveryFrames: 30
-  hitstunTicks: 32
-  blockstunTicks: 29
+  recoveryFrames: 38
+  hitstunTicks: 21
+  blockstunTicks: 20
   knockdownDurationTicks: 36
-  hitstopAttacker: 16
-  hitstopDefender: 16
-  hitstopOnBlock: 4
+  hitstopAttacker: 13
+  hitstopDefender: 13
+  hitstopOnBlock: 13
   counterHitStopBonus: 4
-  advantageOnBlock: -2
-  advantageOnHit: 2
+  advantageOnBlock: -22
+  advantageOnHit: -21
   advantageOnCounterHit: 6
-  damage: 2550
+  damage: 2450
   chipDamageOnBlock: 0
-  initialProration: 0.9
-  comboDamageDecay: 0.92
+  initialProration: 0.94
+  comboDamageDecay: 0.94
   pushbackOnHit: 1.5
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 1
+  causesKnockdown: 0
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
@@ -66,11 +66,15 @@ MonoBehaviour:
   motion: 7
   airOk: 0
   groundOk: 1
+  attackLevel: 5
   guard: 0
   attribute: 4
-  invuln: []
+  invuln:
+  - startTick: 0
+    endTick: 6
+    mask: 7
   fatalCounter: 0
-  hardKnockdown: 1
+  hardKnockdown: 0
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -79,7 +83,7 @@ MonoBehaviour:
   untechableTicks: 18
   untechableTicksCH: 27
   airHitVelocity: {x: 1.2, y: 4.5}
-  landingRecovery: 4
+  landingRecovery: 0
   minDamagePct: 0.08
   chipPct: 0
   heatGainOverride: -1
@@ -92,7 +96,7 @@ MonoBehaviour:
   - 236A
   - 236236C
   specialCancel: 1
-  ddCancel: 1
+  ddCancel: 0
   jumpCancelOnHit: 0
   jumpCancelOnBlock: 0
   rapidCancelable: 0
@@ -104,4 +108,5 @@ MonoBehaviour:
   clip: {fileID: 3060872287085348379, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 24
+  measuredImpactFrame: 19
   events: []

@@ -1,0 +1,501 @@
+[FRAME_DATA] Test run started at 2026-11-22 22:40:11 UTC
+[GATE 1] C01 5A: 5/3/8 onBlock=+ bstun=11 hstun=12 dmg=280 reach=0.77m => PASS
+[GATE 1] C01 2A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=260 reach=0.72m => PASS
+[GATE 1] C01 5B: 7/4/12 onBlock=-+ bstun=13 hstun=14 dmg=520 reach=1.01m => PASS
+[GATE 1] C01 2B: 8/3/14 onBlock=-+ bstun=13 hstun=14 dmg=480 reach=1.06m => PASS
+[GATE 1] C01 5C: 11/4/17 onBlock=-+ bstun=16 hstun=17 dmg=820 reach=1.15m => PASS
+[GATE 1] C01 2C: 11/3/24 onBlock=-+ bstun=16 hstun=17 dmg=760 reach=1.25m => PASS
+[GATE 1] C01 5D: 13/4/17 onBlock=-+ bstun=16 hstun=17 dmg=700 reach=1.15m => PASS
+[GATE 1] C01 236A: 12/3/20 onBlock=-+ bstun=16 hstun=17 dmg=950 reach=1.20m => PASS
+[GATE 1] C01 214B: 15/3/19 onBlock=-+ bstun=18 hstun=19 dmg=900 reach=1.15m => PASS
+[GATE 1] C01 236236C: 5/4/37 onBlock=-+ bstun=20 hstun=21 dmg=2400 reach=1.25m => PASS
+[GATE 1] C01 j.A: 5/3/10 onBlock=+ bstun=11 hstun=12 dmg=280 reach=0.77m => PASS
+[GATE 1] C01 j.B: 7/4/14 onBlock=+ bstun=13 hstun=14 dmg=520 reach=1.01m => PASS
+[GATE 1] C01 j.C: 11/4/18 onBlock=+ bstun=16 hstun=17 dmg=820 reach=1.15m => PASS
+[GATE 1] C01 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1300 reach=0.91m => PASS
+[GATE 1] C02 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=260 reach=0.73m => PASS
+[GATE 1] C02 2A: 7/2/11 onBlock=-+ bstun=11 hstun=12 dmg=250 reach=0.69m => PASS
+[GATE 1] C02 5B: 9/4/14 onBlock=-+ bstun=13 hstun=14 dmg=560 reach=0.96m => PASS
+[GATE 1] C02 2B: 10/3/16 onBlock=-+ bstun=13 hstun=14 dmg=520 reach=1.01m => PASS
+[GATE 1] C02 5C: 13/5/18 onBlock=-+ bstun=16 hstun=17 dmg=880 reach=1.10m => PASS
+[GATE 1] C02 2C: 13/3/26 onBlock=-+ bstun=16 hstun=17 dmg=800 reach=1.19m => PASS
+[GATE 1] C02 5D: 14/4/19 onBlock=-+ bstun=16 hstun=17 dmg=680 reach=1.10m => PASS
+[GATE 1] C02 236A: 14/4/15 onBlock=-+ bstun=16 hstun=17 dmg=700 reach=1.14m => PASS
+[GATE 1] C02 214B: 18/4/23 onBlock=-+ bstun=18 hstun=19 dmg=900 reach=1.10m => PASS
+[GATE 1] C02 236236C: 8/5/40 onBlock=-+ bstun=20 hstun=21 dmg=2300 reach=1.19m => PASS
+[GATE 1] C02 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=260 reach=0.73m => PASS
+[GATE 1] C02 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=560 reach=0.96m => PASS
+[GATE 1] C02 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=880 reach=1.10m => PASS
+[GATE 1] C02 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1300 reach=0.87m => PASS
+[GATE 1] C04 5A: 5/3/8 onBlock=+ bstun=11 hstun=12 dmg=274 reach=0.78m => PASS
+[GATE 1] C04 2A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=255 reach=0.74m => PASS
+[GATE 1] C04 5B: 7/4/12 onBlock=-+ bstun=13 hstun=14 dmg=510 reach=1.00m => PASS
+[GATE 1] C04 2B: 7/3/14 onBlock=-+ bstun=13 hstun=14 dmg=470 reach=1.04m => PASS
+[GATE 1] C04 5C: 11/4/17 onBlock=-+ bstun=16 hstun=17 dmg=804 reach=1.12m => PASS
+[GATE 1] C04 2C: 11/3/24 onBlock=-+ bstun=16 hstun=17 dmg=745 reach=1.21m => PASS
+[GATE 1] C04 5D: 13/4/17 onBlock=-+ bstun=16 hstun=17 dmg=686 reach=1.12m => PASS
+[GATE 1] C04 236A: 13/3/20 onBlock=-+ bstun=16 hstun=17 dmg=931 reach=1.17m => PASS
+[GATE 1] C04 214B: 15/3/19 onBlock=-+ bstun=18 hstun=19 dmg=882 reach=1.12m => PASS
+[GATE 1] C04 236236C: 5/4/37 onBlock=-+ bstun=20 hstun=21 dmg=2352 reach=1.21m => PASS
+[GATE 1] C04 j.A: 5/3/10 onBlock=+ bstun=11 hstun=12 dmg=274 reach=0.78m => PASS
+[GATE 1] C04 j.B: 7/4/14 onBlock=+ bstun=13 hstun=14 dmg=510 reach=1.00m => PASS
+[GATE 1] C04 j.C: 11/4/18 onBlock=+ bstun=16 hstun=17 dmg=804 reach=1.12m => PASS
+[GATE 1] C04 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1274 reach=0.91m => PASS
+[GATE 1] C05 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=294 reach=1.11m => PASS
+[GATE 1] C05 2A: 7/3/10 onBlock=-+ bstun=11 hstun=12 dmg=274 reach=1.06m => PASS
+[GATE 1] C05 5B: 9/4/13 onBlock=-+ bstun=13 hstun=14 dmg=588 reach=1.34m => PASS
+[GATE 1] C05 2B: 9/3/15 onBlock=-+ bstun=13 hstun=14 dmg=549 reach=1.39m => PASS
+[GATE 1] C05 5C: 13/5/17 onBlock=-+ bstun=16 hstun=17 dmg=931 reach=1.48m => PASS
+[GATE 1] C05 2C: 13/3/25 onBlock=-+ bstun=16 hstun=17 dmg=843 reach=1.57m => PASS
+[GATE 1] C05 5D: 14/4/18 onBlock=-+ bstun=16 hstun=17 dmg=764 reach=1.48m => PASS
+[GATE 1] C05 236A: 14/4/18 onBlock=-+ bstun=16 hstun=17 dmg=980 reach=1.52m => PASS
+[GATE 1] C05 214B: 16/4/19 onBlock=-+ bstun=18 hstun=19 dmg=1029 reach=1.48m => PASS
+[GATE 1] C05 236236C: 6/5/38 onBlock=-+ bstun=20 hstun=21 dmg=2450 reach=1.57m => PASS
+[GATE 1] C05 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=294 reach=1.11m => PASS
+[GATE 1] C05 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=588 reach=1.34m => PASS
+[GATE 1] C05 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=931 reach=1.48m => PASS
+[GATE 1] C05 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1274 reach=1.25m => PASS
+[GATE 1] C06 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=252 reach=1.10m => PASS
+[GATE 1] C06 2A: 6/2/11 onBlock=-+ bstun=11 hstun=12 dmg=242 reach=1.05m => PASS
+[GATE 1] C06 5B: 9/4/14 onBlock=-+ bstun=13 hstun=14 dmg=543 reach=1.35m => PASS
+[GATE 1] C06 2B: 10/3/16 onBlock=-+ bstun=13 hstun=14 dmg=504 reach=1.40m => PASS
+[GATE 1] C06 5C: 13/5/18 onBlock=-+ bstun=16 hstun=17 dmg=854 reach=1.50m => PASS
+[GATE 1] C06 2C: 13/3/26 onBlock=-+ bstun=16 hstun=17 dmg=776 reach=1.60m => PASS
+[GATE 1] C06 5D: 14/4/19 onBlock=-+ bstun=16 hstun=17 dmg=660 reach=1.50m => PASS
+[GATE 1] C06 236A: 12/4/15 onBlock=-+ bstun=16 hstun=17 dmg=679 reach=1.55m => PASS
+[GATE 1] C06 214B: 18/4/23 onBlock=-+ bstun=18 hstun=19 dmg=873 reach=1.50m => PASS
+[GATE 1] C06 236236C: 8/5/40 onBlock=-+ bstun=20 hstun=21 dmg=2231 reach=1.60m => PASS
+[GATE 1] C06 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=252 reach=1.10m => PASS
+[GATE 1] C06 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=543 reach=1.35m => PASS
+[GATE 1] C06 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=854 reach=1.50m => PASS
+[GATE 1] C06 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1261 reach=1.25m => PASS
+[GATE 1] C07 5A: 7/3/9 onBlock=+ bstun=11 hstun=12 dmg=270 reach=1.15m => PASS
+[GATE 1] C07 2A: 7/2/11 onBlock=-+ bstun=11 hstun=12 dmg=260 reach=1.10m => PASS
+[GATE 1] C07 5B: 9/4/14 onBlock=-+ bstun=13 hstun=14 dmg=582 reach=1.40m => PASS
+[GATE 1] C07 2B: 10/3/16 onBlock=-+ bstun=13 hstun=14 dmg=541 reach=1.45m => PASS
+[GATE 1] C07 5C: 13/5/18 onBlock=-+ bstun=16 hstun=17 dmg=915 reach=1.55m => PASS
+[GATE 1] C07 2C: 13/3/26 onBlock=-+ bstun=16 hstun=17 dmg=832 reach=1.65m => PASS
+[GATE 1] C07 5D: 14/4/19 onBlock=-+ bstun=16 hstun=17 dmg=707 reach=1.55m => PASS
+[GATE 1] C07 236A: 14/4/15 onBlock=-+ bstun=16 hstun=17 dmg=728 reach=1.60m => PASS
+[GATE 1] C07 214B: 18/4/23 onBlock=-+ bstun=18 hstun=19 dmg=936 reach=1.55m => PASS
+[GATE 1] C07 236236C: 8/5/40 onBlock=-+ bstun=20 hstun=21 dmg=2392 reach=1.65m => PASS
+[GATE 1] C07 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=270 reach=1.15m => PASS
+[GATE 1] C07 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=582 reach=1.40m => PASS
+[GATE 1] C07 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=915 reach=1.55m => PASS
+[GATE 1] C07 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1352 reach=1.30m => PASS
+[GATE 1] C08 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=302 reach=0.78m => PASS
+[GATE 1] C08 2A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=281 reach=0.74m => PASS
+[GATE 1] C08 5B: 8/4/13 onBlock=-+ bstun=13 hstun=14 dmg=582 reach=1.01m => PASS
+[GATE 1] C08 2B: 9/3/15 onBlock=-+ bstun=13 hstun=14 dmg=541 reach=1.06m => PASS
+[GATE 1] C08 5C: 12/4/18 onBlock=-+ bstun=16 hstun=17 dmg=915 reach=1.15m => PASS
+[GATE 1] C08 2C: 12/3/24 onBlock=-+ bstun=16 hstun=17 dmg=853 reach=1.24m => PASS
+[GATE 1] C08 5D: 13/4/17 onBlock=-+ bstun=16 hstun=17 dmg=770 reach=1.15m => PASS
+[GATE 1] C08 236A: 13/4/17 onBlock=-+ bstun=16 hstun=17 dmg=1040 reach=1.20m => PASS
+[GATE 1] C08 214B: 15/4/18 onBlock=-+ bstun=18 hstun=19 dmg=1092 reach=1.15m => PASS
+[GATE 1] C08 236236C: 5/4/38 onBlock=-+ bstun=20 hstun=21 dmg=2548 reach=1.24m => PASS
+[GATE 1] C08 j.A: 5/3/10 onBlock=+ bstun=11 hstun=12 dmg=302 reach=0.78m => PASS
+[GATE 1] C08 j.B: 8/4/14 onBlock=+ bstun=13 hstun=14 dmg=582 reach=1.01m => PASS
+[GATE 1] C08 j.C: 12/4/18 onBlock=+ bstun=16 hstun=17 dmg=915 reach=1.15m => PASS
+[GATE 1] C08 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1352 reach=0.92m => PASS
+[GATE 1] C09 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=250 reach=0.73m => PASS
+[GATE 1] C09 2A: 7/2/11 onBlock=-+ bstun=11 hstun=12 dmg=240 reach=0.69m => PASS
+[GATE 1] C09 5B: 8/4/14 onBlock=-+ bstun=13 hstun=14 dmg=538 reach=0.96m => PASS
+[GATE 1] C09 2B: 10/3/16 onBlock=-+ bstun=13 hstun=14 dmg=499 reach=1.01m => PASS
+[GATE 1] C09 5C: 13/5/18 onBlock=-+ bstun=16 hstun=17 dmg=845 reach=1.10m => PASS
+[GATE 1] C09 2C: 14/3/26 onBlock=-+ bstun=16 hstun=17 dmg=768 reach=1.19m => PASS
+[GATE 1] C09 5D: 14/4/19 onBlock=-+ bstun=16 hstun=17 dmg=653 reach=1.10m => PASS
+[GATE 1] C09 236A: 14/4/15 onBlock=-+ bstun=16 hstun=17 dmg=672 reach=1.15m => PASS
+[GATE 1] C09 214B: 18/4/23 onBlock=-+ bstun=18 hstun=19 dmg=864 reach=1.10m => PASS
+[GATE 1] C09 236236C: 8/5/40 onBlock=-+ bstun=20 hstun=21 dmg=2208 reach=1.19m => PASS
+[GATE 1] C09 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=250 reach=0.73m => PASS
+[GATE 1] C09 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=538 reach=0.96m => PASS
+[GATE 1] C09 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=845 reach=1.10m => PASS
+[GATE 1] C09 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1248 reach=0.87m => PASS
+[GATE 1] C10 5A: 5/3/8 onBlock=+ bstun=11 hstun=12 dmg=297 reach=0.73m => PASS
+[GATE 1] C10 2A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=276 reach=0.69m => PASS
+[GATE 1] C10 5B: 8/4/12 onBlock=-+ bstun=13 hstun=14 dmg=551 reach=0.96m => PASS
+[GATE 1] C10 2B: 8/3/14 onBlock=-+ bstun=13 hstun=14 dmg=509 reach=1.01m => PASS
+[GATE 1] C10 5C: 12/4/17 onBlock=-+ bstun=16 hstun=17 dmg=869 reach=1.10m => PASS
+[GATE 1] C10 2C: 11/3/24 onBlock=-+ bstun=16 hstun=17 dmg=806 reach=1.19m => PASS
+[GATE 1] C10 5D: 13/4/17 onBlock=-+ bstun=16 hstun=17 dmg=742 reach=1.10m => PASS
+[GATE 1] C10 236A: 12/3/20 onBlock=-+ bstun=16 hstun=17 dmg=1007 reach=1.15m => PASS
+[GATE 1] C10 214B: 15/3/19 onBlock=-+ bstun=18 hstun=19 dmg=954 reach=1.10m => PASS
+[GATE 1] C10 236236C: 5/4/37 onBlock=-+ bstun=20 hstun=21 dmg=2544 reach=1.19m => PASS
+[GATE 1] C10 j.A: 5/3/10 onBlock=+ bstun=11 hstun=12 dmg=297 reach=0.73m => PASS
+[GATE 1] C10 j.B: 7/4/14 onBlock=+ bstun=13 hstun=14 dmg=551 reach=0.96m => PASS
+[GATE 1] C10 j.C: 11/4/18 onBlock=+ bstun=16 hstun=17 dmg=869 reach=1.10m => PASS
+[GATE 1] C10 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1378 reach=0.87m => PASS
+[GATE 1] C11 5A: 6/3/8 onBlock=+ bstun=11 hstun=12 dmg=291 reach=0.75m => PASS
+[GATE 1] C11 2A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=270 reach=0.71m => PASS
+[GATE 1] C11 5B: 7/4/12 onBlock=-+ bstun=13 hstun=14 dmg=541 reach=0.97m => PASS
+[GATE 1] C11 2B: 8/3/14 onBlock=-+ bstun=13 hstun=14 dmg=499 reach=1.01m => PASS
+[GATE 1] C11 5C: 11/4/17 onBlock=-+ bstun=16 hstun=17 dmg=853 reach=1.10m => PASS
+[GATE 1] C11 2C: 11/3/24 onBlock=-+ bstun=16 hstun=17 dmg=790 reach=1.19m => PASS
+[GATE 1] C11 5D: 13/4/17 onBlock=-+ bstun=16 hstun=17 dmg=728 reach=1.10m => PASS
+[GATE 1] C11 236A: 12/3/20 onBlock=-+ bstun=16 hstun=17 dmg=988 reach=1.15m => PASS
+[GATE 1] C11 214B: 15/3/19 onBlock=-+ bstun=18 hstun=19 dmg=936 reach=1.10m => PASS
+[GATE 1] C11 236236C: 5/4/37 onBlock=-+ bstun=20 hstun=21 dmg=2496 reach=1.19m => PASS
+[GATE 1] C11 j.A: 5/3/10 onBlock=+ bstun=11 hstun=12 dmg=291 reach=0.75m => PASS
+[GATE 1] C11 j.B: 7/4/14 onBlock=+ bstun=13 hstun=14 dmg=541 reach=0.97m => PASS
+[GATE 1] C11 j.C: 11/4/18 onBlock=+ bstun=16 hstun=17 dmg=853 reach=1.10m => PASS
+[GATE 1] C11 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1352 reach=0.88m => PASS
+[GATE 1] C12 5A: 5/3/9 onBlock=+ bstun=11 hstun=12 dmg=290 reach=0.71m => PASS
+[GATE 1] C12 2A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=270 reach=0.67m => PASS
+[GATE 1] C12 5B: 8/4/13 onBlock=-+ bstun=13 hstun=14 dmg=560 reach=0.93m => PASS
+[GATE 1] C12 2B: 9/3/15 onBlock=-+ bstun=13 hstun=14 dmg=520 reach=0.98m => PASS
+[GATE 1] C12 5C: 12/4/18 onBlock=-+ bstun=16 hstun=17 dmg=880 reach=1.07m => PASS
+[GATE 1] C12 2C: 12/3/24 onBlock=-+ bstun=16 hstun=17 dmg=820 reach=1.15m => PASS
+[GATE 1] C12 5D: 13/4/17 onBlock=-+ bstun=16 hstun=17 dmg=740 reach=1.07m => PASS
+[GATE 1] C12 236A: 13/4/17 onBlock=-+ bstun=16 hstun=17 dmg=1000 reach=1.11m => PASS
+[GATE 1] C12 214B: 15/4/18 onBlock=-+ bstun=18 hstun=19 dmg=1050 reach=1.07m => PASS
+[GATE 1] C12 236236C: 5/4/38 onBlock=-+ bstun=20 hstun=21 dmg=2450 reach=1.15m => PASS
+[GATE 1] C12 j.A: 5/3/10 onBlock=+ bstun=11 hstun=12 dmg=290 reach=0.71m => PASS
+[GATE 1] C12 j.B: 8/4/14 onBlock=+ bstun=13 hstun=14 dmg=560 reach=0.93m => PASS
+[GATE 1] C12 j.C: 12/4/18 onBlock=+ bstun=16 hstun=17 dmg=880 reach=1.07m => PASS
+[GATE 1] C12 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1300 reach=0.84m => PASS
+[GATE 1] C13 5A: 5/3/8 onBlock=+ bstun=11 hstun=12 dmg=269 reach=0.77m => PASS
+[GATE 1] C13 2A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=250 reach=0.72m => PASS
+[GATE 1] C13 5B: 7/4/12 onBlock=-+ bstun=13 hstun=14 dmg=499 reach=1.01m => PASS
+[GATE 1] C13 2B: 8/3/14 onBlock=-+ bstun=13 hstun=14 dmg=461 reach=1.06m => PASS
+[GATE 1] C13 5C: 11/4/17 onBlock=-+ bstun=16 hstun=17 dmg=787 reach=1.16m => PASS
+[GATE 1] C13 2C: 12/3/24 onBlock=-+ bstun=16 hstun=17 dmg=730 reach=1.26m => PASS
+[GATE 1] C13 5D: 13/4/17 onBlock=-+ bstun=16 hstun=17 dmg=672 reach=1.16m => PASS
+[GATE 1] C13 236A: 12/3/20 onBlock=-+ bstun=16 hstun=17 dmg=912 reach=1.21m => PASS
+[GATE 1] C13 214B: 15/3/19 onBlock=-+ bstun=18 hstun=19 dmg=864 reach=1.16m => PASS
+[GATE 1] C13 236236C: 5/4/37 onBlock=-+ bstun=20 hstun=21 dmg=2304 reach=1.26m => PASS
+[GATE 1] C13 j.A: 5/3/10 onBlock=+ bstun=11 hstun=12 dmg=269 reach=0.77m => PASS
+[GATE 1] C13 j.B: 7/4/14 onBlock=+ bstun=13 hstun=14 dmg=499 reach=1.01m => PASS
+[GATE 1] C13 j.C: 11/4/18 onBlock=+ bstun=16 hstun=17 dmg=787 reach=1.16m => PASS
+[GATE 1] C13 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1248 reach=0.92m => PASS
+[GATE 1] C14 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=318 reach=1.01m => PASS
+[GATE 1] C14 2A: 7/3/10 onBlock=-+ bstun=11 hstun=12 dmg=297 reach=0.96m => PASS
+[GATE 1] C14 5B: 10/4/13 onBlock=-+ bstun=13 hstun=14 dmg=636 reach=1.24m => PASS
+[GATE 1] C14 2B: 10/3/15 onBlock=-+ bstun=13 hstun=14 dmg=594 reach=1.29m => PASS
+[GATE 1] C14 5C: 14/5/17 onBlock=-+ bstun=16 hstun=17 dmg=1007 reach=1.38m => PASS
+[GATE 1] C14 2C: 13/3/25 onBlock=-+ bstun=16 hstun=17 dmg=912 reach=1.47m => PASS
+[GATE 1] C14 5D: 14/4/18 onBlock=-+ bstun=16 hstun=17 dmg=827 reach=1.38m => PASS
+[GATE 1] C14 236A: 13/4/18 onBlock=-+ bstun=16 hstun=17 dmg=1060 reach=1.42m => PASS
+[GATE 1] C14 214B: 16/4/19 onBlock=-+ bstun=18 hstun=19 dmg=1113 reach=1.38m => PASS
+[GATE 1] C14 236236C: 6/5/38 onBlock=-+ bstun=20 hstun=21 dmg=2650 reach=1.47m => PASS
+[GATE 1] C14 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=318 reach=1.01m => PASS
+[GATE 1] C14 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=636 reach=1.24m => PASS
+[GATE 1] C14 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=1007 reach=1.38m => PASS
+[GATE 1] C14 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1378 reach=1.15m => PASS
+[GATE 1] SK02 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=300 reach=1.11m => PASS
+[GATE 1] SK02 2A: 7/3/10 onBlock=-+ bstun=11 hstun=12 dmg=280 reach=1.06m => PASS
+[GATE 1] SK02 5B: 9/4/13 onBlock=-+ bstun=13 hstun=14 dmg=600 reach=1.36m => PASS
+[GATE 1] SK02 2B: 10/3/15 onBlock=-+ bstun=13 hstun=14 dmg=560 reach=1.41m => PASS
+[GATE 1] SK02 5C: 13/5/17 onBlock=-+ bstun=16 hstun=17 dmg=950 reach=1.51m => PASS
+[GATE 1] SK02 2C: 13/3/25 onBlock=-+ bstun=16 hstun=17 dmg=860 reach=1.61m => PASS
+[GATE 1] SK02 5D: 14/4/18 onBlock=-+ bstun=16 hstun=17 dmg=780 reach=1.51m => PASS
+[GATE 1] SK02 236A: 13/4/18 onBlock=-+ bstun=16 hstun=17 dmg=1000 reach=1.56m => PASS
+[GATE 1] SK02 214B: 16/4/19 onBlock=-+ bstun=18 hstun=19 dmg=1050 reach=1.51m => PASS
+[GATE 1] SK02 236236C: 6/5/38 onBlock=-+ bstun=20 hstun=21 dmg=2500 reach=1.61m => PASS
+[GATE 1] SK02 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=300 reach=1.11m => PASS
+[GATE 1] SK02 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=600 reach=1.36m => PASS
+[GATE 1] SK02 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=950 reach=1.51m => PASS
+[GATE 1] SK02 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1300 reach=1.26m => PASS
+[GATE 1] SK03 5A: 6/3/10 onBlock=-+ bstun=11 hstun=12 dmg=307 reach=0.80m => PASS
+[GATE 1] SK03 2A: 7/3/11 onBlock=-+ bstun=11 hstun=12 dmg=288 reach=0.75m => PASS
+[GATE 1] SK03 5B: 9/4/15 onBlock=-+ bstun=13 hstun=14 dmg=653 reach=1.06m => PASS
+[GATE 1] SK03 2B: 11/3/17 onBlock=-+ bstun=13 hstun=14 dmg=576 reach=1.11m => PASS
+[GATE 1] SK03 5C: 15/5/20 onBlock=-+ bstun=16 hstun=17 dmg=1056 reach=1.21m => PASS
+[GATE 1] SK03 2C: 16/4/27 onBlock=-+ bstun=16 hstun=17 dmg=912 reach=1.31m => PASS
+[GATE 1] SK03 5D: 16/4/19 onBlock=-+ bstun=16 hstun=17 dmg=816 reach=1.21m => PASS
+[GATE 1] SK03 236A: 14/4/21 onBlock=-+ bstun=16 hstun=17 dmg=1104 reach=1.26m => PASS
+[GATE 1] SK03 214B: 18/3/26 onBlock=-+ bstun=18 hstun=19 dmg=1152 reach=1.21m => PASS
+[GATE 1] SK03 236236C: 3/3/48 onBlock=-+ bstun=20 hstun=21 dmg=2688 reach=1.11m => PASS
+[GATE 1] SK03 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=307 reach=0.80m => PASS
+[GATE 1] SK03 j.B: 10/4/14 onBlock=+ bstun=13 hstun=14 dmg=653 reach=1.06m => PASS
+[GATE 1] SK03 j.C: 15/5/18 onBlock=+ bstun=16 hstun=17 dmg=1056 reach=1.21m => PASS
+[GATE 1] SK03 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1248 reach=1.11m => PASS
+[GATE 1] SK05 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=265 reach=1.11m => PASS
+[GATE 1] SK05 2A: 7/2/11 onBlock=-+ bstun=11 hstun=12 dmg=255 reach=1.06m => PASS
+[GATE 1] SK05 5B: 9/4/14 onBlock=-+ bstun=13 hstun=14 dmg=571 reach=1.36m => PASS
+[GATE 1] SK05 2B: 10/3/16 onBlock=-+ bstun=13 hstun=14 dmg=530 reach=1.41m => PASS
+[GATE 1] SK05 5C: 12/5/18 onBlock=-+ bstun=16 hstun=17 dmg=898 reach=1.51m => PASS
+[GATE 1] SK05 2C: 13/3/26 onBlock=-+ bstun=16 hstun=17 dmg=816 reach=1.61m => PASS
+[GATE 1] SK05 5D: 14/4/19 onBlock=-+ bstun=16 hstun=17 dmg=694 reach=1.51m => PASS
+[GATE 1] SK05 236A: 14/4/15 onBlock=-+ bstun=16 hstun=17 dmg=714 reach=1.56m => PASS
+[GATE 1] SK05 214B: 18/4/23 onBlock=-+ bstun=18 hstun=19 dmg=918 reach=1.51m => PASS
+[GATE 1] SK05 236236C: 8/5/40 onBlock=-+ bstun=20 hstun=21 dmg=2346 reach=1.61m => PASS
+[GATE 1] SK05 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=265 reach=1.11m => PASS
+[GATE 1] SK05 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=571 reach=1.36m => PASS
+[GATE 1] SK05 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=898 reach=1.51m => PASS
+[GATE 1] SK05 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1326 reach=1.26m => PASS
+[GATE 1] SK06 5A: 7/3/9 onBlock=+ bstun=11 hstun=12 dmg=312 reach=1.16m => PASS
+[GATE 1] SK06 2A: 7/3/10 onBlock=-+ bstun=11 hstun=12 dmg=291 reach=1.11m => PASS
+[GATE 1] SK06 5B: 9/4/13 onBlock=-+ bstun=13 hstun=14 dmg=624 reach=1.41m => PASS
+[GATE 1] SK06 2B: 10/3/15 onBlock=-+ bstun=13 hstun=14 dmg=582 reach=1.46m => PASS
+[GATE 1] SK06 5C: 13/5/17 onBlock=-+ bstun=16 hstun=17 dmg=988 reach=1.56m => PASS
+[GATE 1] SK06 2C: 13/3/25 onBlock=-+ bstun=16 hstun=17 dmg=894 reach=1.66m => PASS
+[GATE 1] SK06 5D: 14/4/18 onBlock=-+ bstun=16 hstun=17 dmg=811 reach=1.56m => PASS
+[GATE 1] SK06 236A: 13/4/18 onBlock=-+ bstun=16 hstun=17 dmg=1040 reach=1.61m => PASS
+[GATE 1] SK06 214B: 16/4/19 onBlock=-+ bstun=18 hstun=19 dmg=1092 reach=1.56m => PASS
+[GATE 1] SK06 236236C: 6/5/38 onBlock=-+ bstun=20 hstun=21 dmg=2600 reach=1.66m => PASS
+[GATE 1] SK06 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=312 reach=1.16m => PASS
+[GATE 1] SK06 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=624 reach=1.41m => PASS
+[GATE 1] SK06 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=988 reach=1.56m => PASS
+[GATE 1] SK06 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1352 reach=1.31m => PASS
+[GATE 1] SK08 5A: 6/3/10 onBlock=-+ bstun=11 hstun=12 dmg=320 reach=0.91m => PASS
+[GATE 1] SK08 2A: 7/3/11 onBlock=-+ bstun=11 hstun=12 dmg=300 reach=0.85m => PASS
+[GATE 1] SK08 5B: 10/4/15 onBlock=-+ bstun=13 hstun=14 dmg=680 reach=1.19m => PASS
+[GATE 1] SK08 2B: 11/3/17 onBlock=-+ bstun=13 hstun=14 dmg=600 reach=1.25m => PASS
+[GATE 1] SK08 5C: 15/5/20 onBlock=-+ bstun=16 hstun=17 dmg=1100 reach=1.36m => PASS
+[GATE 1] SK08 2C: 15/4/27 onBlock=-+ bstun=16 hstun=17 dmg=950 reach=1.48m => PASS
+[GATE 1] SK08 5D: 16/4/19 onBlock=-+ bstun=16 hstun=17 dmg=850 reach=1.36m => PASS
+[GATE 1] SK08 236A: 14/4/21 onBlock=-+ bstun=16 hstun=17 dmg=1150 reach=1.42m => PASS
+[GATE 1] SK08 214B: 18/3/26 onBlock=-+ bstun=18 hstun=19 dmg=1200 reach=1.36m => PASS
+[GATE 1] SK08 236236C: 3/3/48 onBlock=-+ bstun=20 hstun=21 dmg=2800 reach=1.25m => PASS
+[GATE 1] SK08 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=320 reach=0.91m => PASS
+[GATE 1] SK08 j.B: 10/4/14 onBlock=+ bstun=13 hstun=14 dmg=680 reach=1.19m => PASS
+[GATE 1] SK08 j.C: 15/5/18 onBlock=+ bstun=16 hstun=17 dmg=1100 reach=1.36m => PASS
+[GATE 1] SK08 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1300 reach=1.25m => PASS
+[GATE 1] EX01 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=288 reach=0.91m => PASS
+[GATE 1] EX01 2A: 7/3/10 onBlock=-+ bstun=11 hstun=12 dmg=269 reach=0.86m => PASS
+[GATE 1] EX01 5B: 8/4/13 onBlock=-+ bstun=13 hstun=14 dmg=576 reach=1.11m => PASS
+[GATE 1] EX01 2B: 10/3/15 onBlock=-+ bstun=13 hstun=14 dmg=538 reach=1.15m => PASS
+[GATE 1] EX01 5C: 13/5/17 onBlock=-+ bstun=16 hstun=17 dmg=912 reach=1.24m => PASS
+[GATE 1] EX01 2C: 14/3/25 onBlock=-+ bstun=16 hstun=17 dmg=826 reach=1.32m => PASS
+[GATE 1] EX01 5D: 14/4/18 onBlock=-+ bstun=16 hstun=17 dmg=749 reach=1.24m => PASS
+[GATE 1] EX01 236A: 13/4/18 onBlock=-+ bstun=16 hstun=17 dmg=960 reach=1.28m => PASS
+[GATE 1] EX01 214B: 16/4/19 onBlock=-+ bstun=18 hstun=19 dmg=1008 reach=1.24m => PASS
+[GATE 1] EX01 236236C: 6/5/38 onBlock=-+ bstun=20 hstun=21 dmg=2400 reach=1.32m => PASS
+[GATE 1] EX01 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=288 reach=0.91m => PASS
+[GATE 1] EX01 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=576 reach=1.11m => PASS
+[GATE 1] EX01 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=912 reach=1.24m => PASS
+[GATE 1] EX01 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1248 reach=1.03m => PASS
+[GATE 1] EX02 5A: 7/3/10 onBlock=-+ bstun=11 hstun=12 dmg=333 reach=0.85m => PASS
+[GATE 1] EX02 2A: 7/3/11 onBlock=-+ bstun=11 hstun=12 dmg=312 reach=0.80m => PASS
+[GATE 1] EX02 5B: 10/4/15 onBlock=-+ bstun=13 hstun=14 dmg=707 reach=1.10m => PASS
+[GATE 1] EX02 2B: 11/3/17 onBlock=-+ bstun=13 hstun=14 dmg=624 reach=1.15m => PASS
+[GATE 1] EX02 5C: 15/5/20 onBlock=-+ bstun=16 hstun=17 dmg=1144 reach=1.25m => PASS
+[GATE 1] EX02 2C: 15/4/27 onBlock=-+ bstun=16 hstun=17 dmg=988 reach=1.35m => PASS
+[GATE 1] EX02 5D: 16/4/19 onBlock=-+ bstun=16 hstun=17 dmg=884 reach=1.25m => PASS
+[GATE 1] EX02 236A: 14/4/21 onBlock=-+ bstun=16 hstun=17 dmg=1196 reach=1.30m => PASS
+[GATE 1] EX02 214B: 18/3/26 onBlock=-+ bstun=18 hstun=19 dmg=1248 reach=1.25m => PASS
+[GATE 1] EX02 236236C: 3/3/48 onBlock=-+ bstun=20 hstun=21 dmg=2912 reach=1.15m => PASS
+[GATE 1] EX02 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=333 reach=0.85m => PASS
+[GATE 1] EX02 j.B: 10/4/14 onBlock=+ bstun=13 hstun=14 dmg=707 reach=1.10m => PASS
+[GATE 1] EX02 j.C: 15/5/18 onBlock=+ bstun=16 hstun=17 dmg=1144 reach=1.25m => PASS
+[GATE 1] EX02 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1352 reach=1.15m => PASS
+[GATE 1] EX03 5A: 5/3/8 onBlock=+ bstun=11 hstun=12 dmg=286 reach=0.83m => PASS
+[GATE 1] EX03 2A: 7/3/9 onBlock=+ bstun=11 hstun=12 dmg=265 reach=0.78m => PASS
+[GATE 1] EX03 5B: 7/4/12 onBlock=-+ bstun=13 hstun=14 dmg=530 reach=1.09m => PASS
+[GATE 1] EX03 2B: 8/3/14 onBlock=-+ bstun=13 hstun=14 dmg=490 reach=1.15m => PASS
+[GATE 1] EX03 5C: 11/4/17 onBlock=-+ bstun=16 hstun=17 dmg=836 reach=1.25m => PASS
+[GATE 1] EX03 2C: 11/3/24 onBlock=-+ bstun=16 hstun=17 dmg=775 reach=1.35m => PASS
+[GATE 1] EX03 5D: 13/4/17 onBlock=-+ bstun=16 hstun=17 dmg=714 reach=1.25m => PASS
+[GATE 1] EX03 236A: 12/3/20 onBlock=-+ bstun=16 hstun=17 dmg=969 reach=1.30m => PASS
+[GATE 1] EX03 214B: 15/3/19 onBlock=-+ bstun=18 hstun=19 dmg=918 reach=1.25m => PASS
+[GATE 1] EX03 236236C: 5/4/37 onBlock=-+ bstun=20 hstun=21 dmg=2448 reach=1.35m => PASS
+[GATE 1] EX03 j.A: 5/3/10 onBlock=+ bstun=11 hstun=12 dmg=286 reach=0.83m => PASS
+[GATE 1] EX03 j.B: 7/4/14 onBlock=+ bstun=13 hstun=14 dmg=530 reach=1.09m => PASS
+[GATE 1] EX03 j.C: 11/4/18 onBlock=+ bstun=16 hstun=17 dmg=836 reach=1.25m => PASS
+[GATE 1] EX03 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1326 reach=0.99m => PASS
+[GATE 1] EX04 5A: 6/3/10 onBlock=-+ bstun=11 hstun=12 dmg=326 reach=0.69m => PASS
+[GATE 1] EX04 2A: 7/3/11 onBlock=-+ bstun=11 hstun=12 dmg=306 reach=0.64m => PASS
+[GATE 1] EX04 5B: 10/4/15 onBlock=-+ bstun=13 hstun=14 dmg=694 reach=0.90m => PASS
+[GATE 1] EX04 2B: 11/3/17 onBlock=-+ bstun=13 hstun=14 dmg=612 reach=0.94m => PASS
+[GATE 1] EX04 5C: 14/5/20 onBlock=-+ bstun=16 hstun=17 dmg=1122 reach=1.03m => PASS
+[GATE 1] EX04 2C: 15/4/27 onBlock=-+ bstun=16 hstun=17 dmg=969 reach=1.12m => PASS
+[GATE 1] EX04 5D: 16/4/19 onBlock=-+ bstun=16 hstun=17 dmg=867 reach=1.03m => PASS
+[GATE 1] EX04 236A: 14/4/21 onBlock=-+ bstun=16 hstun=17 dmg=1173 reach=1.07m => PASS
+[GATE 1] EX04 214B: 18/3/26 onBlock=-+ bstun=18 hstun=19 dmg=1224 reach=1.03m => PASS
+[GATE 1] EX04 236236C: 3/3/48 onBlock=-+ bstun=20 hstun=21 dmg=2856 reach=0.94m => PASS
+[GATE 1] EX04 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=326 reach=0.69m => PASS
+[GATE 1] EX04 j.B: 10/4/14 onBlock=+ bstun=13 hstun=14 dmg=694 reach=0.90m => PASS
+[GATE 1] EX04 j.C: 15/5/18 onBlock=+ bstun=16 hstun=17 dmg=1122 reach=1.03m => PASS
+[GATE 1] EX04 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1326 reach=0.94m => PASS
+[GATE 1] EX05 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=255 reach=0.89m => PASS
+[GATE 1] EX05 2A: 7/2/11 onBlock=-+ bstun=11 hstun=12 dmg=245 reach=0.84m => PASS
+[GATE 1] EX05 5B: 9/4/14 onBlock=-+ bstun=13 hstun=14 dmg=549 reach=1.13m => PASS
+[GATE 1] EX05 2B: 9/3/16 onBlock=-+ bstun=13 hstun=14 dmg=510 reach=1.18m => PASS
+[GATE 1] EX05 5C: 13/5/18 onBlock=-+ bstun=16 hstun=17 dmg=862 reach=1.28m => PASS
+[GATE 1] EX05 2C: 13/3/26 onBlock=-+ bstun=16 hstun=17 dmg=784 reach=1.38m => PASS
+[GATE 1] EX05 5D: 14/4/19 onBlock=-+ bstun=16 hstun=17 dmg=666 reach=1.28m => PASS
+[GATE 1] EX05 236A: 15/4/15 onBlock=-+ bstun=16 hstun=17 dmg=686 reach=1.33m => PASS
+[GATE 1] EX05 214B: 18/4/23 onBlock=-+ bstun=18 hstun=19 dmg=882 reach=1.28m => PASS
+[GATE 1] EX05 236236C: 8/5/40 onBlock=-+ bstun=20 hstun=21 dmg=2254 reach=1.38m => PASS
+[GATE 1] EX05 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=255 reach=0.89m => PASS
+[GATE 1] EX05 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=549 reach=1.13m => PASS
+[GATE 1] EX05 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=862 reach=1.28m => PASS
+[GATE 1] EX05 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1274 reach=1.04m => PASS
+[GATE 1] EX06 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=306 reach=1.10m => PASS
+[GATE 1] EX06 2A: 7/3/10 onBlock=-+ bstun=11 hstun=12 dmg=286 reach=1.05m => PASS
+[GATE 1] EX06 5B: 9/4/13 onBlock=-+ bstun=13 hstun=14 dmg=612 reach=1.35m => PASS
+[GATE 1] EX06 2B: 10/3/15 onBlock=-+ bstun=13 hstun=14 dmg=571 reach=1.40m => PASS
+[GATE 1] EX06 5C: 12/5/17 onBlock=-+ bstun=16 hstun=17 dmg=969 reach=1.50m => PASS
+[GATE 1] EX06 2C: 13/3/25 onBlock=-+ bstun=16 hstun=17 dmg=877 reach=1.60m => PASS
+[GATE 1] EX06 5D: 14/4/18 onBlock=-+ bstun=16 hstun=17 dmg=796 reach=1.50m => PASS
+[GATE 1] EX06 236A: 13/4/18 onBlock=-+ bstun=16 hstun=17 dmg=1020 reach=1.55m => PASS
+[GATE 1] EX06 214B: 16/4/19 onBlock=-+ bstun=18 hstun=19 dmg=1071 reach=1.50m => PASS
+[GATE 1] EX06 236236C: 6/5/38 onBlock=-+ bstun=20 hstun=21 dmg=2550 reach=1.60m => PASS
+[GATE 1] EX06 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=306 reach=1.10m => PASS
+[GATE 1] EX06 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=612 reach=1.35m => PASS
+[GATE 1] EX06 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=969 reach=1.50m => PASS
+[GATE 1] EX06 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1326 reach=1.25m => PASS
+[GATE 1] EX07 5A: 6/3/9 onBlock=+ bstun=11 hstun=12 dmg=276 reach=0.80m => PASS
+[GATE 1] EX07 2A: 7/2/11 onBlock=-+ bstun=11 hstun=12 dmg=265 reach=0.75m => PASS
+[GATE 1] EX07 5B: 10/4/14 onBlock=-+ bstun=13 hstun=14 dmg=594 reach=1.06m => PASS
+[GATE 1] EX07 2B: 10/3/16 onBlock=-+ bstun=13 hstun=14 dmg=551 reach=1.11m => PASS
+[GATE 1] EX07 5C: 14/5/18 onBlock=-+ bstun=16 hstun=17 dmg=933 reach=1.21m => PASS
+[GATE 1] EX07 2C: 13/3/26 onBlock=-+ bstun=16 hstun=17 dmg=848 reach=1.31m => PASS
+[GATE 1] EX07 5D: 14/4/19 onBlock=-+ bstun=16 hstun=17 dmg=721 reach=1.21m => PASS
+[GATE 1] EX07 236A: 14/4/15 onBlock=-+ bstun=16 hstun=17 dmg=742 reach=1.26m => PASS
+[GATE 1] EX07 214B: 18/4/23 onBlock=-+ bstun=18 hstun=19 dmg=954 reach=1.21m => PASS
+[GATE 1] EX07 236236C: 8/5/40 onBlock=-+ bstun=20 hstun=21 dmg=2438 reach=1.31m => PASS
+[GATE 1] EX07 j.A: 6/3/10 onBlock=+ bstun=11 hstun=12 dmg=276 reach=0.80m => PASS
+[GATE 1] EX07 j.B: 9/4/14 onBlock=+ bstun=13 hstun=14 dmg=594 reach=1.06m => PASS
+[GATE 1] EX07 j.C: 13/5/18 onBlock=+ bstun=16 hstun=17 dmg=933 reach=1.21m => PASS
+[GATE 1] EX07 BC: 7/3/23 onBlock=+ bstun=11 hstun=12 dmg=1378 reach=0.96m => PASS
+[GATE 2 P1] C01 vs C02 5A: authored=+ measured=+ diff=0 => PASS
+[GATE 2 P2] C01 (P2) vs C02 (P1) 5A: authored=+ measured=+ diff=0 => PASS
+[GATE 2 P1] C02 vs C01 5A: authored=+ measured=+ diff=0 => PASS
+[GATE 2 P2] C02 (P2) vs C01 (P1) 5A: authored=+ measured=+ diff=0 => PASS
+[GATE 2 P1] SK08 vs C01 5A: authored=-+ measured=-+ diff=0 => PASS
+[GATE 2 P2] SK08 (P2) vs C01 (P1) 5A: authored=-+ measured=-+ diff=0 => PASS
+[GATE 2 P1] SK02 vs C01 5A: authored=+ measured=+ diff=0 => PASS
+[GATE 2 P2] SK02 (P2) vs C01 (P1) 5A: authored=+ measured=+ diff=0 => PASS
+[GATE 2 P1] C12 vs C01 5A: authored=+ measured=+ diff=0 => PASS
+[GATE 2 P2] C12 (P2) vs C01 (P1) 5A: authored=+ measured=+ diff=0 => PASS
+[GATE 3] C01 5A: firstActive=5 peakLimb=5 delta=0f => PASS
+[GATE 3] C01 2A: firstActive=6 peakLimb=6 delta=0f => PASS
+[GATE 3] C01 5B: firstActive=7 peakLimb=7 delta=0f => PASS
+[GATE 3] C01 2B: firstActive=8 peakLimb=8 delta=0f => PASS
+[GATE 3] C01 5C: firstActive=11 peakLimb=11 delta=0f => PASS
+[GATE 3] C01 2C: firstActive=11 peakLimb=11 delta=0f => PASS
+[GATE 3] C01 5D: firstActive=13 peakLimb=13 delta=0f => PASS
+[GATE 3] C01 236A: firstActive=12 peakLimb=12 delta=0f => PASS
+[GATE 3] C01 214B: firstActive=15 peakLimb=15 delta=0f => PASS
+[GATE 3] C01 236236C: firstActive=5 peakLimb=5 delta=0f => PASS
+[GATE 3] C01 j.A: firstActive=5 peakLimb=5 delta=0f => PASS
+[GATE 3] C01 j.B: firstActive=7 peakLimb=7 delta=0f => PASS
+[GATE 3] C01 j.C: firstActive=11 peakLimb=11 delta=0f => PASS
+[GATE 3] C01 BC: firstActive=7 peakLimb=7 delta=0f => PASS
+[GATE 3] C02 5A: firstActive=6 peakLimb=6 delta=0f => PASS
+[GATE 3] C02 2A: firstActive=7 peakLimb=7 delta=0f => PASS
+[GATE 3] C02 5B: firstActive=9 peakLimb=9 delta=0f => PASS
+[GATE 3] C02 2B: firstActive=10 peakLimb=10 delta=0f => PASS
+[GATE 3] C02 5C: firstActive=13 peakLimb=13 delta=0f => PASS
+[GATE 3] C02 2C: firstActive=13 peakLimb=13 delta=0f => PASS
+[GATE 3] C02 5D: firstActive=14 peakLimb=14 delta=0f => PASS
+[GATE 3] C02 236A: firstActive=14 peakLimb=14 delta=0f => PASS
+[GATE 3] C02 214B: firstActive=18 peakLimb=18 delta=0f => PASS
+[GATE 3] C02 236236C: firstActive=8 peakLimb=8 delta=0f => PASS
+[GATE 3] C02 j.A: firstActive=6 peakLimb=6 delta=0f => PASS
+[GATE 3] C02 j.B: firstActive=9 peakLimb=9 delta=0f => PASS
+[GATE 3] C02 j.C: firstActive=13 peakLimb=13 delta=0f => PASS
+[GATE 3] C02 BC: firstActive=7 peakLimb=7 delta=0f => PASS
+[GATE 3] SK08 5A: firstActive=6 peakLimb=6 delta=0f => PASS
+[GATE 3] SK08 2A: firstActive=7 peakLimb=7 delta=0f => PASS
+[GATE 3] SK08 5B: firstActive=10 peakLimb=10 delta=0f => PASS
+[GATE 3] SK08 2B: firstActive=11 peakLimb=11 delta=0f => PASS
+[GATE 3] SK08 5C: firstActive=15 peakLimb=15 delta=0f => PASS
+[GATE 3] SK08 2C: firstActive=15 peakLimb=15 delta=0f => PASS
+[GATE 3] SK08 5D: firstActive=16 peakLimb=16 delta=0f => PASS
+[GATE 3] SK08 236A: firstActive=14 peakLimb=14 delta=0f => PASS
+[GATE 3] SK08 214B: firstActive=18 peakLimb=18 delta=0f => PASS
+[GATE 3] SK08 236236C: firstActive=3 peakLimb=3 delta=0f => PASS
+[GATE 3] SK08 j.A: firstActive=6 peakLimb=6 delta=0f => PASS
+[GATE 3] SK08 j.B: firstActive=10 peakLimb=10 delta=0f => PASS
+[GATE 3] SK08 j.C: firstActive=15 peakLimb=15 delta=0f => PASS
+[GATE 3] SK08 BC: firstActive=7 peakLimb=7 delta=0f => PASS
+[GATE 3] SK02 5A: firstActive=6 peakLimb=6 delta=0f => PASS
+[GATE 3] SK02 2A: firstActive=7 peakLimb=7 delta=0f => PASS
+[GATE 3] SK02 5B: firstActive=9 peakLimb=9 delta=0f => PASS
+[GATE 3] SK02 2B: firstActive=10 peakLimb=10 delta=0f => PASS
+[GATE 3] SK02 5C: firstActive=13 peakLimb=13 delta=0f => PASS
+[GATE 3] SK02 2C: firstActive=13 peakLimb=13 delta=0f => PASS
+[GATE 3] SK02 5D: firstActive=14 peakLimb=14 delta=0f => PASS
+[GATE 3] SK02 236A: firstActive=13 peakLimb=13 delta=0f => PASS
+[GATE 3] SK02 214B: firstActive=16 peakLimb=16 delta=0f => PASS
+[GATE 3] SK02 236236C: firstActive=6 peakLimb=6 delta=0f => PASS
+[GATE 3] SK02 j.A: firstActive=6 peakLimb=6 delta=0f => PASS
+[GATE 3] SK02 j.B: firstActive=9 peakLimb=9 delta=0f => PASS
+[GATE 3] SK02 j.C: firstActive=13 peakLimb=13 delta=0f => PASS
+[GATE 3] SK02 BC: firstActive=7 peakLimb=7 delta=0f => PASS
+[GATE 3] C12 5A: firstActive=5 peakLimb=5 delta=0f => PASS
+[GATE 3] C12 2A: firstActive=6 peakLimb=6 delta=0f => PASS
+[GATE 3] C12 5B: firstActive=8 peakLimb=8 delta=0f => PASS
+[GATE 3] C12 2B: firstActive=9 peakLimb=9 delta=0f => PASS
+[GATE 3] C12 5C: firstActive=12 peakLimb=12 delta=0f => PASS
+[GATE 3] C12 2C: firstActive=12 peakLimb=12 delta=0f => PASS
+[GATE 3] C12 5D: firstActive=13 peakLimb=13 delta=0f => PASS
+[GATE 3] C12 236A: firstActive=13 peakLimb=13 delta=0f => PASS
+[GATE 3] C12 214B: firstActive=15 peakLimb=15 delta=0f => PASS
+[GATE 3] C12 236236C: firstActive=5 peakLimb=5 delta=0f => PASS
+[GATE 3] C12 j.A: firstActive=5 peakLimb=5 delta=0f => PASS
+[GATE 3] C12 j.B: firstActive=8 peakLimb=8 delta=0f => PASS
+[GATE 3] C12 j.C: firstActive=12 peakLimb=12 delta=0f => PASS
+[GATE 3] C12 BC: firstActive=7 peakLimb=7 delta=0f => PASS
+[GATE 4] C01 5A: farEdge=0.77m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 2A: farEdge=0.72m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 5B: farEdge=1.01m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 2B: farEdge=1.06m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 5C: farEdge=1.15m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 2C: farEdge=1.25m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 5D: farEdge=1.15m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 236A: farEdge=1.20m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 214B: farEdge=1.15m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 236236C: farEdge=1.25m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 j.A: farEdge=0.77m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 j.B: farEdge=1.01m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 j.C: farEdge=1.15m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C01 BC: farEdge=0.91m minEdge=0.24m => maxReach=True, close=True
+[GATE 4] C02 5A: farEdge=0.73m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 2A: farEdge=0.69m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 5B: farEdge=0.96m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 2B: farEdge=1.01m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 5C: farEdge=1.10m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 2C: farEdge=1.19m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 5D: farEdge=1.10m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 236A: farEdge=1.14m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 214B: farEdge=1.10m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 236236C: farEdge=1.19m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 j.A: farEdge=0.73m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 j.B: farEdge=0.96m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 j.C: farEdge=1.10m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] C02 BC: farEdge=0.87m minEdge=0.23m => maxReach=True, close=True
+[GATE 4] SK08 5A: farEdge=0.91m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 2A: farEdge=0.85m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 5B: farEdge=1.19m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 2B: farEdge=1.25m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 5C: farEdge=1.36m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 2C: farEdge=1.48m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 5D: farEdge=1.36m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 236A: farEdge=1.42m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 214B: farEdge=1.36m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 236236C: farEdge=1.25m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 j.A: farEdge=0.91m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 j.B: farEdge=1.19m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 j.C: farEdge=1.36m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK08 BC: farEdge=1.25m minEdge=0.28m => maxReach=True, close=True
+[GATE 4] SK02 5A: farEdge=1.11m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 2A: farEdge=1.06m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 5B: farEdge=1.36m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 2B: farEdge=1.41m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 5C: farEdge=1.51m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 2C: farEdge=1.61m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 5D: farEdge=1.51m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 236A: farEdge=1.56m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 214B: farEdge=1.51m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 236236C: farEdge=1.61m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 j.A: farEdge=1.11m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 j.B: farEdge=1.36m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 j.C: farEdge=1.51m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] SK02 BC: farEdge=1.26m minEdge=0.25m => maxReach=True, close=True
+[GATE 4] C12 5A: farEdge=0.71m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 2A: farEdge=0.67m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 5B: farEdge=0.93m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 2B: farEdge=0.98m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 5C: farEdge=1.07m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 2C: farEdge=1.15m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 5D: farEdge=1.07m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 236A: farEdge=1.11m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 214B: farEdge=1.07m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 236236C: farEdge=1.15m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 j.A: farEdge=0.71m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 j.B: farEdge=0.93m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 j.C: farEdge=1.07m minEdge=0.22m => maxReach=True, close=True
+[GATE 4] C12 BC: farEdge=0.84m minEdge=0.22m => maxReach=True, close=True

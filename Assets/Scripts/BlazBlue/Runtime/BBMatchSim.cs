@@ -636,6 +636,10 @@ namespace DemonIdol.BlazBlue
                     int decayedHitstun = attacker.comboState.CalculateDecayedHitstun(hitstun, defender.isGrounded);
                     if (isCounterHit) decayedHitstun += extraHitstun;
 
+                    sbyte defFacingNumpad = defender.fighter != null ? BBInputFrame.WorldToFacingNumpad(defender.History.LatestFrame.numpad, defender.fighter.FacingDirection) : (sbyte)5;
+                    bool defenderIsCrouching = defender.bbState == BBState.Crouching || defFacingNumpad == 1 || defFacingNumpad == 2 || defFacingNumpad == 3;
+                    if (defenderIsCrouching) decayedHitstun += 2;
+
                     if (attacker.currentAttack != null && (attacker.currentAttack.causesKnockdown || attacker.currentAttack.hardKnockdown))
                     {
                         defender.bbState = BBState.DownWait;
