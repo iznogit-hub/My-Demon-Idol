@@ -40,6 +40,8 @@ namespace DemonIdol.BlazBlue
         private readonly BBBoxBuffer _p2Boxes = new BBBoxBuffer();
         private readonly BBContact[] _contactResults = new BBContact[16];
         private int _contactCount = 0;
+        private int _sideSwitchLeniencyTicks = 0;
+        private int _lastP1FacingDir = 1;
 
         private void Awake()
         {
@@ -121,6 +123,14 @@ namespace DemonIdol.BlazBlue
                     return;
                 }
 
+                if (_sideSwitchLeniencyTicks > 0) _sideSwitchLeniencyTicks--;
+                int currentP1Facing = (p1Brain.transform.position.x < p2Brain.transform.position.x) ? 1 : -1;
+                if (currentP1Facing != _lastP1FacingDir)
+                {
+                    _sideSwitchLeniencyTicks = 3; // 3 frames of side-switch leniency on cross-ups
+                    _lastP1FacingDir = currentP1Facing;
+                }
+
                 // Step 1: Read BBInputFrame for P1 and P2
                 p1Brain.StepInput(tick);
                 p2Brain.StepInput(tick);
@@ -188,8 +198,19 @@ namespace DemonIdol.BlazBlue
                     }
 
                     // Step 7: Strike checks (P1 hits P2, P2 hits P1)
-                    BBCollision.StrikePass(_p1Boxes, _p2Boxes, ref p1Brain.attackHitMask, _contactResults, ref _contactCount, 0, 1, p2Brain.currentInvuln);
-                    BBCollision.StrikePass(_p2Boxes, _p1Boxes, ref p2Brain.attackHitMask, _contactResults, ref _contactCount, 1, 0, p1Brain.currentInvuln);
+                    BBInvuln p2Invuln = p2Brain.currentInvuln;
+                    if (p1Brain.currentAttack != null && p1Brain.currentAttack.otg)
+                    {
+                        p2Invuln &= ~BBInvuln.Strike;
+                    }
+                    BBInvuln p1Invuln = p1Brain.currentInvuln;
+                    if (p2Brain.currentAttack != null && p2Brain.currentAttack.otg)
+                    {
+                        p1Invuln &= ~BBInvuln.Strike;
+                    }
+
+                    BBCollision.StrikePass(_p1Boxes, _p2Boxes, ref p1Brain.attackHitMask, _contactResults, ref _contactCount, 0, 1, p2Invuln);
+                    BBCollision.StrikePass(_p2Boxes, _p1Boxes, ref p2Brain.attackHitMask, _contactResults, ref _contactCount, 1, 0, p1Invuln);
                 }
 
                 // Step 8: Projectiles (handled when projectiles are active)
@@ -341,25 +362,50 @@ namespace DemonIdol.BlazBlue
             for (int i = 0; i < _contactCount; i++)
             {
                 ref BBContact contact = ref _contactResults[i];
-                if (contact.contactType != BBContactType.Throw) continue;
-
                 BBFighterBrain attacker = contact.attackerId == 0 ? p1Brain : p2Brain;
+                bool isThrow = contact.contactType == BBContactType.Throw ||
+                    (attacker.currentAttack != null && (attacker.currentAttack.kind == BBMoveKind.Throw ||
+                                                        attacker.currentAttack.kind == BBMoveKind.CommandThrow ||
+                                                        attacker.currentAttack.moveId == "BC" ||
+                                                        attacker.currentAttack.moveId == "4BC" ||
+                                                        attacker.currentAttack.moveId == "6BC" ||
+                                                        attacker.currentAttack.moveId == "j.BC"));
+                if (!isThrow) continue;
+                contact.contactType = BBContactType.Throw;
+
                 BBFighterBrain defender = contact.defenderId == 0 ? p1Brain : p2Brain;
+                if (defender.bbState == BBState.Thrown || defender.bbState == BBState.DownWait || defender.bbState == BBState.Wakeup) continue;
+                if ((defender.currentInvuln & BBInvuln.Throw) != 0) continue;
+                if (attacker.attackHitMask.HasHit(contact.hitIndex)) continue;
+                attacker.attackHitMask.MarkHit(contact.hitIndex);
+                attacker.chainState.madeContact = true;
+
+                bool wasInStun = defender.bbState == BBState.Hitstun ||
+                                 defender.bbState == BBState.Blockstun ||
+                                 defender.bbState == BBState.BarrierBlockstun;
 
                 // Successful throw
                 defender.bbState = BBState.Thrown;
-                defender.ReceiveAuthoritativeDamage(800f);
+                defender.throwTechWindow = wasInStun ? 27 : 15;
+                defender.throwAttacker = attacker;
+                attacker.throwAttacker = defender;
+                defender.hitstunRemaining = 30; // 30f duration then knockdown
+
+                float throwDmg = (attacker.currentAttack != null && attacker.currentAttack.damage > 0f) ? attacker.currentAttack.damage : 1300f;
+                defender.throwPendingDamage = throwDmg;
+
                 Vector3 throwPt = (contact.contactPointX != 0f || contact.contactPointY != 0f)
                     ? new Vector3(contact.contactPointX, contact.contactPointY, 0f)
                     : (defender.transform.position + Vector3.up * 1.0f);
                 BBContactPresentation.OnCleanHit(throwPt, attacker, false, false);
                 if (BBMatchScreenDirector.Instance != null && BBMatchScreenDirector.Instance.Stats != null)
                 {
-                    BBMatchScreenDirector.Instance.Stats.RegisterHit(attacker == p1Brain, 800, false);
+                    BBMatchScreenDirector.Instance.Stats.RegisterHit(attacker == p1Brain, (int)throwDmg, false);
                 }
                 attacker.heat = Mathf.Min(tuning.heatMax, attacker.heat + 5f);
-                attacker.hitstopRemaining = 10;
-                defender.hitstopRemaining = 10;
+                // Throws do not incur strike hitstop; authoritative 30f Thrown duration
+                attacker.hitstopRemaining = 0;
+                defender.hitstopRemaining = 0;
                 comboHitCount++;
             }
 
@@ -376,10 +422,78 @@ namespace DemonIdol.BlazBlue
                 if (attacker.bbState == BBState.Thrown) continue;
                 if (defender.bbState == BBState.Thrown) continue;
 
-                // Strike contact
-                bool isGuarding = defender.bbState == BBState.Blockstun ||
-                                  defender.bbState == BBState.BarrierBlockstun ||
-                                  (defender.fighter != null && BBInputFrame.IsBack(BBInputFrame.WorldToFacingNumpad(defender.History.LatestFrame.numpad, defender.fighter.FacingDirection)));
+                // Check if defender can block in their current state
+                bool canBlockState = defender.bbState == BBState.Neutral ||
+                                     defender.bbState == BBState.WalkForward ||
+                                     defender.bbState == BBState.WalkBackward ||
+                                     defender.bbState == BBState.Crouching ||
+                                     defender.bbState == BBState.Blockstun ||
+                                     defender.bbState == BBState.BarrierBlockstun ||
+                                     defender.bbState == BBState.Airborne;
+
+                bool inBlockstun = defender.bbState == BBState.Blockstun || defender.bbState == BBState.BarrierBlockstun;
+                bool isGuarding = false;
+
+                if (canBlockState)
+                {
+                    if (inBlockstun)
+                    {
+                        // Auto-guard during blockstun (block carryover)
+                        isGuarding = true;
+                    }
+                    else
+                    {
+                        int facing = defender.fighter != null ? defender.fighter.FacingDirection : 1;
+                        sbyte facingNumpad = BBInputFrame.WorldToFacingNumpad(defender.History.LatestFrame.numpad, facing);
+
+                        // 3 frames side-switch leniency on cross-ups: allow either left or right as back
+                        bool isSideSwitchActive = _sideSwitchLeniencyTicks > 0;
+                        if (isSideSwitchActive)
+                        {
+                            sbyte rawNum = defender.History.LatestFrame.numpad;
+                            if (rawNum == 4 || rawNum == 6 || rawNum == 1 || rawNum == 3 || rawNum == 7 || rawNum == 9)
+                            {
+                                if (rawNum == 1 || rawNum == 3) facingNumpad = 1;
+                                else if (rawNum == 7 || rawNum == 9) facingNumpad = 7;
+                                else facingNumpad = 4;
+                            }
+                        }
+
+                        BBGuard guardReq = attacker.currentAttack != null ? attacker.currentAttack.guard : BBGuard.Mid;
+
+                        if (!defender.isGrounded || defender.bbState == BBState.Airborne)
+                        {
+                            // Any back blocks in the air (7, 4, 1)
+                            bool anyBackAir = facingNumpad == 7 || facingNumpad == 4 || facingNumpad == 1;
+                            isGuarding = anyBackAir && guardReq != BBGuard.Unblockable;
+                        }
+                        else
+                        {
+                            bool isStandingBack = facingNumpad == 4 || facingNumpad == 7;
+                            bool isCrouchingBack = facingNumpad == 1 || (facingNumpad == 2 && isSideSwitchActive);
+
+                            switch (guardReq)
+                            {
+                                case BBGuard.Mid:
+                                    isGuarding = isStandingBack || isCrouchingBack;
+                                    break;
+                                case BBGuard.Low:
+                                    isGuarding = isCrouchingBack; // Crouching blocks Mid+Low, standing whiffs
+                                    break;
+                                case BBGuard.Overhead:
+                                    isGuarding = isStandingBack; // Standing blocks High+Mid, crouching whiffs
+                                    break;
+                                case BBGuard.Unblockable:
+                                    isGuarding = false;
+                                    break;
+                                default:
+                                    isGuarding = isStandingBack || isCrouchingBack;
+                                    break;
+                            }
+                        }
+                    }
+                }
+
                 bool isBarrier = defender.CurrentCommand.commandType == BBCommandType.Barrier && defender.barrier > 0f && !defender.gauges.isDanger;
 
                 float baseDamage = (attacker.currentAttack != null ? attacker.currentAttack.damage : 300f) * Mathf.Max(0.1f, attacker.ActiveDamageScale);
@@ -443,8 +557,58 @@ namespace DemonIdol.BlazBlue
                         minDamagePct = attacker.currentAttack.minDamagePct;
                     }
 
-                    bool isCounterHit = defender.bbState == BBState.AttackStartup || defender.bbState == BBState.AttackActive;
+                    bool isRecoveryOfSpecialOrSuper = defender.bbState == BBState.AttackRecovery &&
+                        defender.currentAttack != null &&
+                        (defender.currentAttack.kind == BBMoveKind.Special || defender.currentAttack.kind == BBMoveKind.DistortionDrive);
+
+                    bool isCounterHit = defender.bbState == BBState.AttackStartup ||
+                                        defender.bbState == BBState.AttackActive ||
+                                        isRecoveryOfSpecialOrSuper;
+
                     bool isFatal = attacker.currentAttack != null && attacker.currentAttack.fatalCounter && isCounterHit;
+
+                    int hitLevel = 1;
+                    if (attacker.currentAttack is BBAttackData bbAtk)
+                    {
+                        hitLevel = bbAtk.AttackLevel;
+                    }
+                    else if (attacker.currentAttack != null)
+                    {
+                        hitLevel = Mathf.Clamp((int)attacker.currentAttack.hitLevel, 0, 5);
+                    }
+                    int extraHitstop = 0;
+                    switch (hitLevel)
+                    {
+                        case 0: extraHitstop = 0; break;
+                        case 1: extraHitstop = 0; break;
+                        case 2: extraHitstop = 1; break;
+                        case 3: extraHitstop = 2; break;
+                        case 4: extraHitstop = 5; break;
+                        case 5: extraHitstop = 8; break;
+                    }
+
+                    int extraHitstun = 0;
+                    switch (hitLevel)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                            extraHitstun = 4;
+                            break;
+                        case 3:
+                        case 4:
+                            extraHitstun = 5;
+                            break;
+                        case 5:
+                            extraHitstun = 6;
+                            break;
+                    }
+
+                    if (isCounterHit)
+                    {
+                        hitstopA += extraHitstop;
+                        hitstopD += extraHitstop;
+                    }
 
                     // Register hit in combo state
                     attacker.comboState.RegisterHit(moveHash, p1, p2, isAirHit: !defender.isGrounded, isFatalStarter: isFatal);
@@ -462,6 +626,7 @@ namespace DemonIdol.BlazBlue
                     );
 
                     defender.ReceiveAuthoritativeDamage(scaledDmg);
+                    Debug.Log($"[BBMatchSim] Hit landed: move={attacker.currentAttack?.moveId}, damage={scaledDmg}, P1 HP={p1Brain.health:F0}, P2 HP={p2Brain.health:F0}");
                     if (BBMatchScreenDirector.Instance != null && BBMatchScreenDirector.Instance.Stats != null)
                     {
                         BBMatchScreenDirector.Instance.Stats.RegisterHit(attacker == p1Brain, scaledDmg, moveKind == BBMoveKind.DistortionDrive);
@@ -469,7 +634,7 @@ namespace DemonIdol.BlazBlue
 
                     // Hitstun with combo duration decay (spec 4.15)
                     int decayedHitstun = attacker.comboState.CalculateDecayedHitstun(hitstun, defender.isGrounded);
-                    if (isCounterHit) decayedHitstun = Mathf.RoundToInt(decayedHitstun * 1.5f);
+                    if (isCounterHit) decayedHitstun += extraHitstun;
 
                     if (attacker.currentAttack != null && (attacker.currentAttack.causesKnockdown || attacker.currentAttack.hardKnockdown))
                     {

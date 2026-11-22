@@ -19,8 +19,8 @@ MonoBehaviour:
   signatureStageId: ST01
   description: 'Dota 2 style hero: OfficerK, the Martial Enforcer. Equipped with Karate stance.'
   modelPrefab: {fileID: 2002850534079977366, guid: 5df8262040cf94db9b9809af850a20e3, type: 3}
-  animatorController: {fileID: 0}
-  avatar: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  avatar: {fileID: 9000000, guid: ec731e0d4d082a44a94908cf0afe88d5, type: 3}
   portraitSprite: {fileID: 21300000, guid: 80e6210c046e0b1e505eb0e3c6c15147, type: 3}
   bannerSprite: {fileID: 0}
   speed: 86

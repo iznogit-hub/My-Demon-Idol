@@ -201,12 +201,15 @@ namespace DemonIdol.VFX
 
             // Auto-load audio clips if null
             #if UNITY_EDITOR
-            if (_rainLoopClip == null)
-                _rainLoopClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_rain_loop.wav");
-            if (_thunderCloseClip == null)
-                _thunderCloseClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_thunder_close.wav");
-            if (_thunderDistantClip == null)
-                _thunderDistantClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_thunder_distant.wav");
+            if (!Application.isBatchMode)
+            {
+                if (_rainLoopClip == null)
+                    _rainLoopClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_rain_loop.wav");
+                if (_thunderCloseClip == null)
+                    _thunderCloseClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_thunder_close.wav");
+                if (_thunderDistantClip == null)
+                    _thunderDistantClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_thunder_distant.wav");
+            }
             #endif
 
             // Ensure Rain Particle System

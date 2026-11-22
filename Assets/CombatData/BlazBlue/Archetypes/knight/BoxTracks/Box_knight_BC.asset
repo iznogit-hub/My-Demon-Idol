@@ -48,7 +48,7 @@ MonoBehaviour:
     cy: 1.05
     hx: 0.44
     hy: 0.32
-    kind: 1
+    kind: 3
     hitIndex: 0
     attribute: 2
     flags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
     cy: 1.05
     hx: 0.44
     hy: 0.32
-    kind: 1
+    kind: 3
     hitIndex: 0
     attribute: 2
     flags: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
     cy: 1.05
     hx: 0.44
     hy: 0.32
-    kind: 1
+    kind: 3
     hitIndex: 0
     attribute: 2
     flags: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
     cy: 1.05
     hx: 0.44
     hy: 0.32
-    kind: 1
+    kind: 3
     hitIndex: 0
     attribute: 2
     flags: 0

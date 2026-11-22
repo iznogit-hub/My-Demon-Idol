@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using DemonIdol.Combat;
+using DemonIdol.Audio;
 
 namespace DemonIdol.BlazBlue
 {
@@ -33,6 +34,9 @@ namespace DemonIdol.BlazBlue
         public int hitstopRemaining = 0;
         public int hitstunRemaining = 0;
         public int blockstunRemaining = 0;
+        public int throwTechWindow = 0;
+        public float throwPendingDamage = 0f;
+        public BBFighterBrain throwAttacker = null;
         public BBInvuln currentInvuln = BBInvuln.None;
 
         [Header("Active Attack")]
@@ -228,6 +232,9 @@ namespace DemonIdol.BlazBlue
             hitstopRemaining = 0;
             hitstunRemaining = 0;
             blockstunRemaining = 0;
+            throwTechWindow = 0;
+            throwPendingDamage = 0f;
+            throwAttacker = null;
             currentInvuln = BBInvuln.None;
             currentAttack = null;
             attackTick = 0;
@@ -319,19 +326,34 @@ namespace DemonIdol.BlazBlue
             string moveId = MoveIdFor(CurrentCommand);
             if (string.IsNullOrEmpty(moveId)) return;
             string fallback = FallbackMoveId(CurrentCommand);
+
+            bool moveExists = FindAttackByMoveId(moveId) != null || (!string.IsNullOrEmpty(fallback) && FindAttackByMoveId(fallback) != null);
+
             if (TryStartMoveId(moveId) || (!string.IsNullOrEmpty(fallback) && TryStartMoveId(fallback)))
             {
                 ConsumeCurrentCommand();
             }
             else
             {
-                string charId = fighter != null && fighter.appliedDefinition != null ? fighter.appliedDefinition.id : (profile != null ? profile.characterId : "unknown");
-                string key = $"{charId}:{moveId}";
-                if (s_LoggedMissingMoves.Add(key))
+                if (!moveExists)
                 {
-                    UnityEngine.Debug.LogWarning($"[BBFighterBrain] Missing move '{moveId}' for fighter '{charId}'. No action taken.");
+                    string charId = fighter != null && fighter.appliedDefinition != null ? fighter.appliedDefinition.id : (profile != null ? profile.characterId : "unknown");
+                    string key = $"{charId}:{moveId}";
+                    if (s_LoggedMissingMoves.Add(key))
+                    {
+                        UnityEngine.Debug.LogWarning($"[BBFighterBrain] Missing move '{moveId}' for fighter '{charId}'. No action taken.");
+                    }
+                    ConsumeCurrentCommand();
                 }
-                ConsumeCurrentCommand();
+                else
+                {
+                    // Move exists in profile but cannot start yet (e.g. during hitstop or recovery before cancel window).
+                    // Keep alive up to 4 ticks (buffered).
+                    if (tick - CurrentCommand.tick > 4)
+                    {
+                        ConsumeCurrentCommand();
+                    }
+                }
             }
         }
 
@@ -433,6 +455,16 @@ namespace DemonIdol.BlazBlue
             if (hitstopRemaining > 0)
             {
                 hitstopRemaining--;
+                if (CurrentCommand.IsValid)
+                {
+                    var cmd = CurrentCommand;
+                    cmd.tick++;
+                    CurrentCommand = cmd;
+                }
+                if (History != null)
+                {
+                    History.FreezeBufferAging(1);
+                }
                 return; // Frozen during hitstop
             }
 
@@ -448,10 +480,10 @@ namespace DemonIdol.BlazBlue
                 drive.TickDrive(this, tick);
             }
 
-            // Update invulnerability mask for current attack frame
+            // Update invulnerability mask for current tick
+            currentInvuln = BBInvuln.None;
             if (currentAttack != null && currentAttack.invuln != null && currentAttack.invuln.Length > 0)
             {
-                currentInvuln = BBInvuln.None;
                 for (int i = 0; i < currentAttack.invuln.Length; i++)
                 {
                     if (currentAttack.invuln[i].IsActiveAt(attackTick))
@@ -464,6 +496,44 @@ namespace DemonIdol.BlazBlue
             // State-specific timers
             switch (bbState)
             {
+                case BBState.Thrown:
+                    currentInvuln |= BBInvuln.Throw;
+                    if (throwTechWindow > 0)
+                    {
+                        throwTechWindow--;
+                        bool techInput = CurrentCommand.commandType == BBCommandType.Throw ||
+                                         (History != null && History.IsChordBuffered(BBButton.B, BBButton.C, 3, 3)) ||
+                                         ((History != null && (History.LatestFrame.pressed & ((byte)BBButton.B | (byte)BBButton.C)) == ((byte)BBButton.B | (byte)BBButton.C)));
+                        if (techInput)
+                        {
+                            throwPendingDamage = 0f;
+                            PerformThrowTech();
+                            break;
+                        }
+                    }
+
+                    if (throwPendingDamage > 0f && throwTechWindow <= 0)
+                    {
+                        ReceiveAuthoritativeDamage(throwPendingDamage);
+                        throwPendingDamage = 0f;
+                    }
+
+                    if (hitstunRemaining > 0) hitstunRemaining--;
+                    if (hitstunRemaining <= 0)
+                    {
+                        if (throwPendingDamage > 0f)
+                        {
+                            ReceiveAuthoritativeDamage(throwPendingDamage);
+                            throwPendingDamage = 0f;
+                        }
+                        bbState = BBState.DownWait; // knockdown
+                        stateTick = 0;
+                        hitstunRemaining = 24;
+                        throwAttacker = null;
+                        if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
+                    }
+                    break;
+
                 case BBState.Blockstun:
                 case BBState.BarrierBlockstun:
                     if (blockstunRemaining > 0) blockstunRemaining--;
@@ -490,17 +560,19 @@ namespace DemonIdol.BlazBlue
                     break;
 
                 case BBState.DownWait:
+                    currentInvuln |= BBInvuln.Strike | BBInvuln.Throw;
                     if (hitstunRemaining > 0) hitstunRemaining--;
                     if (hitstunRemaining <= 0)
                     {
                         bbState = BBState.Wakeup;
                         stateTick = 0;
-                        hitstunRemaining = 24;
+                        hitstunRemaining = 24; // Wakeup 24f
                         if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
                     }
                     break;
 
                 case BBState.Wakeup:
+                    currentInvuln |= BBInvuln.Strike | BBInvuln.Throw;
                     if (hitstunRemaining > 0) hitstunRemaining--;
                     if (hitstunRemaining <= 0)
                     {
@@ -600,7 +672,9 @@ namespace DemonIdol.BlazBlue
             if (isGrounded &&
                 bbState != BBState.AttackStartup && bbState != BBState.AttackActive && bbState != BBState.AttackRecovery &&
                 bbState != BBState.Hitstun && bbState != BBState.Blockstun && bbState != BBState.BarrierBlockstun &&
-                bbState != BBState.Thrown && bbState != BBState.ForwardDash && bbState != BBState.Backdash &&
+                bbState != BBState.Thrown && bbState != BBState.DownWait && bbState != BBState.Wakeup &&
+                bbState != BBState.GuardCrush && bbState != BBState.Dead &&
+                bbState != BBState.ForwardDash && bbState != BBState.Backdash &&
                 bbState != BBState.JumpStartup && (fighter == null || fighter.State != FighterState.Dead))
             {
                 sbyte facingNumpad = fighter != null ? BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, fighter.FacingDirection) : (sbyte)5;
@@ -858,6 +932,66 @@ namespace DemonIdol.BlazBlue
 
             // Fallback pushbox
             return new BBWorldBox(posX - 0.35f, posY, posX + 0.35f, posY + 1.8f, BBBoxKind.Push);
+        }
+
+        public void PerformThrowTech()
+        {
+            var attacker = throwAttacker;
+            throwAttacker = null;
+            throwTechWindow = 0;
+            throwPendingDamage = 0f;
+
+            bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
+            stateTick = 0;
+            hitstopRemaining = 0;
+            hitstunRemaining = 0;
+            currentAttack = null;
+            attackTick = 0;
+            CurrentCommand = default;
+            if (History != null) History.Clear();
+
+            if (attacker != null)
+            {
+                attacker.throwAttacker = null;
+                attacker.throwTechWindow = 0;
+                attacker.throwPendingDamage = 0f;
+                attacker.bbState = attacker.isGrounded ? BBState.Neutral : BBState.Airborne;
+                attacker.stateTick = 0;
+                attacker.attackTick = 0;
+                attacker.hitstopRemaining = 0;
+                attacker.currentAttack = null;
+                attacker.CurrentCommand = default;
+                if (attacker.History != null) attacker.History.Clear();
+
+                // Push apart: neutral, no advantage
+                float sepDist = 0.85f;
+                var cc1 = GetComponent<CharacterController>();
+                var cc2 = attacker.GetComponent<CharacterController>();
+                if (cc1 != null) cc1.enabled = false;
+                if (cc2 != null) cc2.enabled = false;
+
+                if (transform.position.x < attacker.transform.position.x)
+                {
+                    transform.position += new Vector3(-sepDist, 0, 0);
+                    attacker.transform.position += new Vector3(sepDist, 0, 0);
+                }
+                else
+                {
+                    transform.position += new Vector3(sepDist, 0, 0);
+                    attacker.transform.position += new Vector3(-sepDist, 0, 0);
+                }
+
+                if (cc1 != null) cc1.enabled = true;
+                if (cc2 != null) cc2.enabled = true;
+            }
+
+            if (CombatAudioDirector.Instance != null)
+            {
+                CombatAudioDirector.Instance.PlayBlock();
+            }
+            Vector3 midPt = attacker != null ? (transform.position + attacker.transform.position) * 0.5f + Vector3.up * 1.0f : transform.position + Vector3.up * 1.0f;
+            BBContactPresentation.OnGuard(midPt, false, false);
+            ConsumeCurrentCommand();
         }
 
         public void ConsumeCurrentCommand()

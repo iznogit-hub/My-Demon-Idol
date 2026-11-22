@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 15
-  activeFrames: 5
-  recoveryFrames: 18
+  startupFrames: 7
+  activeFrames: 3
+  recoveryFrames: 23
   hitstunTicks: 17
   blockstunTicks: 13
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 750
+  damage: 1300
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -53,7 +53,7 @@ MonoBehaviour:
   launchVelocity: {x: 0, y: 0}
   screenShakeTrauma: 0.1
   canRapidCancel: 1
-  gatlingCancels: []
+  gatlingCancels: 
   animationClip: {fileID: 7400000, guid: 48fa84abc2c3a744e8561044d83beb93, type: 3}
   animationTrigger: Throw
   hitboxOffset: {x: 0.95, y: 1.05, z: 0}
@@ -66,6 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 0
   groundOk: 1
+  attackLevel: -1
   guard: 0
   attribute: 2
   invuln: []
@@ -80,7 +81,7 @@ MonoBehaviour:
   untechableTicksCH: 27
   airHitVelocity: {x: 1.2, y: 4.5}
   landingRecovery: 4
-  minDamagePct: 0.08
+  minDamagePct: 1
   chipPct: 0
   heatGainOverride: -1
   heatCost: 0

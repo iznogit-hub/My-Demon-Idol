@@ -19,8 +19,8 @@ MonoBehaviour:
   signatureStageId: ST01
   description: 'Dota 2 style hero: Hugo, the Primal Terror. Equipped with Brute stance.'
   modelPrefab: {fileID: 8221994882499907626, guid: 2885b493a306c439a83a2c8967fe9d56, type: 3}
-  animatorController: {fileID: 0}
-  avatar: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  avatar: {fileID: 9000000, guid: 4d45659f9a6b2fa468cb678c1116e273, type: 3}
   portraitSprite: {fileID: 21300000, guid: 0c7e64790c3961016aa6d30b1c41fbc0, type: 3}
   bannerSprite: {fileID: 0}
   speed: 70

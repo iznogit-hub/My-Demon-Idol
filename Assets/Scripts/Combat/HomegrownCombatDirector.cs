@@ -39,6 +39,13 @@ namespace DemonIdol.Combat
         [Header("Fighter Instances")]
         [SerializeField] private FighterController _fighter1;
         [SerializeField] private FighterController _fighter2;
+        [SerializeField] private DemonIdol.Data.MDIRosterDatabase _rosterDatabase;
+
+        public DemonIdol.Data.MDIRosterDatabase RosterDatabase
+        {
+            get => _rosterDatabase != null ? _rosterDatabase : (_rosterDatabase = DemonIdol.Data.MDIRosterDatabase.Instance);
+            set => _rosterDatabase = value;
+        }
 
         [Header("Match Context")]
         private string _activeP1Id = "C12";
@@ -324,12 +331,10 @@ namespace DemonIdol.Combat
                     {
                         var oldDiorama = arenaRoot.transform.Find("Backdrop_Diorama");
                         GameObject pfab = stage.stagePrefab;
-#if UNITY_EDITOR
-                        if (pfab == null)
+                        if (pfab == null && RosterDatabase != null && RosterDatabase.st07Stage != null)
                         {
-                            pfab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Stages/ST07_CollegeRaimon.prefab");
+                            pfab = RosterDatabase.st07Stage.stagePrefab;
                         }
-#endif
                         if (pfab != null && (oldDiorama == null || oldDiorama.gameObject.name != pfab.name))
                         {
                             if (oldDiorama != null)
@@ -406,26 +411,22 @@ namespace DemonIdol.Combat
             GameObject prefab = charDef != null ? charDef.modelPrefab : null;
             if (prefab == null && charDef != null)
             {
-                var look = FighterVisualCatalog.Find(charDef.id);
-                if (look != null)
+                var db = DemonIdol.Data.MDIRosterDatabase.Instance;
+                var dbDef = db != null ? db.GetCharacterById(charDef.id) : null;
+                if (dbDef != null && dbDef.modelPrefab != null)
                 {
-#if UNITY_EDITOR
-                    prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(look.PrefabAssetPath);
-#endif
-                    if (prefab == null) prefab = Resources.Load<GameObject>(look.PrefabAssetPath);
+                    prefab = dbDef.modelPrefab;
+                    charDef.modelPrefab = prefab;
                 }
             }
 
-            if (prefab == null && !string.IsNullOrEmpty(charId))
+            if (prefab == null && charDef != null)
             {
-#if UNITY_EDITOR
-                string canonId = CharacterRegistry.ResolveCanonicalId(charId);
-                string[] found = System.IO.Directory.GetFiles("Assets/Prefabs/Characters", canonId + "*.prefab", System.IO.SearchOption.AllDirectories);
-                if (found != null && found.Length > 0)
+                var look = FighterVisualCatalog.Find(charDef.id);
+                if (look != null)
                 {
-                    prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(found[0]);
+                    prefab = Resources.Load<GameObject>(look.PrefabAssetPath);
                 }
-#endif
             }
 
             // ONLY remove old models if we have a valid replacement prefab
@@ -512,12 +513,11 @@ namespace DemonIdol.Combat
                             anim.avatar = pAnim.avatar;
                         }
                     }
-#if UNITY_EDITOR
-                    if (anim.runtimeAnimatorController == null)
+                    var db = DemonIdol.Data.MDIRosterDatabase.Instance;
+                    if (anim.runtimeAnimatorController == null && db != null)
                     {
-                        anim.runtimeAnimatorController = UnityEditor.AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/MDI_Characters/Runtime/MDI_FighterTemplate.controller");
+                        anim.runtimeAnimatorController = db.defaultAnimatorController;
                     }
-#endif
                     fc.animator = anim;
                     fc.CacheAnimatorParams();
                 }
@@ -661,13 +661,19 @@ namespace DemonIdol.Combat
             GameObject prefab = charDef != null ? charDef.modelPrefab : null;
             if (prefab == null && charDef != null)
             {
+                var dbDef = RosterDatabase != null ? RosterDatabase.GetCharacterById(charDef.id) : null;
+                if (dbDef != null && dbDef.modelPrefab != null)
+                {
+                    prefab = dbDef.modelPrefab;
+                    charDef.modelPrefab = prefab;
+                }
+            }
+            if (prefab == null && charDef != null)
+            {
                 var look = FighterVisualCatalog.Find(charDef.id);
                 if (look != null)
                 {
-#if UNITY_EDITOR
-                    prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(look.PrefabAssetPath);
-#endif
-                    if (prefab == null) prefab = Resources.Load<GameObject>(look.PrefabAssetPath);
+                    prefab = Resources.Load<GameObject>(look.PrefabAssetPath);
                 }
             }
 
@@ -695,12 +701,11 @@ namespace DemonIdol.Combat
                     {
                         anim.runtimeAnimatorController = charDef.animatorController;
                     }
-#if UNITY_EDITOR
-                    if (anim.runtimeAnimatorController == null)
+                    var db = DemonIdol.Data.MDIRosterDatabase.Instance;
+                    if (anim.runtimeAnimatorController == null && db != null)
                     {
-                        anim.runtimeAnimatorController = UnityEditor.AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/MDI_Characters/Runtime/MDI_FighterTemplate.controller");
+                        anim.runtimeAnimatorController = db.defaultAnimatorController;
                     }
-#endif
                     fc.animator = anim;
                     fc.CacheAnimatorParams();
                 }
@@ -720,14 +725,7 @@ namespace DemonIdol.Combat
 
         private AttackData LoadAttackDataAsset(string assetName)
         {
-            AttackData data = Resources.Load<AttackData>($"CombatData/{assetName}");
-#if UNITY_EDITOR
-            if (data == null)
-            {
-                data = UnityEditor.AssetDatabase.LoadAssetAtPath<AttackData>($"Assets/CombatData/{assetName}.asset");
-            }
-#endif
-            return data;
+            return Resources.Load<AttackData>($"CombatData/{assetName}");
         }
 
         private static void SafeDestroy(UnityEngine.Object obj)

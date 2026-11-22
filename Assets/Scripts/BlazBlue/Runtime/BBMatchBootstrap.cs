@@ -141,6 +141,15 @@ namespace DemonIdol.BlazBlue
                     }
                 }
 
+                string charId = definition != null ? definition.id : fc.fighterName;
+                bool hasModel = fc.transform.Find("Model_" + charId) != null || (definition != null && definition.modelPrefab != null);
+                int moveCount = 0;
+                if (brain.profile != null && brain.profile.moveSet is BBMoveSet ms && ms.moves != null)
+                {
+                    moveCount = ms.moves.Length;
+                }
+                Debug.Log($"[BBMatchBootstrap] Fighter P{sampler.playerIndex + 1} ({charId}): model={(hasModel ? "resolved" : "missing")}, profile={(brain.profile != null ? brain.profile.name : "null")}, moves={moveCount} resolved");
+
                 var info = BBRosterArchetype.Get(definition != null ? definition.id : fc.fighterName);
                 brain.bodyBoxes = BBBodyBoxes.CreateFromHip(info.hipHeight, info.weaponReach);
                 EnsureDrive(brain, info);

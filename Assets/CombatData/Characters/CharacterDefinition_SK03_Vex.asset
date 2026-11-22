@@ -19,8 +19,8 @@ MonoBehaviour:
   signatureStageId: ST01
   description: 'Dota 2 style hero: Vex, the Outland Ranger. Equipped with Crossbow stance.'
   modelPrefab: {fileID: 909871151342833027, guid: 09fdad189b09b4f318ef7234dd9d6908, type: 3}
-  animatorController: {fileID: 0}
-  avatar: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  avatar: {fileID: 9000000, guid: aebf1eba44565b04ebee549db0eb5aa7, type: 2}
   portraitSprite: {fileID: 21300000, guid: c0a570da6c35d34cc635a5f90bbf54d1, type: 3}
   bannerSprite: {fileID: 0}
   speed: 82

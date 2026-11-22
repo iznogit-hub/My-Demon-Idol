@@ -28,6 +28,7 @@ namespace DemonIdol.BlazBlue.Editor
             }
         }
 
+        [MenuItem("Demon Idol/Run All BB Tests")]
         public static void RunAllSuites()
         {
             Debug.Log("<color=#00e676>[BBAllTestsRunner] STARTING MASTER COMBAT & FIGHTER TEST RUNNER...</color>");
@@ -54,7 +55,8 @@ namespace DemonIdol.BlazBlue.Editor
                 BBInputIntegrityGuardTests.RunGuardTests,
                 RealInputMatchTest.RunAllTests,
                 DemonIdolRebuildGuardTests.RunSceneIntegrityCheck,
-                CombatAudioDirectorTests.RunAllTestsMenu
+                CombatAudioDirectorTests.RunAllTestsMenu,
+                RunRosterDatabaseTests
             };
 
             foreach (var suite in suites)
@@ -77,6 +79,13 @@ namespace DemonIdol.BlazBlue.Editor
             // BBWarriorMasterRemapper archived
 
             Debug.Log($"<color=#00e676><b>[BBAllTestsRunner] TEST RUN COMPLETE! {passedSuites} Passed, {failedSuites} Failed out of {suites.Length} Suites!</b></color>");
+        }
+
+        public static void RunRosterDatabaseTests()
+        {
+            var test = new MDIRosterDatabaseTests();
+            test.Test01_BuildAndVerifyRosterDatabase();
+            test.Test02_FixAndVerifyAllThrowMoveAssets();
         }
     }
 }

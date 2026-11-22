@@ -19,8 +19,8 @@ MonoBehaviour:
   signatureStageId: ST01
   description: 'Dota 2 style hero: CommanderRen, the Exo-Dragoon. Equipped with Spearman stance.'
   modelPrefab: {fileID: 2027790194174550680, guid: 46840fb6d349f4bfbacf6022fbcd3d97, type: 3}
-  animatorController: {fileID: 0}
-  avatar: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  avatar: {fileID: 9000000, guid: ad102b48a375d11438a958bff1e58208, type: 2}
   portraitSprite: {fileID: 21300000, guid: fef625c83cdc76764b2ed0116115b6e1, type: 3}
   bannerSprite: {fileID: 0}
   speed: 72

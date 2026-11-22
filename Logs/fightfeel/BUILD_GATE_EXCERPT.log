@@ -1,0 +1,26 @@
+[BBBuildGate] ========================================================
+[BBBuildGate] STARTING MAC DEVELOPMENT BUILD VERIFICATION GATE
+[BBBuildGate] Testing 3 fighters: C (C01 Akio), SK (SK02 Galahad), EX (EX01 Hugo)
+[BBBuildGate] ========================================================
+[BBBuildGate] Starting Match: P1=C01 vs P2=C02 on ST07...
+[BBBuildGate] VERIFY P1 (C01): profile=BBProfile_C01_Akio, moves=34
+[BBBuildGate] VERIFY P2 (C02): profile=BBProfile_C02_Aika, moves=31
+[BBBuildGate] Initial spacing: 2.65m. Walking P1 into 5A range...
+[BBBuildGate] Pressing 5A (Key.J)... P2 HP before: 10000
+[BBBuildGate] PASS: 5A HIT CONNECTED! Damage=196, P2 HP: 10000 -> 9804
+[BBBuildGate] Starting Match: P1=SK02 vs P2=C01 on ST07...
+[BBBuildGate] VERIFY P1 (SK02): profile=BBProfile_SK02_Galahad, moves=14
+[BBBuildGate] VERIFY P2 (C01): profile=BBProfile_C01_Akio, moves=34
+[BBBuildGate] Initial spacing: 2.65m. Walking P1 into 5A range...
+[BBBuildGate] Pressing 5A (Key.J)... P2 HP before: 10000
+[BBBuildGate] PASS: 5A HIT CONNECTED! Damage=210, P2 HP: 10000 -> 9790
+[BBBuildGate] Starting Match: P1=EX01 vs P2=SK02 on ST07...
+[BBBuildGate] VERIFY P1 (EX01): profile=BBProfile_EX01_Hugo, moves=14
+[BBBuildGate] VERIFY P2 (SK02): profile=BBProfile_SK02_Galahad, moves=14
+[BBBuildGate] Initial spacing: 2.65m. Walking P1 into 5A range...
+[BBBuildGate] Pressing 5A (Key.J)... P2 HP before: 10000
+[BBBuildGate] PASS: 5A HIT CONNECTED! Damage=224, P2 HP: 10000 -> 9776
+[BBBuildGate] ========================================================
+[BBBuildGate] ALL 3 FIGHTERS (C, SK, EX) RESOLVED AND 5A HITS VERIFIED IN BUILD!
+[BBBuildGate] GATE COMPLETE - EXITING APPLICATION WITH CODE 0
+[BBBuildGate] ========================================================

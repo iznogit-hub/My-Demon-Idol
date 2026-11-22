@@ -151,13 +151,40 @@ namespace DemonIdol.Combat
         {
             _cachedStages = new List<StageDefinition>();
 
-            // 1. Discover all StageDefinition assets in Resources
+            // 1. Authoritative ST07 and additional stages from MDIRosterDatabase
+            var rosterDb = DemonIdol.Data.MDIRosterDatabase.Instance;
+            if (rosterDb != null)
+            {
+                if (rosterDb.st07Stage != null && !_cachedStages.Contains(rosterDb.st07Stage))
+                {
+                    _cachedStages.Add(rosterDb.st07Stage);
+                }
+                if (rosterDb.additionalStages != null)
+                {
+                    for (int i = 0; i < rosterDb.additionalStages.Length; i++)
+                    {
+                        var s = rosterDb.additionalStages[i];
+                        if (s != null && !_cachedStages.Contains(s))
+                        {
+                            _cachedStages.Add(s);
+                        }
+                    }
+                }
+            }
+
+            // 2. Discover all StageDefinition assets in Resources
             try
             {
                 var loaded = Resources.LoadAll<StageDefinition>("");
                 if (loaded != null && loaded.Length > 0)
                 {
-                    _cachedStages.AddRange(loaded);
+                    for (int i = 0; i < loaded.Length; i++)
+                    {
+                        if (loaded[i] != null && !_cachedStages.Contains(loaded[i]))
+                        {
+                            _cachedStages.Add(loaded[i]);
+                        }
+                    }
                 }
             }
             catch
@@ -165,7 +192,7 @@ namespace DemonIdol.Combat
                 // Standalone test runner / non-native Unity fallback
             }
 
-            // 2. Ensure author-approved signature 6 stages exist
+            // 3. Ensure author-approved signature 6 stages exist
             EnsureStage("ST01", "Low Poly Desert", "Sun-baked canyon floor with sandstone mesa spires, wind-sculpted dunes, and warm amber dust haze.", "Desert Mirage BGM", "Prefabs/Stages/ST01_LowPolyDesert");
             EnsureStage("ST02", "RTS Sci-Fi Game Assets v1", "High-tech industrial gantry platform, modular cyber conduits, cargo units, and neon cyan status lines.", "Cyber Hangar BGM", "Prefabs/Stages/ST02_RTSSciFiHangar");
             EnsureStage("ST03", "Space Alien Worlds", "Extraterrestrial alien plateau framed by bioluminescent crystal formations and deep violet nebulae.", "Alien Worlds BGM", "Prefabs/Stages/ST03_SpaceAlienWorlds");

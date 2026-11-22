@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5189bb151402f450182a177210659f45, type: 3}
+  m_Name: MDI_RosterDatabase
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.Data.MDIRosterDatabase
+  characters:
+  - {fileID: 11400000, guid: 850f4cb2234fe410e9295caef59a4f60, type: 2}
+  - {fileID: 11400000, guid: 41ebd35f098c948f58c69bdb044da8e6, type: 2}
+  - {fileID: 11400000, guid: c03b961794b074d61a88a29694019653, type: 2}
+  - {fileID: 11400000, guid: aa26f3335d0e64531be0e76be83da6aa, type: 2}
+  - {fileID: 11400000, guid: 8c9736460d24e48aea898a3f0474aced, type: 2}
+  - {fileID: 11400000, guid: a9a18ae39bd704ee19466ef7250afdc1, type: 2}
+  - {fileID: 11400000, guid: 6afc4fc88fee743d8b0fe789a24fe645, type: 2}
+  - {fileID: 11400000, guid: e2ae9b33b9f2c4095a6a7da89a1a4d9d, type: 2}
+  - {fileID: 11400000, guid: 14ff3739399b04546a53757b356ff642, type: 2}
+  - {fileID: 11400000, guid: 60490d5d0c3fa48c59f70c489f2a0e73, type: 2}
+  - {fileID: 11400000, guid: 987089de942f6455db59262dabfcdf20, type: 2}
+  - {fileID: 11400000, guid: d5e6680029b2141e7a9942d0d662b673, type: 2}
+  - {fileID: 11400000, guid: 134862087fa0d4ce5897be1b9c195661, type: 2}
+  - {fileID: 11400000, guid: e6d63962f3a6d49df8e0c8b923979031, type: 2}
+  - {fileID: 11400000, guid: 6e87a784afd4e41d09ece2e2a2ab15c5, type: 2}
+  - {fileID: 11400000, guid: d9881e27028a04338916478bcfef22af, type: 2}
+  - {fileID: 11400000, guid: 92cf4de3de802451ba5cf2684d8ec483, type: 2}
+  - {fileID: 11400000, guid: a358e6f24de9f4c8d867344ca5de5c8b, type: 2}
+  - {fileID: 11400000, guid: 719ac89dc29dd4b5cbd499cc4cf3a4c1, type: 2}
+  - {fileID: 11400000, guid: 18f1e4dd68ea849d8b775a18c05483fc, type: 2}
+  - {fileID: 11400000, guid: 05bc821749d814ae3859927186a01325, type: 2}
+  - {fileID: 11400000, guid: 09796da6bbe11455d9fadc85c2c7d192, type: 2}
+  - {fileID: 11400000, guid: 720eba52ca58a44d3a7f7b089d9b56cd, type: 2}
+  - {fileID: 11400000, guid: d432c4222f2ba4906af114f7086f3b7b, type: 2}
+  - {fileID: 11400000, guid: a09005b22849b4b5695e49562410035a, type: 2}
+  st07Stage: {fileID: 11400000, guid: e707ca11e9e041bb848696298f2a0cb8, type: 2}
+  additionalStages:
+  - {fileID: 11400000, guid: 237aba4847fb34f8a851d6c105815a4a, type: 2}
+  - {fileID: 11400000, guid: 92f428c493cea49ea82f6aceef2bd6c7, type: 2}
+  - {fileID: 11400000, guid: 3fced0cc557974c22b14bb1aced14788, type: 2}
+  - {fileID: 11400000, guid: 5114fc262f4454e15ae2d4349f2aa6c8, type: 2}
+  - {fileID: 11400000, guid: 154529ce877064e559a2784a0294e56e, type: 2}
+  - {fileID: 11400000, guid: 237021b6a56984d48b59d78022c4ffee, type: 2}
+  defaultAnimatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  hitSparkLightPrefab: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
+  hitSparkHeavyPrefab: {fileID: 5880797563127281583, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
+  hitSparkSuperPrefab: {fileID: 6263782476919498309, guid: 1fd2749f2a4056446881dce86ed70c39, type: 3}
+  guardSparkPrefab: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}

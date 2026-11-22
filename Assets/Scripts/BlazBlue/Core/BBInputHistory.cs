@@ -114,6 +114,24 @@ namespace DemonIdol.BlazBlue
         }
 
         /// <summary>
+        /// Freezes buffer aging by advancing button press ticks by delta ticks (used during hitstop).
+        /// </summary>
+        public void FreezeBufferAging(int deltaTicks = 1)
+        {
+            for (int b = 0; b < 5; b++)
+            {
+                if (_buttonPressTick[b] > 0)
+                {
+                    _buttonPressTick[b] += deltaTicks;
+                }
+                if (_buttonReleaseTick[b] > 0)
+                {
+                    _buttonReleaseTick[b] += deltaTicks;
+                }
+            }
+        }
+
+        /// <summary>
         /// Checks whether a button has an unconsumed press within bufferTicks.
         /// </summary>
         public bool IsButtonBuffered(BBButton btn, int bufferTicks = 5)

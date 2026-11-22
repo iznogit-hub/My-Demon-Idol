@@ -571,26 +571,16 @@ namespace DemonIdol.Combat
             def.moveSet = CreateDefaultMoveSet(entry.id);
 
             GameObject prefab = null;
-#if UNITY_EDITOR
-            try
-            {
-                prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(entry.prefabPath);
-            }
-            catch { }
-#endif
             if (prefab == null)
             {
                 try { prefab = Resources.Load<GameObject>($"Prefabs/Fighters/{entry.id}_{entry.name}"); } catch { }
             }
             def.modelPrefab = prefab;
 
-#if UNITY_EDITOR
-            try
+            if (DemonIdol.Data.MDIRosterDatabase.Instance != null && DemonIdol.Data.MDIRosterDatabase.Instance.defaultAnimatorController != null)
             {
-                def.animatorController = UnityEditor.AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/MDI_Characters/Runtime/MDI_FighterTemplate.controller");
+                def.animatorController = DemonIdol.Data.MDIRosterDatabase.Instance.defaultAnimatorController;
             }
-            catch { }
-#endif
             return def;
         }
 
@@ -670,61 +660,27 @@ namespace DemonIdol.Combat
         {
             _cachedCharacters = new List<CharacterDefinition>();
 
-#if UNITY_EDITOR
-            try
+            // 1. Authoritative Roster Database (Resources or referenced)
+            var rosterDb = DemonIdol.Data.MDIRosterDatabase.Instance;
+            if (rosterDb != null && rosterDb.characters != null && rosterDb.characters.Length > 0)
             {
-                string[] guids = UnityEditor.AssetDatabase.FindAssets("t:CharacterDefinition", new[] { "Assets/CombatData/Characters" });
-                for (int i = 0; i < guids.Length; i++)
+                for (int i = 0; i < rosterDb.characters.Length; i++)
                 {
-                    var def = UnityEditor.AssetDatabase.LoadAssetAtPath<CharacterDefinition>(UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]));
+                    var def = rosterDb.characters[i];
                     if (def != null && !_cachedCharacters.Contains(def))
                     {
+                        if (def.moveSet == null)
+                        {
+                            def.moveSet = CreateDefaultMoveSet(def.id);
+                        }
                         _cachedCharacters.Add(def);
                     }
                 }
             }
-            catch { }
-#endif
 
-            // 1. Authoritative 14-Fighter Lineup
-            for (int i = 0; i < _canonical14List.Length; i++)
-            {
-                var entry = _canonical14List[i];
-                EnsureRosterFighter(
-                    entry.id, entry.name, entry.title, entry.archetype, entry.desc,
-                    entry.speed, entry.power, entry.reach, entry.defense,
-                    entry.domain, entry.domainDesc, entry.prefabPath, entry.signatureStageId
-                );
-            }
-
-            // 2. Discover any authored CharacterDefinition assets in Resources or Assets
+            // 2. Discover any authored CharacterDefinition assets in Resources
             try
             {
-#if UNITY_EDITOR
-                string[] guids = UnityEditor.AssetDatabase.FindAssets("t:CharacterDefinition", new[] { "Assets/CombatData/Characters" });
-                for (int i = 0; i < guids.Length; i++)
-                {
-                    var def = UnityEditor.AssetDatabase.LoadAssetAtPath<CharacterDefinition>(UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]));
-                    if (def != null)
-                    {
-                        string canonId = ResolveCanonicalId(def.id);
-                        var existing = GetCharacterById(canonId);
-                        if (existing != null)
-                        {
-                            if (def.modelPrefab != null) existing.modelPrefab = def.modelPrefab;
-                            if (def.portraitSprite != null) existing.portraitSprite = def.portraitSprite;
-                            if (def.bannerSprite != null) existing.bannerSprite = def.bannerSprite;
-                            if (def.moveSet != null) existing.moveSet = def.moveSet;
-                            if (def.animatorController != null) existing.animatorController = def.animatorController;
-                            if (def.blazBlueProfile != null) existing.blazBlueProfile = def.blazBlueProfile;
-                        }
-                        else
-                        {
-                            _cachedCharacters.Add(def);
-                        }
-                    }
-                }
-#endif
                 var loaded = Resources.LoadAll<CharacterDefinition>("");
                 if (loaded != null && loaded.Length > 0)
                 {
@@ -759,6 +715,20 @@ namespace DemonIdol.Combat
             {
                 // Standalone test runner fallback
             }
+
+            // 3. Fallback to _canonical14List if any missing
+            for (int i = 0; i < _canonical14List.Length; i++)
+            {
+                var entry = _canonical14List[i];
+                if (GetCharacterById(entry.id) == null)
+                {
+                    EnsureRosterFighter(
+                        entry.id, entry.name, entry.title, entry.archetype, entry.desc,
+                        entry.speed, entry.power, entry.reach, entry.defense,
+                        entry.domain, entry.domainDesc, entry.prefabPath, entry.signatureStageId
+                    );
+                }
+            }
         }
 
         private static void EnsureRosterFighter(
@@ -777,27 +747,23 @@ namespace DemonIdol.Combat
             var def = CreateDefaultDefinition(id, name, title, archetype, desc, speed, power, reach, defense, domain, domainDesc, signatureStageId);
             def.moveSet = CreateDefaultMoveSet(id);
 
-            GameObject prefab = null;
-#if UNITY_EDITOR
-            try
+            var dbDef = DemonIdol.Data.MDIRosterDatabase.Instance != null ? DemonIdol.Data.MDIRosterDatabase.Instance.GetCharacterById(id) : null;
+            if (dbDef != null)
             {
-                prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(prefabFallbackPath);
+                if (dbDef.modelPrefab != null) def.modelPrefab = dbDef.modelPrefab;
+                if (dbDef.animatorController != null) def.animatorController = dbDef.animatorController;
+                if (dbDef.avatar != null) def.avatar = dbDef.avatar;
+                if (dbDef.blazBlueProfile != null) def.blazBlueProfile = dbDef.blazBlueProfile;
             }
-            catch { }
-#endif
-            if (prefab == null)
-            {
-                try { prefab = Resources.Load<GameObject>(prefabFallbackPath); } catch { }
-            }
-            def.modelPrefab = prefab;
 
-#if UNITY_EDITOR
-            try
+            if (def.modelPrefab == null)
             {
-                def.animatorController = UnityEditor.AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/MDI_Characters/Runtime/MDI_FighterTemplate.controller");
+                try { def.modelPrefab = Resources.Load<GameObject>(prefabFallbackPath); } catch { }
             }
-            catch { }
-#endif
+            if (def.animatorController == null && DemonIdol.Data.MDIRosterDatabase.Instance != null)
+            {
+                def.animatorController = DemonIdol.Data.MDIRosterDatabase.Instance.defaultAnimatorController;
+            }
 
             _cachedCharacters.Add(def);
         }

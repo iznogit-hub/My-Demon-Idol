@@ -19,8 +19,8 @@ MonoBehaviour:
   signatureStageId: ST01
   description: 'Dota 2 style hero: Lyra, the Aether Weaver. Equipped with Sorceress stance.'
   modelPrefab: {fileID: 8066289093787289664, guid: 646866b935dd1444f8a681a3b011ed64, type: 3}
-  animatorController: {fileID: 0}
-  avatar: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  avatar: {fileID: 9000000, guid: 32e26f88fac2c504fa382ed43968e1f9, type: 3}
   portraitSprite: {fileID: 21300000, guid: 1fc80d81845fea159d6fc226b3670592, type: 3}
   bannerSprite: {fileID: 0}
   speed: 88

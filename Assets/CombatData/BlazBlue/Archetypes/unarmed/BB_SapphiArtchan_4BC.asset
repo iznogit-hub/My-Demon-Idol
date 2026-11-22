@@ -26,7 +26,7 @@ MonoBehaviour:
   protectionEndTick: 12
   startupFrames: 7
   activeFrames: 3
-  recoveryFrames: 56
+  recoveryFrames: 23
   hitstunTicks: 18
   blockstunTicks: 15
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 1000
+  damage: 1300
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -66,6 +66,7 @@ MonoBehaviour:
   motion: 0
   airOk: 0
   groundOk: 1
+  attackLevel: -1
   guard: 3
   attribute: 2
   invuln: []
@@ -80,7 +81,7 @@ MonoBehaviour:
   untechableTicksCH: 27
   airHitVelocity: {x: 1.5, y: 5}
   landingRecovery: 4
-  minDamagePct: 0.08
+  minDamagePct: 1
   chipPct: 0
   heatGainOverride: -1
   heatCost: 0

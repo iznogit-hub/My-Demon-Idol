@@ -19,8 +19,8 @@ MonoBehaviour:
   signatureStageId: ST01
   description: 'Dota 2 style hero: Viper, the Wasteland Commando. Equipped with Swordsman stance.'
   modelPrefab: {fileID: 4638855035254473992, guid: 34939d49ce15243339d8740c961fda30, type: 3}
-  animatorController: {fileID: 0}
-  avatar: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  avatar: {fileID: 9000000, guid: a53208845315ff94cb0c6341bce9348d, type: 3}
   portraitSprite: {fileID: 21300000, guid: c0d4af6f693ca32b9aca8acc63bcce91, type: 3}
   bannerSprite: {fileID: 0}
   speed: 90

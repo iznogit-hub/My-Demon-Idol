@@ -104,6 +104,7 @@ namespace DemonIdol.Combat
         {
             if (State != MatchState.Fighting) return;
             if (CombatTickEngine.Instance != null && CombatTickEngine.Instance.IsSuperfrozen) return;
+            if (DemonIdol.BlazBlue.BBSuperFlash.FreezeTicks > 0) return;
 
             if (isTrainingMode)
             {
@@ -349,6 +350,18 @@ namespace DemonIdol.Combat
             if (brain != null)
             {
                 brain.ResetForRound();
+            }
+        }
+
+        public void ResetFighter(int playerIndex)
+        {
+            if (playerIndex == 0)
+            {
+                ResetFighter(_fighter1, _p1SpawnPos, Quaternion.Euler(0, 90f, 0));
+            }
+            else
+            {
+                ResetFighter(_fighter2, _p2SpawnPos, Quaternion.Euler(0, -90f, 0));
             }
         }
 

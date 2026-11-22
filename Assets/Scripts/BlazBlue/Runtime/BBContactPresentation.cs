@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using DemonIdol.Combat;
 using DemonIdol.UI;
@@ -117,10 +118,9 @@ namespace DemonIdol.BlazBlue
 
             if (FighterCamera2D.Instance != null)
             {
-                if (isSuper) FighterCamera2D.Instance.AddExplosionTrauma(0.9f);
-                else if (counterHit) FighterCamera2D.Instance.AddCounterHitTrauma(0.7f);
-                else if (isHeavy) FighterCamera2D.Instance.AddHitTrauma(0.5f);
-                else FighterCamera2D.Instance.AddHitTrauma(0.25f * scale);
+                if (isSuper) FighterCamera2D.Instance.AddTrauma(0.9f);
+                else if (isHeavy) FighterCamera2D.Instance.AddTrauma(0.35f);
+                else FighterCamera2D.Instance.AddTrauma(0.15f);
             }
 
             if (isSuper && attacker != null)
@@ -135,25 +135,58 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        private static readonly List<GameObject> s_SparkPool = new List<GameObject>();
+
+        private static GameObject GetPooledSpark(GameObject prefab, Vector3 point, Quaternion rot, Vector3 scale)
+        {
+            if (prefab == null) return null;
+            for (int i = 0; i < s_SparkPool.Count; i++)
+            {
+                var s = s_SparkPool[i];
+                if (s != null && !s.activeInHierarchy && s.name.StartsWith(prefab.name))
+                {
+                    s.transform.position = point;
+                    s.transform.rotation = rot;
+                    s.transform.localScale = scale;
+                    s.SetActive(true);
+                    return s;
+                }
+            }
+
+            var instance = Object.Instantiate(prefab, point, rot);
+            instance.name = prefab.name + "_Pooled";
+            instance.transform.localScale = scale;
+            s_SparkPool.Add(instance);
+            return instance;
+        }
+
         public static GameObject SpawnHitSpark(Vector3 point, float scale, bool isSuper, bool isHeavy)
         {
             LastSparkPosition = point;
             GameObject sparkPrefab = null;
+
+            var rdb = DemonIdol.Data.MDIRosterDatabase.Instance;
+            if (rdb != null)
+            {
+                sparkPrefab = isSuper ? rdb.hitSparkSuperPrefab : (isHeavy ? rdb.hitSparkHeavyPrefab : rdb.hitSparkLightPrefab);
+            }
+
 #if UNITY_EDITOR
-            if (isSuper)
-                sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Sword Trails/Fire/CFXR4 Sword Hit FIRE (Cross).prefab")
-                    ?? UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab");
-            else if (isHeavy)
-                sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab");
-            else
-                sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit A (Red).prefab");
+            if (sparkPrefab == null)
+            {
+                if (isSuper)
+                    sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Sword Trails/Fire/CFXR4 Sword Hit FIRE (Cross).prefab")
+                        ?? UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab");
+                else if (isHeavy)
+                    sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab");
+                else
+                    sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit A (Red).prefab");
+            }
 #endif
             if (sparkPrefab != null)
             {
-                var spark = Object.Instantiate(sparkPrefab, point, Quaternion.identity);
-                spark.transform.localScale = Vector3.one * Mathf.Clamp(scale, 0.8f, 2.5f);
-                if (Application.isPlaying) Object.Destroy(spark, 1.5f);
-                return spark;
+                Vector3 targetScale = Vector3.one * Mathf.Clamp(scale, 0.8f, 2.5f);
+                return GetPooledSpark(sparkPrefab, point, Quaternion.identity, targetScale);
             }
             return null;
         }
@@ -161,15 +194,22 @@ namespace DemonIdol.BlazBlue
         public static GameObject SpawnGuardSpark(Vector3 point, bool guardCrush)
         {
             GameObject sparkPrefab = null;
+            var rdb = DemonIdol.Data.MDIRosterDatabase.Instance;
+            if (rdb != null)
+            {
+                sparkPrefab = rdb.guardSparkPrefab;
+            }
+
 #if UNITY_EDITOR
-            sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab");
+            if (sparkPrefab == null)
+            {
+                sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab");
+            }
 #endif
             if (sparkPrefab != null)
             {
-                var spark = Object.Instantiate(sparkPrefab, point, Quaternion.identity);
-                spark.transform.localScale = Vector3.one * (guardCrush ? 1.5f : 1.0f);
-                if (Application.isPlaying) Object.Destroy(spark, 1.5f);
-                return spark;
+                Vector3 targetScale = Vector3.one * (guardCrush ? 1.5f : 1.0f);
+                return GetPooledSpark(sparkPrefab, point, Quaternion.identity, targetScale);
             }
             return null;
         }
@@ -251,7 +291,6 @@ namespace DemonIdol.BlazBlue
 
         public static void Raise(string characterId, Transform attacker = null)
         {
-            if (SettingsPanel.ReducedFlashing) return;
             ActiveCharacterId = characterId;
             ActiveAttacker = attacker;
             FreezeTicks = 20;
@@ -267,8 +306,8 @@ namespace DemonIdol.BlazBlue
                 CombatAudioDirector.Instance.PlayVoiceDomainSuper();
             }
 
-            // Camera: Zoom-flash attacker
-            if (FighterCamera2D.Instance != null)
+            // Camera: Zoom-flash attacker (subtle if reduced flashing)
+            if (FighterCamera2D.Instance != null && !SettingsPanel.ReducedFlashing)
             {
                 FighterCamera2D.Instance.TriggerHitImpactZoom(0.5f, 0.35f);
             }
@@ -300,6 +339,10 @@ namespace DemonIdol.BlazBlue
             EnsureOverlay();
             if (s_OverlayGo != null)
             {
+                if (s_OverlayImage != null)
+                {
+                    s_OverlayImage.color = new Color(0f, 0f, 0f, SettingsPanel.ReducedFlashing ? 0.35f : 0.75f);
+                }
                 s_OverlayGo.SetActive(true);
             }
         }

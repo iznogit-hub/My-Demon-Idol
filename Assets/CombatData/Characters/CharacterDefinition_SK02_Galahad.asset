@@ -19,8 +19,8 @@ MonoBehaviour:
   signatureStageId: ST01
   description: 'Dota 2 style hero: Galahad, the Sun Templar. Equipped with Knight stance.'
   modelPrefab: {fileID: 4815620443998991726, guid: 2b82ea16fc02645809ef3ba4840bb5d7, type: 3}
-  animatorController: {fileID: 0}
-  avatar: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
+  avatar: {fileID: 9000000, guid: 7da70a07a5a8eae49a78d810714a6fd8, type: 2}
   portraitSprite: {fileID: 21300000, guid: 70270c177c0fc658f6f5566bbad84eac, type: 3}
   bannerSprite: {fileID: 0}
   speed: 74

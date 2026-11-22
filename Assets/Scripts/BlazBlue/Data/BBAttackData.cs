@@ -33,6 +33,23 @@ namespace DemonIdol.BlazBlue
         public bool airOk = false;
         public bool groundOk = true;
 
+        [Header("BB Attack Level")]
+        public int attackLevel = -1; // 0 to 5. -1 = derived from kind/button
+
+        public int AttackLevel
+        {
+            get
+            {
+                if (attackLevel >= 0) return Mathf.Clamp(attackLevel, 0, 5);
+                if (kind == BBMoveKind.DistortionDrive) return 5;
+                if (kind == BBMoveKind.Special) return 4;
+                if (button == BBButton.C || button == BBButton.D) return 3;
+                if (button == BBButton.B) return 2;
+                if (moveId == "2A") return 0;
+                return 1;
+            }
+        }
+
         [Header("BB Guard / Attribute / Invuln")]
         public BBGuard guard = BBGuard.Mid;
         public BBAttribute attribute = BBAttribute.Body;

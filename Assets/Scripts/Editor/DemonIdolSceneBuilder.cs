@@ -542,6 +542,7 @@ namespace DemonIdol.Editor
             var director = matchHost.GetComponent<HomegrownCombatDirector>();
             if (director == null) director = matchHost.AddComponent<HomegrownCombatDirector>();
             director.enabled = true;
+            director.RosterDatabase = AssetDatabase.LoadAssetAtPath<DemonIdol.Data.MDIRosterDatabase>("Assets/Resources/MDI_RosterDatabase.asset");
 
             var tickEngine = matchHost.GetComponent<CombatTickEngine>();
             if (tickEngine == null) tickEngine = matchHost.AddComponent<CombatTickEngine>();

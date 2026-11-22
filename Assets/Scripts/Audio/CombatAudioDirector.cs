@@ -440,11 +440,31 @@ namespace DemonIdol.Audio
 
         #region SFX Triggers with Dynamic Pitch Modulation
 
-        public void PlayHitLight() => PlayWithRandomPitch(_hitLightClip, 0.95f, 1.05f);
-        public void PlayHitMedium() => PlayWithRandomPitch(_hitMediumClip, 0.92f, 1.03f);
-        public void PlayHitHeavy() => PlayWithRandomPitch(_hitHeavyClip, 0.88f, 1.0f);
-        public void PlayParry() => PlayWithRandomPitch(_parryClip, 1.0f, 1.1f);
-        public void PlayBlock() => PlayWithRandomPitch(_blockClip, 0.9f, 1.0f);
+        public void PlayHitLight()
+        {
+            Debug.Log("[CombatAudioDirector] PlayHitLight SFX");
+            PlayWithRandomPitch(_hitLightClip, 0.95f, 1.05f);
+        }
+        public void PlayHitMedium()
+        {
+            Debug.Log("[CombatAudioDirector] PlayHitMedium SFX");
+            PlayWithRandomPitch(_hitMediumClip, 0.92f, 1.03f);
+        }
+        public void PlayHitHeavy()
+        {
+            Debug.Log("[CombatAudioDirector] PlayHitHeavy SFX");
+            PlayWithRandomPitch(_hitHeavyClip, 0.88f, 1.0f);
+        }
+        public void PlayParry()
+        {
+            Debug.Log("[CombatAudioDirector] PlayParry SFX");
+            PlayWithRandomPitch(_parryClip, 1.0f, 1.1f);
+        }
+        public void PlayBlock()
+        {
+            Debug.Log("[CombatAudioDirector] PlayBlock SFX");
+            PlayWithRandomPitch(_blockClip, 0.9f, 1.0f);
+        }
         public void PlayRapidCancel() => PlayWithRandomPitch(_rapidCancelClip, 1.05f, 1.15f);
         public void PlayDomainActivation() => PlayWithRandomPitch(_domainActivationClip, 1.0f, 1.0f);
         public void PlayFootstep() => PlayWithRandomPitch(_footstepClip, 0.9f, 1.1f);
