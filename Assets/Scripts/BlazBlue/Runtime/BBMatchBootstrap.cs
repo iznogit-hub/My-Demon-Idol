@@ -172,6 +172,11 @@ namespace DemonIdol.BlazBlue
                 }
             }
 
+            if (DemonIdol.Audio.CombatAudioDirector.Instance != null)
+            {
+                DemonIdol.Audio.CombatAudioDirector.Instance.PlayCombatMusic();
+            }
+
             BBHitboxOverlay.IsOverlayActive = training;
             var canvas = FindBattleCanvas();
             if (canvas != null && p1Brain != null && BBTouchLayout.ShouldShowTouchControls()

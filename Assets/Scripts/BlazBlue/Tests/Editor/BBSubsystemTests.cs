@@ -20,6 +20,7 @@ namespace DemonIdol.BlazBlue.Tests
             suite.Test_Gauges_Heat_Barrier_Burst_Overdrive();
             suite.Test_RapidCancel_Conditions();
             suite.Test_AnimationDriver_SeekTimeMath();
+            CombatAudioDirectorTests.RunAllTestsMenu();
             Debug.Log("<color=#00e676>[BBSubsystemTests] ALL 8 SUBSYSTEM & COMBAT TESTS PASSED!</color>");
         }
 

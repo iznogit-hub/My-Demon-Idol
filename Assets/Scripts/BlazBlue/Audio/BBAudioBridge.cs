@@ -40,7 +40,7 @@ namespace DemonIdol.BlazBlue
             {
                 if (_instance == null)
                 {
-                    _instance = UnityEngine.Object.FindAnyObjectByType<BBAudioBridge>();
+                    _instance = UnityEngine.Object.FindAnyObjectByType<BBAudioBridge>(FindObjectsInactive.Include);
                 }
                 return _instance;
             }
@@ -91,6 +91,10 @@ namespace DemonIdol.BlazBlue
                     break;
 
                 case BBSoundEffect.HitMedium:
+                    if (director != null) director.PlayHitMedium();
+                    else PlayClipDirect(_hitLightClip);
+                    break;
+
                 case BBSoundEffect.HitHeavy:
                     if (director != null) director.PlayHitHeavy();
                     else PlayClipDirect(_hitHeavyClip);

@@ -64,6 +64,37 @@ namespace DemonIdol.BlazBlue
             // Spawn tier-scaled hit spark
             SpawnHitSpark(point, scale, isSuper, isHeavy);
 
+            // Audio impact SFX
+            if (CombatAudioDirector.Instance != null)
+            {
+                if (isSuper)
+                {
+                    CombatAudioDirector.Instance.PlayHitHeavy();
+                    CombatAudioDirector.Instance.PlayVoiceDomainSuper();
+                }
+                else if (isHeavy)
+                {
+                    CombatAudioDirector.Instance.PlayHitHeavy();
+                }
+                else if (attacker != null && attacker.currentAttack != null && attacker.currentAttack.button == BBButton.B)
+                {
+                    CombatAudioDirector.Instance.PlayHitMedium();
+                }
+                else
+                {
+                    CombatAudioDirector.Instance.PlayHitLight();
+                }
+            }
+
+            if (BBAudioBridge.Instance != null)
+            {
+                BBSoundEffect sfx = isSuper ? BBSoundEffect.DistortionSuperFlash :
+                                    isHeavy ? BBSoundEffect.HitHeavy :
+                                    (attacker != null && attacker.currentAttack != null && attacker.currentAttack.button == BBButton.B) ? BBSoundEffect.HitMedium :
+                                    BBSoundEffect.HitLight;
+                BBAudioBridge.Instance.PlayCombatSound(sfx, point);
+            }
+
             if (Application.isPlaying && !SettingsPanel.ReducedGore)
             {
                 var ink = InkBloodSplatterManager.Instance;
@@ -138,6 +169,20 @@ namespace DemonIdol.BlazBlue
             LastGuardEvents++;
             ComboCount = 0;
             SpawnGuardSpark(point, guardCrush);
+
+            if (CombatAudioDirector.Instance != null)
+            {
+                if (guardCrush)
+                    CombatAudioDirector.Instance.PlayParry();
+                else
+                    CombatAudioDirector.Instance.PlayBlock();
+            }
+
+            if (BBAudioBridge.Instance != null)
+            {
+                BBAudioBridge.Instance.PlayCombatSound(guardCrush ? BBSoundEffect.BarrierShatter : BBSoundEffect.BlockNormal, point);
+            }
+
             if (!Application.isPlaying) return;
             float radius = guardCrush ? 3.2f : chip ? 2.2f : 1.6f;
             ShockwaveDistortionEmitter.EmitPooled(point, radius, guardCrush ? 0.36f : 0.24f);
@@ -146,6 +191,35 @@ namespace DemonIdol.BlazBlue
         public static void OnWhiff()
         {
             ComboCount = 0;
+            if (CombatAudioDirector.Instance != null)
+            {
+                CombatAudioDirector.Instance.PlaySwingLight();
+            }
+        }
+
+        public static void OnAttackSwing(BBFighterBrain attacker)
+        {
+            if (attacker == null || attacker.currentAttack == null) return;
+
+            bool isHeavyOrSpecial = attacker.currentAttack.button == BBButton.C
+                || attacker.currentAttack.button == BBButton.D
+                || attacker.currentAttack.kind != BBMoveKind.Normal;
+
+            if (CombatAudioDirector.Instance != null)
+            {
+                if (isHeavyOrSpecial)
+                    CombatAudioDirector.Instance.PlaySwingHeavy();
+                else
+                    CombatAudioDirector.Instance.PlaySwingLight();
+            }
+
+            if (BBAudioBridge.Instance != null && attacker.fighter != null)
+            {
+                var archetype = BBRosterArchetype.Get(attacker.fighter.appliedDefinition != null
+                    ? attacker.fighter.appliedDefinition.id
+                    : attacker.fighter.fighterName);
+                BBAudioBridge.Instance.PlayWeaponSwing(archetype.warrior, attacker.transform.position);
+            }
         }
 
         public static void RaiseWinner(string characterId)

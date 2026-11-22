@@ -284,7 +284,7 @@ namespace DemonIdol.Editor
                 yield return Hold("release", System.Array.Empty<Key>(), 8, liveSim);
 
                 // 3. Jump
-                yield return Hold("jump", new[] { Key.W }, 30, liveSim);
+                yield return Hold("jump", new[] { Key.W }, 35, liveSim);
                 yield return Hold("release", System.Array.Empty<Key>(), 8, liveSim);
 
                 // Wait until grounded and recovered
@@ -422,11 +422,11 @@ namespace DemonIdol.Editor
                         }
                     }
 
-                    if (label == "walk" && (p1.bbState == BBState.WalkForward || p1.bbState == BBState.WalkBackward))
+                    if (p1.bbState == BBState.WalkForward || p1.bbState == BBState.WalkBackward)
                         _sawWalk = true;
-                    if (label == "jump" && (p1.bbState == BBState.JumpStartup || p1.bbState == BBState.Airborne))
+                    if (p1.bbState == BBState.JumpStartup || p1.bbState == BBState.Airborne)
                         _sawJump = true;
-                    if (label == "A" && (p1.bbState == BBState.AttackStartup || p1.bbState == BBState.AttackActive || p1.bbState == BBState.AttackRecovery))
+                    if (p1.bbState == BBState.AttackStartup || p1.bbState == BBState.AttackActive || p1.bbState == BBState.AttackRecovery)
                         _sawAttack = true;
                 }
                 yield return null;

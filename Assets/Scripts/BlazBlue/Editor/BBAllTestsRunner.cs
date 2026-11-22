@@ -23,6 +23,7 @@ namespace DemonIdol.BlazBlue.Editor
             if (File.Exists(TRIGGER_FILE))
             {
                 try { File.Delete(TRIGGER_FILE); } catch { }
+                AssetDatabase.Refresh();
                 RunAllSuites();
             }
         }
@@ -52,7 +53,8 @@ namespace DemonIdol.BlazBlue.Editor
                 BBSubsystemTests.RunAllTestsMenu,
                 BBInputIntegrityGuardTests.RunGuardTests,
                 RealInputMatchTest.RunAllTests,
-                DemonIdolRebuildGuardTests.RunSceneIntegrityCheck
+                DemonIdolRebuildGuardTests.RunSceneIntegrityCheck,
+                CombatAudioDirectorTests.RunAllTestsMenu
             };
 
             foreach (var suite in suites)

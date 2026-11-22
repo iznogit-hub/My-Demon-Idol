@@ -17,7 +17,15 @@ namespace DemonIdol.Audio
         {
             get
             {
-                if (_instance == null) return null;
+                if (_instance == null)
+                {
+                    _instance = UnityEngine.Object.FindAnyObjectByType<CombatAudioDirector>(FindObjectsInactive.Include);
+                    if (_instance == null && Application.isPlaying)
+                    {
+                        var go = new GameObject("CombatAudioDirector");
+                        _instance = go.AddComponent<CombatAudioDirector>();
+                    }
+                }
                 return _instance;
             }
             private set => _instance = value;
@@ -125,13 +133,34 @@ namespace DemonIdol.Audio
             StartConductor();
         }
 
-        private void EnsureSources()
+        public AudioSource MusicSource => _musicSource;
+        public AudioSource SfxSource => _sfxSource;
+        public AudioClip HitLightClip => _hitLightClip;
+        public AudioClip HitMediumClip => _hitMediumClip;
+        public AudioClip HitHeavyClip => _hitHeavyClip;
+        public AudioClip BlockClip => _blockClip;
+        public AudioClip ParryClip => _parryClip;
+        public AudioClip RapidCancelClip => _rapidCancelClip;
+        public AudioClip DomainActivationClip => _domainActivationClip;
+        public AudioClip SwingLightClip => _swingLightClip;
+        public AudioClip SwingHeavyClip => _swingHeavyClip;
+        public AudioClip ProjFireClip => _projFireClip;
+        public AudioClip ProjImpactClip => _projImpactClip;
+        public AudioClip Round1Clip => _round1Clip;
+        public AudioClip Round2Clip => _round2Clip;
+        public AudioClip FinalRoundClip => _finalRoundClip;
+        public AudioClip FightClip => _fightClip;
+        public AudioClip VictoryClip => _victoryClip;
+        public AudioClip BgmFightTrack => _bgmFullTrack;
+        public AudioClip BgmMenuTrack => _bgmMenuTrack;
+
+        public void EnsureSources()
         {
             if (this == null) return;
             if (_musicSource == null)
             {
                 AudioSource[] sources = GetComponents<AudioSource>();
-                if (sources.Length > 0) _musicSource = sources[0];
+                if (sources.Length > 0 && sources[0] != null) _musicSource = sources[0];
                 else _musicSource = gameObject.AddComponent<AudioSource>();
 
                 _musicSource.loop = true;
@@ -139,11 +168,22 @@ namespace DemonIdol.Audio
                 _musicSource.spatialBlend = 0f; // Pure 2D
             }
 
-            if (_sfxSource == null)
+            if (_sfxSource == null || _sfxSource == _musicSource)
             {
                 AudioSource[] sources = GetComponents<AudioSource>();
-                if (sources.Length > 1) _sfxSource = sources[1];
-                else _sfxSource = gameObject.AddComponent<AudioSource>();
+                for (int i = 0; i < sources.Length; i++)
+                {
+                    if (sources[i] != null && sources[i] != _musicSource)
+                    {
+                        _sfxSource = sources[i];
+                        break;
+                    }
+                }
+
+                if (_sfxSource == null || _sfxSource == _musicSource)
+                {
+                    _sfxSource = gameObject.AddComponent<AudioSource>();
+                }
 
                 _sfxSource.loop = false;
                 _sfxSource.playOnAwake = false;
@@ -151,61 +191,47 @@ namespace DemonIdol.Audio
             }
         }
 
-        private void FulfillMissingClips()
+        public void FulfillMissingClips()
         {
             // Runtime loading outside editor via Resources
             if (_bgmFullTrack == null)
             {
-                _bgmFullTrack = Resources.Load<AudioClip>("Audio/01 - Go To Miami")
+                _bgmFullTrack = Resources.Load<AudioClip>("Audio/BGM/bgm_fight")
+                    ?? Resources.Load<AudioClip>("Audio/01 - Go To Miami")
                     ?? Resources.Load<AudioClip>("Audio/Soundtrack/01 - Go To Miami");
             }
-            if (_round1Clip == null) _round1Clip = Resources.Load<AudioClip>("Audio/round1") ?? Resources.Load<AudioClip>("Audio/Announcer/round1");
-            if (_round2Clip == null) _round2Clip = Resources.Load<AudioClip>("Audio/round2") ?? Resources.Load<AudioClip>("Audio/Announcer/round2");
-            if (_finalRoundClip == null) _finalRoundClip = Resources.Load<AudioClip>("Audio/finalRound") ?? Resources.Load<AudioClip>("Audio/Announcer/finalRound");
-            if (_fightClip == null) _fightClip = Resources.Load<AudioClip>("Audio/fight") ?? Resources.Load<AudioClip>("Audio/Announcer/fight");
-            if (_victoryClip == null) _victoryClip = Resources.Load<AudioClip>("Audio/victory") ?? Resources.Load<AudioClip>("Audio/Announcer/victory");
+            if (_bgmMenuTrack == null)
+            {
+                _bgmMenuTrack = Resources.Load<AudioClip>("Audio/BGM/bgm_menu");
+            }
+            if (_round1Clip == null) _round1Clip = Resources.Load<AudioClip>("Audio/SFX/sfx_round1") ?? Resources.Load<AudioClip>("Audio/round1") ?? Resources.Load<AudioClip>("Audio/Announcer/round1");
+            if (_round2Clip == null) _round2Clip = Resources.Load<AudioClip>("Audio/SFX/sfx_round2") ?? Resources.Load<AudioClip>("Audio/round2") ?? Resources.Load<AudioClip>("Audio/Announcer/round2");
+            if (_finalRoundClip == null) _finalRoundClip = Resources.Load<AudioClip>("Audio/SFX/sfx_round2") ?? Resources.Load<AudioClip>("Audio/finalRound") ?? Resources.Load<AudioClip>("Audio/Announcer/finalRound");
+            if (_fightClip == null) _fightClip = Resources.Load<AudioClip>("Audio/SFX/sfx_fight") ?? Resources.Load<AudioClip>("Audio/fight") ?? Resources.Load<AudioClip>("Audio/Announcer/fight");
+            if (_victoryClip == null) _victoryClip = Resources.Load<AudioClip>("Audio/SFX/sfx_ko") ?? Resources.Load<AudioClip>("Audio/victory") ?? Resources.Load<AudioClip>("Audio/Announcer/victory");
 
 #if UNITY_EDITOR
             // Auto-load project audio assets from Assets/Audio/
             if (_hitLightClip == null) _hitLightClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_hit_light.wav");
+            if (_hitMediumClip == null) _hitMediumClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_hit_light.wav");
             if (_hitHeavyClip == null) _hitHeavyClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_hit_heavy.wav");
+            if (_parryClip == null) _parryClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_guard.wav");
+            if (_blockClip == null) _blockClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_guard.wav");
+            if (_rapidCancelClip == null) _rapidCancelClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_whiff_light.wav");
+            if (_domainActivationClip == null) _domainActivationClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_thunder_close.wav");
             if (_swingLightClip == null) _swingLightClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_whiff_light.wav");
             if (_swingHeavyClip == null) _swingHeavyClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_whiff_heavy.wav");
-            if (_blockClip == null) _blockClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_guard.wav");
             if (_projFireClip == null) _projFireClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_proj_fire.wav");
             if (_projImpactClip == null) _projImpactClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_proj_impact.wav");
-            if (_victoryClip == null) _victoryClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_ko.wav");
             if (_round1Clip == null) _round1Clip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_round1.wav");
             if (_round2Clip == null) _round2Clip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_round2.wav");
+            if (_finalRoundClip == null) _finalRoundClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_round2.wav");
             if (_fightClip == null) _fightClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_fight.wav");
+            if (_victoryClip == null) _victoryClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_ko.wav");
             if (_btnClickClip == null) _btnClickClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_menu_select.wav");
+            if (_btnHoverClip == null) _btnHoverClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_menu_select.wav");
             if (_bgmMenuTrack == null) _bgmMenuTrack = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/BGM/bgm_menu.wav");
             if (_bgmFullTrack == null) _bgmFullTrack = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/BGM/bgm_fight.wav");
-
-            // Fallback to legacy Cyberpunk Sci-Fi soundtrack if present
-            if (_bgmFullTrack == null)
-            {
-                _bgmFullTrack = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Cyberpunk Sci-fi Soundtrack - Go To Miami/01 - Go To Miami.ogg");
-            }
-            if (_loopIntro == null) _loopIntro = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Cyberpunk Sci-fi Soundtrack - Go To Miami/Loops OGG/Intro/Intro.ogg");
-            if (_loopBridge == null) _loopBridge = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Cyberpunk Sci-fi Soundtrack - Go To Miami/Loops OGG/Bridge/Bridge 1.ogg");
-            if (_loopDrop == null) _loopDrop = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Cyberpunk Sci-fi Soundtrack - Go To Miami/Loops OGG/Drop/Drop 1.ogg");
-            if (_loopChorus == null) _loopChorus = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Cyberpunk Sci-fi Soundtrack - Go To Miami/Loops OGG/Chorus/Chorus 1.ogg");
-            if (_loopOutro == null) _loopOutro = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Cyberpunk Sci-fi Soundtrack - Go To Miami/Loops OGG/Outro/Outro 1.ogg");
-
-            if (_musicSource != null && _musicSource.clip == null)
-            {
-                _musicSource.clip = _bgmFullTrack ?? _loopBridge;
-            }
-
-            if (_btnClickClip == null)
-            {
-                _btnClickClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Alebardium/Bloodlines UI/Audio/Click Button SFX.wav");
-            }
-            if (_btnHoverClip == null)
-            {
-                _btnHoverClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Alebardium/Bloodlines UI/Audio/Hover Button SFX.wav");
-            }
 #endif
 
             if (_musicSource != null && _musicSource.clip == null)
@@ -350,6 +376,7 @@ namespace DemonIdol.Audio
 
         public void StartConductor()
         {
+            EnsureSources();
             _dspStartTime = (float)AudioSettings.dspTime;
             _isPlaying = true;
             if (_musicSource != null && _musicSource.clip != null && !_musicSource.isPlaying)
@@ -452,12 +479,14 @@ namespace DemonIdol.Audio
 
         public void SwitchToMusicLoop(AudioClip newLoop)
         {
+            EnsureSources();
             if (newLoop == null || _musicSource == null) return;
             if (_musicSource.clip == newLoop && _musicSource.isPlaying) return;
 
             _musicSource.clip = newLoop;
             _musicSource.loop = true;
-            if (_isPlaying) _musicSource.Play();
+            _isPlaying = true;
+            _musicSource.Play();
         }
 
         private void PlayOneShotDirect(AudioClip clip)

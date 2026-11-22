@@ -457,6 +457,10 @@ namespace DemonIdol.BlazBlue
                         }
                         else if (attackTick < currentAttack.startupFrames + currentAttack.activeFrames)
                         {
+                            if (bbState != BBState.AttackActive)
+                            {
+                                BBContactPresentation.OnAttackSwing(this);
+                            }
                             bbState = BBState.AttackActive;
                         }
                         else if (attackTick < currentAttack.TotalTicks)

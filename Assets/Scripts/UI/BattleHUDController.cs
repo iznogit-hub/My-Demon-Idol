@@ -673,11 +673,23 @@ namespace DemonIdol.UI
                 _ => "FINAL ROUND"
             };
             PlayBanner(roundText, new Color(1f, 0.85f, 0.2f, 1f), 1.2f);
+
+            if (DemonIdol.Audio.CombatAudioDirector.Instance != null)
+            {
+                if (round == 1) DemonIdol.Audio.CombatAudioDirector.Instance.PlayRound1();
+                else if (round == 2) DemonIdol.Audio.CombatAudioDirector.Instance.PlayRound2();
+                else DemonIdol.Audio.CombatAudioDirector.Instance.PlayFinalRound();
+            }
         }
 
         public void ShowFightCallout()
         {
             PlayBanner("FIGHT!", new Color(0.9f, 0.2f, 0.2f, 1f), 0.9f);
+
+            if (DemonIdol.Audio.CombatAudioDirector.Instance != null)
+            {
+                DemonIdol.Audio.CombatAudioDirector.Instance.PlayFight();
+            }
         }
 
         public void UpdateTimer(int sec)
@@ -708,6 +720,11 @@ namespace DemonIdol.UI
             string text = isPerfect ? "PERFECT" : (reason == EndReason.TimeOut ? "TIME OVER" : "K.O.!");
             PlayBanner(text, new Color(0.9f, 0.15f, 0.15f, 1f), 2.0f);
             UpdateWinPips();
+
+            if (reason == EndReason.Knockout && DemonIdol.Audio.CombatAudioDirector.Instance != null)
+            {
+                DemonIdol.Audio.CombatAudioDirector.Instance.PlayVoiceKODefeat();
+            }
         }
 
         public void ShowMatchFinished(RoundWinner matchWinner)
@@ -718,6 +735,11 @@ namespace DemonIdol.UI
                 : (matchWinner == RoundWinner.Player2
                     ? (_p2 != null ? _p2.fighterName : "PLAYER 2")
                     : "DRAW");
+
+            if (DemonIdol.Audio.CombatAudioDirector.Instance != null)
+            {
+                DemonIdol.Audio.CombatAudioDirector.Instance.PlayVictorySound();
+            }
 
             // Advance story progression checkpoint if won in Story mode
             if (matchWinner == RoundWinner.Player1 && CharacterSelectUI.Instance != null && CharacterSelectUI.Instance.ActiveGameMode == "Story")
