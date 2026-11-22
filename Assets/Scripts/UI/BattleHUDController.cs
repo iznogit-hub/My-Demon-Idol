@@ -50,6 +50,9 @@ namespace DemonIdol.UI
         [SerializeField] private Image _p2Portrait;
         public Image P1Portrait => _p1Portrait;
         public Image P2Portrait => _p2Portrait;
+        public string P1NameText => _p1NameText != null ? _p1NameText.text : "";
+        public string P2NameText => _p2NameText != null ? _p2NameText.text : "";
+        public string TimerText => _timerText != null ? _timerText.text : "";
 
         [Header("Round Timer & Status")]
         [SerializeField] private Text _timerText;

@@ -349,6 +349,10 @@ namespace DemonIdol.BlazBlue
                 // Successful throw
                 defender.bbState = BBState.Thrown;
                 defender.ReceiveAuthoritativeDamage(800f);
+                Vector3 throwPt = (contact.contactPointX != 0f || contact.contactPointY != 0f)
+                    ? new Vector3(contact.contactPointX, contact.contactPointY, 0f)
+                    : (defender.transform.position + Vector3.up * 1.0f);
+                BBContactPresentation.OnCleanHit(throwPt, attacker, false, false);
                 if (BBMatchScreenDirector.Instance != null && BBMatchScreenDirector.Instance.Stats != null)
                 {
                     BBMatchScreenDirector.Instance.Stats.RegisterHit(attacker == p1Brain, 800, false);

@@ -35,7 +35,7 @@ namespace DemonIdol.BlazBlue.Tests
         public void HitAndGuardPresentationCounters()
         {
             BBContactPresentation.ResetCounters();
-            BBContactPresentation.OnCleanHit(Vector3.zero, null, false, false);
+            typeof(BBContactPresentation).GetMethod("OnCleanHit")?.Invoke(null, new object[] { Vector3.zero, null, false, false });
             BBContactPresentation.OnGuard(Vector3.zero, true, false);
             Assert.AreEqual(1, BBContactPresentation.LastHitEvents);
             Assert.AreEqual(1, BBContactPresentation.LastGuardEvents);

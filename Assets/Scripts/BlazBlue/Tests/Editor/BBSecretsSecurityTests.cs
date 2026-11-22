@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using NUnit.Framework;
 using UnityEngine;
 using DemonIdol.Network;
-using DemonIdol.Editor;
 
 namespace DemonIdol.BlazBlue.Tests
 {

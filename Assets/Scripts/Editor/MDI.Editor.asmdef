@@ -1,0 +1,29 @@
+{
+    "name": "MDI.Editor",
+    "rootNamespace": "DemonIdol.Editor",
+    "references": [
+        "MDI.Runtime",
+        "MDI.BlazBlue.Core",
+        "MDI.BlazBlue.Editor",
+        "MDI.BlazBlue.Tests.Editor",
+        "Unity.InputSystem",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.RenderPipelines.Core.Runtime"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

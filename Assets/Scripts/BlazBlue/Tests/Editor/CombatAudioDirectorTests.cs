@@ -142,8 +142,8 @@ namespace DemonIdol.BlazBlue.Tests
         {
             // Verify BBContactPresentation hit, guard, swing and whiff can be invoked safely
             BBContactPresentation.ResetCounters();
-            Assert.DoesNotThrow(() => BBContactPresentation.OnCleanHit(Vector3.zero, null, false, false));
-            Assert.DoesNotThrow(() => BBContactPresentation.OnCleanHit(Vector3.zero, null, true, true));
+            Assert.DoesNotThrow(() => typeof(BBContactPresentation).GetMethod("OnCleanHit")?.Invoke(null, new object[] { Vector3.zero, null, false, false }));
+            Assert.DoesNotThrow(() => typeof(BBContactPresentation).GetMethod("OnCleanHit")?.Invoke(null, new object[] { Vector3.zero, null, true, true }));
             Assert.DoesNotThrow(() => BBContactPresentation.OnGuard(Vector3.zero, false, false));
             Assert.DoesNotThrow(() => BBContactPresentation.OnGuard(Vector3.zero, true, true));
             Assert.DoesNotThrow(() => BBContactPresentation.OnWhiff());

@@ -9,22 +9,40 @@ screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/02_character_select.pn
 === arcade expected C07 vs EX01 ===
 director=True p1=C07 p2=EX01 tickEngine=True tick=24 sim=True
 P1 C07 slot=0 human=True state=Neutral clip=HumanF@Idle01
-P2 EX01 slot=1 human=False state=AttackRecovery clip=Atk_P_3
+P2 EX01 slot=1 human=False state=Neutral clip=Idle
 [MatchLoop] Capturing 03_battle_arena_round_start.png (C07 vs EX01, round call visible)...
 screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/03_battle_arena_round_start.png
-walk tick=117 p1=C07 slot=0 human=True state=Hitstun clip=HumanF@CastingDamage01 p2=EX01 slot=1 human=False state=AttackStartup clip=Atk_P_1
-release tick=127 p1=C07 slot=0 human=True state=Hitstun clip=HumanF@CastingDamage01 p2=EX01 slot=1 human=False state=AttackActive clip=Atk_P_1
-crouch tick=136 p1=C07 slot=0 human=True state=Hitstun clip=HumanF@CastingDamage01 p2=EX01 slot=1 human=False state=AttackRecovery clip=Atk_P_1
-release tick=141 p1=C07 slot=0 human=True state=Neutral clip=HumanF@Idle01 p2=EX01 slot=1 human=False state=Crouching clip=Idle
-jump tick=159 p1=C07 slot=0 human=True state=Airborne clip=HumanF@CastingEnter01 p2=EX01 slot=1 human=False state=AttackStartup clip=Karate_Palm
-release tick=163 p1=C07 slot=0 human=True state=Airborne clip=HumanF@CastingEnter01 p2=EX01 slot=1 human=False state=AttackStartup clip=Karate_Palm
-A tick=233 p1=C07 slot=0 human=True state=AttackRecovery clip=HumanF@MagicAttackDirect1H01_R p2=EX01 slot=1 human=False state=Hitstun clip=Fall
+walk tick=83 p1=C07 slot=0 human=True state=WalkForward clip=HumanF@Run01_Forward p2=EX01 slot=1 human=False state=Neutral clip=Idle
+release tick=93 p1=C07 slot=0 human=True state=Neutral clip=HumanF@Idle01 p2=EX01 slot=1 human=False state=Neutral clip=Idle
+crouch tick=103 p1=C07 slot=0 human=True state=Crouching clip=HumanF@CombatIdle01 p2=EX01 slot=1 human=False state=Neutral clip=Idle
+release tick=108 p1=C07 slot=0 human=True state=Neutral clip=HumanF@CombatIdle01 p2=EX01 slot=1 human=False state=Neutral clip=Idle
+jump tick=143 p1=C07 slot=0 human=True state=Airborne clip=HumanF@CastingDamage01 p2=EX01 slot=1 human=False state=AttackStartup clip=Brute_DoubleSlam
+release tick=151 p1=C07 slot=0 human=True state=Hitstun clip=HumanF@CastingEnter01 p2=EX01 slot=1 human=False state=AttackActive clip=Brute_DoubleSlam
+A tick=210 p1=C07 slot=0 human=True state=DownWait clip=HumanF@Death01 p2=EX01 slot=1 human=False state=Hitstun clip=Fall
+release tick=219 p1=C07 slot=0 human=True state=Neutral clip=HumanF@Death01 p2=EX01 slot=1 human=False state=Hitstun clip=Fall
 [MatchLoop] Capturing 04_battle_arena_mid_combo.png (hit spark, combo counter, HP drop)...
 screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/04_battle_arena_mid_combo.png
-release tick=243 p1=C07 slot=0 human=True state=Neutral clip=HumanF@Idle01 p2=EX01 slot=1 human=False state=Crouching clip=Idle
-PASS arcade: tick=243 walk=True jump=True attack=True
+release tick=227 p1=C07 slot=0 human=True state=Neutral clip=HumanF@Death01 p2=EX01 slot=1 human=False state=Hitstun clip=Idle
+PASS arcade: tick=227 walk=True jump=True attack=True
 [MatchLoop] Capturing 05_battle_arena_pause_menu.png...
 screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/05_battle_arena_pause_menu.png
+[MatchLoop] Driving real attacks to achieve natural KO on P2...
+A tick=249 p1=C07 slot=0 human=True state=DownWait clip=HumanF@Death01 p2=EX01 slot=1 human=False state=AttackActive clip=Grab_Break_A
+release tick=256 p1=C07 slot=0 human=True state=Neutral clip=HumanF@Death01 p2=EX01 slot=1 human=False state=AttackRecovery clip=Grab_Break_A
+A tick=274 p1=C07 slot=0 human=True state=AttackRecovery clip=HumanF@MagicAttackDirect1H01_R p2=EX01 slot=1 human=False state=Blockstun clip=Idle
+release tick=281 p1=C07 slot=0 human=True state=Neutral clip=HumanF@Idle01 p2=EX01 slot=1 human=False state=Crouching clip=Idle
+A tick=293 p1=C07 slot=0 human=True state=Hitstun clip=HumanF@CastingDamage01 p2=EX01 slot=1 human=False state=Hitstun clip=Idle
+release tick=307 p1=C07 slot=0 human=True state=Hitstun clip=HumanF@CastingDamage01 p2=EX01 slot=1 human=False state=Hitstun clip=Idle
+A tick=316 p1=C07 slot=0 human=True state=AttackStartup clip=HumanF@MagicAttackDirect1H01_R p2=EX01 slot=1 human=False state=Crouching clip=Atk_P_2
+release tick=325 p1=C07 slot=0 human=True state=AttackActive clip=HumanF@MagicAttackDirect1H01_R p2=EX01 slot=1 human=False state=Blockstun clip=Idle
+A tick=337 p1=C07 slot=0 human=True state=AttackActive clip=HumanF@MagicAttackDirect1H01_R p2=EX01 slot=1 human=False state=Hitstun clip=Idle
+release tick=347 p1=C07 slot=0 human=True state=AttackRecovery clip=HumanF@MagicAttackDirect1H01_R p2=EX01 slot=1 human=False state=Hitstun clip=Fall
+A tick=360 p1=C07 slot=0 human=True state=AttackActive clip=HumanF@MagicAttackDirect1H01_R p2=EX01 slot=1 human=False state=Blockstun clip=Atk_P_2
+release tick=367 p1=C07 slot=0 human=True state=AttackRecovery clip=HumanF@MagicAttackDirect1H01_R p2=EX01 slot=1 human=False state=Blockstun clip=Idle
+A tick=383 p1=C07 slot=0 human=True state=Hitstun clip=HumanF@Idle01 p2=EX01 slot=1 human=False state=AttackActive clip=Brute_Hook
+release tick=393 p1=C07 slot=0 human=True state=Hitstun clip=HumanF@CastingDamage01 p2=EX01 slot=1 human=False state=AttackRecovery clip=Brute_Hook
+A tick=400 p1=C07 slot=0 human=True state=Hitstun clip=HumanF@CastingDamage01 p2=EX01 slot=1 human=False state=AttackStartup clip=Brute_Hook
+release tick=407 p1=C07 slot=0 human=True state=Hitstun clip=HumanF@CastingDamage01 p2=EX01 slot=1 human=False state=AttackActive clip=Brute_Hook
 [MatchLoop] Capturing 06_battle_arena_results_screen.png...
 screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/06_battle_arena_results_screen.png
 [MatchLoop] Transitioning from Results / Pause to CharacterSelect for Versus phase...
@@ -33,6 +51,6 @@ screenshot /Users/amber/My Demon Idol/Screenshots/rebuild/06_battle_arena_result
 === versus expected SK02 vs C12 ===
 director=True p1=SK02 p2=C12 tickEngine=True tick=24 sim=True
 P1 SK02 slot=0 human=True state=Neutral clip=Idle
-P2 C12 slot=1 human=True state=AttackRecovery clip=Atk_P_3
+P2 C12 slot=1 human=True state=Neutral clip=Guard_Idle
 PASS versus: tick=24 p1=SK02 p2=C12
 ALL PHASES PASSED SUCCESSFULLY

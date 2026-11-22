@@ -217,6 +217,21 @@ namespace DemonIdol.BlazBlue
         }
 
         /// <summary>
+        /// Clears all input latches, directional stick state, and virtual inputs.
+        /// </summary>
+        public void ResetLatches()
+        {
+            _latchedPressed = 0;
+            _latchedReleased = 0;
+            _currentStick = Vector2.zero;
+            _currentHeld = 0;
+            virtualStickInput = Vector2.zero;
+            virtualHeldMask = 0;
+            virtualPressedMask = 0;
+            virtualReleasedMask = 0;
+        }
+
+        /// <summary>
         /// Injects a synthetic frame (useful for automated tests and replay playback).
         /// </summary>
         public void InjectFrame(BBInputFrame frame)

@@ -10,7 +10,7 @@ namespace DemonIdol.BlazBlue.Tests
     public class BBInputIntegrityGuardTests
     {
         private static readonly Regex DisallowedPatterns = new Regex(
-            @"\.TryStartMoveId\s*\(|\.InjectFrame\s*\(|\.bbState\s*=(?!=)",
+            @"\.TryStartMoveId\s*\(|\.InjectFrame\s*\(|\.bbState\s*=(?!=)|virtual\w*Mask\s*=(?!=)|\.health\s*=(?!=)|hitstopRemaining\s*=(?!=)|TakeDamage\s*\(|UpdateHealth\s*\(|OnCleanHit\s*\(|ShowRoundEnded\s*\(|StartAttack\s*\(",
             RegexOptions.Compiled
         );
 
@@ -22,6 +22,7 @@ namespace DemonIdol.BlazBlue.Tests
             {
                 Path.Combine(Application.dataPath, "Scripts", "Editor"),
                 Path.Combine(Application.dataPath, "Scripts", "BlazBlue", "Tests"),
+                Path.Combine(Application.dataPath, "Scripts", "BlazBlue", "Editor"),
                 Path.Combine(Application.dataPath, "Tests")
             };
 

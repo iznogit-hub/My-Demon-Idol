@@ -275,6 +275,15 @@ namespace DemonIdol.Editor
 
                 _driving = true;
 
+                // Configure test-only lower maxHealth on opponent so real presses achieve natural KO
+                var ex01Def = CharacterRegistry.GetCharacterById("EX01");
+                var ex01Profile = ex01Def != null ? ex01Def.blazBlueProfile as BBCharacterProfile : null;
+                float origEx01MaxHealth = ex01Profile != null ? ex01Profile.maxHealth : 10000f;
+                if (ex01Profile != null)
+                {
+                    ex01Profile.maxHealth = 400f;
+                }
+
                 // 1. Walk forward
                 yield return Hold("walk", new[] { Key.D }, 20, liveSim);
                 yield return Hold("release", System.Array.Empty<Key>(), 8, liveSim);
@@ -295,22 +304,24 @@ namespace DemonIdol.Editor
                 }
                 yield return new WaitForSecondsRealtime(0.05f);
 
-                // 4. Attack A (5A)
-                yield return Hold("A", new[] { Key.J }, 40, liveSim);
+                // Walk into close attack range
+                float walkTimeout = Time.realtimeSinceStartup + 4f;
+                while (liveSim.p1Brain != null && liveSim.p2Brain != null && Time.realtimeSinceStartup < walkTimeout)
+                {
+                    float dist = Mathf.Abs(liveSim.p1Brain.transform.position.x - liveSim.p2Brain.transform.position.x);
+                    if (dist <= 1.25f) break;
+                    _held = new[] { Key.D };
+                    _driving = true;
+                    yield return null;
+                }
+                _held = System.Array.Empty<Key>();
+                yield return new WaitForSecondsRealtime(0.05f);
 
-                // 5. Mid-combo presentation & hit spark
-                if (liveSim.p2Brain != null && liveSim.p2Brain.fighter != null)
-                {
-                    liveSim.p2Brain.fighter.TakeDamage(350);
-                }
-                if (BattleHUDController.Instance != null)
-                {
-                    BattleHUDController.Instance.RegisterComboHit(350f);
-                    float p2Hp = liveSim.p2Brain != null ? liveSim.p2Brain.health : 650f;
-                    BattleHUDController.Instance.UpdateHealth(2, p2Hp, 1000f);
-                }
-                Vector3 hitPos = liveSim.p2Brain != null ? liveSim.p2Brain.transform.position + Vector3.up * 1.2f : Vector3.zero;
-                BBContactPresentation.OnCleanHit(hitPos, liveSim.p1Brain, false, false);
+                // 4. Attack A (5A) with real key press
+                yield return Hold("A", new[] { Key.J }, 15, liveSim);
+                yield return Hold("release", System.Array.Empty<Key>(), 8, liveSim);
+
+                // Wait 2 frames for impact and contact presentation
                 yield return null;
                 yield return null;
 
@@ -324,6 +335,7 @@ namespace DemonIdol.Editor
                 int finalTick = CombatTickEngine.Instance != null ? CombatTickEngine.Instance.CurrentTick : -1;
                 if (finalTick <= 0 || !_sawWalk || !_sawJump || !_sawAttack)
                 {
+                    if (ex01Profile != null) ex01Profile.maxHealth = origEx01MaxHealth;
                     _log.AppendLine($"FAIL tick={finalTick} walk={_sawWalk} jump={_sawJump} attack={_sawAttack}");
                     WriteLog();
                     Finish("FAIL input did not trigger required state transitions");
@@ -332,7 +344,7 @@ namespace DemonIdol.Editor
 
                 _log.AppendLine($"PASS arcade: tick={finalTick} walk={_sawWalk} jump={_sawJump} attack={_sawAttack}");
 
-                // 6. In-Game Pause Modal
+                // 5. In-Game Pause Modal
                 if (BattleHUDController.Instance != null)
                 {
                     BattleHUDController.Instance.ToggleInGamePause();
@@ -344,20 +356,33 @@ namespace DemonIdol.Editor
                     yield return new WaitForSecondsRealtime(0.2f);
                 }
 
-                // 7. Results Screen (KO on P2)
-                if (liveSim.p2Brain != null && liveSim.p2Brain.fighter != null)
+                // 6. Reach natural KO on P2 by real presses
+                _log.AppendLine("[MatchLoop] Driving real attacks to achieve natural KO on P2...");
+                float koTimeout = Time.realtimeSinceStartup + 6f;
+                int koPresses = 0;
+                while (liveSim.p2Brain != null && liveSim.p2Brain.health > 0f && Time.realtimeSinceStartup < koTimeout && koPresses < 8)
                 {
-                    liveSim.p2Brain.fighter.TakeDamage(2000);
+                    koPresses++;
+                    yield return Hold("A", new[] { Key.J }, 12, liveSim);
+                    yield return Hold("release", System.Array.Empty<Key>(), 10, liveSim);
                 }
-                if (BattleHUDController.Instance != null)
+
+                // Wait for referee to trigger round/match end
+                float refWait = Time.realtimeSinceStartup + 3f;
+                while (MatchRoundReferee.Instance != null && MatchRoundReferee.Instance.State != MatchState.MatchOver && Time.realtimeSinceStartup < refWait)
                 {
-                    BattleHUDController.Instance.UpdateHealth(2, 0f, 1000f);
-                    BattleHUDController.Instance.ShowRoundEnded(RoundWinner.Player1, EndReason.Knockout);
-                    BattleHUDController.Instance.ShowMatchFinished(RoundWinner.Player1);
+                    yield return null;
                 }
+
                 yield return new WaitForSecondsRealtime(0.8f);
                 _log.AppendLine("[MatchLoop] Capturing 06_battle_arena_results_screen.png...");
                 yield return Capture("06_battle_arena_results_screen");
+
+                // Restore profile maxHealth
+                if (ex01Profile != null)
+                {
+                    ex01Profile.maxHealth = origEx01MaxHealth;
+                }
 
                 // Route to CharacterSelect for Versus
                 _log.AppendLine("[MatchLoop] Transitioning from Results / Pause to CharacterSelect for Versus phase...");
@@ -388,40 +413,12 @@ namespace DemonIdol.Editor
         IEnumerator Hold(string label, Key[] keys, int frames, BBMatchSim sim)
         {
             _held = keys ?? System.Array.Empty<Key>();
+            _driving = true;
             for (int i = 0; i < frames; i++)
             {
                 BBFighterBrain p1 = sim != null ? sim.p1Brain : null;
                 if (p1 != null)
                 {
-                    if (p1.sampler != null)
-                    {
-                        if (label == "walk")
-                        {
-                            p1.sampler.virtualStickInput = new Vector2(1f, 0f);
-                        }
-                        else if (label == "crouch")
-                        {
-                            p1.sampler.virtualStickInput = new Vector2(0f, -1f);
-                        }
-                        else if (label == "jump")
-                        {
-                            p1.sampler.virtualStickInput = new Vector2(0f, 1f);
-                        }
-                        else if (label == "A")
-                        {
-                            p1.sampler.virtualStickInput = Vector2.zero;
-                            p1.sampler.virtualHeldMask |= (byte)BBButton.A;
-                            p1.sampler.virtualPressedMask |= (byte)BBButton.A;
-                        }
-                        else if (label == "release")
-                        {
-                            p1.sampler.virtualStickInput = Vector2.zero;
-                            p1.sampler.virtualHeldMask = 0;
-                            p1.sampler.virtualPressedMask = 0;
-                            p1.sampler.virtualReleasedMask |= (byte)BBButton.A;
-                        }
-                    }
-
                     if (p1.bbState == BBState.WalkForward || p1.bbState == BBState.WalkBackward)
                         _sawWalk = true;
                     if (p1.bbState == BBState.JumpStartup || p1.bbState == BBState.Airborne)

@@ -212,6 +212,73 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        /// <summary>
+        /// Resets the fighter to pristine round-start conditions according to fighting-game rules.
+        /// Restores max health, returns state to Neutral, clears hitstop, hitstun, blockstun, combos,
+        /// resets meters (heat, burst, barrier) according to tuning, and purges input buffers and latches.
+        /// </summary>
+        public void ResetForRound()
+        {
+            maxHealth = profile != null ? profile.maxHealth : 10000f;
+            health = maxHealth;
+            bbState = BBState.Neutral;
+            stateTick = 0;
+            simVelocity = Vector2.zero;
+            isGrounded = true;
+            hitstopRemaining = 0;
+            hitstunRemaining = 0;
+            blockstunRemaining = 0;
+            currentInvuln = BBInvuln.None;
+            currentAttack = null;
+            attackTick = 0;
+            attackHitMask = new BBHitMask();
+            ActiveDamageScale = 1f;
+            ActiveReachScale = 1f;
+            SignatureHitstopBonus = 0;
+
+            var cc = GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;
+            transform.position = new Vector3(transform.position.x, 0f, 0f);
+            if (cc != null) cc.enabled = true;
+
+            chainState.Reset();
+            comboState.Reset();
+
+            if (tuning != null)
+            {
+                gauges.Initialize(tuning);
+            }
+            else
+            {
+                gauges.heat = 0f;
+                gauges.barrier = 100f;
+                gauges.burst = 100f;
+                gauges.isDanger = false;
+                gauges.isOverdriveActive = false;
+                gauges.overdriveTicksRemaining = 0;
+            }
+
+            History?.Clear();
+
+            if (sampler != null)
+            {
+                sampler.ResetLatches();
+            }
+
+            var ai = GetComponent<BBAIController>();
+            if (ai != null)
+            {
+                ai.ResetAI();
+            }
+
+            if (animDriver != null)
+            {
+                animDriver.UpdateLocomotionState(BBState.Neutral, 0, true);
+            }
+
+            MirrorHealthToFighter();
+        }
+
         private static readonly System.Collections.Generic.HashSet<string> s_LoggedMissingMoves = new System.Collections.Generic.HashSet<string>();
         private sbyte jumpDirection = 8;
 

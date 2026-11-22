@@ -1,0 +1,25 @@
+{
+    "name": "MDI.Runtime",
+    "rootNamespace": "DemonIdol",
+    "references": [
+        "MDI.BlazBlue.Core",
+        "Unity.InputSystem",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI",
+        "Photon.Realtime",
+        "PhotonWebSocket",
+        "Quantum.Unity",
+        "Quantum.Simulation",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.RenderPipelines.Core.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

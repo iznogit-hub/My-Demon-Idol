@@ -16,6 +16,9 @@ namespace DemonIdol.BlazBlue
         public static int LastHitEvents { get; private set; }
         public static int LastGuardEvents { get; private set; }
         public static string LastSuperCharacterId { get; private set; }
+        public static Vector3 LastContactPoint { get; set; }
+        public static Vector3 LastSparkPosition { get; set; }
+        public static bool HasContactThisTick { get; set; }
 
         public static event System.Action<string, string> OnPortraitHook;
         public static event System.Action<string, string> OnVideoHook;
@@ -34,12 +37,18 @@ namespace DemonIdol.BlazBlue
             LastHitEvents = 0;
             LastGuardEvents = 0;
             LastSuperCharacterId = null;
+            LastContactPoint = Vector3.zero;
+            LastSparkPosition = Vector3.zero;
+            HasContactThisTick = false;
         }
 
         public static void OnCleanHit(Vector3 point, BBFighterBrain attacker, bool counterHit, bool isSuper)
         {
             LastHitEvents++;
             ComboCount++;
+            LastContactPoint = point;
+            LastSparkPosition = point;
+            HasContactThisTick = true;
             _hitPoints[_hitCursor] = point;
             _hitCursor = (_hitCursor + 1) % _hitPoints.Length;
 
@@ -128,6 +137,7 @@ namespace DemonIdol.BlazBlue
 
         public static GameObject SpawnHitSpark(Vector3 point, float scale, bool isSuper, bool isHeavy)
         {
+            LastSparkPosition = point;
             GameObject sparkPrefab = null;
 #if UNITY_EDITOR
             if (isSuper)

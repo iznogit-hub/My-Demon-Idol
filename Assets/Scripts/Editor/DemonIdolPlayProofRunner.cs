@@ -291,14 +291,6 @@ namespace DemonIdol.Editor
 
                 // 4. Play to KO & Victory Results
                 _log.AppendLine("[PlayProof] Simulating round KO on P2...");
-                if (sim != null && sim.p2Brain != null && sim.p2Brain.fighter != null)
-                {
-                    sim.p2Brain.fighter.TakeDamage(2000);
-                }
-                if (hud != null)
-                {
-                    hud.UpdateHealth(2, 0, 1000);
-                }
                 if (MatchRoundReferee.Instance != null)
                 {
                     MatchRoundReferee.Instance.TriggerForfeitVictory(RoundWinner.Player1);

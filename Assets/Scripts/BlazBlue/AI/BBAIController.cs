@@ -39,6 +39,16 @@ namespace DemonIdol.BlazBlue
         [SerializeField] private int _attackCooldownTicks = 0;
         [SerializeField] private int _reactionDelayTicks = 0;
 
+        public void ResetAI()
+        {
+            _decisionDelayTicks = 0;
+            _desiredNumpad = 5;
+            _desiredButtons = BBButton.None;
+            _prevHeld = 0;
+            _attackCooldownTicks = 0;
+            _reactionDelayTicks = 0;
+        }
+
         public BBInputFrame GenerateInput(BBFighterBrain self, BBFighterBrain opponent, int currentTick)
         {
             if (!enabledAI || self == null)

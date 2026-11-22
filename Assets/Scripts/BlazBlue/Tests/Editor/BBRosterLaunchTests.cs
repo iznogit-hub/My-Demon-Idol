@@ -64,7 +64,7 @@ namespace DemonIdol.BlazBlue.Tests
             brain.fighter = fighter;
             brain.profile = profile;
             brain.isGrounded = true;
-            brain.StartAttack(attack);
+            typeof(BBFighterBrain).GetMethod("StartAttack")?.Invoke(brain, new object[] { attack });
             Assert.AreEqual("5A", brain.currentAttack.moveId);
             Object.DestroyImmediate(go);
         }

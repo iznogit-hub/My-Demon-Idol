@@ -20,16 +20,16 @@ namespace DemonIdol.BlazBlue.Tests
 
         public override void Setup()
         {
-            base.Setup();
-            var devices = InputSystem.devices;
-            for (int i = devices.Count - 1; i >= 0; i--)
+            var field = typeof(NUnit.Framework.TestContext).GetField("CurrentTestExecutionContext", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            if (field != null)
             {
-                var dev = devices[i];
-                if (dev is Keyboard || dev is Gamepad)
-                {
-                    InputSystem.RemoveDevice(dev);
-                }
+                var ctx = new NUnit.Framework.Internal.TestExecutionContext();
+                var methodInfo = typeof(RealInputMatchTest).GetMethod(nameof(RealInput_Versus_P1KeyboardJ_And_P2GamepadSouth_TriggerAttacks));
+                ctx.CurrentTest = new NUnit.Framework.Internal.TestMethod(new NUnit.Framework.Internal.MethodWrapper(typeof(RealInputMatchTest), methodInfo));
+                field.SetValue(null, ctx);
             }
+
+            base.Setup();
             _virtualKeyboard = InputSystem.AddDevice<Keyboard>();
             _virtualGamepad = InputSystem.AddDevice<Gamepad>();
         }
@@ -41,6 +41,8 @@ namespace DemonIdol.BlazBlue.Tests
             if (_virtualGamepad != null && _virtualGamepad.added)
                 InputSystem.RemoveDevice(_virtualGamepad);
             base.TearDown();
+            var field = typeof(NUnit.Framework.TestContext).GetField("CurrentTestExecutionContext", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            if (field != null) field.SetValue(null, null);
             PlayerPrefs.DeleteKey("MDI_P1_CharacterId");
             PlayerPrefs.DeleteKey("MDI_P2_CharacterId");
             PlayerPrefs.DeleteKey("MDI_StageId");

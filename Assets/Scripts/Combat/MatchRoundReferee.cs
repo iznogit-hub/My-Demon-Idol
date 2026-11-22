@@ -344,6 +344,12 @@ namespace DemonIdol.Combat
             if (cc != null) cc.enabled = true;
 
             fc.ResetToIdle();
+
+            var brain = fc.GetComponent<DemonIdol.BlazBlue.BBFighterBrain>();
+            if (brain != null)
+            {
+                brain.ResetForRound();
+            }
         }
 
         private void SetFighterInputsEnabled(bool enabled)
@@ -366,6 +372,21 @@ namespace DemonIdol.Combat
 
             var ai = fc.GetComponent<CombatAIController>();
             if (ai != null) ai.enabled = enabled;
+
+            var bbSampler = fc.GetComponent<DemonIdol.BlazBlue.BBInputSampler>();
+            if (bbSampler != null)
+            {
+                bbSampler.enabled = enabled;
+                if (!enabled) bbSampler.ResetLatches();
+            }
+
+            var bbAi = fc.GetComponent<DemonIdol.BlazBlue.BBAIController>();
+            if (bbAi != null)
+            {
+                bbAi.enabledAI = enabled;
+                bbAi.enabled = enabled;
+                if (!enabled) bbAi.ResetAI();
+            }
         }
 
         public void Rematch()

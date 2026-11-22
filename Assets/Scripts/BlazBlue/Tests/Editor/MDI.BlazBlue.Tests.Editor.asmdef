@@ -1,0 +1,29 @@
+{
+    "name": "MDI.BlazBlue.Tests.Editor",
+    "rootNamespace": "DemonIdol.BlazBlue.Tests",
+    "references": [
+        "MDI.Runtime",
+        "MDI.BlazBlue.Core",
+        "MDI.BlazBlue.Editor",
+        "Unity.InputSystem",
+        "Unity.InputSystem.TestFramework",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.RenderPipelines.Core.Runtime"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
