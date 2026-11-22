@@ -1,0 +1,430 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1797850626777151430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
+  m_Name: BB_Hugo_5B_Boxes
+  m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
+  tickCount: 35
+  frameStart: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000d0000000f00000011000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f0000002000000021000000220000002300000024000000250000002600000027000000i
+  boxes:
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 1
+    cy: 1.05
+    hx: 0.55
+    hy: 0.4
+    kind: 1
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 1
+    cy: 1.05
+    hx: 0.55
+    hy: 0.4
+    kind: 1
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 1
+    cy: 1.05
+    hx: 0.55
+    hy: 0.4
+    kind: 1
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 1
+    cy: 1.05
+    hx: 0.55
+    hy: 0.4
+    kind: 1
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.85
+    hx: 0.35
+    hy: 0.8
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  keyTicks: 
+  bakeHash: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
+  m_Name: BB_Hugo_5B
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: Titan Uppercut
+  attackType: 0
+  hitLevel: 1
+  guardRequirement: 0
+  isDuckableHigh: 0
+  crush: 0
+  crushStartTick: 4
+  crushEndTick: 18
+  hasArmor: 0
+  isAirborneStrikeProtected: 0
+  protectionStartTick: 5
+  protectionEndTick: 12
+  startupFrames: 11
+  activeFrames: 4
+  recoveryFrames: 20
+  hitstunTicks: 19
+  blockstunTicks: 16
+  knockdownDurationTicks: 36
+  hitstopAttacker: 5
+  hitstopDefender: 5
+  hitstopOnBlock: 4
+  counterHitStopBonus: 4
+  advantageOnBlock: -2
+  advantageOnHit: 4
+  advantageOnCounterHit: 8
+  damage: 700
+  chipDamageOnBlock: 0
+  initialProration: 0.85
+  comboDamageDecay: 0.92
+  pushbackOnHit: 1
+  pushbackOnBlock: 0.8
+  isLauncher: 0
+  isBoundTornado: 0
+  causesWallSplat: 0
+  causesWallBounce: 0
+  causesKnockdown: 0
+  isLinear: 1
+  throwTechWindowTicks: 6
+  launchVelocity: {x: 0, y: 0}
+  screenShakeTrauma: 0.1
+  canRapidCancel: 1
+  gatlingCancels: 010000000200000003000000i
+  animationClip: {fileID: 0}
+  animationTrigger: LightAttack
+  hitboxOffset: {x: 0.8, y: 1, z: 0}
+  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  cancelWindow: {x: 5, y: 12}
+  archetype: 0
+  moveId: 5B
+  button: 2
+  kind: 0
+  motion: 0
+  airOk: 0
+  groundOk: 1
+  guard: 0
+  attribute: 2
+  invuln: []
+  fatalCounter: 0
+  hardKnockdown: 0
+  otg: 0
+  groundBounce: 0
+  wallBounce: 0
+  wallStick: 0
+  groundSlide: 0
+  untechableTicks: 18
+  untechableTicksCH: 27
+  airHitVelocity: {x: 1.5, y: 5}
+  landingRecovery: 4
+  minDamagePct: 0.08
+  chipPct: 0
+  heatGainOverride: -1
+  heatCost: 0
+  gatlingInto: []
+  specialCancel: 1
+  ddCancel: 1
+  jumpCancelOnHit: 0
+  jumpCancelOnBlock: 0
+  rapidCancelable: 1
+  followUps: []
+  followUpWindow: {x: 0, y: 0}
+  boxes: {fileID: -1797850626777151430}
+  motionTrack: {fileID: 0}
+  clipName: Brute_Uppercut
+  clip: {fileID: -998496362607748373, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 14
+  events: []
