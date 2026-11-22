@@ -28,7 +28,7 @@ MonoBehaviour:
   activeFrames: 3
   recoveryFrames: 13
   hitstunTicks: 16
-  blockstunTicks: 16
+  blockstunTicks: 13
   knockdownDurationTicks: 36
   hitstopAttacker: 9
   hitstopDefender: 9
@@ -51,7 +51,7 @@ MonoBehaviour:
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
+  screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}

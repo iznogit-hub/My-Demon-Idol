@@ -28,7 +28,7 @@ MonoBehaviour:
   activeFrames: 4
   recoveryFrames: 16
   hitstunTicks: 18
-  blockstunTicks: 19
+  blockstunTicks: 15
   knockdownDurationTicks: 36
   hitstopAttacker: 10
   hitstopDefender: 10

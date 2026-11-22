@@ -33,5 +33,5 @@ MonoBehaviour:
   signatureSpecialClip: {fileID: -2848545796736985332, guid: 4001c0c0bd7783f49b26d816310b87b2, type: 3}
   signatureSuperClip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
   moveSet: {fileID: 11400000, guid: a5232a2ff80504cf9a19990947370f73, type: 2}
-  maxHealth: 11000
+  maxHealth: 10000
   defenseModifier: 1

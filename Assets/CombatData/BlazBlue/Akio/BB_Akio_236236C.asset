@@ -28,7 +28,7 @@ MonoBehaviour:
   activeFrames: 5
   recoveryFrames: 28
   hitstunTicks: 32
-  blockstunTicks: 19
+  blockstunTicks: 29
   knockdownDurationTicks: 36
   hitstopAttacker: 16
   hitstopDefender: 16
@@ -98,7 +98,7 @@ MonoBehaviour:
   boxes: {fileID: 11400000, guid: 742d50fe3d43e4e9785f707d54fff61d, type: 2}
   motionTrack: {fileID: 0}
   clipName: Attack1
-  clip: {fileID: 7400000, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 27
+  clipLastFrame: 22
   events: []

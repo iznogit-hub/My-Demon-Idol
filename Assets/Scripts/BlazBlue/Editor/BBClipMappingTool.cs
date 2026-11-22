@@ -98,6 +98,19 @@ namespace DemonIdol.BlazBlue.Editor
             ApplyBatch4Specifics();
             ApplyBatch5Specifics();
 
+            // 3b. Standardize Health to 10000 across all 25 profiles
+            var profileGuids = AssetDatabase.FindAssets("t:BBCharacterProfile", new[] { "Assets/CombatData/BlazBlue" });
+            foreach (var guid in profileGuids)
+            {
+                var pPath = AssetDatabase.GUIDToAssetPath(guid);
+                var prof = AssetDatabase.LoadAssetAtPath<BBCharacterProfile>(pPath);
+                if (prof != null)
+                {
+                    prof.maxHealth = 10000f;
+                    EditorUtility.SetDirty(prof);
+                }
+            }
+
             // 4. Save CSV
             var sb = new StringBuilder();
             sb.AppendLine("Fighter,MoveId,ClipName,Pack,SourceFrames,Startup,Active,Recovery,Damage,Hitstop,Hitstun");
@@ -128,59 +141,82 @@ namespace DemonIdol.BlazBlue.Editor
             if (atk.kind == BBMoveKind.DistortionDrive || atk.moveId == "236236C")
             {
                 atk.startupFrames = Mathf.Clamp(atk.startupFrames, 16, 24);
-                atk.damage = Mathf.Clamp(atk.damage, 2000, 3500);
-                if (atk.damage < 2000) atk.damage = 2500;
+                atk.damage = Mathf.Clamp(atk.damage, 2200, 3200);
+                if (atk.damage < 2200) atk.damage = 2500;
                 atk.hitstopAttacker = 16;
                 atk.hitstopDefender = 16;
-                atk.hitstunTicks = 32;
+                atk.blockstunTicks = 25;
+                atk.hitstunTicks = 29; // Exceeds blockstun by 4f
                 atk.causesKnockdown = true;
                 atk.hardKnockdown = true;
             }
             else if (atk.kind == BBMoveKind.Special || atk.moveId.StartsWith("236") || atk.moveId.StartsWith("214") || atk.moveId.StartsWith("623") || atk.moveId.StartsWith("22"))
             {
-                atk.startupFrames = Mathf.Clamp(atk.startupFrames, 12, 18);
-                atk.damage = Mathf.Clamp(atk.damage, 900, 1300);
+                atk.startupFrames = Mathf.Clamp(atk.startupFrames, 10, 20);
+                atk.damage = Mathf.Clamp(atk.damage, 900, 1400);
                 if (atk.damage < 900) atk.damage = 1000;
-                atk.hitstopAttacker = 10;
-                atk.hitstopDefender = 10;
-                atk.hitstunTicks = 18;
+                atk.hitstopAttacker = 13;
+                atk.hitstopDefender = 13;
+                atk.blockstunTicks = 18;
+                atk.hitstunTicks = 21; // Exceeds blockstun by 3f
             }
             else if (atk.moveId.Contains("D"))
             {
-                atk.damage = Mathf.Clamp(atk.damage, 800, 1000);
-                if (atk.damage < 800) atk.damage = 850;
-                atk.hitstopAttacker = 10;
-                atk.hitstopDefender = 10;
-                atk.hitstunTicks = 18;
+                atk.startupFrames = Mathf.Clamp(atk.startupFrames, 12, 20);
+                atk.damage = Mathf.Clamp(atk.damage, 750, 950);
+                if (atk.damage < 750) atk.damage = 800;
+                atk.hitstopAttacker = 13;
+                atk.hitstopDefender = 13;
+                atk.blockstunTicks = 18;
+                atk.hitstunTicks = 21; // Exceeds blockstun by 3f
+            }
+            else if (atk.moveId == "BC" || atk.kind == BBMoveKind.Throw)
+            {
+                atk.startupFrames = Mathf.Clamp(atk.startupFrames, 5, 7);
+                atk.damage = Mathf.Clamp(atk.damage, 1000, 1200);
+                if (atk.damage < 1000) atk.damage = 1100;
+                atk.hitstopAttacker = 11;
+                atk.hitstopDefender = 11;
+                atk.blockstunTicks = 15;
+                atk.hitstunTicks = 18; // Exceeds blockstun by 3f
             }
             else if (atk.moveId.Contains("C"))
             {
-                atk.startupFrames = Mathf.Clamp(atk.startupFrames, 12, 16);
-                atk.damage = Mathf.Clamp(atk.damage, 850, 1100);
-                if (atk.damage < 850) atk.damage = 900;
-                atk.hitstopAttacker = 12;
-                atk.hitstopDefender = 12;
-                atk.hitstunTicks = 22;
+                atk.startupFrames = Mathf.Clamp(atk.startupFrames, 11, 16);
+                atk.activeFrames = Mathf.Clamp(atk.activeFrames, 3, 5);
+                atk.recoveryFrames = Mathf.Clamp(atk.recoveryFrames, 20, 26);
+                atk.damage = Mathf.Clamp(atk.damage, 750, 950);
+                if (atk.damage < 750) atk.damage = 850;
+                atk.hitstopAttacker = 13;
+                atk.hitstopDefender = 13;
+                atk.blockstunTicks = 18;
+                atk.hitstunTicks = 21; // Exceeds blockstun by 3f
                 atk.screenShakeTrauma = 0.40f;
             }
             else if (atk.moveId.Contains("B"))
             {
-                atk.startupFrames = Mathf.Clamp(atk.startupFrames, 8, 11);
+                atk.startupFrames = Mathf.Clamp(atk.startupFrames, 7, 10);
+                atk.activeFrames = Mathf.Clamp(atk.activeFrames, 3, 4);
+                atk.recoveryFrames = Mathf.Clamp(atk.recoveryFrames, 14, 18);
                 atk.damage = Mathf.Clamp(atk.damage, 500, 650);
-                if (atk.damage < 500) atk.damage = 600;
-                atk.hitstopAttacker = 9;
-                atk.hitstopDefender = 9;
-                atk.hitstunTicks = 16;
-                atk.screenShakeTrauma = 0.10f;
+                if (atk.damage < 500) atk.damage = 550;
+                atk.hitstopAttacker = 11;
+                atk.hitstopDefender = 11;
+                atk.blockstunTicks = 15;
+                atk.hitstunTicks = 18; // Exceeds blockstun by 3f
+                atk.screenShakeTrauma = 0.15f;
             }
             else if (atk.moveId.Contains("A"))
             {
-                atk.startupFrames = Mathf.Clamp(atk.startupFrames, 5, 7);
-                atk.damage = Mathf.Clamp(atk.damage, 250, 350);
-                if (atk.damage < 250) atk.damage = 300;
-                atk.hitstopAttacker = 6;
-                atk.hitstopDefender = 6;
-                atk.hitstunTicks = 12;
+                atk.startupFrames = Mathf.Clamp(atk.startupFrames, 4, 6);
+                atk.activeFrames = Mathf.Clamp(atk.activeFrames, 2, 3);
+                atk.recoveryFrames = Mathf.Clamp(atk.recoveryFrames, 7, 10);
+                atk.damage = Mathf.Clamp(atk.damage, 300, 400);
+                if (atk.damage < 300) atk.damage = 350;
+                atk.hitstopAttacker = 9;
+                atk.hitstopDefender = 9;
+                atk.blockstunTicks = 10;
+                atk.hitstunTicks = 13; // Exceeds blockstun by 3f
             }
         }
 
@@ -207,6 +243,7 @@ namespace DemonIdol.BlazBlue.Editor
             atk.hitstopAttacker = hitstop;
             atk.hitstopDefender = hitstop;
             atk.hitstunTicks = hitstun;
+            atk.blockstunTicks = Mathf.Max(1, hitstun - 3); // Hitstun must be greater than blockstun by 2-4f per tier
             if (knockdown)
             {
                 atk.causesKnockdown = true;
@@ -402,9 +439,22 @@ namespace DemonIdol.BlazBlue.Editor
             var clip236B = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Call/HumanF@MagicAttackCall1H01_L.fbx", "HumanF@MagicAttackCall1H01_L");
             var clip236C = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanF@MagicAttackOmni01 - Cast.fbx", "HumanF@MagicAttackOmni01 - Cast");
 
-            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_236236C.asset", superClip, 18, 5, 25, 2600, new Vector3(1.10f, 1.25f, 0f), new Vector3(1.80f, 0.90f, 1.0f), 14, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_5A.asset", null, 6, 3, 8, 280, new Vector3(0.75f, 1.25f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_5B.asset", null, 9, 3, 13, 540, new Vector3(0.90f, 1.20f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_5C.asset", null, 14, 4, 18, 920, new Vector3(1.05f, 1.20f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_2A.asset", null, 6, 3, 8, 260, new Vector3(0.75f, 0.40f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_2B.asset", null, 9, 3, 13, 520, new Vector3(0.90f, 0.40f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_2C.asset", null, 14, 4, 19, 870, new Vector3(1.05f, 0.35f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_5D.asset", null, 16, 4, 18, 840, new Vector3(1.00f, 1.10f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_236A.asset", null, 13, 4, 16, 1020, new Vector3(1.05f, 1.15f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_214B.asset", null, 15, 4, 19, 1120, new Vector3(1.05f, 1.15f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
             TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_236B.asset", clip236B, 13, 4, 24, 1050, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
             TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_236C.asset", clip236C, 14, 4, 21, 1150, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_236236C.asset", superClip, 18, 5, 25, 2600, new Vector3(1.10f, 1.25f, 0f), new Vector3(1.80f, 0.90f, 1.0f), 14, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_BC.asset", null, 6, 3, 14, 580, new Vector3(0.75f, 1.10f, 0f), new Vector3(1.45f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_j.A.asset", null, 6, 3, 9, 280, new Vector3(0.85f, -0.35f, 0f), new Vector3(1.50f, 1.80f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_j.B.asset", null, 9, 3, 12, 540, new Vector3(0.95f, -0.35f, 0f), new Vector3(1.55f, 1.80f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/StellarWitch/BB_StellarWitch_j.C.asset", null, 14, 4, 17, 930, new Vector3(1.05f, -0.35f, 0f), new Vector3(1.65f, 1.80f, 1.0f), 12, 22);
 
             var overrideCtrl = AssetDatabase.LoadAssetAtPath<AnimatorOverrideController>("Assets/MDI_Characters/Runtime/BlazBlue/StellarWitch_BB_Override.overrideController");
             if (overrideCtrl != null)
@@ -434,14 +484,40 @@ namespace DemonIdol.BlazBlue.Editor
             var clip236 = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Ninja Warrior Mecanim Animation Pack/Animations/Ninja@Attack1.FBX", "Ninja_Slash1");
             var clipjB = LoadSubclip("Assets/Martial Art Animations Sample/Animations/Atk_K_1.fbx", null);
 
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_5A.asset", null, 5, 3, 8, 290, new Vector3(0.70f, 1.25f, 0f), new Vector3(1.35f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_5B.asset", null, 8, 3, 12, 560, new Vector3(0.85f, 1.20f, 0f), new Vector3(1.45f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_5C.asset", null, 12, 4, 17, 960, new Vector3(1.00f, 1.20f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_2A.asset", null, 6, 3, 8, 270, new Vector3(0.70f, 0.40f, 0f), new Vector3(1.35f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_2B.asset", null, 8, 3, 12, 530, new Vector3(0.85f, 0.40f, 0f), new Vector3(1.45f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_2C.asset", null, 13, 4, 18, 910, new Vector3(1.00f, 0.35f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_5D.asset", null, 14, 4, 16, 860, new Vector3(0.95f, 1.10f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
             TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_236A.asset", clip236, 12, 4, 15, 1050, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
-            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_j.B.asset", clipjB, 8, 3, 11, 540, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_214B.asset", null, 14, 4, 18, 1150, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_236236C.asset", null, 18, 5, 28, 2500, new Vector3(1.10f, 1.25f, 0f), new Vector3(1.80f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_BC.asset", null, 6, 3, 14, 600, new Vector3(0.75f, 1.10f, 0f), new Vector3(1.45f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_j.A.asset", null, 6, 3, 10, 290, new Vector3(0.85f, -0.35f, 0f), new Vector3(1.50f, 1.80f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_j.B.asset", clipjB, 8, 3, 11, 540, new Vector3(0.85f, -0.35f, 0f), new Vector3(1.50f, 1.80f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/SanpakuChan/BB_SanpakuChan_j.C.asset", null, 13, 4, 16, 950, new Vector3(1.00f, -0.35f, 0f), new Vector3(1.60f, 1.80f, 1.0f), 12, 22);
         }
 
         private static void ApplyC09Specifics()
         {
             var clip5D = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX", "Attack1");
-            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_5D.asset", clip5D, 14, 4, 17, 870, new Vector3(0.95f, 1.10f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_5A.asset", null, 6, 3, 9, 320, new Vector3(0.75f, 1.25f, 0f), new Vector3(1.45f, 0.65f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_5B.asset", null, 9, 3, 13, 580, new Vector3(0.90f, 1.20f, 0f), new Vector3(1.50f, 0.65f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_5C.asset", null, 13, 4, 18, 980, new Vector3(1.05f, 1.20f, 0f), new Vector3(1.60f, 0.65f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_2A.asset", null, 6, 3, 9, 300, new Vector3(0.75f, 0.40f, 0f), new Vector3(1.40f, 0.65f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_2B.asset", null, 9, 3, 13, 550, new Vector3(0.90f, 0.40f, 0f), new Vector3(1.50f, 0.65f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_2C.asset", null, 14, 4, 19, 930, new Vector3(1.05f, 0.35f, 0f), new Vector3(1.60f, 0.65f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_5D.asset", clip5D, 14, 4, 17, 870, new Vector3(1.00f, 1.10f, 0f), new Vector3(1.55f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_236A.asset", null, 13, 4, 17, 1080, new Vector3(1.00f, 1.15f, 0f), new Vector3(1.55f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_214B.asset", null, 15, 4, 19, 1180, new Vector3(1.00f, 1.15f, 0f), new Vector3(1.55f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_236236C.asset", null, 19, 5, 29, 2750, new Vector3(1.15f, 1.25f, 0f), new Vector3(1.85f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_BC.asset", null, 6, 3, 14, 650, new Vector3(0.75f, 1.10f, 0f), new Vector3(1.45f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_j.A.asset", null, 6, 3, 10, 300, new Vector3(0.85f, -0.35f, 0f), new Vector3(1.50f, 1.80f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_j.B.asset", null, 9, 3, 13, 570, new Vector3(0.90f, -0.35f, 0f), new Vector3(1.55f, 1.80f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/PicoChan/BB_PicoChan_j.C.asset", null, 14, 4, 17, 970, new Vector3(1.05f, -0.35f, 0f), new Vector3(1.65f, 1.80f, 1.0f), 12, 22);
         }
 
         private static void ApplyC10Specifics()
@@ -467,7 +543,20 @@ namespace DemonIdol.BlazBlue.Editor
                 }
             }
 
-            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_j.B.asset", null, 9, 3, 12, 550, new Vector3(1.05f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_5A.asset", null, 5, 3, 7, 280, new Vector3(0.70f, 1.25f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_5B.asset", null, 8, 3, 11, 550, new Vector3(0.85f, 1.20f, 0f), new Vector3(1.45f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_5C.asset", null, 12, 4, 16, 940, new Vector3(1.00f, 1.20f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_2A.asset", null, 5, 3, 8, 260, new Vector3(0.70f, 0.40f, 0f), new Vector3(1.35f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_2B.asset", null, 8, 3, 12, 520, new Vector3(0.85f, 0.40f, 0f), new Vector3(1.45f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_2C.asset", null, 12, 4, 17, 890, new Vector3(1.00f, 0.35f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_5D.asset", null, 13, 4, 15, 840, new Vector3(0.95f, 1.10f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_236A.asset", null, 12, 4, 15, 1040, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_214B.asset", null, 14, 4, 17, 1140, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_236236C.asset", null, 18, 5, 28, 2550, new Vector3(1.10f, 1.25f, 0f), new Vector3(1.80f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_BC.asset", null, 6, 3, 14, 590, new Vector3(0.75f, 1.10f, 0f), new Vector3(1.45f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_j.A.asset", null, 6, 3, 9, 280, new Vector3(0.85f, -0.35f, 0f), new Vector3(1.50f, 1.80f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_j.B.asset", null, 8, 3, 11, 530, new Vector3(0.90f, -0.35f, 0f), new Vector3(1.55f, 1.80f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Reika/BB_Reika_j.C.asset", null, 13, 4, 16, 930, new Vector3(1.00f, -0.35f, 0f), new Vector3(1.60f, 1.80f, 1.0f), 12, 22);
         }
 
         private static void ApplyC11Specifics()
@@ -475,10 +564,23 @@ namespace DemonIdol.BlazBlue.Editor
             var clip236 = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Attack1.FBX", "Attack1");
             var clipjB = LoadSubclip("Assets/Martial Art Animations Sample/Animations/Atk_K_1.fbx", null);
 
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_5A.asset", null, 5, 3, 7, 300, new Vector3(0.70f, 1.25f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_5B.asset", null, 8, 3, 11, 570, new Vector3(0.85f, 1.20f, 0f), new Vector3(1.45f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_5C.asset", null, 12, 4, 16, 970, new Vector3(1.00f, 1.20f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_2A.asset", null, 5, 3, 8, 270, new Vector3(0.70f, 0.40f, 0f), new Vector3(1.35f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_2B.asset", null, 8, 3, 12, 540, new Vector3(0.85f, 0.40f, 0f), new Vector3(1.45f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_2C.asset", null, 12, 4, 17, 920, new Vector3(1.00f, 0.35f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_5D.asset", null, 13, 4, 15, 860, new Vector3(0.95f, 1.10f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
             TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_236A.asset", clip236, 12, 4, 14, 1020, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
-            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_j.B.asset", clipjB, 8, 3, 11, 520, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_214B.asset", null, 14, 4, 17, 1120, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_236236C.asset", null, 18, 5, 28, 2650, new Vector3(1.10f, 1.25f, 0f), new Vector3(1.80f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_BC.asset", null, 6, 3, 14, 610, new Vector3(0.75f, 1.10f, 0f), new Vector3(1.45f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_j.A.asset", null, 5, 3, 9, 290, new Vector3(0.85f, -0.35f, 0f), new Vector3(1.50f, 1.80f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_j.B.asset", clipjB, 8, 3, 11, 520, new Vector3(0.85f, -0.35f, 0f), new Vector3(1.50f, 1.80f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_j.C.asset", null, 13, 4, 16, 950, new Vector3(1.00f, -0.35f, 0f), new Vector3(1.60f, 1.80f, 1.0f), 12, 22);
+
             TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_236A.asset", clip236, 12, 4, 14, 1020, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
-            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_j.B.asset", clipjB, 8, 3, 11, 520, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_j.B.asset", clipjB, 8, 3, 11, 520, new Vector3(0.85f, -0.35f, 0f), new Vector3(1.50f, 1.80f, 1.0f), 9, 16);
         }
 
         public static void ApplyBatch3Specifics()

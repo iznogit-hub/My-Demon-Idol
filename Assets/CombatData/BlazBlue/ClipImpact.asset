@@ -89,9 +89,9 @@ MonoBehaviour:
     impactFrame60: 19
     impactTime: 0.31666666
     maxVelocity: 0
-  - clipName: Attack1
-    impactFrame60: 22
-    impactTime: 0.36666667
+  - clipName: Karate_Jab
+    impactFrame60: 14
+    impactTime: 0.23333333
     maxVelocity: 0
   - clipName: Ninja_Slash2
     impactFrame60: 5
@@ -117,6 +117,10 @@ MonoBehaviour:
     impactFrame60: 19
     impactTime: 0.31666666
     maxVelocity: 0
+  - clipName: Attack1
+    impactFrame60: 22
+    impactTime: 0.36666667
+    maxVelocity: 0
   - clipName: Brute_Hook
     impactFrame60: 18
     impactTime: 0.3
@@ -132,10 +136,6 @@ MonoBehaviour:
   - clipName: HumanM@CombatIdle1H01
     impactFrame60: 26
     impactTime: 0.43333334
-    maxVelocity: 0
-  - clipName: Karate_Jab
-    impactFrame60: 14
-    impactTime: 0.23333333
     maxVelocity: 0
   - clipName: HumanM@AttackShield01
     impactFrame60: 17
@@ -353,7 +353,23 @@ MonoBehaviour:
     impactFrame60: 32
     impactTime: 0.53333336
     maxVelocity: 0
+  - clipName: Crossbow_Snapshot
+    impactFrame60: 15
+    impactTime: 0.25
+    maxVelocity: 0
+  - clipName: Crossbow_Burst
+    impactFrame60: 6
+    impactTime: 0.1
+    maxVelocity: 0
+  - clipName: Crossbow_Scatter
+    impactFrame60: 19
+    impactTime: 0.31666666
+    maxVelocity: 0
   - clipName: HumanM@MagicAttackOmni01 - Load
+    impactFrame60: 31
+    impactTime: 0.51666665
+    maxVelocity: 0
+  - clipName: HumanF@MagicAttackOmni01 - Load
     impactFrame60: 31
     impactTime: 0.51666665
     maxVelocity: 0
@@ -381,18 +397,6 @@ MonoBehaviour:
     impactFrame60: 15
     impactTime: 0.25
     maxVelocity: 0
-  - clipName: Crossbow_Snapshot
-    impactFrame60: 15
-    impactTime: 0.25
-    maxVelocity: 0
-  - clipName: Crossbow_Burst
-    impactFrame60: 6
-    impactTime: 0.1
-    maxVelocity: 0
-  - clipName: Crossbow_Scatter
-    impactFrame60: 19
-    impactTime: 0.31666666
-    maxVelocity: 0
   - clipName: HumanF@CastingDamage01
     impactFrame60: 21
     impactTime: 0.35
@@ -416,10 +420,6 @@ MonoBehaviour:
   - clipName: HumanF@MagicAttackCall1H01_L - Load
     impactFrame60: 32
     impactTime: 0.53333336
-    maxVelocity: 0
-  - clipName: HumanF@MagicAttackOmni01 - Load
-    impactFrame60: 31
-    impactTime: 0.51666665
     maxVelocity: 0
   - clipName: HumanM@CastingDamage01
     impactFrame60: 21

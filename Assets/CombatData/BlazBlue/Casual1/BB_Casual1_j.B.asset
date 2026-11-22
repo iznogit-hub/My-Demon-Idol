@@ -28,7 +28,7 @@ MonoBehaviour:
   activeFrames: 3
   recoveryFrames: 11
   hitstunTicks: 16
-  blockstunTicks: 15
+  blockstunTicks: 13
   knockdownDurationTicks: 36
   hitstopAttacker: 9
   hitstopDefender: 9
@@ -51,13 +51,13 @@ MonoBehaviour:
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
+  screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.85, y: -0.2, z: 0}
-  hitboxSize: {x: 1.4, y: 1.4, z: 1}
+  hitboxOffset: {x: 0.85, y: -0.35, z: 0}
+  hitboxSize: {x: 1.5, y: 1.8, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: j.B
@@ -115,25 +115,25 @@ MonoBehaviour:
   frameStart: 0000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
   boxes:
   - cx: 0.85
-    cy: -0.2
-    hx: 0.7
-    hy: 0.7
+    cy: -0.35
+    hx: 0.75
+    hy: 0.9
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0.85
-    cy: -0.2
-    hx: 0.7
-    hy: 0.7
+    cy: -0.35
+    hx: 0.75
+    hy: 0.9
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
   - cx: 0.85
-    cy: -0.2
-    hx: 0.7
-    hy: 0.7
+    cy: -0.35
+    hx: 0.75
+    hy: 0.9
     kind: 1
     hitIndex: 0
     attribute: 2
