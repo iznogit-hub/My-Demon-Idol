@@ -27,11 +27,11 @@ MonoBehaviour:
   startupFrames: 30
   activeFrames: 3
   recoveryFrames: 61
-  hitstunTicks: 0
+  hitstunTicks: 18
   blockstunTicks: 0
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: 0
@@ -96,6 +96,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Cultist_jD
   clip: {fileID: 3094330708855449807, guid: b98582042c1292a4e81193a2e417a4d2, type: 3}
-  clipFirstFrame: 40
-  clipLastFrame: 62
+  clipFirstFrame: 0
+  clipLastFrame: 47
   events: []

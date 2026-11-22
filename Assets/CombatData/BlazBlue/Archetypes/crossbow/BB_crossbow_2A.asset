@@ -24,10 +24,10 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 17
+  startupFrames: 7
   activeFrames: 3
-  recoveryFrames: 34
-  hitstunTicks: 15
+  recoveryFrames: 44
+  hitstunTicks: 12
   blockstunTicks: 11
   knockdownDurationTicks: 36
   hitstopAttacker: 6
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 
   animationClip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
   animationTrigger: LowAttack
-  hitboxOffset: {x: 0.5, y: 0.4, z: 0}
-  hitboxSize: {x: 0.5, y: 0.35, z: 1}
+  hitboxOffset: {x: 0.55, y: 1.25, z: 0}
+  hitboxSize: {x: 1.1, y: 0.6, z: 1}
   cancelWindow: {x: 12, y: 15}
   archetype: 0
   moveId: 2A

@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 8
+  startupFrames: 18
   activeFrames: 3
-  recoveryFrames: 16
-  hitstunTicks: 15
+  recoveryFrames: 47
+  hitstunTicks: 18
   blockstunTicks: 12
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 942a8b5cac3634d1fb771bfa51340df1, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Quickstep_F
-  clip: {fileID: -6339999858669016031, guid: fdd8e1ce77001904c8cd99cd2d18b299, type: 3}
+  clipName: Attack1
+  clip: {fileID: 7400000, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 10
+  clipLastFrame: 30
   events: []

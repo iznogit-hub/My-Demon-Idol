@@ -35,11 +35,15 @@ namespace DemonIdol.BlazBlue
         [SerializeField] private int _decisionDelayTicks = 0;
         [SerializeField] private sbyte _desiredNumpad = 5;
         [SerializeField] private BBButton _desiredButtons = BBButton.None;
+        [SerializeField] private byte _prevHeld = 0;
+        [SerializeField] private int _attackCooldownTicks = 0;
+        [SerializeField] private int _reactionDelayTicks = 0;
 
         public BBInputFrame GenerateInput(BBFighterBrain self, BBFighterBrain opponent, int currentTick)
         {
             if (!enabledAI || self == null)
             {
+                _prevHeld = 0;
                 return new BBInputFrame {
                     numpad = 5,
                     held = 0,
@@ -49,6 +53,16 @@ namespace DemonIdol.BlazBlue
             }
 
             int checkInterval = GetCheckInterval();
+
+            if (_attackCooldownTicks > 0)
+            {
+                _attackCooldownTicks--;
+            }
+
+            if (_reactionDelayTicks > 0)
+            {
+                _reactionDelayTicks--;
+            }
 
             // Periodic decision update
             if (_decisionDelayTicks <= 0 || (currentTick % checkInterval == 0))
@@ -61,12 +75,29 @@ namespace DemonIdol.BlazBlue
                 _decisionDelayTicks--;
             }
 
+            // If attack cooldown is active, suppress attacking buttons (spacing / movement allowed)
+            if (_attackCooldownTicks > 0)
+            {
+                _desiredButtons = BBButton.None;
+            }
+            else if (_desiredButtons != BBButton.None)
+            {
+                // New attack trigger: set cooldown (12-18 frames) and reaction delay (8-14 frames)
+                _attackCooldownTicks = UnityEngine.Random.Range(12, 18);
+                _reactionDelayTicks = UnityEngine.Random.Range(8, 15);
+            }
+
+            byte currentHeld = (byte)_desiredButtons;
+            byte pressed = (byte)(currentHeld & ~_prevHeld);
+            byte released = (byte)(_prevHeld & ~currentHeld);
+            _prevHeld = currentHeld;
+
             // Construct input frame
             return new BBInputFrame {
                 numpad = _desiredNumpad,
-                held = (byte)_desiredButtons,
-                pressed = (byte)_desiredButtons,
-                released = 0
+                held = currentHeld,
+                pressed = pressed,
+                released = released
             };
         }
 

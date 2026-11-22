@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 17
+  startupFrames: 16
   activeFrames: 3
-  recoveryFrames: 34
-  hitstunTicks: 16
+  recoveryFrames: 35
+  hitstunTicks: 22
   blockstunTicks: 12
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 12
+  hitstopDefender: 12
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 800
+  damage: 850
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -51,7 +51,7 @@ MonoBehaviour:
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
+  screenShakeTrauma: 0.4
   canRapidCancel: 1
   gatlingCancels: 
   animationClip: {fileID: 3094330708855449807, guid: 6683d02f31b83724daa4714c986bd1f5, type: 3}

@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 5
+  startupFrames: 8
   activeFrames: 3
-  recoveryFrames: 8
-  hitstunTicks: 15
+  recoveryFrames: 5
+  hitstunTicks: 16
   blockstunTicks: 11
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 9
+  hitstopDefender: 9
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -103,5 +103,5 @@ MonoBehaviour:
   clipName: BB_spear_5B
   clip: {fileID: -998496362607748373, guid: d49af005f8f03dd40944d120d5009866, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 33
+  clipLastFrame: 8
   events: []

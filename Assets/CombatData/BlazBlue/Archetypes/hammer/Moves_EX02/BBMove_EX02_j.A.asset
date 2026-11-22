@@ -24,10 +24,10 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 18
+  startupFrames: 7
   activeFrames: 3
-  recoveryFrames: 35
-  hitstunTicks: 17
+  recoveryFrames: 46
+  hitstunTicks: 12
   blockstunTicks: 13
   knockdownDurationTicks: 36
   hitstopAttacker: 6
@@ -103,5 +103,5 @@ MonoBehaviour:
   clipName: BB_hammer_j_A
   clip: {fileID: 1827226128182048838, guid: c52633ad3251d4841878d77a31df9981, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 42
+  clipLastFrame: 28
   events: []

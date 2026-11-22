@@ -15,6 +15,7 @@ namespace DemonIdol.BlazBlue
     ///
     /// Zero allocations per tick; profiling via markers "BB.Tick" and "BB.Collide".
     /// </summary>
+    [ExecuteAlways]
     public class BBMatchSim : MonoBehaviour
     {
         public static BBMatchSim Instance { get; private set; }
@@ -87,6 +88,7 @@ namespace DemonIdol.BlazBlue
 
         public void RegisterFighters(BBFighterBrain p1, BBFighterBrain p2)
         {
+            if (Instance == null) Instance = this;
             p1Brain = p1;
             p2Brain = p2;
             if (p1 != null)
@@ -112,9 +114,26 @@ namespace DemonIdol.BlazBlue
             {
                 currentTick = tick;
 
+                // Super Flash freeze: freeze match sim for 20 ticks during super startup
+                if (BBSuperFlash.FreezeTicks > 0)
+                {
+                    BBSuperFlash.Tick();
+                    return;
+                }
+
                 // Step 1: Read BBInputFrame for P1 and P2
                 p1Brain.StepInput(tick);
                 p2Brain.StepInput(tick);
+
+                // Step 1.5: Execute commands (if not in hitstop/hitstun)
+                if (p1Brain.hitstopRemaining <= 0 && p1Brain.bbState != BBState.Hitstun)
+                {
+                    p1Brain.ExecuteCommands(tick);
+                }
+                if (p2Brain.hitstopRemaining <= 0 && p2Brain.bbState != BBState.Hitstun)
+                {
+                    p2Brain.ExecuteCommands(tick);
+                }
 
                 // Step 2: Advance fighter state timers and evaluate actions (P1 then P2)
                 p1Brain.AdvanceState(tick);
@@ -225,30 +244,11 @@ namespace DemonIdol.BlazBlue
             }
             else
             {
-                // Standard movement based on state
-                switch (brain.bbState)
+                // Airborne gravity and trajectory integration (applies in ALL airborne states)
+                if (!brain.isGrounded || pos.y > 0f)
                 {
-                    case BBState.WalkForward:
-                        float walkF = brain.profile != null ? brain.profile.forwardWalkSpeed : 3.6f;
-                        pos.x += facing * walkF * CombatTickEngine.TICK_DELTA_TIME;
-                        break;
-
-                    case BBState.WalkBackward:
-                        float walkB = brain.profile != null ? brain.profile.backwardWalkSpeed : 2.8f;
-                        pos.x -= facing * walkB * CombatTickEngine.TICK_DELTA_TIME;
-                        break;
-
-                    case BBState.ForwardDash:
-                        float dashSpeed = brain.profile != null ? brain.profile.forwardDashSpeed : 6.5f;
-                        pos.x += facing * dashSpeed * CombatTickEngine.TICK_DELTA_TIME;
-                        break;
-
-                    case BBState.Backdash:
-                        float bdashSpeed = brain.profile != null ? brain.profile.backdashSpeed : 7.0f;
-                        pos.x -= facing * bdashSpeed * CombatTickEngine.TICK_DELTA_TIME;
-                        break;
-
-                    case BBState.Airborne:
+                    if (brain.bbState != BBState.Thrown)
+                    {
                         float grav = brain.tuning != null ? brain.tuning.gravity : 20.0f;
                         brain.simVelocity.y -= grav * CombatTickEngine.TICK_DELTA_TIME;
                         pos.x += brain.simVelocity.x * CombatTickEngine.TICK_DELTA_TIME;
@@ -256,17 +256,46 @@ namespace DemonIdol.BlazBlue
                         if (pos.y <= 0f)
                         {
                             pos.y = 0f;
-                            brain.simVelocity = Vector2.zero;
+                            brain.simVelocity.y = 0f;
                             brain.isGrounded = true;
-                            brain.bbState = BBState.Neutral;
-                            brain.stateTick = 0;
-                            if (brain.animDriver != null)
+                            if (brain.bbState == BBState.Airborne)
                             {
-                                sbyte numpad = brain.fighter != null ? BBInputFrame.WorldToFacingNumpad(brain.History.LatestFrame.numpad, brain.fighter.FacingDirection) : (sbyte)5;
-                                brain.animDriver.UpdateLocomotionState(brain.bbState, numpad, brain.isGrounded);
+                                brain.bbState = BBState.Neutral;
+                                brain.stateTick = 0;
+                                if (brain.animDriver != null)
+                                {
+                                    sbyte numpad = brain.fighter != null ? BBInputFrame.WorldToFacingNumpad(brain.History.LatestFrame.numpad, brain.fighter.FacingDirection) : (sbyte)5;
+                                    brain.animDriver.UpdateLocomotionState(brain.bbState, numpad, brain.isGrounded);
+                                }
                             }
                         }
-                        break;
+                    }
+                }
+                else
+                {
+                    // Standard ground movement based on state
+                    switch (brain.bbState)
+                    {
+                        case BBState.WalkForward:
+                            float walkF = brain.profile != null ? brain.profile.forwardWalkSpeed : 3.6f;
+                            pos.x += facing * walkF * CombatTickEngine.TICK_DELTA_TIME;
+                            break;
+
+                        case BBState.WalkBackward:
+                            float walkB = brain.profile != null ? brain.profile.backwardWalkSpeed : 2.8f;
+                            pos.x -= facing * walkB * CombatTickEngine.TICK_DELTA_TIME;
+                            break;
+
+                        case BBState.ForwardDash:
+                            float dashSpeed = brain.profile != null ? brain.profile.forwardDashSpeed : 6.5f;
+                            pos.x += facing * dashSpeed * CombatTickEngine.TICK_DELTA_TIME;
+                            break;
+
+                        case BBState.Backdash:
+                            float bdashSpeed = brain.profile != null ? brain.profile.backdashSpeed : 7.0f;
+                            pos.x -= facing * bdashSpeed * CombatTickEngine.TICK_DELTA_TIME;
+                            break;
+                    }
                 }
             }
 
@@ -387,7 +416,10 @@ namespace DemonIdol.BlazBlue
                     defender.hitstopRemaining = hitstopD;
                     attacker.gauges.AddHeatOnHit(moveButton, moveKind, true, tuning);
                     bool crush = moveButton == BBButton.C || moveKind == BBMoveKind.DistortionDrive;
-                    BBContactPresentation.OnGuard(defender.transform.position, chip > 0, crush);
+                    Vector3 guardContactPt = (contact.contactPointX != 0f || contact.contactPointY != 0f)
+                        ? new Vector3(contact.contactPointX, contact.contactPointY, 0f)
+                        : (defender.transform.position + Vector3.up * 1.0f);
+                    BBContactPresentation.OnGuard(guardContactPt, chip > 0, crush);
 
                     // Mark contact on attacker chain state
                     attacker.chainState.madeContact = true;
@@ -449,7 +481,10 @@ namespace DemonIdol.BlazBlue
 
                     attacker.hitstopRemaining = hitstopA;
                     defender.hitstopRemaining = hitstopD;
-                    BBContactPresentation.OnCleanHit(defender.transform.position, attacker, isCounterHit, moveKind == BBMoveKind.DistortionDrive);
+                    Vector3 hitContactPt = (contact.contactPointX != 0f || contact.contactPointY != 0f)
+                        ? new Vector3(contact.contactPointX, contact.contactPointY, 0f)
+                        : (defender.transform.position + Vector3.up * 1.0f);
+                    BBContactPresentation.OnCleanHit(hitContactPt, attacker, isCounterHit, moveKind == BBMoveKind.DistortionDrive);
 
                     attacker.gauges.AddHeatOnHit(moveButton, moveKind, false, tuning);
                     defender.gauges.AddHeatOnDamageTaken(scaledDmg, tuning);

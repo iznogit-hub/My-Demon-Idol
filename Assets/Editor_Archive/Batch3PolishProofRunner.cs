@@ -1,3 +1,4 @@
+#if MDI_ARCHIVE
 #if UNITY_EDITOR
 using System;
 using System.Collections;
@@ -437,4 +438,6 @@ namespace DemonIdol.Editor
         }
     }
 }
+#endif
+
 #endif

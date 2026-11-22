@@ -27,11 +27,11 @@ MonoBehaviour:
   startupFrames: 19
   activeFrames: 3
   recoveryFrames: 38
-  hitstunTicks: 15
+  hitstunTicks: 32
   blockstunTicks: 11
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 16
+  hitstopDefender: 16
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -47,7 +47,7 @@ MonoBehaviour:
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 0
+  causesKnockdown: 1
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
@@ -70,7 +70,7 @@ MonoBehaviour:
   attribute: 4
   invuln: []
   fatalCounter: 0
-  hardKnockdown: 0
+  hardKnockdown: 1
   otg: 0
   groundBounce: 0
   wallBounce: 0

@@ -24,10 +24,10 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 17
+  startupFrames: 7
   activeFrames: 3
-  recoveryFrames: 32
-  hitstunTicks: 17
+  recoveryFrames: 42
+  hitstunTicks: 12
   blockstunTicks: 13
   knockdownDurationTicks: 36
   hitstopAttacker: 6
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 
   animationClip: {fileID: 1827226128182048838, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.65, y: 1.25, z: 0}
-  hitboxSize: {x: 0.6, y: 0.4, z: 1}
+  hitboxOffset: {x: 0.55, y: 1.25, z: 0}
+  hitboxSize: {x: 1.1, y: 0.6, z: 1}
   cancelWindow: {x: 12, y: 17}
   archetype: 0
   moveId: 5A
@@ -103,5 +103,5 @@ MonoBehaviour:
   clipName: BB_twohand_5A
   clip: {fileID: 1827226128182048838, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 33
+  clipLastFrame: 26
   events: []

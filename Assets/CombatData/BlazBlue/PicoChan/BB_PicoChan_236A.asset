@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 10
+  startupFrames: 13
   activeFrames: 3
-  recoveryFrames: 20
-  hitstunTicks: 17
+  recoveryFrames: 38
+  hitstunTicks: 18
   blockstunTicks: 14
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -4

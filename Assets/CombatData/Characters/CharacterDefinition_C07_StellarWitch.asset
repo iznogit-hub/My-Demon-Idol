@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.CharacterDefinition
   id: C07
   displayName: StellarWitch
-  title: The Crimson Shadow
-  archetype: Rushdown / Mixup
-  signatureStageId: ST01
-  description: Swift ninja operative mastering lethal frame-traps, Gatling cancels, and Void Rift domain expansions.
+  title: The Star-Caster
+  archetype: Caster / Zoner
+  signatureStageId: ST07
+  description: Graceful astral spellcaster mastering celestial summons, omnidirectional starbursts, and cosmic nova domain expansions.
   modelPrefab: {fileID: 1095970306432993455, guid: 91b8d1c4a4bff496aa72afc17d2fd3b1, type: 3}
   animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
   avatar: {fileID: 9000000, guid: d172c22791a73d64ab9cfd99ee72de93, type: 3}
@@ -32,4 +32,4 @@ MonoBehaviour:
   moveSet: {fileID: 0}
   videoBindings: {fileID: 0}
   blazBlueProfile: {fileID: 11400000, guid: 3c67146affd264b63a3166ce924c59b0, type: 2}
-  ufeCharacterName: Mike
+  ufeCharacterName: StellarWitch

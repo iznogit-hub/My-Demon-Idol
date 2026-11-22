@@ -27,11 +27,11 @@ MonoBehaviour:
   startupFrames: 17
   activeFrames: 3
   recoveryFrames: 32
-  hitstunTicks: 15
+  hitstunTicks: 18
   blockstunTicks: 11
   knockdownDurationTicks: 36
-  hitstopAttacker: 6
-  hitstopDefender: 6
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -103,5 +103,5 @@ MonoBehaviour:
   clipName: BB_archer_214A
   clip: {fileID: 1827226128182048838, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 27
+  clipLastFrame: 26
   events: []

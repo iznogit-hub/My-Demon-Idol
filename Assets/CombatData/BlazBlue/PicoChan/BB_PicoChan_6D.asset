@@ -27,11 +27,11 @@ MonoBehaviour:
   startupFrames: 16
   activeFrames: 3
   recoveryFrames: 31
-  hitstunTicks: 20
+  hitstunTicks: 18
   blockstunTicks: 0
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: 0
@@ -96,6 +96,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Pico_6D
   clip: {fileID: 6769801902334409569, guid: eac2bc49ba9b7264b8097df108027519, type: 3}
-  clipFirstFrame: 11
-  clipLastFrame: 33
+  clipFirstFrame: 0
+  clipLastFrame: 25
   events: []

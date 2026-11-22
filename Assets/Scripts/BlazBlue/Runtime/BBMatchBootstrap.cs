@@ -65,8 +65,8 @@ namespace DemonIdol.BlazBlue
             if (slot1 != null && fc == slot1) return 0;
             if (slot2 != null && fc == slot2) return 1;
             string name = fc.gameObject.name;
-            if (name.IndexOf("P1", StringComparison.OrdinalIgnoreCase) >= 0) return 0;
-            if (name.IndexOf("P2", StringComparison.OrdinalIgnoreCase) >= 0) return 1;
+            if (name.IndexOf("Player1", StringComparison.OrdinalIgnoreCase) >= 0 || name.IndexOf("P1", StringComparison.OrdinalIgnoreCase) >= 0) return 0;
+            if (name.IndexOf("Player2", StringComparison.OrdinalIgnoreCase) >= 0 || name.IndexOf("P2", StringComparison.OrdinalIgnoreCase) >= 0) return 1;
             return fc.isPlayerControlled ? 0 : 1;
         }
 
@@ -99,7 +99,11 @@ namespace DemonIdol.BlazBlue
             {
                 var fc = fighters[i];
                 if (fc == null) continue;
-                if (fc.transform.parent != null && fc.transform.parent.GetComponent<FighterController>() != null) continue;
+                if (fc.transform.parent != null && fc.transform.parent.GetComponentInParent<FighterController>() != null)
+                {
+                    Destroy(fc);
+                    continue;
+                }
 
                 fc.externalSimulation = true;
 

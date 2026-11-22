@@ -38,7 +38,6 @@ namespace DemonIdol.BlazBlue
             {
                 _text.text = "SUPER";
             }
-            BBSuperFlash.Tick();
         }
     }
 }

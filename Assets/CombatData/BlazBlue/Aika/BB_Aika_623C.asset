@@ -24,14 +24,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 19
+  startupFrames: 18
   activeFrames: 3
-  recoveryFrames: 38
-  hitstunTicks: 30
+  recoveryFrames: 39
+  hitstunTicks: 18
   blockstunTicks: 20
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -22
@@ -99,6 +99,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Aika_623C
   clip: {fileID: 3060872287085348379, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
-  clipFirstFrame: 62
-  clipLastFrame: 84
+  clipFirstFrame: 0
+  clipLastFrame: 30
   events: []

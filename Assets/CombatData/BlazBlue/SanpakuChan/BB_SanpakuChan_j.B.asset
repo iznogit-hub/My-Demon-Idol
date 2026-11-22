@@ -26,12 +26,12 @@ MonoBehaviour:
   protectionEndTick: 12
   startupFrames: 11
   activeFrames: 3
-  recoveryFrames: 20
-  hitstunTicks: 18
+  recoveryFrames: 40
+  hitstunTicks: 16
   blockstunTicks: 15
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 9
+  hitstopDefender: 9
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: 0
@@ -96,8 +96,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: c4fef20763add463587aa7a433685ede, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Dodge_F
-  clip: {fileID: 6736815398454427486, guid: 5aef2fccae731b74a83125003a7efedd, type: 3}
+  clipName: Atk_K_1
+  clip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 40
+  clipLastFrame: 20
   events: []

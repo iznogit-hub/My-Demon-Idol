@@ -24,10 +24,10 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 10
+  startupFrames: 7
   activeFrames: 3
-  recoveryFrames: 17
-  hitstunTicks: 15
+  recoveryFrames: 20
+  hitstunTicks: 12
   blockstunTicks: 11
   knockdownDurationTicks: 36
   hitstopAttacker: 6
@@ -57,7 +57,7 @@ MonoBehaviour:
   animationClip: {fileID: 8456185703765157504, guid: e559fda95a2bdec46b1c11103f8fc74b, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.55, y: 1.25, z: 0}
-  hitboxSize: {x: 0.5, y: 0.35, z: 1}
+  hitboxSize: {x: 1.1, y: 0.6, z: 1}
   cancelWindow: {x: 12, y: 15}
   archetype: 0
   moveId: 5A
