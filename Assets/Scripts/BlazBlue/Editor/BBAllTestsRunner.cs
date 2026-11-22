@@ -50,6 +50,8 @@ namespace DemonIdol.BlazBlue.Editor
                 BBMotionMatcherTests.RunAllTestsMenu,
                 BBPhase6Tests.RunAllTestsMenu,
                 BBSubsystemTests.RunAllTestsMenu,
+                BBInputIntegrityGuardTests.RunGuardTests,
+                RealInputMatchTest.RunAllTests,
                 DemonIdolRebuildGuardTests.RunSceneIntegrityCheck
             };
 

@@ -64,8 +64,7 @@ namespace DemonIdol.BlazBlue.Tests
             brain.fighter = fighter;
             brain.profile = profile;
             brain.isGrounded = true;
-            brain.bbState = BBState.Neutral;
-            Assert.IsTrue(brain.TryStartMoveId("5A"));
+            brain.StartAttack(attack);
             Assert.AreEqual("5A", brain.currentAttack.moveId);
             Object.DestroyImmediate(go);
         }

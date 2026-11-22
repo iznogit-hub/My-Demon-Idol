@@ -2,6 +2,7 @@ using UnityEngine;
 using DemonIdol.Combat;
 using DemonIdol.UI;
 using DemonIdol.VFX;
+using DemonIdol.Audio;
 
 namespace DemonIdol.BlazBlue
 {
@@ -73,7 +74,7 @@ namespace DemonIdol.BlazBlue
                 LastSuperCharacterId = id;
                 OnPortraitHook?.Invoke(id, "super");
                 OnVideoHook?.Invoke(id, "super");
-                BBSuperFlash.Raise(id);
+                // Super flash raised on startup in BBFighterBrain.StartAttack per spec 1.7
             }
         }
 
@@ -103,17 +104,103 @@ namespace DemonIdol.BlazBlue
     {
         public static string ActiveCharacterId { get; private set; }
         public static int FreezeTicks { get; private set; }
+        public static Transform ActiveAttacker { get; private set; }
 
-        public static void Raise(string characterId)
+        private static GameObject s_OverlayGo;
+        private static UnityEngine.UI.Image s_OverlayImage;
+
+        public static void Raise(string characterId, Transform attacker = null)
         {
             if (SettingsPanel.ReducedFlashing) return;
             ActiveCharacterId = characterId;
-            FreezeTicks = 18;
+            ActiveAttacker = attacker;
+            FreezeTicks = 20;
+
+            // Audio: Super Flash SFX & Domain activation
+            if (BBAudioBridge.Instance != null)
+            {
+                BBAudioBridge.Instance.PlayCombatSound(BBSoundEffect.DistortionSuperFlash, attacker != null ? attacker.position : Vector3.zero);
+            }
+            if (CombatAudioDirector.Instance != null)
+            {
+                CombatAudioDirector.Instance.PlayDomainActivation();
+                CombatAudioDirector.Instance.PlayVoiceDomainSuper();
+            }
+
+            // Camera: Zoom-flash attacker
+            if (FighterCamera2D.Instance != null)
+            {
+                FighterCamera2D.Instance.TriggerHitImpactZoom(0.5f, 0.35f);
+            }
+
+            // HUD Layer: Dim the background
+            ShowOverlay();
         }
 
         public static void Tick()
         {
-            if (FreezeTicks > 0) FreezeTicks--;
+            if (FreezeTicks > 0)
+            {
+                FreezeTicks--;
+                if (FreezeTicks <= 0)
+                {
+                    HideOverlay();
+                }
+            }
+        }
+
+        public static void ForceReset()
+        {
+            FreezeTicks = 0;
+            HideOverlay();
+        }
+
+        private static void ShowOverlay()
+        {
+            if (!Application.isPlaying) return;
+            EnsureOverlay();
+            if (s_OverlayGo != null)
+            {
+                s_OverlayGo.SetActive(true);
+            }
+        }
+
+        private static void HideOverlay()
+        {
+            if (s_OverlayGo != null)
+            {
+                s_OverlayGo.SetActive(false);
+            }
+        }
+
+        private static void EnsureOverlay()
+        {
+            if (s_OverlayGo != null) return;
+
+            Canvas targetCanvas = BBMatchBootstrap.FindBattleCanvas();
+            if (targetCanvas == null)
+            {
+                var canvasGo = new GameObject("BBSuperFlashCanvas");
+                UnityEngine.Object.DontDestroyOnLoad(canvasGo);
+                targetCanvas = canvasGo.AddComponent<Canvas>();
+                targetCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                targetCanvas.sortingOrder = 998;
+                canvasGo.AddComponent<UnityEngine.UI.CanvasScaler>();
+            }
+
+            s_OverlayGo = new GameObject("BBSuperFlashDimOverlay");
+            s_OverlayGo.transform.SetParent(targetCanvas.transform, false);
+            s_OverlayGo.transform.SetAsFirstSibling();
+
+            var rect = s_OverlayGo.AddComponent<RectTransform>();
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+
+            s_OverlayImage = s_OverlayGo.AddComponent<UnityEngine.UI.Image>();
+            s_OverlayImage.color = new Color(0f, 0f, 0f, 0.70f);
+            s_OverlayImage.raycastTarget = false;
         }
     }
 }

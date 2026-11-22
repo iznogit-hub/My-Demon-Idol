@@ -125,11 +125,11 @@ namespace DemonIdol.BlazBlue
                 _graph.Connect(activePlayable, 0, _mixer, 1);
             }
 
-            // Calculate deterministic seek time (spec 7.6)
-            float clipSeconds = Mathf.Max(0.01f, (lastFrame - firstFrame) / 24.0f);
-            float moveSeconds = Mathf.Max(0.01f, totalTicks / 60.0f);
-            float playbackRate = clipSeconds / moveSeconds;
-            float seekTime = (tickInMove / 60.0f) * playbackRate;
+            // Calculate deterministic seek time using real clip frameRate and 1.0x playback speed
+            float fps = clip.frameRate > 0f ? clip.frameRate : 30f;
+            float startSec = firstFrame > 0 ? (firstFrame / fps) : 0f;
+            float seekTime = startSec + (tickInMove / 60.0f);
+            seekTime = Mathf.Clamp(seekTime, 0f, clip.length);
 
             activePlayable.SetTime(seekTime);
 

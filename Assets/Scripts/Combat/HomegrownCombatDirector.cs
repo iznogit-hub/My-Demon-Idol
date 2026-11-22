@@ -149,6 +149,7 @@ namespace DemonIdol.Combat
 
         public void EnsureFighterReferences()
         {
+            if (Instance == null) Instance = this;
             if (_fighter1 == null || _fighter2 == null)
             {
                 var fighters = FindObjectsByType<FighterController>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -389,7 +390,13 @@ namespace DemonIdol.Combat
                     fc.animator = anim;
                     fc.CacheAnimatorParams();
                 }
-                fc.transform.localScale = Vector3.one;
+
+                // Strip duplicate logic/physics components from existing model
+                foreach (var subFc in existingModel.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroy(subFc);
+                foreach (var cc in existingModel.GetComponentsInChildren<CharacterController>(true)) SafeDestroy(cc);
+                foreach (var mi in existingModel.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroy(mi);
+                foreach (var pi in existingModel.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroy(pi);
+
                 Vector3 p = fc.transform.position;
                 if (p.y < 0f) { p.y = 0f; fc.transform.position = p; }
                 return;
@@ -437,13 +444,14 @@ namespace DemonIdol.Combat
                 model.name = expectedModelName;
                 model.transform.localPosition = Vector3.zero;
                 model.transform.localRotation = Quaternion.identity;
-                model.transform.localScale = Vector3.one;
+                model.transform.localScale = prefab.transform.localScale;
 
                 // Strip duplicate logic/physics components from child model to prevent collision clash
                 // Destroy FighterController FIRST so RequireComponent constraint on CharacterController is released
-                foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) SafeDestroy(subFc);
+                foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroy(subFc);
                 foreach (var cc in model.GetComponentsInChildren<CharacterController>(true)) SafeDestroy(cc);
                 foreach (var mi in model.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroy(mi);
+                foreach (var pi in model.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroy(pi);
                 foreach (var hb in model.GetComponentsInChildren<Hitbox>(true)) SafeDestroy(hb.gameObject);
                 foreach (var hb in model.GetComponentsInChildren<Hurtbox>(true)) SafeDestroy(hb.gameObject);
                 foreach (var pb in model.GetComponentsInChildren<FighterPropBinder>(true)) SafeDestroy(pb);
@@ -660,7 +668,13 @@ namespace DemonIdol.Combat
                 model.name = expectedModelName;
                 model.transform.localPosition = Vector3.zero;
                 model.transform.localRotation = Quaternion.identity;
-                model.transform.localScale = Vector3.one;
+                model.transform.localScale = prefab.transform.localScale;
+
+                // Strip duplicate logic/physics components from spawned model
+                foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroy(subFc);
+                foreach (var subCc in model.GetComponentsInChildren<CharacterController>(true)) SafeDestroy(subCc);
+                foreach (var mi in model.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroy(mi);
+                foreach (var pi in model.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroy(pi);
                 Animator anim = model.GetComponentInChildren<Animator>();
                 if (anim == null) anim = model.AddComponent<Animator>();
                 if (anim != null)

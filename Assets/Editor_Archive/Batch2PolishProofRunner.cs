@@ -1,3 +1,4 @@
+#if MDI_ARCHIVE
 #if UNITY_EDITOR
 using System;
 using System.Collections;
@@ -15,25 +16,24 @@ using DemonIdol.UI;
 
 namespace DemonIdol.Editor
 {
-    public static class Batch1PolishProofRunner
+    public static class Batch2PolishProofRunner
     {
-        public const string PrefKey = "MDI_Batch1Proof_Active";
-        public const string FighterIndexKey = "MDI_Batch1Proof_FighterIndex";
-        public static readonly string[] Batch1Fighters = new[] { "C01", "C02", "C04", "C05", "C06" };
+        public const string PrefKey = "MDI_Batch2Proof_Active";
+        public const string FighterIndexKey = "MDI_Batch2Proof_FighterIndex";
+        public static readonly string[] Batch2Fighters = new[] { "C07", "C08", "C09", "C10", "C11" };
 
         public static void StartProof()
         {
             if (EditorApplication.isPlaying)
             {
-                Debug.LogWarning("[Batch1Proof] Already in Play Mode. Stopping first...");
+                Debug.LogWarning("[Batch2Proof] Already in Play Mode. Stopping first...");
                 EditorApplication.isPlaying = false;
                 return;
             }
 
-            // Ensure destination directories exist
-            foreach (var f in Batch1Fighters)
+            foreach (var f in Batch2Fighters)
             {
-                string dir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch1", f);
+                string dir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch2", f);
                 if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
             }
 
@@ -41,7 +41,7 @@ namespace DemonIdol.Editor
             EditorPrefs.SetInt(FighterIndexKey, 0);
 
             EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/MainMenu.unity");
-            Debug.Log("<color=#00e676>[Batch1Proof] Starting Batch 1 Polish Proof Runner in PlayMode from MainMenu...</color>");
+            Debug.Log("<color=#00e676>[Batch2Proof] Starting Batch 2 Polish Proof Runner in PlayMode from MainMenu...</color>");
             EditorApplication.isPlaying = true;
         }
 
@@ -61,15 +61,15 @@ namespace DemonIdol.Editor
         static void OnAfterSceneLoad()
         {
             if (!EditorPrefs.GetBool(PrefKey, false)) return;
-            if (UnityEngine.Object.FindAnyObjectByType<Batch1ProofDriver>() != null) return;
+            if (UnityEngine.Object.FindAnyObjectByType<Batch2ProofDriver>() != null) return;
 
-            var go = new GameObject("Batch1ProofDriver");
+            var go = new GameObject("Batch2ProofDriver");
             UnityEngine.Object.DontDestroyOnLoad(go);
-            go.AddComponent<Batch1ProofDriver>();
+            go.AddComponent<Batch2ProofDriver>();
         }
     }
 
-    public sealed class Batch1ProofDriver : MonoBehaviour
+    public sealed class Batch2ProofDriver : MonoBehaviour
     {
         public struct MoveResult
         {
@@ -112,18 +112,18 @@ namespace DemonIdol.Editor
 
             yield return new WaitForSecondsRealtime(0.4f);
 
-            int currentIdx = EditorPrefs.GetInt(Batch1PolishProofRunner.FighterIndexKey, 0);
-            if (currentIdx >= Batch1PolishProofRunner.Batch1Fighters.Length)
+            int currentIdx = EditorPrefs.GetInt(Batch2PolishProofRunner.FighterIndexKey, 0);
+            if (currentIdx >= Batch2PolishProofRunner.Batch2Fighters.Length)
             {
                 FinishAll();
                 yield break;
             }
 
-            string targetFighter = Batch1PolishProofRunner.Batch1Fighters[currentIdx];
+            string targetFighter = Batch2PolishProofRunner.Batch2Fighters[currentIdx];
 
             if (sceneName == "MainMenu")
             {
-                _log.AppendLine($"[Batch1Proof] MainMenu: Selecting Versus for {targetFighter}...");
+                _log.AppendLine($"[Batch2Proof] MainMenu: Selecting Versus for {targetFighter}...");
                 var menu = UnityEngine.Object.FindAnyObjectByType<DemonIdolMainMenuController>();
                 if (menu != null)
                 {
@@ -139,12 +139,12 @@ namespace DemonIdol.Editor
             }
             else if (sceneName == "CharacterSelect")
             {
-                _log.AppendLine($"[Batch1Proof] CharacterSelect: Picking {targetFighter} vs C07...");
+                _log.AppendLine($"[Batch2Proof] CharacterSelect: Picking {targetFighter} vs C01...");
                 yield return new WaitForSecondsRealtime(0.5f);
 
                 var csm = UnityEngine.Object.FindAnyObjectByType<DemonIdolCharacterSelectManager>();
                 int p1Idx = Array.IndexOf(DemonIdolCharacterSelectManager.RosterIds, targetFighter);
-                int p2Idx = Array.IndexOf(DemonIdolCharacterSelectManager.RosterIds, "C07");
+                int p2Idx = Array.IndexOf(DemonIdolCharacterSelectManager.RosterIds, "C01");
 
                 if (csm != null && p1Idx >= 0 && p2Idx >= 0)
                 {
@@ -154,7 +154,7 @@ namespace DemonIdol.Editor
                 }
                 else
                 {
-                    LaunchServices.Session.BeginMatch(targetFighter, "C07", "ST07");
+                    LaunchServices.Session.BeginMatch(targetFighter, "C01", "ST07");
                     SceneManager.LoadScene("BattleArena");
                 }
             }
@@ -167,9 +167,8 @@ namespace DemonIdol.Editor
         private IEnumerator RunArenaEvaluation(string fighterId, int currentIdx)
         {
             _log.AppendLine($"=== EXECUTING ARENA PROOF FOR {fighterId} (Index {currentIdx}) ===");
-            Debug.Log($"<color=#00e676>[Batch1Proof] Active Arena Match: {fighterId} vs C07...</color>");
+            Debug.Log($"<color=#00e676>[Batch2Proof] Active Arena Match: {fighterId} vs C01...</color>");
 
-            // 1. Wait for sim and fighters initialization
             float timeout = Time.realtimeSinceStartup + 12f;
             while (Time.realtimeSinceStartup < timeout)
             {
@@ -185,14 +184,14 @@ namespace DemonIdol.Editor
             var engine = CombatTickEngine.Instance;
             if (sim == null || sim.p1Brain == null || sim.p2Brain == null)
             {
-                Debug.LogError($"[Batch1Proof] Simulation not ready for {fighterId}!");
+                Debug.LogError($"[Batch2Proof] Simulation not ready for {fighterId}!");
                 FinishAll();
                 yield break;
             }
 
             var p1 = sim.p1Brain;
             var p2 = sim.p2Brain;
-            string outDir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch1", fighterId);
+            string outDir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch2", fighterId);
             if (!Directory.Exists(outDir)) Directory.CreateDirectory(outDir);
 
             yield return new WaitForSecondsRealtime(0.6f);
@@ -211,7 +210,6 @@ namespace DemonIdol.Editor
             // 1. idle.png
             yield return CaptureShot(Path.Combine(outDir, "idle.png"));
 
-            // Locomotion walk/crouch
             p1.bbState = BBState.WalkForward;
             if (p1.animDriver != null) p1.animDriver.UpdateLocomotionState(BBState.WalkForward, 6, true);
             yield return new WaitForSecondsRealtime(0.2f);
@@ -238,14 +236,14 @@ namespace DemonIdol.Editor
                 "j.A", "j.B", "j.C",
                 "5D", "BC",
                 "236A",
-                (fighterId == "C05" || fighterId == "C06") ? "214A" : "214B",
+                (fighterId == "C10") ? "214A" : "214B",
                 "236236C"
             };
 
             foreach (var mId in movesToTest)
             {
-                p1.transform.position = new Vector3(-1.0f, 0f, 0f);
-                p2.transform.position = new Vector3(1.0f, 0f, 0f);
+                p1.transform.position = new Vector3(-0.70f, 0f, 0f);
+                p2.transform.position = new Vector3(0.70f, 0f, 0f);
                 p1.bbState = BBState.Neutral;
                 p2.bbState = BBState.Neutral;
                 if (p2.health < 4000f) p2.SetAuthoritativeHealth(p2.maxHealth);
@@ -254,7 +252,7 @@ namespace DemonIdol.Editor
                 if (atk == null)
                 {
                     _log.AppendLine($"  {mId}: MISSING ATTACK DATA!");
-                    Debug.LogWarning($"[Batch1Proof] {fighterId} missing attack for {mId}");
+                    Debug.LogWarning($"[Batch2Proof] {fighterId} missing attack for {mId}");
                     continue;
                 }
 
@@ -265,7 +263,7 @@ namespace DemonIdol.Editor
                 {
                     p1.isGrounded = false;
                     p1.simVelocity.y = 4.0f;
-                    p1.transform.position = new Vector3(-0.8f, 1.2f, 0f);
+                    p1.transform.position = new Vector3(-0.65f, 1.2f, 0f);
                     p1.bbState = BBState.Airborne;
                 }
 
@@ -277,7 +275,6 @@ namespace DemonIdol.Editor
                 bool started = p1.TryStartMoveId(mId);
                 if (!started) p1.StartAttack(atk);
 
-                // Specific screenshot moments
                 if (mId == "5A")
                 {
                     yield return new WaitForSecondsRealtime(0.12f);
@@ -328,8 +325,8 @@ namespace DemonIdol.Editor
             // =====================================================================
             // 4. BLOCK TEST (Capture 6. block.png)
             // =====================================================================
-            p1.transform.position = new Vector3(-1.0f, 0f, 0f);
-            p2.transform.position = new Vector3(1.0f, 0f, 0f);
+            p1.transform.position = new Vector3(-0.70f, 0f, 0f);
+            p2.transform.position = new Vector3(0.70f, 0f, 0f);
             p1.bbState = BBState.Neutral;
             p2.bbState = BBState.Neutral;
             p2.SetAuthoritativeHealth(p2.maxHealth);
@@ -346,16 +343,16 @@ namespace DemonIdol.Editor
             yield return CaptureShot(Path.Combine(outDir, "block.png"));
             yield return new WaitForSecondsRealtime(0.35f);
 
-            _log.AppendLine($"[Batch1Proof] Completed testing for {fighterId}!");
-            Debug.Log($"<color=#00e676>[Batch1Proof] All 6 screenshots saved to {outDir}!</color>");
+            _log.AppendLine($"[Batch2Proof] Completed testing for {fighterId}!");
+            Debug.Log($"<color=#00e676>[Batch2Proof] All 6 screenshots saved to {outDir}!</color>");
 
             // =====================================================================
             // 5. ADVANCE TO NEXT FIGHTER
             // =====================================================================
             int nextIdx = currentIdx + 1;
-            if (nextIdx < Batch1PolishProofRunner.Batch1Fighters.Length)
+            if (nextIdx < Batch2PolishProofRunner.Batch2Fighters.Length)
             {
-                EditorPrefs.SetInt(Batch1PolishProofRunner.FighterIndexKey, nextIdx);
+                EditorPrefs.SetInt(Batch2PolishProofRunner.FighterIndexKey, nextIdx);
                 SceneManager.LoadScene("MainMenu");
             }
             else
@@ -376,7 +373,7 @@ namespace DemonIdol.Editor
             }
             else
             {
-                Debug.LogError($"[Batch1Proof] Failed to capture {fullPath}");
+                Debug.LogError($"[Batch2Proof] Failed to capture {fullPath}");
             }
         }
 
@@ -395,15 +392,15 @@ namespace DemonIdol.Editor
 
         private void FinishAll()
         {
-            EditorPrefs.SetBool(Batch1PolishProofRunner.PrefKey, false);
+            EditorPrefs.SetBool(Batch2PolishProofRunner.PrefKey, false);
 
-            string reportPath = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch1", "BATCH1_PROOF_REPORT.md");
+            string reportPath = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch2", "BATCH2_PROOF_REPORT.md");
             var sb = new StringBuilder();
-            sb.AppendLine("# MDI Character Polish - Batch 1 Proof Report");
+            sb.AppendLine("# MDI Character Polish - Batch 2 Proof Report");
             sb.AppendLine();
             sb.AppendLine($"**Date:** {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} UTC  ");
-            sb.AppendLine("**Target Roster:** C01 (Akio), C02 (Aika), C04 (UnityChan), C05 (Akane), C06 (Cultist)  ");
-            sb.AppendLine("**Opponent Dummy:** C07 (StellarWitch)  ");
+            sb.AppendLine("**Target Roster:** C07 (StellarWitch), C08 (SanpakuChan), C09 (PicoChan), C10 (Reika), C11 (Casual1)  ");
+            sb.AppendLine("**Opponent Dummy:** C01 (Akio)  ");
             sb.AppendLine("**Mode:** LocalVersus Play Mode (Authentic Execution)  ");
             sb.AppendLine();
             sb.AppendLine("## 1. Verified Moveset Table");
@@ -420,7 +417,7 @@ namespace DemonIdol.Editor
             sb.AppendLine();
             sb.AppendLine("## 2. Screenshot Manifest");
             sb.AppendLine();
-            sb.AppendLine("For each of the 5 fighters, 6 screenshots were captured under `Screenshots/polish/batch1/<ID>/`:");
+            sb.AppendLine("For each of the 5 fighters, 6 screenshots were captured under `Screenshots/polish/batch2/<ID>/`:");
             sb.AppendLine("- `idle.png`: Neutral combat idle grounded stance");
             sb.AppendLine("- `normal.png`: Standing normal attack mid-hit connection (with hitstop & hit spark VFX)");
             sb.AppendLine("- `special.png`: Special attack execution");
@@ -435,10 +432,11 @@ namespace DemonIdol.Editor
             sb.AppendLine("```");
 
             File.WriteAllText(reportPath, sb.ToString());
-            Debug.Log($"<color=#00e676><b>[Batch1Proof] ALL 5 FIGHTERS VERIFIED SUCCESSFULLY! Report written to {reportPath}.</b></color>");
+            Debug.Log($"<color=#00e676><b>[Batch2Proof] ALL 5 FIGHTERS VERIFIED SUCCESSFULLY! Report written to {reportPath}.</b></color>");
 
             EditorApplication.isPlaying = false;
         }
     }
 }
+#endif
 #endif

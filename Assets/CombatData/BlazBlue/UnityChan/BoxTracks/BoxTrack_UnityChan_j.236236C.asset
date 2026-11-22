@@ -13,77 +13,13 @@ MonoBehaviour:
   m_Name: BoxTrack_UnityChan_j.236236C
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
   tickCount: 24
-  frameStart: 0000000001000000020000000300000004000000050000000600000007000000080000000a0000000c0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b000000i
+  frameStart: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
+  - cx: 0.8
+    cy: 0.8
+    hx: 0.45
+    hy: 0.325
+    kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
@@ -95,14 +31,6 @@ MonoBehaviour:
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
   - cx: 0.8
     cy: 0.8
     hx: 0.45
@@ -111,125 +39,5 @@ MonoBehaviour:
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0.8
-    cy: 0.8
-    hx: 0.45
-    hy: 0.325
-    kind: 1
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.25
-    hy: 0.85
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  keyTicks: 
+  keyTicks: 10000000i
   bakeHash: Bake_UnityChan_j.236236C_10_20_18

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DemonIdol.Combat;
 
 namespace DemonIdol.BlazBlue
 {
@@ -111,8 +112,8 @@ namespace DemonIdol.BlazBlue
                 }
 
                 // Standard Fighting Game Layout:
-                // West = A (Square/X)
-                if (pad.buttonWest.isPressed)  held |= (byte)BBButton.A;
+                // West / South = A (Square/X on PS, X/A on Xbox)
+                if (pad.buttonWest.isPressed || pad.buttonSouth.isPressed) held |= (byte)BBButton.A;
                 // North = B (Triangle/Y)
                 if (pad.buttonNorth.isPressed) held |= (byte)BBButton.B;
                 // Right Shoulder = C (R1/RB)
@@ -157,14 +158,33 @@ namespace DemonIdol.BlazBlue
         }
 
         /// <summary>
-        /// Pad 0 belongs to player index 0. Later indexes only see their own pad.
+        /// Pad 0 belongs to player index 0 (or player 1 yields pad 0 to player 2 in 2-player local versus).
+        /// Later indexes only see their own pad.
         /// </summary>
         public static Gamepad SelectGamepad(int playerIndex)
         {
             if (playerIndex < 0) return null;
             var pads = Gamepad.all;
-            if (playerIndex >= pads.Count) return null;
-            return pads[playerIndex];
+            if (pads.Count == 0) return null;
+            if (playerIndex < pads.Count && pads.Count > 1) return pads[playerIndex];
+
+            if (pads.Count == 1)
+            {
+                var director = HomegrownCombatDirector.Instance;
+                bool p2IsHuman = director != null && director.Fighter2 != null && director.Fighter2.isPlayerControlled;
+                if (playerIndex == 1)
+                {
+                    return pads[0];
+                }
+                if (playerIndex == 0)
+                {
+                    // If P2 is human, P1 plays on keyboard and P2 gets the only gamepad
+                    if (p2IsHuman) return null;
+                    return pads[0];
+                }
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -176,6 +196,8 @@ namespace DemonIdol.BlazBlue
             {
                 return new BBInputFrame { held = 0, pressed = 0, released = 0, numpad = 5 };
             }
+
+            SampleHardware();
 
             sbyte worldNumpad = BBInputFrame.VectorToWorldNumpad(_currentStick);
 

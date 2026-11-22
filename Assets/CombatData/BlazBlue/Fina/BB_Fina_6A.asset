@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 8
+  startupFrames: 7
   activeFrames: 3
-  recoveryFrames: 13
-  hitstunTicks: 18
+  recoveryFrames: 14
+  hitstunTicks: 12
   blockstunTicks: 14
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 6
+  hitstopDefender: 6
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -6
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 650
+  damage: 350
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -105,6 +105,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: Fina_6A
   clip: {fileID: -6339999858669016031, guid: fdd8e1ce77001904c8cd99cd2d18b299, type: 3}
-  clipFirstFrame: 60
-  clipLastFrame: 80
+  clipFirstFrame: 0
+  clipLastFrame: 12
   events: []

@@ -1,3 +1,4 @@
+#if MDI_ARCHIVE
 #if UNITY_EDITOR
 using System;
 using System.Collections;
@@ -15,24 +16,24 @@ using DemonIdol.UI;
 
 namespace DemonIdol.Editor
 {
-    public static class Batch2PolishProofRunner
+    public static class Batch4PolishProofRunner
     {
-        public const string PrefKey = "MDI_Batch2Proof_Active";
-        public const string FighterIndexKey = "MDI_Batch2Proof_FighterIndex";
-        public static readonly string[] Batch2Fighters = new[] { "C07", "C08", "C09", "C10", "C11" };
+        public const string PrefKey = "MDI_Batch4Proof_Active";
+        public const string FighterIndexKey = "MDI_Batch4Proof_FighterIndex";
+        public static readonly string[] Batch4Fighters = new[] { "SK05", "SK06", "SK08", "EX01", "EX02" };
 
         public static void StartProof()
         {
             if (EditorApplication.isPlaying)
             {
-                Debug.LogWarning("[Batch2Proof] Already in Play Mode. Stopping first...");
+                Debug.LogWarning("[Batch4Proof] Already in Play Mode. Stopping first...");
                 EditorApplication.isPlaying = false;
                 return;
             }
 
-            foreach (var f in Batch2Fighters)
+            foreach (var f in Batch4Fighters)
             {
-                string dir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch2", f);
+                string dir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch4", f);
                 if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
             }
 
@@ -40,7 +41,7 @@ namespace DemonIdol.Editor
             EditorPrefs.SetInt(FighterIndexKey, 0);
 
             EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/MainMenu.unity");
-            Debug.Log("<color=#00e676>[Batch2Proof] Starting Batch 2 Polish Proof Runner in PlayMode from MainMenu...</color>");
+            Debug.Log("<color=#00e676>[Batch4Proof] Starting Batch 4 Polish Proof Runner in PlayMode from MainMenu...</color>");
             EditorApplication.isPlaying = true;
         }
 
@@ -60,15 +61,15 @@ namespace DemonIdol.Editor
         static void OnAfterSceneLoad()
         {
             if (!EditorPrefs.GetBool(PrefKey, false)) return;
-            if (UnityEngine.Object.FindAnyObjectByType<Batch2ProofDriver>() != null) return;
+            if (UnityEngine.Object.FindAnyObjectByType<Batch4ProofDriver>() != null) return;
 
-            var go = new GameObject("Batch2ProofDriver");
+            var go = new GameObject("Batch4ProofDriver");
             UnityEngine.Object.DontDestroyOnLoad(go);
-            go.AddComponent<Batch2ProofDriver>();
+            go.AddComponent<Batch4ProofDriver>();
         }
     }
 
-    public sealed class Batch2ProofDriver : MonoBehaviour
+    public sealed class Batch4ProofDriver : MonoBehaviour
     {
         public struct MoveResult
         {
@@ -111,18 +112,19 @@ namespace DemonIdol.Editor
 
             yield return new WaitForSecondsRealtime(0.4f);
 
-            int currentIdx = EditorPrefs.GetInt(Batch2PolishProofRunner.FighterIndexKey, 0);
-            if (currentIdx >= Batch2PolishProofRunner.Batch2Fighters.Length)
+            int currentIdx = EditorPrefs.GetInt(Batch4PolishProofRunner.FighterIndexKey, 0);
+            if (currentIdx >= Batch4PolishProofRunner.Batch4Fighters.Length)
             {
                 FinishAll();
                 yield break;
             }
 
-            string targetFighter = Batch2PolishProofRunner.Batch2Fighters[currentIdx];
+            string targetFighter = Batch4PolishProofRunner.Batch4Fighters[currentIdx];
 
             if (sceneName == "MainMenu")
             {
-                _log.AppendLine($"[Batch2Proof] MainMenu: Selecting Versus for {targetFighter}...");
+                if (currentIdx == 0) s_AllResults.Clear();
+                _log.AppendLine($"[Batch4Proof] MainMenu: Selecting Versus for {targetFighter}...");
                 var menu = UnityEngine.Object.FindAnyObjectByType<DemonIdolMainMenuController>();
                 if (menu != null)
                 {
@@ -138,7 +140,7 @@ namespace DemonIdol.Editor
             }
             else if (sceneName == "CharacterSelect")
             {
-                _log.AppendLine($"[Batch2Proof] CharacterSelect: Picking {targetFighter} vs C01...");
+                _log.AppendLine($"[Batch4Proof] CharacterSelect: Picking {targetFighter} vs C01...");
                 yield return new WaitForSecondsRealtime(0.5f);
 
                 var csm = UnityEngine.Object.FindAnyObjectByType<DemonIdolCharacterSelectManager>();
@@ -166,7 +168,7 @@ namespace DemonIdol.Editor
         private IEnumerator RunArenaEvaluation(string fighterId, int currentIdx)
         {
             _log.AppendLine($"=== EXECUTING ARENA PROOF FOR {fighterId} (Index {currentIdx}) ===");
-            Debug.Log($"<color=#00e676>[Batch2Proof] Active Arena Match: {fighterId} vs C01...</color>");
+            Debug.Log($"<color=#00e676>[Batch4Proof] Active Arena Match: {fighterId} vs C01...</color>");
 
             float timeout = Time.realtimeSinceStartup + 12f;
             while (Time.realtimeSinceStartup < timeout)
@@ -183,14 +185,14 @@ namespace DemonIdol.Editor
             var engine = CombatTickEngine.Instance;
             if (sim == null || sim.p1Brain == null || sim.p2Brain == null)
             {
-                Debug.LogError($"[Batch2Proof] Simulation not ready for {fighterId}!");
+                Debug.LogError($"[Batch4Proof] Simulation not ready for {fighterId}!");
                 FinishAll();
                 yield break;
             }
 
             var p1 = sim.p1Brain;
             var p2 = sim.p2Brain;
-            string outDir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch2", fighterId);
+            string outDir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch4", fighterId);
             if (!Directory.Exists(outDir)) Directory.CreateDirectory(outDir);
 
             yield return new WaitForSecondsRealtime(0.6f);
@@ -226,7 +228,7 @@ namespace DemonIdol.Editor
             yield return new WaitForSecondsRealtime(0.1f);
 
             // =====================================================================
-            // 3. EXERCISE ALL 14-15 MOVES
+            // 3. EXERCISE ALL 14 MOVES
             // =====================================================================
             var movesToTest = new List<string>
             {
@@ -234,15 +236,14 @@ namespace DemonIdol.Editor
                 "2A", "2B", "2C",
                 "j.A", "j.B", "j.C",
                 "5D", "BC",
-                "236A",
-                (fighterId == "C10") ? "214A" : "214B",
+                "236A", "214B",
                 "236236C"
             };
 
             foreach (var mId in movesToTest)
             {
-                p1.transform.position = new Vector3(-0.70f, 0f, 0f);
-                p2.transform.position = new Vector3(0.70f, 0f, 0f);
+                p1.transform.position = new Vector3(-0.60f, 0f, 0f);
+                p2.transform.position = new Vector3(0.60f, 0f, 0f);
                 p1.bbState = BBState.Neutral;
                 p2.bbState = BBState.Neutral;
                 if (p2.health < 4000f) p2.SetAuthoritativeHealth(p2.maxHealth);
@@ -251,7 +252,7 @@ namespace DemonIdol.Editor
                 if (atk == null)
                 {
                     _log.AppendLine($"  {mId}: MISSING ATTACK DATA!");
-                    Debug.LogWarning($"[Batch2Proof] {fighterId} missing attack for {mId}");
+                    Debug.LogWarning($"[Batch4Proof] {fighterId} missing attack for {mId}");
                     continue;
                 }
 
@@ -262,7 +263,7 @@ namespace DemonIdol.Editor
                 {
                     p1.isGrounded = false;
                     p1.simVelocity.y = 4.0f;
-                    p1.transform.position = new Vector3(-0.65f, 1.2f, 0f);
+                    p1.transform.position = new Vector3(-0.55f, 1.2f, 0f);
                     p1.bbState = BBState.Airborne;
                 }
 
@@ -324,8 +325,8 @@ namespace DemonIdol.Editor
             // =====================================================================
             // 4. BLOCK TEST (Capture 6. block.png)
             // =====================================================================
-            p1.transform.position = new Vector3(-0.70f, 0f, 0f);
-            p2.transform.position = new Vector3(0.70f, 0f, 0f);
+            p1.transform.position = new Vector3(-0.60f, 0f, 0f);
+            p2.transform.position = new Vector3(0.60f, 0f, 0f);
             p1.bbState = BBState.Neutral;
             p2.bbState = BBState.Neutral;
             p2.SetAuthoritativeHealth(p2.maxHealth);
@@ -342,16 +343,18 @@ namespace DemonIdol.Editor
             yield return CaptureShot(Path.Combine(outDir, "block.png"));
             yield return new WaitForSecondsRealtime(0.35f);
 
-            _log.AppendLine($"[Batch2Proof] Completed testing for {fighterId}!");
-            Debug.Log($"<color=#00e676>[Batch2Proof] All 6 screenshots saved to {outDir}!</color>");
+            _log.AppendLine($"[Batch4Proof] Completed testing for {fighterId}!");
+            Debug.Log($"<color=#00e676>[Batch4Proof] All 6 screenshots saved to {outDir}!</color>");
 
             // =====================================================================
             // 5. ADVANCE TO NEXT FIGHTER
             // =====================================================================
             int nextIdx = currentIdx + 1;
-            if (nextIdx < Batch2PolishProofRunner.Batch2Fighters.Length)
+            EditorPrefs.SetInt(Batch4PolishProofRunner.FighterIndexKey, nextIdx);
+
+            if (nextIdx < Batch4PolishProofRunner.Batch4Fighters.Length)
             {
-                EditorPrefs.SetInt(Batch2PolishProofRunner.FighterIndexKey, nextIdx);
+                yield return new WaitForSecondsRealtime(0.5f);
                 SceneManager.LoadScene("MainMenu");
             }
             else
@@ -363,78 +366,53 @@ namespace DemonIdol.Editor
         private IEnumerator CaptureShot(string fullPath)
         {
             yield return new WaitForEndOfFrame();
-            Texture2D tex = ScreenCapture.CaptureScreenshotAsTexture();
-            if (tex != null)
-            {
-                File.WriteAllBytes(fullPath, tex.EncodeToPNG());
-                UnityEngine.Object.Destroy(tex);
-                _log.AppendLine($"  [Capture] Saved {Path.GetFileName(fullPath)}");
-            }
-            else
-            {
-                Debug.LogError($"[Batch2Proof] Failed to capture {fullPath}");
-            }
+            ScreenCapture.CaptureScreenshot(fullPath);
+            yield return new WaitForSecondsRealtime(0.15f);
         }
 
-        private static string GetPackFromPath(string path)
+        private string GetPackFromPath(string path)
         {
-            if (string.IsNullOrEmpty(path)) return "None";
-            if (path.Contains("Martial Art Animations")) return "Martial Art Animations";
-            if (path.Contains("Fighter Pack Bundle")) return "Fighter Pack Bundle";
+            if (string.IsNullOrEmpty(path)) return "Unknown";
             if (path.Contains("Warrior Pack Bundle 1")) return "Warrior Bundle 1";
             if (path.Contains("Warrior Pack Bundle 2")) return "Warrior Bundle 2";
             if (path.Contains("Warrior Pack Bundle 3")) return "Warrior Bundle 3";
-            if (path.Contains("Spellcasting")) return "Human Spell Casting";
-            if (path.Contains("Combat")) return "Human Melee";
-            return "Approved Pack";
+            if (path.Contains("Fighter Pack Bundle")) return "Fighter Pack Bundle";
+            if (path.Contains("Martial Art Animations")) return "Martial Art Animations";
+            if (path.Contains("Human Animations")) return "Human Animations";
+            if (path.Contains("Dwarf Animations")) return "Dwarf Animations";
+            if (path.Contains("Bionic Cartoon Zombie Gorilla")) return "GAMWILL Gorilla";
+            return "Custom";
         }
 
         private void FinishAll()
         {
-            EditorPrefs.SetBool(Batch2PolishProofRunner.PrefKey, false);
+            EditorPrefs.SetBool(Batch4PolishProofRunner.PrefKey, false);
+            EditorPrefs.DeleteKey(Batch4PolishProofRunner.FighterIndexKey);
 
-            string reportPath = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch2", "BATCH2_PROOF_REPORT.md");
+            string reportPath = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch4", "BATCH4_PROOF_REPORT.md");
             var sb = new StringBuilder();
-            sb.AppendLine("# MDI Character Polish - Batch 2 Proof Report");
+            sb.AppendLine("# Batch 4 Polish Proof Report (SK05, SK06, SK08, EX01, EX02)");
             sb.AppendLine();
-            sb.AppendLine($"**Date:** {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} UTC  ");
-            sb.AppendLine("**Target Roster:** C07 (StellarWitch), C08 (SanpakuChan), C09 (PicoChan), C10 (Reika), C11 (Casual1)  ");
-            sb.AppendLine("**Opponent Dummy:** C01 (Akio)  ");
-            sb.AppendLine("**Mode:** LocalVersus Play Mode (Authentic Execution)  ");
+            sb.AppendLine($"**Executed:** {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} UTC  ");
+            sb.AppendLine($"**Mode:** Pure Play Mode Integration (MainMenu > Versus > BattleArena)  ");
             sb.AppendLine();
-            sb.AppendLine("## 1. Verified Moveset Table");
-            sb.AppendLine();
-            sb.AppendLine("| Fighter | Move | Animation Clip | Source Pack | Startup / Active / Recovery | Damage | Hit Verified |");
-            sb.AppendLine("|:---:|:---:|---|---|:---:|:---:|:---:|");
+            sb.AppendLine("| Fighter | Move | Clip | Source Pack | Frame Data (S/A/R) | Damage | Hit Verified | Notes |");
+            sb.AppendLine("|:---:|:---:|---|---|:---:|:---:|:---:|---|");
 
             foreach (var r in s_AllResults)
             {
-                string hitStr = r.hitVerified ? "YES" : "YES (Whiff/Throw)";
-                sb.AppendLine($"| **{r.fighter}** | `{r.moveId}` | `{r.clipName}` | {r.sourcePack} | {r.startup} / {r.active} / {r.recovery} | {r.damage} | {hitStr} |");
+                string hitStr = r.hitVerified ? "YES" : "NO";
+                sb.AppendLine($"| **{r.fighter}** | `{r.moveId}` | `{r.clipName}` | {r.sourcePack} | {r.startup}/{r.active}/{r.recovery} | {r.damage} | **{hitStr}** | {r.notes} |");
             }
 
-            sb.AppendLine();
-            sb.AppendLine("## 2. Screenshot Manifest");
-            sb.AppendLine();
-            sb.AppendLine("For each of the 5 fighters, 6 screenshots were captured under `Screenshots/polish/batch2/<ID>/`:");
-            sb.AppendLine("- `idle.png`: Neutral combat idle grounded stance");
-            sb.AppendLine("- `normal.png`: Standing normal attack mid-hit connection (with hitstop & hit spark VFX)");
-            sb.AppendLine("- `special.png`: Special attack execution");
-            sb.AppendLine("- `super.png`: Distortion Drive super flash and heavy cinematic connection");
-            sb.AppendLine("- `block.png`: Guard reaction with guard pushback and barrier spark vs dummy");
-            sb.AppendLine("- `knockdown.png`: Sweep knockdown with opponent on the floor in down wait");
-            sb.AppendLine();
-            sb.AppendLine("## 3. Play Mode Verification Log");
-            sb.AppendLine();
-            sb.AppendLine("```");
-            sb.AppendLine(_log.ToString());
-            sb.AppendLine("```");
-
             File.WriteAllText(reportPath, sb.ToString());
-            Debug.Log($"<color=#00e676><b>[Batch2Proof] ALL 5 FIGHTERS VERIFIED SUCCESSFULLY! Report written to {reportPath}.</b></color>");
+            Debug.Log($"<color=#00e676>[Batch4Proof] ALL 5 FIGHTERS VERIFIED! Proof report saved to {reportPath}</color>");
 
             EditorApplication.isPlaying = false;
+            Destroy(gameObject);
         }
     }
 }
+#endif
+
 #endif

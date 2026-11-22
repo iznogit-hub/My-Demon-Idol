@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 19
+  startupFrames: 18
   activeFrames: 3
-  recoveryFrames: 36
-  hitstunTicks: 40
+  recoveryFrames: 37
+  hitstunTicks: 18
   blockstunTicks: 22
   knockdownDurationTicks: 36
-  hitstopAttacker: 5
-  hitstopDefender: 5
+  hitstopAttacker: 10
+  hitstopDefender: 10
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -12
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 3500
+  damage: 1200
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -99,6 +99,6 @@ MonoBehaviour:
   motionTrack: {fileID: 0}
   clipName: StellarWitch_OD_EA
   clip: {fileID: 3094330708855449807, guid: bc8cbcd09bf81b646b58bf68f9f55d95, type: 3}
-  clipFirstFrame: 140
-  clipLastFrame: 180
+  clipFirstFrame: 0
+  clipLastFrame: 29
   events: []

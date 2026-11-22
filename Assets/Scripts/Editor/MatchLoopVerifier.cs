@@ -382,35 +382,27 @@ namespace DemonIdol.Editor
                         if (label == "walk")
                         {
                             p1.sampler.virtualStickInput = new Vector2(1f, 0f);
-                            p1.sampler.InjectFrame(new BBInputFrame { numpad = 6, held = 0, pressed = 0, released = 0 });
                         }
                         else if (label == "crouch")
                         {
                             p1.sampler.virtualStickInput = new Vector2(0f, -1f);
-                            p1.sampler.InjectFrame(new BBInputFrame { numpad = 2, held = 0, pressed = 0, released = 0 });
                         }
                         else if (label == "jump")
                         {
                             p1.sampler.virtualStickInput = new Vector2(0f, 1f);
-                            p1.sampler.InjectFrame(new BBInputFrame { numpad = 8, held = 0, pressed = 0, released = 0 });
                         }
                         else if (label == "A")
                         {
                             p1.sampler.virtualStickInput = Vector2.zero;
                             p1.sampler.virtualHeldMask |= (byte)BBButton.A;
                             p1.sampler.virtualPressedMask |= (byte)BBButton.A;
-                            p1.sampler.InjectFrame(new BBInputFrame { numpad = 5, held = (byte)BBButton.A, pressed = (byte)BBButton.A, released = 0 });
-                            if (p1.bbState != BBState.AttackStartup && p1.bbState != BBState.AttackActive && p1.bbState != BBState.AttackRecovery)
-                            {
-                                p1.TryStartMoveId("5A");
-                            }
                         }
                         else if (label == "release")
                         {
                             p1.sampler.virtualStickInput = Vector2.zero;
                             p1.sampler.virtualHeldMask = 0;
                             p1.sampler.virtualPressedMask = 0;
-                            p1.sampler.InjectFrame(new BBInputFrame { numpad = 5, held = 0, pressed = 0, released = (byte)BBButton.A });
+                            p1.sampler.virtualReleasedMask |= (byte)BBButton.A;
                         }
                     }
 

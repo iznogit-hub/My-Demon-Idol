@@ -316,7 +316,6 @@ namespace DemonIdol.BlazBlue.Tests
             fighter.SetFacing(1);
             brain.fighter = fighter;
             brain.isGrounded = true;
-            brain.bbState = BBState.Neutral;
 
             // D key: numpad 6 (Forward)
             brain.History.PushFrame(new BBInputFrame { numpad = 6 }, 1, 1);
@@ -340,7 +339,6 @@ namespace DemonIdol.BlazBlue.Tests
             fighter.SetFacing(1);
             brain.fighter = fighter;
             brain.isGrounded = true;
-            brain.bbState = BBState.Neutral;
 
             // W key: numpad 8 (Up)
             brain.History.PushFrame(new BBInputFrame { numpad = 8 }, 1, 1);
@@ -369,7 +367,6 @@ namespace DemonIdol.BlazBlue.Tests
             fighter.SetFacing(1);
             brain.fighter = fighter;
             brain.isGrounded = true;
-            brain.bbState = BBState.Neutral;
 
             // S key: numpad 2 (Down)
             brain.History.PushFrame(new BBInputFrame { numpad = 2 }, 1, 1);

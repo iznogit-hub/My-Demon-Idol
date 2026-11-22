@@ -12,128 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BB_Lyra_5C_Boxes
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 43
-  frameStart: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000001000000012000000140000001600000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f00000030000000i
+  tickCount: 28
+  frameStart: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000020000000300000004000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000i
   boxes:
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
+  - cx: 1.05
+    cy: 1.05
+    hx: 0.65
+    hy: 0.45
+    kind: 1
     hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
+    attribute: 8
     flags: 0
   - cx: 1.05
     cy: 1.05
@@ -143,13 +31,13 @@ MonoBehaviour:
     hitIndex: 0
     attribute: 8
     flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
+  - cx: 1.05
+    cy: 1.05
+    hx: 0.65
+    hy: 0.45
+    kind: 1
     hitIndex: 0
-    attribute: 2
+    attribute: 8
     flags: 0
   - cx: 1.05
     cy: 1.05
@@ -159,14 +47,6 @@ MonoBehaviour:
     hitIndex: 0
     attribute: 8
     flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
   - cx: 1.05
     cy: 1.05
     hx: 0.65
@@ -175,231 +55,7 @@ MonoBehaviour:
     hitIndex: 0
     attribute: 8
     flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 1.05
-    cy: 1.05
-    hx: 0.65
-    hy: 0.45
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 1.05
-    cy: 1.05
-    hx: 0.65
-    hy: 0.45
-    kind: 1
-    hitIndex: 0
-    attribute: 8
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0
-    cy: 0.85
-    hx: 0.35
-    hy: 0.8
-    kind: 0
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  keyTicks: 
+  keyTicks: 0c000000i
   bakeHash: 
 --- !u!114 &11400000
 MonoBehaviour:
@@ -425,14 +81,14 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 14
+  startupFrames: 12
   activeFrames: 5
-  recoveryFrames: 24
-  hitstunTicks: 23
+  recoveryFrames: 11
+  hitstunTicks: 22
   blockstunTicks: 20
   knockdownDurationTicks: 36
-  hitstopAttacker: 7
-  hitstopDefender: 7
+  hitstopAttacker: 12
+  hitstopDefender: 12
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
@@ -452,7 +108,7 @@ MonoBehaviour:
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
-  screenShakeTrauma: 0.1
+  screenShakeTrauma: 0.4
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}

@@ -168,9 +168,9 @@ namespace DemonIdol.BlazBlue
         public void HandleCombatTick(int tick)
         {
             StepInput(tick);
-            if (hitstopRemaining <= 0)
+            if (hitstopRemaining <= 0 && bbState != BBState.Hitstun)
             {
-                TryExecuteCommand(tick);
+                ExecuteCommands(tick);
             }
             AdvanceState(tick);
             MirrorHealthToFighter();
@@ -215,7 +215,7 @@ namespace DemonIdol.BlazBlue
         private static readonly System.Collections.Generic.HashSet<string> s_LoggedMissingMoves = new System.Collections.Generic.HashSet<string>();
         private sbyte jumpDirection = 8;
 
-        void TryExecuteCommand(int tick)
+        public void ExecuteCommands(int tick)
         {
             if (!CurrentCommand.IsValid || profile == null) return;
             if (bbState == BBState.Hitstun || bbState == BBState.Blockstun || bbState == BBState.BarrierBlockstun || bbState == BBState.Thrown)
@@ -586,6 +586,7 @@ namespace DemonIdol.BlazBlue
             currentAttack = attack;
             attackTick = 0;
             attackHitMask.Clear();
+            chainState.madeContact = false;
             ActiveDamageScale = 1f;
             ActiveReachScale = 1f;
             SignatureHitstopBonus = 0;
@@ -600,6 +601,10 @@ namespace DemonIdol.BlazBlue
             if (BBProjectileCaster.ShouldSpawn(charId, attack.moveId))
             {
                 BBProjectileCaster.Spawn(fighter, attack.moveId);
+            }
+            if (attack.kind == BBMoveKind.DistortionDrive || attack.kind == BBMoveKind.AstralHeat || attack.moveId == "236236C")
+            {
+                BBSuperFlash.Raise(charId, fighter != null ? fighter.transform : null);
             }
             bbState = attack.startupFrames > 0 ? BBState.AttackStartup : BBState.AttackActive;
             stateTick = 0;

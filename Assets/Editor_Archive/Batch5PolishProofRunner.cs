@@ -1,3 +1,4 @@
+#if MDI_ARCHIVE
 #if UNITY_EDITOR
 using System;
 using System.Collections;
@@ -15,24 +16,24 @@ using DemonIdol.UI;
 
 namespace DemonIdol.Editor
 {
-    public static class Batch4PolishProofRunner
+    public static class Batch5PolishProofRunner
     {
-        public const string PrefKey = "MDI_Batch4Proof_Active";
-        public const string FighterIndexKey = "MDI_Batch4Proof_FighterIndex";
-        public static readonly string[] Batch4Fighters = new[] { "SK05", "SK06", "SK08", "EX01", "EX02" };
+        public const string PrefKey = "MDI_Batch5Proof_Active";
+        public const string FighterIndexKey = "MDI_Batch5Proof_FighterIndex";
+        public static readonly string[] Batch5Fighters = new[] { "EX03", "EX04", "EX05", "EX06", "EX07" };
 
         public static void StartProof()
         {
             if (EditorApplication.isPlaying)
             {
-                Debug.LogWarning("[Batch4Proof] Already in Play Mode. Stopping first...");
+                Debug.LogWarning("[Batch5Proof] Already in Play Mode. Stopping first...");
                 EditorApplication.isPlaying = false;
                 return;
             }
 
-            foreach (var f in Batch4Fighters)
+            foreach (var f in Batch5Fighters)
             {
-                string dir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch4", f);
+                string dir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch5", f);
                 if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
             }
 
@@ -40,7 +41,7 @@ namespace DemonIdol.Editor
             EditorPrefs.SetInt(FighterIndexKey, 0);
 
             EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/MainMenu.unity");
-            Debug.Log("<color=#00e676>[Batch4Proof] Starting Batch 4 Polish Proof Runner in PlayMode from MainMenu...</color>");
+            Debug.Log("<color=#00e676>[Batch5Proof] Starting Batch 5 Polish Proof Runner in PlayMode from MainMenu...</color>");
             EditorApplication.isPlaying = true;
         }
 
@@ -60,15 +61,15 @@ namespace DemonIdol.Editor
         static void OnAfterSceneLoad()
         {
             if (!EditorPrefs.GetBool(PrefKey, false)) return;
-            if (UnityEngine.Object.FindAnyObjectByType<Batch4ProofDriver>() != null) return;
+            if (UnityEngine.Object.FindAnyObjectByType<Batch5ProofDriver>() != null) return;
 
-            var go = new GameObject("Batch4ProofDriver");
+            var go = new GameObject("Batch5ProofDriver");
             UnityEngine.Object.DontDestroyOnLoad(go);
-            go.AddComponent<Batch4ProofDriver>();
+            go.AddComponent<Batch5ProofDriver>();
         }
     }
 
-    public sealed class Batch4ProofDriver : MonoBehaviour
+    public sealed class Batch5ProofDriver : MonoBehaviour
     {
         public struct MoveResult
         {
@@ -111,19 +112,19 @@ namespace DemonIdol.Editor
 
             yield return new WaitForSecondsRealtime(0.4f);
 
-            int currentIdx = EditorPrefs.GetInt(Batch4PolishProofRunner.FighterIndexKey, 0);
-            if (currentIdx >= Batch4PolishProofRunner.Batch4Fighters.Length)
+            int currentIdx = EditorPrefs.GetInt(Batch5PolishProofRunner.FighterIndexKey, 0);
+            if (currentIdx >= Batch5PolishProofRunner.Batch5Fighters.Length)
             {
                 FinishAll();
                 yield break;
             }
 
-            string targetFighter = Batch4PolishProofRunner.Batch4Fighters[currentIdx];
+            string targetFighter = Batch5PolishProofRunner.Batch5Fighters[currentIdx];
 
             if (sceneName == "MainMenu")
             {
                 if (currentIdx == 0) s_AllResults.Clear();
-                _log.AppendLine($"[Batch4Proof] MainMenu: Selecting Versus for {targetFighter}...");
+                _log.AppendLine($"[Batch5Proof] MainMenu: Selecting Versus for {targetFighter}...");
                 var menu = UnityEngine.Object.FindAnyObjectByType<DemonIdolMainMenuController>();
                 if (menu != null)
                 {
@@ -139,7 +140,7 @@ namespace DemonIdol.Editor
             }
             else if (sceneName == "CharacterSelect")
             {
-                _log.AppendLine($"[Batch4Proof] CharacterSelect: Picking {targetFighter} vs C01...");
+                _log.AppendLine($"[Batch5Proof] CharacterSelect: Picking {targetFighter} vs C01...");
                 yield return new WaitForSecondsRealtime(0.5f);
 
                 var csm = UnityEngine.Object.FindAnyObjectByType<DemonIdolCharacterSelectManager>();
@@ -167,7 +168,7 @@ namespace DemonIdol.Editor
         private IEnumerator RunArenaEvaluation(string fighterId, int currentIdx)
         {
             _log.AppendLine($"=== EXECUTING ARENA PROOF FOR {fighterId} (Index {currentIdx}) ===");
-            Debug.Log($"<color=#00e676>[Batch4Proof] Active Arena Match: {fighterId} vs C01...</color>");
+            Debug.Log($"<color=#00e676>[Batch5Proof] Active Arena Match: {fighterId} vs C01...</color>");
 
             float timeout = Time.realtimeSinceStartup + 12f;
             while (Time.realtimeSinceStartup < timeout)
@@ -184,14 +185,14 @@ namespace DemonIdol.Editor
             var engine = CombatTickEngine.Instance;
             if (sim == null || sim.p1Brain == null || sim.p2Brain == null)
             {
-                Debug.LogError($"[Batch4Proof] Simulation not ready for {fighterId}!");
+                Debug.LogError($"[Batch5Proof] Simulation not ready for {fighterId}!");
                 FinishAll();
                 yield break;
             }
 
             var p1 = sim.p1Brain;
             var p2 = sim.p2Brain;
-            string outDir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch4", fighterId);
+            string outDir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch5", fighterId);
             if (!Directory.Exists(outDir)) Directory.CreateDirectory(outDir);
 
             yield return new WaitForSecondsRealtime(0.6f);
@@ -251,7 +252,7 @@ namespace DemonIdol.Editor
                 if (atk == null)
                 {
                     _log.AppendLine($"  {mId}: MISSING ATTACK DATA!");
-                    Debug.LogWarning($"[Batch4Proof] {fighterId} missing attack for {mId}");
+                    Debug.LogWarning($"[Batch5Proof] {fighterId} missing attack for {mId}");
                     continue;
                 }
 
@@ -342,16 +343,16 @@ namespace DemonIdol.Editor
             yield return CaptureShot(Path.Combine(outDir, "block.png"));
             yield return new WaitForSecondsRealtime(0.35f);
 
-            _log.AppendLine($"[Batch4Proof] Completed testing for {fighterId}!");
-            Debug.Log($"<color=#00e676>[Batch4Proof] All 6 screenshots saved to {outDir}!</color>");
+            _log.AppendLine($"[Batch5Proof] Completed testing for {fighterId}!");
+            Debug.Log($"<color=#00e676>[Batch5Proof] All 6 screenshots saved to {outDir}!</color>");
 
             // =====================================================================
             // 5. ADVANCE TO NEXT FIGHTER
             // =====================================================================
             int nextIdx = currentIdx + 1;
-            EditorPrefs.SetInt(Batch4PolishProofRunner.FighterIndexKey, nextIdx);
+            EditorPrefs.SetInt(Batch5PolishProofRunner.FighterIndexKey, nextIdx);
 
-            if (nextIdx < Batch4PolishProofRunner.Batch4Fighters.Length)
+            if (nextIdx < Batch5PolishProofRunner.Batch5Fighters.Length)
             {
                 yield return new WaitForSecondsRealtime(0.5f);
                 SceneManager.LoadScene("MainMenu");
@@ -385,12 +386,12 @@ namespace DemonIdol.Editor
 
         private void FinishAll()
         {
-            EditorPrefs.SetBool(Batch4PolishProofRunner.PrefKey, false);
-            EditorPrefs.DeleteKey(Batch4PolishProofRunner.FighterIndexKey);
+            EditorPrefs.SetBool(Batch5PolishProofRunner.PrefKey, false);
+            EditorPrefs.DeleteKey(Batch5PolishProofRunner.FighterIndexKey);
 
-            string reportPath = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch4", "BATCH4_PROOF_REPORT.md");
+            string reportPath = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots", "polish", "batch5", "BATCH5_PROOF_REPORT.md");
             var sb = new StringBuilder();
-            sb.AppendLine("# Batch 4 Polish Proof Report (SK05, SK06, SK08, EX01, EX02)");
+            sb.AppendLine("# Batch 5 Polish Proof Report (EX03, EX04, EX05, EX06, EX07)");
             sb.AppendLine();
             sb.AppendLine($"**Executed:** {DateTime.UtcNow:yyyy-MM-dd HH:mm:ss} UTC  ");
             sb.AppendLine($"**Mode:** Pure Play Mode Integration (MainMenu > Versus > BattleArena)  ");
@@ -405,11 +406,13 @@ namespace DemonIdol.Editor
             }
 
             File.WriteAllText(reportPath, sb.ToString());
-            Debug.Log($"<color=#00e676>[Batch4Proof] ALL 5 FIGHTERS VERIFIED! Proof report saved to {reportPath}</color>");
+            Debug.Log($"<color=#00e676>[Batch5Proof] ALL 5 FIGHTERS VERIFIED! Proof report saved to {reportPath}</color>");
 
             EditorApplication.isPlaying = false;
             Destroy(gameObject);
         }
     }
 }
+#endif
+
 #endif
