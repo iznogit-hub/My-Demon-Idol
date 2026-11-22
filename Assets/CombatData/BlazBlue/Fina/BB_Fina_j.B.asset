@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: 0
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 520
+  damage: 530
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92

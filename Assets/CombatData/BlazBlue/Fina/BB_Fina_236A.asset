@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 12
+  startupFrames: 11
   activeFrames: 4
-  recoveryFrames: 14
+  recoveryFrames: 15
   hitstunTicks: 18
   blockstunTicks: 12
   knockdownDurationTicks: 36

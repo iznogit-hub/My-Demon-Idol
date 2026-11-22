@@ -94,6 +94,7 @@ namespace DemonIdol.BlazBlue.Editor
             // 3. Specifically apply Batch Polish overrides
             ApplyBatch1Specifics();
             ApplyBatch2Specifics();
+            ApplyBatch3Specifics();
 
             // 4. Save CSV
             var sb = new StringBuilder();
@@ -476,6 +477,143 @@ namespace DemonIdol.BlazBlue.Editor
             TuneMove("Assets/CombatData/BlazBlue/Casual1/BB_Casual1_j.B.asset", clipjB, 8, 3, 11, 520, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 9, 16);
             TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_236A.asset", clip236, 12, 4, 14, 1020, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
             TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_j.B.asset", clipjB, 8, 3, 11, 520, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 9, 16);
+        }
+
+        public static void ApplyBatch3Specifics()
+        {
+            ApplyC12Specifics();
+            ApplyC13Specifics();
+            ApplyC14Specifics();
+            ApplySK02Specifics();
+            ApplySK03Specifics();
+        }
+
+        private static void ApplyC12Specifics()
+        {
+            // C12 Fina: Agile Female Striker / Ninja Operative
+            // Replace Dodge/Quickstep attacks with real female martial arts attacks. Fix reach so 5A hits at point blank.
+            var clip2C = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Attack1.FBX", "Karate_Roundhouse");
+            var clip214B = LoadSubclip("Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Female Fighter Mecanim Animation Pack FREE/Animations/Female@Punch.FBX", "Punch");
+            var clipSuper = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Attack1.FBX", "Karate_Palm");
+
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_5A.asset", null, 5, 3, 7, 270, new Vector3(0.65f, 1.25f, 0f), new Vector3(1.30f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_5B.asset", null, 8, 3, 11, 540, new Vector3(0.80f, 1.20f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_5C.asset", null, 11, 4, 15, 920, new Vector3(0.95f, 1.20f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_2A.asset", null, 5, 3, 8, 250, new Vector3(0.65f, 0.40f, 0f), new Vector3(1.30f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_2B.asset", null, 8, 3, 12, 510, new Vector3(0.80f, 0.40f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_2C.asset", clip2C, 12, 4, 17, 880, new Vector3(0.95f, 0.35f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_5D.asset", null, 13, 4, 15, 830, new Vector3(0.95f, 1.10f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_236A.asset", null, 11, 4, 15, 1020, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_214B.asset", clip214B, 13, 4, 17, 1120, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_236236C.asset", clipSuper, 17, 5, 26, 2450, new Vector3(1.10f, 1.25f, 0f), new Vector3(1.80f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_BC.asset", null, 6, 3, 14, 580, new Vector3(0.65f, 1.10f, 0f), new Vector3(1.20f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_j.A.asset", null, 5, 3, 9, 270, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_j.B.asset", null, 8, 3, 11, 530, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Fina/BB_Fina_j.C.asset", null, 12, 4, 15, 930, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.50f, 1.40f, 1.0f), 12, 22);
+        }
+
+        private static void ApplyC13Specifics()
+        {
+            // C13 SapphiArtchan: Cute Sorceress / Magic Caster
+            // Real attacks only (no hit reactions like CombatDamage01 as attacks). Real aerial attacks.
+            var clipjA = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/1H/HumanF@Attack1H01_R.fbx", null);
+            var clipjB = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/1H/HumanF@Attack1H01_L.fbx", null);
+            var clipjC = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Female/Combat/2H/HumanF@Attack2H01.fbx", null);
+
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_5A.asset", null, 5, 3, 8, 260, new Vector3(0.65f, 1.25f, 0f), new Vector3(1.30f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_5B.asset", null, 8, 3, 12, 520, new Vector3(0.80f, 1.20f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_5C.asset", null, 12, 4, 16, 910, new Vector3(0.95f, 1.20f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_2A.asset", null, 6, 3, 8, 240, new Vector3(0.65f, 0.40f, 0f), new Vector3(1.30f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_2B.asset", null, 8, 3, 12, 500, new Vector3(0.80f, 0.40f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_2C.asset", null, 13, 4, 18, 870, new Vector3(0.95f, 0.35f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_5D.asset", null, 14, 4, 16, 840, new Vector3(0.95f, 1.10f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_236A.asset", null, 12, 4, 16, 1030, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_214B.asset", null, 14, 4, 18, 1130, new Vector3(0.95f, 1.15f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_236236C.asset", null, 18, 5, 27, 2480, new Vector3(1.10f, 1.25f, 0f), new Vector3(1.80f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_BC.asset", null, 6, 3, 14, 570, new Vector3(0.65f, 1.10f, 0f), new Vector3(1.20f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_j.A.asset", clipjA, 6, 3, 9, 260, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_j.B.asset", clipjB, 8, 3, 11, 520, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/SapphiArtchan/BB_SapphiArtchan_j.C.asset", clipjC, 13, 4, 16, 920, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.50f, 1.40f, 1.0f), 12, 22);
+        }
+
+        private static void ApplyC14Specifics()
+        {
+            // C14 Muryotaisu: Colossal Two-Handed Giant
+            // Renders tiny: keep prefab scale (1.3193). Extended heavy reach.
+            var clipSuper = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX", "TwoHanded_Slam");
+
+            var atk214 = AssetDatabase.LoadAssetAtPath<BBAttackData>("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_214A.asset");
+            if (atk214 != null)
+            {
+                atk214.moveId = "214B";
+                atk214.button = BBButton.B;
+                EditorUtility.SetDirty(atk214);
+            }
+
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_5A.asset", null, 7, 3, 10, 310, new Vector3(0.80f, 1.25f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_5B.asset", null, 10, 3, 14, 590, new Vector3(1.05f, 1.20f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_5C.asset", null, 15, 4, 19, 980, new Vector3(1.20f, 1.20f, 0f), new Vector3(1.70f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_2A.asset", null, 7, 3, 10, 290, new Vector3(0.80f, 0.40f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_2B.asset", null, 10, 3, 14, 560, new Vector3(1.05f, 0.40f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_2C.asset", null, 15, 4, 20, 930, new Vector3(1.20f, 0.35f, 0f), new Vector3(1.70f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_5D.asset", null, 16, 4, 18, 880, new Vector3(1.15f, 1.10f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_236A.asset", null, 14, 4, 18, 1070, new Vector3(1.20f, 1.15f, 0f), new Vector3(1.70f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_214A.asset", null, 16, 4, 20, 1170, new Vector3(1.20f, 1.15f, 0f), new Vector3(1.70f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_236236C.asset", clipSuper, 20, 5, 30, 2600, new Vector3(1.30f, 1.25f, 0f), new Vector3(1.90f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_BC.asset", null, 7, 3, 15, 620, new Vector3(0.70f, 1.10f, 0f), new Vector3(1.30f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_j.A.asset", null, 7, 3, 11, 310, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.50f, 1.40f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_j.B.asset", null, 10, 3, 14, 590, new Vector3(1.05f, -0.20f, 0f), new Vector3(1.60f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Muryotaisu/BB_Muryotaisu_j.C.asset", null, 15, 4, 18, 980, new Vector3(1.20f, -0.20f, 0f), new Vector3(1.70f, 1.40f, 1.0f), 12, 22);
+        }
+
+        private static void ApplySK02Specifics()
+        {
+            // SK02 Galahad: Sun Templar Knight (Sword & Shield)
+            // Remove second overlapping model. Calibrate knight hitboxes.
+            var atk214 = AssetDatabase.LoadAssetAtPath<BBAttackData>("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_214A.asset");
+            if (atk214 != null)
+            {
+                atk214.moveId = "214B";
+                atk214.button = BBButton.B;
+                EditorUtility.SetDirty(atk214);
+            }
+
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_5A.asset", null, 6, 3, 9, 300, new Vector3(0.75f, 1.25f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_5B.asset", null, 9, 3, 13, 580, new Vector3(0.90f, 1.20f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_5C.asset", null, 13, 4, 17, 950, new Vector3(1.10f, 1.20f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_2A.asset", null, 6, 3, 9, 280, new Vector3(0.75f, 0.40f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_2B.asset", null, 9, 3, 13, 550, new Vector3(0.90f, 0.40f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_2C.asset", null, 14, 4, 19, 890, new Vector3(1.10f, 0.35f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_5D.asset", null, 15, 4, 17, 850, new Vector3(1.00f, 1.10f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_236A.asset", null, 13, 4, 17, 1040, new Vector3(1.10f, 1.15f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_214A.asset", null, 15, 4, 19, 1140, new Vector3(1.10f, 1.15f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_236236C.asset", null, 19, 5, 29, 2500, new Vector3(1.20f, 1.25f, 0f), new Vector3(1.80f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_BC.asset", null, 7, 3, 14, 600, new Vector3(0.65f, 1.10f, 0f), new Vector3(1.20f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_j.A.asset", null, 6, 3, 10, 300, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_j.B.asset", null, 9, 3, 13, 580, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.50f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Galahad/BB_Galahad_j.C.asset", null, 14, 4, 17, 950, new Vector3(1.10f, -0.20f, 0f), new Vector3(1.60f, 1.40f, 1.0f), 12, 22);
+        }
+
+        private static void ApplySK03Specifics()
+        {
+            // SK03 Vex: Dune Raider Desert Marauder
+            // Super was Atk_K_3; assign dramatic heavy super clip (Warrior Bundle 2: TwoHanded_Slam)
+            var clipSuper = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX", "TwoHanded_Slam");
+
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_5A.asset", null, 6, 3, 9, 290, new Vector3(0.75f, 1.25f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_5B.asset", null, 9, 3, 13, 570, new Vector3(0.90f, 1.20f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_5C.asset", null, 13, 4, 17, 930, new Vector3(1.10f, 1.20f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_2A.asset", null, 6, 3, 9, 260, new Vector3(0.75f, 0.40f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_2B.asset", null, 9, 3, 13, 530, new Vector3(0.90f, 0.40f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_2C.asset", null, 14, 4, 19, 870, new Vector3(1.10f, 0.35f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_5D.asset", null, 15, 4, 17, 840, new Vector3(1.00f, 1.10f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_236A.asset", null, 13, 4, 17, 1030, new Vector3(1.10f, 1.15f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_214B.asset", null, 15, 4, 19, 1130, new Vector3(1.10f, 1.15f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_236236C.asset", clipSuper, 19, 5, 29, 2550, new Vector3(1.25f, 1.25f, 0f), new Vector3(1.80f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_BC.asset", null, 7, 3, 14, 580, new Vector3(0.65f, 1.10f, 0f), new Vector3(1.20f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_j.A.asset", null, 6, 3, 10, 290, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_j.B.asset", null, 9, 3, 13, 570, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.50f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_j.C.asset", null, 14, 4, 17, 930, new Vector3(1.10f, -0.20f, 0f), new Vector3(1.60f, 1.40f, 1.0f), 12, 22);
         }
 
         private static AnimationClip LoadSubclip(string path, string subclipName)

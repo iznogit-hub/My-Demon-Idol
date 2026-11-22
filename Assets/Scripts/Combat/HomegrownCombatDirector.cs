@@ -431,20 +431,30 @@ namespace DemonIdol.Combat
             // ONLY remove old models if we have a valid replacement prefab
             if (prefab != null)
             {
-                for (int i = fc.transform.childCount - 1; i >= 0; i--)
+                Transform existing = fc.transform.Find(expectedModelName);
+                GameObject model = null;
+                if (existing != null)
                 {
-                    Transform child = fc.transform.GetChild(i);
-                    if (child.name.StartsWith("Model_") || child.name.StartsWith("Model"))
-                    {
-                        SafeDestroy(child.gameObject);
-                    }
+                    model = existing.gameObject;
                 }
+                else
+                {
+                    for (int i = fc.transform.childCount - 1; i >= 0; i--)
+                    {
+                        Transform child = fc.transform.GetChild(i);
+                        if (child.name.StartsWith("Model_") || child.name.StartsWith("Model"))
+                        {
+                            child.gameObject.SetActive(false);
+                            SafeDestroy(child.gameObject);
+                        }
+                    }
 
-                GameObject model = Instantiate(prefab, fc.transform);
-                model.name = expectedModelName;
-                model.transform.localPosition = Vector3.zero;
-                model.transform.localRotation = Quaternion.identity;
-                model.transform.localScale = prefab.transform.localScale;
+                    model = Instantiate(prefab, fc.transform);
+                    model.name = expectedModelName;
+                    model.transform.localPosition = Vector3.zero;
+                    model.transform.localRotation = Quaternion.identity;
+                    model.transform.localScale = prefab.transform.localScale;
+                }
 
                 // Strip duplicate logic/physics components from child model to prevent collision clash
                 // Destroy FighterController FIRST so RequireComponent constraint on CharacterController is released
@@ -664,7 +674,8 @@ namespace DemonIdol.Combat
             if (prefab != null)
             {
                 string expectedModelName = "Model_" + (charDef != null ? charDef.id : charId);
-                GameObject model = Instantiate(prefab, go.transform);
+                Transform existingModel = go.transform.Find(expectedModelName);
+                GameObject model = existingModel != null ? existingModel.gameObject : Instantiate(prefab, go.transform);
                 model.name = expectedModelName;
                 model.transform.localPosition = Vector3.zero;
                 model.transform.localRotation = Quaternion.identity;
