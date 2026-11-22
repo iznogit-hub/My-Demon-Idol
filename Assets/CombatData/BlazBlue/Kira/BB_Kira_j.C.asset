@@ -12,50 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BB_Kira_j.C_Boxes
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 60
-  frameStart: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000400000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000i
+  tickCount: 34
+  frameStart: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000200000003000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000i
   boxes:
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1.1
+    cy: -0.2
+    hx: 0.8
+    hy: 0.7
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1.1
+    cy: -0.2
+    hx: 0.8
+    hy: 0.7
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1.1
+    cy: -0.2
+    hx: 0.8
+    hy: 0.7
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1.1
+    cy: -0.2
+    hx: 0.8
+    hy: 0.7
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
-    kind: 1
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  keyTicks: 10000000i
+  keyTicks: 0d000000i
   bakeHash: 
 --- !u!114 &11400000
 MonoBehaviour:
@@ -81,9 +73,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 16
-  activeFrames: 5
-  recoveryFrames: 39
+  startupFrames: 13
+  activeFrames: 4
+  recoveryFrames: 17
   hitstunTicks: 22
   blockstunTicks: 19
   knockdownDurationTicks: 36
@@ -94,7 +86,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 850
+  damage: 920
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -113,8 +105,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 1.1, y: -0.2, z: 0}
+  hitboxSize: {x: 1.6, y: 1.4, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: j.C
@@ -151,8 +143,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: -4484655547500533452}
   motionTrack: {fileID: 0}
-  clipName: Knight_Cleave
-  clip: {fileID: 3060872287085348379, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
+  clipName: Swordsman_Thrust
+  clip: {fileID: -998496362607748373, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 24
+  clipLastFrame: 9
   events: []

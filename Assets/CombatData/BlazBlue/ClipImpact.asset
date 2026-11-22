@@ -353,6 +353,10 @@ MonoBehaviour:
     impactFrame60: 32
     impactTime: 0.53333336
     maxVelocity: 0
+  - clipName: HumanM@MagicAttackOmni01 - Load
+    impactFrame60: 31
+    impactTime: 0.51666665
+    maxVelocity: 0
   - clipName: HumanF@MagicAttackDirect1H01_R - Load
     impactFrame60: 32
     impactTime: 0.53333336
@@ -436,8 +440,4 @@ MonoBehaviour:
   - clipName: HumanM@MagicAttackCall1H01_L - Load
     impactFrame60: 32
     impactTime: 0.53333336
-    maxVelocity: 0
-  - clipName: HumanM@MagicAttackOmni01 - Load
-    impactFrame60: 31
-    impactTime: 0.51666665
     maxVelocity: 0

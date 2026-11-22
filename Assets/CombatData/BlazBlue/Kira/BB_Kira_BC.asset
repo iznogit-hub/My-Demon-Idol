@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 16
+  startupFrames: 6
   activeFrames: 3
-  recoveryFrames: 31
-  hitstunTicks: 22
+  recoveryFrames: 14
+  hitstunTicks: 14
   blockstunTicks: 9
   knockdownDurationTicks: 36
-  hitstopAttacker: 12
-  hitstopDefender: 12
+  hitstopAttacker: 8
+  hitstopDefender: 8
   hitstopOnBlock: 4
   counterHitStopBonus: 4
   advantageOnBlock: -2
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 950
+  damage: 580
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 0.65, y: 1.1, z: 0}
+  hitboxSize: {x: 1.25, y: 0.7, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: BC
@@ -97,7 +97,7 @@ MonoBehaviour:
   clipName: Grab_Break_A
   clip: {fileID: -413915583566188894, guid: 35e6a374d022a054caefeae0a79e193c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 20
+  clipLastFrame: 25
   events: []
 --- !u!114 &573552232826378669
 MonoBehaviour:
@@ -111,32 +111,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BB_Kira_BC_Boxes
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 50
-  frameStart: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000020000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
+  tickCount: 23
+  frameStart: 000000000000000000000000000000000000000000000000000000000100000002000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0.8
-    cy: 1
+  - cx: 0.65
+    cy: 1.1
     hx: 0.625
-    hy: 0.625
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
+  - cx: 0.65
+    cy: 1.1
     hx: 0.625
-    hy: 0.625
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
+  - cx: 0.65
+    cy: 1.1
     hx: 0.625
-    hy: 0.625
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  keyTicks: 10000000i
+  keyTicks: 06000000i
   bakeHash: 

@@ -25,8 +25,8 @@ MonoBehaviour:
   protectionStartTick: 5
   protectionEndTick: 12
   startupFrames: 12
-  activeFrames: 5
-  recoveryFrames: 11
+  activeFrames: 4
+  recoveryFrames: 16
   hitstunTicks: 18
   blockstunTicks: 19
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 900
+  damage: 1030
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 0}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.8, y: 1, z: 0}
-  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  hitboxOffset: {x: 1.05, y: 1.15, z: 0}
+  hitboxSize: {x: 1.6, y: 0.7, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 236A
@@ -94,10 +94,10 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 7904099442522543992}
   motionTrack: {fileID: 0}
-  clipName: Sorceress_Wave
-  clip: {fileID: -998496362607748373, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
+  clipName: Sorceress_Burst
+  clip: {fileID: 1827226128182048838, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 11
+  clipLastFrame: 26
   events: []
 --- !u!114 &7904099442522543992
 MonoBehaviour:
@@ -111,45 +111,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BB_Lyra_236A_Boxes
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 28
-  frameStart: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000020000000300000004000000050000000500000005000000050000000500000005000000050000000500000005000000050000000500000005000000i
+  tickCount: 32
+  frameStart: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000i
   boxes:
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1.05
+    cy: 1.15
+    hx: 0.8
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1.05
+    cy: 1.15
+    hx: 0.8
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1.05
+    cy: 1.15
+    hx: 0.8
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
-    kind: 1
-    hitIndex: 0
-    attribute: 2
-    flags: 0
-  - cx: 0.8
-    cy: 1
-    hx: 0.625
-    hy: 0.625
+  - cx: 1.05
+    cy: 1.15
+    hx: 0.8
+    hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
