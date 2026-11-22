@@ -202,6 +202,22 @@ namespace DemonIdol.Editor
                 }
             }
 
+            // Check for multiple/overlapping model children
+            int modelCount = 0;
+            for (int i = 0; i < targetFighter.transform.childCount; i++)
+            {
+                var child = targetFighter.transform.GetChild(i);
+                if (child.name.StartsWith("Model_")) modelCount++;
+            }
+            if (modelCount > 1)
+            {
+                Debug.LogError($"[BBBatchProofRunner] VIOLATION: {fighterId} has {modelCount} overlapping models in slot P{slot + 1}!");
+            }
+            else
+            {
+                Debug.Log($"<color=#00e676>[BBBatchProofRunner] PASS: {fighterId} has exactly {modelCount} model child (no overlapping models).</color>");
+            }
+
             // Check foot height from floor (floor is Y = 0)
             float footY = targetFighter.transform.position.y;
             var anim = targetFighter.GetComponentInChildren<Animator>();
