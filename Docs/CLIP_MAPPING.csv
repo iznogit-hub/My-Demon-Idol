@@ -536,20 +536,20 @@ Casual1,BC,Grab_Start,Martial Art Animations,23,15,3,28,950,12,22
 Casual1,j.A,Punch,Fighter Pack Bundle,13,7,3,16,320,6,12
 Casual1,j.B,Atk_K_1,Martial Art Animations,27,8,3,11,520,9,16
 Casual1,j.C,Atk_K_3,Martial Art Animations,44,16,3,69,880,12,22
-CommanderRen,2A,Spearman_Thrust1,Warrior Bundle 3,26,7,3,42,250,6,12
-CommanderRen,2B,Swordsman_Slash1,Warrior Bundle 3,26,11,4,37,550,9,16
-CommanderRen,2C,Spearman_Sweep,Warrior Bundle 3,8,12,5,4,850,12,22
-CommanderRen,5A,HumanM@Attack1H01_R,Human Animations,33,7,3,56,300,6,12
-CommanderRen,5B,HumanM@Attack1H01_L,Human Animations,33,11,4,51,600,9,16
-CommanderRen,5C,HumanM@Attack2H01,Human Animations,48,16,5,75,950,12,22
-CommanderRen,5D,Spearman_Lance,Warrior Bundle 3,30,19,5,36,800,10,18
-CommanderRen,214B,Swordsman_Cleave,Warrior Bundle 3,30,18,5,37,900,10,18
-CommanderRen,236A,HumanM@AttackPolearm01,Human Animations,41,18,5,59,900,10,18
-CommanderRen,236236C,HumanM@Attack2H01,Human Animations,48,24,5,67,2600,16,32
-CommanderRen,BC,HumanM@AttackShield01,Human Animations,27,16,3,35,950,12,22
-CommanderRen,j.A,Swordsman_Thrust,Warrior Bundle 3,9,6,4,8,280,6,12
-CommanderRen,j.B,Swordsman_Slash1,Warrior Bundle 3,26,11,5,36,550,9,16
-CommanderRen,j.C,Swordsman_Cleave,Warrior Bundle 3,30,16,5,39,850,12,22
+CommanderRen,2A,Spearman_Thrust1,Warrior Bundle 3,26,6,3,9,260,6,12
+CommanderRen,2B,Swordsman_Slash1,Warrior Bundle 3,26,9,3,13,540,9,16
+CommanderRen,2C,Spearman_Sweep,Warrior Bundle 3,8,13,4,19,860,12,22
+CommanderRen,5A,HumanM@Attack1H01_R,Human Animations,33,6,3,8,290,6,12
+CommanderRen,5B,HumanM@Attack1H01_L,Human Animations,33,8,3,12,570,9,16
+CommanderRen,5C,HumanM@Attack2H01,Human Animations,48,13,4,17,950,12,22
+CommanderRen,5D,Spearman_Lance,Warrior Bundle 3,30,14,4,17,840,10,18
+CommanderRen,214B,Swordsman_Cleave,Warrior Bundle 3,30,15,4,19,1150,10,18
+CommanderRen,236A,HumanM@AttackPolearm01,Human Animations,41,12,4,16,1050,10,18
+CommanderRen,236236C,TwoHanded_Slam,Warrior Bundle 2,30,18,5,28,2580,16,32
+CommanderRen,BC,HumanM@AttackShield01,Human Animations,27,6,3,14,580,8,14
+CommanderRen,j.A,Swordsman_Thrust,Warrior Bundle 3,9,6,3,10,290,6,12
+CommanderRen,j.B,Knight_Slash,Warrior Bundle 2,25,9,3,13,560,9,16
+CommanderRen,j.C,Knight_Cleave,Warrior Bundle 2,30,14,4,17,930,12,22
 C06,236A,HumanM@MagicAttackCall1H01_L - Cast,Human Animations,27,13,4,17,1060,10,18
 Cultist,2A,HumanM@MagicAttackDirect1H01_R - Cast,Human Animations,28,6,3,9,270,6,12
 Cultist,2B,HumanM@MagicAttackDirect1H01_L - Cast,Human Animations,28,9,3,13,540,9,16
@@ -635,34 +635,34 @@ Galahad,BC,HumanM@AttackShield01,Human Animations,27,7,3,14,600,8,14
 Galahad,j.A,Knight_Slash,Warrior Bundle 2,25,6,3,10,300,6,12
 Galahad,j.B,Knight_ShieldBash,Warrior Bundle 2,30,9,3,13,580,9,16
 Galahad,j.C,Knight_Cleave,Warrior Bundle 2,30,14,4,17,950,12,22
-Granite,2A,Brute_Uppercut,Warrior Bundle 1,17,7,3,24,280,6,12
-Granite,2B,Hammer_Swing,Warrior Bundle 3,28,11,4,41,600,9,16
-Granite,2C,Hammer_Quake,Warrior Bundle 3,30,16,5,39,850,12,22
-Granite,5A,Brute_Hook,Warrior Bundle 1,28,7,3,46,350,6,12
-Granite,5B,Hammer_Swing,Warrior Bundle 3,28,11,4,41,650,9,16
-Granite,5C,Hammer_Smash,Warrior Bundle 3,24,15,5,28,950,12,22
-Granite,5D,TwoHanded_Slam,Warrior Bundle 2,30,19,5,36,800,10,18
-Granite,214B,Hammer_Quake,Warrior Bundle 3,30,18,5,37,900,10,18
-Granite,236A,TwoHanded_Slash,Warrior Bundle 2,14,12,5,11,900,10,18
-Granite,236236C,Hammer_Smash,Warrior Bundle 3,24,16,5,27,2700,16,32
-Granite,BC,Brute_DoubleSlam,Warrior Bundle 1,30,16,3,41,950,12,22
-Granite,j.A,Brute_Hook,Warrior Bundle 1,28,7,4,45,300,6,12
-Granite,j.B,Hammer_Swing,Warrior Bundle 3,28,11,5,40,600,9,16
-Granite,j.C,Hammer_Smash,Warrior Bundle 3,24,15,5,28,950,12,22
-Hugo,2A,Atk_P_1,Martial Art Animations,15,7,3,20,280,6,12
-Hugo,2B,Brute_Hook,Warrior Bundle 1,28,11,4,41,600,9,16
-Hugo,2C,Brute_DoubleSlam,Warrior Bundle 1,30,16,5,39,900,12,22
-Hugo,5A,Brute_Hook,Warrior Bundle 1,28,7,3,46,350,6,12
-Hugo,5B,Brute_Uppercut,Warrior Bundle 1,17,11,4,19,650,9,16
-Hugo,5C,Brute_DoubleSlam,Warrior Bundle 1,30,16,5,39,950,12,22
-Hugo,5D,Punch,Fighter Pack Bundle,27,13,5,36,800,10,18
-Hugo,214B,Brute_Uppercut,Warrior Bundle 1,17,12,5,17,950,10,18
-Hugo,236A,Punch,Fighter Pack Bundle,27,13,5,36,900,10,18
-Hugo,236236C,Brute_DoubleSlam,Warrior Bundle 1,30,19,5,36,2800,16,32
-Hugo,BC,Grab_Break_A,Martial Art Animations,25,16,3,31,950,12,22
-Hugo,j.A,Brute_Hook,Warrior Bundle 1,28,7,4,45,320,6,12
-Hugo,j.B,Brute_Uppercut,Warrior Bundle 1,17,11,5,18,650,9,16
-Hugo,j.C,Brute_DoubleSlam,Warrior Bundle 1,30,16,5,39,950,12,22
+Granite,2A,Brute_Uppercut,Warrior Bundle 1,17,7,3,10,270,6,12
+Granite,2B,TwoHanded_Sweep,Warrior Bundle 2,26,10,3,14,560,9,16
+Granite,2C,Hammer_Quake,Warrior Bundle 3,30,15,4,20,890,12,22
+Granite,5A,Hammer_Swing,Warrior Bundle 3,28,7,3,10,300,6,12
+Granite,5B,Hammer_Smash,Warrior Bundle 3,24,10,3,14,600,9,16
+Granite,5C,TwoHanded_Slam,Warrior Bundle 2,30,15,4,20,980,12,22
+Granite,5D,Knight_Cleave,Warrior Bundle 2,30,15,4,18,860,10,18
+Granite,214B,Karate_Palm,Warrior Bundle 1,12,16,4,20,1170,10,18
+Granite,236A,Swordsman_Cleave,Warrior Bundle 3,30,13,4,17,1070,10,18
+Granite,236236C,TwoHanded_Slash,Warrior Bundle 2,14,19,5,30,2680,16,32
+Granite,BC,Brute_DoubleSlam,Warrior Bundle 1,30,7,3,15,610,8,14
+Granite,j.A,Brute_Hook,Warrior Bundle 1,28,7,3,11,300,6,12
+Granite,j.B,Punch,Fighter Pack Bundle,20,10,3,14,580,9,16
+Granite,j.C,Spearman_Lance,Warrior Bundle 3,30,15,4,18,950,12,22
+Hugo,2A,Atk_P_1,Martial Art Animations,15,6,3,9,290,6,12
+Hugo,2B,Atk_P_2,Martial Art Animations,19,9,3,13,580,9,16
+Hugo,2C,Atk_K_3,Martial Art Animations,44,14,4,19,910,12,22
+Hugo,5A,Brute_Hook,Warrior Bundle 1,28,6,3,9,320,6,12
+Hugo,5B,Brute_Uppercut,Warrior Bundle 1,17,9,3,13,620,9,16
+Hugo,5C,Brute_DoubleSlam,Warrior Bundle 1,30,14,4,19,1020,12,22
+Hugo,5D,Karate_Palm,Warrior Bundle 1,12,15,4,18,890,10,18
+Hugo,214B,Karate_Jab,Warrior Bundle 1,22,15,4,19,1190,10,18
+Hugo,236A,Punch,Fighter Pack Bundle,20,13,4,17,1090,10,18
+Hugo,236236C,Punch,Fighter Pack Bundle,27,18,5,29,2760,16,32
+Hugo,BC,Grab_Break_A,Martial Art Animations,25,6,3,14,630,8,14
+Hugo,j.A,Atk_P_3,Martial Art Animations,22,6,3,10,320,6,12
+Hugo,j.B,Punch,Fighter Pack Bundle,16,9,3,13,600,9,16
+Hugo,j.C,Karate_Roundhouse,Warrior Bundle 1,30,14,4,18,980,12,22
 Kira,2A,Swordsman_Slash1,Warrior Bundle 3,26,7,3,42,250,6,12
 Kira,2B,Knight_Slash,Warrior Bundle 2,25,11,4,35,550,9,16
 Kira,2C,Swordsman_Cleave,Warrior Bundle 3,30,16,5,39,850,12,22
@@ -677,20 +677,20 @@ Kira,BC,Grab_Break_A,Martial Art Animations,25,16,3,31,950,12,22
 Kira,j.A,Knight_Slash,Warrior Bundle 2,25,7,4,39,280,6,12
 Kira,j.B,Swordsman_Thrust,Warrior Bundle 3,9,8,5,5,550,9,16
 Kira,j.C,Knight_Cleave,Warrior Bundle 2,30,16,5,39,850,12,22
-LordMorvath,2A,HumanM@MagicAttackDirect1H01_R - Cast,Human Animations,28,7,3,46,250,6,12
-LordMorvath,2B,HumanM@MagicAttackDirect1H01_L - Cast,Human Animations,28,11,4,41,550,9,16
-LordMorvath,2C,Mage_StaffPoke,Warrior Bundle 2,26,16,5,31,850,12,22
-LordMorvath,5A,HumanM@MagicAttackDirect1H01_R,Human Animations,36,7,3,62,300,6,12
-LordMorvath,5B,HumanM@MagicAttackDirect1H01_L,Human Animations,36,11,4,57,600,9,16
-LordMorvath,5C,HumanM@MagicAttackDirect2H01,Human Animations,48,16,5,75,900,12,22
-LordMorvath,5D,Mage_OrbCast,Warrior Bundle 2,14,9,5,14,800,10,18
-LordMorvath,214B,Mage_Eruption,Warrior Bundle 2,30,18,5,37,950,10,18
-LordMorvath,236A,HumanM@MagicAttackCall1H01_L - Cast,Human Animations,27,17,5,32,900,10,18
-LordMorvath,236236C,HumanM@MagicAttackOmni01,Human Animations,47,24,5,65,2600,16,32
-LordMorvath,BC,HumanM@MagicAttackCall1H01_L,Human Animations,41,16,3,63,950,12,22
-LordMorvath,j.A,HumanM@MagicAttackDirect1H01_R - Load,Human Animations,50,7,4,89,280,6,12
-LordMorvath,j.B,HumanM@MagicAttackDirect1H01_L - Load,Human Animations,50,11,5,84,550,9,16
-LordMorvath,j.C,HumanM@MagicAttackDirect2H01 - Cast,Human Animations,29,16,5,37,850,12,22
+LordMorvath,2A,HumanM@MagicAttackDirect1H01_R - Cast,Human Animations,28,6,3,8,260,6,12
+LordMorvath,2B,HumanM@MagicAttackDirect1H01_L - Cast,Human Animations,28,9,3,13,530,9,16
+LordMorvath,2C,HumanM@MagicAttackDirect2H01 - Cast,Human Animations,29,14,4,19,870,12,22
+LordMorvath,5A,HumanM@MagicAttackDirect1H01_R,Human Animations,36,6,3,8,280,6,12
+LordMorvath,5B,HumanM@MagicAttackDirect1H01_L,Human Animations,36,9,3,13,560,9,16
+LordMorvath,5C,HumanM@MagicAttackDirect2H01,Human Animations,48,13,4,18,940,12,22
+LordMorvath,5D,HumanM@MagicAttackOmni01 - Load,Human Animations,49,14,4,17,830,10,18
+LordMorvath,214B,HumanM@MagicAttackOmni01 - Cast,Human Animations,39,15,4,19,1140,10,18
+LordMorvath,236A,HumanM@MagicAttackCall1H01_L - Cast,Human Animations,27,12,4,16,1040,10,18
+LordMorvath,236236C,HumanM@MagicAttackOmni01,Human Animations,47,17,5,28,2520,16,32
+LordMorvath,BC,HumanM@MagicAttackCall1H01_L,Human Animations,41,6,3,14,570,8,14
+LordMorvath,j.A,HumanM@MagicAttackDirect1H01_R - Load,Human Animations,50,6,3,10,280,6,12
+LordMorvath,j.B,HumanM@MagicAttackDirect1H01_L - Load,Human Animations,50,9,3,13,550,9,16
+LordMorvath,j.C,HumanM@MagicAttackDirect2H01 - Load,Human Animations,50,14,4,17,920,12,22
 Lyra,2A,HumanF@MagicAttackDirect1H01_R - Cast,Human Animations,28,7,3,46,250,6,12
 Lyra,2B,HumanF@MagicAttackDirect1H01_L - Cast,Human Animations,28,11,4,41,550,9,16
 Lyra,2C,Sorceress_Wave,Warrior Bundle 1,14,12,5,11,850,12,22
@@ -906,20 +906,20 @@ StellarWitch,j.BC,HumanM@AttackShield01,Human Animations,27,16,3,35,950,12,22
 StellarWitch,j.C,HumanF@MagicAttackDirect2H01 - Load,Human Animations,50,16,3,81,880,12,22
 StellarWitch,j.D,HumanF@MagicAttackOmni01,Human Animations,47,30,3,61,850,10,18
 StellarWitch,OD_EA,HumanM@MagicAttackDirect2H01 - Cast,Human Animations,29,18,3,37,1200,10,18
-Torgrim,2A,TwoHanded_Sweep,Warrior Bundle 2,26,7,3,42,280,6,12
-Torgrim,2B,Hammer_Swing,Warrior Bundle 3,28,11,4,41,600,9,16
-Torgrim,2C,Hammer_Quake,Warrior Bundle 3,30,16,5,39,850,12,22
-Torgrim,5A,Hammer_Swing,Warrior Bundle 3,28,7,3,46,350,6,12
-Torgrim,5B,TwoHanded_Slash,Warrior Bundle 2,14,9,4,15,650,9,16
-Torgrim,5C,Hammer_Smash,Warrior Bundle 3,24,15,5,28,950,12,22
-Torgrim,5D,TwoHanded_Slam,Warrior Bundle 2,30,19,5,36,800,10,18
-Torgrim,214B,TwoHanded_Sweep,Warrior Bundle 2,26,17,5,30,900,10,18
-Torgrim,236A,Hammer_Smash,Warrior Bundle 3,24,15,5,28,900,10,18
-Torgrim,236236C,Hammer_Quake,Warrior Bundle 3,30,19,5,36,2700,16,32
-Torgrim,BC,HumanM@AttackShield01,Human Animations,27,16,3,35,950,12,22
-Torgrim,j.A,Hammer_Swing,Warrior Bundle 3,28,7,4,45,300,6,12
-Torgrim,j.B,TwoHanded_Slash,Warrior Bundle 2,14,9,5,14,600,9,16
-Torgrim,j.C,Hammer_Smash,Warrior Bundle 3,24,15,5,28,950,12,22
+Torgrim,2A,TwoHanded_Sweep,Warrior Bundle 2,26,7,3,10,280,6,12
+Torgrim,2B,Brute_Uppercut,Warrior Bundle 1,17,10,3,14,570,9,16
+Torgrim,2C,Hammer_Quake,Warrior Bundle 3,30,15,4,20,900,12,22
+Torgrim,5A,Hammer_Swing,Warrior Bundle 3,28,7,3,10,310,6,12
+Torgrim,5B,Hammer_Smash,Warrior Bundle 3,24,10,3,14,610,9,16
+Torgrim,5C,TwoHanded_Slash,Warrior Bundle 2,14,15,4,20,990,12,22
+Torgrim,5D,Knight_Cleave,Warrior Bundle 2,30,16,4,18,870,10,18
+Torgrim,214B,Brute_DoubleSlam,Warrior Bundle 1,30,16,4,20,1180,10,18
+Torgrim,236A,Swordsman_Cleave,Warrior Bundle 3,30,13,4,17,1080,10,18
+Torgrim,236236C,TwoHanded_Slam,Warrior Bundle 2,30,19,5,30,2720,16,32
+Torgrim,BC,HumanM@AttackShield01,Human Animations,27,7,3,15,620,8,14
+Torgrim,j.A,HumanM@Attack1H01_R,Human Animations,33,7,3,11,310,6,12
+Torgrim,j.B,Brute_Hook,Warrior Bundle 1,28,10,3,14,590,9,16
+Torgrim,j.C,HumanM@Attack2H01,Human Animations,48,15,4,18,960,12,22
 UnityChan,2A,Atk_P_1,Martial Art Animations,15,6,3,8,240,6,12
 UnityChan,2B,Atk_K_1,Martial Art Animations,27,8,3,12,500,9,16
 UnityChan,2C,Atk_K_2,Martial Art Animations,27,13,4,18,870,12,22

@@ -118,13 +118,13 @@ namespace DemonIdol.Combat
             // Synty Sidekicks (8)
             { "SK02", "SK02" }, { "Galahad", "SK02" },
             { "SK03", "SK03" }, { "Vex", "SK03" },
-            { "SK05", "SK05" }, { "LordMorvath", "SK05" }, { "Morvath", "SK05" },
-            { "SK06", "SK06" }, { "CommanderRen", "SK06" },
-            { "SK08", "SK08" }, { "Torgrim", "SK08" },
+            { "SK05", "SK05" }, { "LordMorvath", "SK05" }, { "Morvath", "SK05" }, { "SK05_LordMorvath", "SK05" },
+            { "SK06", "SK06" }, { "CommanderRen", "SK06" }, { "SK06_CommanderRen", "SK06" },
+            { "SK08", "SK08" }, { "Torgrim", "SK08" }, { "SK08_Torgrim", "SK08" },
 
             // External Dota Heroes (8)
-            { "EX01", "EX01" }, { "Hugo", "EX01" },
-            { "EX02", "EX02" }, { "Granite", "EX02" },
+            { "EX01", "EX01" }, { "Hugo", "EX01" }, { "EX01_Hugo", "EX01" },
+            { "EX02", "EX02" }, { "Granite", "EX02" }, { "EX02_Granite", "EX02" },
             { "EX03", "EX03" }, { "Viper", "EX03" },
             { "EX04", "EX04" }, { "OfficerK", "EX04" },
             { "EX05", "EX05" }, { "Kira", "EX05" },

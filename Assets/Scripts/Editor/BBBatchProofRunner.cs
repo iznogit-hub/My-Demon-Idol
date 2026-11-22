@@ -25,6 +25,7 @@ namespace DemonIdol.Editor
         public const string TRIGGER_BATCH5 = "run_batch5_proof.trigger";
         public const string TRIGGER_APPLY_MAPPING = "apply_clip_mapping.trigger";
         public const string TRIGGER_EXPORT_TRACKER = "export_tracker.trigger";
+        public const string TRIGGER_MEASURE_IMPACT = "measure_impact.trigger";
 
         public static string CurrentScreenshotBaseDir = "Screenshots/fightfeel/batch1";
 
@@ -69,6 +70,11 @@ namespace DemonIdol.Editor
             {
                 try { File.Delete(TRIGGER_EXPORT_TRACKER); } catch { }
                 BBMovesetTrackerExporter.ExportMovesetTracker();
+            }
+            if (File.Exists(TRIGGER_MEASURE_IMPACT))
+            {
+                try { File.Delete(TRIGGER_MEASURE_IMPACT); } catch { }
+                DemonIdol.BlazBlue.Editor.BBImpactFrameMeasurer.MeasureAllAttackClips();
             }
             if (File.Exists(TRIGGER_BATCH1))
             {

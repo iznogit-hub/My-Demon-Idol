@@ -95,6 +95,7 @@ namespace DemonIdol.BlazBlue.Editor
             ApplyBatch1Specifics();
             ApplyBatch2Specifics();
             ApplyBatch3Specifics();
+            ApplyBatch4Specifics();
 
             // 4. Save CSV
             var sb = new StringBuilder();
@@ -614,6 +615,190 @@ namespace DemonIdol.BlazBlue.Editor
             TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_j.A.asset", null, 6, 3, 10, 290, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.40f, 1.40f, 1.0f), 6, 12);
             TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_j.B.asset", null, 9, 3, 13, 570, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.50f, 1.40f, 1.0f), 9, 16);
             TuneMove("Assets/CombatData/BlazBlue/Vex/BB_Vex_j.C.asset", null, 14, 4, 17, 930, new Vector3(1.10f, -0.20f, 0f), new Vector3(1.60f, 1.40f, 1.0f), 12, 22);
+        }
+
+        public static void ApplyBatch4Specifics()
+        {
+            ApplySK05Specifics();
+            ApplySK06Specifics();
+            ApplySK08Specifics();
+            ApplyEX01Specifics();
+            ApplyEX02Specifics();
+        }
+
+        private static void ApplySK05Specifics()
+        {
+            // SK05 Lord Morvath: Tyrannical Death Magus / Caster
+            // Clean spellcasting animations, removed 2H greatsword weapon rig (pure spellcaster), 5A point blank reach
+            var clip5A = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Directional/HumanM@MagicAttackDirect1H01_R.fbx", null);
+            var clip5B = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Directional/HumanM@MagicAttackDirect1H01_L.fbx", null);
+            var clip5C = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Directional/HumanM@MagicAttackDirect2H01.fbx", null);
+            var clip2A = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Directional/HumanM@MagicAttackDirect1H01_R - Cast.fbx", null);
+            var clip2B = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Directional/HumanM@MagicAttackDirect1H01_L - Cast.fbx", null);
+            var clip2C = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Directional/HumanM@MagicAttackDirect2H01 - Cast.fbx", null);
+            var clip5D = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanM@MagicAttackOmni01 - Load.fbx", null);
+            var clipBC = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Call/HumanM@MagicAttackCall1H01_L.fbx", null);
+            var clip236A = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Call/HumanM@MagicAttackCall1H01_L - Cast.fbx", null);
+            var clip214B = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanM@MagicAttackOmni01 - Cast.fbx", null);
+            var clipSuper = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Omnidirectional/HumanM@MagicAttackOmni01.fbx", null);
+            var clipjA = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Directional/HumanM@MagicAttackDirect1H01_R - Load.fbx", null);
+            var clipjB = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Directional/HumanM@MagicAttackDirect1H01_L - Load.fbx", null);
+            var clipjC = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Spellcasting/MagicAttacks/Directional/HumanM@MagicAttackDirect2H01 - Load.fbx", null);
+
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_5A.asset", clip5A, 6, 3, 8, 280, new Vector3(0.75f, 1.25f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_5B.asset", clip5B, 9, 3, 13, 560, new Vector3(0.90f, 1.20f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_5C.asset", clip5C, 13, 4, 18, 940, new Vector3(1.05f, 1.20f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_2A.asset", clip2A, 6, 3, 8, 260, new Vector3(0.75f, 0.40f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_2B.asset", clip2B, 9, 3, 13, 530, new Vector3(0.90f, 0.40f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_2C.asset", clip2C, 14, 4, 19, 870, new Vector3(1.05f, 0.35f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_5D.asset", clip5D, 14, 4, 17, 830, new Vector3(1.00f, 1.10f, 0f), new Vector3(1.50f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_236A.asset", clip236A, 12, 4, 16, 1040, new Vector3(1.05f, 1.15f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_214B.asset", clip214B, 15, 4, 19, 1140, new Vector3(1.05f, 1.15f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_236236C.asset", clipSuper, 17, 5, 28, 2520, new Vector3(1.20f, 1.25f, 0f), new Vector3(1.85f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_BC.asset", clipBC, 6, 3, 14, 570, new Vector3(0.65f, 1.10f, 0f), new Vector3(1.25f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_j.A.asset", clipjA, 6, 3, 10, 280, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.45f, 1.40f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_j.B.asset", clipjB, 9, 3, 13, 550, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.50f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/LordMorvath/BB_LordMorvath_j.C.asset", clipjC, 14, 4, 17, 920, new Vector3(1.10f, -0.20f, 0f), new Vector3(1.60f, 1.40f, 1.0f), 12, 22);
+        }
+
+        private static void ApplySK06Specifics()
+        {
+            // SK06 Commander Ren: Halberd / Saber Military Commander
+            // Unique clips without duplicate reuse, distinct military commander frame data
+            var clip5A = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/1H/HumanM@Attack1H01_R.fbx", null);
+            var clip5B = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/1H/HumanM@Attack1H01_L.fbx", null);
+            var clip5C = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/2H/HumanM@Attack2H01.fbx", null);
+            var clip2A = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Spearman Warrior Mecanim Animation Pack/Animations/Spearman@Attack1.FBX", "Spearman_Thrust1");
+            var clip2B = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Swordsman Warrior Mecanim Animation Pack/Animations/Swordsman@Attack1.FBX", "Swordsman_Slash1");
+            var clip2C = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Spearman Warrior Mecanim Animation Pack/Animations/Spearman@Attack1.FBX", "Spearman_Sweep");
+            var clip5D = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Spearman Warrior Mecanim Animation Pack/Animations/Spearman@Attack1.FBX", "Spearman_Lance");
+            var clipBC = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Shield/HumanM@AttackShield01.fbx", null);
+            var clip236A = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Polearm/HumanM@AttackPolearm01.fbx", null);
+            var clip214B = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Swordsman Warrior Mecanim Animation Pack/Animations/Swordsman@Attack1.FBX", "Swordsman_Cleave");
+            var clipSuper = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX", "TwoHanded_Slam");
+            var clipjA = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Swordsman Warrior Mecanim Animation Pack/Animations/Swordsman@Attack1.FBX", "Swordsman_Thrust");
+            var clipjB = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/Knight Warrior Mecanim Animation Pack/Animations/Knight@Attack1.FBX", "Knight_Slash");
+            var clipjC = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/Knight Warrior Mecanim Animation Pack/Animations/Knight@Attack1.FBX", "Knight_Cleave");
+
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_5A.asset", clip5A, 6, 3, 8, 290, new Vector3(0.75f, 1.25f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_5B.asset", clip5B, 8, 3, 12, 570, new Vector3(0.90f, 1.20f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_5C.asset", clip5C, 13, 4, 17, 950, new Vector3(1.10f, 1.20f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_2A.asset", clip2A, 6, 3, 9, 260, new Vector3(0.75f, 0.40f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_2B.asset", clip2B, 9, 3, 13, 540, new Vector3(0.90f, 0.40f, 0f), new Vector3(1.50f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_2C.asset", clip2C, 13, 4, 19, 860, new Vector3(1.10f, 0.35f, 0f), new Vector3(1.60f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_5D.asset", clip5D, 14, 4, 17, 840, new Vector3(1.05f, 1.10f, 0f), new Vector3(1.55f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_236A.asset", clip236A, 12, 4, 16, 1050, new Vector3(1.10f, 1.15f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_214B.asset", clip214B, 15, 4, 19, 1150, new Vector3(1.10f, 1.15f, 0f), new Vector3(1.60f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_236236C.asset", clipSuper, 18, 5, 28, 2580, new Vector3(1.25f, 1.25f, 0f), new Vector3(1.85f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_BC.asset", clipBC, 6, 3, 14, 580, new Vector3(0.65f, 1.10f, 0f), new Vector3(1.25f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_j.A.asset", clipjA, 6, 3, 10, 290, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.45f, 1.40f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_j.B.asset", clipjB, 9, 3, 13, 560, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.50f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/CommanderRen/BB_CommanderRen_j.C.asset", clipjC, 14, 4, 17, 930, new Vector3(1.10f, -0.20f, 0f), new Vector3(1.60f, 1.40f, 1.0f), 12, 22);
+        }
+
+        private static void ApplySK08Specifics()
+        {
+            // SK08 Torgrim: Hammer / Heavy Bruiser / Mountain Warrior
+            // Warhammer & heavy warrior impacts, high hit damage, super damage 2720
+            var clip5A = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Hammer Warrior Mecanim Animation Pack/Animations/Hammer@Attack1.FBX", "Hammer_Swing");
+            var clip5B = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Hammer Warrior Mecanim Animation Pack/Animations/Hammer@Attack1.FBX", "Hammer_Smash");
+            var clip5C = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX", "TwoHanded_Slash");
+            var clip2A = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX", "TwoHanded_Sweep");
+            var clip2B = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX", "Brute_Uppercut");
+            var clip2C = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Hammer Warrior Mecanim Animation Pack/Animations/Hammer@Attack1.FBX", "Hammer_Quake");
+            var clip5D = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/Knight Warrior Mecanim Animation Pack/Animations/Knight@Attack1.FBX", "Knight_Cleave");
+            var clipBC = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/Shield/HumanM@AttackShield01.fbx", null);
+            var clip236A = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Swordsman Warrior Mecanim Animation Pack/Animations/Swordsman@Attack1.FBX", "Swordsman_Cleave");
+            var clip214B = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX", "Brute_DoubleSlam");
+            var clipSuper = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX", "TwoHanded_Slam");
+            var clipjA = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/1H/HumanM@Attack1H01_R.fbx", null);
+            var clipjB = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX", "Brute_Hook");
+            var clipjC = LoadSubclip("Assets/Kevin Iglesias/Human Animations/Animations/Male/Combat/2H/HumanM@Attack2H01.fbx", null);
+
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_5A.asset", clip5A, 7, 3, 10, 310, new Vector3(0.75f, 1.25f, 0f), new Vector3(1.45f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_5B.asset", clip5B, 10, 3, 14, 610, new Vector3(0.95f, 1.20f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_5C.asset", clip5C, 15, 4, 20, 990, new Vector3(1.15f, 1.20f, 0f), new Vector3(1.70f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_2A.asset", clip2A, 7, 3, 10, 280, new Vector3(0.75f, 0.40f, 0f), new Vector3(1.45f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_2B.asset", clip2B, 10, 3, 14, 570, new Vector3(0.95f, 0.40f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_2C.asset", clip2C, 15, 4, 20, 900, new Vector3(1.15f, 0.35f, 0f), new Vector3(1.70f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_5D.asset", clip5D, 16, 4, 18, 870, new Vector3(1.10f, 1.10f, 0f), new Vector3(1.65f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_236A.asset", clip236A, 13, 4, 17, 1080, new Vector3(1.15f, 1.15f, 0f), new Vector3(1.65f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_214B.asset", clip214B, 16, 4, 20, 1180, new Vector3(1.15f, 1.15f, 0f), new Vector3(1.65f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_236236C.asset", clipSuper, 19, 5, 30, 2720, new Vector3(1.30f, 1.25f, 0f), new Vector3(1.90f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_BC.asset", clipBC, 7, 3, 15, 620, new Vector3(0.65f, 1.10f, 0f), new Vector3(1.25f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_j.A.asset", clipjA, 7, 3, 11, 310, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.45f, 1.40f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_j.B.asset", clipjB, 10, 3, 14, 590, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.55f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Torgrim/BB_Torgrim_j.C.asset", clipjC, 15, 4, 18, 960, new Vector3(1.15f, -0.20f, 0f), new Vector3(1.70f, 1.40f, 1.0f), 12, 22);
+        }
+
+        private static void ApplyEX01Specifics()
+        {
+            // EX01 Hugo: Cybernetic Gorilla Brawler / Brute
+            // Heavy brawler animations, scale tuned to 0.52 in prefab, super damage 2760
+            var clip5A = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX", "Brute_Hook");
+            var clip5B = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX", "Brute_Uppercut");
+            var clip5C = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX", "Brute_DoubleSlam");
+            var clip2A = LoadSubclip("Assets/Martial Art Animations Sample/Animations/Atk_P_1.fbx", null);
+            var clip2B = LoadSubclip("Assets/Martial Art Animations Sample/Animations/Atk_P_2.fbx", null);
+            var clip2C = LoadSubclip("Assets/Martial Art Animations Sample/Animations/Atk_K_3.fbx", null);
+            var clip5D = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Attack1.FBX", "Karate_Palm");
+            var clipBC = LoadSubclip("Assets/Martial Art Animations Sample/Animations/Grab_Break_A.fbx", null);
+            var clip236A = LoadSubclip("Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Heavy Fighter Mecanim Animation Pack FREE/Animations/Heavy@Punch.FBX", null);
+            var clip214B = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Attack1.FBX", "Karate_Jab");
+            var clipSuper = LoadSubclip("Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Berserker Fighter Mecanim Animation Pack FREE/Animations/Berserker@Punch.FBX", null);
+            var clipjA = LoadSubclip("Assets/Martial Art Animations Sample/Animations/Atk_P_3.fbx", null);
+            var clipjB = LoadSubclip("Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Male Fighter Mecanim Animation Pack FREE/Animations/Male@Punch.FBX", null);
+            var clipjC = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Attack1.FBX", "Karate_Roundhouse");
+
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_5A.asset", clip5A, 6, 3, 9, 320, new Vector3(0.75f, 1.25f, 0f), new Vector3(1.45f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_5B.asset", clip5B, 9, 3, 13, 620, new Vector3(0.95f, 1.20f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_5C.asset", clip5C, 14, 4, 19, 1020, new Vector3(1.15f, 1.20f, 0f), new Vector3(1.70f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_2A.asset", clip2A, 6, 3, 9, 290, new Vector3(0.75f, 0.40f, 0f), new Vector3(1.45f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_2B.asset", clip2B, 9, 3, 13, 580, new Vector3(0.95f, 0.40f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_2C.asset", clip2C, 14, 4, 19, 910, new Vector3(1.15f, 0.35f, 0f), new Vector3(1.70f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_5D.asset", clip5D, 15, 4, 18, 890, new Vector3(1.10f, 1.10f, 0f), new Vector3(1.65f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_236A.asset", clip236A, 13, 4, 17, 1090, new Vector3(1.15f, 1.15f, 0f), new Vector3(1.65f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_214B.asset", clip214B, 15, 4, 19, 1190, new Vector3(1.15f, 1.15f, 0f), new Vector3(1.65f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_236236C.asset", clipSuper, 18, 5, 29, 2760, new Vector3(1.30f, 1.25f, 0f), new Vector3(1.90f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_BC.asset", clipBC, 6, 3, 14, 630, new Vector3(0.65f, 1.10f, 0f), new Vector3(1.30f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_j.A.asset", clipjA, 6, 3, 10, 320, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.45f, 1.40f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_j.B.asset", clipjB, 9, 3, 13, 600, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.55f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Hugo/BB_Hugo_j.C.asset", clipjC, 14, 4, 18, 980, new Vector3(1.15f, -0.20f, 0f), new Vector3(1.70f, 1.40f, 1.0f), 12, 22);
+        }
+
+        private static void ApplyEX02Specifics()
+        {
+            // EX02 Granite: Heavy Golem / Stone Hammer Bruiser
+            // Standard pass, solid ground impact, super damage 2680
+            var clip5A = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Hammer Warrior Mecanim Animation Pack/Animations/Hammer@Attack1.FBX", "Hammer_Swing");
+            var clip5B = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Hammer Warrior Mecanim Animation Pack/Animations/Hammer@Attack1.FBX", "Hammer_Smash");
+            var clip5C = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX", "TwoHanded_Slam");
+            var clip2A = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX", "Brute_Uppercut");
+            var clip2B = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX", "TwoHanded_Sweep");
+            var clip2C = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Hammer Warrior Mecanim Animation Pack/Animations/Hammer@Attack1.FBX", "Hammer_Quake");
+            var clip5D = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/Knight Warrior Mecanim Animation Pack/Animations/Knight@Attack1.FBX", "Knight_Cleave");
+            var clipBC = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX", "Brute_DoubleSlam");
+            var clip236A = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Swordsman Warrior Mecanim Animation Pack/Animations/Swordsman@Attack1.FBX", "Swordsman_Cleave");
+            var clip214B = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Karate Warrior Mecanim Animation Pack/Animations/Karate@Attack1.FBX", "Karate_Palm");
+            var clipSuper = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 2 FREE/2 Handed Warrior Mecanim Animation Pack/Animations/2Handed@Attack1.FBX", "TwoHanded_Slash");
+            var clipjA = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 1 FREE/Brute Warrior Mecanim Animation Pack/Animations/Brute@Attack1.FBX", "Brute_Hook");
+            var clipjB = LoadSubclip("Assets/ExplosiveLLC/Fighter Pack Bundle FREE/Fighters/Heavy Fighter Mecanim Animation Pack FREE/Animations/Heavy@Punch.FBX", null);
+            var clipjC = LoadSubclip("Assets/ExplosiveLLC/Warrior Pack Bundle 3 FREE/Spearman Warrior Mecanim Animation Pack/Animations/Spearman@Attack1.FBX", "Spearman_Lance");
+
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_5A.asset", clip5A, 7, 3, 10, 300, new Vector3(0.75f, 1.25f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_5B.asset", clip5B, 10, 3, 14, 600, new Vector3(0.95f, 1.20f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_5C.asset", clip5C, 15, 4, 20, 980, new Vector3(1.15f, 1.20f, 0f), new Vector3(1.70f, 0.60f, 1.0f), 12, 22);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_2A.asset", clip2A, 7, 3, 10, 270, new Vector3(0.75f, 0.40f, 0f), new Vector3(1.40f, 0.60f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_2B.asset", clip2B, 10, 3, 14, 560, new Vector3(0.95f, 0.40f, 0f), new Vector3(1.55f, 0.60f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_2C.asset", clip2C, 15, 4, 20, 890, new Vector3(1.15f, 0.35f, 0f), new Vector3(1.70f, 0.60f, 1.0f), 12, 22, true);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_5D.asset", clip5D, 15, 4, 18, 860, new Vector3(1.10f, 1.10f, 0f), new Vector3(1.65f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_236A.asset", clip236A, 13, 4, 17, 1070, new Vector3(1.15f, 1.15f, 0f), new Vector3(1.65f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_214B.asset", clip214B, 16, 4, 20, 1170, new Vector3(1.15f, 1.15f, 0f), new Vector3(1.65f, 0.70f, 1.0f), 10, 18);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_236236C.asset", clipSuper, 19, 5, 30, 2680, new Vector3(1.30f, 1.25f, 0f), new Vector3(1.90f, 0.90f, 1.0f), 16, 32, true, true);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_BC.asset", clipBC, 7, 3, 15, 610, new Vector3(0.65f, 1.10f, 0f), new Vector3(1.25f, 0.70f, 1.0f), 8, 14);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_j.A.asset", clipjA, 7, 3, 11, 300, new Vector3(0.85f, -0.20f, 0f), new Vector3(1.45f, 1.40f, 1.0f), 6, 12);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_j.B.asset", clipjB, 10, 3, 14, 580, new Vector3(0.95f, -0.20f, 0f), new Vector3(1.55f, 1.40f, 1.0f), 9, 16);
+            TuneMove("Assets/CombatData/BlazBlue/Granite/BB_Granite_j.C.asset", clipjC, 15, 4, 18, 950, new Vector3(1.15f, -0.20f, 0f), new Vector3(1.70f, 1.40f, 1.0f), 12, 22);
         }
 
         private static AnimationClip LoadSubclip(string path, string subclipName)
