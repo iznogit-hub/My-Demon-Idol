@@ -225,14 +225,12 @@ public class SapphiArtChan_AnimManager : MonoBehaviour {
         _SapphiArtChanRenderer_Face.SetBlendShapeWeight(10, _SapphiArtChanFacial_Mouth_Puff);
         _SapphiArtChanRenderer_Face.SetBlendShapeWeight(11, _SapphiArtChanFacial_Mouth_Smile);
 
-        if(_SapphiArtChanRenderer_BottomTeeth.isVisible)
+        if (_SapphiArtChanRenderer_BottomTeeth.isVisible)
             _SapphiArtChanRenderer_BottomTeeth.SetBlendShapeWeight(0, _SapphiArtChanFacial_Mouth_BottomTeeth);
 
+        if (_AnimationManagerUI == null) return;
 
-
-
-
-    string _GeneralChangeType = _AnimationManagerUI._GeneralChangeType;
+        string _GeneralChangeType = _AnimationManagerUI._GeneralChangeType;
         _SapphiArtChanLastFacial = _SapphiArtChanFacial;
         _SapphiArtChanFacial = _AnimationManagerUI._FacialValue;
         _SapphiArtChanLastFacialBool = _SapphiArtChanFacialBool;

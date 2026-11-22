@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Fina_236A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Female Punch
+  attackName: Plasma Arc
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -26,9 +26,9 @@ MonoBehaviour:
   protectionEndTick: 12
   startupFrames: 8
   activeFrames: 3
-  recoveryFrames: 15
-  hitstunTicks: 18
-  blockstunTicks: 14
+  recoveryFrames: 16
+  hitstunTicks: 15
+  blockstunTicks: 12
   knockdownDurationTicks: 36
   hitstopAttacker: 5
   hitstopDefender: 5
@@ -41,7 +41,7 @@ MonoBehaviour:
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
-  pushbackOnHit: 1.2
+  pushbackOnHit: 1
   pushbackOnBlock: 0.8
   isLauncher: 0
   isBoundTornado: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 942a8b5cac3634d1fb771bfa51340df1, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Fina_236A
-  clip: {fileID: 7400000, guid: 8de5c91b801a1ed4e8ba5d60ee3c51d8, type: 3}
-  clipFirstFrame: 15
-  clipLastFrame: 38
+  clipName: Quickstep_F
+  clip: {fileID: -6339999858669016031, guid: fdd8e1ce77001904c8cd99cd2d18b299, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 10
   events: []
