@@ -110,6 +110,12 @@ namespace DemonIdol.Editor
             Batch4PolishProofRunner.StartProof();
         }
 
+        [MenuItem("Demon Idol/Verify/Run Batch 5 Proof", priority = 37)]
+        public static void RunBatch5Proof()
+        {
+            Batch5PolishProofRunner.StartProof();
+        }
+
         // =========================================================================
         // FIGHTERS
         // =========================================================================
@@ -153,6 +159,12 @@ namespace DemonIdol.Editor
         public static void ApplyBatch4Polish()
         {
             Batch4CharacterPolishTool.ApplyBatch4Polish();
+        }
+
+        [MenuItem("Demon Idol/Fighters/Apply Batch 5 Polish", priority = 47)]
+        public static void ApplyBatch5Polish()
+        {
+            Batch5CharacterPolishTool.ApplyBatch5Polish();
         }
 
         // =========================================================================

@@ -1,0 +1,302 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
+  m_Name: BB_Sentry_2A
+  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
+  attackName: Low Calibration
+  attackType: 0
+  hitLevel: 1
+  guardRequirement: 0
+  isDuckableHigh: 0
+  crush: 0
+  crushStartTick: 4
+  crushEndTick: 18
+  hasArmor: 0
+  isAirborneStrikeProtected: 0
+  protectionStartTick: 5
+  protectionEndTick: 12
+  startupFrames: 6
+  activeFrames: 3
+  recoveryFrames: 11
+  hitstunTicks: 13
+  blockstunTicks: 10
+  knockdownDurationTicks: 36
+  hitstopAttacker: 5
+  hitstopDefender: 5
+  hitstopOnBlock: 4
+  counterHitStopBonus: 4
+  advantageOnBlock: -2
+  advantageOnHit: 4
+  advantageOnCounterHit: 8
+  damage: 250
+  chipDamageOnBlock: 0
+  initialProration: 0.85
+  comboDamageDecay: 0.92
+  pushbackOnHit: 1
+  pushbackOnBlock: 0.8
+  isLauncher: 0
+  isBoundTornado: 0
+  causesWallSplat: 0
+  causesWallBounce: 0
+  causesKnockdown: 0
+  isLinear: 1
+  throwTechWindowTicks: 6
+  launchVelocity: {x: 0, y: 0}
+  screenShakeTrauma: 0.1
+  canRapidCancel: 1
+  gatlingCancels: 010000000200000003000000i
+  animationClip: {fileID: 0}
+  animationTrigger: LightAttack
+  hitboxOffset: {x: 0.8, y: 1, z: 0}
+  hitboxSize: {x: 1.25, y: 1.25, z: 1.25}
+  cancelWindow: {x: 5, y: 12}
+  archetype: 0
+  moveId: 2A
+  button: 1
+  kind: 0
+  motion: 0
+  airOk: 0
+  groundOk: 1
+  guard: 0
+  attribute: 2
+  invuln: []
+  fatalCounter: 0
+  hardKnockdown: 0
+  otg: 0
+  groundBounce: 0
+  wallBounce: 0
+  wallStick: 0
+  groundSlide: 0
+  untechableTicks: 18
+  untechableTicksCH: 27
+  airHitVelocity: {x: 1.5, y: 5}
+  landingRecovery: 4
+  minDamagePct: 0.08
+  chipPct: 0
+  heatGainOverride: -1
+  heatCost: 0
+  gatlingInto: []
+  specialCancel: 1
+  ddCancel: 1
+  jumpCancelOnHit: 0
+  jumpCancelOnBlock: 0
+  rapidCancelable: 1
+  followUps: []
+  followUpWindow: {x: 0, y: 0}
+  boxes: {fileID: 4327961141610263746}
+  motionTrack: {fileID: 0}
+  clipName: Spearman_Thrust1
+  clip: {fileID: 1827226128182048838, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  clipFirstFrame: 0
+  clipLastFrame: 21
+  events: []
+--- !u!114 &4327961141610263746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
+  m_Name: BB_Sentry_2A_Boxes
+  m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
+  tickCount: 20
+  frameStart: 00000000010000000200000003000000040000000500000006000000080000000a0000000c0000000d0000000e0000000f0000001000000011000000120000001300000014000000150000001600000017000000i
+  boxes:
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0.9
+    cy: 0.55
+    hx: 0.5
+    hy: 0.3
+    kind: 1
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0.9
+    cy: 0.55
+    hx: 0.5
+    hy: 0.3
+    kind: 1
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0.9
+    cy: 0.55
+    hx: 0.5
+    hy: 0.3
+    kind: 1
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.55
+    hx: 0.35
+    hy: 0.5
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  keyTicks: 
+  bakeHash: 
