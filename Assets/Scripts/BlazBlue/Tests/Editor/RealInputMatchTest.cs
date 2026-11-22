@@ -21,12 +21,25 @@ namespace DemonIdol.BlazBlue.Tests
         public override void Setup()
         {
             base.Setup();
+            var devices = InputSystem.devices;
+            for (int i = devices.Count - 1; i >= 0; i--)
+            {
+                var dev = devices[i];
+                if (dev is Keyboard || dev is Gamepad)
+                {
+                    InputSystem.RemoveDevice(dev);
+                }
+            }
             _virtualKeyboard = InputSystem.AddDevice<Keyboard>();
             _virtualGamepad = InputSystem.AddDevice<Gamepad>();
         }
 
         public override void TearDown()
         {
+            if (_virtualKeyboard != null && _virtualKeyboard.added)
+                InputSystem.RemoveDevice(_virtualKeyboard);
+            if (_virtualGamepad != null && _virtualGamepad.added)
+                InputSystem.RemoveDevice(_virtualGamepad);
             base.TearDown();
             PlayerPrefs.DeleteKey("MDI_P1_CharacterId");
             PlayerPrefs.DeleteKey("MDI_P2_CharacterId");

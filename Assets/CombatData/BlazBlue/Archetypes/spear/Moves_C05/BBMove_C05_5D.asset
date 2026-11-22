@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 26
-  activeFrames: 3
-  recoveryFrames: 53
+  startupFrames: 16
+  activeFrames: 4
+  recoveryFrames: 18
   hitstunTicks: 18
   blockstunTicks: 22
   knockdownDurationTicks: 36
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -2
   advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 850
+  damage: 890
   chipDamageOnBlock: 0
   initialProration: 0.9
   comboDamageDecay: 0.92
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 
   animationClip: {fileID: 3094330708855449807, guid: 8427f593ea039e74fb73c8088e896c9a, type: 3}
   animationTrigger: DriveSkill
-  hitboxOffset: {x: 0.9, y: 1.1, z: 0}
-  hitboxSize: {x: 0.95, y: 0.55, z: 1}
+  hitboxOffset: {x: 1.2, y: 1.1, z: 0}
+  hitboxSize: {x: 1.7, y: 0.7, z: 1}
   cancelWindow: {x: 11, y: 14}
   archetype: 0
   moveId: 5D

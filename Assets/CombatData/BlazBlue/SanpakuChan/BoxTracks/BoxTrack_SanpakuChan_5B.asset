@@ -15,26 +15,26 @@ MonoBehaviour:
   tickCount: 16
   frameStart: 0000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0.9
-    cy: 1.15
-    hx: 0.5
-    hy: 0.3
+  - cx: 0.75
+    cy: 1.2
+    hx: 0.35
+    hy: 0.225
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.9
-    cy: 1.15
-    hx: 0.5
-    hy: 0.3
+  - cx: 0.75
+    cy: 1.2
+    hx: 0.35
+    hy: 0.225
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.9
-    cy: 1.15
-    hx: 0.5
-    hy: 0.3
+  - cx: 0.75
+    cy: 1.2
+    hx: 0.35
+    hy: 0.225
     kind: 1
     hitIndex: 0
     attribute: 2

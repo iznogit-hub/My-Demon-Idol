@@ -120,7 +120,7 @@ MonoBehaviour:
     hy: 0.625
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
   - cx: 0.8
     cy: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
     hy: 0.625
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
   - cx: 0.8
     cy: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
     hy: 0.625
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
   - cx: 0.8
     cy: 1
@@ -144,7 +144,7 @@ MonoBehaviour:
     hy: 0.625
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
   - cx: 0.8
     cy: 1
@@ -152,7 +152,7 @@ MonoBehaviour:
     hy: 0.625
     kind: 1
     hitIndex: 0
-    attribute: 8
+    attribute: 2
     flags: 0
   keyTicks: 0b000000i
   bakeHash: 

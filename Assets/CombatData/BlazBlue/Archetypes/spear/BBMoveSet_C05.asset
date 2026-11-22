@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBMoveSet
   characterId: C05
   moves:
+  - {fileID: 11400000, guid: 5f40edc6d43f4bf39497bd904a4c3a22, type: 2}
   - {fileID: 11400000, guid: a0be01a786a774faea9739abfb72b72a, type: 2}
   - {fileID: 11400000, guid: 0b3552bc206c848148eb9b95323dddd2, type: 2}
   - {fileID: 11400000, guid: 1048a1fbddef34b5e9a1d0a50908bc02, type: 2}
