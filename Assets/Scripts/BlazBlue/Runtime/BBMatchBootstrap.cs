@@ -134,7 +134,7 @@ namespace DemonIdol.BlazBlue
                 if (definition != null && definition.blazBlueProfile is BBCharacterProfile profile)
                 {
                     brain.profile = profile;
-                    brain.maxHealth = profile.maxHealth > 0f ? profile.maxHealth : 11000f;
+                    brain.maxHealth = profile.maxHealth > 0f ? profile.maxHealth : 10000f;
                     if (brain.health <= 0f || brain.health > brain.maxHealth)
                     {
                         brain.health = brain.maxHealth;

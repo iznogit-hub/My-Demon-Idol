@@ -44,26 +44,43 @@ namespace DemonIdol.BlazBlue
             _hitCursor = (_hitCursor + 1) % _hitPoints.Length;
 
             float scale = counterHit ? 1.6f : 1f;
+            bool isHeavy = false;
             if (attacker != null && attacker.currentAttack != null)
             {
-                if (attacker.currentAttack.button == BBButton.C) scale += 0.35f;
-                if (isSuper) scale += 0.8f;
+                if (attacker.currentAttack.button == BBButton.B) scale += 0.2f;
+                if (attacker.currentAttack.button == BBButton.C || attacker.currentAttack.button == BBButton.D)
+                {
+                    scale += 0.45f;
+                    isHeavy = true;
+                }
+                if (isSuper)
+                {
+                    scale += 0.9f;
+                    isHeavy = true;
+                }
             }
             if (SettingsPanel.ReducedGore) scale *= 0.35f;
+
+            // Spawn tier-scaled hit spark
+            SpawnHitSpark(point, scale, isSuper, isHeavy);
 
             if (Application.isPlaying && !SettingsPanel.ReducedGore)
             {
                 var ink = InkBloodSplatterManager.Instance;
-                Color color = counterHit ? ink.toriiVermilionColor : ink.sumieInkColor;
-                ink.SpawnAirborneBurst(point, color, scale);
-                ink.SpawnGroundDecal(new Vector3(point.x, 0.02f, 0f), color, scale);
+                if (ink != null)
+                {
+                    Color color = counterHit ? ink.toriiVermilionColor : ink.sumieInkColor;
+                    ink.SpawnAirborneBurst(point, color, scale);
+                    ink.SpawnGroundDecal(new Vector3(point.x, 0.02f, 0f), color, scale);
+                }
             }
 
             if (FighterCamera2D.Instance != null)
             {
                 if (isSuper) FighterCamera2D.Instance.AddExplosionTrauma(0.9f);
                 else if (counterHit) FighterCamera2D.Instance.AddCounterHitTrauma(0.7f);
-                else FighterCamera2D.Instance.AddHitTrauma(0.35f * scale);
+                else if (isHeavy) FighterCamera2D.Instance.AddHitTrauma(0.5f);
+                else FighterCamera2D.Instance.AddHitTrauma(0.25f * scale);
             }
 
             if (isSuper && attacker != null)
@@ -74,14 +91,53 @@ namespace DemonIdol.BlazBlue
                 LastSuperCharacterId = id;
                 OnPortraitHook?.Invoke(id, "super");
                 OnVideoHook?.Invoke(id, "super");
-                // Super flash raised on startup in BBFighterBrain.StartAttack per spec 1.7
+                BBSuperFlash.Raise(id, attacker.transform);
             }
+        }
+
+        public static GameObject SpawnHitSpark(Vector3 point, float scale, bool isSuper, bool isHeavy)
+        {
+            GameObject sparkPrefab = null;
+#if UNITY_EDITOR
+            if (isSuper)
+                sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Sword Trails/Fire/CFXR4 Sword Hit FIRE (Cross).prefab")
+                    ?? UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab");
+            else if (isHeavy)
+                sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab");
+            else
+                sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit A (Red).prefab");
+#endif
+            if (sparkPrefab != null)
+            {
+                var spark = Object.Instantiate(sparkPrefab, point, Quaternion.identity);
+                spark.transform.localScale = Vector3.one * Mathf.Clamp(scale, 0.8f, 2.5f);
+                if (Application.isPlaying) Object.Destroy(spark, 1.5f);
+                return spark;
+            }
+            return null;
+        }
+
+        public static GameObject SpawnGuardSpark(Vector3 point, bool guardCrush)
+        {
+            GameObject sparkPrefab = null;
+#if UNITY_EDITOR
+            sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab");
+#endif
+            if (sparkPrefab != null)
+            {
+                var spark = Object.Instantiate(sparkPrefab, point, Quaternion.identity);
+                spark.transform.localScale = Vector3.one * (guardCrush ? 1.5f : 1.0f);
+                if (Application.isPlaying) Object.Destroy(spark, 1.5f);
+                return spark;
+            }
+            return null;
         }
 
         public static void OnGuard(Vector3 point, bool chip, bool guardCrush)
         {
             LastGuardEvents++;
             ComboCount = 0;
+            SpawnGuardSpark(point, guardCrush);
             if (!Application.isPlaying) return;
             float radius = guardCrush ? 3.2f : chip ? 2.2f : 1.6f;
             ShockwaveDistortionEmitter.EmitPooled(point, radius, guardCrush ? 0.36f : 0.24f);
@@ -157,7 +213,6 @@ namespace DemonIdol.BlazBlue
 
         private static void ShowOverlay()
         {
-            if (!Application.isPlaying) return;
             EnsureOverlay();
             if (s_OverlayGo != null)
             {

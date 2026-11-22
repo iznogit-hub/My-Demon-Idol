@@ -76,10 +76,10 @@ namespace DemonIdol.BlazBlue.Tests
             var fighter = go.AddComponent<FighterController>();
             var brain = go.AddComponent<BBFighterBrain>();
             brain.fighter = fighter;
-            brain.maxHealth = 11000f;
-            brain.SetAuthoritativeHealth(11000f);
+            brain.maxHealth = 10000f;
+            brain.SetAuthoritativeHealth(10000f);
             brain.ReceiveAuthoritativeDamage(300f);
-            Assert.AreEqual(10700f, brain.health, 0.1f);
+            Assert.AreEqual(9700f, brain.health, 0.1f);
             Assert.AreEqual(brain.health, fighter.currentHealth, 0.1f);
             Assert.AreEqual(brain.maxHealth, fighter.maxHealth, 0.1f);
             Object.DestroyImmediate(go);

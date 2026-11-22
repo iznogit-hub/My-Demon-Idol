@@ -12,32 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BoxTrack_SanpakuChan_j.A
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 36
-  frameStart: 00000000000000000000000000000000000000000000000000000000000000000100000002000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
+  tickCount: 19
+  frameStart: 0000000000000000000000000000000000000000000000000000000001000000020000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
   boxes:
-  - cx: 0.65
-    cy: 0.8
-    hx: 0.3
-    hy: 0.2
+  - cx: 0.85
+    cy: -0.35
+    hx: 0.75
+    hy: 0.9
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.65
-    cy: 0.8
-    hx: 0.3
-    hy: 0.2
+  - cx: 0.85
+    cy: -0.35
+    hx: 0.75
+    hy: 0.9
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.65
-    cy: 0.8
-    hx: 0.3
-    hy: 0.2
+  - cx: 0.85
+    cy: -0.35
+    hx: 0.75
+    hy: 0.9
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  keyTicks: 07000000i
+  keyTicks: 06000000i
   bakeHash: Bake_SanpakuChan_j.A_4_3_7

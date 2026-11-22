@@ -31,7 +31,23 @@ namespace DemonIdol.Editor
     {
         public const string RunKey = "MDI_MatchLoop_Run";
         public const string PhaseKey = "MDI_MatchLoop_Phase";
+        public const string TRIGGER_FILE = "run_match_loop.trigger";
         const string MenuScenePath = "Assets/Scenes/MainMenu.unity";
+
+        static MatchLoopVerifier()
+        {
+            EditorApplication.update -= OnEditorUpdate;
+            EditorApplication.update += OnEditorUpdate;
+        }
+
+        private static void OnEditorUpdate()
+        {
+            if (File.Exists(TRIGGER_FILE))
+            {
+                try { File.Delete(TRIGGER_FILE); } catch { }
+                RunVerification();
+            }
+        }
 
         public static void RunVerification()
         {

@@ -14,6 +14,31 @@ namespace DemonIdol.BlazBlue
         public const float DANGER_DAMAGE_MULTIPLIER = 1.25f;
         public const float STYLISH_DAMAGE_MULTIPLIER = 0.80f;
 
+        // Tiered hitstop standards (spec launch pass 1)
+        public const int HITSTOP_LIGHT = 9;
+        public const int HITSTOP_MEDIUM = 11;
+        public const int HITSTOP_HEAVY = 13;
+        public const int HITSTOP_SUPER = 16;
+
+        /// <summary>
+        /// Standard genre combo scaling: 100% for the first 2 hits, then -10% per hit, minimum 20%.
+        /// </summary>
+        public static float CalculateComboScaling(int hitCount)
+        {
+            if (hitCount <= 2) return 1.0f;
+            float scaling = 1.0f - 0.10f * (hitCount - 2);
+            return Mathf.Max(0.20f, scaling);
+        }
+
+        public static int GetTierHitstop(BBButton button, BBMoveKind kind)
+        {
+            if (kind == BBMoveKind.DistortionDrive || kind == BBMoveKind.AstralHeat) return HITSTOP_SUPER;
+            if (kind == BBMoveKind.Special || kind == BBMoveKind.CommandThrow) return HITSTOP_HEAVY;
+            if ((button & (BBButton.C | BBButton.D)) != 0) return HITSTOP_HEAVY;
+            if ((button & BBButton.B) != 0) return HITSTOP_MEDIUM;
+            return HITSTOP_LIGHT;
+        }
+
         /// <summary>
         /// Calculates Guts defense multiplier based on defender's remaining HP ratio.
         /// </summary>

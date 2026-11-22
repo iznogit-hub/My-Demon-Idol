@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 30
-  activeFrames: 3
-  recoveryFrames: 61
+  startupFrames: 16
+  activeFrames: 4
+  recoveryFrames: 18
   hitstunTicks: 18
-  blockstunTicks: 22
+  blockstunTicks: 15
   knockdownDurationTicks: 36
   hitstopAttacker: 10
   hitstopDefender: 10
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -3
   advantageOnHit: 4
   advantageOnCounterHit: 8
-  damage: 850
+  damage: 840
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.92
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: 3094330708855449807, guid: 6ce5c8cc7157f2542b78acd83e609475, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.9, y: 1.1, z: 0}
-  hitboxSize: {x: 1.1, y: 1.1, z: 1}
+  hitboxOffset: {x: 1, y: 1.1, z: 0}
+  hitboxSize: {x: 1.5, y: 0.7, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 5D

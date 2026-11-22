@@ -28,7 +28,7 @@ MonoBehaviour:
   activeFrames: 4
   recoveryFrames: 17
   hitstunTicks: 18
-  blockstunTicks: 22
+  blockstunTicks: 15
   knockdownDurationTicks: 36
   hitstopAttacker: 10
   hitstopDefender: 10
@@ -56,8 +56,8 @@ MonoBehaviour:
   gatlingCancels: 010000000200000003000000i
   animationClip: {fileID: -7717323663351677407, guid: 036e616ba2a20464cb5d9c8f24cefde6, type: 3}
   animationTrigger: LightAttack
-  hitboxOffset: {x: 0.95, y: 1.1, z: 0}
-  hitboxSize: {x: 1.5, y: 0.7, z: 1}
+  hitboxOffset: {x: 1, y: 1.1, z: 0}
+  hitboxSize: {x: 1.55, y: 0.7, z: 1}
   cancelWindow: {x: 5, y: 12}
   archetype: 0
   moveId: 5D

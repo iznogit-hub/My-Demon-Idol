@@ -15,6 +15,7 @@ namespace DemonIdol.UI
     /// round countdown timer, combo counters, announcement banners ("FIGHT!", "K.O.!"),
     /// and match victory modal.
     /// </summary>
+    [ExecuteAlways]
     public class BattleHUDController : MonoBehaviour
     {
         private static BattleHUDController _instance;
@@ -389,6 +390,7 @@ namespace DemonIdol.UI
 
         public void SetFighterNames(string p1Name, string p2Name)
         {
+            if (_p1NameText == null || _p2NameText == null) EnsureHUDComponents();
             if (_p1NameText != null && !string.IsNullOrEmpty(p1Name)) _p1NameText.text = p1Name.ToUpper();
             if (_p2NameText != null && !string.IsNullOrEmpty(p2Name)) _p2NameText.text = p2Name.ToUpper();
             UpdatePortrait(_p1Portrait, p1Name, null);
@@ -496,8 +498,15 @@ namespace DemonIdol.UI
                 _p1HealthFill.fillAmount = _p1TargetFill;
             }
 
-            if (_p1LagRoutine != null) StopCoroutine(_p1LagRoutine);
-            _p1LagRoutine = StartCoroutine(DrainLagBar(_p1HealthLagFill, _p1TargetFill));
+            if (Application.isPlaying)
+            {
+                if (_p1LagRoutine != null) StopCoroutine(_p1LagRoutine);
+                _p1LagRoutine = StartCoroutine(DrainLagBar(_p1HealthLagFill, _p1TargetFill));
+            }
+            else
+            {
+                if (_p1HealthLagFill != null) _p1HealthLagFill.fillAmount = _p1TargetFill;
+            }
         }
 
         private void OnP2HealthChanged(float cur, float max)
@@ -511,8 +520,15 @@ namespace DemonIdol.UI
                 _p2HealthFill.fillAmount = _p2TargetFill;
             }
 
-            if (_p2LagRoutine != null) StopCoroutine(_p2LagRoutine);
-            _p2LagRoutine = StartCoroutine(DrainLagBar(_p2HealthLagFill, _p2TargetFill));
+            if (Application.isPlaying)
+            {
+                if (_p2LagRoutine != null) StopCoroutine(_p2LagRoutine);
+                _p2LagRoutine = StartCoroutine(DrainLagBar(_p2HealthLagFill, _p2TargetFill));
+            }
+            else
+            {
+                if (_p2HealthLagFill != null) _p2HealthLagFill.fillAmount = _p2TargetFill;
+            }
         }
 
         private IEnumerator DrainLagBar(Image lagBar, float targetFill)

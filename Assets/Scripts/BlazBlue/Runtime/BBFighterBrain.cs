@@ -50,8 +50,8 @@ namespace DemonIdol.BlazBlue
         public BBEvaluatedCommand CurrentCommand { get; private set; }
 
         [Header("Gauges & Combos")]
-        public float health = 11000f;
-        public float maxHealth = 11000f;
+        public float health = 10000f;
+        public float maxHealth = 10000f;
         public BBGauges gauges;
         public BBChainState chainState;
         public BBComboState comboState;
@@ -90,7 +90,7 @@ namespace DemonIdol.BlazBlue
                 else bodyBoxes = BBBodyBoxes.CreateAkioPreset();
             }
 
-            maxHealth = profile != null ? profile.maxHealth : 11000f;
+            maxHealth = profile != null ? profile.maxHealth : 10000f;
             health = maxHealth;
             gauges.Initialize(tuning);
             chainState.Reset();
