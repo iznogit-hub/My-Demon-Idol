@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace DemonIdol.BlazBlue
 {
@@ -34,7 +33,7 @@ namespace DemonIdol.BlazBlue
         public static uint HashValue(uint currentHash, float value)
         {
             // Quantize to 0.1 mm precision (10,000 units per meter)
-            int quantized = Mathf.RoundToInt(value * 10000f);
+            int quantized = (int)Math.Round(value * 10000.0);
             return HashValue(currentHash, quantized);
         }
 

@@ -191,4 +191,21 @@ namespace DemonIdol.BlazBlue
         WakeupLowKick,
         WakeupMidKick
     }
+
+    [Flags]
+    public enum BBButton : byte
+    {
+        None  = 0,
+        A     = 1,       // Weak normal (fast, short)
+        B     = 2,       // Medium normal (pokes, anti-air)
+        C     = 4,       // Heavy normal (launchers, big buttons)
+        D     = 8,       // Drive (unique character mechanic)
+        Taunt = 16       // Taunt
+    }
+
+    public enum ControlScheme
+    {
+        Classic3Button  = 0,
+        BlazBlue4Button = 1
+    }
 }

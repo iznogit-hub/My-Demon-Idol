@@ -168,6 +168,10 @@ namespace DemonIdol.UI
             }
             Instance = this;
 
+            DemonIdol.BlazBlue.BBAccessibility.ReducedGoreQuery = () => Instance != null && Instance._current.reducedGore;
+            DemonIdol.BlazBlue.BBAccessibility.ReducedFlashingQuery = () => Instance != null && Instance._current.reducedFlashing;
+            DemonIdol.BlazBlue.BBAccessibility.HighContrastHitboxesQuery = () => Instance != null && Instance._current.highContrastHitboxes;
+
             LoadSettings();
             EnsureSettingsUI();
             BindUI();

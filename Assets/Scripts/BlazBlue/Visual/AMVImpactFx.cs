@@ -63,7 +63,7 @@ namespace DemonIdol.BlazBlue.Visual
             if (s_CanvasGo != null) return;
 
             s_CanvasGo = new GameObject("AMV_Impact_Canvas");
-            DontDestroyOnLoad(s_CanvasGo);
+            if (Application.isPlaying) DontDestroyOnLoad(s_CanvasGo);
 
             s_Canvas = s_CanvasGo.AddComponent<Canvas>();
             s_Canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -213,9 +213,13 @@ namespace DemonIdol.BlazBlue.Visual
             GameObject newGhost = GameObject.CreatePrimitive(PrimitiveType.Quad);
             newGhost.name = "AMV_GhostInstance";
             var col = newGhost.GetComponent<Collider>();
-            if (col != null) Destroy(col);
+            if (col != null)
+            {
+                if (Application.isPlaying) Destroy(col);
+                else DestroyImmediate(col);
+            }
 
-            DontDestroyOnLoad(newGhost);
+            if (Application.isPlaying) DontDestroyOnLoad(newGhost);
             s_GhostPool.Add(newGhost);
             return newGhost;
         }

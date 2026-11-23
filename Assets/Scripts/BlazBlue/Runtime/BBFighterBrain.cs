@@ -26,6 +26,8 @@ namespace DemonIdol.BlazBlue
         public BBAnimationDriver animDriver;
         public IBBDrive drive;
 
+        public int FacingDirection => fighter != null ? fighter.FacingDirection : 1;
+
         [Header("Sim State")]
         public BBState bbState = BBState.Neutral;
         public int stateTick = 0;

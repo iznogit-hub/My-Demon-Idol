@@ -62,39 +62,69 @@ namespace DemonIdol.BlazBlue.Tests
         [Test]
         public void Guts_Threshold_ExactBoundaries()
         {
-            float maxHp = 10000f;
+            int maxHp = 10000;
 
             // > 50%: 1.00x (10,000 BP)
-            Assert.AreEqual(10_000L, BBDamageModel.CalculateGutsBP(5001f, maxHp));
-            Assert.AreEqual(1.00f, BBDamageModel.CalculateGuts(5001f, maxHp), 0.0001f);
+            Assert.AreEqual(10_000L, BBDamageModel.CalculateGutsBP(5001, maxHp));
+            Assert.AreEqual(1.00f, BBDamageModel.CalculateGuts(5001, maxHp), 0.0001f);
 
             // Exactly 50%: falls into tier 2 (0.90x / 9,000 BP)
-            Assert.AreEqual(9_000L, BBDamageModel.CalculateGutsBP(5000f, maxHp));
-            Assert.AreEqual(0.90f, BBDamageModel.CalculateGuts(5000f, maxHp), 0.0001f);
+            Assert.AreEqual(9_000L, BBDamageModel.CalculateGutsBP(5000, maxHp));
+            Assert.AreEqual(0.90f, BBDamageModel.CalculateGuts(5000, maxHp), 0.0001f);
 
             // > 30%: 0.90x (9,000 BP)
-            Assert.AreEqual(9_000L, BBDamageModel.CalculateGutsBP(3001f, maxHp));
+            Assert.AreEqual(9_000L, BBDamageModel.CalculateGutsBP(3001, maxHp));
 
             // Exactly 30%: falls into tier 3 (0.80x / 8,000 BP)
-            Assert.AreEqual(8_000L, BBDamageModel.CalculateGutsBP(3000f, maxHp));
-            Assert.AreEqual(0.80f, BBDamageModel.CalculateGuts(3000f, maxHp), 0.0001f);
+            Assert.AreEqual(8_000L, BBDamageModel.CalculateGutsBP(3000, maxHp));
+            Assert.AreEqual(0.80f, BBDamageModel.CalculateGuts(3000, maxHp), 0.0001f);
 
             // > 20%: 0.80x (8,000 BP)
-            Assert.AreEqual(8_000L, BBDamageModel.CalculateGutsBP(2001f, maxHp));
+            Assert.AreEqual(8_000L, BBDamageModel.CalculateGutsBP(2001, maxHp));
 
             // Exactly 20%: falls into tier 4 (0.70x / 7,000 BP)
-            Assert.AreEqual(7_000L, BBDamageModel.CalculateGutsBP(2000f, maxHp));
-            Assert.AreEqual(0.70f, BBDamageModel.CalculateGuts(2000f, maxHp), 0.0001f);
+            Assert.AreEqual(7_000L, BBDamageModel.CalculateGutsBP(2000, maxHp));
+            Assert.AreEqual(0.70f, BBDamageModel.CalculateGuts(2000, maxHp), 0.0001f);
 
             // > 10%: 0.70x (7,000 BP)
-            Assert.AreEqual(7_000L, BBDamageModel.CalculateGutsBP(1001f, maxHp));
+            Assert.AreEqual(7_000L, BBDamageModel.CalculateGutsBP(1001, maxHp));
 
             // Exactly 10% and below: tier 5 (0.60x / 6,000 BP)
-            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(1000f, maxHp));
-            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(500f, maxHp));
-            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(1f, maxHp));
-            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(0f, maxHp));
-            Assert.AreEqual(0.60f, BBDamageModel.CalculateGuts(0f, maxHp), 0.0001f);
+            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(1000, maxHp));
+            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(500, maxHp));
+            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(1, maxHp));
+            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(0, maxHp));
+            Assert.AreEqual(0.60f, BBDamageModel.CalculateGuts(0, maxHp), 0.0001f);
+        }
+
+        [Test]
+        public void CalculateGutsBP_PureInteger_BoundaryCases()
+        {
+            const int maxHp = 10_000;
+
+            // 100% HP: 10,000 BP (1.00x)
+            Assert.AreEqual(10_000L, BBDamageModel.CalculateGutsBP(10_000, maxHp));
+
+            // 50% HP threshold: exactly 50% = 9,000 BP (0.90x), 50.01% = 10,000 BP (1.00x)
+            Assert.AreEqual(9_000L, BBDamageModel.CalculateGutsBP(5_000, maxHp));
+            Assert.AreEqual(10_000L, BBDamageModel.CalculateGutsBP(5_001, maxHp));
+
+            // 10% HP threshold: exactly 10% = 6,000 BP (0.60x), 10.01% = 7,000 BP (0.70x)
+            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(1_000, maxHp));
+            Assert.AreEqual(7_000L, BBDamageModel.CalculateGutsBP(1_001, maxHp));
+
+            // 1 HP: lowest positive integer -> 6,000 BP (0.60x)
+            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(1, maxHp));
+
+            // 0 HP: dead/critical -> 6,000 BP (0.60x)
+            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(0, maxHp));
+
+            // Overkill / negative current HP -> clamps safely to 0 HP -> 6,000 BP (0.60x)
+            Assert.AreEqual(6_000L, BBDamageModel.CalculateGutsBP(-500, maxHp));
+
+            // Zero or invalid max HP -> safe default 10,000 BP (1.00x)
+            Assert.AreEqual(10_000L, BBDamageModel.CalculateGutsBP(100, 0));
+            Assert.AreEqual(10_000L, BBDamageModel.CalculateGutsBP(100, -100));
         }
 
         [Test]

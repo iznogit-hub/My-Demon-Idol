@@ -46,7 +46,7 @@ namespace DemonIdol.BlazBlue
             // 3. Initial startup pushback to create space in neutral
             if (opponent != null && !isComboActive)
             {
-                BBMatchSim.ApplyPushback(brain.fighter, opponent.fighter, 1.2f, brain.fighter.FacingDirection, 1.0f);
+                BBMatchSim.ApplyPushback(brain.transform, opponent.transform, 1.2f, brain.FacingDirection, 1.0f);
             }
 
             Debug.Log($"<color=#00e676>[BBOverdrive] Overdrive activated on '{brain.name}'! Duration: {brain.gauges.overdriveTicksRemaining} ticks.</color>");

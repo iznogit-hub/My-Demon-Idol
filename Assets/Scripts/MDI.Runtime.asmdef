@@ -3,6 +3,7 @@
     "rootNamespace": "DemonIdol",
     "references": [
         "MDI.BlazBlue.Core",
+        "MDI.BlazBlue.Sim",
         "Unity.InputSystem",
         "Unity.TextMeshPro",
         "UnityEngine.UI",

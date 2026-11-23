@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DemonIdol.Combat;
-using DemonIdol.UI;
 using DemonIdol.VFX;
 using DemonIdol.Audio;
 
@@ -90,7 +89,7 @@ namespace DemonIdol.BlazBlue
                     isHeavy = true;
                 }
             }
-            if (SettingsPanel.ReducedGore) scale *= 0.35f;
+            if (BBAccessibility.ReducedGore) scale *= 0.35f;
 
             // Spawn tier-scaled hit spark
             SpawnHitSpark(point, scale, isSuper, isHeavy);
@@ -132,7 +131,7 @@ namespace DemonIdol.BlazBlue
                 BBAudioBridge.Instance.PlayCombatSound(sfx, point);
             }
 
-            if (Application.isPlaying && !SettingsPanel.ReducedGore)
+            if (Application.isPlaying && !BBAccessibility.ReducedGore)
             {
                 var ink = InkBloodSplatterManager.Instance;
                 if (ink != null)
@@ -394,7 +393,7 @@ namespace DemonIdol.BlazBlue
             }
 
             // Camera: Zoom-flash attacker (subtle if reduced flashing)
-            if (FighterCamera2D.Instance != null && !SettingsPanel.ReducedFlashing)
+            if (FighterCamera2D.Instance != null && !BBAccessibility.ReducedFlashing)
             {
                 FighterCamera2D.Instance.TriggerHitImpactZoom(0.5f, 0.35f);
             }
@@ -431,7 +430,7 @@ namespace DemonIdol.BlazBlue
             {
                 if (s_OverlayImage != null)
                 {
-                    s_OverlayImage.color = new Color(0f, 0f, 0f, SettingsPanel.ReducedFlashing ? 0.35f : 0.75f);
+                    s_OverlayImage.color = new Color(0f, 0f, 0f, BBAccessibility.ReducedFlashing ? 0.35f : 0.75f);
                 }
                 s_OverlayGo.SetActive(true);
             }

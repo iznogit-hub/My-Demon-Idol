@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.CompilerServices;
-using UnityEngine;
 
 namespace DemonIdol.BlazBlue
 {
@@ -69,8 +68,8 @@ namespace DemonIdol.BlazBlue
                         alreadyHit.MarkHit(hitBox.hitIndex);
 
                         // Calculate intersection midpoint as contact point
-                        float cx = (Mathf.Max(hitBox.minX, hurtBox.minX) + Mathf.Min(hitBox.maxX, hurtBox.maxX)) * 0.5f;
-                        float cy = (Mathf.Max(hitBox.minY, hurtBox.minY) + Mathf.Min(hitBox.maxY, hurtBox.maxY)) * 0.5f;
+                        float cx = (Math.Max(hitBox.minX, hurtBox.minX) + Math.Min(hitBox.maxX, hurtBox.maxX)) * 0.5f;
+                        float cy = (Math.Max(hitBox.minY, hurtBox.minY) + Math.Min(hitBox.maxY, hurtBox.maxY)) * 0.5f;
 
                         if (contactCount < results.Length)
                         {
@@ -126,8 +125,8 @@ namespace DemonIdol.BlazBlue
 
                     if (Overlap(in throwBox, in throwHurtBox))
                     {
-                        float cx = (Mathf.Max(throwBox.minX, throwHurtBox.minX) + Mathf.Min(throwBox.maxX, throwHurtBox.maxX)) * 0.5f;
-                        float cy = (Mathf.Max(throwBox.minY, throwHurtBox.minY) + Mathf.Min(throwBox.maxY, throwHurtBox.maxY)) * 0.5f;
+                        float cx = (Math.Max(throwBox.minX, throwHurtBox.minX) + Math.Min(throwBox.maxX, throwHurtBox.maxX)) * 0.5f;
+                        float cy = (Math.Max(throwBox.minY, throwHurtBox.minY) + Math.Min(throwBox.maxY, throwHurtBox.maxY)) * 0.5f;
 
                         if (contactCount < results.Length)
                         {
@@ -171,7 +170,7 @@ namespace DemonIdol.BlazBlue
             // If either box has zero width/height or they don't overlap, no push needed
             if (!Overlap(in p1Push, in p2Push)) return;
 
-            float overlapX = Mathf.Min(p1Push.maxX, p2Push.maxX) - Mathf.Max(p1Push.minX, p2Push.minX);
+            float overlapX = Math.Min(p1Push.maxX, p2Push.maxX) - Math.Max(p1Push.minX, p2Push.minX);
             if (overlapX <= 0f) return;
 
             float p1Center = (p1Push.minX + p1Push.maxX) * 0.5f;
@@ -179,7 +178,7 @@ namespace DemonIdol.BlazBlue
 
             // Deterministic tie-break: if centers match exactly, P1 is on the left
             bool p1IsLeft;
-            if (Mathf.Abs(p1Center - p2Center) < 0.0001f)
+            if (Math.Abs(p1Center - p2Center) < 0.0001f)
             {
                 p1IsLeft = true;
             }
@@ -244,8 +243,8 @@ namespace DemonIdol.BlazBlue
             float p1HalfW = p1Push.HalfWidth;
             float p2HalfW = p2Push.HalfWidth;
 
-            p1x = Mathf.Clamp(p1x, arenaMin + p1HalfW, arenaMax - p1HalfW);
-            p2x = Mathf.Clamp(p2x, arenaMin + p2HalfW, arenaMax - p2HalfW);
+            p1x = Math.Clamp(p1x, arenaMin + p1HalfW, arenaMax - p1HalfW);
+            p2x = Math.Clamp(p2x, arenaMin + p2HalfW, arenaMax - p2HalfW);
 
             // Secondary separation check if edge clamp re-introduced overlap
             if (p1IsLeft)

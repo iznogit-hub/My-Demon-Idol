@@ -18,6 +18,24 @@ namespace DemonIdol.BlazBlue
     /// </summary>
     public static class BBRosterArchetype
     {
+        public static readonly string[] LaunchRosterIds = new string[]
+        {
+            "C01", "C02", "C05", "C06", "C08", "C09", "C11", "C12", "C14", "EX01", "EX04", "SK08"
+        };
+
+        public const string LaunchBossId = "SK08";
+
+        public static bool IsLaunchFighter(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return false;
+            for (int i = 0; i < LaunchRosterIds.Length; i++)
+            {
+                if (string.Equals(LaunchRosterIds[i], id, System.StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+            return false;
+        }
+
         public struct Info
         {
             public string id;

@@ -26,9 +26,9 @@ namespace DemonIdol.BlazBlue
 
         public static BBBodyBoxes CreateFromHip(float hipHeight, float weaponReach, float hipWidth = 0.34f)
         {
-            float hip = Mathf.Max(0.7f, hipHeight);
-            float reach = Mathf.Max(0.4f, weaponReach);
-            float width = Mathf.Clamp(hipWidth > 0.1f ? hipWidth : 0.34f, 0.25f, 0.45f);
+            float hip = Math.Max(0.7f, hipHeight);
+            float reach = Math.Max(0.4f, weaponReach);
+            float width = Math.Clamp(hipWidth > 0.1f ? hipWidth : 0.34f, 0.25f, 0.45f);
             var b = new BBBodyBoxes();
             b.standPushBox = new BBBox(0f, hip * 0.95f, width, hip * 0.95f, BBBoxKind.Push);
             b.standThrowHurtBox = new BBBox(0f, hip, width * 0.82f, hip * 0.7f, BBBoxKind.ThrowHurt);
@@ -52,7 +52,7 @@ namespace DemonIdol.BlazBlue
                 new BBBox(0.00f, hip * 0.80f, width * 0.65f, 0.16f, BBBoxKind.Hurt, 0, BBAttribute.Head),
                 new BBBox(0.00f, hip * 0.28f, width * 0.76f, 0.30f, BBBoxKind.Hurt, 0, BBAttribute.Body)
             };
-            b.standPushBox.hx = Mathf.Max(b.standPushBox.hx, reach * 0.15f);
+            b.standPushBox.hx = Math.Max(b.standPushBox.hx, reach * 0.15f);
             return b;
         }
 

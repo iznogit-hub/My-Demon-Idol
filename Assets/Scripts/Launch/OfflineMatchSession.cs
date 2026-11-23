@@ -26,7 +26,8 @@ namespace DemonIdol.Launch
     /// </summary>
     public sealed class OfflineMatchSession
     {
-        static readonly string[] ArcadeOpponents = { "C02", "C04", "C05", "C06" };
+        // Launch Roster Arcade ladder ending in Torgrim (SK08) boss fight
+        static readonly string[] ArcadeOpponents = { "C02", "C05", "C06", "C08", "C09", "C11", "C12", "C14", "EX01", "EX04", "SK08" };
 
         public PlayModeKind Mode { get; private set; } = PlayModeKind.Training;
         public MatchFlowStep Step { get; private set; } = MatchFlowStep.Boot;

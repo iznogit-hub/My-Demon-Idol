@@ -137,11 +137,11 @@ namespace DemonIdol.BlazBlue.Tests
         [Test]
         public void Test_GutsScaling_Tiers()
         {
-            Assert.AreEqual(1.00f, BBDamageModel.CalculateGuts(6000f, 10000f), 0.001f); // > 50%
-            Assert.AreEqual(0.90f, BBDamageModel.CalculateGuts(4000f, 10000f), 0.001f); // 30-50%
-            Assert.AreEqual(0.80f, BBDamageModel.CalculateGuts(2500f, 10000f), 0.001f); // 20-30%
-            Assert.AreEqual(0.70f, BBDamageModel.CalculateGuts(1500f, 10000f), 0.001f); // 10-20%
-            Assert.AreEqual(0.60f, BBDamageModel.CalculateGuts(500f, 10000f), 0.001f);  // < 10%
+            Assert.AreEqual(1.00f, BBDamageModel.CalculateGuts(6000, 10000), 0.001f); // > 50%
+            Assert.AreEqual(0.90f, BBDamageModel.CalculateGuts(4000, 10000), 0.001f); // 30-50%
+            Assert.AreEqual(0.80f, BBDamageModel.CalculateGuts(2500, 10000), 0.001f); // 20-30%
+            Assert.AreEqual(0.70f, BBDamageModel.CalculateGuts(1500, 10000), 0.001f); // 10-20%
+            Assert.AreEqual(0.60f, BBDamageModel.CalculateGuts(500, 10000), 0.001f);  // < 10%
         }
 
         [Test]

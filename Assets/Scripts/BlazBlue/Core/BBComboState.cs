@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace DemonIdol.BlazBlue
 {
@@ -132,7 +131,7 @@ namespace DemonIdol.BlazBlue
             if (isFatalCounter)
             {
                 // Fatal Counter shifts decay thresholds by +120 ticks
-                effectiveTime = Mathf.Max(0, effectiveTime - 120);
+                effectiveTime = Math.Max(0, effectiveTime - 120);
             }
 
             int decay = 0;
@@ -142,7 +141,7 @@ namespace DemonIdol.BlazBlue
                 else if (effectiveTime > 420) decay = 6;
                 else if (effectiveTime > 300) decay = 4;
                 else if (effectiveTime > 180) decay = 2;
-                return Mathf.Max(6, authoredHitstun - decay);
+                return Math.Max(6, authoredHitstun - decay);
             }
             else
             {
@@ -150,7 +149,7 @@ namespace DemonIdol.BlazBlue
                 else if (effectiveTime > 420) decay = 18;
                 else if (effectiveTime > 300) decay = 12;
                 else if (effectiveTime > 180) decay = 6;
-                return Mathf.Max(6, authoredHitstun - decay);
+                return Math.Max(6, authoredHitstun - decay);
             }
         }
 
@@ -162,7 +161,7 @@ namespace DemonIdol.BlazBlue
         public float CalculateJuggleGravity(float baseGravity, float scalePerHit = 0.06f, float cap = 1.9f)
         {
             float scale = 1.0f + (scalePerHit * airHitsInCombo);
-            scale = Mathf.Min(cap, scale);
+            scale = Math.Min(cap, scale);
 
             if (isFatalCounter)
             {

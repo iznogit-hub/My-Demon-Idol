@@ -1,8 +1,6 @@
 using System;
 using Unity.Profiling;
 using UnityEngine;
-using DemonIdol.Combat;
-using DemonIdol.UI;
 
 namespace DemonIdol.BlazBlue
 {
@@ -13,12 +11,16 @@ namespace DemonIdol.BlazBlue
     /// 5. Build World Boxes -> 6. Throw Pass -> 7. Strike Pass -> 8. Projectile Pass ->
     /// 9. Apply Damage/Stun/Gauges -> 10. Facing Latch -> 11. State Hash.
     ///
+    /// Pure simulation authority with zero upward coupling to UI or presentation layers.
     /// Zero allocations per tick; profiling via markers "BB.Tick" and "BB.Collide".
     /// </summary>
     [ExecuteAlways]
     public class BBMatchSim : MonoBehaviour
     {
         public static BBMatchSim Instance { get; private set; }
+
+        public const float TICK_RATE = 60f;
+        public const float TICK_DELTA_TIME = 1f / TICK_RATE; // 16.666ms
 
         private static readonly ProfilerMarker s_SimTickMarker = new ProfilerMarker("BB.Tick");
         private static readonly ProfilerMarker s_CollideMarker = new ProfilerMarker("BB.Collide");
@@ -34,6 +36,13 @@ namespace DemonIdol.BlazBlue
         public int currentTick = 0;
         public int comboHitCount = 0;
         public uint lastTickHash = 0;
+
+        [Header("Clock & Simulation Authority")]
+        public bool isPaused = false;
+        public bool IsSimulationPaused => isPaused;
+        public bool CanAcceptCombatTick => enabled && gameObject.activeInHierarchy && !isPaused;
+        public bool isExternallyDriven = false;
+        private float _internalAccumulator = 0f;
 
         // Zero-allocation preallocated collision buffers
         private readonly BBBoxBuffer _p1Boxes = new BBBoxBuffer();
@@ -69,20 +78,26 @@ namespace DemonIdol.BlazBlue
             return Mathf.Clamp(x, -ARENA_LIMIT_X, ARENA_LIMIT_X);
         }
 
-        public static void ApplyPushback(FighterController attacker, FighterController defender, float pushbackAmount, int attackerFacingDir, float multiplier = 1.0f)
+        public static void ApplyPushback(Transform attacker, Transform defender, float pushbackAmount, int attackerFacingDir, float multiplier = 1.0f)
         {
             if (attacker == null || defender == null) return;
             float effectivePushback = pushbackAmount * multiplier;
-            float defenderPosX = defender.transform.position.x;
+            float defenderPosX = defender.position.x;
             bool isDefenderAtWall = Mathf.Abs(defenderPosX) >= (ARENA_LIMIT_X - 0.75f);
             if (isDefenderAtWall)
             {
-                attacker.ApplyHorizontalDisplacement(-attackerFacingDir * effectivePushback);
+                attacker.position = new Vector3(attacker.position.x - attackerFacingDir * effectivePushback, attacker.position.y, attacker.position.z);
             }
             else
             {
-                defender.ApplyHorizontalDisplacement(attackerFacingDir * effectivePushback);
+                defender.position = new Vector3(defender.position.x + attackerFacingDir * effectivePushback, defender.position.y, defender.position.z);
             }
+        }
+
+        public static void ApplyPushback(BBFighterBrain attacker, BBFighterBrain defender, float pushbackAmount, int attackerFacingDir, float multiplier = 1.0f)
+        {
+            if (attacker == null || defender == null) return;
+            ApplyPushback(attacker.transform, defender.transform, pushbackAmount, attackerFacingDir, multiplier);
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -118,39 +133,29 @@ namespace DemonIdol.BlazBlue
             }
         }
 
-        bool _boundToClock;
-
         private void OnEnable()
         {
-            if (Application.isPlaying) TryBindClock();
+            _internalAccumulator = 0f;
         }
 
         private void Update()
         {
-            // The clock may not exist yet when this component is enabled.
-            if (Application.isPlaying && !_boundToClock) TryBindClock();
+            // If driven by an external clock (such as CombatTickEngine), skip internal accumulator
+            if (isExternallyDriven || !CanAcceptCombatTick || !Application.isPlaying) return;
+
+            _internalAccumulator += Time.unscaledDeltaTime;
+            if (_internalAccumulator > 0.2f) _internalAccumulator = 0.2f;
+
+            while (_internalAccumulator >= TICK_DELTA_TIME)
+            {
+                _internalAccumulator -= TICK_DELTA_TIME;
+                Tick(currentTick + 1);
+            }
         }
 
         private void OnDisable()
         {
-            if (CombatTickEngine.Instance != null)
-            {
-                CombatTickEngine.Instance.OnTick -= Tick;
-            }
-            _boundToClock = false;
-        }
-
-        void TryBindClock()
-        {
-            if (!Application.isPlaying) return;
-            if (_boundToClock && CombatTickEngine.Instance == null)
-                _boundToClock = false;
-            if (_boundToClock) return;
-            CombatTickEngine clock = CombatTickEngine.EnsureRunning();
-            if (clock == null) return;
-            clock.OnTick -= Tick;
-            clock.OnTick += Tick;
-            _boundToClock = true;
+            _internalAccumulator = 0f;
         }
 
         public void RegisterFighters(BBFighterBrain p1, BBFighterBrain p2)
@@ -427,21 +432,16 @@ namespace DemonIdol.BlazBlue
         public void RaiseBurstExecuted(int playerIndex, BBBurstType burstType, Vector3 pos)
         {
             OnBurstExecuted?.Invoke(playerIndex, burstType, pos);
-            if (FighterCamera2D.Instance != null) FighterCamera2D.Instance.AddTrauma(0.45f);
-            if (DemonIdol.Audio.CombatAudioDirector.Instance != null) DemonIdol.Audio.CombatAudioDirector.Instance.PlayBurst();
         }
 
         public void RaiseRapidCancel(int playerIndex, Vector3 pos)
         {
             OnRapidCanceled?.Invoke(playerIndex, pos);
-            if (FighterCamera2D.Instance != null) FighterCamera2D.Instance.AddTrauma(0.25f);
-            if (DemonIdol.Audio.CombatAudioDirector.Instance != null) DemonIdol.Audio.CombatAudioDirector.Instance.PlayRapidCancel();
         }
 
         public void RaiseOverdriveActivated(int playerIndex, Vector3 pos)
         {
             OnOverdriveActivated?.Invoke(playerIndex, pos);
-            if (FighterCamera2D.Instance != null) FighterCamera2D.Instance.AddTrauma(0.35f);
         }
 
         private void TickProjectiles()
@@ -460,7 +460,7 @@ namespace DemonIdol.BlazBlue
                     continue;
                 }
 
-                proj.position += proj.velocity * CombatTickEngine.TICK_DELTA_TIME;
+                proj.position += proj.velocity * TICK_DELTA_TIME;
 
                 BBFighterBrain defender = (proj.ownerIndex == 0) ? p2Brain : p1Brain;
                 BBFighterBrain attacker = (proj.ownerIndex == 0) ? p1Brain : p2Brain;
@@ -603,9 +603,9 @@ namespace DemonIdol.BlazBlue
                             grav = brain.opponentBrain.comboState.CalculateJuggleGravity(baseGrav, scalePerHit, cap);
                         }
 
-                        brain.simVelocity.y -= grav * CombatTickEngine.TICK_DELTA_TIME;
-                        pos.x += brain.simVelocity.x * CombatTickEngine.TICK_DELTA_TIME;
-                        pos.y += brain.simVelocity.y * CombatTickEngine.TICK_DELTA_TIME;
+                        brain.simVelocity.y -= grav * TICK_DELTA_TIME;
+                        pos.x += brain.simVelocity.x * TICK_DELTA_TIME;
+                        pos.y += brain.simVelocity.y * TICK_DELTA_TIME;
                         if (pos.y <= 0f)
                         {
                             pos.y = 0f;
@@ -647,22 +647,22 @@ namespace DemonIdol.BlazBlue
                     {
                         case BBState.WalkForward:
                             float walkF = brain.profile != null ? brain.profile.forwardWalkSpeed : 3.6f;
-                            pos.x += facing * walkF * CombatTickEngine.TICK_DELTA_TIME;
+                            pos.x += facing * walkF * TICK_DELTA_TIME;
                             break;
 
                         case BBState.WalkBackward:
                             float walkB = brain.profile != null ? brain.profile.backwardWalkSpeed : 2.8f;
-                            pos.x -= facing * walkB * CombatTickEngine.TICK_DELTA_TIME;
+                            pos.x -= facing * walkB * TICK_DELTA_TIME;
                             break;
 
                         case BBState.ForwardDash:
                             float dashSpeed = brain.profile != null ? brain.profile.forwardDashSpeed : 6.5f;
-                            pos.x += facing * dashSpeed * CombatTickEngine.TICK_DELTA_TIME;
+                            pos.x += facing * dashSpeed * TICK_DELTA_TIME;
                             break;
 
                         case BBState.Backdash:
                             float bdashSpeed = brain.profile != null ? brain.profile.backdashSpeed : 7.0f;
-                            pos.x -= facing * bdashSpeed * CombatTickEngine.TICK_DELTA_TIME;
+                            pos.x -= facing * bdashSpeed * TICK_DELTA_TIME;
                             break;
                     }
                 }
@@ -868,7 +868,7 @@ namespace DemonIdol.BlazBlue
                         defender.barrierSys.ApplyBarrierBlock(baseDamage, currentTick, out float pushbackMult, out int blockstunReduction);
                         defender.bbState = BBState.BarrierBlockstun;
                         defender.blockstunRemaining = Mathf.Max(1, blockstun - blockstunReduction);
-                        ApplyPushback(attacker.fighter, defender.fighter, 0.4f, attacker.fighter.FacingDirection, pushbackMult);
+                        ApplyPushback(attacker, defender, 0.4f, attacker.FacingDirection, pushbackMult);
                     }
                     else
                     {
@@ -881,7 +881,7 @@ namespace DemonIdol.BlazBlue
                         defender.bbState = BBState.Blockstun;
                         defender.blockstunRemaining = blockstun;
                         if (defender.animDriver != null) defender.animDriver.UpdateLocomotionState(defender.bbState, 4, defender.isGrounded);
-                        ApplyPushback(attacker.fighter, defender.fighter, 0.3f, attacker.fighter.FacingDirection, 1.0f);
+                        ApplyPushback(attacker, defender, 0.3f, attacker.FacingDirection, 1.0f);
                     }
 
                     attacker.hitstopRemaining = hitstopA;
@@ -926,15 +926,7 @@ namespace DemonIdol.BlazBlue
 
                     bool isFatal = attacker.currentAttack != null && attacker.currentAttack.fatalCounter && isCounterHit;
 
-                    int hitLevel = 1;
-                    if (attacker.currentAttack is BBAttackData bbAtk)
-                    {
-                        hitLevel = bbAtk.AttackLevel;
-                    }
-                    else if (attacker.currentAttack != null)
-                    {
-                        hitLevel = Mathf.Clamp((int)attacker.currentAttack.hitLevel, 0, 5);
-                    }
+                    int hitLevel = attacker.currentAttack != null ? attacker.currentAttack.AttackLevel : 1;
                     int extraHitstop = 0;
                     switch (hitLevel)
                     {
@@ -1026,7 +1018,7 @@ namespace DemonIdol.BlazBlue
                     attacker.gauges.AddHeatOnHit(moveButton, moveKind, false, tuning);
                     defender.gauges.AddHeatOnDamageTaken(scaledDmg, tuning);
 
-                    ApplyPushback(attacker.fighter, defender.fighter, 0.35f, attacker.fighter.FacingDirection, 1.0f);
+                    ApplyPushback(attacker, defender, 0.35f, attacker.FacingDirection, 1.0f);
                     comboHitCount++;
 
                     // Mark contact on attacker chain state

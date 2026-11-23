@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using DemonIdol.UI;
 
 namespace DemonIdol.BlazBlue
 {
@@ -64,7 +63,7 @@ namespace DemonIdol.BlazBlue
             var brains = FindObjectsByType<BBFighterBrain>(FindObjectsSortMode.None);
             if (brains == null || brains.Length == 0) return;
 
-            bool highContrast = SettingsPanel.HighContrastHitboxes;
+            bool highContrast = BBAccessibility.HighContrastHitboxes;
 
             _lineMaterial.SetPass(0);
             GL.PushMatrix();
@@ -100,7 +99,7 @@ namespace DemonIdol.BlazBlue
             var brains = FindObjectsByType<BBFighterBrain>(FindObjectsSortMode.None);
             if (brains == null) return;
 
-            bool highContrast = SettingsPanel.HighContrastHitboxes;
+            bool highContrast = BBAccessibility.HighContrastHitboxes;
 
             for (int b = 0; b < brains.Length; b++)
             {

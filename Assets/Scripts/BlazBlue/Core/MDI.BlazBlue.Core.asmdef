@@ -1,7 +1,9 @@
 {
     "name": "MDI.BlazBlue.Core",
     "rootNamespace": "DemonIdol.BlazBlue",
-    "references": [],
+    "references": [
+        "MDI.BlazBlue.Sim"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

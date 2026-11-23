@@ -114,6 +114,12 @@ namespace DemonIdol.Combat
                 {
                     OnTick?.Invoke(CurrentTick);
                 }
+
+                if (DemonIdol.BlazBlue.BBMatchSim.Instance != null && DemonIdol.BlazBlue.BBMatchSim.Instance.CanAcceptCombatTick)
+                {
+                    DemonIdol.BlazBlue.BBMatchSim.Instance.isExternallyDriven = true;
+                    DemonIdol.BlazBlue.BBMatchSim.Instance.Tick(CurrentTick);
+                }
             }
         }
 
@@ -141,6 +147,12 @@ namespace DemonIdol.Combat
                 else
                 {
                     OnTick?.Invoke(CurrentTick);
+                }
+
+                if (DemonIdol.BlazBlue.BBMatchSim.Instance != null && DemonIdol.BlazBlue.BBMatchSim.Instance.CanAcceptCombatTick)
+                {
+                    DemonIdol.BlazBlue.BBMatchSim.Instance.isExternallyDriven = true;
+                    DemonIdol.BlazBlue.BBMatchSim.Instance.Tick(CurrentTick);
                 }
             }
         }

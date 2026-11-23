@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace DemonIdol.BlazBlue
 {
@@ -92,8 +91,8 @@ namespace DemonIdol.BlazBlue
         {
             float worldCx = posX + (facing * local.cx);
             float worldCy = posY + local.cy;
-            float absHx = Mathf.Abs(local.hx);
-            float absHy = Mathf.Abs(local.hy);
+            float absHx = Math.Abs(local.hx);
+            float absHy = Math.Abs(local.hy);
 
             return new BBWorldBox(
                 worldCx - absHx,

@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace DemonIdol.BlazBlue
 {
@@ -55,13 +54,13 @@ namespace DemonIdol.BlazBlue
 
         /// <summary>
         /// Calculates Guts defense multiplier in basis points (10,000 = 100%) based on defender's remaining HP ratio.
-        /// Deterministic integer division and comparisons.
+        /// Strictly deterministic 64-bit integer division and comparisons with zero floating-point math.
         /// </summary>
-        public static long CalculateGutsBP(float currentHp, float maxHp)
+        public static long CalculateGutsBP(int currentHp, int maxHp)
         {
-            if (maxHp <= 0f) return BP_SCALE;
-            long cur = (long)Mathf.Round(Mathf.Max(0f, currentHp));
-            long max = (long)Mathf.Round(maxHp);
+            if (maxHp <= 0) return BP_SCALE;
+            long cur = Math.Max(0, currentHp);
+            long max = maxHp;
             if (max <= 0L) return BP_SCALE;
 
             long ratioBP = (cur * BP_SCALE) / max;
@@ -76,7 +75,7 @@ namespace DemonIdol.BlazBlue
         /// <summary>
         /// Calculates Guts defense multiplier based on defender's remaining HP ratio.
         /// </summary>
-        public static float CalculateGuts(float currentHp, float maxHp)
+        public static float CalculateGuts(int currentHp, int maxHp)
         {
             return CalculateGutsBP(currentHp, maxHp) / (float)BP_SCALE;
         }
@@ -99,17 +98,17 @@ namespace DemonIdol.BlazBlue
         {
             if (baseDamage <= 0f) return 0;
 
-            long baseDmg = (long)Mathf.Round(baseDamage);
+            long baseDmg = (long)Math.Round(baseDamage);
             if (baseDmg <= 0L) return 0;
 
             // 1. Initial starter proration (P1 clamped 10% to 100% in BP)
-            long p1BP = Mathf.Clamp((int)Mathf.Round(comboP1 * BP_SCALE), 1_000, 10_000);
+            long p1BP = Math.Clamp((int)Math.Round(comboP1 * BP_SCALE), 1_000, 10_000);
 
             // 2. Accumulated per-hit decay (P2 clamped 1% to 100% in BP)
-            long p2BP = Mathf.Clamp((int)Mathf.Round(accumulatedP2 * BP_SCALE), 100, 10_000);
+            long p2BP = Math.Clamp((int)Math.Round(accumulatedP2 * BP_SCALE), 100, 10_000);
 
             // 3. Same-move decay in integer BP: penalty ^ (uses - 1)
-            long penaltyBP = Mathf.Clamp((int)Mathf.Round(sameMovePenalty * BP_SCALE), 1_000, 10_000);
+            long penaltyBP = Math.Clamp((int)Math.Round(sameMovePenalty * BP_SCALE), 1_000, 10_000);
             long repeatFactorBP = BP_SCALE;
             if (moveUsesInCombo > 1)
             {
@@ -122,7 +121,9 @@ namespace DemonIdol.BlazBlue
             // 4. Modifiers in integer BP
             long dangerBP = isDefenderInDanger ? DANGER_DAMAGE_MULTIPLIER_BP : BP_SCALE;
             long stylishBP = isAttackerStylish ? STYLISH_DAMAGE_MULTIPLIER_BP : BP_SCALE;
-            long gutsBP = CalculateGutsBP(defenderCurrentHp, defenderMaxHp);
+            int curHpInt = (int)Math.Round(defenderCurrentHp);
+            int maxHpInt = (int)Math.Round(defenderMaxHp);
+            long gutsBP = CalculateGutsBP(curHpInt, maxHpInt);
 
             // 5. Total multiplier accumulation in basis points (preserves deterministic fighting-game proration)
             long totalMultiplierBP = BP_SCALE;
@@ -136,7 +137,7 @@ namespace DemonIdol.BlazBlue
             long scaledDamage = (baseDmg * totalMultiplierBP) / BP_SCALE;
 
             // 6. Minimum damage floor
-            long minDmgBP = Mathf.Clamp((int)Mathf.Round(minDamagePct * BP_SCALE), 0, 10_000);
+            long minDmgBP = Math.Clamp((int)Math.Round(minDamagePct * BP_SCALE), 0, 10_000);
             long minDamage = (baseDmg * minDmgBP) / BP_SCALE;
             long finalDamage = Math.Max(scaledDamage, minDamage);
 
@@ -157,10 +158,10 @@ namespace DemonIdol.BlazBlue
         {
             if (isBarriering || baseDamage <= 0f) return 0;
 
-            long baseDmg = (long)Mathf.Round(baseDamage);
+            long baseDmg = (long)Math.Round(baseDamage);
             if (baseDmg <= 0L) return 0;
 
-            long chipRateBP = (long)Mathf.Round(authoredChipPct * BP_SCALE);
+            long chipRateBP = (long)Math.Round(authoredChipPct * BP_SCALE);
             if (chipRateBP <= 0L)
             {
                 switch (moveKind)

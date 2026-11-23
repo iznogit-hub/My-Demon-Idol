@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using DemonIdol.Combat;
 using DemonIdol.Input;
-using DemonIdol.UI;
 
 namespace DemonIdol.BlazBlue
 {
@@ -214,7 +213,6 @@ namespace DemonIdol.BlazBlue
 
                 if (BBTouchLayout.ShouldShowTouchControls() && canvas.GetComponentInChildren<BBTouchLayout>(true) == null)
                 {
-                    UiEventSystemInputBootstrap.ReconcileLoadedEventSystems();
                     BBTouchLayout.Create(canvas.transform, p1Brain.sampler);
                 }
             }
