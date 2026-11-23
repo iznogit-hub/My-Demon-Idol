@@ -8,7 +8,7 @@ namespace DemonIdol.Firebase
     /// Service for Firebase Authentication in Demon Idol.
     /// Manages Anonymous Guest Logins, Email/Password Sign-In, Account Linking,
     /// Token retrieval for Quantum Custom Auth, and Account Deletion (Apple Guideline 5.1.1(v)).
-    /// Includes resilient local dev/offline persistence for testing without live cloud dependencies.
+    /// Includes hardened dev mock auth isolated strictly from release builds.
     /// </summary>
     public class FirebaseAuthService : MonoBehaviour
     {
@@ -27,6 +27,12 @@ namespace DemonIdol.Firebase
         public event Action<string> OnAuthError;
         public event Action OnAccountDeleted;
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            Instance = null;
+        }
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -40,8 +46,38 @@ namespace DemonIdol.Firebase
             LoadCachedSession();
         }
 
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
+        }
+
+        /// <summary>
+        /// Computes a deterministic 32-bit FNV-1a hex digest.
+        /// Replaces non-deterministic string.GetHashCode() and prevents OverflowException on Math.Abs(int.MinValue).
+        /// </summary>
+        public static string ComputeDeterministicHash(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return "00000000";
+            unchecked
+            {
+                uint hash = 2166136261;
+                for (int i = 0; i < input.Length; i++)
+                {
+                    hash = (hash ^ input[i]) * 16777619;
+                }
+                return hash.ToString("x8");
+            }
+        }
+
         private void LoadCachedSession()
         {
+#if !UNITY_EDITOR && !DEVELOPMENT_BUILD && !MDI_ALLOW_MOCK_AUTH
+            // In release builds, do not load unencrypted mock credentials from PlayerPrefs
+            CurrentUser = null;
+#else
             if (PlayerPrefs.HasKey(PREFS_USER_ID))
             {
                 string uid = PlayerPrefs.GetString(PREFS_USER_ID);
@@ -51,8 +87,13 @@ namespace DemonIdol.Firebase
                 string token = PlayerPrefs.GetString(PREFS_TOKEN, GenerateMockToken(uid));
 
                 CurrentUser = new FirebaseUser(uid, name, email, isAnon, token);
+#if UNITY_EDITOR
                 Debug.Log($"<color=#69F0AE>[FirebaseAuthService] Restored cached session for user: {name} ({uid})</color>");
+#else
+                Debug.Log("[FirebaseAuthService] Restored cached session.");
+#endif
             }
+#endif
         }
 
         /// <summary>
@@ -62,6 +103,12 @@ namespace DemonIdol.Firebase
         {
             await Task.CompletedTask;
 
+#if !UNITY_EDITOR && !DEVELOPMENT_BUILD && !MDI_ALLOW_MOCK_AUTH
+            string err = "Anonymous mock authentication is disabled in release builds. Cloud authentication service required.";
+            Debug.LogError($"[FirebaseAuthService] {err}");
+            OnAuthError?.Invoke(err);
+            return null;
+#else
             try
             {
                 string uid = "guest_" + Guid.NewGuid().ToString("N").Substring(0, 10);
@@ -71,7 +118,11 @@ namespace DemonIdol.Firebase
                 CurrentUser = new FirebaseUser(uid, name, string.Empty, isAnonymous: true, token);
                 SaveSession(CurrentUser);
 
+#if UNITY_EDITOR
                 Debug.Log($"<color=#69F0AE>[FirebaseAuthService] Signed in anonymously as {name} ({uid})</color>");
+#else
+                Debug.Log("[FirebaseAuthService] Signed in anonymously as guest.");
+#endif
                 OnAuthStateChanged?.Invoke(CurrentUser);
                 return CurrentUser;
             }
@@ -81,6 +132,7 @@ namespace DemonIdol.Firebase
                 OnAuthError?.Invoke(ex.Message);
                 return null;
             }
+#endif
         }
 
         /// <summary>
@@ -97,16 +149,27 @@ namespace DemonIdol.Firebase
                 return null;
             }
 
+#if !UNITY_EDITOR && !DEVELOPMENT_BUILD && !MDI_ALLOW_MOCK_AUTH
+            string releaseErr = "Local email mock authentication is disabled in release builds. Cloud authentication service required.";
+            Debug.LogError($"[FirebaseAuthService] {releaseErr}");
+            OnAuthError?.Invoke(releaseErr);
+            return null;
+#else
             try
             {
-                string uid = "user_" + Math.Abs(email.GetHashCode()).ToString();
-                string name = email.Split('@')[0].ToUpper();
+                string cleanEmail = email.Trim().ToLowerInvariant();
+                string uid = "user_" + ComputeDeterministicHash(cleanEmail);
+                string name = cleanEmail.Split('@')[0].ToUpper();
                 string token = GenerateMockToken(uid);
 
                 CurrentUser = new FirebaseUser(uid, name, email, isAnonymous: false, token);
                 SaveSession(CurrentUser);
 
+#if UNITY_EDITOR
                 Debug.Log($"<color=#69F0AE>[FirebaseAuthService] Signed in with email: {email}</color>");
+#else
+                Debug.Log("[FirebaseAuthService] Signed in with email (redacted).");
+#endif
                 OnAuthStateChanged?.Invoke(CurrentUser);
                 return CurrentUser;
             }
@@ -116,6 +179,7 @@ namespace DemonIdol.Firebase
                 OnAuthError?.Invoke(ex.Message);
                 return null;
             }
+#endif
         }
 
         /// <summary>
@@ -132,6 +196,12 @@ namespace DemonIdol.Firebase
                 return null;
             }
 
+#if !UNITY_EDITOR && !DEVELOPMENT_BUILD && !MDI_ALLOW_MOCK_AUTH
+            string releaseErr = "Local registration mock authentication is disabled in release builds. Cloud authentication service required.";
+            Debug.LogError($"[FirebaseAuthService] {releaseErr}");
+            OnAuthError?.Invoke(releaseErr);
+            return null;
+#else
             try
             {
                 string uid = "user_" + Guid.NewGuid().ToString("N").Substring(0, 10);
@@ -141,7 +211,11 @@ namespace DemonIdol.Firebase
                 CurrentUser = new FirebaseUser(uid, name, email, isAnonymous: false, token);
                 SaveSession(CurrentUser);
 
+#if UNITY_EDITOR
                 Debug.Log($"<color=#69F0AE>[FirebaseAuthService] Registered new account: {name} ({email})</color>");
+#else
+                Debug.Log("[FirebaseAuthService] Registered new account (redacted).");
+#endif
                 OnAuthStateChanged?.Invoke(CurrentUser);
                 return CurrentUser;
             }
@@ -151,6 +225,7 @@ namespace DemonIdol.Firebase
                 OnAuthError?.Invoke(ex.Message);
                 return null;
             }
+#endif
         }
 
         /// <summary>
@@ -174,7 +249,9 @@ namespace DemonIdol.Firebase
 
             try
             {
+#if UNITY_EDITOR
                 string uid = CurrentUser != null ? CurrentUser.UserId : string.Empty;
+#endif
                 ClearSession();
                 CurrentUser = null;
 
@@ -184,7 +261,11 @@ namespace DemonIdol.Firebase
                 PlayerPrefs.DeleteKey("DemonIdol_Story_LastSave");
                 PlayerPrefs.Save();
 
+#if UNITY_EDITOR
                 Debug.Log($"<color=#FF5252>[FirebaseAuthService] Account {uid} permanently deleted & local data purged.</color>");
+#else
+                Debug.Log("<color=#FF5252>[FirebaseAuthService] User account permanently deleted & local data purged.</color>");
+#endif
                 OnAccountDeleted?.Invoke();
                 OnAuthStateChanged?.Invoke(null);
                 return true;
@@ -203,7 +284,11 @@ namespace DemonIdol.Firebase
             {
                 return CurrentUser.IdToken;
             }
+#if UNITY_EDITOR || DEVELOPMENT_BUILD || MDI_ALLOW_MOCK_AUTH
             return GenerateMockToken(CurrentUser != null ? CurrentUser.UserId : "guest");
+#else
+            return string.Empty;
+#endif
         }
 
         private void SaveSession(FirebaseUser user)
@@ -226,9 +311,11 @@ namespace DemonIdol.Firebase
             PlayerPrefs.Save();
         }
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD || MDI_ALLOW_MOCK_AUTH
         private string GenerateMockToken(string uid)
         {
             return $"mdi_jwt_{uid}_{DateTime.UtcNow.Ticks}";
         }
+#endif
     }
 }

@@ -21,6 +21,12 @@ namespace DemonIdol.Firebase
 
         public event Action OnFirebaseInitialized;
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            Instance = null;
+        }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void AutoInitialize()
         {
@@ -43,6 +49,14 @@ namespace DemonIdol.Firebase
             DontDestroyOnLoad(gameObject);
 
             InitializeServices();
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
         }
 
         private void InitializeServices()
