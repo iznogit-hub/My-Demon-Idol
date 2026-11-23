@@ -147,30 +147,57 @@ namespace DemonIdol.Editor
             GameObject audioObj = new GameObject("CombatAudio_Manager");
             audioObj.AddComponent<CombatAudioDirector>();
 
-            // 2. Camera & Spatial Lighting
+            // 2. Camera, Atmosphere & Spatial Lighting (Phase 2 & 3 LookDev)
+            RenderSettings.fog = true;
+            RenderSettings.fogMode = FogMode.ExponentialSquared;
+            RenderSettings.fogColor = SumiStyleTokens.FogTeal;
+            RenderSettings.fogDensity = 0.045f;
+
             GameObject camObj = new GameObject("Main Camera");
             camObj.tag = "MainCamera";
             Camera cam = camObj.AddComponent<Camera>();
             cam.clearFlags = CameraClearFlags.SolidColor;
-            cam.backgroundColor = new Color(0.06f, 0.07f, 0.09f, 1f);
+            cam.backgroundColor = SumiStyleTokens.FogTeal;
+            cam.fieldOfView = 30f;
             camObj.AddComponent<UniversalAdditionalCameraData>();
             camObj.AddComponent<AudioListener>();
             camObj.transform.position = new Vector3(0f, 1.25f, -4.5f);
             camObj.transform.rotation = Quaternion.Euler(4f, -4f, 0f);
 
+            var camRig = camObj.AddComponent<DemonIdol.Cinematics.MenuFighterCameraRig>();
+            camRig.targetFOV = 30f;
+
+            // 3-Point Anime Rim Rig
             GameObject keyLight = new GameObject("Directional_KeyLight");
             Light kl = keyLight.AddComponent<Light>();
             kl.type = LightType.Directional;
-            kl.color = new Color(1f, 0.95f, 0.88f);
-            kl.intensity = 1.3f;
+            kl.color = new Color(0.9f, 0.95f, 1f);
+            kl.intensity = 1.25f;
             keyLight.transform.rotation = Quaternion.Euler(35f, -30f, 0f);
 
             GameObject rimLight = new GameObject("Directional_RimLight");
             Light rl = rimLight.AddComponent<Light>();
             rl.type = LightType.Directional;
-            rl.color = new Color(0.4f, 0.7f, 1f);
-            rl.intensity = 0.85f;
+            rl.color = SumiStyleTokens.KineticGreen;
+            rl.intensity = 1.4f;
             rimLight.transform.rotation = Quaternion.Euler(-20f, 150f, 0f);
+
+            GameObject fillLight = new GameObject("Directional_UnderFill");
+            Light fl = fillLight.AddComponent<Light>();
+            fl.type = LightType.Directional;
+            fl.color = new Color(0.12f, 0.15f, 0.22f);
+            fl.intensity = 0.45f;
+            fillLight.transform.rotation = Quaternion.Euler(60f, 45f, 0f);
+
+            // URP Post-Processing Volume
+            GameObject volObj = new GameObject("MainMenu_PostProcessVolume");
+            Volume volume = volObj.AddComponent<Volume>();
+            volume.isGlobal = true;
+            VolumeProfile profile = GetOrCreateVolumeProfile("Assets/Settings/MainMenu_VolumeProfile.asset");
+            volume.sharedProfile = profile;
+            volume.profile = profile;
+            camRig.postProcessVolume = volume;
+            camRig.FindOrCreateVolume();
 
             // 3. Live 3D Hero Pedestal (Right 55% Viewport)
             GameObject heroPedestal = new GameObject("Hero_SpawnPoint");
@@ -202,6 +229,50 @@ namespace DemonIdol.Editor
 
             Font defaultFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             if (defaultFont == null) defaultFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
+
+            // Giant Silhouette Typography Rig (Phase 3 Cold Open)
+            GameObject typoCanvasObj = new GameObject("ColdOpen_Typography_Canvas");
+            Canvas typoCanvas = typoCanvasObj.AddComponent<Canvas>();
+            typoCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+            typoCanvas.worldCamera = cam;
+            typoCanvas.planeDistance = 5.0f;
+            typoCanvas.sortingOrder = -10;
+            var typoScaler = typoCanvasObj.AddComponent<CanvasScaler>();
+            typoScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            typoScaler.referenceResolution = new Vector2(1920, 1080);
+            typoScaler.matchWidthOrHeight = 0.5f;
+
+            GameObject giantTxtObj = CreateUIObject("Giant_Impact_Text", typoCanvasObj.transform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 40f), new Vector2(1800f, 220f));
+            Text giantTxt = giantTxtObj.AddComponent<Text>();
+            giantTxt.font = defaultFont;
+            giantTxt.fontSize = 110;
+            giantTxt.fontStyle = FontStyle.Bold;
+            giantTxt.alignment = TextAnchor.MiddleCenter;
+            giantTxt.color = SumiStyleTokens.KineticGreen;
+
+            GameObject subGiantObj = CreateUIObject("Giant_Subtitle_Text", typoCanvasObj.transform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, -70f), new Vector2(1800f, 80f));
+            Text subGiantTxt = subGiantObj.AddComponent<Text>();
+            subGiantTxt.font = defaultFont;
+            subGiantTxt.fontSize = 36;
+            subGiantTxt.fontStyle = FontStyle.Bold;
+            subGiantTxt.alignment = TextAnchor.MiddleCenter;
+            subGiantTxt.color = SumiStyleTokens.PaperWhite;
+
+            GameObject flashObj = CreateUIObject("ColdOpen_Flash_Overlay", canvasObj.transform, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+            Image flashImg = flashObj.AddComponent<Image>();
+            flashImg.color = Color.clear;
+            flashImg.raycastTarget = false;
+
+            var coldOpenDirector = canvasObj.AddComponent<AkioColdOpenDirector>();
+            coldOpenDirector.typographyCanvas = typoCanvas;
+            coldOpenDirector.txtImpactWord = giantTxt;
+            coldOpenDirector.txtSubtitleWord = subGiantTxt;
+            coldOpenDirector.imgFlashOverlay = flashImg;
+            coldOpenDirector.menuCamera = cam;
+            coldOpenDirector.cameraRig = camRig;
+            coldOpenDirector.rimLight = rl;
+            coldOpenDirector.menuUIGroup = canvasObj.GetComponent<CanvasGroup>();
+            if (coldOpenDirector.menuUIGroup == null) coldOpenDirector.menuUIGroup = canvasObj.AddComponent<CanvasGroup>();
 
             // =========================================================================
             // TOP PILLAR NAVIGATION BAR
@@ -421,42 +492,69 @@ namespace DemonIdol.Editor
 
             Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
-            // 1. Dual 3D Preview Pedestals (Upper 62% Viewport)
+            // 1. Dual 3D Preview Pedestals & Optics (Phase 2 & 4 LookDev)
+            RenderSettings.fog = true;
+            RenderSettings.fogMode = FogMode.ExponentialSquared;
+            RenderSettings.fogColor = SumiStyleTokens.FogIndigo;
+            RenderSettings.fogDensity = 0.045f;
+
             GameObject camObj = new GameObject("Main Camera");
             camObj.tag = "MainCamera";
             Camera cam = camObj.AddComponent<Camera>();
             cam.clearFlags = CameraClearFlags.SolidColor;
-            cam.backgroundColor = new Color(0.05f, 0.05f, 0.08f, 1f);
+            cam.backgroundColor = SumiStyleTokens.FogIndigo;
+            cam.fieldOfView = 30f;
             camObj.AddComponent<UniversalAdditionalCameraData>();
             camObj.AddComponent<AudioListener>();
-            camObj.transform.position = new Vector3(0f, 1.4f, -4.5f);
-            camObj.transform.rotation = Quaternion.Euler(5f, 0f, 0f);
+            camObj.transform.position = new Vector3(0f, 1.35f, -4.2f);
+            camObj.transform.rotation = Quaternion.Euler(4f, 0f, 0f);
 
+            var camRig = camObj.AddComponent<DemonIdol.Cinematics.MenuFighterCameraRig>();
+            camRig.targetFOV = 30f;
+
+            // 3-Point Anime Rim Rig
             GameObject keyLight = new GameObject("Directional_KeyLight");
             Light kl = keyLight.AddComponent<Light>();
             kl.type = LightType.Directional;
-            kl.color = new Color(1f, 0.96f, 0.92f);
-            kl.intensity = 1.35f;
+            kl.color = new Color(0.9f, 0.95f, 1f);
+            kl.intensity = 1.25f;
             keyLight.transform.rotation = Quaternion.Euler(30f, -20f, 0f);
 
             GameObject p1Light = new GameObject("P1_RimLight");
             Light p1l = p1Light.AddComponent<Light>();
             p1l.type = LightType.Directional;
             p1l.color = SumiStyleTokens.Vermilion;
-            p1l.intensity = 0.75f;
+            p1l.intensity = 1.4f;
             p1Light.transform.rotation = Quaternion.Euler(-15f, 130f, 0f);
 
             GameObject p2Light = new GameObject("P2_RimLight");
             Light p2l = p2Light.AddComponent<Light>();
             p2l.type = LightType.Directional;
-            p2l.color = SumiStyleTokens.ParryGold;
-            p2l.intensity = 0.75f;
+            p2l.color = SumiStyleTokens.KineticBlue;
+            p2l.intensity = 1.4f;
             p2Light.transform.rotation = Quaternion.Euler(-15f, -130f, 0f);
 
-            // P1 Pedestal (Left)
+            GameObject fillLight = new GameObject("Directional_UnderFill");
+            Light fl = fillLight.AddComponent<Light>();
+            fl.type = LightType.Directional;
+            fl.color = new Color(0.12f, 0.15f, 0.22f);
+            fl.intensity = 0.45f;
+            fillLight.transform.rotation = Quaternion.Euler(60f, 45f, 0f);
+
+            // URP Post-Processing Volume
+            GameObject volObj = new GameObject("CharSelect_PostProcessVolume");
+            Volume volume = volObj.AddComponent<Volume>();
+            volume.isGlobal = true;
+            VolumeProfile profile = GetOrCreateVolumeProfile("Assets/Settings/CharSelect_VolumeProfile.asset");
+            volume.sharedProfile = profile;
+            volume.profile = profile;
+            camRig.postProcessVolume = volume;
+            camRig.FindOrCreateVolume();
+
+            // P1 Pedestal (Left - tight close-up face-off)
             GameObject p1Ped = new GameObject("Preview_Pedestal_P1");
-            p1Ped.transform.position = new Vector3(-2.2f, 0f, 0f);
-            p1Ped.transform.rotation = Quaternion.Euler(0f, 115f, 0f);
+            p1Ped.transform.position = new Vector3(-1.45f, 0f, 0f);
+            p1Ped.transform.rotation = Quaternion.Euler(0f, 110f, 0f);
             GameObject disc1 = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             disc1.name = "P1_Disc";
             disc1.transform.SetParent(p1Ped.transform, false);
@@ -465,10 +563,10 @@ namespace DemonIdol.Editor
             var c1 = disc1.GetComponent<Collider>();
             if (c1 != null) UnityEngine.Object.DestroyImmediate(c1);
 
-            // P2 Pedestal (Right)
+            // P2 Pedestal (Right - tight close-up face-off)
             GameObject p2Ped = new GameObject("Preview_Pedestal_P2");
-            p2Ped.transform.position = new Vector3(2.2f, 0f, 0f);
-            p2Ped.transform.rotation = Quaternion.Euler(0f, -115f, 0f);
+            p2Ped.transform.position = new Vector3(1.45f, 0f, 0f);
+            p2Ped.transform.rotation = Quaternion.Euler(0f, -110f, 0f);
             GameObject disc2 = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             disc2.name = "P2_Disc";
             disc2.transform.SetParent(p2Ped.transform, false);
@@ -718,10 +816,41 @@ namespace DemonIdol.Editor
                 mgr.characterLabels[i] = nameTxt;
             }
 
+            // Giant Lock-in Slam Texts Behind Pedestals (Phase 4 AMV)
+            GameObject p1SlamGo = CreateUIObject("P1_LockIn_SlamText", canvasObj.transform, new Vector2(0.28f, 0.65f), new Vector2(0.28f, 0.65f), Vector2.zero, new Vector2(650f, 150f));
+            mgr.p1LockInSlamText = p1SlamGo.AddComponent<Text>();
+            mgr.p1LockInSlamText.font = font;
+            mgr.p1LockInSlamText.fontSize = 72;
+            mgr.p1LockInSlamText.fontStyle = FontStyle.Bold;
+            mgr.p1LockInSlamText.alignment = TextAnchor.MiddleCenter;
+            mgr.p1LockInSlamText.color = SumiStyleTokens.KineticYellow;
+            p1SlamGo.SetActive(false);
+
+            GameObject p2SlamGo = CreateUIObject("P2_LockIn_SlamText", canvasObj.transform, new Vector2(0.72f, 0.65f), new Vector2(0.72f, 0.65f), Vector2.zero, new Vector2(650f, 150f));
+            mgr.p2LockInSlamText = p2SlamGo.AddComponent<Text>();
+            mgr.p2LockInSlamText.font = font;
+            mgr.p2LockInSlamText.fontSize = 72;
+            mgr.p2LockInSlamText.fontStyle = FontStyle.Bold;
+            mgr.p2LockInSlamText.alignment = TextAnchor.MiddleCenter;
+            mgr.p2LockInSlamText.color = SumiStyleTokens.KineticRed;
+            p2SlamGo.SetActive(false);
+
+            GameObject lockFlashObj = CreateUIObject("LockIn_FlashOverlay", canvasObj.transform, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+            mgr.lockInFlashOverlay = lockFlashObj.AddComponent<Image>();
+            mgr.lockInFlashOverlay.color = Color.clear;
+            mgr.lockInFlashOverlay.raycastTarget = false;
+            lockFlashObj.SetActive(false);
+
             // VS Screen Overlay
             GameObject vsGo = CreateUIObject("VS_Overlay", canvasObj.transform, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
             Image vsBg = vsGo.AddComponent<Image>();
             vsBg.color = SumiStyleTokens.CarbonInkWash;
+
+            // Glowing Diagonal Blade Slash
+            GameObject slashObj = CreateUIObject("VS_Diagonal_Slash", vsGo.transform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(8f, 1400f));
+            slashObj.transform.rotation = Quaternion.Euler(0f, 0f, 25f);
+            Image slashImg = slashObj.AddComponent<Image>();
+            slashImg.color = SumiStyleTokens.Vermilion;
 
             GameObject vsBanner = CreateUIObject("VS_Banner", vsGo.transform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(240f, 120f));
             Text vsTxt = vsBanner.AddComponent<Text>();
@@ -1159,6 +1288,56 @@ namespace DemonIdol.Editor
             txt.color = SumiStyleTokens.PaperWhite;
 
             return btn;
+        }
+        private static VolumeProfile GetOrCreateVolumeProfile(string assetPath)
+        {
+            var profile = AssetDatabase.LoadAssetAtPath<VolumeProfile>(assetPath);
+            if (profile != null)
+            {
+                AssetDatabase.DeleteAsset(assetPath);
+            }
+
+            string dir = Path.GetDirectoryName(assetPath);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            profile = ScriptableObject.CreateInstance<VolumeProfile>();
+            AssetDatabase.CreateAsset(profile, assetPath);
+
+            var dof = profile.Add<DepthOfField>(true);
+            dof.mode.Override(DepthOfFieldMode.Bokeh);
+            dof.aperture.Override(3.2f);
+            dof.focalLength.Override(65f);
+            dof.focusDistance.Override(2.6f);
+            AssetDatabase.AddObjectToAsset(dof, profile);
+
+            var tonemapping = profile.Add<Tonemapping>(true);
+            tonemapping.mode.Override(TonemappingMode.ACES);
+            AssetDatabase.AddObjectToAsset(tonemapping, profile);
+
+            var colorAdj = profile.Add<ColorAdjustments>(true);
+            colorAdj.contrast.Override(12f);
+            AssetDatabase.AddObjectToAsset(colorAdj, profile);
+
+            var bloom = profile.Add<Bloom>(true);
+            bloom.threshold.Override(1.05f);
+            bloom.intensity.Override(0.35f);
+            AssetDatabase.AddObjectToAsset(bloom, profile);
+
+            var vignette = profile.Add<Vignette>(true);
+            vignette.intensity.Override(0.32f);
+            vignette.color.Override(new Color(0.035f, 0.043f, 0.055f, 1f));
+            AssetDatabase.AddObjectToAsset(vignette, profile);
+
+            var chroma = profile.Add<ChromaticAberration>(true);
+            chroma.intensity.Override(0.0f);
+            AssetDatabase.AddObjectToAsset(chroma, profile);
+
+            EditorUtility.SetDirty(profile);
+            AssetDatabase.SaveAssets();
+            return profile;
         }
     }
 }

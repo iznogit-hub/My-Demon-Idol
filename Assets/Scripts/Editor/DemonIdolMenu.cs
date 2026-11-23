@@ -53,8 +53,14 @@ namespace DemonIdol.Editor
         }
 
         // =========================================================================
-        // ART & VISUALS
+        // ART & VISUALS / LOOKDEV
         // =========================================================================
+        [MenuItem("Demon Idol/LookDev/Unify 12-Fighter Raimon Materials", priority = 19)]
+        public static void Unify12FighterRaimonMaterials()
+        {
+            DemonIdol.Editor.LookDev.RaimonMaterialUnifier.UnifyAll12LaunchFighters();
+        }
+
         [MenuItem("Demon Idol/Art/Generate 25-Fighter Portraits", priority = 18)]
         public static void Generate25FighterPortraits()
         {

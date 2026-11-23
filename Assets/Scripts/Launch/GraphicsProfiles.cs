@@ -1,9 +1,16 @@
 using System;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using DemonIdol.UI;
 
 namespace DemonIdol.Launch
 {
     /// <summary>
-    /// Resolution-scale proposals for the settings profiles. Custom uses the saved scale.
+    /// Resolution-scale and Post-Processing quality profile manager.
+    /// Handles mobile-safe 60 FPS scaling and automatically disables expensive Bokeh DOF
+    /// and chromatic aberration on Low / Mobile-Battery presets while preserving atmospheric fog
+    /// and ACES tone mapping.
     /// </summary>
     public static class GraphicsProfiles
     {
@@ -35,6 +42,33 @@ namespace DemonIdol.Launch
                 case 1: return "Balanced";
                 case 2: return "High";
                 default: return "Custom";
+            }
+        }
+
+        public static bool IsDepthOfFieldEnabled(int qualityTier)
+        {
+            // Low / Mobile-battery disables expensive Bokeh DOF
+            return qualityTier > 0;
+        }
+
+        public static bool IsChromaticAberrationEnabled(int qualityTier)
+        {
+            // Low quality disables chromatic aberration
+            return qualityTier > 0 && !SettingsPanel.ReducedMotion;
+        }
+
+        public static void ApplyToVolume(Volume volume, int qualityTier)
+        {
+            if (volume == null || volume.profile == null) return;
+
+            if (volume.profile.TryGet<DepthOfField>(out var dof))
+            {
+                dof.active = IsDepthOfFieldEnabled(qualityTier);
+            }
+
+            if (volume.profile.TryGet<ChromaticAberration>(out var chroma))
+            {
+                chroma.active = IsChromaticAberrationEnabled(qualityTier);
             }
         }
     }

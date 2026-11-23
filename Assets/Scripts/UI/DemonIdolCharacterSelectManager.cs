@@ -47,6 +47,12 @@ namespace DemonIdol.UI
             "EX03", "EX04", "EX05", "EX06", "EX07"
         };
 
+        public static readonly string[] LaunchRosterIds = new string[]
+        {
+            "C01", "C02", "C05", "C06", "C08", "C09",
+            "C11", "C12", "C14", "EX01", "EX04", "SK08"
+        };
+
         public static readonly string[] StageIds = new string[]
         {
             "ST07", "ST01", "ST02", "ST03", "ST04"
@@ -144,6 +150,11 @@ namespace DemonIdol.UI
         public int selectedStageIndex = 0; // Default ST07
         public int roundsToWin = 2; // Default best of 3
         public int cpuDifficultyIndex = 1; // Default Normal
+
+        [Header("AMV Lock-In Presentation (Phase 4)")]
+        public Image lockInFlashOverlay;
+        public Text p1LockInSlamText;
+        public Text p2LockInSlamText;
 
         [Header("VS Overlay & Dramatic Transition")]
         public GameObject vsOverlay;
@@ -405,6 +416,7 @@ namespace DemonIdol.UI
         private void PlayLockInFeedback(GameObject model, bool isP1)
         {
             CombatAudioDirector.Instance?.PlayButtonClick();
+            CombatAudioDirector.Instance?.PlayVoiceDomainSuper();
 
             if (model != null)
             {
@@ -415,6 +427,9 @@ namespace DemonIdol.UI
                 }
             }
 
+            // AMV Lock-in Choreography: 0.15s color-field flash + giant condensed name slam
+            StartCoroutine(AnimateLockInFeedback(isP1));
+
             // Announcer callout
             var announcer = FindAnyObjectByType<DemonLordAnnouncerWidget>();
             if (announcer != null)
@@ -424,6 +439,42 @@ namespace DemonIdol.UI
                 string charName = def != null ? def.displayName : charId;
                 announcer.SetDialogue($"Selected: {charName}! Let planar combat begin.");
                 announcer.UpdateForFighter(charId);
+            }
+        }
+
+        private IEnumerator AnimateLockInFeedback(bool isP1)
+        {
+            string charId = isP1 ? RosterIds[p1Index] : RosterIds[p2Index];
+            var def = CharacterRegistry.GetCharacterById(charId);
+            string charName = def != null ? def.displayName.ToUpperInvariant() : charId;
+
+            Text slamText = isP1 ? p1LockInSlamText : p2LockInSlamText;
+            if (slamText != null)
+            {
+                slamText.text = charName;
+                slamText.gameObject.SetActive(true);
+            }
+
+            // Camera chromatic pulse
+            var rig = previewCamera != null ? previewCamera.GetComponent<DemonIdol.Cinematics.MenuFighterCameraRig>() : null;
+            if (rig != null)
+            {
+                rig.PulseChromaticAberration(0.35f, 0.15f);
+            }
+
+            // 0.15s color field flash (KineticYellow for P1, KineticRed for P2)
+            if (lockInFlashOverlay != null)
+            {
+                lockInFlashOverlay.gameObject.SetActive(true);
+                lockInFlashOverlay.color = isP1 ? SumiStyleTokens.KineticYellow : SumiStyleTokens.KineticRed;
+                float duration = SettingsPanel.ReducedMotion ? 0.05f : 0.15f;
+                yield return new WaitForSecondsRealtime(duration);
+                lockInFlashOverlay.color = Color.clear;
+                lockInFlashOverlay.gameObject.SetActive(false);
+            }
+            else
+            {
+                yield return new WaitForSecondsRealtime(0.15f);
             }
         }
 
@@ -479,6 +530,16 @@ namespace DemonIdol.UI
 
             model.SetActive(true);
             activeModel = model;
+
+            // Dynamically lock Camera Rig focus distance and eye-level framing to active fighter
+            if (isP1 && previewCamera != null && activeModel != null)
+            {
+                var rig = previewCamera.GetComponent<DemonIdol.Cinematics.MenuFighterCameraRig>();
+                if (rig != null)
+                {
+                    rig.SetTargetFighter(activeModel, charId);
+                }
+            }
 
             // Mirror compatibility
             if (isP1) _activePreviewModel = activeModel;
@@ -863,5 +924,12 @@ namespace DemonIdol.UI
                 gameObject.AddComponent<SafeAreaFitter>();
             }
         }
+    }
+
+    /// <summary>
+    /// Type alias for DemonIdolCharacterSelectManager.
+    /// </summary>
+    public class DemonIdolCharacterSelectController : DemonIdolCharacterSelectManager
+    {
     }
 }

@@ -241,6 +241,9 @@ namespace DemonIdol.Combat
             _isReplayPlaying = true;
             ShowReplayOverlay(true);
 
+            // AMV Match-Winning KO: 0.35s dramatic slow-mo impact flash
+            DemonIdol.BlazBlue.Visual.AMVImpactFx.TriggerKODramaticFlash(isHeavyOrSuper: true);
+
             float originalTimescale = Time.timeScale;
             Time.timeScale = _replayTimescale;
 

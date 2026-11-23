@@ -381,6 +381,16 @@ namespace DemonIdol.UI
                     anim.runtimeAnimatorController = def.animatorController;
                 }
             }
+
+            // Bind MenuFighterCameraRig for dynamic eye-level telephoto framing and Bokeh DOF focus
+            if (menuCamera != null)
+            {
+                var rig = menuCamera.GetComponent<DemonIdol.Cinematics.MenuFighterCameraRig>();
+                if (rig != null)
+                {
+                    rig.SetTargetFighter(_activeHeroModel, _activeHeroId);
+                }
+            }
         }
 
         // =========================================================================

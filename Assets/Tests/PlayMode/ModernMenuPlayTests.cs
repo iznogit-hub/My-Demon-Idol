@@ -22,6 +22,12 @@ namespace DemonIdol.Tests.PlayMode
             yield return null;
             yield return null;
 
+            if (AkioColdOpenDirector.Instance != null)
+            {
+                AkioColdOpenDirector.Instance.SkipColdOpen();
+            }
+            yield return null;
+
             var ctrl = DemonIdolMainMenuController.Instance;
             Assert.IsNotNull(ctrl, "DemonIdolMainMenuController must exist in MainMenu.unity.");
 

@@ -95,6 +95,12 @@ namespace DemonIdol.BlazBlue
             // Spawn tier-scaled hit spark
             SpawnHitSpark(point, scale, isSuper, isHeavy);
 
+            // AMV Kinetic impact flash on counter hits
+            if (counterHit)
+            {
+                DemonIdol.BlazBlue.Visual.AMVImpactFx.TriggerCounterOrCrushFlash(point, isCounterHit: true, isGuardCrush: false);
+            }
+
             // Audio impact SFX
             if (CombatAudioDirector.Instance != null)
             {
@@ -296,6 +302,11 @@ namespace DemonIdol.BlazBlue
             ComboCount = 0;
             SpawnGuardSpark(point, guardCrush, isBarrier);
 
+            if (guardCrush)
+            {
+                DemonIdol.BlazBlue.Visual.AMVImpactFx.TriggerCounterOrCrushFlash(point, isCounterHit: false, isGuardCrush: true);
+            }
+
             if (CombatAudioDirector.Instance != null)
             {
                 if (guardCrush)
@@ -390,6 +401,9 @@ namespace DemonIdol.BlazBlue
 
             // HUD Layer: Dim the background
             ShowOverlay();
+
+            // AMV Distortion Cut-in & Glass Fracture
+            DemonIdol.BlazBlue.Visual.AMVImpactFx.TriggerDistortionCutIn(characterId);
         }
 
         public static void Tick()

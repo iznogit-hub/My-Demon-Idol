@@ -55,6 +55,10 @@ namespace DemonIdol.UI
         [Header("Timing")]
         public float introDurationSeconds = 1.8f;
 
+        [Header("Diagonal Blade-Split AMV Visuals")]
+        public Image diagonalSlashLine;
+        public Image inkShatterWipeOverlay;
+
         private Coroutine _introRoutine;
         private Action _onCompleteCallback;
         private bool _isIntroActive = false;
@@ -70,6 +74,23 @@ namespace DemonIdol.UI
 
             if (OverlayRoot != null) OverlayRoot.SetActive(false);
             if (CanvasGroup != null) CanvasGroup.alpha = 0f;
+
+            // Dynamically ensure diagonal blade slash if not serialized
+            if (diagonalSlashLine == null)
+            {
+                var slashObj = new GameObject("Dynamic_DiagonalSlash", typeof(RectTransform), typeof(Image));
+                slashObj.transform.SetParent(transform, false);
+                slashObj.transform.rotation = Quaternion.Euler(0f, 0f, 25f);
+                var rt = slashObj.GetComponent<RectTransform>();
+                rt.anchorMin = new Vector2(0.5f, 0.5f);
+                rt.anchorMax = new Vector2(0.5f, 0.5f);
+                rt.anchoredPosition = Vector2.zero;
+                rt.sizeDelta = new Vector2(8f, 1600f);
+                diagonalSlashLine = slashObj.GetComponent<Image>();
+                diagonalSlashLine.color = SumiStyleTokens.Vermilion;
+                diagonalSlashLine.raycastTarget = false;
+                diagonalSlashLine.gameObject.SetActive(false);
+            }
         }
 
         private void Update()
@@ -191,8 +212,13 @@ namespace DemonIdol.UI
             SetGroupActive(stage: false, namesDrives: false, roundBanner: false, fightBanner: false);
             yield return new WaitForSecondsRealtime(0.05f);
 
-            // STEP 2: The two names with Drives on their own sides near the top (1.5s), then cleared
+            // STEP 2: Diagonal Blade-Split Clash (P1 left, P2 right, glowing slash in center)
             SetGroupActive(stage: false, namesDrives: true, roundBanner: false, fightBanner: false);
+            if (diagonalSlashLine != null)
+            {
+                diagonalSlashLine.gameObject.SetActive(true);
+                diagonalSlashLine.color = SumiStyleTokens.Vermilion;
+            }
             if (P1NameText != null)
             {
                 P1NameText.rectTransform.anchoredPosition = new Vector2(-460f, 380f);
@@ -217,6 +243,7 @@ namespace DemonIdol.UI
 
             // Clear names and drives before next
             SetGroupActive(stage: false, namesDrives: false, roundBanner: false, fightBanner: false);
+            if (diagonalSlashLine != null) diagonalSlashLine.gameObject.SetActive(false);
             yield return new WaitForSecondsRealtime(0.05f);
 
             // STEP 3: "ROUND 1" (1.0s), centered and cleared before next
