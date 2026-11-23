@@ -103,6 +103,11 @@ namespace DemonIdol.BlazBlue
             }
             Instance = this;
             if (tuning == null) tuning = BBSystemTuning.Default;
+            if (Application.isPlaying)
+            {
+                QualitySettings.realtimeReflectionProbes = false;
+                BBContactPresentation.PrewarmSparkPools();
+            }
         }
 
         private void OnDestroy()

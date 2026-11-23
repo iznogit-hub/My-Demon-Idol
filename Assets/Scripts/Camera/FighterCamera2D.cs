@@ -35,6 +35,13 @@ namespace DemonIdol.Combat
     public class FighterCamera2D : MonoBehaviour
     {
         private static FighterCamera2D _instance;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            _instance = null;
+        }
+
         public static FighterCamera2D Instance
         {
             get
@@ -129,12 +136,12 @@ namespace DemonIdol.Combat
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
-            Instance = this;
+            _instance = this;
             _cam = GetComponent<Camera>();
             ConfigurePhysicalCamera();
             _lastTargetPosition = transform.position;

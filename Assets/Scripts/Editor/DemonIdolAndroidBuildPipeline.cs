@@ -18,6 +18,8 @@ namespace DemonIdol.Editor
         private static readonly string[] BuildScenes = new[]
         {
             "Assets/Scenes/MainMenu.unity",
+            "Assets/Scenes/CharacterSelect.unity",
+            "Assets/Scenes/BattleArena.unity",
             "Assets/Scenes/ArcadeArena.unity"
         };
 

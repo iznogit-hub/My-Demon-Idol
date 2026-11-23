@@ -127,6 +127,24 @@ namespace DemonIdol.Combat
             _isPaused = pause;
         }
 
+        public void AdvanceTicksManual(int count = 1)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                CurrentTick++;
+                if (SuperfreezeTicksRemaining > 0)
+                {
+                    OnSuperfreezeTick?.Invoke(SuperfreezeTicksRemaining);
+                    OnTick?.Invoke(CurrentTick);
+                    SuperfreezeTicksRemaining--;
+                }
+                else
+                {
+                    OnTick?.Invoke(CurrentTick);
+                }
+            }
+        }
+
         public void ResetTicks()
         {
             CurrentTick = 0;

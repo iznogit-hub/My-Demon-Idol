@@ -226,9 +226,9 @@ namespace DemonIdol.BlazBlue
         public void MirrorHealthToFighter()
         {
             if (fighter == null) return;
-            if (maxHealth > 0f) fighter.maxHealth = maxHealth;
+            if (maxHealth > 0f) fighter.SetMaxHealthDirect(maxHealth);
             float previous = fighter.currentHealth;
-            fighter.currentHealth = health;
+            fighter.SetHealthDirect(health);
             if (!Mathf.Approximately(previous, health))
             {
                 fighter.RaiseHealthChanged();

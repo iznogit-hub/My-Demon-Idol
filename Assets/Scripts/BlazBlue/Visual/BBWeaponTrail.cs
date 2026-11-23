@@ -54,6 +54,9 @@ namespace DemonIdol.BlazBlue.Visual
             trailRenderer.endWidth = endWidth;
             trailRenderer.emitting = false;
             trailRenderer.autodestruct = false;
+            trailRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            trailRenderer.receiveShadows = false;
+            trailRenderer.minVertexDistance = 0.05f;
             trailRenderer.Clear();
 
             // Soft alpha gradient
@@ -76,6 +79,8 @@ namespace DemonIdol.BlazBlue.Visual
             if (trailRenderer == null) EnsureTrailInitialized();
             if (trailRenderer != null)
             {
+                trailRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                trailRenderer.receiveShadows = false;
                 if (emit && !trailRenderer.emitting)
                 {
                     trailRenderer.Clear();

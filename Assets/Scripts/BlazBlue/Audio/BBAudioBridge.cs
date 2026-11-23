@@ -34,6 +34,12 @@ namespace DemonIdol.BlazBlue
     public class BBAudioBridge : MonoBehaviour
     {
         private static BBAudioBridge _instance;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            _instance = null;
+        }
+
         public static BBAudioBridge Instance
         {
             get
@@ -78,6 +84,14 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        private void OnDestroy()
+        {
+            if (_instance == this)
+            {
+                _instance = null;
+            }
+        }
+
         public void PlayCombatSound(BBSoundEffect effect, Vector3 worldPosition)
         {
             // First attempt routing to CombatAudioDirector if active
@@ -102,7 +116,7 @@ namespace DemonIdol.BlazBlue
 
                 case BBSoundEffect.FatalCounter:
                     if (director != null) director.PlayHitHeavy();
-                    else PlayClipDirect(_fatalCounterClip ?? _hitHeavyClip);
+                    else PlayClipDirect((_fatalCounterClip != null) ? _fatalCounterClip : _hitHeavyClip);
                     break;
 
                 case BBSoundEffect.BlockNormal:
@@ -179,7 +193,7 @@ namespace DemonIdol.BlazBlue
             GameObject targetPrefab = _slashVFXPrefab;
             if (isBlock)
             {
-                targetPrefab = _bluntVFXPrefab ?? _slashVFXPrefab;
+                targetPrefab = (_bluntVFXPrefab != null) ? _bluntVFXPrefab : _slashVFXPrefab;
             }
             else
             {
@@ -187,11 +201,11 @@ namespace DemonIdol.BlazBlue
                 {
                     case BBWarriorType.Hammer:
                     case BBWarriorType.Brute:
-                        targetPrefab = isFatal ? (_groundCrushVFXPrefab ?? _bluntVFXPrefab) : _bluntVFXPrefab;
+                        targetPrefab = isFatal ? ((_groundCrushVFXPrefab != null) ? _groundCrushVFXPrefab : _bluntVFXPrefab) : _bluntVFXPrefab;
                         break;
                     case BBWarriorType.Mage:
                     case BBWarriorType.Sorceress:
-                        targetPrefab = _arcaneVFXPrefab ?? _slashVFXPrefab;
+                        targetPrefab = (_arcaneVFXPrefab != null) ? _arcaneVFXPrefab : _slashVFXPrefab;
                         break;
                     default:
                         targetPrefab = _slashVFXPrefab;
@@ -208,7 +222,7 @@ namespace DemonIdol.BlazBlue
 
         private void PlayClipDirect(AudioClip clip)
         {
-            if (clip != null && _audioSource != null)
+            if (clip != null && clip.loadState != AudioDataLoadState.Failed && _audioSource != null && _audioSource.isActiveAndEnabled)
             {
                 _audioSource.PlayOneShot(clip);
             }

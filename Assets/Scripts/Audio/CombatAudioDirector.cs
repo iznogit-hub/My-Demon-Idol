@@ -13,6 +13,12 @@ namespace DemonIdol.Audio
     public class CombatAudioDirector : MonoBehaviour
     {
         private static CombatAudioDirector _instance;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            _instance = null;
+        }
+
         public static CombatAudioDirector Instance
         {
             get
@@ -88,7 +94,7 @@ namespace DemonIdol.Audio
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 // The main menu spawns a dedicated audio object and marks it DontDestroyOnLoad.
                 // This component also lives on Combat_Managers next to the tick engine.
@@ -96,7 +102,7 @@ namespace DemonIdol.Audio
                 DestroyDuplicateComponent(this);
                 return;
             }
-            Instance = this;
+            _instance = this;
             if (Application.isPlaying && !SharesMatchHost(gameObject))
                 DontDestroyOnLoad(gameObject);
 
@@ -344,7 +350,7 @@ namespace DemonIdol.Audio
             // If music source still has no clip, generate ambient fight drone
             if (_musicSource != null && _musicSource.clip == null)
             {
-                _musicSource.clip = _bgmFullTrack ?? GenerateAmbientDrone("Procedural_AmbientDrone", 4.0f, 65f);
+                _musicSource.clip = (_bgmFullTrack != null) ? _bgmFullTrack : GenerateAmbientDrone("Procedural_AmbientDrone", 4.0f, 65f);
             }
         }
 
@@ -511,10 +517,10 @@ namespace DemonIdol.Audio
         [SerializeField] private AudioClip _voiceDomainSuper;
         [SerializeField] private AudioClip _voiceKODefeat;
 
-        public void PlayVoiceGruntLight() => PlayWithRandomPitch(_voiceGruntLight ?? _hitLightClip, 0.95f, 1.05f);
-        public void PlayVoiceGruntHeavy() => PlayWithRandomPitch(_voiceGruntHeavy ?? _hitHeavyClip, 0.9f, 1.02f);
-        public void PlayVoiceDomainSuper() => PlayOneShotDirect(_voiceDomainSuper ?? _domainActivationClip);
-        public void PlayVoiceKODefeat() => PlayOneShotDirect(_voiceKODefeat ?? _hitHeavyClip);
+        public void PlayVoiceGruntLight() => PlayWithRandomPitch((_voiceGruntLight != null) ? _voiceGruntLight : _hitLightClip, 0.95f, 1.05f);
+        public void PlayVoiceGruntHeavy() => PlayWithRandomPitch((_voiceGruntHeavy != null) ? _voiceGruntHeavy : _hitHeavyClip, 0.9f, 1.02f);
+        public void PlayVoiceDomainSuper() => PlayOneShotDirect((_voiceDomainSuper != null) ? _voiceDomainSuper : _domainActivationClip);
+        public void PlayVoiceKODefeat() => PlayOneShotDirect((_voiceKODefeat != null) ? _voiceKODefeat : _hitHeavyClip);
 
         #region SFX Triggers with Dynamic Pitch Modulation
 
@@ -566,15 +572,15 @@ namespace DemonIdol.Audio
         public void PlayVictorySound() => PlayOneShotDirect(_victoryClip);
 
         // Menu and Battle Music Tracks
-        public void PlayMenuMusic() => SwitchToMusicLoop(_bgmMenuTrack ?? _bgmFullTrack);
+        public void PlayMenuMusic() => SwitchToMusicLoop((_bgmMenuTrack != null) ? _bgmMenuTrack : _bgmFullTrack);
         public void PlayCombatMusic() => SwitchToMusicLoop(_bgmFullTrack);
 
         // Cyberpunk Dynamic Momentum Music Loops
-        public void PlayIntroLoop() => SwitchToMusicLoop(_loopIntro ?? _bgmFullTrack);
-        public void PlayDropLoop() => SwitchToMusicLoop(_loopDrop ?? _bgmFullTrack);
-        public void PlayChorusLoop() => SwitchToMusicLoop(_loopChorus ?? _bgmFullTrack);
-        public void PlayOutroLoop() => SwitchToMusicLoop(_loopOutro ?? _bgmFullTrack);
-        public void PlayDefaultMatchMusic() => SwitchToMusicLoop(_bgmFullTrack ?? _loopBridge);
+        public void PlayIntroLoop() => SwitchToMusicLoop((_loopIntro != null) ? _loopIntro : _bgmFullTrack);
+        public void PlayDropLoop() => SwitchToMusicLoop((_loopDrop != null) ? _loopDrop : _bgmFullTrack);
+        public void PlayChorusLoop() => SwitchToMusicLoop((_loopChorus != null) ? _loopChorus : _bgmFullTrack);
+        public void PlayOutroLoop() => SwitchToMusicLoop((_loopOutro != null) ? _loopOutro : _bgmFullTrack);
+        public void PlayDefaultMatchMusic() => SwitchToMusicLoop((_bgmFullTrack != null) ? _bgmFullTrack : _loopBridge);
 
         public void SwitchToMusicLoop(AudioClip newLoop)
         {
@@ -591,8 +597,9 @@ namespace DemonIdol.Audio
         private void PlayOneShotDirect(AudioClip clip)
         {
             if (this == null || clip == null) return;
+            if (clip.loadState == AudioDataLoadState.Failed) return;
             EnsureSources();
-            if (_sfxSource != null)
+            if (_sfxSource != null && _sfxSource.isActiveAndEnabled)
             {
                 _sfxSource.pitch = 1.0f;
                 _sfxSource.PlayOneShot(clip);
@@ -601,10 +608,10 @@ namespace DemonIdol.Audio
 
         private void PlayWithRandomPitch(AudioClip clip, float minPitch, float maxPitch)
         {
-            if (this == null) return;
-            if (clip == null) return;
+            if (this == null || clip == null) return;
+            if (clip.loadState == AudioDataLoadState.Failed) return;
             EnsureSources();
-            if (_sfxSource != null)
+            if (_sfxSource != null && _sfxSource.isActiveAndEnabled)
             {
                 _sfxSource.pitch = UnityEngine.Random.Range(minPitch, maxPitch);
                 _sfxSource.PlayOneShot(clip);

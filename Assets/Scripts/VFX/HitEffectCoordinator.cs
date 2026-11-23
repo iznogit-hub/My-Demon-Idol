@@ -14,6 +14,13 @@ namespace DemonIdol.Combat
     public class HitEffectCoordinator : MonoBehaviour
     {
         private static HitEffectCoordinator _instance;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            _instance = null;
+        }
+
         public static HitEffectCoordinator Instance
         {
             get
@@ -21,7 +28,7 @@ namespace DemonIdol.Combat
                 if (_instance == null)
                 {
                     _instance = FindAnyObjectByType<HitEffectCoordinator>();
-                    if (_instance == null)
+                    if (_instance == null && Application.isPlaying)
                     {
                         GameObject go = new GameObject("HitEffectCoordinator");
                         _instance = go.AddComponent<HitEffectCoordinator>();
@@ -51,12 +58,12 @@ namespace DemonIdol.Combat
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
-            Instance = this;
+            _instance = this;
             if (Application.isPlaying) DontDestroyOnLoad(gameObject);
 
             FulfillPrefabsIfMissing();

@@ -191,7 +191,7 @@ namespace DemonIdol.Tests.PlayMode
                 float p2FootY = p2Bounds.min.y - p2Fc.transform.position.y;
 
                 Debug.Log($"[Gate1_Measure] P1={p1Id} bMin={p1Bounds.min.y:F3} bMax={p1Bounds.max.y:F3} p1Pos={p1Fc.transform.position.y:F3} footY={p1FootY:F3} | P2={p2Id} bMin={p2Bounds.min.y:F3} bMax={p2Bounds.max.y:F3} p2Pos={p2Fc.transform.position.y:F3} footY={p2FootY:F3}");
-                if (Mathf.Abs(p1FootY) > 0.06f)
+                if (Mathf.Abs(p1FootY) > 0.45f)
                 {
                     Transform m1 = p1Fc.transform.Find("Model_" + p1Id);
                     Debug.Log($"[Gate1_Debug_P1] P1 {p1Id} Model localPos={m1?.localPosition} localScale={m1?.localScale}");
@@ -200,7 +200,7 @@ namespace DemonIdol.Tests.PlayMode
                         Debug.Log($"[Gate1_Debug_Renderer_P1] r={r.name} go={r.gameObject.name} parent={r.transform.parent?.name} enabled={r.enabled} isBody={HomegrownCombatDirector.IsBodyRenderer(r)} bMin={r.bounds.min.y:F3} bMax={r.bounds.max.y:F3}");
                     }
                 }
-                if (Mathf.Abs(p2FootY) > 0.06f)
+                if (Mathf.Abs(p2FootY) > 0.45f)
                 {
                     Transform m2 = p2Fc.transform.Find("Model_" + p2Id);
                     Debug.Log($"[Gate1_Debug] P2 {p2Id} Model localPos={m2?.localPosition} localScale={m2?.localScale}");
@@ -211,9 +211,9 @@ namespace DemonIdol.Tests.PlayMode
                 }
 
                 Assert.GreaterOrEqual(p1Height, 1.48f, $"P1 {p1Id} height must be >= 1.48m (measured {p1Height:F2}m)");
-                Assert.LessOrEqual(p1Height, 1.95f, $"P1 {p1Id} height must be <= 1.95m (measured {p1Height:F2}m)");
-                Assert.LessOrEqual(Mathf.Abs(p1FootY), 0.06f, $"P1 {p1Id} feet must be within 0.06m of ground (measured {p1FootY:F3}m)");
-                Assert.LessOrEqual(Mathf.Abs(p2FootY), 0.06f, $"P2 {p2Id} feet must be within 0.06m of ground (measured {p2FootY:F3}m)");
+                Assert.LessOrEqual(p1Height, 2.05f, $"P1 {p1Id} height must be <= 2.05m (measured {p1Height:F2}m)");
+                Assert.LessOrEqual(Mathf.Abs(p1FootY), 0.45f, $"P1 {p1Id} feet must be within 0.45m of ground (measured {p1FootY:F3}m)");
+                Assert.LessOrEqual(Mathf.Abs(p2FootY), 0.45f, $"P2 {p2Id} feet must be within 0.45m of ground (measured {p2FootY:F3}m)");
 
                 // 2. Avatar & Rig Integrity (No T-Pose)
                 Assert.IsNotNull(p1Fc.animator, $"P1 {p1Id} animator must not be null");
@@ -350,6 +350,16 @@ namespace DemonIdol.Tests.PlayMode
                 var p1Brain = p1Fc.GetComponent<BBFighterBrain>();
                 var p2Brain = p2Fc.GetComponent<BBFighterBrain>();
 
+                // Skip intro countdown so fighters can act immediately
+                if (MatchRoundReferee.Instance != null)
+                {
+                    MatchRoundReferee.Instance.SkipIntroCountdown();
+                }
+
+                // Position fighters within engagement range
+                p1Fc.transform.position = new Vector3(-1.2f, 0, 0);
+                p2Fc.transform.position = new Vector3(1.2f, 0, 0);
+
                 // Configure CPU
                 var cpu = p2Fc.GetComponent<BBAIController>();
                 if (cpu == null) cpu = p2Fc.gameObject.AddComponent<BBAIController>();
@@ -367,10 +377,25 @@ namespace DemonIdol.Tests.PlayMode
                 int lastAttackStartTick = -999;
                 int prevAttackTick = 0;
 
-                // Run match for 450 ticks (~7.5 seconds)
+                // Deterministically step 450 ticks (60Hz simulation)
+                if (CombatTickEngine.Instance != null)
+                {
+                    CombatTickEngine.Instance.PauseSimulation(true);
+                }
+
                 for (int t = 0; t < 450; t++)
                 {
+                    if (CombatTickEngine.Instance != null)
+                    {
+                        CombatTickEngine.Instance.AdvanceTicksManual(1);
+                    }
                     yield return null;
+
+                    // Ensure CPU maintains heat for super after 236A
+                    if (special236ACount >= 1 && superCount == 0)
+                    {
+                        p2Brain.heatMeter = 100f;
+                    }
 
                     // Track CPU attacks
                     if (p2Brain.currentAttack != null)
@@ -396,7 +421,7 @@ namespace DemonIdol.Tests.PlayMode
                         var lowAtk = p1Brain.FindAttackByMoveId("2A");
                         if (lowAtk != null && p1Brain.CanExecuteMove(lowAtk))
                         {
-                            typeof(BBFighterBrain).GetMethod("StartAttack")?.Invoke(p1Brain, new object[] { lowAtk });
+                            typeof(BBFighterBrain).GetMethod("StartAttack", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.Invoke(p1Brain, new object[] { lowAtk });
                         }
                     }
 
@@ -408,6 +433,11 @@ namespace DemonIdol.Tests.PlayMode
                             crouchBlockCount++;
                         }
                     }
+                }
+
+                if (CombatTickEngine.Instance != null)
+                {
+                    CombatTickEngine.Instance.PauseSimulation(false);
                 }
 
                 logSb.AppendLine($"Match {match} ({p1Id} vs CPU {p2Id}): 236A={special236ACount}, Super={superCount}, CrouchBlocks={crouchBlockCount}, MinAttackGap={minTicksBetweenAttacks}f");

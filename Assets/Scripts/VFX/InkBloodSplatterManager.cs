@@ -13,6 +13,13 @@ namespace DemonIdol.VFX
     public class InkBloodSplatterManager : MonoBehaviour
     {
         private static InkBloodSplatterManager _instance;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            _instance = null;
+        }
+
         public static InkBloodSplatterManager Instance
         {
             get
@@ -20,7 +27,7 @@ namespace DemonIdol.VFX
                 if (_instance == null)
                 {
                     _instance = FindAnyObjectByType<InkBloodSplatterManager>();
-                    if (_instance == null)
+                    if (_instance == null && Application.isPlaying)
                     {
                         GameObject go = new GameObject("InkBloodSplatterManager");
                         _instance = go.AddComponent<InkBloodSplatterManager>();
@@ -53,12 +60,12 @@ namespace DemonIdol.VFX
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
-            Instance = this;
+            _instance = this;
             if (Application.isPlaying) DontDestroyOnLoad(gameObject);
 
             FulfillPrefabsIfMissing();

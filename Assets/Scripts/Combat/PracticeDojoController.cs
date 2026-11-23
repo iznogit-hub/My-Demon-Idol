@@ -22,6 +22,12 @@ namespace DemonIdol.Combat
     {
         public static PracticeDojoController Instance { get; private set; }
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            Instance = null;
+        }
+
         [Header("Fighter References")]
         [SerializeField] private FighterController _player;
         [SerializeField] private FighterController _dummy;
@@ -36,10 +42,18 @@ namespace DemonIdol.Combat
         {
             if (Instance != null && Instance != this)
             {
-                Destroy(gameObject);
+                Destroy(this);
                 return;
             }
             Instance = this;
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
         }
 
         private void Start()

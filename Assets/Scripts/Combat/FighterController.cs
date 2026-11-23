@@ -27,7 +27,10 @@ namespace DemonIdol.Combat
             get => brain != null ? brain.maxHealth : _maxHealth;
             set
             {
-                if (brain != null) brain.maxHealth = value;
+                if (brain != null && !Mathf.Approximately(brain.maxHealth, value))
+                {
+                    brain.maxHealth = value;
+                }
                 _maxHealth = value;
             }
         }
@@ -38,12 +41,32 @@ namespace DemonIdol.Combat
             get => brain != null ? brain.health : _currentHealth;
             set
             {
-                if (brain != null) brain.SetAuthoritativeHealth(value);
-                else _currentHealth = value;
+                if (brain != null)
+                {
+                    if (!Mathf.Approximately(brain.health, value))
+                    {
+                        brain.SetAuthoritativeHealth(value);
+                    }
+                    _currentHealth = brain.health;
+                }
+                else
+                {
+                    _currentHealth = value;
+                }
                 OnHealthChanged?.Invoke(currentHealth, maxHealth);
             }
         }
         [SerializeField] private float _currentHealth = 1000f;
+
+        internal void SetHealthDirect(float value)
+        {
+            _currentHealth = value;
+        }
+
+        internal void SetMaxHealthDirect(float value)
+        {
+            _maxHealth = value;
+        }
 
         public float maxSuperMeter = 100f;
         public float currentSuperMeter
@@ -51,8 +74,18 @@ namespace DemonIdol.Combat
             get => brain != null ? brain.heat : _currentSuperMeter;
             set
             {
-                if (brain != null) brain.heat = value;
-                else _currentSuperMeter = value;
+                if (brain != null)
+                {
+                    if (!Mathf.Approximately(brain.heat, value))
+                    {
+                        brain.heat = value;
+                    }
+                    _currentSuperMeter = brain.heat;
+                }
+                else
+                {
+                    _currentSuperMeter = value;
+                }
                 OnSuperMeterChanged?.Invoke(currentSuperMeter, maxSuperMeter);
             }
         }

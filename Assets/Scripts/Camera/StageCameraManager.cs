@@ -41,6 +41,12 @@ namespace DemonIdol.CameraControl
     {
         public static StageCameraManager Instance { get; private set; }
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            Instance = null;
+        }
+
         [Header("Stage Camera Roster (7 Campus Sectors)")]
         [SerializeField] private List<StageCameraEntry> _stageCameras = new List<StageCameraEntry>();
 

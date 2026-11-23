@@ -190,6 +190,20 @@ namespace DemonIdol.BlazBlue.Visual
                 if (Application.isPlaying) Destroy(rb);
                 else DestroyImmediate(rb);
             }
+            // Disable shadow casting on weapon trails to prevent native graphics crash in RenderShadowCasterParts
+            var trails = instance.GetComponentsInChildren<TrailRenderer>(true);
+            foreach (var tr in trails)
+            {
+                tr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                tr.receiveShadows = false;
+                tr.Clear();
+            }
+            var lines = instance.GetComponentsInChildren<LineRenderer>(true);
+            foreach (var lr in lines)
+            {
+                lr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                lr.receiveShadows = false;
+            }
         }
 
         private static Transform FindBoneRecursive(Transform current, string[] candidates)

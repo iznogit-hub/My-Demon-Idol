@@ -32,6 +32,16 @@ namespace DemonIdol.BlazBlue
         static readonly Vector3[] _hitPoints = new Vector3[8];
         static int _hitCursor;
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        public static void ResetStaticState()
+        {
+            s_SparkPool.Clear();
+            ResetCounters();
+            OnPortraitHook = null;
+            OnVideoHook = null;
+            OnQuoteHook = null;
+        }
+
         public static void ResetCounters()
         {
             ComboCount = 0;
@@ -43,8 +53,19 @@ namespace DemonIdol.BlazBlue
             HasContactThisTick = false;
         }
 
+        private static Vector3 SanitizePoint(Vector3 point)
+        {
+            if (float.IsNaN(point.x) || float.IsNaN(point.y) || float.IsNaN(point.z) ||
+                float.IsInfinity(point.x) || float.IsInfinity(point.y) || float.IsInfinity(point.z))
+            {
+                return Vector3.zero;
+            }
+            return point;
+        }
+
         public static void OnCleanHit(Vector3 point, BBFighterBrain attacker, bool counterHit, bool isSuper)
         {
+            point = SanitizePoint(point);
             LastHitEvents++;
             ComboCount++;
             LastContactPoint = point;
@@ -137,18 +158,83 @@ namespace DemonIdol.BlazBlue
 
         private static readonly List<GameObject> s_SparkPool = new List<GameObject>();
 
+        public static void PrewarmSparkPools(int countPerType = 4)
+        {
+            var rdb = DemonIdol.Data.MDIRosterDatabase.Instance;
+            if (rdb == null) return;
+
+            GameObject[] prefabs = new GameObject[]
+            {
+                rdb.hitSparkLightPrefab,
+                rdb.hitSparkHeavyPrefab,
+                rdb.hitSparkSuperPrefab,
+                rdb.guardSparkPrefab
+            };
+
+            for (int p = 0; p < prefabs.Length; p++)
+            {
+                var prefab = prefabs[p];
+                if (prefab == null) continue;
+
+                int existingCount = 0;
+                for (int i = 0; i < s_SparkPool.Count; i++)
+                {
+                    if (s_SparkPool[i] != null && s_SparkPool[i].name.StartsWith(prefab.name))
+                        existingCount++;
+                }
+
+                for (int i = existingCount; i < countPerType; i++)
+                {
+                    var instance = Object.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+                    instance.name = prefab.name + "_Pooled";
+                    var trails = instance.GetComponentsInChildren<TrailRenderer>(true);
+                    for (int t = 0; t < trails.Length; t++)
+                    {
+                        trails[t].Clear();
+                    }
+                    instance.SetActive(false);
+                    s_SparkPool.Add(instance);
+                }
+            }
+        }
+
         private static GameObject GetPooledSpark(GameObject prefab, Vector3 point, Quaternion rot, Vector3 scale)
         {
             if (prefab == null) return null;
+            point = SanitizePoint(point);
+
+            // Prune null or destroyed instances from pool
+            for (int i = s_SparkPool.Count - 1; i >= 0; i--)
+            {
+                if (s_SparkPool[i] == null)
+                {
+                    s_SparkPool.RemoveAt(i);
+                }
+            }
+
             for (int i = 0; i < s_SparkPool.Count; i++)
             {
                 var s = s_SparkPool[i];
                 if (s != null && !s.activeInHierarchy && s.name.StartsWith(prefab.name))
                 {
+                    var trails = s.GetComponentsInChildren<TrailRenderer>(true);
+                    for (int t = 0; t < trails.Length; t++)
+                    {
+                        trails[t].Clear();
+                    }
+                    var systems = s.GetComponentsInChildren<ParticleSystem>(true);
+                    for (int p = 0; p < systems.Length; p++)
+                    {
+                        systems[p].Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                    }
                     s.transform.position = point;
                     s.transform.rotation = rot;
                     s.transform.localScale = scale;
                     s.SetActive(true);
+                    for (int p = 0; p < systems.Length; p++)
+                    {
+                        systems[p].Play(true);
+                    }
                     return s;
                 }
             }
@@ -156,12 +242,18 @@ namespace DemonIdol.BlazBlue
             var instance = Object.Instantiate(prefab, point, rot);
             instance.name = prefab.name + "_Pooled";
             instance.transform.localScale = scale;
+            var newTrails = instance.GetComponentsInChildren<TrailRenderer>(true);
+            for (int t = 0; t < newTrails.Length; t++)
+            {
+                newTrails[t].Clear();
+            }
             s_SparkPool.Add(instance);
             return instance;
         }
 
         public static GameObject SpawnHitSpark(Vector3 point, float scale, bool isSuper, bool isHeavy)
         {
+            point = SanitizePoint(point);
             LastSparkPosition = point;
             GameObject sparkPrefab = null;
 
@@ -171,18 +263,6 @@ namespace DemonIdol.BlazBlue
                 sparkPrefab = isSuper ? rdb.hitSparkSuperPrefab : (isHeavy ? rdb.hitSparkHeavyPrefab : rdb.hitSparkLightPrefab);
             }
 
-#if UNITY_EDITOR
-            if (sparkPrefab == null)
-            {
-                if (isSuper)
-                    sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Sword Trails/Fire/CFXR4 Sword Hit FIRE (Cross).prefab")
-                        ?? UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab");
-                else if (isHeavy)
-                    sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab");
-                else
-                    sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit A (Red).prefab");
-            }
-#endif
             if (sparkPrefab != null)
             {
                 Vector3 targetScale = Vector3.one * Mathf.Clamp(scale, 0.8f, 2.5f);
@@ -193,6 +273,7 @@ namespace DemonIdol.BlazBlue
 
         public static GameObject SpawnGuardSpark(Vector3 point, bool guardCrush, bool isBarrier = false)
         {
+            point = SanitizePoint(point);
             GameObject sparkPrefab = null;
             var rdb = DemonIdol.Data.MDIRosterDatabase.Instance;
             if (rdb != null)
@@ -200,21 +281,6 @@ namespace DemonIdol.BlazBlue
                 sparkPrefab = guardCrush ? rdb.guardSparkPrefab : (isBarrier ? rdb.hitSparkLightPrefab : rdb.guardSparkPrefab);
             }
 
-#if UNITY_EDITOR
-            if (sparkPrefab == null)
-            {
-                if (isBarrier)
-                {
-                    sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Kevin Iglesias/Human Animations/Unity Demo Scenes/Human Spellcasting Animations/Prefabs/Spells/Human_Spell_Shield.prefab")
-                        ?? UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Nature/CFXR3 Shield Leaves A (Lit).prefab")
-                        ?? UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab");
-                }
-                else
-                {
-                    sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab");
-                }
-            }
-#endif
             if (sparkPrefab != null)
             {
                 Vector3 targetScale = Vector3.one * (guardCrush ? 1.5f : (isBarrier ? 1.35f : 1.0f));
@@ -225,6 +291,7 @@ namespace DemonIdol.BlazBlue
 
         public static void OnGuard(Vector3 point, bool chip, bool guardCrush, bool isBarrier = false)
         {
+            point = SanitizePoint(point);
             LastGuardEvents++;
             ComboCount = 0;
             SpawnGuardSpark(point, guardCrush, isBarrier);

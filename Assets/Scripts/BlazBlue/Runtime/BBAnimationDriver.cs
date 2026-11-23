@@ -52,6 +52,11 @@ namespace DemonIdol.BlazBlue
             TeardownGraph();
         }
 
+        private void OnDestroy()
+        {
+            TeardownGraph();
+        }
+
         public void InitializeGraph()
         {
             if (_isGraphValid || animator == null) return;
@@ -63,8 +68,10 @@ namespace DemonIdol.BlazBlue
             if (brain != null && brain.profile != null && brain.profile.blazBlueOverrideController != null)
             {
                 targetController = brain.profile.blazBlueOverrideController;
-                animator.runtimeAnimatorController = targetController;
             }
+
+            // Single-drive the Animator: Unbind runtimeAnimatorController so native Animator update does not compete with PlayableGraph
+            animator.runtimeAnimatorController = null;
 
             _graph = PlayableGraph.Create($"BBAnim_{gameObject.name}");
             _graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
@@ -112,7 +119,8 @@ namespace DemonIdol.BlazBlue
         /// </summary>
         public void PlayAttackClip(AnimationClip clip, int firstFrame, int lastFrame, int startupTicks, int totalTicks, int tickInMove, int measuredImpactFrame)
         {
-            if (!_isGraphValid || clip == null) return;
+            if (!_isGraphValid || !_graph.IsValid() || clip == null) return;
+            if (clip.length <= 0f || clip.frameRate <= 0f || float.IsNaN(clip.length) || float.IsInfinity(clip.length) || totalTicks <= 0) return;
             _activeAttackClip = clip;
 
             // Ping-pong playables if clip changed
@@ -122,13 +130,19 @@ namespace DemonIdol.BlazBlue
             {
                 if (activePlayable.IsValid())
                 {
-                    _graph.Disconnect(_mixer, 1);
+                    if (_mixer.IsValid())
+                    {
+                        _graph.Disconnect(_mixer, 1);
+                    }
                     _graph.DestroyPlayable(activePlayable);
                 }
 
                 activePlayable = AnimationClipPlayable.Create(_graph, clip);
                 activePlayable.SetApplyFootIK(false);
-                _graph.Connect(activePlayable, 0, _mixer, 1);
+                if (_mixer.IsValid())
+                {
+                    _graph.Connect(activePlayable, 0, _mixer, 1);
+                }
             }
 
             const float EngineFps = 60.0f;
@@ -157,8 +171,15 @@ namespace DemonIdol.BlazBlue
             }
 
             // Never sample past clipLastFrame
-            seekTime = Mathf.Clamp(seekTime, t0, tLast);
-            activePlayable.SetTime(seekTime);
+            if (float.IsNaN(seekTime) || float.IsInfinity(seekTime))
+            {
+                seekTime = t0;
+            }
+            seekTime = Mathf.Clamp(seekTime, 0f, clip.length);
+            if (activePlayable.IsValid())
+            {
+                activePlayable.SetTime(seekTime);
+            }
 
             // Snap immediately to full weight on first attack frame or rapid gatling chain
             if (tickInMove <= 1 && _attackWeight < 0.95f)
@@ -175,10 +196,14 @@ namespace DemonIdol.BlazBlue
                 _attackWeight = Mathf.MoveTowards(_attackWeight, 1.0f, 1.0f / BLEND_SPEED_TICKS);
             }
 
-            _mixer.SetInputWeight(1, _attackWeight);
-            _mixer.SetInputWeight(0, 1.0f - _attackWeight);
+            if (_mixer.IsValid())
+            {
+                _mixer.SetInputWeight(1, _attackWeight);
+                _mixer.SetInputWeight(0, 1.0f - _attackWeight);
+            }
 
-            _graph.Evaluate(CombatTickEngine.TICK_DELTA_TIME);
+            if (_graph.IsValid())
+                _graph.Evaluate(CombatTickEngine.TICK_DELTA_TIME);
         }
 
         public void PlayAttackClip(AnimationClip clip, int firstFrame, int lastFrame, int totalTicks, int tickInMove)
@@ -202,14 +227,18 @@ namespace DemonIdol.BlazBlue
         /// </summary>
         public void BlendToNeutral()
         {
-            if (!_isGraphValid) return;
+            if (!_isGraphValid || !_graph.IsValid()) return;
 
             if (_attackWeight > 0f)
             {
                 _attackWeight = Mathf.MoveTowards(_attackWeight, 0f, 1.0f / BLEND_SPEED_TICKS);
-                _mixer.SetInputWeight(1, _attackWeight);
-                _mixer.SetInputWeight(0, 1.0f - _attackWeight);
-                _graph.Evaluate(CombatTickEngine.TICK_DELTA_TIME);
+                if (_mixer.IsValid())
+                {
+                    _mixer.SetInputWeight(1, _attackWeight);
+                    _mixer.SetInputWeight(0, 1.0f - _attackWeight);
+                }
+                if (_graph.IsValid())
+                    _graph.Evaluate(CombatTickEngine.TICK_DELTA_TIME);
             }
         }
 
@@ -246,8 +275,9 @@ namespace DemonIdol.BlazBlue
         /// </summary>
         public void TickAnimation(int tick)
         {
-            if (!_isGraphValid) InitializeGraph();
-            if (!_isGraphValid || brain == null) return;
+            if (!Application.isPlaying) return;
+            if (!_isGraphValid || !_graph.IsValid()) InitializeGraph();
+            if (!_isGraphValid || !_graph.IsValid() || brain == null) return;
 
             bool attacking = brain.bbState == BBState.AttackStartup
                 || brain.bbState == BBState.AttackActive
@@ -492,20 +522,38 @@ namespace DemonIdol.BlazBlue
 
         private void SetParamFloat(string name, float val)
         {
-            if (_controllerPlayable.IsValid()) _controllerPlayable.SetFloat(name, val);
-            if (animator != null) animator.SetFloat(name, val);
+            if (_graph.IsValid() && _controllerPlayable.IsValid())
+            {
+                _controllerPlayable.SetFloat(name, val);
+            }
+            else if (animator != null && animator.runtimeAnimatorController != null)
+            {
+                animator.SetFloat(name, val);
+            }
         }
 
         private void SetParamBool(string name, bool val)
         {
-            if (_controllerPlayable.IsValid()) _controllerPlayable.SetBool(name, val);
-            if (animator != null) animator.SetBool(name, val);
+            if (_graph.IsValid() && _controllerPlayable.IsValid())
+            {
+                _controllerPlayable.SetBool(name, val);
+            }
+            else if (animator != null && animator.runtimeAnimatorController != null)
+            {
+                animator.SetBool(name, val);
+            }
         }
 
         private void SetParamTrigger(string name)
         {
-            if (_controllerPlayable.IsValid()) _controllerPlayable.SetTrigger(name);
-            if (animator != null) animator.SetTrigger(name);
+            if (_graph.IsValid() && _controllerPlayable.IsValid())
+            {
+                _controllerPlayable.SetTrigger(name);
+            }
+            else if (animator != null && animator.runtimeAnimatorController != null)
+            {
+                animator.SetTrigger(name);
+            }
         }
     }
 }

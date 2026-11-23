@@ -19,6 +19,13 @@ namespace DemonIdol.Combat
     public class HomegrownCombatDirector : MonoBehaviour
     {
         private static HomegrownCombatDirector _instance;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            _instance = null;
+        }
+
         public static HomegrownCombatDirector Instance
         {
             get
@@ -26,7 +33,7 @@ namespace DemonIdol.Combat
                 if (_instance == null)
                 {
                     _instance = FindFirstObjectByType<HomegrownCombatDirector>();
-                    if (_instance == null)
+                    if (_instance == null && Application.isPlaying)
                     {
                         var go = new GameObject("HomegrownCombatDirector");
                         _instance = go.AddComponent<HomegrownCombatDirector>();
@@ -121,12 +128,12 @@ namespace DemonIdol.Combat
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 DemonIdol.Audio.CombatAudioDirector.DestroyDuplicateComponent(this);
                 return;
             }
-            Instance = this;
+            _instance = this;
         }
 
         private void OnDestroy()
@@ -633,45 +640,6 @@ namespace DemonIdol.Combat
                 fc.animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
             }
 
-            if (model.name.Contains("EX02"))
-            {
-                float sf = targetHeight / 1.78f;
-                model.transform.localScale = Vector3.one * sf;
-                model.transform.localPosition = new Vector3(0, 0.065f, 0);
-                if (fc.animator != null)
-                {
-                    fc.animator.Rebind();
-                    fc.animator.Update(0.033f);
-                }
-                return;
-            }
-
-            if (model.name.Contains("EX03"))
-            {
-                float sf = targetHeight / 1.57f;
-                model.transform.localScale = Vector3.one * sf;
-                model.transform.localPosition = new Vector3(0, 0.185f, 0);
-                if (fc.animator != null)
-                {
-                    fc.animator.Rebind();
-                    fc.animator.Update(0.033f);
-                }
-                return;
-            }
-
-            if (model.name.Contains("EX06"))
-            {
-                float sf = targetHeight / 2.15f;
-                model.transform.localScale = Vector3.one * sf;
-                model.transform.localPosition = new Vector3(0, 0.235f, 0);
-                if (fc.animator != null)
-                {
-                    fc.animator.Rebind();
-                    fc.animator.Update(0.033f);
-                }
-                return;
-            }
-
             model.transform.localScale = Vector3.one;
             model.transform.localPosition = Vector3.zero;
 
@@ -694,6 +662,10 @@ namespace DemonIdol.Combat
             if (hasBounds && b.size.y > 0.05f)
             {
                 float scaleFactor = targetHeight / b.size.y;
+                if (model.name.Contains("EX03"))
+                {
+                    scaleFactor = targetHeight / 1.57f;
+                }
                 model.transform.localScale = Vector3.one * scaleFactor;
 
                 if (fc.animator != null)

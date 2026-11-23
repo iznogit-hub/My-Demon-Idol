@@ -21,6 +21,20 @@ namespace DemonIdol.UI
         public static readonly Color IndigoVoid       = new Color(0.106f, 0.122f, 0.231f, 0.95f); // #1B1F3B
         public static readonly Color DisabledInk      = new Color(0.102f, 0.102f, 0.102f, 0.40f);
 
+        // --- AMV Kinetic Primary Colors (JJK Overhaul) ---
+        public static readonly Color KineticGreen     = new Color(0.000f, 1.000f, 0.231f, 1.0f); // #00FF3B
+        public static readonly Color KineticBlue      = new Color(0.000f, 0.220f, 1.000f, 1.0f); // #0038FF
+        public static readonly Color KineticRed       = new Color(1.000f, 0.118f, 0.176f, 1.0f); // #FF1E2D
+        public static readonly Color KineticYellow    = new Color(1.000f, 0.902f, 0.000f, 1.0f); // #FFE600
+
+        // --- Raimon College Unification Palette ---
+        public static readonly Color ObsidianBlack    = new Color(0.071f, 0.078f, 0.102f, 1.0f); // #12141A
+        public static readonly Color ObsidianCharcoal = new Color(0.078f, 0.086f, 0.118f, 1.0f); // #14161E
+        public static readonly Color RaimonVermilion  = new Color(0.761f, 0.231f, 0.133f, 1.0f); // #C23B22
+        public static readonly Color AntiqueGold      = new Color(0.831f, 0.686f, 0.216f, 1.0f); // #D4AF37
+        public static readonly Color FogTeal          = new Color(0.039f, 0.078f, 0.071f, 1.0f); // #0A1412
+        public static readonly Color FogIndigo        = new Color(0.047f, 0.059f, 0.110f, 1.0f); // #0C0F1C
+
         // Aliases for UI typography & branding
         public static readonly Color SumiOffWhite     = PaperWhite;
         public static readonly Color BrushGold        = ParryGold;

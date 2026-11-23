@@ -229,12 +229,15 @@ namespace DemonIdol.Combat
                     MatchReplaySession.Instance.StartRecording(p1, p2, "ST01", UnityEngine.Random.Range(1000, 99999));
                 }
 
-                // Lock inputs during intro
-                SetFighterInputsEnabled(false);
+                if (!isTrainingMode)
+                {
+                    // Lock inputs during intro
+                    SetFighterInputsEnabled(false);
 
-                // Notify UI: "ROUND X"
-                OnRoundIntro?.Invoke(CurrentRound);
-                yield return new WaitForSeconds(1.4f);
+                    // Notify UI: "ROUND X"
+                    OnRoundIntro?.Invoke(CurrentRound);
+                    yield return new WaitForSeconds(1.4f);
+                }
 
                 // Notify UI: "FIGHT!"
                 OnFightBegun?.Invoke();
@@ -376,6 +379,13 @@ namespace DemonIdol.Combat
 
             OnRoundEnded?.Invoke(winner, EndReason.Knockout);
             OnMatchFinished?.Invoke(winner);
+        }
+
+        public void SkipIntroCountdown()
+        {
+            SetFighterInputsEnabled(true);
+            State = MatchState.Fighting;
+            OnFightBegun?.Invoke();
         }
 
         private void ResetFighter(FighterController fc, Vector3 pos, Quaternion rot)
