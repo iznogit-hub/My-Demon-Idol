@@ -2,6 +2,7 @@ input {
 	button Left;
 	button Right;
 	button Up;
+	button Down;
 	button Fire;
 	button B;
 	button C;

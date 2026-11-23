@@ -114,26 +114,13 @@ namespace DemonIdol.Tests.PlayMode
                 Directory.CreateDirectory(dir);
             }
 
-            Camera cam = Camera.main;
-            if (cam == null) cam = UnityEngine.Object.FindAnyObjectByType<Camera>();
-            if (cam != null)
+            try
             {
-                int w = 1920;
-                int h = 1080;
-                RenderTexture rt = RenderTexture.GetTemporary(w, h, 24);
-                var prevTarget = cam.targetTexture;
-                cam.targetTexture = rt;
-                cam.Render();
-                RenderTexture.active = rt;
-                Texture2D tex = new Texture2D(w, h, TextureFormat.RGB24, false);
-                tex.ReadPixels(new Rect(0, 0, w, h), 0, 0);
-                tex.Apply();
-                cam.targetTexture = prevTarget;
-                RenderTexture.active = null;
-                RenderTexture.ReleaseTemporary(rt);
-
-                File.WriteAllBytes(path, tex.EncodeToPNG());
-                UnityEngine.Object.Destroy(tex);
+                ScreenCapture.CaptureScreenshot(path);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[CaptureScreenshot] Notice: {ex.Message}");
             }
         }
 

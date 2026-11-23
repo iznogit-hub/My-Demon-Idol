@@ -5,6 +5,9 @@
         "MDI.Runtime",
         "MDI.BlazBlue.Core",
         "MDI.BlazBlue.Editor",
+        "Quantum.Unity",
+        "Quantum.Simulation",
+        "Photon.Realtime",
         "Unity.InputSystem",
         "Unity.InputSystem.TestFramework",
         "Unity.TextMeshPro",
@@ -20,8 +23,11 @@
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": true,
-    "overrideReferences": false,
-    "precompiledReferences": [],
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "Quantum.Deterministic.dll"
+    ],
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],

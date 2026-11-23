@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DemonIdol.UI;
+using DemonIdol.Combat;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -9,8 +10,8 @@ using UnityEngine.InputSystem;
 namespace DemonIdol.BlazBlue
 {
     /// <summary>
-    /// On-screen A B C D, virtual D-pad, and hold-to-pause controls.
-    /// Fully calibrated for mobile phone landscape viewports with safe area margins.
+    /// On-screen A B C D, virtual D-pad, dynamic floating thumbstick, and hold-to-pause controls.
+    /// Fully calibrated for mobile phone landscape viewports with safe area margins and multi-touch haptics.
     /// Writes the existing BBInputSampler virtual masks and stick vectors.
     /// </summary>
     public class BBTouchLayout : MonoBehaviour
@@ -47,6 +48,56 @@ namespace DemonIdol.BlazBlue
             return ShouldShowTouchControls(Application.isMobilePlatform, simulatorMobile, touchHardware);
         }
 
+        private void OnEnable()
+        {
+            SubscribeHaptics();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeHaptics();
+        }
+
+        private void SubscribeHaptics()
+        {
+            if (BBMatchSim.Instance != null)
+            {
+                BBMatchSim.Instance.OnHitConfirmed -= HandleHitHaptic;
+                BBMatchSim.Instance.OnHitConfirmed += HandleHitHaptic;
+                BBMatchSim.Instance.OnBurstExecuted -= HandleBurstHaptic;
+                BBMatchSim.Instance.OnBurstExecuted += HandleBurstHaptic;
+                BBMatchSim.Instance.OnRapidCanceled -= HandleRapidHaptic;
+                BBMatchSim.Instance.OnRapidCanceled += HandleRapidHaptic;
+            }
+        }
+
+        private void UnsubscribeHaptics()
+        {
+            if (BBMatchSim.Instance != null)
+            {
+                BBMatchSim.Instance.OnHitConfirmed -= HandleHitHaptic;
+                BBMatchSim.Instance.OnBurstExecuted -= HandleBurstHaptic;
+                BBMatchSim.Instance.OnRapidCanceled -= HandleRapidHaptic;
+            }
+        }
+
+        private void HandleHitHaptic(int attackerIdx, int defenderIdx, float damage, Vector3 hitPos, bool isCounter, bool isHeavy)
+        {
+            if (isCounter) MobileHaptics.Trigger(HapticImpact.CounterHit);
+            else if (isHeavy) MobileHaptics.Trigger(HapticImpact.Heavy);
+            else MobileHaptics.Trigger(HapticImpact.Medium);
+        }
+
+        private void HandleBurstHaptic(int playerIndex, BBBurstType burstType, Vector3 pos)
+        {
+            MobileHaptics.Trigger(HapticImpact.CounterHit);
+        }
+
+        private void HandleRapidHaptic(int playerIndex, Vector3 pos)
+        {
+            MobileHaptics.Trigger(HapticImpact.Parry);
+        }
+
         public void Bind(BBInputSampler sampler)
         {
             target = sampler;
@@ -60,6 +111,7 @@ namespace DemonIdol.BlazBlue
             {
                 target.virtualHeldMask |= bit;
                 target.virtualPressedMask |= bit;
+                MobileHaptics.Trigger(HapticImpact.Light);
             }
             else
             {
@@ -79,6 +131,7 @@ namespace DemonIdol.BlazBlue
             float stickY = (_padUp ? 1f : 0f) - (_padDown ? 1f : 0f);
 
             SetStick(new Vector2(stickX, stickY));
+            if (held) MobileHaptics.Trigger(HapticImpact.Light);
         }
 
         public void SetStick(Vector2 stick)
@@ -95,10 +148,20 @@ namespace DemonIdol.BlazBlue
                 _pauseHoldTimer = 0f;
                 if (_pauseLabelText != null) _pauseLabelText.text = "PAUSE";
             }
+            else
+            {
+                MobileHaptics.Trigger(HapticImpact.Light);
+            }
         }
 
         private void Update()
         {
+            if (BBMatchSim.Instance != null && !_isHoldingPause)
+            {
+                // Ensure active haptics connection if sim spawned after layout
+                SubscribeHaptics();
+            }
+
             if (_isHoldingPause)
             {
                 _pauseHoldTimer += Time.unscaledDeltaTime;
@@ -120,6 +183,7 @@ namespace DemonIdol.BlazBlue
 
         private void TriggerPause()
         {
+            MobileHaptics.Trigger(HapticImpact.Medium);
             if (BattleHUDController.Instance != null)
             {
                 BattleHUDController.Instance.ToggleInGamePause();
@@ -152,21 +216,41 @@ namespace DemonIdol.BlazBlue
             float safeRight = Mathf.Max(24f, Screen.width - safe.xMax);
             float safeBottom = Mathf.Max(24f, safe.yMin);
 
-            // 1. Virtual D-Pad (Left side, non-overlapping with health bars)
+            // 1. Dynamic Floating Thumbstick Zone (Left half of screen)
+            CreateFloatingJoystickZone(layout, root.transform);
+
+            // 2. Virtual D-Pad (Left side visual anchor)
             Vector2 dpadOrigin = new Vector2(safeLeft + 80f, safeBottom + 80f);
             CreateDPad(layout, root.transform, dpadOrigin);
 
-            // 2. Action Buttons A, B, C, D (Right side, minimum 76x76 touch target)
+            // 3. Action Buttons A, B, C, D (Right side, minimum 76x76 touch target)
             Vector2 rightOrigin = new Vector2(-safeRight - 40f, safeBottom + 40f);
             CreateButton(layout, root.transform, "A", BBButton.A, new Vector2(rightOrigin.x, rightOrigin.y), new Color(0.85f, 0.20f, 0.25f, 0.85f));
             CreateButton(layout, root.transform, "B", BBButton.B, new Vector2(rightOrigin.x, rightOrigin.y + 90f), new Color(0.20f, 0.50f, 0.90f, 0.85f));
             CreateButton(layout, root.transform, "C", BBButton.C, new Vector2(rightOrigin.x - 90f, rightOrigin.y), new Color(0.95f, 0.75f, 0.20f, 0.85f));
             CreateButton(layout, root.transform, "D", BBButton.D, new Vector2(rightOrigin.x - 90f, rightOrigin.y + 90f), new Color(0.65f, 0.25f, 0.85f, 0.85f));
 
-            // 3. Hold-to-Pause Button (Top right, safe under status bar)
+            // 4. Hold-to-Pause Button (Top right, safe under status bar)
             CreateHoldPauseButton(layout, root.transform, new Vector2(-safeRight - 20f, -40f));
 
             return layout;
+        }
+
+        static void CreateFloatingJoystickZone(BBTouchLayout layout, Transform parent)
+        {
+            var zoneGo = new GameObject("FloatingJoystickZone", typeof(RectTransform), typeof(Image));
+            zoneGo.transform.SetParent(parent, false);
+            var rt = zoneGo.GetComponent<RectTransform>();
+            rt.anchorMin = new Vector2(0f, 0f);
+            rt.anchorMax = new Vector2(0.45f, 0.8f);
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
+
+            var img = zoneGo.GetComponent<Image>();
+            img.color = Color.clear; // Invisible raycast target for gestures
+
+            var zone = zoneGo.AddComponent<BBFloatingJoystickZone>();
+            zone.layout = layout;
         }
 
         static void CreateDPad(BBTouchLayout layout, Transform parent, Vector2 origin)
@@ -291,6 +375,60 @@ namespace DemonIdol.BlazBlue
             var entry = new EventTrigger.Entry { eventID = type };
             entry.callback.AddListener(_ => call());
             trigger.triggers.Add(entry);
+        }
+    }
+
+    /// <summary>
+    /// Dynamic capacitive thumbstick gesture responder for mobile touchscreens.
+    /// Re-centers touch origin dynamically and maps continuous analog vectors into BBInputSampler.
+    /// </summary>
+    public class BBFloatingJoystickZone : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+    {
+        public BBTouchLayout layout;
+        public float maxRadius = 75f;
+        public float deadzone = 12f;
+
+        private Vector2 _origin;
+        private bool _isDragging = false;
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            _isDragging = true;
+            _origin = eventData.position;
+            UpdateStick(eventData.position);
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            if (!_isDragging) return;
+            UpdateStick(eventData.position);
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            _isDragging = false;
+            if (layout != null) layout.SetStick(Vector2.zero);
+        }
+
+        private void UpdateStick(Vector2 currentPos)
+        {
+            Vector2 delta = currentPos - _origin;
+            float dist = delta.magnitude;
+
+            if (dist < deadzone)
+            {
+                if (layout != null) layout.SetStick(Vector2.zero);
+                return;
+            }
+
+            Vector2 dir = delta / dist;
+            float clampedDist = Mathf.Min(dist, maxRadius);
+            float normalized = (clampedDist - deadzone) / (maxRadius - deadzone);
+
+            if (layout != null)
+            {
+                layout.SetStick(dir * normalized);
+            }
         }
     }
 }

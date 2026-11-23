@@ -181,6 +181,15 @@ namespace DemonIdol.Network
                 _fighterViewP2.isPlayerControlled = (localSlot == 1);
             }
 
+            // Ensure Quantum view is bound to brains
+            var view = FindAnyObjectByType<Quantum.BBMatchQuantumView>();
+            if (view != null)
+            {
+                var brain1 = _fighterViewP1 != null ? _fighterViewP1.brain : null;
+                var brain2 = _fighterViewP2 != null ? _fighterViewP2.brain : null;
+                view.BindBrains(brain1, brain2);
+            }
+
             if (CombatTickEngine.Instance != null)
             {
                 CombatTickEngine.Instance.PauseSimulation(false);
@@ -192,8 +201,16 @@ namespace DemonIdol.Network
         public void ResetQuantumMatch()
         {
             IsQuantumActive = false;
-            if (_fighterViewP1 != null) _fighterViewP1.isPlayerControlled = true;
-            if (_fighterViewP2 != null) _fighterViewP2.isPlayerControlled = false;
+            if (_fighterViewP1 != null)
+            {
+                _fighterViewP1.isPlayerControlled = true;
+                if (_fighterViewP1.brain != null) _fighterViewP1.brain.customInputProvider = null;
+            }
+            if (_fighterViewP2 != null)
+            {
+                _fighterViewP2.isPlayerControlled = false;
+                if (_fighterViewP2.brain != null) _fighterViewP2.brain.customInputProvider = null;
+            }
             if (CombatTickEngine.Instance != null)
             {
                 CombatTickEngine.Instance.PauseSimulation(false);

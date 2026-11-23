@@ -159,6 +159,7 @@ namespace Quantum.Prototypes {
     public Button Left;
     public Button Right;
     public Button Up;
+    public Button Down;
     public Button Fire;
     public Button B;
     public Button C;
@@ -168,6 +169,7 @@ namespace Quantum.Prototypes {
         result.Left = this.Left;
         result.Right = this.Right;
         result.Up = this.Up;
+        result.Down = this.Down;
         result.Fire = this.Fire;
         result.B = this.B;
         result.C = this.C;

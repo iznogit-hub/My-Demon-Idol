@@ -54,10 +54,11 @@ namespace Quantum {
     Left = 1 << 0,
     Right = 1 << 1,
     Up = 1 << 2,
-    Fire = 1 << 3,
-    B = 1 << 4,
-    C = 1 << 5,
-    D = 1 << 6,
+    Down = 1 << 3,
+    Fire = 1 << 4,
+    B = 1 << 5,
+    C = 1 << 6,
+    D = 1 << 7,
   }
   public static unsafe partial class FlagsExtensions {
     public static Boolean IsFlagSet(this InputButtons self, InputButtons flag) {
@@ -584,15 +585,17 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct Input {
-    public const Int32 SIZE = 84;
+    public const Int32 SIZE = 96;
     public const Int32 ALIGNMENT = 4;
-    [FieldOffset(48)]
-    public Button Left;
     [FieldOffset(60)]
-    public Button Right;
+    public Button Left;
     [FieldOffset(72)]
+    public Button Right;
+    [FieldOffset(84)]
     public Button Up;
     [FieldOffset(36)]
+    public Button Down;
+    [FieldOffset(48)]
     public Button Fire;
     [FieldOffset(0)]
     public Button B;
@@ -606,6 +609,7 @@ namespace Quantum {
         hash = hash * 31 + Left.GetHashCode();
         hash = hash * 31 + Right.GetHashCode();
         hash = hash * 31 + Up.GetHashCode();
+        hash = hash * 31 + Down.GetHashCode();
         hash = hash * 31 + Fire.GetHashCode();
         hash = hash * 31 + B.GetHashCode();
         hash = hash * 31 + C.GetHashCode();
@@ -621,6 +625,7 @@ namespace Quantum {
         case InputButtons.Left: return Left.IsDown;
         case InputButtons.Right: return Right.IsDown;
         case InputButtons.Up: return Up.IsDown;
+        case InputButtons.Down: return Down.IsDown;
         case InputButtons.Fire: return Fire.IsDown;
         case InputButtons.B: return B.IsDown;
         case InputButtons.C: return C.IsDown;
@@ -633,6 +638,7 @@ namespace Quantum {
         case InputButtons.Left: return Left.WasPressed;
         case InputButtons.Right: return Right.WasPressed;
         case InputButtons.Up: return Up.WasPressed;
+        case InputButtons.Down: return Down.WasPressed;
         case InputButtons.Fire: return Fire.WasPressed;
         case InputButtons.B: return B.WasPressed;
         case InputButtons.C: return C.WasPressed;
@@ -645,6 +651,7 @@ namespace Quantum {
         Button.Serialize(&p->B, serializer);
         Button.Serialize(&p->C, serializer);
         Button.Serialize(&p->D, serializer);
+        Button.Serialize(&p->Down, serializer);
         Button.Serialize(&p->Fire, serializer);
         Button.Serialize(&p->Left, serializer);
         Button.Serialize(&p->Right, serializer);
@@ -653,9 +660,9 @@ namespace Quantum {
   }
   [StructLayout(LayoutKind.Explicit)]
   public unsafe partial struct _globals_ {
-    public const Int32 SIZE = 1128;
+    public const Int32 SIZE = 1200;
     public const Int32 ALIGNMENT = 8;
-    [FieldOffset(1124)]
+    [FieldOffset(1196)]
     private fixed Byte _alignment_padding_[4];
     [FieldOffset(0)]
     public AssetRef<Map> Map;
@@ -679,14 +686,14 @@ namespace Quantum {
     public Int32 PlayerConnectedCount;
     [FieldOffset(604)]
     [FramePrinter.FixedArrayAttribute(typeof(Input), 6)]
-    private fixed Byte _input_[504];
-    [FieldOffset(1112)]
+    private fixed Byte _input_[576];
+    [FieldOffset(1184)]
     public BitSet6 PlayerLastConnectionState;
-    [FieldOffset(1120)]
+    [FieldOffset(1192)]
     public Int32 AsteroidsWaveCount;
     public readonly FixedArray<Input> input {
       get {
-        fixed (byte* p = _input_) { return new FixedArray<Input>(p, 84, 6); }
+        fixed (byte* p = _input_) { return new FixedArray<Input>(p, 96, 6); }
       }
     }
     public override readonly Int32 GetHashCode() {
@@ -954,6 +961,7 @@ namespace Quantum {
       i->Left = i->Left.Update(this.Number, input.Left);
       i->Right = i->Right.Update(this.Number, input.Right);
       i->Up = i->Up.Update(this.Number, input.Up);
+      i->Down = i->Down.Update(this.Number, input.Down);
       i->Fire = i->Fire.Update(this.Number, input.Fire);
       i->B = i->B.Update(this.Number, input.B);
       i->C = i->C.Update(this.Number, input.C);

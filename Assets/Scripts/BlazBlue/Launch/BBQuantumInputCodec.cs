@@ -1,9 +1,11 @@
 namespace DemonIdol.BlazBlue
 {
+    using Quantum;
+
     /// <summary>
-    /// Deterministic pack of A B C D and directions.
-    /// Quantum's generated Input still only has Left, Right, Up, and Fire.
-    /// This codec is the contract the online view and the tests share until that Input asset is regenerated.
+    /// Deterministic pack and converter for 4-button fighting inputs (A, B, C, D) and 8 directions.
+    /// Provides lossless round-trip encoding between Photon Quantum Input structs, bitpacked sideband words,
+    /// and BlazBlue simulation BBInputFrame structs.
     /// </summary>
     public static class BBQuantumInputCodec
     {
@@ -46,6 +48,86 @@ namespace DemonIdol.BlazBlue
                 C = (value & 64) != 0,
                 D = (value & 128) != 0
             };
+        }
+
+        public static ushort Pack(in BBInputFrame frame)
+        {
+            return Pack(ToButtons(frame));
+        }
+
+        public static Buttons ToButtons(in BBInputFrame frame)
+        {
+            return new Buttons
+            {
+                Left = frame.numpad == 7 || frame.numpad == 4 || frame.numpad == 1,
+                Right = frame.numpad == 9 || frame.numpad == 6 || frame.numpad == 3,
+                Up = frame.numpad >= 7 && frame.numpad <= 9,
+                Down = frame.numpad >= 1 && frame.numpad <= 3,
+                A = frame.IsHeld(BBButton.A),
+                B = frame.IsHeld(BBButton.B),
+                C = frame.IsHeld(BBButton.C),
+                D = frame.IsHeld(BBButton.D)
+            };
+        }
+
+        public static BBInputFrame ToBBInputFrame(Buttons buttons, byte prevHeld = 0)
+        {
+            sbyte numpad = 5;
+            if (buttons.Up)
+            {
+                if (buttons.Left) numpad = 7;
+                else if (buttons.Right) numpad = 9;
+                else numpad = 8;
+            }
+            else if (buttons.Down)
+            {
+                if (buttons.Left) numpad = 1;
+                else if (buttons.Right) numpad = 3;
+                else numpad = 2;
+            }
+            else
+            {
+                if (buttons.Left) numpad = 4;
+                else if (buttons.Right) numpad = 6;
+                else numpad = 5;
+            }
+
+            byte held = 0;
+            if (buttons.A) held |= (byte)BBButton.A;
+            if (buttons.B) held |= (byte)BBButton.B;
+            if (buttons.C) held |= (byte)BBButton.C;
+            if (buttons.D) held |= (byte)BBButton.D;
+
+            byte pressed = (byte)(held & ~prevHeld);
+            byte released = (byte)(prevHeld & ~held);
+
+            return new BBInputFrame
+            {
+                numpad = numpad,
+                held = held,
+                pressed = pressed,
+                released = released
+            };
+        }
+
+        public static Buttons FromQuantumInput(Quantum.Input input)
+        {
+            return new Buttons
+            {
+                Left = input.Left.IsDown,
+                Right = input.Right.IsDown,
+                Up = input.Up.IsDown,
+                Down = input.Down.IsDown,
+                A = input.Fire.IsDown,
+                B = input.B.IsDown,
+                C = input.C.IsDown,
+                D = input.D.IsDown
+            };
+        }
+
+        public static BBInputFrame QuantumInputToBBInputFrame(Quantum.Input input, byte prevHeld = 0)
+        {
+            return ToBBInputFrame(FromQuantumInput(input), prevHeld);
         }
     }
 }

@@ -32,6 +32,7 @@ namespace Quantum
                 Left = buttons.Left,
                 Right = buttons.Right,
                 Up = buttons.Up,
+                Down = buttons.Down,
                 Fire = buttons.A,
                 B = unpacked.B,
                 C = unpacked.C,

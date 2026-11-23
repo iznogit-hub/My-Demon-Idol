@@ -57,6 +57,7 @@ namespace DemonIdol.BlazBlue.Editor
                 RealInputMatchTest.RunAllTests,
                 DemonIdolRebuildGuardTests.RunSceneIntegrityCheck,
                 CombatAudioDirectorTests.RunAllTestsMenu,
+                DemonIdolQuantumOnlineTests.RunAllTestsMenu,
                 RunRosterDatabaseTests
             };
 
