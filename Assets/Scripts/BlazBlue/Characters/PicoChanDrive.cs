@@ -51,10 +51,10 @@ namespace DemonIdol.BlazBlue
         {
             if (brain == null) return false;
 
-            // Airborne: j.D Air Clinch
+            // Airborne: j.D Air Clinch (or fallback to j.B)
             if (!brain.isGrounded)
             {
-                var airMove = brain.FindAttackByMoveId("j.D");
+                var airMove = brain.FindAttackByMoveId("j.D") ?? brain.FindAttackByMoveId("j.B");
                 if (airMove != null && brain.CanExecuteMove(airMove))
                 {
                     brain.StartAttack(airMove);
@@ -66,25 +66,23 @@ namespace DemonIdol.BlazBlue
             // Ground: 6D Running Clinch
             if (facingNumpad == 6 || facingNumpad == 9)
             {
-                var runMove = brain.FindAttackByMoveId("6D");
+                var runMove = brain.FindAttackByMoveId("6D") ?? brain.FindAttackByMoveId("5D");
                 if (runMove != null && brain.CanExecuteMove(runMove))
                 {
                     brain.StartAttack(runMove);
                     return true;
                 }
-                return false;
             }
 
             // Ground: 2D Low Clinch
             if (facingNumpad == 2 || facingNumpad == 1 || facingNumpad == 3)
             {
-                var lowMove = brain.FindAttackByMoveId("2D");
+                var lowMove = brain.FindAttackByMoveId("2D") ?? brain.FindAttackByMoveId("5D");
                 if (lowMove != null && brain.CanExecuteMove(lowMove))
                 {
                     brain.StartAttack(lowMove);
                     return true;
                 }
-                return false;
             }
 
             // Ground: 5D Clinch (default)
@@ -95,6 +93,14 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(clinchMove);
                     return true;
                 }
+            }
+
+            // Graceful fallback: If follow-up/directional D move is not mapped, execute primary 5D
+            var fallbackMove = brain.FindAttackByMoveId("5D");
+            if (fallbackMove != null && brain.CanExecuteMove(fallbackMove))
+            {
+                brain.StartAttack(fallbackMove);
+                return true;
             }
 
             return false;

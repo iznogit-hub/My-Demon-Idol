@@ -255,7 +255,6 @@ namespace DemonIdol.BlazBlue
                 {
                     _desiredNumpad = BBInputFrame.FacingToWorldNumpad(6, facing);
                     _desiredButtons = BBButton.A;
-                    _attackCooldownTicks = 10;
                     return;
                 }
                 var altB = self.FindAttackByMoveId("5B");
@@ -263,7 +262,6 @@ namespace DemonIdol.BlazBlue
                 {
                     _desiredNumpad = 5;
                     _desiredButtons = BBButton.B;
-                    _attackCooldownTicks = 10;
                     return;
                 }
                 var altC = self.FindAttackByMoveId("5C");
@@ -271,7 +269,6 @@ namespace DemonIdol.BlazBlue
                 {
                     _desiredNumpad = 5;
                     _desiredButtons = BBButton.C;
-                    _attackCooldownTicks = 10;
                     return;
                 }
             }
@@ -314,7 +311,7 @@ namespace DemonIdol.BlazBlue
             }
 
             // Neutral Spacing and Pokes
-            if (dist > 3.0f)
+            if (dist > 1.8f)
             {
                 // Advance forward
                 _desiredNumpad = BBInputFrame.FacingToWorldNumpad(6, facing);
@@ -346,7 +343,6 @@ namespace DemonIdol.BlazBlue
                         _desiredNumpad = BBInputFrame.FacingToWorldNumpad(6, facing);
                         _desiredButtons = BBButton.B | BBButton.C;
                     }
-                    _attackCooldownTicks = 10;
                 }
             }
             else
@@ -370,7 +366,6 @@ namespace DemonIdol.BlazBlue
                         _desiredNumpad = 2;
                         _desiredButtons = BBButton.C;
                     }
-                    _attackCooldownTicks = 10;
                 }
             }
         }

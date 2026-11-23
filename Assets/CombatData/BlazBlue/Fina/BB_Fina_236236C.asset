@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Fina_236236C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Hyper Beam Strike
+  attackName: Signature Finisher
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 5
+  startupFrames: 9
   activeFrames: 4
-  recoveryFrames: 38
-  hitstunTicks: 21
-  blockstunTicks: 20
+  recoveryFrames: 26
+  hitstunTicks: 36
+  blockstunTicks: 15
   knockdownDurationTicks: 36
   hitstopAttacker: 13
   hitstopDefender: 13
   hitstopOnBlock: 13
   counterHitStopBonus: 4
-  advantageOnBlock: -21
-  advantageOnHit: -20
+  advantageOnBlock: -14
+  advantageOnHit: 7
   advantageOnCounterHit: 8
-  damage: 2450
+  damage: 2200
   chipDamageOnBlock: 0
   initialProration: 0.94
   comboDamageDecay: 0.94
@@ -47,14 +47,14 @@ MonoBehaviour:
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 0
+  causesKnockdown: 1
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: -6788666626592393668, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 1.1, y: 1.25, z: 0}
   hitboxSize: {x: 1.8, y: 0.9, z: 1}
@@ -74,7 +74,7 @@ MonoBehaviour:
     endTick: 5
     mask: 7
   fatalCounter: 0
-  hardKnockdown: 0
+  hardKnockdown: 1
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -89,8 +89,8 @@ MonoBehaviour:
   heatGainOverride: -1
   heatCost: 50
   gatlingInto: []
-  specialCancel: 0
-  ddCancel: 0
+  specialCancel: 1
+  ddCancel: 1
   jumpCancelOnHit: 0
   jumpCancelOnBlock: 0
   rapidCancelable: 0
@@ -98,9 +98,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: d72cc54c344ab4988bcd04dbbcd2b3cb, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_Palm
-  clip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Karate_Super
+  clip: {fileID: -6788666626592393668, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 12
-  measuredImpactFrame: 6
+  clipLastFrame: 68
+  measuredImpactFrame: 9
   events: []

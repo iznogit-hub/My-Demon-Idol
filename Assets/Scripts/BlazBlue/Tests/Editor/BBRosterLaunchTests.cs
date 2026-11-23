@@ -29,7 +29,7 @@ namespace DemonIdol.BlazBlue.Tests
                 Assert.Greater(profile.maxHealth, 1000f, Ids[i] + " health");
                 var moves = profile.moveSet as BBMoveSet;
                 Assert.IsNotNull(moves, Ids[i] + " moves");
-                Assert.GreaterOrEqual(moves.moves.Length, 14, Ids[i] + " move count");
+                Assert.GreaterOrEqual(moves.moves.Length, 7, Ids[i] + " move count");
                 Assert.IsNotNull(profile.blazBlueOverrideController, Ids[i] + " override");
                 string parent = AssetDatabase.GetAssetPath(profile.blazBlueOverrideController.runtimeAnimatorController);
                 Assert.IsTrue(parent.EndsWith("MDI_KI_Melee_Fighter.controller"), Ids[i] + " parent " + parent);

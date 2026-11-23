@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_C05_j.B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Air Horizontal Slash
+  attackName: Jump Attack
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 9
+  startupFrames: 7
   activeFrames: 4
   recoveryFrames: 14
-  hitstunTicks: 14
-  blockstunTicks: 13
+  hitstunTicks: 19
+  blockstunTicks: 17
   knockdownDurationTicks: 36
   hitstopAttacker: 10
   hitstopDefender: 10
   hitstopOnBlock: 10
   counterHitStopBonus: 4
   advantageOnBlock: 0
-  advantageOnHit: -3
+  advantageOnHit: 2
   advantageOnCounterHit: 6
-  damage: 588
+  damage: 520
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.85
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: -998496362607748373, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  animationClip: {fileID: -5059006814000262888, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: JumpAttack
   hitboxOffset: {x: 1.1, y: -0.2, z: 0}
   hitboxSize: {x: 1.6, y: 1.4, z: 1}
@@ -85,13 +85,7 @@ MonoBehaviour:
   chipPct: 0
   heatGainOverride: -1
   heatCost: 0
-  gatlingInto:
-  - 5A
-  - 5B
-  - 5C
-  - 2A
-  - 236A
-  - 236236C
+  gatlingInto: []
   specialCancel: 1
   ddCancel: 1
   jumpCancelOnHit: 0
@@ -99,11 +93,11 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 69083393867ea42dcb4c83d1ca348c68, type: 2}
+  boxes: {fileID: 11400000, guid: bc54519c3f98244bea81035d62867c8c, type: 2}
   motionTrack: {fileID: 0}
-  clipName: HumanM@Attack1H01_L
-  clip: {fileID: 3094330708855449807, guid: fcae9c41b8da9dc46974f5351a44bb66, type: 3}
+  clipName: Karate_AirKick
+  clip: {fileID: -5059006814000262888, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 26
-  measuredImpactFrame: 23
+  clipLastFrame: 44
+  measuredImpactFrame: 7
   events: []

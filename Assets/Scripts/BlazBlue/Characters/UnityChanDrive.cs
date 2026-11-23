@@ -53,12 +53,12 @@ namespace DemonIdol.BlazBlue
             Vector2 bPos = GetBrainPos(brain);
             int facing = GetBrainFacing(brain);
 
-            // Airborne: j.D Extra Air Hop
+            // Airborne: j.D Extra Air Hop (or fallback to j.B)
             if (!brain.isGrounded)
             {
                 if (usedAirHop && !InOverdrive) return false;
 
-                var airMove = brain.FindAttackByMoveId("j.D");
+                var airMove = brain.FindAttackByMoveId("j.D") ?? brain.FindAttackByMoveId("j.B");
                 if (airMove != null && brain.CanExecuteMove(airMove))
                 {
                     usedAirHop = true;
@@ -73,27 +73,25 @@ namespace DemonIdol.BlazBlue
             // Ground: 6D Forward Leap
             if (facingNumpad == 6 || facingNumpad == 9)
             {
-                var leapMove = brain.FindAttackByMoveId("6D");
+                var leapMove = brain.FindAttackByMoveId("6D") ?? brain.FindAttackByMoveId("5D");
                 if (leapMove != null && brain.CanExecuteMove(leapMove))
                 {
                     activeHopsCount++;
                     brain.StartAttack(leapMove);
                     return true;
                 }
-                return false;
             }
 
             // Ground: 4D Back Hop
             if (facingNumpad == 4 || facingNumpad == 7 || facingNumpad == 1)
             {
-                var backHopMove = brain.FindAttackByMoveId("4D");
+                var backHopMove = brain.FindAttackByMoveId("4D") ?? brain.FindAttackByMoveId("5D");
                 if (backHopMove != null && brain.CanExecuteMove(backHopMove))
                 {
                     activeHopsCount++;
                     brain.StartAttack(backHopMove);
                     return true;
                 }
-                return false;
             }
 
             // Ground: 5D Vertical Hop
@@ -105,6 +103,15 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(hopMove);
                     return true;
                 }
+            }
+
+            // Graceful fallback: If follow-up/directional D move is not mapped, execute primary 5D
+            var fallbackMove = brain.FindAttackByMoveId("5D");
+            if (fallbackMove != null && brain.CanExecuteMove(fallbackMove))
+            {
+                activeHopsCount++;
+                brain.StartAttack(fallbackMove);
+                return true;
             }
 
             return false;

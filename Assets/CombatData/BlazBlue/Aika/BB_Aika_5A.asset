@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Aika_5A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Snap Kick
+  attackName: Light Jab
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 6
+  startupFrames: 5
   activeFrames: 3
-  recoveryFrames: 9
-  hitstunTicks: 12
+  recoveryFrames: 8
+  hitstunTicks: 13
   blockstunTicks: 11
   knockdownDurationTicks: 36
   hitstopAttacker: 9
   hitstopDefender: 9
   hitstopOnBlock: 9
   counterHitStopBonus: 4
-  advantageOnBlock: 0
-  advantageOnHit: 1
+  advantageOnBlock: 1
+  advantageOnHit: 3
   advantageOnCounterHit: 8
-  damage: 260
+  damage: 280
   chipDamageOnBlock: 0
   initialProration: 0.8
   comboDamageDecay: 0.8
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
+  animationClip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.65, y: 1.25, z: 0}
   hitboxSize: {x: 1.3, y: 0.6, z: 1}
@@ -86,17 +86,11 @@ MonoBehaviour:
   heatGainOverride: -1
   heatCost: 0
   gatlingInto:
-  - 5A
-  - 2A
   - 5B
-  - 2B
-  - 6B
   - 5C
   - 2C
-  - 3C
   - 5D
-  - 2D
-  - 6D
+  - 236236C
   specialCancel: 1
   ddCancel: 1
   jumpCancelOnHit: 0
@@ -106,9 +100,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 45efa07e311f74c668873ad51cffc9a2, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Atk_K_1
-  clip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
+  clipName: Karate_Jab
+  clip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 22
-  measuredImpactFrame: 20
+  clipLastFrame: 44
+  measuredImpactFrame: 5
   events: []

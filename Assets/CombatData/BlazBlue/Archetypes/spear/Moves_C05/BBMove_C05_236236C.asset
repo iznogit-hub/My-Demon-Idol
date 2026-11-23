@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_C05_236236C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Celestial Dragon Piercer
+  attackName: Signature Finisher
   attackType: 0
   hitLevel: 1
   guardRequirement: 1
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 6
-  activeFrames: 5
-  recoveryFrames: 38
-  hitstunTicks: 21
-  blockstunTicks: 20
+  startupFrames: 9
+  activeFrames: 4
+  recoveryFrames: 26
+  hitstunTicks: 36
+  blockstunTicks: 15
   knockdownDurationTicks: 36
   hitstopAttacker: 13
   hitstopDefender: 13
   hitstopOnBlock: 13
   counterHitStopBonus: 4
-  advantageOnBlock: -22
-  advantageOnHit: -21
+  advantageOnBlock: -14
+  advantageOnHit: 7
   advantageOnCounterHit: 6
-  damage: 2450
+  damage: 2200
   chipDamageOnBlock: 0
   initialProration: 0.94
   comboDamageDecay: 0.94
@@ -47,14 +47,14 @@ MonoBehaviour:
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 0
+  causesKnockdown: 1
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 3060872287085348379, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
+  animationClip: {fileID: -6788666626592393668, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: DomainSuper
   hitboxOffset: {x: 1.3, y: 1.25, z: 0}
   hitboxSize: {x: 2, y: 0.9, z: 1}
@@ -74,7 +74,7 @@ MonoBehaviour:
     endTick: 6
     mask: 7
   fatalCounter: 0
-  hardKnockdown: 0
+  hardKnockdown: 1
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -88,25 +88,19 @@ MonoBehaviour:
   chipPct: 0
   heatGainOverride: -1
   heatCost: 50
-  gatlingInto:
-  - 5A
-  - 5B
-  - 5C
-  - 2A
-  - 236A
-  - 236236C
+  gatlingInto: []
   specialCancel: 1
-  ddCancel: 0
+  ddCancel: 1
   jumpCancelOnHit: 0
   jumpCancelOnBlock: 0
   rapidCancelable: 0
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: d14bd9e66bf7e43e583d025e3fe2bbc3, type: 2}
+  boxes: {fileID: 11400000, guid: 8f3614b475023454c9c84503f55422a7, type: 2}
   motionTrack: {fileID: 0}
-  clipName: TwoHanded_Slam
-  clip: {fileID: 3060872287085348379, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
+  clipName: Karate_Super
+  clip: {fileID: -6788666626592393668, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 24
-  measuredImpactFrame: 19
+  clipLastFrame: 68
+  measuredImpactFrame: 9
   events: []

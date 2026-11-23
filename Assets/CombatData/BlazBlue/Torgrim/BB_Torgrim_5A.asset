@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Torgrim_5A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Forge Strike
+  attackName: Light Jab
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -65,20 +65,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 6
+  startupFrames: 5
   activeFrames: 3
-  recoveryFrames: 10
-  hitstunTicks: 12
+  recoveryFrames: 8
+  hitstunTicks: 13
   blockstunTicks: 11
   knockdownDurationTicks: 36
   hitstopAttacker: 9
   hitstopDefender: 9
   hitstopOnBlock: 9
   counterHitStopBonus: 4
-  advantageOnBlock: -1
-  advantageOnHit: 0
+  advantageOnBlock: 1
+  advantageOnHit: 3
   advantageOnCounterHit: 8
-  damage: 320
+  damage: 280
   chipDamageOnBlock: 0
   initialProration: 0.8
   comboDamageDecay: 0.8
@@ -95,7 +95,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
+  animationClip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.75, y: 1.25, z: 0}
   hitboxSize: {x: 1.45, y: 0.6, z: 1}
@@ -126,7 +126,12 @@ MonoBehaviour:
   chipPct: 0
   heatGainOverride: -1
   heatCost: 0
-  gatlingInto: []
+  gatlingInto:
+  - 5B
+  - 5C
+  - 2C
+  - 5D
+  - 236236C
   specialCancel: 1
   ddCancel: 1
   jumpCancelOnHit: 0
@@ -134,11 +139,11 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: -3825139882815674507}
+  boxes: {fileID: 11400000, guid: 49a5da64b2a084f308a172d2db462fec, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Hammer_Swing
-  clip: {fileID: 1827226128182048838, guid: c52633ad3251d4841878d77a31df9981, type: 3}
+  clipName: Karate_Jab
+  clip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 28
-  measuredImpactFrame: 28
+  clipLastFrame: 44
+  measuredImpactFrame: 5
   events: []

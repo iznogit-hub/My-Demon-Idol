@@ -98,11 +98,11 @@ namespace DemonIdol.BlazBlue
             Vector2 bPos = GetBrainPos(brain);
             int facing = GetBrainFacing(brain);
 
-            // In air: j.D Air Nail
+            // In air: j.D Air Nail (or fallback to j.B)
             if (!brain.isGrounded)
             {
                 if (!CanThrowNail()) return false;
-                var airMove = brain.FindAttackByMoveId("j.D");
+                var airMove = brain.FindAttackByMoveId("j.D") ?? brain.FindAttackByMoveId("j.B");
                 if (airMove != null && brain.CanExecuteMove(airMove))
                 {
                     SpendNail();
@@ -123,21 +123,20 @@ namespace DemonIdol.BlazBlue
             // 6D Detonate (does not cost stock)
             if (facingNumpad == 6 || facingNumpad == 9)
             {
-                var detonateMove = brain.FindAttackByMoveId("6D");
+                var detonateMove = brain.FindAttackByMoveId("6D") ?? brain.FindAttackByMoveId("5D");
                 if (detonateMove != null && brain.CanExecuteMove(detonateMove))
                 {
                     DetonateAllNails(brain, tick);
                     brain.StartAttack(detonateMove);
                     return true;
                 }
-                return false;
             }
 
             // 2D Ground Nail
             if (facingNumpad == 1 || facingNumpad == 2 || facingNumpad == 3)
             {
                 if (!CanThrowNail()) return false;
-                var groundMove = brain.FindAttackByMoveId("2D");
+                var groundMove = brain.FindAttackByMoveId("2D") ?? brain.FindAttackByMoveId("5D");
                 if (groundMove != null && brain.CanExecuteMove(groundMove))
                 {
                     SpendNail();
@@ -151,7 +150,6 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(groundMove);
                     return true;
                 }
-                return false;
             }
 
             // 5D Straight Nail
@@ -171,6 +169,14 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(straightMove);
                     return true;
                 }
+            }
+
+            // Graceful fallback: If follow-up/directional D move is not mapped, execute primary 5D
+            var fallbackMove = brain.FindAttackByMoveId("5D");
+            if (fallbackMove != null && brain.CanExecuteMove(fallbackMove))
+            {
+                brain.StartAttack(fallbackMove);
+                return true;
             }
 
             return false;

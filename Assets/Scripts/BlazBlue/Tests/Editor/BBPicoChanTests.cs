@@ -14,40 +14,45 @@ namespace DemonIdol.BlazBlue.Tests
     {
         public static void RunAllTestsMenu()
         {
-            // Auto-run test suite after generator creates assets
-            // Assets already generated
-
             var suite = new BBPicoChanTests();
-            suite.Test_PicoChan_Assets_Exist_And_Valid();
+            suite.Test_PicoChan_7_Move_Kit_Assets_Valid();
             suite.Test_PicoChan_Drive_Clinch_StocksAndOD();
-            suite.Test_PicoChan_CommandThrows_Properties();
-            suite.Test_PicoChan_FatalCounter_And_Specials();
-            suite.Test_PicoChan_RevolverAction_Chains();
-            suite.Test_PicoChan_10_Trial_Challenges();
+            suite.Test_PicoChan_Gatling_Chain_5A_to_Super();
             suite.Test_PicoChan_CharacterDefinition_Linked();
-            Debug.Log("<color=#00e676>[BBPicoChanTests] ALL 7 PICOCHAN COMBAT & TRIAL TESTS PASSED!</color>");
+            Debug.Log("<color=#00e676>[BBPicoChanTests] ALL PICOCHAN 7-MOVE COMBAT TESTS PASSED!</color>");
         }
 
         [Test]
-        public void Test_PicoChan_Assets_Exist_And_Valid()
+        public void Test_PicoChan_7_Move_Kit_Assets_Valid()
         {
-            // Assets already generated
-
-            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{"Assets/CombatData/BlazBlue/PicoChan"}/BBMoveSet_C09_PicoChan.asset");
+            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>("Assets/CombatData/BlazBlue/PicoChan/BBMoveSet_C09_PicoChan.asset");
             Assert.IsNotNull(moveSet, "PicoChan BBMoveSet asset must exist.");
-            Assert.IsTrue(moveSet.moves.Length >= 29, $"PicoChan should have at least 29 moves, found {moveSet.moves.Length}.");
+            Assert.AreEqual(7, moveSet.moves.Length, $"PicoChan moveset must contain exactly 7 active attack moves, found {moveSet.moves.Length}.");
+
+            string[] expectedIds = new string[] { "5A", "5B", "5C", "2C", "j.B", "5D", "236236C" };
 
             for (int i = 0; i < moveSet.moves.Length; i++)
             {
                 var m = moveSet.moves[i];
                 Assert.IsNotNull(m, $"Move at index {i} must not be null.");
-                Assert.IsFalse(string.IsNullOrEmpty(m.moveId), $"Move at index {i} must have a valid moveId.");
+                Assert.AreEqual(expectedIds[i], m.moveId, $"Move at index {i} must be {expectedIds[i]}, got {m.moveId}.");
                 Assert.IsTrue(m.startupFrames > 0, $"{m.moveId} startupFrames must be > 0.");
                 Assert.IsTrue(m.activeFrames > 0, $"{m.moveId} activeFrames must be > 0.");
                 Assert.IsTrue(m.recoveryFrames > 0, $"{m.moveId} recoveryFrames must be > 0.");
                 Assert.IsNotNull(m.boxes, $"{m.moveId} must have an attached BBBoxTrack.");
                 Assert.AreEqual(m.TotalTicks, m.boxes.tickCount, $"{m.moveId} TotalTicks must match box track tickCount.");
-                Assert.IsNotNull(m.clip, $"{m.moveId} must have an attached genuine AnimationClip sub-asset (no placeholders).");
+
+                int expectedRecovery = m.blockstunTicks - (m.activeFrames - 1) - m.advantageOnBlock;
+                Assert.AreEqual(expectedRecovery, m.recoveryFrames, $"{m.moveId} Dustloop recovery math must match: expected {expectedRecovery}, got {m.recoveryFrames}.");
+
+                Assert.IsNotNull(m.boxes.keyTicks, $"{m.moveId} box track keyTicks must exist.");
+                Assert.IsTrue(m.boxes.keyTicks.Length > 0, $"{m.moveId} box track keyTicks must not be empty.");
+                Assert.AreEqual(m.startupFrames, m.boxes.keyTicks[0], $"{m.moveId} peakLimbTick must equal firstActiveTick ({m.startupFrames}).");
+
+                var clip = m.clip != null ? m.clip : m.animationClip;
+                Assert.IsNotNull(clip, $"{m.moveId} must have an assigned AnimationClip from the Karate pack.");
+                string clipAssetPath = AssetDatabase.GetAssetPath(clip);
+                Assert.IsTrue(clipAssetPath.Contains("Karate"), $"{m.moveId} clip path '{clipAssetPath}' must be from Karate Warrior pack.");
             }
         }
 
@@ -99,125 +104,43 @@ namespace DemonIdol.BlazBlue.Tests
         }
 
         [Test]
-        public void Test_PicoChan_CommandThrows_Properties()
+        public void Test_PicoChan_Gatling_Chain_5A_to_Super()
         {
-            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{"Assets/CombatData/BlazBlue/PicoChan"}/BBMoveSet_C09_PicoChan.asset");
-            Assert.IsNotNull(moveSet);
-
-            var move5D = FindMove(moveSet, "5D");
-            Assert.IsNotNull(move5D, "5D Clinch must exist.");
-            Assert.IsTrue(move5D.kind == BBMoveKind.DriveMove || move5D.kind == BBMoveKind.CommandThrow);
-            Assert.IsTrue(move5D.startupFrames > 0);
-
-            var move2D = FindMove(moveSet, "2D");
-            Assert.IsNotNull(move2D, "2D Low Clinch must exist.");
-            Assert.IsTrue(move2D.kind == BBMoveKind.DriveMove || move2D.kind == BBMoveKind.CommandThrow);
-            Assert.AreEqual(BBGuard.Low, move2D.guard);
-
-            var move6D = FindMove(moveSet, "6D");
-            Assert.IsNotNull(move6D, "6D Run Clinch must exist.");
-            Assert.IsTrue(move6D.kind == BBMoveKind.DriveMove || move6D.kind == BBMoveKind.CommandThrow);
-
-            var move360C = FindMove(moveSet, "360C");
-            Assert.IsNotNull(move360C, "360C Big Slam Throw must exist.");
-            Assert.IsTrue(move360C.kind == BBMoveKind.Special || move360C.kind == BBMoveKind.CommandThrow);
-            Assert.IsTrue(move360C.startupFrames > 0);
-            Assert.IsTrue(move360C.damage > 0);
-
-            var movePress = FindMove(moveSet, "632146C");
-            Assert.IsNotNull(movePress, "632146C Pico Press DD must exist.");
-            Assert.AreEqual(BBMoveKind.DistortionDrive, movePress.kind);
-            Assert.IsTrue(movePress.startupFrames > 0);
-            Assert.IsTrue(movePress.damage > 0);
-        }
-
-        [Test]
-        public void Test_PicoChan_FatalCounter_And_Specials()
-        {
-            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{"Assets/CombatData/BlazBlue/PicoChan"}/BBMoveSet_C09_PicoChan.asset");
-            Assert.IsNotNull(moveSet);
-
-            var move5C = FindMove(moveSet, "5C");
-            Assert.IsNotNull(move5C, "5C Heavy Hook must exist.");
-            Assert.IsTrue(move5C.fatalCounter, "5C must be a Fatal Counter move.");
-
-            var dp = FindMove(moveSet, "623C");
-            Assert.IsNotNull(dp, "623C Vicious Uppercut must exist.");
-            Assert.IsTrue(dp.invuln.Length > 0, "623C must have invulnerability.");
-            Assert.AreEqual(BBInvuln.Head | BBInvuln.Body, dp.invuln[0].mask);
-
-            var charge = FindMove(moveSet, "46C");
-            Assert.IsNotNull(charge, "[4]6C Charged Straight must exist.");
-            Assert.AreEqual(BBMotion.Charge46, charge.motion);
-
-            var stepHook = FindMove(moveSet, "63214B");
-            Assert.IsNotNull(stepHook, "63214B Step In Hook must exist.");
-            Assert.IsTrue(stepHook.specialCancel, "63214B must allow special cancel into 5D on hit.");
-        }
-
-        [Test]
-        public void Test_PicoChan_RevolverAction_Chains()
-        {
-            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{"Assets/CombatData/BlazBlue/PicoChan"}/BBMoveSet_C09_PicoChan.asset");
+            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>("Assets/CombatData/BlazBlue/PicoChan/BBMoveSet_C09_PicoChan.asset");
             var move5A = FindMove(moveSet, "5A");
             var move5B = FindMove(moveSet, "5B");
             var move5C = FindMove(moveSet, "5C");
-            var move3C = FindMove(moveSet, "3C");
-            var move6A = FindMove(moveSet, "6A");
+            var move5D = FindMove(moveSet, "5D");
+            var moveSuper = FindMove(moveSet, "236236C");
+
+            Assert.IsNotNull(move5A, "5A must exist.");
+            Assert.IsNotNull(move5B, "5B must exist.");
+            Assert.IsNotNull(move5C, "5C must exist.");
+            Assert.IsNotNull(move5D, "5D must exist.");
+            Assert.IsNotNull(moveSuper, "236236C must exist.");
 
             var chain = new BBChainState();
             chain.madeContact = true;
-            chain.contactTick = 5;
+            chain.contactTick = 7;
 
-            // 5A -> 5B valid
-            bool canGatling5B = BBCancelRules.CanCancel(in chain, move5A, move5B, 0, 5, onHit: true, onBlock: false, isGrounded: true);
+            // 1. 5A -> 5B is valid
+            bool canGatling5B = BBCancelRules.CanCancel(in chain, move5A, move5B, 1, 7, onHit: true, onBlock: false, isGrounded: true);
             Assert.IsTrue(canGatling5B, "5A must cancel into 5B.");
 
-            // 5B -> 5C valid
-            chain.MarkUsed(1); // 5A used
-            bool canGatling5C = BBCancelRules.CanCancel(in chain, move5B, move5C, 2, 8, onHit: true, onBlock: false, isGrounded: true);
+            // 2. 5B -> 5C is valid
+            chain.MarkUsed(0); // 5A used
+            bool canGatling5C = BBCancelRules.CanCancel(in chain, move5B, move5C, 2, 7, onHit: true, onBlock: false, isGrounded: true);
             Assert.IsTrue(canGatling5C, "5B must cancel into 5C.");
 
-            // 3C launcher has jump cancel on hit
-            Assert.IsTrue(move3C.jumpCancelOnHit, "3C knee launcher must have jump cancel on hit.");
+            // 3. 5C -> 5D is valid
+            chain.MarkUsed(1); // 5B used
+            bool canGatling5D = BBCancelRules.CanCancel(in chain, move5C, move5D, 5, 7, onHit: true, onBlock: false, isGrounded: true);
+            Assert.IsTrue(canGatling5D, "5C must cancel into 5D.");
 
-            // 6A anti-air has Head invulnerability
-            Assert.IsNotNull(move6A.invuln);
-            Assert.IsTrue(move6A.invuln.Length > 0);
-            Assert.AreEqual(BBInvuln.Head, move6A.invuln[0].mask);
-            Assert.AreEqual(4, move6A.invuln[0].startTick);
-            Assert.AreEqual(12, move6A.invuln[0].endTick);
-        }
-
-        [Test]
-        public void Test_PicoChan_10_Trial_Challenges()
-        {
-            var moveSet = AssetDatabase.LoadAssetAtPath<BBMoveSet>($"{"Assets/CombatData/BlazBlue/PicoChan"}/BBMoveSet_C09_PicoChan.asset");
-            Assert.IsNotNull(moveSet);
-
-            string[][] trialRoutes = new string[][]
-            {
-                new string[] { "5A", "5B", "5C" },                                        // Trial 1: Basic Grappler Gatling
-                new string[] { "2A", "2B", "2C" },                                        // Trial 2: Low Sweep Confirm
-                new string[] { "5B", "5C", "3C", "j.A", "j.B", "j.C" },                   // Trial 3: Knee Launch Air Chain
-                new string[] { "5A", "5B", "5D" },                                        // Trial 4: Tick Clinch Grab
-                new string[] { "2A", "2B", "236A" },                                      // Trial 5: Lariat Knockdown
-                new string[] { "63214B", "5D" },                                          // Trial 6: Step Hook to Clinch Cancel
-                new string[] { "6A", "623C" },                                            // Trial 7: Anti-Air Uppercut Reversal
-                new string[] { "5C", "236236B" },                                         // Trial 8: Fatal Counter Close Flurry
-                new string[] { "5B", "3C", "j.A", "j.D" },                                // Trial 9: Air Clinch Reset
-                new string[] { "5D", "360C", "632146C" }                                  // Trial 10: Grip Bank into Empowered Pico Press
-            };
-
-            for (int t = 0; t < trialRoutes.Length; t++)
-            {
-                var route = trialRoutes[t];
-                for (int m = 0; m < route.Length; m++)
-                {
-                    var move = FindMove(moveSet, route[m]);
-                    Assert.IsNotNull(move, $"Trial {t + 1} move '{route[m]}' must exist in PicoChan move set.");
-                }
-            }
+            // 4. 5D -> 236236C (Super) is valid
+            chain.MarkUsed(5); // 5D used
+            bool canCancelSuper = BBCancelRules.CanCancel(in chain, move5D, moveSuper, 6, 7, onHit: true, onBlock: false, isGrounded: true);
+            Assert.IsTrue(canCancelSuper, "5D must cancel into 236236C (Super).");
         }
 
         [Test]

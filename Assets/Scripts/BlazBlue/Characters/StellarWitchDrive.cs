@@ -90,10 +90,10 @@ namespace DemonIdol.BlazBlue
             Vector2 bPos = GetBrainPos(brain);
             int facing = GetBrainFacing(brain);
 
-            // In air: j.D Air Star Point
+            // In air: j.D Air Star Point (or fallback to j.B)
             if (!brain.isGrounded)
             {
-                var airMove = brain.FindAttackByMoveId("j.D");
+                var airMove = brain.FindAttackByMoveId("j.D") ?? brain.FindAttackByMoveId("j.B");
                 if (airMove != null && brain.CanExecuteMove(airMove))
                 {
                     Vector2 spawnPos = bPos + new Vector2(facing * 1.8f, 1.6f);
@@ -122,7 +122,7 @@ namespace DemonIdol.BlazBlue
             // 6D: Place Star Point Gamma (High / Anti-Air Trap)
             if (facingNumpad == 6 || facingNumpad == 9 || facingNumpad == 3)
             {
-                var gammaMove = brain.FindAttackByMoveId("6D");
+                var gammaMove = brain.FindAttackByMoveId("6D") ?? brain.FindAttackByMoveId("5D");
                 if (gammaMove != null && brain.CanExecuteMove(gammaMove))
                 {
                     Vector2 spawnPos = bPos + new Vector2(facing * 3.0f, 2.0f);
@@ -130,13 +130,12 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(gammaMove);
                     return true;
                 }
-                return false;
             }
 
             // 2D: Place Star Point Beta (Low / Ground Trap)
             if (facingNumpad == 2)
             {
-                var betaMove = brain.FindAttackByMoveId("2D");
+                var betaMove = brain.FindAttackByMoveId("2D") ?? brain.FindAttackByMoveId("5D");
                 if (betaMove != null && brain.CanExecuteMove(betaMove))
                 {
                     Vector2 spawnPos = bPos + new Vector2(facing * 1.4f, 0.2f);
@@ -144,7 +143,6 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(betaMove);
                     return true;
                 }
-                return false;
             }
 
             // 5D: Standing Drive
@@ -169,6 +167,14 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(standMove);
                     return true;
                 }
+            }
+
+            // Graceful fallback: If follow-up/directional D move is not mapped, execute primary 5D
+            var fallbackMove = brain.FindAttackByMoveId("5D");
+            if (fallbackMove != null && brain.CanExecuteMove(fallbackMove))
+            {
+                brain.StartAttack(fallbackMove);
+                return true;
             }
 
             return false;

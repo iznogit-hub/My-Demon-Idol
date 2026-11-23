@@ -12,40 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BoxTrack_SanpakuChan_5B
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 25
-  frameStart: 0000000000000000000000000000000000000000000000000000000000000000000000000100000002000000030000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000i
+  tickCount: 23
+  frameStart: 000000000000000000000000000000000000000000000000000000000000000001000000020000000300000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000i
   boxes:
-  - cx: 0.62198526
+  - cx: 0.65
     cy: 1.05
-    hx: 0.39237553
+    hx: 0.5
     hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.62198526
+  - cx: 0.65
     cy: 1.05
-    hx: 0.39237553
+    hx: 0.5
     hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.62198526
+  - cx: 0.65
     cy: 1.05
-    hx: 0.39237553
+    hx: 0.5
     hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.62198526
+  - cx: 0.65
     cy: 1.05
-    hx: 0.39237553
+    hx: 0.5
     hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  keyTicks: 08000000i
-  bakeHash: Bake_C08_5B_8_4_13
+  keyTicks: 07000000i
+  bakeHash: Bake_C08_5B_7_4_12

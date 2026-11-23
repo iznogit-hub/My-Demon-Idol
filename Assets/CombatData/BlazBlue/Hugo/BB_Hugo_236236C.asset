@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Hugo_236236C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Extinction Slam
+  attackName: Signature Finisher
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 6
-  activeFrames: 5
-  recoveryFrames: 38
-  hitstunTicks: 21
-  blockstunTicks: 20
+  startupFrames: 9
+  activeFrames: 4
+  recoveryFrames: 26
+  hitstunTicks: 36
+  blockstunTicks: 15
   knockdownDurationTicks: 36
   hitstopAttacker: 13
   hitstopDefender: 13
   hitstopOnBlock: 13
   counterHitStopBonus: 4
-  advantageOnBlock: -22
-  advantageOnHit: -21
+  advantageOnBlock: -14
+  advantageOnHit: 7
   advantageOnCounterHit: 8
-  damage: 2400
+  damage: 2200
   chipDamageOnBlock: 0
   initialProration: 0.94
   comboDamageDecay: 0.94
@@ -47,14 +47,14 @@ MonoBehaviour:
   isBoundTornado: 0
   causesWallSplat: 0
   causesWallBounce: 0
-  causesKnockdown: 0
+  causesKnockdown: 1
   isLinear: 1
   throwTechWindowTicks: 6
   launchVelocity: {x: 0, y: 0}
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
+  animationClip: {fileID: -6788666626592393668, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 1.3, y: 1.25, z: 0}
   hitboxSize: {x: 1.9, y: 0.9, z: 1}
@@ -74,7 +74,7 @@ MonoBehaviour:
     endTick: 6
     mask: 7
   fatalCounter: 0
-  hardKnockdown: 0
+  hardKnockdown: 1
   otg: 0
   groundBounce: 0
   wallBounce: 0
@@ -90,19 +90,19 @@ MonoBehaviour:
   heatCost: 50
   gatlingInto: []
   specialCancel: 1
-  ddCancel: 0
+  ddCancel: 1
   jumpCancelOnHit: 0
   jumpCancelOnBlock: 0
   rapidCancelable: 0
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 6903121041917897338}
+  boxes: {fileID: 11400000, guid: da47d57288501457784619ac8a76a900, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Punch
-  clip: {fileID: 7400000, guid: 32c188adf73f86148880cd1517bb3cb9, type: 3}
+  clipName: Karate_Super
+  clip: {fileID: -6788666626592393668, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 27
-  measuredImpactFrame: 17
+  clipLastFrame: 68
+  measuredImpactFrame: 9
   events: []
 --- !u!114 &6903121041917897338
 MonoBehaviour:

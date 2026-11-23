@@ -40,7 +40,7 @@ namespace DemonIdol.BlazBlue
             else if (facingNumpad == 4) moveId = "4D";
             else moveId = "5D";
 
-            var move = brain.FindAttackByMoveId(moveId) ?? brain.FindAttackByMoveId("5D");
+            var move = brain.FindAttackByMoveId(moveId) ?? (!brain.isGrounded ? (brain.FindAttackByMoveId("j.B") ?? brain.FindAttackByMoveId("5D")) : brain.FindAttackByMoveId("5D"));
             if (move != null && brain.CanExecuteMove(move))
             {
                 brain.StartAttack(move);

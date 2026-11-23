@@ -206,6 +206,12 @@ namespace DemonIdol.Editor
             DemonIdol.BlazBlue.Editor.BBAkioKarateKitSetup.ConfigureKarateKit();
         }
 
+        [MenuItem("Demon Idol/Fighters/Configure Launch Roster Karate 7-Move Kit", priority = 49)]
+        public static void ConfigureLaunchRosterKarateKit()
+        {
+            DemonIdol.BlazBlue.Editor.BBRosterKarateKitSetup.ConfigureLaunchRoster();
+        }
+
         // =========================================================================
         // BUILD
         // =========================================================================

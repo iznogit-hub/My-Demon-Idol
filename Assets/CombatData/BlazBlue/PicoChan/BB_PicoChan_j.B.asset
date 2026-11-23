@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_PicoChan_j.B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Air Straight
+  attackName: Jump Attack
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 9
+  startupFrames: 7
   activeFrames: 4
   recoveryFrames: 14
-  hitstunTicks: 14
-  blockstunTicks: 13
+  hitstunTicks: 19
+  blockstunTicks: 17
   knockdownDurationTicks: 36
   hitstopAttacker: 10
   hitstopDefender: 10
   hitstopOnBlock: 10
   counterHitStopBonus: 4
   advantageOnBlock: 0
-  advantageOnHit: -3
+  advantageOnHit: 2
   advantageOnCounterHit: 8
-  damage: 538
+  damage: 520
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.85
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: -3119484255079415707, guid: 023c0ac4fb3503c4391f65943ceda058, type: 3}
+  animationClip: {fileID: -5059006814000262888, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.9, y: -0.35, z: 0}
   hitboxSize: {x: 1.55, y: 1.8, z: 1}
@@ -85,9 +85,7 @@ MonoBehaviour:
   chipPct: 0
   heatGainOverride: -1
   heatCost: 0
-  gatlingInto:
-  - j.C
-  - j.D
+  gatlingInto: []
   specialCancel: 1
   ddCancel: 1
   jumpCancelOnHit: 0
@@ -97,9 +95,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: ad526566cbf2943f0bf495d12cc222a5, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Atk_P_2
-  clip: {fileID: -3119484255079415707, guid: 023c0ac4fb3503c4391f65943ceda058, type: 3}
+  clipName: Karate_AirKick
+  clip: {fileID: -5059006814000262888, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 15
-  measuredImpactFrame: 14
+  clipLastFrame: 44
+  measuredImpactFrame: 7
   events: []

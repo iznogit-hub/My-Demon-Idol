@@ -79,10 +79,10 @@ namespace DemonIdol.BlazBlue
             Vector2 bPos = GetBrainPos(brain);
             int facing = GetBrainFacing(brain);
 
-            // In air: j.D Air Orb Placement
+            // In air: j.D Air Orb Placement (or fallback to j.B)
             if (!brain.isGrounded)
             {
-                var airMove = brain.FindAttackByMoveId("j.D");
+                var airMove = brain.FindAttackByMoveId("j.D") ?? brain.FindAttackByMoveId("j.B");
                 if (airMove != null && brain.CanExecuteMove(airMove))
                 {
                     Vector2 spawnPos = bPos + new Vector2(facing * 1.0f, 0.8f);
@@ -96,40 +96,37 @@ namespace DemonIdol.BlazBlue
             // 6D: Command orbs to dash forward
             if (facingNumpad == 6 || facingNumpad == 9 || facingNumpad == 3)
             {
-                var dashCmd = brain.FindAttackByMoveId("6D");
+                var dashCmd = brain.FindAttackByMoveId("6D") ?? brain.FindAttackByMoveId("5D");
                 if (dashCmd != null && brain.CanExecuteMove(dashCmd))
                 {
                     CommandOrbsDash(facing);
                     brain.StartAttack(dashCmd);
                     return true;
                 }
-                return false;
             }
 
             // 2D: Command orbs to drop low
             if (facingNumpad == 2 || facingNumpad == 1)
             {
-                var dropCmd = brain.FindAttackByMoveId("2D");
+                var dropCmd = brain.FindAttackByMoveId("2D") ?? brain.FindAttackByMoveId("5D");
                 if (dropCmd != null && brain.CanExecuteMove(dropCmd))
                 {
                     CommandOrbsDrop();
                     brain.StartAttack(dropCmd);
                     return true;
                 }
-                return false;
             }
 
             // 4D: Command orbs to recall
             if (facingNumpad == 4 || facingNumpad == 7)
             {
-                var recallCmd = brain.FindAttackByMoveId("4D");
+                var recallCmd = brain.FindAttackByMoveId("4D") ?? brain.FindAttackByMoveId("5D");
                 if (recallCmd != null && brain.CanExecuteMove(recallCmd))
                 {
                     CommandOrbsRecall(bPos);
                     brain.StartAttack(recallCmd);
                     return true;
                 }
-                return false;
             }
 
             // 5D: Place Void Orb in front of Cultist (default)
@@ -142,6 +139,14 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(placeMove);
                     return true;
                 }
+            }
+
+            // Graceful fallback: If follow-up/directional D move is not mapped, execute primary 5D
+            var fallbackMove = brain.FindAttackByMoveId("5D");
+            if (fallbackMove != null && brain.CanExecuteMove(fallbackMove))
+            {
+                brain.StartAttack(fallbackMove);
+                return true;
             }
 
             return false;

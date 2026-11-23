@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_OfficerK_5B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Enforcer Palm
+  attackName: Medium Strike
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -73,20 +73,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 10
+  startupFrames: 7
   activeFrames: 4
-  recoveryFrames: 15
-  hitstunTicks: 14
+  recoveryFrames: 12
+  hitstunTicks: 15
   blockstunTicks: 13
   knockdownDurationTicks: 36
   hitstopAttacker: 10
   hitstopDefender: 10
   hitstopOnBlock: 10
   counterHitStopBonus: 4
-  advantageOnBlock: -5
-  advantageOnHit: -4
+  advantageOnBlock: -2
+  advantageOnHit: 0
   advantageOnCounterHit: 8
-  damage: 694
+  damage: 520
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.85
@@ -103,7 +103,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
+  animationClip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.9, y: 1.2, z: 0}
   hitboxSize: {x: 1.5, y: 0.6, z: 1}
@@ -134,7 +134,11 @@ MonoBehaviour:
   chipPct: 0
   heatGainOverride: -1
   heatCost: 0
-  gatlingInto: []
+  gatlingInto:
+  - 5C
+  - 2C
+  - 5D
+  - 236236C
   specialCancel: 1
   ddCancel: 1
   jumpCancelOnHit: 0
@@ -142,11 +146,11 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: -7433773429163305189}
+  boxes: {fileID: 11400000, guid: bde90b0d231f247eba0b466da887c1dc, type: 2}
   motionTrack: {fileID: 0}
   clipName: Karate_Palm
   clip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 12
+  clipLastFrame: 24
   measuredImpactFrame: 7
   events: []

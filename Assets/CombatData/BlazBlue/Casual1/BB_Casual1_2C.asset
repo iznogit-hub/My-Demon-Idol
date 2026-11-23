@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Casual1_2C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Street Trip
+  attackName: Low Sweep
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 11
+  startupFrames: 10
   activeFrames: 3
-  recoveryFrames: 24
-  hitstunTicks: 17
+  recoveryFrames: 22
+  hitstunTicks: 36
   blockstunTicks: 16
   knockdownDurationTicks: 36
   hitstopAttacker: 11
   hitstopDefender: 11
   hitstopOnBlock: 11
   counterHitStopBonus: 4
-  advantageOnBlock: -10
-  advantageOnHit: -9
+  advantageOnBlock: -8
+  advantageOnHit: 12
   advantageOnCounterHit: 8
-  damage: 790
+  damage: 700
   chipDamageOnBlock: 0
   initialProration: 0.89
   comboDamageDecay: 0.89
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.4
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 0}
+  animationClip: {fileID: 6641085478485924818, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 1, y: 0.35, z: 0}
   hitboxSize: {x: 1.55, y: 0.6, z: 1}
@@ -62,7 +62,7 @@ MonoBehaviour:
   archetype: 0
   moveId: 2C
   button: 4
-  kind: 0
+  kind: 1
   motion: 0
   airOk: 0
   groundOk: 1
@@ -85,7 +85,8 @@ MonoBehaviour:
   chipPct: 0
   heatGainOverride: -1
   heatCost: 0
-  gatlingInto: []
+  gatlingInto:
+  - 236236C
   specialCancel: 1
   ddCancel: 1
   jumpCancelOnHit: 0
@@ -93,13 +94,13 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 751977273494220522}
+  boxes: {fileID: 11400000, guid: d08e22a389f7646f4868e9df0cfd0550, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Grab_Break_A
-  clip: {fileID: -413915583566188894, guid: 35e6a374d022a054caefeae0a79e193c, type: 3}
+  clipName: Karate_Sweep
+  clip: {fileID: 6641085478485924818, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 20
-  measuredImpactFrame: 16
+  clipLastFrame: 60
+  measuredImpactFrame: 10
   events: []
 --- !u!114 &751977273494220522
 MonoBehaviour:

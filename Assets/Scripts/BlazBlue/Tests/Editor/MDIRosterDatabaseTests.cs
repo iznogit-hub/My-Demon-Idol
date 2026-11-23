@@ -33,7 +33,7 @@ namespace DemonIdol.BlazBlue.Tests
                 Assert.IsNotNull(profile, $"{def.id} blazBlueProfile must be BBCharacterProfile");
                 var moveSet = profile.moveSet as BBMoveSet;
                 Assert.IsNotNull(moveSet, $"{def.id} moveSet must not be null");
-                Assert.GreaterOrEqual(moveSet.moves.Length, 14, $"{def.id} must have at least 14 moves");
+                Assert.GreaterOrEqual(moveSet.moves.Length, 7, $"{def.id} must have at least 7 moves");
             }
 
             // ST07 Stage

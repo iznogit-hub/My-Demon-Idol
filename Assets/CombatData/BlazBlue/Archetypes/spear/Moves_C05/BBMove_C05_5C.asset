@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_C05_5C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Spear Lance
+  attackName: Heavy Strike
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 13
-  activeFrames: 5
+  startupFrames: 11
+  activeFrames: 4
   recoveryFrames: 17
-  hitstunTicks: 17
+  hitstunTicks: 18
   blockstunTicks: 16
   knockdownDurationTicks: 36
   hitstopAttacker: 11
   hitstopDefender: 11
   hitstopOnBlock: 11
   counterHitStopBonus: 4
-  advantageOnBlock: -5
-  advantageOnHit: -4
+  advantageOnBlock: -4
+  advantageOnHit: -2
   advantageOnCounterHit: 6
-  damage: 931
+  damage: 820
   chipDamageOnBlock: 0
   initialProration: 0.89
   comboDamageDecay: 0.89
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.4
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 3060872287085348379, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  animationClip: {fileID: 3060872287085348379, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: HeavyAttack
   hitboxOffset: {x: 1.25, y: 1.2, z: 0}
   hitboxSize: {x: 1.8, y: 0.6, z: 1}
@@ -86,11 +86,7 @@ MonoBehaviour:
   heatGainOverride: -1
   heatCost: 0
   gatlingInto:
-  - 5A
-  - 5B
-  - 5C
-  - 2A
-  - 236A
+  - 5D
   - 236236C
   specialCancel: 1
   ddCancel: 1
@@ -99,11 +95,11 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: bdb41071ce71f4561978ffb836e694b7, type: 2}
+  boxes: {fileID: 11400000, guid: eaecd7a4569294237a753f4c8a878c01, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Spearman_Lance
-  clip: {fileID: 3060872287085348379, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  clipName: Karate_Roundhouse
+  clip: {fileID: 3060872287085348379, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 24
-  measuredImpactFrame: 19
+  clipLastFrame: 60
+  measuredImpactFrame: 11
   events: []

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Fina_5B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Plasma Kick
+  attackName: Medium Strike
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 8
+  startupFrames: 7
   activeFrames: 4
-  recoveryFrames: 13
-  hitstunTicks: 14
+  recoveryFrames: 12
+  hitstunTicks: 15
   blockstunTicks: 13
   knockdownDurationTicks: 36
   hitstopAttacker: 10
   hitstopDefender: 10
   hitstopOnBlock: 10
   counterHitStopBonus: 4
-  advantageOnBlock: -3
-  advantageOnHit: -2
+  advantageOnBlock: -2
+  advantageOnHit: 0
   advantageOnCounterHit: 8
-  damage: 560
+  damage: 520
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.85
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: -3119484255079415707, guid: 023c0ac4fb3503c4391f65943ceda058, type: 3}
+  animationClip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1.2, z: 0}
   hitboxSize: {x: 1.4, y: 0.6, z: 1}
@@ -88,10 +88,8 @@ MonoBehaviour:
   gatlingInto:
   - 5C
   - 2C
-  - 3C
   - 5D
-  - 6D
-  - 2D
+  - 236236C
   specialCancel: 1
   ddCancel: 1
   jumpCancelOnHit: 1
@@ -101,9 +99,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 0763c297d2a0e4ddf87559e2babf25cc, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Atk_K_1
-  clip: {fileID: 426716804575868071, guid: cdc4e5a1506337f4da6a7a5d7a8a60b2, type: 3}
+  clipName: Karate_Palm
+  clip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 22
-  measuredImpactFrame: 20
+  clipLastFrame: 24
+  measuredImpactFrame: 7
   events: []

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BBMove_C05_5B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Spear Sweep
+  attackName: Medium Strike
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 9
+  startupFrames: 7
   activeFrames: 4
-  recoveryFrames: 13
-  hitstunTicks: 14
+  recoveryFrames: 12
+  hitstunTicks: 15
   blockstunTicks: 13
   knockdownDurationTicks: 36
   hitstopAttacker: 10
   hitstopDefender: 10
   hitstopOnBlock: 10
   counterHitStopBonus: 4
-  advantageOnBlock: -3
-  advantageOnHit: -2
+  advantageOnBlock: -2
+  advantageOnHit: 0
   advantageOnCounterHit: 6
-  damage: 588
+  damage: 520
   chipDamageOnBlock: 0
   initialProration: 0.85
   comboDamageDecay: 0.85
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: -998496362607748373, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  animationClip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   animationTrigger: MediumAttack
   hitboxOffset: {x: 1.1, y: 1.2, z: 0}
   hitboxSize: {x: 1.6, y: 0.6, z: 1}
@@ -86,11 +86,9 @@ MonoBehaviour:
   heatGainOverride: -1
   heatCost: 0
   gatlingInto:
-  - 5A
-  - 5B
   - 5C
-  - 2A
-  - 236A
+  - 2C
+  - 5D
   - 236236C
   specialCancel: 1
   ddCancel: 1
@@ -99,11 +97,11 @@ MonoBehaviour:
   rapidCancelable: 1
   followUps: []
   followUpWindow: {x: 0, y: 0}
-  boxes: {fileID: 11400000, guid: 4fe9a31115b8349deb3e078c4490ebc9, type: 2}
+  boxes: {fileID: 11400000, guid: b41423cb9139d41b5ad10ce9d2912ff9, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Spearman_Sweep
-  clip: {fileID: -998496362607748373, guid: d49af005f8f03dd40944d120d5009866, type: 3}
+  clipName: Karate_Palm
+  clip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 6
-  measuredImpactFrame: 5
+  clipLastFrame: 24
+  measuredImpactFrame: 7
   events: []

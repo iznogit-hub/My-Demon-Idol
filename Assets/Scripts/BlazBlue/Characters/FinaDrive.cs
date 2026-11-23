@@ -68,10 +68,10 @@ namespace DemonIdol.BlazBlue
         {
             if (brain == null) return false;
 
-            // In air: j.D Air Plasma Shot
+            // In air: j.D Air Plasma Shot (or fallback to j.B)
             if (!brain.isGrounded)
             {
-                var airMove = brain.FindAttackByMoveId("j.D");
+                var airMove = brain.FindAttackByMoveId("j.D") ?? brain.FindAttackByMoveId("j.B");
                 if (airMove != null && brain.CanExecuteMove(airMove))
                 {
                     brain.StartAttack(airMove);
@@ -83,25 +83,23 @@ namespace DemonIdol.BlazBlue
             // Ground 6D: Overhead hop mixup (spec §8.7)
             if (facingNumpad == 6 || facingNumpad == 9)
             {
-                var hopMove = brain.FindAttackByMoveId("6D");
+                var hopMove = brain.FindAttackByMoveId("6D") ?? brain.FindAttackByMoveId("5D");
                 if (hopMove != null && brain.CanExecuteMove(hopMove))
                 {
                     brain.StartAttack(hopMove);
                     return true;
                 }
-                return false;
             }
 
             // Ground 2D: Low Plasma Shot
             if (facingNumpad == 2 || facingNumpad == 1 || facingNumpad == 3)
             {
-                var lowMove = brain.FindAttackByMoveId("2D");
+                var lowMove = brain.FindAttackByMoveId("2D") ?? brain.FindAttackByMoveId("5D");
                 if (lowMove != null && brain.CanExecuteMove(lowMove))
                 {
                     brain.StartAttack(lowMove);
                     return true;
                 }
-                return false;
             }
 
             // Ground 5D: Plasma Shot (or start charging)
@@ -113,6 +111,14 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(plasmaMove);
                     return true;
                 }
+            }
+
+            // Graceful fallback: If follow-up/directional D move is not mapped, execute primary 5D
+            var fallbackMove = brain.FindAttackByMoveId("5D");
+            if (fallbackMove != null && brain.CanExecuteMove(fallbackMove))
+            {
+                brain.StartAttack(fallbackMove);
+                return true;
             }
 
             return false;

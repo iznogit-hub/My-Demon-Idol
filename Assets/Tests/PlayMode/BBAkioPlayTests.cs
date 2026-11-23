@@ -39,6 +39,9 @@ namespace DemonIdol.Tests.PlayMode
             PlayerPrefs.SetString("MDI_StageId", "ST07");
             PlayerPrefs.Save();
 
+            var runnerGo = GameObject.Find("Code-based tests runner");
+            if (runnerGo != null) Object.DontDestroyOnLoad(runnerGo);
+
             var loadOp = SceneManager.LoadSceneAsync("BattleArena", LoadSceneMode.Single);
             while (!loadOp.isDone) yield return null;
             yield return null;
@@ -73,6 +76,12 @@ namespace DemonIdol.Tests.PlayMode
                 CombatTickEngine.Instance.PauseSimulation(true);
             }
 
+            var p1InputQueue = new Queue<BBInputFrame>();
+            p1Brain.customInputProvider = (t) => {
+                if (p1InputQueue.Count > 0) return p1InputQueue.Dequeue();
+                return new BBInputFrame { numpad = 5 };
+            };
+
             // Position fighters at point-blank melee spacing (0.65m apart)
             p1Fc.transform.position = new Vector3(-0.35f, 0f, 0f);
             p2Fc.transform.position = new Vector3(0.35f, 0f, 0f);
@@ -91,6 +100,9 @@ namespace DemonIdol.Tests.PlayMode
                 p1Brain.ResetForRound();
                 p2Brain.ResetForRound();
                 p1Brain.heat = 100f; // Ensure full heat for super
+                p2Brain.maxHealth = 25000f;
+                p2Brain.health = 25000f;
+                p1InputQueue.Clear();
 
                 p1Fc.transform.position = new Vector3(-0.35f, 0f, 0f);
                 p2Fc.transform.position = new Vector3(0.35f, 0f, 0f);
@@ -109,8 +121,12 @@ namespace DemonIdol.Tests.PlayMode
                     p1Brain.isGrounded = true;
                 }
 
-                p1Brain.StartAttack(atk);
+                EnqueueMoveInput(p1InputQueue, mid);
                 yield return StepTicks(1);
+                if (mid == "236236C")
+                {
+                    while (p1InputQueue.Count > 0) yield return StepTicks(1);
+                }
 
                 Assert.IsNotNull(p1Brain.currentAttack, $"P1 should be executing {mid}");
                 Assert.AreEqual(mid, p1Brain.currentAttack.moveId, $"P1 currentAttack should match {mid}");
@@ -142,23 +158,29 @@ namespace DemonIdol.Tests.PlayMode
             p1Brain.ResetForRound();
             p2Brain.ResetForRound();
             p1Brain.heat = 100f;
+            p2Brain.maxHealth = 25000f;
+            p2Brain.health = 25000f;
+            p1InputQueue.Clear();
 
             p1Fc.transform.position = new Vector3(-0.35f, 0f, 0f);
             p2Fc.transform.position = new Vector3(0.35f, 0f, 0f);
 
             // Step 3.1: Start 5A
             var atk5A = p1Brain.FindAttackByMoveId("5A");
-            p1Brain.StartAttack(atk5A);
+            EnqueueMoveInput(p1InputQueue, "5A");
             yield return StepTicks(1);
 
             // Advance through 5A startup until contact
             for (int t = 0; t < 15 && !p1Brain.chainState.madeContact; t++) yield return StepTicks(1);
             Assert.IsTrue(p1Brain.chainState.madeContact, "5A must make contact.");
 
+            // Wait for hitstop to elapse before canceling
+            while (p1Brain.hitstopRemaining > 0) yield return StepTicks(1);
+
             // Step 3.2: Cancel into 5B
             var atk5B = p1Brain.FindAttackByMoveId("5B");
             Assert.IsTrue(p1Brain.CanExecuteMove(atk5B), "5A must be cancelable into 5B on contact.");
-            p1Brain.StartAttack(atk5B);
+            EnqueueMoveInput(p1InputQueue, "5B");
             yield return StepTicks(1);
             Assert.AreEqual("5B", p1Brain.currentAttack.moveId, "P1 must have transitioned into 5B.");
 
@@ -166,10 +188,12 @@ namespace DemonIdol.Tests.PlayMode
             for (int t = 0; t < 20 && !p1Brain.chainState.madeContact; t++) yield return StepTicks(1);
             Assert.IsTrue(p1Brain.chainState.madeContact, "5B must make contact.");
 
+            while (p1Brain.hitstopRemaining > 0) yield return StepTicks(1);
+
             // Step 3.3: Cancel into 5C
             var atk5C = p1Brain.FindAttackByMoveId("5C");
             Assert.IsTrue(p1Brain.CanExecuteMove(atk5C), "5B must be cancelable into 5C on contact.");
-            p1Brain.StartAttack(atk5C);
+            EnqueueMoveInput(p1InputQueue, "5C");
             yield return StepTicks(1);
             Assert.AreEqual("5C", p1Brain.currentAttack.moveId, "P1 must have transitioned into 5C.");
 
@@ -177,10 +201,12 @@ namespace DemonIdol.Tests.PlayMode
             for (int t = 0; t < 25 && !p1Brain.chainState.madeContact; t++) yield return StepTicks(1);
             Assert.IsTrue(p1Brain.chainState.madeContact, "5C must make contact.");
 
+            while (p1Brain.hitstopRemaining > 0) yield return StepTicks(1);
+
             // Step 3.4: Cancel into 5D (Drive)
             var atk5D = p1Brain.FindAttackByMoveId("5D");
             Assert.IsTrue(p1Brain.CanExecuteMove(atk5D), "5C must be cancelable into 5D on contact.");
-            p1Brain.StartAttack(atk5D);
+            EnqueueMoveInput(p1InputQueue, "5D");
             yield return StepTicks(1);
             Assert.AreEqual("5D", p1Brain.currentAttack.moveId, "P1 must have transitioned into 5D.");
 
@@ -188,11 +214,13 @@ namespace DemonIdol.Tests.PlayMode
             for (int t = 0; t < 25 && !p1Brain.chainState.madeContact; t++) yield return StepTicks(1);
             Assert.IsTrue(p1Brain.chainState.madeContact, "5D must make contact.");
 
+            while (p1Brain.hitstopRemaining > 0) yield return StepTicks(1);
+
             // Step 3.5: Cancel into 236236C (Super)
             var atkSuper = p1Brain.FindAttackByMoveId("236236C");
             Assert.IsTrue(p1Brain.CanExecuteMove(atkSuper), "5D must be cancelable into 236236C (Super) on contact.");
-            p1Brain.StartAttack(atkSuper);
-            yield return StepTicks(1);
+            EnqueueMoveInput(p1InputQueue, "236236C");
+            while (p1InputQueue.Count > 0) yield return StepTicks(1);
             Assert.AreEqual("236236C", p1Brain.currentAttack.moveId, "P1 must have transitioned into 236236C.");
 
             // Step through super freeze (20 ticks) + startup (9 ticks) until contact
@@ -203,6 +231,13 @@ namespace DemonIdol.Tests.PlayMode
             // Step through rest of super to completion
             for (int t = 0; t < atkSuper.TotalTicks; t++) yield return StepTicks(1);
 
+            p1Brain.customInputProvider = null;
+
+            if (MatchRoundReferee.Instance != null)
+            {
+                MatchRoundReferee.Instance.StopMatch();
+            }
+
             // Unpause engine
             if (CombatTickEngine.Instance != null)
             {
@@ -210,6 +245,40 @@ namespace DemonIdol.Tests.PlayMode
             }
 
             Debug.Log("<color=#00e676>[BBAkioPlayTests] ALL 7 MOVES & GATLING CHAIN (5A->5B->5C->5D->Super) PASSED 100% CLEANLY!</color>");
+            yield return null;
+        }
+
+        private static void EnqueueMoveInput(Queue<BBInputFrame> queue, string moveId)
+        {
+            switch (moveId)
+            {
+                case "5A":
+                    queue.Enqueue(new BBInputFrame { numpad = 5, pressed = (byte)BBButton.A, held = (byte)BBButton.A });
+                    break;
+                case "5B":
+                    queue.Enqueue(new BBInputFrame { numpad = 5, pressed = (byte)BBButton.B, held = (byte)BBButton.B });
+                    break;
+                case "5C":
+                    queue.Enqueue(new BBInputFrame { numpad = 5, pressed = (byte)BBButton.C, held = (byte)BBButton.C });
+                    break;
+                case "2C":
+                    queue.Enqueue(new BBInputFrame { numpad = 2, pressed = (byte)BBButton.C, held = (byte)BBButton.C });
+                    break;
+                case "5D":
+                    queue.Enqueue(new BBInputFrame { numpad = 5, pressed = (byte)BBButton.D, held = (byte)BBButton.D });
+                    break;
+                case "j.B":
+                    queue.Enqueue(new BBInputFrame { numpad = 8, pressed = (byte)BBButton.B, held = (byte)BBButton.B });
+                    break;
+                case "236236C":
+                    queue.Enqueue(new BBInputFrame { numpad = 2 });
+                    queue.Enqueue(new BBInputFrame { numpad = 3 });
+                    queue.Enqueue(new BBInputFrame { numpad = 6 });
+                    queue.Enqueue(new BBInputFrame { numpad = 2 });
+                    queue.Enqueue(new BBInputFrame { numpad = 3 });
+                    queue.Enqueue(new BBInputFrame { numpad = 6, pressed = (byte)BBButton.C, held = (byte)BBButton.C });
+                    break;
+            }
         }
     }
 }

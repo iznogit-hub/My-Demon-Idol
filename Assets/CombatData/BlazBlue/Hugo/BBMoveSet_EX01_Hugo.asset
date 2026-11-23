@@ -17,19 +17,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bcdacea0752814324929f2232a040f31, type: 2}
   - {fileID: 11400000, guid: db07d943d173a4a58a957c78ee9eb063, type: 2}
   - {fileID: 11400000, guid: fadecbe8c963a4dcf95e52d7af32fdf3, type: 2}
-  - {fileID: 11400000, guid: f5e909064ca8a442fa356b86bd5bce26, type: 2}
-  - {fileID: 11400000, guid: 0444a1c4c377c4be8953dd42c5a0e388, type: 2}
   - {fileID: 11400000, guid: 065c60ba5a5d44fe2b37453f7d500a96, type: 2}
-  - {fileID: 11400000, guid: e24aae1db819c45c4a779e5418baf08c, type: 2}
   - {fileID: 11400000, guid: 23265819cd6d6412c94090c147de9cdd, type: 2}
-  - {fileID: 11400000, guid: 474eef2b487884c21905dc3ce8f224a2, type: 2}
   - {fileID: 11400000, guid: 8ee301a92e24a4175ab4eca368261a86, type: 2}
-  - {fileID: 11400000, guid: e6d74547522e6437380c2bece7d7c89d, type: 2}
-  - {fileID: 11400000, guid: 8e2e5d16d74c648a69e9f77a9fbfb2f7, type: 2}
-  - {fileID: 11400000, guid: fd01eac891d874b44a74d102a3008a19, type: 2}
   - {fileID: 11400000, guid: fdaa5bbf297394652a3502654ac411e9, type: 2}
-  - {fileID: 11400000, guid: 0de65f036d3c348c2ae6b4ecba2fb5a2, type: 2}
-  - {fileID: 11400000, guid: d8dc19ae82dc4441998f18ab0e1c59f3, type: 2}
   throwForward: {fileID: 0}
   throwBack: {fileID: 0}
   throwAir: {fileID: 0}

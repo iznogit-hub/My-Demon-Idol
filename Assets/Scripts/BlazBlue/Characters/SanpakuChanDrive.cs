@@ -53,10 +53,10 @@ namespace DemonIdol.BlazBlue
             // Check feather cost (free in Overdrive)
             if (!InOverdrive && _feathers <= 0) return false;
 
-            // In air: j.D Air Teleport
+            // In air: j.D Air Teleport (or fallback to j.B)
             if (!brain.isGrounded)
             {
-                var airMove = brain.FindAttackByMoveId("j.D");
+                var airMove = brain.FindAttackByMoveId("j.D") ?? brain.FindAttackByMoveId("j.B");
                 if (airMove != null && brain.CanExecuteMove(airMove))
                 {
                     ConsumeFeather();
@@ -69,27 +69,25 @@ namespace DemonIdol.BlazBlue
             // Ground 4D: Back-teleport
             if (facingNumpad == 4 || facingNumpad == 7 || facingNumpad == 1)
             {
-                var backMove = brain.FindAttackByMoveId("4D");
+                var backMove = brain.FindAttackByMoveId("4D") ?? brain.FindAttackByMoveId("5D");
                 if (backMove != null && brain.CanExecuteMove(backMove))
                 {
                     ConsumeFeather();
                     brain.StartAttack(backMove);
                     return true;
                 }
-                return false;
             }
 
             // Ground 2D: Low dash slide teleport
             if (facingNumpad == 2 || facingNumpad == 3)
             {
-                var lowMove = brain.FindAttackByMoveId("2D");
+                var lowMove = brain.FindAttackByMoveId("2D") ?? brain.FindAttackByMoveId("5D");
                 if (lowMove != null && brain.CanExecuteMove(lowMove))
                 {
                     ConsumeFeather();
                     brain.StartAttack(lowMove);
                     return true;
                 }
-                return false;
             }
 
             // Ground 5D: Forward Cross-up Teleport (default)
@@ -101,6 +99,15 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(crossMove);
                     return true;
                 }
+            }
+
+            // Graceful fallback: If follow-up/directional D move is not mapped, execute primary 5D
+            var fallbackMove = brain.FindAttackByMoveId("5D");
+            if (fallbackMove != null && brain.CanExecuteMove(fallbackMove))
+            {
+                ConsumeFeather();
+                brain.StartAttack(fallbackMove);
+                return true;
             }
 
             return false;

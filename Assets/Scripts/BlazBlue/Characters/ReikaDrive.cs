@@ -60,10 +60,10 @@ namespace DemonIdol.BlazBlue
         {
             if (brain == null) return false;
 
-            // In air: j.D Air Veil Counter
+            // In air: j.D Air Veil Counter (or fallback to j.B)
             if (!brain.isGrounded)
             {
-                var airMove = brain.FindAttackByMoveId("j.D");
+                var airMove = brain.FindAttackByMoveId("j.D") ?? brain.FindAttackByMoveId("j.B");
                 if (airMove != null && brain.CanExecuteMove(airMove))
                 {
                     StartStance(BBGuard.Mid);
@@ -76,14 +76,13 @@ namespace DemonIdol.BlazBlue
             // 2D: Low Veil Counter
             if (facingNumpad == 2 || facingNumpad == 1 || facingNumpad == 3)
             {
-                var lowMove = brain.FindAttackByMoveId("2D");
+                var lowMove = brain.FindAttackByMoveId("2D") ?? brain.FindAttackByMoveId("5D");
                 if (lowMove != null && brain.CanExecuteMove(lowMove))
                 {
                     StartStance(BBGuard.Low);
                     brain.StartAttack(lowMove);
                     return true;
                 }
-                return false;
             }
 
             // 5D: Standing Veil Counter (default)
@@ -95,6 +94,15 @@ namespace DemonIdol.BlazBlue
                     brain.StartAttack(standMove);
                     return true;
                 }
+            }
+
+            // Graceful fallback: If follow-up/directional D move is not mapped, execute primary 5D
+            var fallbackMove = brain.FindAttackByMoveId("5D");
+            if (fallbackMove != null && brain.CanExecuteMove(fallbackMove))
+            {
+                StartStance(BBGuard.Mid);
+                brain.StartAttack(fallbackMove);
+                return true;
             }
 
             return false;
