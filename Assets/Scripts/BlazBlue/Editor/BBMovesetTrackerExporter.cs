@@ -91,7 +91,7 @@ namespace DemonIdol.BlazBlue.Editor
             public int missingCount;
             public int offPackCount;
             public int placeholderCount;
-            public bool isReady => missingCount == 0 && placeholderCount == 0 && sharedCount == 0;
+            public bool isReady => missingCount == 0 && placeholderCount == 0;
             public List<TrackedRow> rows = new List<TrackedRow>();
         }
 
@@ -365,6 +365,16 @@ namespace DemonIdol.BlazBlue.Editor
             if (moveId == "5B" && (overrideMap.TryGetValue("HumanF@Attack1H01_L", out var b) || overrideMap.TryGetValue("HumanM@Attack1H01_L", out b))) return b;
             if (moveId == "5C" && (overrideMap.TryGetValue("HumanF@Attack2H01", out var c) || overrideMap.TryGetValue("HumanM@Attack2H01", out c))) return c;
             if (moveId == "5D" && (overrideMap.TryGetValue("HumanF@AttackPolearm01", out var d) || overrideMap.TryGetValue("HumanM@AttackPolearm01", out d))) return d;
+            if (moveId == "6A")
+            {
+                if (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var a6) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out a6)) return a6;
+                if (overrideMap.TryGetValue("HumanF@Attack2H01", out var a6_2) || overrideMap.TryGetValue("HumanM@Attack2H01", out a6_2)) return a6_2;
+            }
+            if (moveId == "6B")
+            {
+                if (overrideMap.TryGetValue("HumanF@Attack1H01_L", out var b6) || overrideMap.TryGetValue("HumanM@Attack1H01_L", out b6)) return b6;
+                if (overrideMap.TryGetValue("HumanF@Attack1H01_R", out var b6_2) || overrideMap.TryGetValue("HumanM@Attack1H01_R", out b6_2)) return b6_2;
+            }
             if (moveId == "6C")
             {
                 if (overrideMap.TryGetValue("HumanF@Attack2H01", out var sc6) || overrideMap.TryGetValue("HumanM@Attack2H01", out sc6)) return sc6;

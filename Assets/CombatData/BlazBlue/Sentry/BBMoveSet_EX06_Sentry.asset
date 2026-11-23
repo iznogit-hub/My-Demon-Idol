@@ -28,6 +28,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 25df866b1cd8f4e878ade6725fd3f43d, type: 2}
   - {fileID: 11400000, guid: 901a9191ddbcd489e877725803b67c3f, type: 2}
   - {fileID: 11400000, guid: c68307ccaa85f4317b9523f268a17984, type: 2}
+  - {fileID: 11400000, guid: 45ecdf6015f1f4f02a746704c0e15d47, type: 2}
+  - {fileID: 11400000, guid: 81ca733e77df24e6da3c3a17f762f5a8, type: 2}
   throwForward: {fileID: 0}
   throwBack: {fileID: 0}
   throwAir: {fileID: 0}

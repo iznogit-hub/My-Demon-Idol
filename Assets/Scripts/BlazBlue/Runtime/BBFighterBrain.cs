@@ -288,6 +288,7 @@ namespace DemonIdol.BlazBlue
 
             if (animDriver != null)
             {
+                animDriver.ResetAttackLayer(immediate: true);
                 animDriver.UpdateLocomotionState(BBState.Neutral, 0, true);
             }
 

@@ -35,6 +35,18 @@ namespace DemonIdol.BlazBlue
 
         public static AnimationClip ClipFor(BBCharacterProfile profile, string characterId, string moveId)
         {
+            if (profile != null && profile.moveSet is BBMoveSet ms && ms.moves != null)
+            {
+                for (int i = 0; i < ms.moves.Length; i++)
+                {
+                    if (ms.moves[i] != null && ms.moves[i].moveId == moveId)
+                    {
+                        var c = ms.moves[i].clip != null ? ms.moves[i].clip : ms.moves[i].animationClip;
+                        if (c != null) return c;
+                    }
+                }
+            }
+
             if (!BBSignatureTable.TryBase(characterId, out var signature)) return null;
             BBCharacterPresentation card = BBPresentationLibrary.Find(characterId);
             if (moveId == "5D" || moveId == "2D" || moveId == "6D" || moveId == "j.D")

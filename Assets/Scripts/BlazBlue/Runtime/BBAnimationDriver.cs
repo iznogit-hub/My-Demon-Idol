@@ -160,8 +160,13 @@ namespace DemonIdol.BlazBlue
             seekTime = Mathf.Clamp(seekTime, t0, tLast);
             activePlayable.SetTime(seekTime);
 
+            // Snap immediately to full weight on first attack frame or rapid gatling chain
+            if (tickInMove <= 1 && _attackWeight < 0.95f)
+            {
+                _attackWeight = 1.0f;
+            }
             // If recovery is longer than the clip has frames left or at end of recovery, hold last pose and blend 3 ticks to idle
-            if (tickInMove >= tickEnd - 3)
+            else if (tickInMove >= tickEnd - 3)
             {
                 _attackWeight = Mathf.MoveTowards(_attackWeight, 0f, 1.0f / 3.0f);
             }
@@ -205,6 +210,34 @@ namespace DemonIdol.BlazBlue
                 _mixer.SetInputWeight(1, _attackWeight);
                 _mixer.SetInputWeight(0, 1.0f - _attackWeight);
                 _graph.Evaluate(CombatTickEngine.TICK_DELTA_TIME);
+            }
+        }
+
+        /// <summary>
+        /// Explicitly resets Layer 1 attack playback.
+        /// When immediate is true (e.g. hitstun, blockstun, knockdown, wakeup, or cancel),
+        /// snaps blend weight to 0 immediately so no attack pose remains frozen or stuck.
+        /// </summary>
+        public void ResetAttackLayer(bool immediate = true)
+        {
+            _activeAttackClip = null;
+            if (immediate)
+            {
+                _attackWeight = 0f;
+                if (_mixer.IsValid())
+                {
+                    _mixer.SetInputWeight(1, 0f);
+                    _mixer.SetInputWeight(0, 1.0f);
+                }
+            }
+            else
+            {
+                BlendToNeutral();
+            }
+
+            if (_weaponRig != null)
+            {
+                _weaponRig.SetWeaponTrailsActive(false);
             }
         }
 
@@ -258,18 +291,33 @@ namespace DemonIdol.BlazBlue
                 return;
             }
 
-            _activeAttackClip = null;
-            if (_attackWeight > 0f)
+            // Not attacking: cleanly reset attack layer
+            bool isInterrupted = brain.bbState == BBState.Hitstun
+                || brain.bbState == BBState.Blockstun
+                || brain.bbState == BBState.BarrierBlockstun
+                || brain.bbState == BBState.DownWait
+                || brain.bbState == BBState.Wakeup
+                || brain.bbState == BBState.Dead;
+
+            if (isInterrupted)
             {
-                _attackWeight = Mathf.MoveTowards(_attackWeight, 0f, 1.0f / BLEND_SPEED_TICKS);
-                if (_mixer.IsValid())
-                {
-                    _mixer.SetInputWeight(1, _attackWeight);
-                    _mixer.SetInputWeight(0, 1.0f - _attackWeight);
-                }
+                ResetAttackLayer(immediate: true);
             }
-            if (_weaponRig != null)
-                _weaponRig.SetWeaponTrailsActive(false);
+            else
+            {
+                _activeAttackClip = null;
+                if (_attackWeight > 0f)
+                {
+                    _attackWeight = Mathf.MoveTowards(_attackWeight, 0f, 1.0f / BLEND_SPEED_TICKS);
+                    if (_mixer.IsValid())
+                    {
+                        _mixer.SetInputWeight(1, _attackWeight);
+                        _mixer.SetInputWeight(0, 1.0f - _attackWeight);
+                    }
+                }
+                if (_weaponRig != null)
+                    _weaponRig.SetWeaponTrailsActive(false);
+            }
 
             // The graph is manual. Without this, walk/crouch/jump parameters never advance and the pose stays idle.
             if (_graph.IsValid())
@@ -412,6 +460,7 @@ namespace DemonIdol.BlazBlue
                     break;
 
                 case BBState.Hitstun:
+                    ResetAttackLayer(immediate: true);
                     SetParamTrigger("HitMid");
                     SetParamBool("IsGrounded", isGrounded);
                     SetParamBool("IsBlocking", false);
@@ -419,18 +468,21 @@ namespace DemonIdol.BlazBlue
 
                 case BBState.Blockstun:
                 case BBState.BarrierBlockstun:
+                    ResetAttackLayer(immediate: true);
                     SetParamTrigger("StandBlock");
                     SetParamBool("IsBlocking", true);
                     SetParamBool("IsGrounded", isGrounded);
                     break;
 
                 case BBState.DownWait:
+                    ResetAttackLayer(immediate: true);
                     SetParamTrigger("Knockdown");
                     SetParamBool("IsGrounded", true);
                     SetParamBool("IsBlocking", false);
                     break;
 
                 case BBState.Wakeup:
+                    ResetAttackLayer(immediate: true);
                     SetParamTrigger("StandUpBack");
                     SetParamBool("IsGrounded", true);
                     SetParamBool("IsBlocking", false);
