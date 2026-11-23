@@ -24,6 +24,12 @@ namespace DemonIdol.Network
         public event Action<bool, int> OnMatchSettled; // isWinner, mmrDelta
         public event Action OnRematchAccepted;
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            Instance = null;
+        }
+
         private void Awake()
         {
             if (Instance != null && Instance != this)

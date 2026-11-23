@@ -49,6 +49,12 @@ namespace DemonIdol.Network
     {
         public static NetworkGatekeeper Instance { get; private set; }
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            Instance = null;
+        }
+
         [Header("Competitive Rollback Thresholds")]
         [SerializeField] private float _maxAllowedPingMs = RollbackQualityProbe.COMPETITIVE_MAX_PING_MS;
         [SerializeField] private float _maxAllowedJitterMs = RollbackQualityProbe.COMPETITIVE_MAX_JITTER_MS;
@@ -79,6 +85,14 @@ namespace DemonIdol.Network
             }
             Instance = this;
             if (Application.isPlaying) DontDestroyOnLoad(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
         }
 
         public static void EnsureInstance()

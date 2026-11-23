@@ -12,6 +12,13 @@ namespace DemonIdol.Network
     public class QuantumInputPoller : MonoBehaviour
     {
         private static QuantumInputPoller _instance;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            _instance = null;
+        }
+
         public static QuantumInputPoller Instance
         {
             get
@@ -44,9 +51,17 @@ namespace DemonIdol.Network
                 return;
             }
             _instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (Application.isPlaying) DontDestroyOnLoad(gameObject);
 
             if (_mobileInput == null) _mobileInput = FindAnyObjectByType<MobileFighterInput>();
+        }
+
+        private void OnDestroy()
+        {
+            if (_instance == this)
+            {
+                _instance = null;
+            }
         }
 
         private void OnEnable()

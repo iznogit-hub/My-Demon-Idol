@@ -85,28 +85,45 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            Instance = null;
+        }
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
             {
-                Destroy(gameObject);
+                if (Application.isPlaying)
+                    Destroy(gameObject);
+                else
+                    DestroyImmediate(gameObject);
                 return;
             }
             Instance = this;
             if (tuning == null) tuning = BBSystemTuning.Default;
         }
 
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
+        }
+
         bool _boundToClock;
 
         private void OnEnable()
         {
-            TryBindClock();
+            if (Application.isPlaying) TryBindClock();
         }
 
         private void Update()
         {
             // The clock may not exist yet when this component is enabled.
-            if (!_boundToClock) TryBindClock();
+            if (Application.isPlaying && !_boundToClock) TryBindClock();
         }
 
         private void OnDisable()
@@ -120,6 +137,7 @@ namespace DemonIdol.BlazBlue
 
         void TryBindClock()
         {
+            if (!Application.isPlaying) return;
             if (_boundToClock && CombatTickEngine.Instance == null)
                 _boundToClock = false;
             if (_boundToClock) return;

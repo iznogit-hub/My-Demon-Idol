@@ -15,6 +15,14 @@ namespace DemonIdol.Network
     {
         private static bool _isQuitting = false;
         private static QuantumCombatBridge _instance;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            _isQuitting = false;
+            _instance = null;
+        }
+
         public static QuantumCombatBridge Instance
         {
             get

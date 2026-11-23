@@ -6,10 +6,16 @@ namespace DemonIdol.BlazBlue
     /// <summary>
     /// Pure mathematical solver for BlazBlue combo damage, proration, guts scaling, and chip damage.
     /// Strictly adheres to section 4.14 and 4.19 of the specification.
-    /// Integer-quantized output for deterministic rollback authority.
+    /// Uses deterministic 64-bit integer basis-point (10,000 = 1.0000x) fixed-point math
+    /// to guarantee bit-identical damage calculations across ARM64 and x86-64 platforms.
     /// </summary>
     public static class BBDamageModel
     {
+        public const long BP_SCALE = 10_000L;
+        public const long SAME_MOVE_PENALTY_DEFAULT_BP = 8_000L; // 0.80x
+        public const long DANGER_DAMAGE_MULTIPLIER_BP = 12_500L;  // 1.25x
+        public const long STYLISH_DAMAGE_MULTIPLIER_BP = 8_000L;  // 0.80x
+
         public const float SAME_MOVE_PENALTY_DEFAULT = 0.80f;
         public const float DANGER_DAMAGE_MULTIPLIER = 1.25f;
         public const float STYLISH_DAMAGE_MULTIPLIER = 0.80f;
@@ -21,13 +27,21 @@ namespace DemonIdol.BlazBlue
         public const int HITSTOP_SUPER = 16;
 
         /// <summary>
+        /// Standard genre combo scaling in basis points (100% for first 2 hits, -10% per hit, min 20%).
+        /// </summary>
+        public static long CalculateComboScalingBP(int hitCount)
+        {
+            if (hitCount <= 2) return BP_SCALE;
+            long scaling = BP_SCALE - 1_000L * (hitCount - 2);
+            return Math.Max(2_000L, scaling);
+        }
+
+        /// <summary>
         /// Standard genre combo scaling: 100% for the first 2 hits, then -10% per hit, minimum 20%.
         /// </summary>
         public static float CalculateComboScaling(int hitCount)
         {
-            if (hitCount <= 2) return 1.0f;
-            float scaling = 1.0f - 0.10f * (hitCount - 2);
-            return Mathf.Max(0.20f, scaling);
+            return CalculateComboScalingBP(hitCount) / (float)BP_SCALE;
         }
 
         public static int GetTierHitstop(BBButton button, BBMoveKind kind)
@@ -40,22 +54,36 @@ namespace DemonIdol.BlazBlue
         }
 
         /// <summary>
+        /// Calculates Guts defense multiplier in basis points (10,000 = 100%) based on defender's remaining HP ratio.
+        /// Deterministic integer division and comparisons.
+        /// </summary>
+        public static long CalculateGutsBP(float currentHp, float maxHp)
+        {
+            if (maxHp <= 0f) return BP_SCALE;
+            long cur = (long)Mathf.Round(Mathf.Max(0f, currentHp));
+            long max = (long)Mathf.Round(maxHp);
+            if (max <= 0L) return BP_SCALE;
+
+            long ratioBP = (cur * BP_SCALE) / max;
+
+            if (ratioBP > 5000L) return 10_000L; // > 50%
+            if (ratioBP > 3000L) return 9_000L;  // 30% - 50%
+            if (ratioBP > 2000L) return 8_000L;  // 20% - 30%
+            if (ratioBP > 1000L) return 7_000L;  // 10% - 20%
+            return 6_000L;                       // <= 10%
+        }
+
+        /// <summary>
         /// Calculates Guts defense multiplier based on defender's remaining HP ratio.
         /// </summary>
         public static float CalculateGuts(float currentHp, float maxHp)
         {
-            if (maxHp <= 0f) return 1.00f;
-            float ratio = currentHp / maxHp;
-
-            if (ratio > 0.50f) return 1.00f;
-            if (ratio > 0.30f) return 0.90f;
-            if (ratio > 0.20f) return 0.80f;
-            if (ratio > 0.10f) return 0.70f;
-            return 0.60f;
+            return CalculateGutsBP(currentHp, maxHp) / (float)BP_SCALE;
         }
 
         /// <summary>
         /// Computes final scaled damage for a hit in a combo according to BlazBlue Central Fiction rules.
+        /// All intermediate scaling and decay are calculated via 64-bit integer basis-point math (10,000 = 1.0000x).
         /// </summary>
         public static int CalculateDamage(
             float baseDamage,
@@ -71,37 +99,53 @@ namespace DemonIdol.BlazBlue
         {
             if (baseDamage <= 0f) return 0;
 
-            // 1. Initial starter proration (P1)
-            float p1 = Mathf.Clamp(comboP1, 0.1f, 1.0f);
+            long baseDmg = (long)Mathf.Round(baseDamage);
+            if (baseDmg <= 0L) return 0;
 
-            // 2. Accumulated per-hit decay (P2)
-            float p2 = Mathf.Clamp(accumulatedP2, 0.01f, 1.0f);
+            // 1. Initial starter proration (P1 clamped 10% to 100% in BP)
+            long p1BP = Mathf.Clamp((int)Mathf.Round(comboP1 * BP_SCALE), 1_000, 10_000);
 
-            // 3. Same-move decay: sameMovePenalty ^ (uses - 1)
-            float repeatFactor = 1.0f;
+            // 2. Accumulated per-hit decay (P2 clamped 1% to 100% in BP)
+            long p2BP = Mathf.Clamp((int)Mathf.Round(accumulatedP2 * BP_SCALE), 100, 10_000);
+
+            // 3. Same-move decay in integer BP: penalty ^ (uses - 1)
+            long penaltyBP = Mathf.Clamp((int)Mathf.Round(sameMovePenalty * BP_SCALE), 1_000, 10_000);
+            long repeatFactorBP = BP_SCALE;
             if (moveUsesInCombo > 1)
             {
-                repeatFactor = Mathf.Pow(sameMovePenalty, moveUsesInCombo - 1);
+                for (int i = 1; i < moveUsesInCombo; i++)
+                {
+                    repeatFactorBP = (repeatFactorBP * penaltyBP) / BP_SCALE;
+                }
             }
 
-            // 4. Modifiers
-            float dangerFactor = isDefenderInDanger ? DANGER_DAMAGE_MULTIPLIER : 1.0f;
-            float stylishFactor = isAttackerStylish ? STYLISH_DAMAGE_MULTIPLIER : 1.0f;
-            float gutsFactor = CalculateGuts(defenderCurrentHp, defenderMaxHp);
+            // 4. Modifiers in integer BP
+            long dangerBP = isDefenderInDanger ? DANGER_DAMAGE_MULTIPLIER_BP : BP_SCALE;
+            long stylishBP = isAttackerStylish ? STYLISH_DAMAGE_MULTIPLIER_BP : BP_SCALE;
+            long gutsBP = CalculateGutsBP(defenderCurrentHp, defenderMaxHp);
 
-            // 5. Scaled damage calculation
-            float scaledDamage = baseDamage * p1 * p2 * repeatFactor * dangerFactor * stylishFactor * gutsFactor;
+            // 5. Total multiplier accumulation in basis points (preserves deterministic fighting-game proration)
+            long totalMultiplierBP = BP_SCALE;
+            totalMultiplierBP = (totalMultiplierBP * p1BP) / BP_SCALE;
+            totalMultiplierBP = (totalMultiplierBP * p2BP) / BP_SCALE;
+            totalMultiplierBP = (totalMultiplierBP * repeatFactorBP) / BP_SCALE;
+            totalMultiplierBP = (totalMultiplierBP * dangerBP) / BP_SCALE;
+            totalMultiplierBP = (totalMultiplierBP * stylishBP) / BP_SCALE;
+            totalMultiplierBP = (totalMultiplierBP * gutsBP) / BP_SCALE;
+
+            long scaledDamage = (baseDmg * totalMultiplierBP) / BP_SCALE;
 
             // 6. Minimum damage floor
-            float minDamage = baseDamage * Mathf.Clamp01(minDamagePct);
-            float finalDamage = Mathf.Max(scaledDamage, minDamage);
+            long minDmgBP = Mathf.Clamp((int)Mathf.Round(minDamagePct * BP_SCALE), 0, 10_000);
+            long minDamage = (baseDmg * minDmgBP) / BP_SCALE;
+            long finalDamage = Math.Max(scaledDamage, minDamage);
 
-            // 7. Deterministic integer floor
-            return Mathf.Max(1, Mathf.FloorToInt(finalDamage));
+            // 7. Deterministic integer floor (minimum 1 damage on hit)
+            return (int)Math.Max(1L, finalDamage);
         }
 
         /// <summary>
-        /// Calculates chip damage on guard.
+        /// Calculates chip damage on guard using integer basis-point math.
         /// Specials = 10%, Distortion Drives = 15%, Drive moves = 8%, Normals = 0%.
         /// Barrier blocks 100% of chip damage.
         /// </summary>
@@ -113,26 +157,29 @@ namespace DemonIdol.BlazBlue
         {
             if (isBarriering || baseDamage <= 0f) return 0;
 
-            float chipRate = authoredChipPct;
-            if (chipRate <= 0f)
+            long baseDmg = (long)Mathf.Round(baseDamage);
+            if (baseDmg <= 0L) return 0;
+
+            long chipRateBP = (long)Mathf.Round(authoredChipPct * BP_SCALE);
+            if (chipRateBP <= 0L)
             {
                 switch (moveKind)
                 {
                     case BBMoveKind.Special:
-                        chipRate = 0.10f;
+                        chipRateBP = 1_000L; // 10%
                         break;
                     case BBMoveKind.DistortionDrive:
-                        chipRate = 0.15f;
+                        chipRateBP = 1_500L; // 15%
                         break;
                     case BBMoveKind.DriveMove:
-                        chipRate = 0.08f;
+                        chipRateBP = 800L; // 8%
                         break;
                     default:
                         return 0; // Normals deal 0 chip
                 }
             }
 
-            return Mathf.FloorToInt(baseDamage * chipRate);
+            return (int)((baseDmg * chipRateBP) / BP_SCALE);
         }
 
         /// <summary>
