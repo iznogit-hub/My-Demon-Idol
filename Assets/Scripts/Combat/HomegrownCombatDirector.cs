@@ -397,10 +397,12 @@ namespace DemonIdol.Combat
                 }
 
                 // Strip duplicate logic/physics components from existing model
-                foreach (var subFc in existingModel.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroy(subFc);
-                foreach (var cc in existingModel.GetComponentsInChildren<CharacterController>(true)) SafeDestroy(cc);
-                foreach (var mi in existingModel.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroy(mi);
-                foreach (var pi in existingModel.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroy(pi);
+                foreach (var subFc in existingModel.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroyComponent(subFc);
+                foreach (var cc in existingModel.GetComponentsInChildren<CharacterController>(true)) SafeDestroyComponent(cc);
+                foreach (var mi in existingModel.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroyComponent(mi);
+                foreach (var pi in existingModel.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroyComponent(pi);
+
+                CalibrateModelScalingAndGrounding(existingModel.gameObject, fc, charDef);
 
                 Vector3 p = fc.transform.position;
                 if (p.y < 0f) { p.y = 0f; fc.transform.position = p; }
@@ -429,57 +431,58 @@ namespace DemonIdol.Combat
                 }
             }
 
-            // ONLY remove old models if we have a valid replacement prefab
+            // Cleanly sweep and destroy any previous or overlapping models/renderers under fc
+            for (int i = fc.transform.childCount - 1; i >= 0; i--)
+            {
+                Transform child = fc.transform.GetChild(i);
+                if (child.GetComponent<Hitbox>() != null || child.GetComponent<Hurtbox>() != null) continue;
+                if (child.name.StartsWith("Model") || child.GetComponentInChildren<Renderer>(true) != null || child.GetComponentInChildren<Animator>(true) != null)
+                {
+                    child.gameObject.SetActive(false);
+                    SafeDestroy(child.gameObject);
+                }
+            }
+
+            // Instantiate replacement prefab
             if (prefab != null)
             {
-                Transform existing = fc.transform.Find(expectedModelName);
-                GameObject model = null;
-                if (existing != null)
-                {
-                    model = existing.gameObject;
-                }
-                else
-                {
-                    for (int i = fc.transform.childCount - 1; i >= 0; i--)
-                    {
-                        Transform child = fc.transform.GetChild(i);
-                        if (child.name.StartsWith("Model_") || child.name.StartsWith("Model"))
-                        {
-                            child.gameObject.SetActive(false);
-                            SafeDestroy(child.gameObject);
-                        }
-                    }
-
-                    model = Instantiate(prefab, fc.transform);
-                    model.name = expectedModelName;
-                    model.transform.localPosition = Vector3.zero;
-                    model.transform.localRotation = Quaternion.identity;
-                    model.transform.localScale = prefab.transform.localScale;
-                }
+                GameObject model = Instantiate(prefab, fc.transform);
+                model.name = expectedModelName;
+                model.transform.localPosition = Vector3.zero;
+                model.transform.localRotation = Quaternion.identity;
 
                 // Strip duplicate logic/physics components from child model to prevent collision clash
                 // Destroy FighterController FIRST so RequireComponent constraint on CharacterController is released
-                foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroy(subFc);
-                foreach (var cc in model.GetComponentsInChildren<CharacterController>(true)) SafeDestroy(cc);
-                foreach (var mi in model.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroy(mi);
-                foreach (var pi in model.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroy(pi);
+                foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroyComponent(subFc);
+                foreach (var cc in model.GetComponentsInChildren<CharacterController>(true)) SafeDestroyComponent(cc);
+                foreach (var mi in model.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroyComponent(mi);
+                foreach (var pi in model.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroyComponent(pi);
                 foreach (var hb in model.GetComponentsInChildren<Hitbox>(true)) SafeDestroy(hb.gameObject);
                 foreach (var hb in model.GetComponentsInChildren<Hurtbox>(true)) SafeDestroy(hb.gameObject);
                 foreach (var pb in model.GetComponentsInChildren<FighterPropBinder>(true)) SafeDestroy(pb);
 
-                // Strip any weapons, wands, staves, props
+                // Strip any external prop objects (only if not an armature bone)
+                var allBones = new HashSet<Transform>();
+                foreach (var smr in model.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+                {
+                    if (smr.rootBone != null) allBones.Add(smr.rootBone);
+                    if (smr.bones != null)
+                    {
+                        foreach (var b in smr.bones)
+                        {
+                            if (b != null) allBones.Add(b);
+                        }
+                    }
+                }
                 foreach (var t in model.GetComponentsInChildren<Transform>(true))
                 {
-                    if (t != null && t != model.transform && (
+                    if (t != null && t != model.transform && !allBones.Contains(t) && (
                         t.name.StartsWith("Prop_") || 
                         t.name.Contains("Staff") || 
                         t.name.Contains("Blaster") || 
-                        t.name.Contains("Katana") || 
-                        t.name.Contains("Sword") ||
                         t.name.Contains("MagicWand") ||
                         t.name.Contains("Wand") ||
-                        t.name.Contains("Orb") ||
-                        t.name.Contains("Gun")))
+                        t.name.Contains("Orb")))
                     {
                         SafeDestroy(t.gameObject);
                     }
@@ -490,6 +493,13 @@ namespace DemonIdol.Combat
                 {
                     r.gameObject.layer = fc.gameObject.layer;
                     r.enabled = true;
+                }
+                foreach (var t in model.GetComponentsInChildren<Transform>(true))
+                {
+                    if (t.name.Contains("Joint") || t.name.Contains("Hips") || t.name.Contains("Armature") || t.name.Contains("Root"))
+                    {
+                        t.gameObject.SetActive(true);
+                    }
                 }
 
                 Animator anim = model.GetComponentInChildren<Animator>();
@@ -522,6 +532,9 @@ namespace DemonIdol.Combat
                     fc.CacheAnimatorParams();
                 }
 
+                // Calibrate heightMeters and feet grounding to floor
+                CalibrateModelScalingAndGrounding(model, fc, charDef);
+
                 // Ensure CharacterController on fighter root is properly calibrated
                 var fcCc = fc.GetComponent<CharacterController>();
                 if (fcCc != null)
@@ -551,6 +564,163 @@ namespace DemonIdol.Combat
             }
 
             fc.transform.localScale = Vector3.one;
+        }
+
+        public static bool IsBodyRenderer(Renderer r)
+        {
+            if (r == null || !r.enabled) return false;
+            if (r is ParticleSystemRenderer || r is TrailRenderer) return false;
+
+            // Specific check for EX02 hammer/weapon meshes
+            if (r.name.StartsWith("Object531") || r.name.StartsWith("Object532")) return false;
+
+            // Specific check for weapon meshes
+            string rName = r.name;
+            if (rName.Contains("Weapon") || rName.Contains("Sword") || rName.Contains("Sheath") ||
+                rName.Contains("Hammer") || rName.Contains("Staff") || rName.Contains("Blaster") ||
+                rName.Contains("Wand") || rName.Contains("Gun") || rName.Contains("Prop"))
+            {
+                return false;
+            }
+
+            Transform t = r.transform;
+            while (t != null)
+            {
+                string n = t.name;
+                if (n.Contains("Weapon") || n.Contains("Prop") || n.Contains("Shadow") || 
+                    n.Contains("Blob") || n.Contains("Hitbox") || n.Contains("Hurtbox") ||
+                    n.Contains("Sword") || n.Contains("Wand") || n.Contains("Staff") ||
+                    n.Contains("Blaster") || n.Contains("Gun") || n.Contains("Hammer") ||
+                    n.Contains("Sheath"))
+                {
+                    return false;
+                }
+                t = t.parent;
+            }
+
+            if (r is SkinnedMeshRenderer smr)
+            {
+                if (smr.rootBone == null) return false;
+                string bn = smr.rootBone.name;
+                if (bn.Contains("Weapon") || bn.Contains("Prop") || bn.Contains("Sword") || 
+                    bn.Contains("Hammer") || bn.Contains("Wand") || bn.Contains("Staff") || 
+                    bn.Contains("Gun") || bn.Contains("Blaster") || bn.Contains("Sheath"))
+                {
+                    return false;
+                }
+            }
+
+            return (r is SkinnedMeshRenderer) || (r is MeshRenderer && !r.name.Contains("Visual"));
+        }
+
+        public static void CalibrateModelScalingAndGrounding(GameObject model, FighterController fc, CharacterDefinition charDef)
+        {
+            if (model == null || fc == null) return;
+
+            float targetHeight = (charDef != null && charDef.heightMeters >= 1.60f && charDef.heightMeters <= 1.85f)
+                ? charDef.heightMeters
+                : 1.70f;
+
+            foreach (var smr in model.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+            {
+                smr.updateWhenOffscreen = true;
+            }
+            if (fc.animator != null)
+            {
+                fc.animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+            }
+
+            if (model.name.Contains("EX02"))
+            {
+                float sf = targetHeight / 1.78f;
+                model.transform.localScale = Vector3.one * sf;
+                model.transform.localPosition = new Vector3(0, 0.065f, 0);
+                if (fc.animator != null)
+                {
+                    fc.animator.Rebind();
+                    fc.animator.Update(0.033f);
+                }
+                return;
+            }
+
+            if (model.name.Contains("EX03"))
+            {
+                float sf = targetHeight / 1.57f;
+                model.transform.localScale = Vector3.one * sf;
+                model.transform.localPosition = new Vector3(0, 0.185f, 0);
+                if (fc.animator != null)
+                {
+                    fc.animator.Rebind();
+                    fc.animator.Update(0.033f);
+                }
+                return;
+            }
+
+            if (model.name.Contains("EX06"))
+            {
+                float sf = targetHeight / 2.15f;
+                model.transform.localScale = Vector3.one * sf;
+                model.transform.localPosition = new Vector3(0, 0.235f, 0);
+                if (fc.animator != null)
+                {
+                    fc.animator.Rebind();
+                    fc.animator.Update(0.033f);
+                }
+                return;
+            }
+
+            model.transform.localScale = Vector3.one;
+            model.transform.localPosition = Vector3.zero;
+
+            Bounds b = new Bounds();
+            bool hasBounds = false;
+            foreach (var r in model.GetComponentsInChildren<Renderer>(true))
+            {
+                if (!IsBodyRenderer(r)) continue;
+                if (!hasBounds)
+                {
+                    b = r.bounds;
+                    hasBounds = true;
+                }
+                else
+                {
+                    b.Encapsulate(r.bounds);
+                }
+            }
+
+            if (hasBounds && b.size.y > 0.05f)
+            {
+                float scaleFactor = targetHeight / b.size.y;
+                model.transform.localScale = Vector3.one * scaleFactor;
+
+                if (fc.animator != null)
+                {
+                    fc.animator.Rebind();
+                    fc.animator.Update(0.033f);
+                }
+
+                float lowestWorldY = float.MaxValue;
+                string lowestName = "";
+                foreach (var r in model.GetComponentsInChildren<Renderer>(true))
+                {
+                    if (!IsBodyRenderer(r)) continue;
+                    if (r.bounds.min.y < lowestWorldY)
+                    {
+                        lowestWorldY = r.bounds.min.y;
+                        lowestName = r.name;
+                    }
+                }
+
+                if (lowestWorldY != float.MaxValue)
+                {
+                    float footDelta = lowestWorldY - fc.transform.position.y;
+                    Vector3 lp = model.transform.localPosition;
+                    lp.y -= footDelta;
+                    lp.y += 0.025f; // Lift slightly to compensate for idle stance knee-bend drop
+                    model.transform.localPosition = lp;
+                    Debug.Log($"[CalibrateGrounding] model={model.name} bSize={b.size} scaleFactor={scaleFactor} lowestWorldY={lowestWorldY} fcPosY={fc.transform.position.y} footDelta={footDelta} newLp={model.transform.localPosition}");
+                }
+            }
         }
 
         private void BindHitEvents()
@@ -685,13 +855,26 @@ namespace DemonIdol.Combat
                 model.name = expectedModelName;
                 model.transform.localPosition = Vector3.zero;
                 model.transform.localRotation = Quaternion.identity;
-                model.transform.localScale = prefab.transform.localScale;
 
                 // Strip duplicate logic/physics components from spawned model
-                foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroy(subFc);
-                foreach (var subCc in model.GetComponentsInChildren<CharacterController>(true)) SafeDestroy(subCc);
-                foreach (var mi in model.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroy(mi);
-                foreach (var pi in model.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroy(pi);
+                foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroyComponent(subFc);
+                foreach (var subCc in model.GetComponentsInChildren<CharacterController>(true)) SafeDestroyComponent(subCc);
+                foreach (var mi in model.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroyComponent(mi);
+                foreach (var pi in model.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroyComponent(pi);
+                // Ensure all renderers are enabled and on the fighter layer
+                foreach (var r in model.GetComponentsInChildren<Renderer>(true))
+                {
+                    r.gameObject.layer = fc.gameObject.layer;
+                    r.enabled = true;
+                }
+                foreach (var t in model.GetComponentsInChildren<Transform>(true))
+                {
+                    if (t.name.Contains("Joint") || t.name.Contains("Hips") || t.name.Contains("Armature") || t.name.Contains("Root"))
+                    {
+                        t.gameObject.SetActive(true);
+                    }
+                }
+
                 Animator anim = model.GetComponentInChildren<Animator>();
                 if (anim == null) anim = model.AddComponent<Animator>();
                 if (anim != null)
@@ -700,6 +883,18 @@ namespace DemonIdol.Combat
                     if (charDef != null && charDef.animatorController != null)
                     {
                         anim.runtimeAnimatorController = charDef.animatorController;
+                    }
+                    if (charDef != null && charDef.avatar != null)
+                    {
+                        anim.avatar = charDef.avatar;
+                    }
+                    else
+                    {
+                        Animator pAnim = prefab.GetComponentInChildren<Animator>();
+                        if (pAnim != null && pAnim.avatar != null)
+                        {
+                            anim.avatar = pAnim.avatar;
+                        }
                     }
                     var db = DemonIdol.Data.MDIRosterDatabase.Instance;
                     if (anim.runtimeAnimatorController == null && db != null)
@@ -713,6 +908,8 @@ namespace DemonIdol.Combat
                 {
                     model.AddComponent<AnimationEventReceiver>();
                 }
+
+                CalibrateModelScalingAndGrounding(model, fc, charDef);
             }
 
             if (charDef != null)
@@ -733,6 +930,17 @@ namespace DemonIdol.Combat
             if (obj == null) return;
             if (Application.isPlaying) UnityEngine.Object.Destroy(obj);
             else UnityEngine.Object.DestroyImmediate(obj);
+        }
+
+        private static void SafeDestroyComponent(Component comp)
+        {
+            if (comp == null) return;
+            if (comp is Behaviour b) b.enabled = false;
+            else if (comp is CharacterController cc) cc.enabled = false;
+            else if (comp is Collider col) col.enabled = false;
+
+            if (Application.isPlaying) DestroyImmediate(comp);
+            else DestroyImmediate(comp, true);
         }
     }
 }

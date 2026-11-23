@@ -151,7 +151,25 @@ namespace DemonIdol.BlazBlue
                 Debug.Log($"[BBMatchBootstrap] Fighter P{sampler.playerIndex + 1} ({charId}): model={(hasModel ? "resolved" : "missing")}, profile={(brain.profile != null ? brain.profile.name : "null")}, moves={moveCount} resolved");
 
                 var info = BBRosterArchetype.Get(definition != null ? definition.id : fc.fighterName);
-                brain.bodyBoxes = BBBodyBoxes.CreateFromHip(info.hipHeight, info.weaponReach);
+                float hipH = info.hipHeight;
+                float hipW = 0.34f;
+                if (fc.animator != null && fc.animator.isHuman)
+                {
+                    Transform hipsBone = fc.animator.GetBoneTransform(HumanBodyBones.Hips);
+                    if (hipsBone != null)
+                    {
+                        float measuredH = hipsBone.position.y - fc.transform.position.y;
+                        if (measuredH >= 0.5f && measuredH <= 1.5f) hipH = measuredH;
+                    }
+                    Transform lLeg = fc.animator.GetBoneTransform(HumanBodyBones.LeftUpperLeg);
+                    Transform rLeg = fc.animator.GetBoneTransform(HumanBodyBones.RightUpperLeg);
+                    if (lLeg != null && rLeg != null)
+                    {
+                        float legDist = Vector3.Distance(lLeg.position, rLeg.position);
+                        if (legDist >= 0.15f && legDist <= 0.6f) hipW = legDist;
+                    }
+                }
+                brain.bodyBoxes = BBBodyBoxes.CreateFromHip(hipH, info.weaponReach, hipW);
                 EnsureDrive(brain, info);
                 AssignAnimator(fc, brain);
 
@@ -188,12 +206,19 @@ namespace DemonIdol.BlazBlue
 
             BBHitboxOverlay.IsOverlayActive = training;
             var canvas = FindBattleCanvas();
-            if (canvas != null && p1Brain != null && BBTouchLayout.ShouldShowTouchControls()
-                && canvas.GetComponentInChildren<BBTouchLayout>(true) == null)
+            if (canvas != null && p1Brain != null)
             {
-                UiEventSystemInputBootstrap.ReconcileLoadedEventSystems();
-                BBTouchLayout.Create(canvas.transform, p1Brain.sampler);
-                BBComboReadout.Create(canvas.transform);
+                // Combo readout works across all platforms (standalone, mobile, console)
+                if (canvas.GetComponentInChildren<BBComboReadout>(true) == null)
+                {
+                    BBComboReadout.Create(canvas.transform);
+                }
+
+                if (BBTouchLayout.ShouldShowTouchControls() && canvas.GetComponentInChildren<BBTouchLayout>(true) == null)
+                {
+                    UiEventSystemInputBootstrap.ReconcileLoadedEventSystems();
+                    BBTouchLayout.Create(canvas.transform, p1Brain.sampler);
+                }
             }
         }
 

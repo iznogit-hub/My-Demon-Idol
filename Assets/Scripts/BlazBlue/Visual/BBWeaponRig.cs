@@ -134,7 +134,12 @@ namespace DemonIdol.BlazBlue.Visual
                 _primaryInstance.name = "Weapon_Primary_" + warriorType;
                 _primaryInstance.transform.localPosition = primaryPositionOffset;
                 _primaryInstance.transform.localRotation = Quaternion.Euler(primaryRotationOffset);
-                _primaryInstance.transform.localScale = primaryScale;
+                Vector3 parentLossy = _primaryBoneTransform.lossyScale;
+                Vector3 targetScale = primaryScale;
+                if (Mathf.Abs(parentLossy.x) > 0.0001f) targetScale.x /= parentLossy.x;
+                if (Mathf.Abs(parentLossy.y) > 0.0001f) targetScale.y /= parentLossy.y;
+                if (Mathf.Abs(parentLossy.z) > 0.0001f) targetScale.z /= parentLossy.z;
+                _primaryInstance.transform.localScale = targetScale;
                 SanitizeWeaponInstance(_primaryInstance);
                 _primaryTrail = _primaryInstance.GetComponentInChildren<BBWeaponTrail>();
             }
@@ -145,7 +150,12 @@ namespace DemonIdol.BlazBlue.Visual
                 _secondaryInstance.name = "Weapon_Secondary_" + warriorType;
                 _secondaryInstance.transform.localPosition = secondaryPositionOffset;
                 _secondaryInstance.transform.localRotation = Quaternion.Euler(secondaryRotationOffset);
-                _secondaryInstance.transform.localScale = secondaryScale;
+                Vector3 parentLossy = _secondaryBoneTransform.lossyScale;
+                Vector3 targetScale = secondaryScale;
+                if (Mathf.Abs(parentLossy.x) > 0.0001f) targetScale.x /= parentLossy.x;
+                if (Mathf.Abs(parentLossy.y) > 0.0001f) targetScale.y /= parentLossy.y;
+                if (Mathf.Abs(parentLossy.z) > 0.0001f) targetScale.z /= parentLossy.z;
+                _secondaryInstance.transform.localScale = targetScale;
                 SanitizeWeaponInstance(_secondaryInstance);
                 _secondaryTrail = _secondaryInstance.GetComponentInChildren<BBWeaponTrail>();
             }

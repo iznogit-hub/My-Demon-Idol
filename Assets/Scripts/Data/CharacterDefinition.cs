@@ -29,6 +29,9 @@ namespace DemonIdol.Combat
         public Sprite portraitSprite;
         public Sprite bannerSprite;
 
+        [Header("Dimensions")]
+        [Range(1.60f, 1.85f)] public float heightMeters = 1.70f;
+
         [Header("Tactical Stats (0 - 100)")]
         [Range(0f, 100f)] public float speed = 90f;
         [Range(0f, 100f)] public float power = 75f;

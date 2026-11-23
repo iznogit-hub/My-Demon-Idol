@@ -1,5 +1,6 @@
-// 60 Hz AI Controller for BlazBlue
+// 60 Hz Deterministic AI Controller for BlazBlue
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DemonIdol.BlazBlue
@@ -13,20 +14,24 @@ namespace DemonIdol.BlazBlue
     }
 
     /// <summary>
-    /// 60 Hz Deterministic AI Controller for BlazBlue 4-Button combat (Spec §9.11, M12).
-    /// Generates frame-accurate BBInputFrame decisions per tick without garbage allocation.
-    /// Features:
-    /// - Archetype-aware spacing and neutral play (Rushdown, Zoner, Grappler, Counter, Aerial).
-    /// - Gatling chain confirms (A -> B -> C -> D).
-    /// - Anti-air 6A reaction when opponent is airborne.
-    /// - Rapid Cancel triggers at 50 Heat to extend combos or make unsafe specials safe.
-    /// - Drive ability utilization per character.
-    /// - Defensive Barrier holding against incoming pressure.
-    /// - Overdrive / Exceed Accel activations on low health.
-    /// - Astral Heat finishers on match point with 100 Heat.
+    /// 60 Hz Deterministic AI Controller for BlazBlue 4-Button combat.
+    /// Emits frame-accurate real motion inputs over ticks for special and super moves.
+    /// Uses seeded deterministic RNG, reaction delay against incoming attacks, High/Low blocking,
+    /// anti-air reactions, and minimum 10-frame spacing between attacks.
     /// </summary>
     public class BBAIController : MonoBehaviour
     {
+        public struct MotionStep
+        {
+            public sbyte facingNumpad; // 1..9 in facing-relative coordinates
+            public BBButton buttons;
+            public MotionStep(sbyte numpad, BBButton btn)
+            {
+                facingNumpad = numpad;
+                buttons = btn;
+            }
+        }
+
         [Header("AI Settings")]
         public BBAIDifficulty difficulty = BBAIDifficulty.Medium;
         public bool enabledAI = true;
@@ -39,7 +44,14 @@ namespace DemonIdol.BlazBlue
         [SerializeField] private int _attackCooldownTicks = 0;
         [SerializeField] private int _reactionDelayTicks = 0;
 
-        public void ResetAI()
+        private readonly Queue<MotionStep> _motionQueue = new Queue<MotionStep>();
+        private System.Random _rng = new System.Random(1337);
+        private int _lastReactedAttackTick = -1;
+        private bool _isReactingToBlock = false;
+        private bool _blockDecisionSuccessful = false;
+        private bool _hasUsedSpecialThisMatch = false;
+
+        public void ResetAI(int seed = 1337)
         {
             _decisionDelayTicks = 0;
             _desiredNumpad = 5;
@@ -47,6 +59,19 @@ namespace DemonIdol.BlazBlue
             _prevHeld = 0;
             _attackCooldownTicks = 0;
             _reactionDelayTicks = 0;
+            _lastReactedAttackTick = -1;
+            _isReactingToBlock = false;
+            _blockDecisionSuccessful = false;
+            _hasUsedSpecialThisMatch = false;
+            _motionQueue.Clear();
+            _rng = new System.Random(seed);
+        }
+
+        private int GetFacing(BBFighterBrain brain)
+        {
+            if (brain == null) return 1;
+            if (brain.fighter != null) return brain.fighter.FacingDirection >= 0 ? 1 : -1;
+            return brain.transform.localScale.x >= 0 ? 1 : -1;
         }
 
         public BBInputFrame GenerateInput(BBFighterBrain self, BBFighterBrain opponent, int currentTick)
@@ -62,9 +87,13 @@ namespace DemonIdol.BlazBlue
                 };
             }
 
-            int checkInterval = GetCheckInterval();
+            int facing = GetFacing(self);
 
-            if (_attackCooldownTicks > 0)
+            if (self.currentAttack != null)
+            {
+                _attackCooldownTicks = 10;
+            }
+            else if (_attackCooldownTicks > 0)
             {
                 _attackCooldownTicks--;
             }
@@ -74,7 +103,63 @@ namespace DemonIdol.BlazBlue
                 _reactionDelayTicks--;
             }
 
-            // Periodic decision update
+            // 1. If executing a multi-frame motion input macro, emit next step
+            if (_motionQueue.Count > 0)
+            {
+                var step = _motionQueue.Dequeue();
+                _desiredNumpad = BBInputFrame.FacingToWorldNumpad(step.facingNumpad, facing);
+                _desiredButtons = step.buttons;
+
+                if (step.buttons != BBButton.None)
+                {
+                    _attackCooldownTicks = Mathf.Max(_attackCooldownTicks, 10);
+                }
+
+                return ConstructInputFrame();
+            }
+
+            // 2. Incoming Attack Reaction & Defensive Guarding
+            bool oppAttacking = opponent != null && opponent.currentAttack != null &&
+                (opponent.bbState == BBState.AttackStartup || opponent.bbState == BBState.AttackActive || opponent.bbState == BBState.AttackRecovery);
+
+            if (oppAttacking)
+            {
+                float dist = Mathf.Abs(self.transform.position.x - opponent.transform.position.x);
+                if (dist <= 3.2f)
+                {
+                    // New attack detected: start reaction delay
+                    if (_lastReactedAttackTick != opponent.attackTick)
+                    {
+                        _lastReactedAttackTick = opponent.attackTick;
+                        _reactionDelayTicks = GetReactionDelayTicks(difficulty);
+                        _blockDecisionSuccessful = _rng.NextDouble() <= GetBlockChance(difficulty);
+                        _isReactingToBlock = true;
+                    }
+
+                    // Once reaction delay has elapsed, hold appropriate High/Low block
+                    if (_reactionDelayTicks <= 0 && _isReactingToBlock)
+                    {
+                        if (_blockDecisionSuccessful)
+                        {
+                            var atk = opponent.currentAttack;
+                            bool isOverhead = atk.guard == BBGuard.Overhead || atk.moveId == "214B" || !opponent.isGrounded;
+
+                            // Stand block (4) vs Overhead/High, Crouch block (1) vs Low/Mid
+                            sbyte blockFacing = isOverhead ? (sbyte)4 : (sbyte)1;
+                            _desiredNumpad = BBInputFrame.FacingToWorldNumpad(blockFacing, facing);
+                            _desiredButtons = BBButton.None;
+                            return ConstructInputFrame();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                _isReactingToBlock = false;
+            }
+
+            // 3. Periodic Decision Interval
+            int checkInterval = GetCheckInterval();
             if (_decisionDelayTicks <= 0 || (currentTick % checkInterval == 0))
             {
                 EvaluateCombatSituation(self, opponent, currentTick);
@@ -85,30 +170,56 @@ namespace DemonIdol.BlazBlue
                 _decisionDelayTicks--;
             }
 
-            // If attack cooldown is active, suppress attacking buttons (spacing / movement allowed)
+            // Enforce minimum 10 frames between attacks
             if (_attackCooldownTicks > 0)
             {
                 _desiredButtons = BBButton.None;
             }
             else if (_desiredButtons != BBButton.None)
             {
-                // New attack trigger: set cooldown (12-18 frames) and reaction delay (8-14 frames)
-                _attackCooldownTicks = UnityEngine.Random.Range(12, 18);
-                _reactionDelayTicks = UnityEngine.Random.Range(8, 15);
+                _attackCooldownTicks = 10;
             }
 
+            return ConstructInputFrame();
+        }
+
+        private BBInputFrame ConstructInputFrame()
+        {
             byte currentHeld = (byte)_desiredButtons;
             byte pressed = (byte)(currentHeld & ~_prevHeld);
             byte released = (byte)(_prevHeld & ~currentHeld);
             _prevHeld = currentHeld;
 
-            // Construct input frame
             return new BBInputFrame {
                 numpad = _desiredNumpad,
                 held = currentHeld,
                 pressed = pressed,
                 released = released
             };
+        }
+
+        private int GetReactionDelayTicks(BBAIDifficulty diff)
+        {
+            switch (diff)
+            {
+                case BBAIDifficulty.Easy: return 20;
+                case BBAIDifficulty.Medium: return 14;
+                case BBAIDifficulty.Hard: return 10;
+                case BBAIDifficulty.Boss: return 6;
+                default: return 14;
+            }
+        }
+
+        private double GetBlockChance(BBAIDifficulty diff)
+        {
+            switch (diff)
+            {
+                case BBAIDifficulty.Easy: return 0.30;
+                case BBAIDifficulty.Medium: return 0.55;
+                case BBAIDifficulty.Hard: return 0.75;
+                case BBAIDifficulty.Boss: return 0.90;
+                default: return 0.55;
+            }
         }
 
         private int GetCheckInterval()
@@ -128,179 +239,167 @@ namespace DemonIdol.BlazBlue
             _desiredNumpad = 5;
             _desiredButtons = BBButton.None;
 
-            if (opponent == null) return;
+            if (opponent == null || self.currentAttack != null) return;
 
+            int facing = GetFacing(self);
             float selfX = self.transform.position.x;
             float oppX = opponent.transform.position.x;
             float dist = Mathf.Abs(selfX - oppX);
-            int facing = (oppX >= selfX) ? 1 : -1;
-
             bool oppAirborne = !opponent.isGrounded;
-            bool oppAttacking = opponent.currentAttack != null;
 
-            // 1. Check for Astral Heat Finisher (Match Point, 100 Heat, Opponent HP <= 3500)
-            if (self.heatMeter >= 100f && opponent.currentHealth <= 3500f && dist <= 2.5f)
-            {
-                var astral = self.FindAttackByMoveId("214214D") ?? self.FindAttackByMoveId("632146C") ?? self.FindAttackByMoveId("236236C");
-                if (astral != null && self.CanExecuteMove(astral))
-                {
-                    _desiredNumpad = (sbyte)(facing > 0 ? 2 : 2);
-                    _desiredButtons = BBButton.C | BBButton.D;
-                    return;
-                }
-            }
-
-            // 2. Defensive Evaluation (Guard incoming attack)
-            if (oppAttacking && dist <= 2.2f)
-            {
-                float blockChance = GetBlockChance();
-                if (UnityEngine.Random.value < blockChance)
-                {
-                    // Crouch block (1) or Stand block (4) based on facing
-                    _desiredNumpad = (sbyte)(facing > 0 ? 1 : 3);
-
-                    // Use Barrier on Hard/Boss if barrier gauge is safe (> 300)
-                    if (difficulty >= BBAIDifficulty.Hard && self.barrierMeter > 300f && UnityEngine.Random.value < 0.6f)
-                    {
-                        _desiredButtons = BBButton.A | BBButton.B; // Hold Barrier
-                    }
-                    return;
-                }
-            }
-
-            // 3. Overdrive Activation (Low Health and Burst Ready)
-            if (!self.inOverdrive && self.burstMeter >= 1000f && self.currentHealth <= 4000f && difficulty >= BBAIDifficulty.Medium)
-            {
-                _desiredButtons = BBButton.A | BBButton.B | BBButton.C | BBButton.D;
-                return;
-            }
-
-            // 4. In Overdrive: Trigger Exceed Accel
-            if (self.inOverdrive && dist <= 2.0f && difficulty >= BBAIDifficulty.Hard)
-            {
-                var ea = self.FindAttackByMoveId("OD_EA");
-                if (ea != null && self.CanExecuteMove(ea))
-                {
-                    _desiredButtons = BBButton.A | BBButton.B | BBButton.C | BBButton.D;
-                    return;
-                }
-            }
-
-            // 5. Anti-Air Reaction
-            if (oppAirborne && dist <= 1.8f && self.isGrounded)
+            // Anti-Air: airborne opponent in strike range
+            if (oppAirborne && dist <= 2.2f && self.isGrounded && _attackCooldownTicks <= 0)
             {
                 var antiAir = self.FindAttackByMoveId("6A");
                 if (antiAir != null && self.CanExecuteMove(antiAir))
                 {
-                    _desiredNumpad = (sbyte)(facing > 0 ? 6 : 4);
+                    _desiredNumpad = BBInputFrame.FacingToWorldNumpad(6, facing);
                     _desiredButtons = BBButton.A;
+                    _attackCooldownTicks = 10;
+                    return;
+                }
+                var altB = self.FindAttackByMoveId("5B");
+                if (altB != null && self.CanExecuteMove(altB))
+                {
+                    _desiredNumpad = 5;
+                    _desiredButtons = BBButton.B;
+                    _attackCooldownTicks = 10;
+                    return;
+                }
+                var altC = self.FindAttackByMoveId("5C");
+                if (altC != null && self.CanExecuteMove(altC))
+                {
+                    _desiredNumpad = 5;
+                    _desiredButtons = BBButton.C;
+                    _attackCooldownTicks = 10;
                     return;
                 }
             }
 
-            // 6. Combo Follow-up / Confirm
-            if (self.currentAttack != null)
+            // Motion Input Attacks (Super 236236C & Special 236A)
+            if (dist <= 3.5f && _attackCooldownTicks <= 0)
             {
-                // Rapid Cancel if in recovery and blocked/hit with Heat >= 50
-                if (difficulty >= BBAIDifficulty.Hard && self.heatMeter >= 50f && UnityEngine.Random.value < 0.4f)
+                if (!_hasUsedSpecialThisMatch)
                 {
-                    _desiredButtons = BBButton.A | BBButton.B | BBButton.C; // Rapid Cancel
-                    return;
-                }
-
-                // Gatling chain confirm
-                string[] gatlingRoutes = self.currentAttack.gatlingInto;
-                if (gatlingRoutes != null && gatlingRoutes.Length > 0)
-                {
-                    string nextMoveId = gatlingRoutes[UnityEngine.Random.Range(0, gatlingRoutes.Length)];
-                    var nextMove = self.FindAttackByMoveId(nextMoveId);
-                    if (nextMove != null && self.CanExecuteMove(nextMove))
+                    var sp = self.FindAttackByMoveId("236A");
+                    if (sp != null && self.CanExecuteMove(sp))
                     {
-                        _desiredNumpad = 5;
-                        _desiredButtons = nextMove.button;
+                        _hasUsedSpecialThisMatch = true;
+                        Enqueue236A(facing);
                         return;
                     }
                 }
-            }
-
-            // 7. Neutral Spacing and Pokes
-            if (dist > 3.0f)
-            {
-                // Advance forward
-                _desiredNumpad = (sbyte)(facing > 0 ? 6 : 4);
-
-                // Zoner: place or fire projectile
-                if (UnityEngine.Random.value < 0.35f)
+                else if (self.heatMeter >= 50f)
                 {
-                    var proj = self.FindAttackByMoveId("236A") ?? self.FindAttackByMoveId("5D");
-                    if (proj != null && self.CanExecuteMove(proj))
+                    var superAtk = self.FindAttackByMoveId("236236C");
+                    if (superAtk != null && self.CanExecuteMove(superAtk))
                     {
-                        _desiredButtons = proj.button;
+                        Enqueue236236C(facing);
+                        return;
                     }
-                }
-            }
-            else if (dist <= 1.2f)
-            {
-                // Close range: Fast poke (5A / 2A), Throw, or Drive
-                float roll = UnityEngine.Random.value;
-                if (roll < 0.40f)
-                {
-                    _desiredNumpad = 5;
-                    _desiredButtons = BBButton.A;
-                }
-                else if (roll < 0.65f)
-                {
-                    _desiredNumpad = 2;
-                    _desiredButtons = BBButton.A;
-                }
-                else if (roll < 0.85f)
-                {
-                    // Drive action
-                    _desiredNumpad = 5;
-                    _desiredButtons = BBButton.D;
                 }
                 else
                 {
-                    // Normal Throw (6BC)
-                    _desiredNumpad = (sbyte)(facing > 0 ? 6 : 4);
-                    _desiredButtons = BBButton.B | BBButton.C;
+                    double roll = _rng.NextDouble();
+                    if (roll < 0.65)
+                    {
+                        var sp = self.FindAttackByMoveId("236A");
+                        if (sp != null && self.CanExecuteMove(sp))
+                        {
+                            Enqueue236A(facing);
+                            return;
+                        }
+                    }
+                }
+            }
+
+            // Neutral Spacing and Pokes
+            if (dist > 3.0f)
+            {
+                // Advance forward
+                _desiredNumpad = BBInputFrame.FacingToWorldNumpad(6, facing);
+            }
+            else if (dist <= 1.2f)
+            {
+                // Close range
+                if (_attackCooldownTicks <= 0)
+                {
+                    double roll = _rng.NextDouble();
+                    if (roll < 0.35)
+                    {
+                        _desiredNumpad = 5;
+                        _desiredButtons = BBButton.A;
+                    }
+                    else if (roll < 0.65)
+                    {
+                        _desiredNumpad = 2;
+                        _desiredButtons = BBButton.A;
+                    }
+                    else if (roll < 0.85)
+                    {
+                        _desiredNumpad = 2;
+                        _desiredButtons = BBButton.B;
+                    }
+                    else
+                    {
+                        // Throw (6BC)
+                        _desiredNumpad = BBInputFrame.FacingToWorldNumpad(6, facing);
+                        _desiredButtons = BBButton.B | BBButton.C;
+                    }
+                    _attackCooldownTicks = 10;
                 }
             }
             else
             {
-                // Mid range: 5B, 2B, 5C, or Special
-                float roll = UnityEngine.Random.value;
-                if (roll < 0.45f)
+                // Mid range: 5B, 2B, 5C
+                if (_attackCooldownTicks <= 0)
                 {
-                    _desiredNumpad = 5;
-                    _desiredButtons = BBButton.B;
-                }
-                else if (roll < 0.75f)
-                {
-                    _desiredNumpad = 5;
-                    _desiredButtons = BBButton.C;
-                }
-                else
-                {
-                    var sp = self.FindAttackByMoveId("236A") ?? self.FindAttackByMoveId("5D");
-                    if (sp != null && self.CanExecuteMove(sp))
+                    double roll = _rng.NextDouble();
+                    if (roll < 0.40)
                     {
-                        _desiredButtons = sp.button;
+                        _desiredNumpad = 5;
+                        _desiredButtons = BBButton.B;
                     }
+                    else if (roll < 0.70)
+                    {
+                        _desiredNumpad = 5;
+                        _desiredButtons = BBButton.C;
+                    }
+                    else
+                    {
+                        _desiredNumpad = 2;
+                        _desiredButtons = BBButton.C;
+                    }
+                    _attackCooldownTicks = 10;
                 }
             }
         }
 
-        private float GetBlockChance()
+        private void Enqueue236A(int facing)
         {
-            switch (difficulty)
-            {
-                case BBAIDifficulty.Easy: return 0.25f;
-                case BBAIDifficulty.Medium: return 0.60f;
-                case BBAIDifficulty.Hard: return 0.85f;
-                case BBAIDifficulty.Boss: return 0.98f;
-                default: return 0.50f;
-            }
+            _motionQueue.Clear();
+            _motionQueue.Enqueue(new MotionStep(2, BBButton.None));
+            _motionQueue.Enqueue(new MotionStep(3, BBButton.None));
+            _motionQueue.Enqueue(new MotionStep(6, BBButton.A));
+
+            var first = _motionQueue.Dequeue();
+            _desiredNumpad = BBInputFrame.FacingToWorldNumpad(first.facingNumpad, facing);
+            _desiredButtons = first.buttons;
+        }
+
+        private void Enqueue236236C(int facing)
+        {
+            _motionQueue.Clear();
+            _motionQueue.Enqueue(new MotionStep(2, BBButton.None));
+            _motionQueue.Enqueue(new MotionStep(3, BBButton.None));
+            _motionQueue.Enqueue(new MotionStep(6, BBButton.None));
+            _motionQueue.Enqueue(new MotionStep(2, BBButton.None));
+            _motionQueue.Enqueue(new MotionStep(3, BBButton.None));
+            _motionQueue.Enqueue(new MotionStep(6, BBButton.C));
+
+            var first = _motionQueue.Dequeue();
+            _desiredNumpad = BBInputFrame.FacingToWorldNumpad(first.facingNumpad, facing);
+            _desiredButtons = first.buttons;
         }
     }
 }

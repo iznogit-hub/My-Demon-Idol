@@ -23,6 +23,7 @@ MonoBehaviour:
   avatar: {fileID: 9000000, guid: cf95e60a8a288e848b5bf3490397dee0, type: 3}
   portraitSprite: {fileID: 21300000, guid: cfc79dadb4461ce6a318f8cbeb5c232a, type: 3}
   bannerSprite: {fileID: 0}
+  heightMeters: 1.7
   speed: 91
   power: 86
   reach: 95

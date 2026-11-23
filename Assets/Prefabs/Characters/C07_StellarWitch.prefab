@@ -978,10 +978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 323832026960548373}
   - component: {fileID: 5953291791835662447}
-  - component: {fileID: 7701392158221419938}
   - component: {fileID: 6266971914875063552}
-  - component: {fileID: 7509744212435863568}
-  - component: {fileID: 6892041150221295452}
   - component: {fileID: 7032470182033750540}
   m_Layer: 0
   m_Name: C07_StellarWitch
@@ -1031,31 +1028,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!143 &7701392158221419938
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095970306432993455}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1.9
-  m_Radius: 0.35
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!114 &6266971914875063552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1068,71 +1040,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83a2b16e33474c3e96167a8d6f1c853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AnimationEventReceiver
---- !u!114 &7509744212435863568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095970306432993455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88b982dc086e4799a538067bd8c9482, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.FighterController
-  fighterName: StellarWitch
-  appliedDefinition: {fileID: 0}
-  isPlayerControlled: 1
-  maxHealth: 1000
-  maxSuperMeter: 100
-  forwardWalkSpeed: 3.6
-  backwardWalkSpeed: 2.8
-  jumpVerticalLaunch: 8
-  jumpHorizontalSpeed: 3.2
-  gravity: 20
-  creepSpeed: 1.2
-  forwardDashSpeed: 6.5
-  forwardDashDurationTicks: 12
-  backdashSpeed: 7
-  backdashDurationTicks: 14
-  backdashInvincibleTicks: 5
-  jumpAttackVelocityX: 3.2
-  jumpAttackVelocityY: 6
-  parryActiveTicks: 5
-  parryRecoveryTicks: 14
-  parryStunTicksOnAttacker: 18
-  moveSet: {fileID: 0}
-  lightAttackData: {fileID: 11400000, guid: 72ee71133320c4c398704b3a4988f2c3, type: 2}
-  lowAttackData: {fileID: 11400000, guid: e89c629f6b9542e88a3e7b8c0df124ab, type: 2}
-  mediumAttackData: {fileID: 11400000, guid: d7e98537c4d304b03a5fd00ba3dbbc62, type: 2}
-  heavyAttackData: {fileID: 11400000, guid: 8081e3657a540436f9d44a88f84be17c, type: 2}
-  driveSkillData: {fileID: 11400000, guid: d950e0430a40d4b1681d011010cb141c, type: 2}
-  jumpAttackData: {fileID: 11400000, guid: 5372c34b74370411b886c89e327e8410, type: 2}
-  domainSuperData: {fileID: 11400000, guid: f1a208c2f79634a21a53f884c1ac7891, type: 2}
-  throwAttackData: {fileID: 11400000, guid: c97f1a34b8924f0ca64188b75e039f21, type: 2}
-  opponent: {fileID: 0}
-  activeHitbox: {fileID: 7827327402681665959}
-  animator: {fileID: 5953291791835662447}
-  sidestepDistanceZ: 0.85
-  sidestepDurationTicks: 14
-  projectileMeter: 1
---- !u!114 &6892041150221295452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095970306432993455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af1eefb6bddf47be860557d2fa7f51a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.MobileFighterInput
-  _fighter: {fileID: 7509744212435863568}
-  joystickDeadZone: 0.2
-  joystickExitThreshold: 0.15
-  _rawVirtualJoystick: {x: 0, y: 0}
-  isGestureModeEnabled: 0
 --- !u!114 &7032470182033750540
 MonoBehaviour:
   m_ObjectHideFlags: 0

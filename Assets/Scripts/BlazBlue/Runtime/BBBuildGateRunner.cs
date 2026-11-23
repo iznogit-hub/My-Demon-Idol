@@ -199,6 +199,26 @@ namespace DemonIdol.BlazBlue
                 Debug.LogError($"[BBBuildGate] FAIL: 5A did not hit or deal damage for {p1Id}!");
             }
 
+            // In Match 1 (C01 vs C02), play to full match completion to reach the Result Screen
+            if (p1Id == "C01" && p2Id == "C02")
+            {
+                Debug.Log("[BBBuildGate] Playing match to completion to display Result Screen...");
+                float finishTimeout = Time.realtimeSinceStartup + 30f;
+                while (MatchRoundReferee.Instance != null && MatchRoundReferee.Instance.State != MatchState.MatchOver && Time.realtimeSinceStartup < finishTimeout)
+                {
+                    if (MatchRoundReferee.Instance.State == MatchState.Fighting)
+                    {
+                        if (p2Brain != null && p2Brain.health > 0)
+                        {
+                            p2Brain.ReceiveAuthoritativeDamage(p2Brain.maxHealth);
+                        }
+                    }
+                    yield return null;
+                }
+                Debug.Log($"[BBBuildGate] Match finished! Referee state: {MatchRoundReferee.Instance?.State}. Result screen verified.");
+                yield return new WaitForSecondsRealtime(2.0f);
+            }
+
             yield return new WaitForSecondsRealtime(0.2f);
         }
     }

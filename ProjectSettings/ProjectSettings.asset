@@ -173,7 +173,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.celestialsoul.mydemonidol
     Standalone: com.celestialsoul.mydemonidol
-    iPhone: com.Unity-Technologies.com.unity.template.urp-blank
+    iPhone: com.celestialsoul.mydemonidol
     tvOS: com.Unity-Technologies.com.unity.template.urp-blank
   buildNumber:
     Standalone: 0
@@ -814,7 +814,7 @@ PlayerSettings:
     WebGL: UNITY_POST_PROCESSING_STACK_V2
     Windows Store Apps: 
     XboxOne: UNITY_POST_PROCESSING_STACK_V2
-    iPhone: 
+    iPhone: UNITY_POST_PROCESSING_STACK_V2
     tvOS: UNITY_POST_PROCESSING_STACK_V2
   additionalCompilerArguments: {}
   platformArchitecture:

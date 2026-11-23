@@ -19,10 +19,11 @@ MonoBehaviour:
   signatureStageId: ST01
   description: Swift ninja operative mastering lethal frame-traps, Gatling cancels, and Void Rift domain expansions.
   modelPrefab: {fileID: 100616, guid: 7cddaa48883f4b8d8574d309a6aab6db, type: 3}
-  animatorController: {fileID: 9100000, guid: 9bf82b2ef50339940a186ed20f4bcbb6, type: 2}
+  animatorController: {fileID: 22100000, guid: 0547cf0830665bfdafd6fc1a91c92fd2, type: 2}
   avatar: {fileID: 9000000, guid: c17302b294b179d45afeabff23af8b13, type: 3}
   portraitSprite: {fileID: 21300000, guid: 894cc4bc5fe584176bd1e443e3e14c34, type: 3}
   bannerSprite: {fileID: 0}
+  heightMeters: 1.62
   speed: 88
   power: 78
   reach: 80

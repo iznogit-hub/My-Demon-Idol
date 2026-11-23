@@ -20,9 +20,10 @@ MonoBehaviour:
   description: 'Dota 2 style hero: Sentry, the Phalanx Sentinel. Equipped with Spearman stance.'
   modelPrefab: {fileID: 3750609567362246273, guid: de440db80ca7d4beb9b833e9c943410f, type: 3}
   animatorController: {fileID: 9100000, guid: d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6, type: 2}
-  avatar: {fileID: 9000000, guid: 11cd82315c26766498f7b844a94a49cb, type: 3}
+  avatar: {fileID: 9000000, guid: 077542c13031841beb3e812ee475e9c4, type: 2}
   portraitSprite: {fileID: 21300000, guid: df988f53441f18449c54e28ffc4cead4, type: 3}
   bannerSprite: {fileID: 0}
+  heightMeters: 1.83
   speed: 75
   power: 88
   reach: 98

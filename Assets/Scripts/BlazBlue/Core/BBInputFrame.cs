@@ -72,6 +72,8 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        public static sbyte FacingToWorldNumpad(sbyte facingNumpad, int facingDirection) => WorldToFacingNumpad(facingNumpad, facingDirection);
+
         /// <summary>
         /// Returns true if the facing numpad direction corresponds to an up / jump direction (7, 8, 9).
         /// </summary>
