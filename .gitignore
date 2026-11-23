@@ -19,11 +19,14 @@
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
+/Builds/
 /[Ll]ogs/*
 !/[Ll]ogs/fightfeel/
+Logs/fightfeel/*.log
+!/[Ll]ogs/fightfeel/*.md
+!/[Ll]ogs/fightfeel/*.csv
 /[Uu]ser[Ss]ettings/
 *.log
-!/[Ll]ogs/fightfeel/**
 .DS_Store
 *.DS_Store
 
