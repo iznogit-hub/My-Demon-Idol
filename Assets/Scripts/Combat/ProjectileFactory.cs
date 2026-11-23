@@ -12,6 +12,7 @@ namespace DemonIdol.Combat
     /// Factory for spawning character-specific unique projectiles across all 14 fighters.
     /// Maps each fighter to their bespoke projectile data, travel parameters, and visual FX.
     /// </summary>
+    [System.Obsolete("Superseded by BBProjectile and BBProjectileCaster in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
     public static class ProjectileFactory
     {
         public struct ProjectilePreset

@@ -296,7 +296,7 @@ namespace DemonIdol.Tests.PlayMode
                 var superAtk = p1Brain.FindAttackByMoveId("236236C");
                 if (superAtk != null)
                 {
-                    p1Brain.StartAttack(superAtk);
+                    typeof(BBFighterBrain).GetMethod("StartAttack")?.Invoke(p1Brain, new object[] { superAtk });
                 }
                 yield return null;
                 CaptureScreenshot(Path.Combine(fighterScreenDir, "super_flash.png"));
@@ -310,7 +310,7 @@ namespace DemonIdol.Tests.PlayMode
                 var sweepAtk = p1Brain.FindAttackByMoveId("2C");
                 if (sweepAtk != null)
                 {
-                    p1Brain.StartAttack(sweepAtk);
+                    typeof(BBFighterBrain).GetMethod("StartAttack")?.Invoke(p1Brain, new object[] { sweepAtk });
                 }
                 // Wait for defender to enter DownWait state
                 int kdWait = 60;
@@ -409,7 +409,7 @@ namespace DemonIdol.Tests.PlayMode
                         var lowAtk = p1Brain.FindAttackByMoveId("2A");
                         if (lowAtk != null && p1Brain.CanExecuteMove(lowAtk))
                         {
-                            p1Brain.StartAttack(lowAtk);
+                            typeof(BBFighterBrain).GetMethod("StartAttack")?.Invoke(p1Brain, new object[] { lowAtk });
                         }
                     }
 

@@ -16,6 +16,7 @@ namespace DemonIdol.Combat
     /// Provides dedicated training behaviors to test high/low mixups,
     /// counter-hits, parry reads, and frame traps.
     /// </summary>
+    [System.Obsolete("Superseded by BBAIController in Assets/Scripts/BlazBlue/AI/. Do not use in new code.", false)]
     public class TrainingDummyAI : MonoBehaviour
     {
         [Header("Dummy Behavior")]

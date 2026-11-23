@@ -97,15 +97,11 @@ namespace DemonIdol.Combat
             // Toggle Lab HUD Visuals
             if (SafeGetKeyDown(KeyCode.F3))
             {
-                if (FrameDataDisplay.Instance != null) FrameDataDisplay.Instance.ToggleVisibility();
+                DemonIdol.BlazBlue.BBFrameMeter.IsMeterVisible = !DemonIdol.BlazBlue.BBFrameMeter.IsMeterVisible;
             }
-            if (SafeGetKeyDown(KeyCode.H))
+            if (SafeGetKeyDown(KeyCode.H) || SafeGetKeyDown(KeyCode.F4))
             {
                 DemonIdol.BlazBlue.BBHitboxOverlay.IsOverlayActive = !DemonIdol.BlazBlue.BBHitboxOverlay.IsOverlayActive;
-            }
-            if (SafeGetKeyDown(KeyCode.F4))
-            {
-                if (HitboxVisualizer.Instance != null) HitboxVisualizer.Instance.ToggleVisibility();
             }
         }
 
@@ -161,7 +157,7 @@ namespace DemonIdol.Combat
             var brain = fighter.GetComponent<DemonIdol.BlazBlue.BBFighterBrain>();
             if (brain != null)
             {
-                brain.SetAuthoritativeHealth(brain.maxHealth);
+                brain.ResetForRound();
             }
         }
     }

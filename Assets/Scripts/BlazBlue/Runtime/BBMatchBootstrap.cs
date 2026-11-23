@@ -105,8 +105,6 @@ namespace DemonIdol.BlazBlue
                     continue;
                 }
 
-                fc.externalSimulation = true;
-
                 var classicInput = fc.GetComponent<MobileFighterInput>();
                 if (classicInput != null) classicInput.enabled = false;
 

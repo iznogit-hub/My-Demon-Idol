@@ -9,6 +9,7 @@ namespace DemonIdol.Combat
     /// strict combo damage scaling (100%..30%, min 40% super),
     /// and 1-per-combo wall and OTG limits.
     /// </summary>
+    [System.Obsolete("Superseded by BBComboState in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
     public class JuggleEngine
     {
         public const float BASE_GRAVITY = 20f;

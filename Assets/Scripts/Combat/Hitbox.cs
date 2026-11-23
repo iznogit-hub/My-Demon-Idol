@@ -4,6 +4,7 @@ using UnityEngine;
 namespace DemonIdol.Combat
 {
     [RequireComponent(typeof(Collider))]
+    [System.Obsolete("Superseded by BBBoxTrack and BBBoxBuffer in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
     public class Hitbox : MonoBehaviour
     {
         public FighterController Owner { get; private set; }

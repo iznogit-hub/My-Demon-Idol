@@ -579,3 +579,82 @@ flowchart TD
    - Refine `BBTouchLayout` multi-touch capacitive latency and dynamic floating stick centering for iOS/Android builds.
 3. **Asset Bundle Streaming**:
    - Package high-resolution character textures and voice packs into downloadable asset bundles to keep the base application binary under 100 MB for app store compliance.
+
+---
+
+## 13. Unified Single-Authority Architecture Consolidation (Strangler-Fig Migration)
+
+### 13.1 Architectural Consolidation Overview
+Historically, Demon Idol contained two overlapping combat systems:
+1. **Legacy Unity-Coupled Layer (`Assets/Scripts/Combat/`)**: Anchored by a 1,674-line `FighterController.cs` requiring Unity `CharacterController`, with dual-mode `externalSimulation` flags and duplicate subsystems for physics, hitboxes, projectiles, barrier guard, rapid cancels, juggle budgets, and AI.
+2. **Target Deterministic Layer (`Assets/Scripts/BlazBlue/`)**: Anchored by `BBMatchSim.cs` (modular 60 Hz deterministic simulation loop, zero per-tick allocations, pure 2D AABB collision geometry, and FNV-1a state hashing).
+
+Through a 4-phase **Strangler-Fig migration pattern**, the entire project has been consolidated onto `Assets/Scripts/BlazBlue/` as the single authoritative source of truth for all gameplay simulation, mutating state, and rule resolution.
+
+### 13.2 Strangler-Fig Migration Topology
+
+```mermaid
+flowchart TD
+    subgraph Authoritative_Simulation ["Single Source of Truth: Assets/Scripts/BlazBlue/"]
+        BBMatchSim["BBMatchSim (60 Hz Deterministic Loop)\n• Pure AABB Math\n• Dynamic Juggle Decay\n• Step 8 Deterministic Projectiles\n• FNV-1a BBSimHash"]
+        BBFighterBrain["BBFighterBrain (P1 & P2)\n• 4-Button BlazBlue State Machine\n• Gatling Chains & Buffer Queue\n• Overdrive & Rapid Cancel\n• Directional Okizeme"]
+        BBBoxSystem["BBBoxBuffer & BBBoxTrack\n(Preallocated Box Overlaps)"]
+        BBMatchSim --> BBFighterBrain
+        BBMatchSim --> BBBoxSystem
+    end
+
+    subgraph Event_Bus ["Zero-Alloc Presentation Interface"]
+        Events["BBMatchSim Event Dispatcher\n• OnSimTickCompleted(snapshot)\n• OnHitConfirmed / OnBlockLanded\n• OnRapidCanceled / OnBurstExecuted\n• OnOverdriveActivated / OnRoundEnded"]
+        BBMatchSim --> Events
+    end
+
+    subgraph Presentation_Adapters ["Presentation & Audio Layer (Read-Only)"]
+        FC["FighterController (Thin Facade, GUID Preserved)\n• State & Gauge Proxy\n• Zero Physics / Zero Combat Math"]
+        BattleHUD["BattleHUDController (Snapshots & Meter Readings)"]
+        Audio["CombatAudioDirector (BBMatchSim Event Listeners)"]
+        Camera["FighterCamera2D (Trauma & Dynamic Tracking)"]
+        SlowMo["ClutchSlowMotionManager (Hitstop Events)"]
+        Referee["MatchRoundReferee (Round Win/Loss State)"]
+        Quantum["QuantumCombatBridge (Deterministic Netcode)"]
+
+        Events --> FC
+        Events --> BattleHUD
+        Events --> Audio
+        Events --> Camera
+        Events --> SlowMo
+        Events --> Referee
+        Events --> Quantum
+    end
+```
+
+### 13.3 Preservation of Prefab & Scene GUIDs
+To prevent breaking existing character prefabs, stage builders, and `.unity` scenes:
+- `FighterController.cs` keeps its exact Unity GUID (`c88b982dc086e4799a538067bd8c9482`) and serialized inspector fields (`_characterDefinition`, `_animator`, `_rootModel`). Its internal implementation was reduced from 1,674 lines of combat logic to a lightweight ~230-line presentation facade reading from `BBFighterBrain` and `BBMatchSim`.
+- The `[RequireComponent(typeof(CharacterController))]` constraint was safely removed.
+- Components directly attached to scenes or prefabs (`CombatTickEngine`, `HomegrownCombatDirector`, `Hitbox`, `Hurtbox`, `CombatAIController`, `TrainingDummyAI`) were retained as harmless stubs marked `[System.Obsolete("Replaced by Assets/Scripts/BlazBlue")]`, preserving their component GUIDs in all YAML scene and prefab files.
+
+### 13.4 Subsystem Retirement & Classification Matrix
+
+| Legacy Subsystem Script | Scene/Prefab GUID Attached | Migration Action | BlazBlue Deterministic Replacement |
+|---|---|---|---|
+| `FighterCombatActionBridge.cs` | None (0) | **Deleted** | `BBInputSampler` / `BBCommandInterpreter` |
+| `NodeTeleportSkill.cs` | None (0) | **Deleted** | `BBFighterBrain` Motion / Drive Movement |
+| `HitboxVisualizer.cs` | None (0) | **Deleted** | `BBBoxEditorWindow` / Editor Debug Drawers |
+| `FrameDataDisplay.cs` | None (0) | **Deleted** | `BBFrameMeter` |
+| `PushbackSolver.cs` | None (0) | `[System.Obsolete]` Decoupled | `BBMatchSim.ApplyPushback` & Arena Limits |
+| `BarrierBlockSystem.cs` | None (0) | `[System.Obsolete]` Facade | `BBBarrier.cs` (BlazBlue Barrier System) |
+| `RapidCancel.cs` | None (0) | `[System.Obsolete]` Facade | `BBRapidCancel.cs` / `BBCancelRules.cs` |
+| `JuggleEngine.cs` | None (0) | `[System.Obsolete]` Facade | `BBComboState` / `BBMatchSim` Juggle Gravity |
+| `OkizemeWakeup.cs` | None (0) | `[System.Obsolete]` Facade | `BBWakeupAction` / `BBFighterBrain` Okizeme |
+| `PsychicBurstSystem.cs` | None (0) | `[System.Obsolete]` Facade | `BBGauges` Burst / `BBFighterBrain` Burst |
+| `MDIProjectile.cs` | None (0) | `[System.Obsolete]` Facade | `BBProjectile` / `BBProjectileCaster` (Step 8 Sim) |
+| `ProjectileFactory.cs` | None (0) | `[System.Obsolete]` Facade | `BBProjectileCaster.SpawnProjectile` |
+| `GameplaySimulationAuthority.cs` | None (0) | `[System.Obsolete]` Facade | BlazBlue Core Architecture |
+| `DomainExpansion.cs` | None (0) | `[System.Obsolete]` Facade | `BBDistortionDrive` / `BBSuperFlash` |
+| `CombatTickEngine.cs` | `BattleArena`, `ArcadeArena` | `[System.Obsolete]` Retained | 60 Hz Clock Provider for `BBMatchSim` |
+| `HomegrownCombatDirector.cs` | `BattleArena`, `ArcadeArena` | `[System.Obsolete]` Retained | `BBMatchBootstrap` / `BBArcadeDirector` |
+| `Hitbox.cs` | 30 Character Prefabs | `[System.Obsolete]` Stub | `BBBoxTrack` / `BBBoxBuffer` |
+| `Hurtbox.cs` | 30 Character Prefabs | `[System.Obsolete]` Stub | `BBBodyBoxes` / `BBBoxBuffer` |
+| `CombatAIController.cs` | `ArcadeArena` | `[System.Obsolete]` Stub | `BBAIController` (Tick-Deterministic AI) |
+| `TrainingDummyAI.cs` | `Fighter_Player2_Aika` | `[System.Obsolete]` Stub | `BBAIController` Dummy Profiles |
+| `FighterController.cs` | All Character Prefabs | **Presentation Facade** | Thin wrapper over `BBFighterBrain` / `BBMatchSim` |

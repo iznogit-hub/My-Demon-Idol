@@ -56,11 +56,85 @@ namespace DemonIdol.Network
                 DontDestroyOnLoad(gameObject);
             }
             FindFightersIfMissing();
+            SubscribeSim();
+        }
+
+        private void OnEnable()
+        {
+            SubscribeSim();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeSim();
         }
 
         private void OnDestroy()
         {
+            UnsubscribeSim();
             if (_instance == this) _instance = null;
+        }
+
+        private void SubscribeSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                DemonIdol.BlazBlue.BBMatchSim.Instance.OnSimTickCompleted -= HandleSimTickCompleted;
+                DemonIdol.BlazBlue.BBMatchSim.Instance.OnSimTickCompleted += HandleSimTickCompleted;
+            }
+        }
+
+        private void UnsubscribeSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                DemonIdol.BlazBlue.BBMatchSim.Instance.OnSimTickCompleted -= HandleSimTickCompleted;
+            }
+        }
+
+        private void HandleSimTickCompleted(DemonIdol.BlazBlue.BBFighterSnapshot p1Snap, DemonIdol.BlazBlue.BBFighterSnapshot p2Snap)
+        {
+            if (IsQuantumActive)
+            {
+                ResyncPresentationFromSnapshot(p1Snap, p2Snap);
+            }
+        }
+
+        /// <summary>
+        /// Snaps visual presentation (position, facing, and locomotion animation) directly from deterministic snapshots.
+        /// Zero reliance on PhysX, CharacterController velocity, or non-deterministic frame intervals.
+        /// </summary>
+        public void ResyncPresentationFromSnapshot(DemonIdol.BlazBlue.BBFighterSnapshot p1Snap, DemonIdol.BlazBlue.BBFighterSnapshot p2Snap)
+        {
+            FindFightersIfMissing();
+            ResyncFighterView(_fighterViewP1, p1Snap);
+            ResyncFighterView(_fighterViewP2, p2Snap);
+        }
+
+        private void ResyncFighterView(FighterController fc, DemonIdol.BlazBlue.BBFighterSnapshot snap)
+        {
+            if (fc == null) return;
+
+            var cc = fc.GetComponent<CharacterController>();
+            if (cc != null && cc.enabled)
+            {
+                cc.enabled = false;
+                fc.transform.position = snap.position;
+                cc.enabled = true;
+            }
+            else
+            {
+                fc.transform.position = snap.position;
+            }
+
+            fc.SetFacing(snap.facingDirection);
+
+            var brain = fc.brain != null ? fc.brain : fc.GetComponent<DemonIdol.BlazBlue.BBFighterBrain>();
+            if (brain != null && brain.animDriver != null)
+            {
+                sbyte facingNumpad = snap.facingDirection > 0 ? (sbyte)6 : (sbyte)4;
+                brain.animDriver.UpdateLocomotionState(snap.state, facingNumpad, snap.isGrounded);
+            }
         }
 
         public void BindFighters(FighterController p1, FighterController p2)
@@ -134,9 +208,22 @@ namespace DemonIdol.Network
             FighterController target = (slot == 0) ? _fighterViewP1 : _fighterViewP2;
             if (target == null) return;
 
-            int currentTick = CombatTickEngine.Instance != null ? CombatTickEngine.Instance.CurrentTick : 0;
+            int currentTick = CombatTickEngine.Instance != null ? CombatTickEngine.Instance.CurrentTick : (DemonIdol.BlazBlue.BBMatchSim.Instance != null ? DemonIdol.BlazBlue.BBMatchSim.Instance.currentTick : 0);
             Vector2 moveDir = input.GetDirection();
             target.SetMoveInput(moveDir);
+
+            // Feed directly into BBInputSampler if present on target
+            var sampler = target.GetComponent<DemonIdol.BlazBlue.BBInputSampler>();
+            if (sampler != null)
+            {
+                sampler.virtualStickInput = moveDir;
+                byte held = 0;
+                if (input.HasButton(InputButton.Light)) held |= (byte)DemonIdol.BlazBlue.BBButton.A;
+                if (input.HasButton(InputButton.Medium)) held |= (byte)DemonIdol.BlazBlue.BBButton.B;
+                if (input.HasButton(InputButton.Heavy)) held |= (byte)DemonIdol.BlazBlue.BBButton.C;
+                if (input.HasButton(InputButton.DriveSkill)) held |= (byte)DemonIdol.BlazBlue.BBButton.D;
+                sampler.virtualHeldMask = held;
+            }
 
             foreach (InputButton btn in (InputButton[])Enum.GetValues(typeof(InputButton)))
             {

@@ -8,6 +8,7 @@ namespace DemonIdol.Combat
     /// Manages the 100% Burst Gauge, Blue Defensive Burst (combo-breaker while in hitstun),
     /// and Gold Offensive Burst (neutral blast that launches opponent and maxes Super Meter to 100%).
     /// </summary>
+    [System.Obsolete("Superseded by BBGauges and BBFighterBrain burst logic in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
     public class PsychicBurstSystem : MonoBehaviour
     {
         public const float MAX_BURST_METER = 100f;

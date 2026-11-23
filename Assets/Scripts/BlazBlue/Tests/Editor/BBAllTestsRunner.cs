@@ -28,7 +28,7 @@ namespace DemonIdol.BlazBlue.Editor
             }
         }
 
-        [MenuItem("Demon Idol/Run All BB Tests")]
+        [MenuItem("Tools/MDI/Run All BB Tests")]
         public static void RunAllSuites()
         {
             Debug.Log("<color=#00e676>[BBAllTestsRunner] STARTING MASTER COMBAT & FIGHTER TEST RUNNER...</color>");
@@ -52,6 +52,7 @@ namespace DemonIdol.BlazBlue.Editor
                 BBMotionMatcherTests.RunAllTestsMenu,
                 BBPhase6Tests.RunAllTestsMenu,
                 BBSubsystemTests.RunAllTestsMenu,
+                BBMatchSimDeterminismTests.RunAllTestsMenu,
                 BBInputIntegrityGuardTests.RunGuardTests,
                 RealInputMatchTest.RunAllTests,
                 DemonIdolRebuildGuardTests.RunSceneIntegrityCheck,

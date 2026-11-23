@@ -7,6 +7,7 @@ namespace DemonIdol.Combat
     /// Implements Tekken grounded Okizeme choices:
     /// Tech Roll, Ground Low Kick (High-Crush), Ground Mid Kick, or Stand Up Back.
     /// </summary>
+    [System.Obsolete("Superseded by BBWakeupAction and BBFighterBrain okizeme logic in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
     public class OkizemeWakeup
     {
         public const int GROUNDED_REST_TICKS = 24; // Time defender stays grounded before forced wakeup

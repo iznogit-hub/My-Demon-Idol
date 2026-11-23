@@ -9,7 +9,7 @@ namespace DemonIdol.BlazBlue.Editor
 {
     public static class BBMacDevBuildRunner
     {
-        [MenuItem("Demon Idol/Build Mac Development Player")]
+        [MenuItem("Tools/MDI/Build Mac Development Player")]
         public static bool BuildMacPlayer()
         {
             string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));

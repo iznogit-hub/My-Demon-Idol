@@ -55,6 +55,7 @@ namespace DemonIdol.Combat
     /// and guarantees exactly ONE authoritative simulation runs per match.
     /// When PackageNative is active, all legacy controllers and listeners are disabled.
     /// </summary>
+    [System.Obsolete("Superseded by Assets/Scripts/BlazBlue/ (deterministic simulation authority). Do not use in new code.", false)]
     public static class GameplaySimulationAuthority
     {
         private static SimulationAuthority _activeAuthority = SimulationAuthority.Homegrown;

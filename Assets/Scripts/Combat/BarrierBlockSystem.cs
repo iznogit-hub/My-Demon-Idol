@@ -10,6 +10,7 @@ namespace DemonIdol.Combat
     /// - Multiplies attacker pushback by 2.2x to safely reset neutral
     /// - Consumes a small amount of Super Meter per second while active
     /// </summary>
+    [System.Obsolete("Superseded by BBBarrier.cs in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
     public class BarrierBlockSystem : MonoBehaviour
     {
         public const float METER_DRAIN_PER_SECOND = 15.0f;

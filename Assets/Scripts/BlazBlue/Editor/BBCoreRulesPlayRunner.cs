@@ -7,7 +7,7 @@ namespace DemonIdol.BlazBlue.Editor
 {
     public static class BBCoreRulesPlayRunner
     {
-        [MenuItem("Demon Idol/Run Core Rules Play Tests")]
+        [MenuItem("Tools/MDI/Run Core Rules Play Tests")]
         public static void RunCoreRules()
         {
             if (EditorApplication.isPlaying)

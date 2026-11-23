@@ -38,6 +38,9 @@ namespace DemonIdol.BlazBlue
         public float throwPendingDamage = 0f;
         public BBFighterBrain throwAttacker = null;
         public BBInvuln currentInvuln = BBInvuln.None;
+        public int burstInvulnTicksRemaining = 0;
+        public BBWakeupAction wakeupAction = BBWakeupAction.Natural;
+        public Func<int, BBInputFrame> customInputProvider = null;
 
         [Header("Active Attack")]
         public BBAttackData currentAttack;
@@ -132,8 +135,11 @@ namespace DemonIdol.BlazBlue
             if (fighter == null) return;
 
             BBInputFrame frame;
-            bool human = sampler != null && sampler.isPlayerControlled;
-            if (human)
+            if (customInputProvider != null)
+            {
+                frame = customInputProvider(tick);
+            }
+            else if (sampler != null && sampler.isPlayerControlled)
             {
                 frame = sampler.SampleFrameForTick(tick, fighter.FacingDirection);
             }
@@ -236,6 +242,8 @@ namespace DemonIdol.BlazBlue
             throwPendingDamage = 0f;
             throwAttacker = null;
             currentInvuln = BBInvuln.None;
+            burstInvulnTicksRemaining = 0;
+            wakeupAction = BBWakeupAction.Natural;
             currentAttack = null;
             attackTick = 0;
             attackHitMask = new BBHitMask();
@@ -292,6 +300,38 @@ namespace DemonIdol.BlazBlue
         public void ExecuteCommands(int tick)
         {
             if (!CurrentCommand.IsValid || profile == null) return;
+
+            // 1. Psychic Burst & Overdrive Macro (A+B+C+D) - Can break combos in hitstun/blockstun!
+            if (CurrentCommand.commandType == BBCommandType.BurstOrOverdrive)
+            {
+                if (bbState == BBState.Hitstun || bbState == BBState.Blockstun || bbState == BBState.BarrierBlockstun)
+                {
+                    if (TryExecuteDefensiveBurst(tick))
+                    {
+                        ConsumeCurrentCommand();
+                        return;
+                    }
+                }
+                else if (bbState == BBState.Neutral || bbState == BBState.WalkForward || bbState == BBState.WalkBackward || bbState == BBState.Crouching)
+                {
+                    if (TryExecuteOffensiveBurstOrOverdrive(tick))
+                    {
+                        ConsumeCurrentCommand();
+                        return;
+                    }
+                }
+            }
+
+            // 2. Rapid Cancel Macro (A+B+C) - Cancels active attack on contact into neutral
+            if (CurrentCommand.commandType == BBCommandType.RapidCancel)
+            {
+                if (TryExecuteRapidCancel(tick))
+                {
+                    ConsumeCurrentCommand();
+                    return;
+                }
+            }
+
             if (bbState == BBState.Hitstun || bbState == BBState.Blockstun || bbState == BBState.BarrierBlockstun || bbState == BBState.Thrown)
                 return;
 
@@ -482,6 +522,11 @@ namespace DemonIdol.BlazBlue
 
             // Update invulnerability mask for current tick
             currentInvuln = BBInvuln.None;
+            if (burstInvulnTicksRemaining > 0)
+            {
+                burstInvulnTicksRemaining--;
+                currentInvuln |= BBInvuln.Strike | BBInvuln.Throw | BBInvuln.Projectile;
+            }
             if (currentAttack != null && currentAttack.invuln != null && currentAttack.invuln.Length > 0)
             {
                 for (int i = 0; i < currentAttack.invuln.Length; i++)
@@ -568,24 +613,76 @@ namespace DemonIdol.BlazBlue
                 case BBState.DownWait:
                     currentInvuln |= BBInvuln.Strike | BBInvuln.Throw;
                     if (hitstunRemaining > 0) hitstunRemaining--;
+
+                    // Okizeme directional wakeup choices
+                    if (History != null)
+                    {
+                        sbyte facingDir = fighter != null ? (sbyte)fighter.FacingDirection : (sbyte)1;
+                        sbyte facingNum = BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, facingDir);
+                        byte pressed = History.LatestFrame.pressed;
+
+                        // Wakeup Low/Mid Kick (2/1/3 + Button)
+                        if ((facingNum == 1 || facingNum == 2 || facingNum == 3) && pressed != 0)
+                        {
+                            bbState = BBState.Wakeup;
+                            stateTick = 0;
+                            hitstunRemaining = 20;
+                            currentInvuln = BBInvuln.None; // Wakeup kicks are counterable
+                            wakeupAction = (pressed & (byte)BBButton.B) != 0 ? BBWakeupAction.WakeupMidKick : BBWakeupAction.WakeupLowKick;
+                            if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
+                            break;
+                        }
+                        // Tech Roll Forward (6 or 9 held)
+                        else if ((facingNum == 6 || facingNum == 9) && hitstunRemaining <= 12)
+                        {
+                            bbState = BBState.Wakeup;
+                            stateTick = 0;
+                            hitstunRemaining = 16;
+                            simVelocity.x = facingDir * 4.5f;
+                            wakeupAction = BBWakeupAction.QuickTechRoll;
+                            if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
+                            break;
+                        }
+                        // Stand Up Back (4 or 7 held)
+                        else if ((facingNum == 4 || facingNum == 7) && hitstunRemaining <= 12)
+                        {
+                            bbState = BBState.Wakeup;
+                            stateTick = 0;
+                            hitstunRemaining = 18;
+                            simVelocity.x = -facingDir * 3.0f;
+                            wakeupAction = BBWakeupAction.StandUpBack;
+                            if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
+                            break;
+                        }
+                    }
+
                     if (hitstunRemaining <= 0)
                     {
                         bbState = BBState.Wakeup;
                         stateTick = 0;
                         hitstunRemaining = 24; // Wakeup 24f
+                        wakeupAction = BBWakeupAction.Natural;
                         if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
                     }
                     break;
 
                 case BBState.Wakeup:
-                    currentInvuln |= BBInvuln.Strike | BBInvuln.Throw;
+                    if (wakeupAction != BBWakeupAction.WakeupLowKick && wakeupAction != BBWakeupAction.WakeupMidKick)
+                    {
+                        currentInvuln |= BBInvuln.Strike | BBInvuln.Throw;
+                    }
+
+                    simVelocity.x *= 0.85f;
+
                     if (hitstunRemaining > 0) hitstunRemaining--;
                     if (hitstunRemaining <= 0)
                     {
+                        simVelocity.x = 0f;
                         bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
                         stateTick = 0;
                         chainState.Reset();
                         comboState.Reset();
+                        wakeupAction = BBWakeupAction.Natural;
                         if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
                     }
                     break;
@@ -998,6 +1095,107 @@ namespace DemonIdol.BlazBlue
             Vector3 midPt = attacker != null ? (transform.position + attacker.transform.position) * 0.5f + Vector3.up * 1.0f : transform.position + Vector3.up * 1.0f;
             BBContactPresentation.OnGuard(midPt, false, false);
             ConsumeCurrentCommand();
+        }
+
+        public bool TryExecuteDefensiveBurst(int tick)
+        {
+            if (health <= 0f || bbState == BBState.Dead || bbState == BBState.Thrown) return false;
+            if (!gauges.TrySpendBurst()) return false;
+
+            burstInvulnTicksRemaining = 26;
+            currentInvuln = BBInvuln.Strike | BBInvuln.Throw | BBInvuln.Projectile;
+            hitstopRemaining = 0;
+            hitstunRemaining = 0;
+            blockstunRemaining = 0;
+            currentAttack = null;
+            attackTick = 0;
+            chainState.Reset();
+            comboState.Reset();
+            bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
+            stateTick = 0;
+
+            if (animDriver != null)
+            {
+                sbyte facingNumpad = fighter != null ? BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, fighter.FacingDirection) : (sbyte)5;
+                animDriver.UpdateLocomotionState(bbState, facingNumpad, isGrounded);
+            }
+
+            int pIdx = (BBMatchSim.Instance != null && BBMatchSim.Instance.p2Brain == this) ? 1 : 0;
+            Vector3 burstPos = transform.position + Vector3.up * 1f;
+
+            if (BBMatchSim.Instance != null)
+            {
+                BBMatchSim.Instance.RaiseBurstExecuted(pIdx, BBBurstType.BlueDefensive, burstPos);
+            }
+
+            // Knock back and knock down opponent within 3.5m burst shockwave
+            if (opponentBrain != null)
+            {
+                float dx = opponentBrain.transform.position.x - transform.position.x;
+                if (Mathf.Abs(dx) < 3.5f)
+                {
+                    float dir = dx >= 0 ? 1f : -1f;
+                    opponentBrain.bbState = BBState.DownWait;
+                    opponentBrain.stateTick = 0;
+                    opponentBrain.hitstunRemaining = 30; // knockdown
+                    opponentBrain.simVelocity = new Vector2(dir * 8.5f, 5.5f);
+                    opponentBrain.isGrounded = false;
+                    opponentBrain.currentAttack = null;
+                    opponentBrain.attackTick = 0;
+                    opponentBrain.chainState.Reset();
+                    opponentBrain.comboState.Reset();
+                    if (opponentBrain.animDriver != null)
+                    {
+                        opponentBrain.animDriver.UpdateLocomotionState(opponentBrain.bbState, 5, false);
+                    }
+                }
+            }
+
+            BBContactPresentation.OnGuard(burstPos, false, false);
+            return true;
+        }
+
+        public bool TryExecuteOffensiveBurstOrOverdrive(int tick)
+        {
+            if (health <= 0f || bbState == BBState.Dead) return false;
+
+            if (overdrive != null)
+            {
+                bool isComboActive = opponentBrain != null && opponentBrain.comboState.hitCount > 0;
+                if (overdrive.TryTriggerOverdrive(opponentBrain, isComboActive))
+                {
+                    int pIdx = (BBMatchSim.Instance != null && BBMatchSim.Instance.p2Brain == this) ? 1 : 0;
+                    if (BBMatchSim.Instance != null)
+                    {
+                        BBMatchSim.Instance.RaiseOverdriveActivated(pIdx, transform.position + Vector3.up * 1f);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool TryExecuteRapidCancel(int tick)
+        {
+            if (currentAttack == null) return false;
+            if (!chainState.madeContact) return false;
+            if (bbState != BBState.AttackActive && bbState != BBState.AttackRecovery) return false;
+
+            if (rapidCancel != null && rapidCancel.TryExecuteRapidCancel(opponentBrain))
+            {
+                int pIdx = (BBMatchSim.Instance != null && BBMatchSim.Instance.p2Brain == this) ? 1 : 0;
+                if (BBMatchSim.Instance != null)
+                {
+                    BBMatchSim.Instance.RaiseRapidCancel(pIdx, transform.position + Vector3.up * 1f);
+                }
+                if (animDriver != null)
+                {
+                    sbyte facingNumpad = fighter != null ? BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, fighter.FacingDirection) : (sbyte)5;
+                    animDriver.UpdateLocomotionState(bbState, facingNumpad, isGrounded);
+                }
+                return true;
+            }
+            return false;
         }
 
         public void ConsumeCurrentCommand()

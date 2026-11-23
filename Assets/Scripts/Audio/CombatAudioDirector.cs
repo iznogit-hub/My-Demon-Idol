@@ -105,8 +105,85 @@ namespace DemonIdol.Audio
             ApplyInitialVolumes();
         }
 
+        private void OnEnable()
+        {
+            SubscribeSim();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeSim();
+        }
+
+        public void SubscribeSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                var sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                sim.OnHitConfirmed -= HandleSimHitConfirmed;
+                sim.OnHitConfirmed += HandleSimHitConfirmed;
+                sim.OnBlockLanded -= HandleSimBlockLanded;
+                sim.OnBlockLanded += HandleSimBlockLanded;
+                sim.OnRapidCanceled -= HandleSimRapidCanceled;
+                sim.OnRapidCanceled += HandleSimRapidCanceled;
+                sim.OnBurstExecuted -= HandleSimBurstExecuted;
+                sim.OnBurstExecuted += HandleSimBurstExecuted;
+                sim.OnOverdriveActivated -= HandleSimOverdriveActivated;
+                sim.OnOverdriveActivated += HandleSimOverdriveActivated;
+                sim.OnRoundEnded -= HandleSimRoundEnded;
+                sim.OnRoundEnded += HandleSimRoundEnded;
+            }
+        }
+
+        public void UnsubscribeSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                var sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                sim.OnHitConfirmed -= HandleSimHitConfirmed;
+                sim.OnBlockLanded -= HandleSimBlockLanded;
+                sim.OnRapidCanceled -= HandleSimRapidCanceled;
+                sim.OnBurstExecuted -= HandleSimBurstExecuted;
+                sim.OnOverdriveActivated -= HandleSimOverdriveActivated;
+                sim.OnRoundEnded -= HandleSimRoundEnded;
+            }
+        }
+
+        private void HandleSimHitConfirmed(int attackerIndex, int defenderIndex, float damage, Vector3 hitPoint, bool isCounterHit, bool isFatal)
+        {
+            if (isCounterHit || isFatal || damage >= 800f) PlayHitHeavy();
+            else if (damage >= 400f) PlayHitMedium();
+            else PlayHitLight();
+        }
+
+        private void HandleSimBlockLanded(int attackerIndex, int defenderIndex, Vector3 hitPoint, bool isBarrier, bool isChip)
+        {
+            PlayBlock();
+        }
+
+        private void HandleSimRapidCanceled(int playerIndex, Vector3 pos)
+        {
+            PlayRapidCancel();
+        }
+
+        private void HandleSimBurstExecuted(int playerIndex, DemonIdol.BlazBlue.BBBurstType burstType, Vector3 pos)
+        {
+            PlayBurst();
+        }
+
+        private void HandleSimOverdriveActivated(int playerIndex, Vector3 pos)
+        {
+            PlayDomainActivation();
+        }
+
+        private void HandleSimRoundEnded(int winnerIndex, string reason)
+        {
+            PlayVictorySound();
+        }
+
         private void OnDestroy()
         {
+            UnsubscribeSim();
             if (Instance == this)
                 Instance = null;
         }
@@ -131,6 +208,7 @@ namespace DemonIdol.Audio
         {
             if (Instance != this) return;
             StartConductor();
+            SubscribeSim();
         }
 
         public AudioSource MusicSource => _musicSource;
@@ -466,6 +544,7 @@ namespace DemonIdol.Audio
             PlayWithRandomPitch(_blockClip, 0.9f, 1.0f);
         }
         public void PlayRapidCancel() => PlayWithRandomPitch(_rapidCancelClip, 1.05f, 1.15f);
+        public void PlayBurst() => PlayWithRandomPitch(_domainActivationClip, 1.1f, 1.2f);
         public void PlayDomainActivation() => PlayWithRandomPitch(_domainActivationClip, 1.0f, 1.0f);
         public void PlayFootstep() => PlayWithRandomPitch(_footstepClip, 0.9f, 1.1f);
         public void PlaySwingLight() => PlayWithRandomPitch(_swingLightClip, 0.95f, 1.05f);

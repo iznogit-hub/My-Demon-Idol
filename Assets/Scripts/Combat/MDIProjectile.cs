@@ -10,6 +10,7 @@ namespace DemonIdol.Combat
     /// Handles physical flight along X-axis (Z strictly locked to 0.0),
     /// lifetime expiration, collision with opponent hurtboxes, and impact resolution.
     /// </summary>
+    [System.Obsolete("Superseded by BBProjectile and BBProjectileCaster in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
     public class MDIProjectile : MonoBehaviour
     {
         [Header("Projectile Properties")]

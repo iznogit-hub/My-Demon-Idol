@@ -12,6 +12,7 @@ namespace DemonIdol.Combat
     /// - Connecting MP4 ultimate cinematic presentation with zero-stutter fallback to live camera + ink VFX.
     /// - Simulation authority contract: game outcomes are NEVER driven by video duration or frame events.
     /// </summary>
+    [System.Obsolete("Superseded by BBDistortionDrive and BBSuperFlash in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
     public class DomainExpansion : MonoBehaviour
     {
         public const float DOMAIN_COST = 100.0f;

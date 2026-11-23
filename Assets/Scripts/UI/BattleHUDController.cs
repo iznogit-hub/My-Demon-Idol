@@ -146,7 +146,80 @@ namespace DemonIdol.UI
                 DemonIdol.Network.QuantumPvPManager.Instance.OnOpponentDisconnectChanged += HandleOpponentDisconnectStatus;
             }
 
+            SubscribeMatchSim();
             AutoBindFightersIfMissing();
+        }
+
+        private void OnEnable()
+        {
+            SubscribeMatchSim();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeMatchSim();
+        }
+
+        public void SubscribeMatchSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                var sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                sim.OnSimTickCompleted -= HandleSimTickCompleted;
+                sim.OnSimTickCompleted += HandleSimTickCompleted;
+                sim.OnHitConfirmed -= HandleSimHitConfirmed;
+                sim.OnHitConfirmed += HandleSimHitConfirmed;
+                sim.OnRapidCanceled -= HandleSimRapidCanceled;
+                sim.OnRapidCanceled += HandleSimRapidCanceled;
+                sim.OnBurstExecuted -= HandleSimBurstExecuted;
+                sim.OnBurstExecuted += HandleSimBurstExecuted;
+                sim.OnRoundEnded -= HandleSimRoundEnded;
+                sim.OnRoundEnded += HandleSimRoundEnded;
+            }
+        }
+
+        public void UnsubscribeMatchSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                var sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                sim.OnSimTickCompleted -= HandleSimTickCompleted;
+                sim.OnHitConfirmed -= HandleSimHitConfirmed;
+                sim.OnRapidCanceled -= HandleSimRapidCanceled;
+                sim.OnBurstExecuted -= HandleSimBurstExecuted;
+                sim.OnRoundEnded -= HandleSimRoundEnded;
+            }
+        }
+
+        private void HandleSimTickCompleted(DemonIdol.BlazBlue.BBFighterSnapshot p1Snap, DemonIdol.BlazBlue.BBFighterSnapshot p2Snap)
+        {
+            OnP1HealthChanged(p1Snap.health, p1Snap.maxHealth);
+            OnP1SuperChanged(p1Snap.heat, 100f);
+            OnP1BurstChanged(p1Snap.burst, 1000f);
+
+            OnP2HealthChanged(p2Snap.health, p2Snap.maxHealth);
+            OnP2SuperChanged(p2Snap.heat, 100f);
+            OnP2BurstChanged(p2Snap.burst, 1000f);
+        }
+
+        private void HandleSimHitConfirmed(int attacker, int defender, float damage, Vector3 pt, bool isCounterHit, bool isFatal)
+        {
+            RegisterComboHit(damage);
+        }
+
+        private void HandleSimRapidCanceled(int playerIdx, Vector3 pos)
+        {
+            ShowCallout("RAPID CANCEL!", new Color(1f, 0.9f, 0.2f, 1f));
+        }
+
+        private void HandleSimBurstExecuted(int playerIdx, DemonIdol.BlazBlue.BBBurstType burstType, Vector3 pos)
+        {
+            ShowCallout(burstType == DemonIdol.BlazBlue.BBBurstType.GoldOffensive ? "GOLD BURST!" : "PSYCHIC BURST!", new Color(1f, 0.75f, 0.1f, 1f));
+        }
+
+        private void HandleSimRoundEnded(int winnerIdx, string reason)
+        {
+            ShowRoundEndedUFE(reason, winnerIdx + 1);
         }
 
         private float _lastFighterSearchTime = -10f;

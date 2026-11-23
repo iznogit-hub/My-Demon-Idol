@@ -7,7 +7,7 @@ namespace DemonIdol.BlazBlue.Editor
 {
     public static class BBThrowDataFixer
     {
-        [MenuItem("Demon Idol/Fix All Throw Move Assets")]
+        [MenuItem("Tools/MDI/Fix All Throw Move Assets")]
         public static void FixAllThrows()
         {
             string[] guids = AssetDatabase.FindAssets("t:BBAttackData", new[] { "Assets/CombatData/BlazBlue" });

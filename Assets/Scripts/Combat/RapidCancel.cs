@@ -8,6 +8,7 @@ namespace DemonIdol.Combat
     /// Spends 50% Super Meter to immediately abort any attack into Neutral (0 frames),
     /// making unsafe moves safe or extending combos infinitely.
     /// </summary>
+    [System.Obsolete("Superseded by BBRapidCancel.cs in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
     public static class RapidCancel
     {
         public const float RAPID_CANCEL_COST = 50.0f;

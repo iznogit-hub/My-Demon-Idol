@@ -84,12 +84,23 @@ namespace DemonIdol.Combat
             Instance = this;
         }
 
+        private void OnEnable()
+        {
+            SubscribeSim();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeSim();
+        }
+
         private void Start()
         {
             if (CombatTickEngine.Instance != null)
             {
                 CombatTickEngine.Instance.OnTick += HandleCombatTick;
             }
+            SubscribeSim();
         }
 
         private void OnDestroy()
@@ -97,6 +108,32 @@ namespace DemonIdol.Combat
             if (CombatTickEngine.Instance != null)
             {
                 CombatTickEngine.Instance.OnTick -= HandleCombatTick;
+            }
+            UnsubscribeSim();
+        }
+
+        private void SubscribeSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                DemonIdol.BlazBlue.BBMatchSim.Instance.OnSimTickCompleted -= HandleSimTickCompleted;
+                DemonIdol.BlazBlue.BBMatchSim.Instance.OnSimTickCompleted += HandleSimTickCompleted;
+            }
+        }
+
+        private void UnsubscribeSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                DemonIdol.BlazBlue.BBMatchSim.Instance.OnSimTickCompleted -= HandleSimTickCompleted;
+            }
+        }
+
+        private void HandleSimTickCompleted(DemonIdol.BlazBlue.BBFighterSnapshot p1Snap, DemonIdol.BlazBlue.BBFighterSnapshot p2Snap)
+        {
+            if (CombatTickEngine.Instance == null || !CombatTickEngine.Instance.enabled)
+            {
+                HandleCombatTick(p1Snap.tick);
             }
         }
 
@@ -154,6 +191,7 @@ namespace DemonIdol.Combat
 
         private void FindFightersIfMissing()
         {
+            SubscribeSim();
             if (_fighter1 == null || _fighter2 == null)
             {
                 var fighters = FindObjectsByType<FighterController>();

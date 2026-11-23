@@ -145,6 +145,77 @@ namespace DemonIdol.Combat
         {
             ConfigurePhysicalCamera();
             ResetTrauma();
+            SubscribeMatchSim();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeMatchSim();
+        }
+
+        private void SubscribeMatchSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                var sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                sim.OnHitConfirmed -= HandleSimHitConfirmed;
+                sim.OnHitConfirmed += HandleSimHitConfirmed;
+                sim.OnBlockLanded -= HandleSimBlockLanded;
+                sim.OnBlockLanded += HandleSimBlockLanded;
+                sim.OnRapidCanceled -= HandleSimRapidCanceled;
+                sim.OnRapidCanceled += HandleSimRapidCanceled;
+                sim.OnBurstExecuted -= HandleSimBurstExecuted;
+                sim.OnBurstExecuted += HandleSimBurstExecuted;
+                sim.OnOverdriveActivated -= HandleSimOverdriveActivated;
+                sim.OnOverdriveActivated += HandleSimOverdriveActivated;
+                sim.OnRoundEnded -= HandleSimRoundEnded;
+                sim.OnRoundEnded += HandleSimRoundEnded;
+            }
+        }
+
+        private void UnsubscribeMatchSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                var sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                sim.OnHitConfirmed -= HandleSimHitConfirmed;
+                sim.OnBlockLanded -= HandleSimBlockLanded;
+                sim.OnRapidCanceled -= HandleSimRapidCanceled;
+                sim.OnBurstExecuted -= HandleSimBurstExecuted;
+                sim.OnOverdriveActivated -= HandleSimOverdriveActivated;
+                sim.OnRoundEnded -= HandleSimRoundEnded;
+            }
+        }
+
+        private void HandleSimHitConfirmed(int attacker, int defender, float damage, Vector3 pt, bool isCounterHit, bool isFatal)
+        {
+            if (isCounterHit || isFatal) TriggerCounterHitImpactZoom(0.5f, 0.18f);
+            else TriggerHitImpactZoom(0.25f, 0.12f);
+        }
+
+        private void HandleSimBlockLanded(int attacker, int defender, Vector3 pt, bool isBarrier, bool isChip)
+        {
+            AddTrauma(0.08f);
+        }
+
+        private void HandleSimRapidCanceled(int playerIdx, Vector3 pt)
+        {
+            AddTrauma(0.25f);
+        }
+
+        private void HandleSimBurstExecuted(int playerIdx, DemonIdol.BlazBlue.BBBurstType burstType, Vector3 pt)
+        {
+            AddTrauma(0.45f);
+        }
+
+        private void HandleSimOverdriveActivated(int playerIdx, Vector3 pt)
+        {
+            AddTrauma(0.35f);
+        }
+
+        private void HandleSimRoundEnded(int winnerIdx, string reason)
+        {
+            TriggerKO();
         }
 
         private void OnValidate()
@@ -595,6 +666,17 @@ namespace DemonIdol.Combat
 
             if (Time.unscaledTime - _lastCameraFighterSearchTime < 2.0f) return;
             _lastCameraFighterSearchTime = Time.unscaledTime;
+
+            SubscribeMatchSim();
+
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                if (DemonIdol.BlazBlue.BBMatchSim.Instance.p1Brain != null && fighter1 == null)
+                    fighter1 = DemonIdol.BlazBlue.BBMatchSim.Instance.p1Brain.transform;
+                if (DemonIdol.BlazBlue.BBMatchSim.Instance.p2Brain != null && fighter2 == null)
+                    fighter2 = DemonIdol.BlazBlue.BBMatchSim.Instance.p2Brain.transform;
+                if (fighter1 != null && fighter2 != null) return;
+            }
 
             var fighters = FindObjectsByType<FighterController>();
             foreach (var f in fighters)

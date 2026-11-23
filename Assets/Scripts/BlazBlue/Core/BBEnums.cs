@@ -169,4 +169,26 @@ namespace DemonIdol.BlazBlue
         Wakeup,
         Dead
     }
+
+    /// <summary>
+    /// BlazBlue / Guilty Gear style Psychic Burst classifications.
+    /// </summary>
+    public enum BBBurstType : byte
+    {
+        None = 0,
+        BlueDefensive,  // Combo breaker in hitstun/blockstun
+        GoldOffensive   // Neutral blast that launches and fills heat
+    }
+
+    /// <summary>
+    /// Okizeme grounded recovery actions.
+    /// </summary>
+    public enum BBWakeupAction : byte
+    {
+        Natural = 0,
+        QuickTechRoll,
+        StandUpBack,
+        WakeupLowKick,
+        WakeupMidKick
+    }
 }

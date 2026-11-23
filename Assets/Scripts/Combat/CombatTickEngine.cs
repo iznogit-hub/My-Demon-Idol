@@ -8,6 +8,7 @@ namespace DemonIdol.Combat
     /// Decouples fighting game logic (startup, active, recovery, hitstop, blockstun)
     /// from variable mobile rendering framerates (60Hz, 90Hz, 120Hz).
     /// </summary>
+    [System.Obsolete("Superseded by BlazBlue deterministic simulation loop. Retained as 60Hz tick driver clock for presentation components.", false)]
     public class CombatTickEngine : MonoBehaviour
     {
         public static CombatTickEngine Instance { get; private set; }

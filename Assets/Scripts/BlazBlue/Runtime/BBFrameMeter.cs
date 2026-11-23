@@ -43,7 +43,12 @@ namespace DemonIdol.BlazBlue
         private void Start()
         {
             FindBrainsIfMissing();
-            if (CombatTickEngine.Instance != null)
+            if (BBMatchSim.Instance != null)
+            {
+                BBMatchSim.Instance.OnSimTickCompleted -= HandleSimTickCompleted;
+                BBMatchSim.Instance.OnSimTickCompleted += HandleSimTickCompleted;
+            }
+            else if (CombatTickEngine.Instance != null)
             {
                 CombatTickEngine.Instance.OnTick += OnCombatTick;
             }
@@ -51,10 +56,19 @@ namespace DemonIdol.BlazBlue
 
         private void OnDestroy()
         {
+            if (BBMatchSim.Instance != null)
+            {
+                BBMatchSim.Instance.OnSimTickCompleted -= HandleSimTickCompleted;
+            }
             if (CombatTickEngine.Instance != null)
             {
                 CombatTickEngine.Instance.OnTick -= OnCombatTick;
             }
+        }
+
+        private void HandleSimTickCompleted(BBFighterSnapshot snap1, BBFighterSnapshot snap2)
+        {
+            OnCombatTick(snap1.tick);
         }
 
         private void FindBrainsIfMissing()

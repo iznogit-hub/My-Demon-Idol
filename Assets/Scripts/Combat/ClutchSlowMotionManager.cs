@@ -42,6 +42,90 @@ namespace DemonIdol.Combat
             Instance = this;
         }
 
+        private void OnEnable()
+        {
+            SubscribeMatchSim();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeMatchSim();
+        }
+
+        private void Start()
+        {
+            SubscribeMatchSim();
+        }
+
+        private void SubscribeMatchSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                var sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                sim.OnHitConfirmed -= HandleSimHitConfirmed;
+                sim.OnHitConfirmed += HandleSimHitConfirmed;
+                sim.OnBlockLanded -= HandleSimBlockLanded;
+                sim.OnBlockLanded += HandleSimBlockLanded;
+                sim.OnSimTickCompleted -= HandleSimTickCompleted;
+                sim.OnSimTickCompleted += HandleSimTickCompleted;
+            }
+        }
+
+        private void UnsubscribeMatchSim()
+        {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                var sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                sim.OnHitConfirmed -= HandleSimHitConfirmed;
+                sim.OnBlockLanded -= HandleSimBlockLanded;
+                sim.OnSimTickCompleted -= HandleSimTickCompleted;
+            }
+        }
+
+        private void HandleSimHitConfirmed(int attackerIndex, int defenderIndex, float damage, Vector3 hitPoint, bool isCounterHit, bool isFatal)
+        {
+            if (!IsSlowMoActive) return;
+
+            if (isCounterHit && FighterCamera2D.Instance != null)
+            {
+                FighterCamera2D.Instance.TriggerCounterHitImpactZoom(0.8f);
+            }
+
+            RestoreNormalSpeed();
+        }
+
+        private void HandleSimBlockLanded(int attackerIndex, int defenderIndex, Vector3 contactPt, bool isBarrier, bool isChip)
+        {
+            if (!IsSlowMoActive) return;
+            RestoreNormalSpeed();
+        }
+
+        private void HandleSimTickCompleted(DemonIdol.BlazBlue.BBFighterSnapshot p1Snap, DemonIdol.BlazBlue.BBFighterSnapshot p2Snap)
+        {
+            if (IsSlowMoActive) return;
+            if (Time.unscaledTime - _lastTriggerTime < _cooldownSeconds) return;
+
+            float h1Ratio = p1Snap.maxHealth > 0 ? (p1Snap.health / p1Snap.maxHealth) : 1f;
+            float h2Ratio = p2Snap.maxHealth > 0 ? (p2Snap.health / p2Snap.maxHealth) : 1f;
+
+            bool f1Low = h1Ratio <= 0.25f || p1Snap.health <= _criticalHealthThreshold;
+            bool f2Low = h2Ratio <= 0.25f || p2Snap.health <= _criticalHealthThreshold;
+            bool eitherLethal = h1Ratio <= 0.15f || h2Ratio <= 0.15f || p1Snap.health <= _lethalHealthThreshold || p2Snap.health <= _lethalHealthThreshold;
+
+            if (!(f1Low && f2Low) && !eitherLethal) return;
+
+            float dist = Mathf.Abs(p1Snap.position.x - p2Snap.position.x);
+            if (dist > _triggerDistance) return;
+
+            bool f1Attacking = p1Snap.state == DemonIdol.BlazBlue.BBState.AttackStartup || p1Snap.state == DemonIdol.BlazBlue.BBState.AttackActive;
+            bool f2Attacking = p2Snap.state == DemonIdol.BlazBlue.BBState.AttackStartup || p2Snap.state == DemonIdol.BlazBlue.BBState.AttackActive;
+
+            if (f1Attacking && f2Attacking)
+            {
+                TriggerClutchSlowMo();
+            }
+        }
+
         public void BindFighters(FighterController f1, FighterController f2)
         {
             if (_fighter1 != null) _fighter1.OnHitProcessed -= OnFighterHitProcessed;
@@ -75,6 +159,7 @@ namespace DemonIdol.Combat
 
         private void FindFightersIfMissing()
         {
+            SubscribeMatchSim();
             if (_fighter1 != null && _fighter2 != null) return;
             if (Time.unscaledTime - _lastFighterSearchTime < 2.0f) return;
             _lastFighterSearchTime = Time.unscaledTime;
@@ -90,9 +175,11 @@ namespace DemonIdol.Combat
         private void CheckClutchConditions()
         {
             // 1. Health check: Either both fighters <= critical, OR one is <= lethal
-            bool f1Low = _fighter1.currentHealth <= _criticalHealthThreshold;
-            bool f2Low = _fighter2.currentHealth <= _criticalHealthThreshold;
-            bool eitherLethal = _fighter1.currentHealth <= _lethalHealthThreshold || _fighter2.currentHealth <= _lethalHealthThreshold;
+            float h1Ratio = _fighter1.maxHealth > 0 ? (_fighter1.currentHealth / _fighter1.maxHealth) : 1f;
+            float h2Ratio = _fighter2.maxHealth > 0 ? (_fighter2.currentHealth / _fighter2.maxHealth) : 1f;
+            bool f1Low = h1Ratio <= 0.25f || _fighter1.currentHealth <= _criticalHealthThreshold;
+            bool f2Low = h2Ratio <= 0.25f || _fighter2.currentHealth <= _criticalHealthThreshold;
+            bool eitherLethal = h1Ratio <= 0.15f || h2Ratio <= 0.15f || _fighter1.currentHealth <= _lethalHealthThreshold || _fighter2.currentHealth <= _lethalHealthThreshold;
 
             if (!(f1Low && f2Low) && !eitherLethal) return;
 
@@ -171,6 +258,7 @@ namespace DemonIdol.Combat
 
         private void OnDestroy()
         {
+            UnsubscribeMatchSim();
             if (_fighter1 != null) _fighter1.OnHitProcessed -= OnFighterHitProcessed;
             if (_fighter2 != null) _fighter2.OnHitProcessed -= OnFighterHitProcessed;
             Time.timeScale = 1.0f;

@@ -28,6 +28,7 @@ namespace DemonIdol.Combat
     /// - BlazBlue Barrier Guard against heavy pressure to push opponent away.
     /// </summary>
     [RequireComponent(typeof(FighterController))]
+    [System.Obsolete("Superseded by BBAIController in Assets/Scripts/BlazBlue/AI/. Do not use in new code.", false)]
     public class CombatAIController : MonoBehaviour
     {
         [Header("AI Identity & Personality")]

@@ -10,6 +10,7 @@ namespace DemonIdol.Combat
     }
 
     [RequireComponent(typeof(Collider))]
+    [System.Obsolete("Superseded by BBBodyBoxes and BBBoxBuffer in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
     public class Hurtbox : MonoBehaviour
     {
         [SerializeField] private BodyZone _zone = BodyZone.Torso;

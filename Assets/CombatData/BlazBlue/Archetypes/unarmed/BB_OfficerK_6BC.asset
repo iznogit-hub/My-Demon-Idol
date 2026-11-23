@@ -99,4 +99,5 @@ MonoBehaviour:
   clip: {fileID: -6844052188305811177, guid: 856648ace9d2a6a4c994614a9ababdb1, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 0
+  measuredImpactFrame: -1
   events: []

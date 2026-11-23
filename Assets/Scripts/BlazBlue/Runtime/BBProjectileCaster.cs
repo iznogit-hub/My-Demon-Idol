@@ -5,6 +5,7 @@ namespace DemonIdol.BlazBlue
 {
     /// <summary>
     /// Spawns a pooled projectile for caster and ranged 236 moves.
+    /// Drives deterministic simulation projectile state into BBMatchSim while maintaining visual pooling.
     /// </summary>
     public static class BBProjectileCaster
     {
@@ -32,9 +33,45 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        public static void SpawnDeterministic(BBFighterBrain brain, string moveId)
+        {
+            if (brain == null || BBMatchSim.Instance == null) return;
+            int ownerIdx = (BBMatchSim.Instance.p1Brain == brain) ? 0 : 1;
+            int facing = brain.fighter != null ? brain.fighter.FacingDirection : (ownerIdx == 0 ? 1 : -1);
+            Vector2 pos = new Vector2(brain.transform.position.x + (facing * 0.7f), brain.transform.position.y + 1.1f);
+            Vector2 vel = new Vector2(facing * 8.5f, 0f);
+
+            float damage = 700f;
+            int hitstop = 8;
+            int hitstun = 18;
+            int blockstun = 12;
+            BBGuard guard = BBGuard.Mid;
+
+            if (brain.currentAttack != null)
+            {
+                if (brain.currentAttack.damage > 0f) damage = brain.currentAttack.damage;
+                if (brain.currentAttack.hitstopAttacker > 0) hitstop = brain.currentAttack.hitstopAttacker;
+                if (brain.currentAttack.hitstunTicks > 0) hitstun = brain.currentAttack.hitstunTicks;
+                if (brain.currentAttack.blockstunTicks > 0) blockstun = brain.currentAttack.blockstunTicks;
+                guard = brain.currentAttack.guard;
+            }
+
+            string charId = brain.fighter != null && brain.fighter.appliedDefinition != null
+                ? brain.fighter.appliedDefinition.id
+                : (brain.profile != null ? brain.profile.characterId : "Projectile");
+
+            BBMatchSim.Instance.SpawnProjectile(ownerIdx, pos, vel, damage, 0.4f, 0.4f, guard, 120, charId + "_" + moveId, hitstop, hitstun, blockstun);
+        }
+
         public static MDIProjectile Spawn(FighterController owner, string moveId)
         {
             if (owner == null) return null;
+            var brain = owner.GetComponent<BBFighterBrain>();
+            if (brain != null)
+            {
+                SpawnDeterministic(brain, moveId);
+            }
+
             Vector3 pos = owner.transform.position + new Vector3(owner.FacingDirection * 0.7f, 1.1f, 0f);
             pos.z = 0f;
             string name = owner.appliedDefinition != null ? owner.appliedDefinition.displayName : owner.fighterName;

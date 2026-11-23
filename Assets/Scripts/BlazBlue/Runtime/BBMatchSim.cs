@@ -43,6 +43,48 @@ namespace DemonIdol.BlazBlue
         private int _sideSwitchLeniencyTicks = 0;
         private int _lastP1FacingDir = 1;
 
+        // Deterministic Projectiles Buffer (Zero-allocation, 8 max concurrent)
+        public const int MAX_PROJECTILES = 8;
+        private readonly BBProjectileState[] _projectiles = new BBProjectileState[MAX_PROJECTILES];
+        private int _nextProjectileId = 1;
+        public ReadOnlySpan<BBProjectileState> ActiveProjectiles => _projectiles;
+
+        // Read-only Presentation & Mode Event Contracts
+        public event Action<BBFighterSnapshot, BBFighterSnapshot> OnSimTickCompleted;
+        public event Action<int, int, float, Vector3, bool, bool> OnHitConfirmed;
+        public event Action<int, int, Vector3, bool, bool> OnBlockLanded;
+        public event Action<int, Vector3> OnGuardCrushed;
+        public event Action<Vector3> OnThrowTeched;
+        public event Action<int, Vector3> OnRapidCanceled;
+        public event Action<int, BBBurstType, Vector3> OnBurstExecuted;
+        public event Action<int, Vector3> OnOverdriveActivated;
+        public event Action<int, Vector3, string> OnProjectileSpawned;
+        public event Action<int, Vector3> OnProjectileDespawned;
+        public event Action<int, string> OnRoundEnded;
+
+        public const float ARENA_LIMIT_X = 10.5f;
+
+        public static float ClampToArena(float x)
+        {
+            return Mathf.Clamp(x, -ARENA_LIMIT_X, ARENA_LIMIT_X);
+        }
+
+        public static void ApplyPushback(FighterController attacker, FighterController defender, float pushbackAmount, int attackerFacingDir, float multiplier = 1.0f)
+        {
+            if (attacker == null || defender == null) return;
+            float effectivePushback = pushbackAmount * multiplier;
+            float defenderPosX = defender.transform.position.x;
+            bool isDefenderAtWall = Mathf.Abs(defenderPosX) >= (ARENA_LIMIT_X - 0.75f);
+            if (isDefenderAtWall)
+            {
+                attacker.ApplyHorizontalDisplacement(-attackerFacingDir * effectivePushback);
+            }
+            else
+            {
+                defender.ApplyHorizontalDisplacement(attackerFacingDir * effectivePushback);
+            }
+        }
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -159,7 +201,7 @@ namespace DemonIdol.BlazBlue
                 BBWorldBox p1Push = p1Brain.GetPushBox();
                 BBWorldBox p2Push = p2Brain.GetPushBox();
 
-                float arenaLimit = PushbackSolver.ActiveArenaLimitX;
+                float arenaLimit = ARENA_LIMIT_X;
                 BBCollision.ResolvePush(
                     ref p1x,
                     ref p2x,
@@ -213,7 +255,8 @@ namespace DemonIdol.BlazBlue
                     BBCollision.StrikePass(_p2Boxes, _p1Boxes, ref p2Brain.attackHitMask, _contactResults, ref _contactCount, 1, 0, p1Invuln);
                 }
 
-                // Step 8: Projectiles (handled when projectiles are active)
+                // Step 8: Projectiles simulation & collision
+                TickProjectiles();
 
                 // Step 9: Apply hits (damage, hitstop, hitstun, blockstun, heat)
                 if (_contactCount > 0)
@@ -242,9 +285,218 @@ namespace DemonIdol.BlazBlue
                     comboHitCount
                 );
 
+                // Step 11.5: Broadcast read-only fighter presentation snapshot
+                OnSimTickCompleted?.Invoke(GetSnapshot(0), GetSnapshot(1));
+
                 // Step 12: Presentation driver (Playables animation seeking)
                 if (p1Brain.animDriver != null) p1Brain.animDriver.TickAnimation(tick);
                 if (p2Brain.animDriver != null) p2Brain.animDriver.TickAnimation(tick);
+            }
+        }
+
+        public BBFighterSnapshot GetSnapshot(int playerIndex)
+        {
+            BBFighterBrain brain = (playerIndex == 0) ? p1Brain : p2Brain;
+            if (brain == null) return default;
+
+            int facing = brain.fighter != null ? brain.fighter.FacingDirection : (playerIndex == 0 ? 1 : -1);
+            sbyte facingNumpad = (brain.History != null)
+                ? BBInputFrame.WorldToFacingNumpad(brain.History.LatestFrame.numpad, facing)
+                : (sbyte)5;
+            bool isGuarding = facingNumpad == 4 || facingNumpad == 1 || facingNumpad == 7;
+
+            return new BBFighterSnapshot
+            {
+                tick = currentTick,
+                playerIndex = playerIndex,
+                position = brain.transform.position,
+                facingDirection = facing,
+                isGrounded = brain.isGrounded,
+                state = brain.bbState,
+                currentMoveId = brain.currentAttack != null ? brain.currentAttack.moveId : string.Empty,
+                stateTick = brain.stateTick,
+                attackTick = brain.attackTick,
+                hitstopRemaining = brain.hitstopRemaining,
+                hitstunRemaining = brain.hitstunRemaining,
+                blockstunRemaining = brain.blockstunRemaining,
+                health = brain.health,
+                maxHealth = brain.maxHealth,
+                heat = brain.heat,
+                barrier = brain.barrier,
+                burst = brain.burstMeter,
+                inOverdrive = brain.inOverdrive,
+                overdriveTicksRemaining = brain.gauges.overdriveTicksRemaining,
+                comboHitCount = comboHitCount,
+                comboDamage = brain.opponentBrain != null ? brain.opponentBrain.comboState.accumulatedP2 : 0f,
+                isGuarding = isGuarding,
+                isInvulnerable = brain.currentInvuln != BBInvuln.None
+            };
+        }
+
+        public bool SpawnProjectile(int ownerIndex, Vector2 position, Vector2 velocity, float damage, float halfWidth, float halfHeight, BBGuard guard, int lifetimeTicks, string visualKey, int hitstop = 8, int hitstun = 16, int blockstun = 12)
+        {
+            for (int i = 0; i < MAX_PROJECTILES; i++)
+            {
+                if (!_projectiles[i].active)
+                {
+                    _projectiles[i] = new BBProjectileState
+                    {
+                        active = true,
+                        id = _nextProjectileId++,
+                        ownerIndex = ownerIndex,
+                        position = position,
+                        velocity = velocity,
+                        halfWidth = halfWidth,
+                        halfHeight = halfHeight,
+                        damage = damage,
+                        hitstopAttacker = hitstop,
+                        hitstopDefender = hitstop,
+                        hitstun = hitstun,
+                        blockstun = blockstun,
+                        guard = guard,
+                        lifetimeTicks = lifetimeTicks,
+                        hitsRemaining = 1,
+                        hitIndex = (byte)(i + 16),
+                        visualKey = visualKey
+                    };
+                    OnProjectileSpawned?.Invoke(ownerIndex, new Vector3(position.x, position.y, 0f), visualKey);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void RaiseBurstExecuted(int playerIndex, BBBurstType burstType, Vector3 pos)
+        {
+            OnBurstExecuted?.Invoke(playerIndex, burstType, pos);
+            if (FighterCamera2D.Instance != null) FighterCamera2D.Instance.AddTrauma(0.45f);
+            if (DemonIdol.Audio.CombatAudioDirector.Instance != null) DemonIdol.Audio.CombatAudioDirector.Instance.PlayBurst();
+        }
+
+        public void RaiseRapidCancel(int playerIndex, Vector3 pos)
+        {
+            OnRapidCanceled?.Invoke(playerIndex, pos);
+            if (FighterCamera2D.Instance != null) FighterCamera2D.Instance.AddTrauma(0.25f);
+            if (DemonIdol.Audio.CombatAudioDirector.Instance != null) DemonIdol.Audio.CombatAudioDirector.Instance.PlayRapidCancel();
+        }
+
+        public void RaiseOverdriveActivated(int playerIndex, Vector3 pos)
+        {
+            OnOverdriveActivated?.Invoke(playerIndex, pos);
+            if (FighterCamera2D.Instance != null) FighterCamera2D.Instance.AddTrauma(0.35f);
+        }
+
+        private void TickProjectiles()
+        {
+            float arenaLimit = ARENA_LIMIT_X;
+            for (int i = 0; i < MAX_PROJECTILES; i++)
+            {
+                if (!_projectiles[i].active) continue;
+
+                ref BBProjectileState proj = ref _projectiles[i];
+                proj.lifetimeTicks--;
+                if (proj.lifetimeTicks <= 0 || proj.position.x < -arenaLimit || proj.position.x > arenaLimit)
+                {
+                    proj.active = false;
+                    OnProjectileDespawned?.Invoke(proj.ownerIndex, new Vector3(proj.position.x, proj.position.y, 0f));
+                    continue;
+                }
+
+                proj.position += proj.velocity * CombatTickEngine.TICK_DELTA_TIME;
+
+                BBFighterBrain defender = (proj.ownerIndex == 0) ? p2Brain : p1Brain;
+                BBFighterBrain attacker = (proj.ownerIndex == 0) ? p1Brain : p2Brain;
+                if (defender == null || defender.bbState == BBState.Thrown || defender.bbState == BBState.DownWait || defender.bbState == BBState.Wakeup)
+                    continue;
+
+                if ((defender.currentInvuln & BBInvuln.Projectile) != 0 || (defender.currentInvuln & BBInvuln.Strike) != 0)
+                    continue;
+
+                BBBoxBuffer defenderBoxes = (proj.ownerIndex == 0) ? _p2Boxes : _p1Boxes;
+                BBWorldBox projBox = proj.ToWorldBox();
+
+                bool hit = false;
+                for (int b = 0; b < defenderBoxes.count; b++)
+                {
+                    ref readonly BBWorldBox hurt = ref defenderBoxes[b];
+                    if (hurt.kind != BBBoxKind.Hurt) continue;
+                    if (BBCollision.Overlap(in projBox, in hurt))
+                    {
+                        hit = true;
+                        break;
+                    }
+                }
+
+                if (hit)
+                {
+                    ResolveProjectileHit(ref proj, attacker, defender);
+                }
+            }
+        }
+
+        private void ResolveProjectileHit(ref BBProjectileState proj, BBFighterBrain attacker, BBFighterBrain defender)
+        {
+            int facing = defender.fighter != null ? defender.fighter.FacingDirection : 1;
+            sbyte facingNumpad = (defender.History != null) ? BBInputFrame.WorldToFacingNumpad(defender.History.LatestFrame.numpad, facing) : (sbyte)5;
+            bool canBlock = defender.bbState == BBState.Neutral || defender.bbState == BBState.WalkForward ||
+                            defender.bbState == BBState.WalkBackward || defender.bbState == BBState.Crouching ||
+                            defender.bbState == BBState.Blockstun || defender.bbState == BBState.BarrierBlockstun ||
+                            defender.bbState == BBState.Airborne;
+
+            bool isGuarding = false;
+            if (canBlock)
+            {
+                if (defender.bbState == BBState.Blockstun || defender.bbState == BBState.BarrierBlockstun)
+                {
+                    isGuarding = true;
+                }
+                else
+                {
+                    if (!defender.isGrounded || defender.bbState == BBState.Airborne)
+                    {
+                        isGuarding = (facingNumpad == 7 || facingNumpad == 4 || facingNumpad == 1) && proj.guard != BBGuard.Unblockable;
+                    }
+                    else
+                    {
+                        bool isStandingBack = facingNumpad == 4 || facingNumpad == 7;
+                        bool isCrouchingBack = facingNumpad == 1;
+                        switch (proj.guard)
+                        {
+                            case BBGuard.Low: isGuarding = isCrouchingBack; break;
+                            case BBGuard.Overhead: isGuarding = isStandingBack; break;
+                            case BBGuard.Unblockable: isGuarding = false; break;
+                            default: isGuarding = isStandingBack || isCrouchingBack; break;
+                        }
+                    }
+                }
+            }
+
+            Vector3 contactPt = new Vector3(proj.position.x, proj.position.y, 0f);
+            if (isGuarding)
+            {
+                defender.bbState = BBState.Blockstun;
+                defender.blockstunRemaining = proj.blockstun;
+                defender.hitstopRemaining = proj.hitstopDefender;
+                BBContactPresentation.OnGuard(contactPt, false, false);
+                OnBlockLanded?.Invoke(proj.ownerIndex, defender == p1Brain ? 0 : 1, contactPt, false, false);
+            }
+            else
+            {
+                defender.ReceiveAuthoritativeDamage(proj.damage);
+                defender.bbState = BBState.Hitstun;
+                defender.hitstunRemaining = proj.hitstun;
+                defender.hitstopRemaining = proj.hitstopDefender;
+                if (attacker != null) attacker.comboState.RegisterHit(proj.id, 0.85f, 0.85f, !defender.isGrounded);
+                BBContactPresentation.OnCleanHit(contactPt, attacker, false, false);
+                OnHitConfirmed?.Invoke(proj.ownerIndex, defender == p1Brain ? 0 : 1, proj.damage, contactPt, false, false);
+                comboHitCount++;
+            }
+
+            proj.hitsRemaining--;
+            if (proj.hitsRemaining <= 0)
+            {
+                proj.active = false;
+                OnProjectileDespawned?.Invoke(proj.ownerIndex, contactPt);
             }
         }
 
@@ -270,23 +522,47 @@ namespace DemonIdol.BlazBlue
                 {
                     if (brain.bbState != BBState.Thrown)
                     {
-                        float grav = brain.tuning != null ? brain.tuning.gravity : 20.0f;
+                        float baseGrav = brain.tuning != null ? brain.tuning.gravity : 20.0f;
+                        float grav = baseGrav;
+                        if (brain.opponentBrain != null && brain.opponentBrain.comboState.hitCount > 0 && brain.bbState == BBState.Hitstun)
+                        {
+                            float scalePerHit = brain.tuning != null ? brain.tuning.gravityScalePerHit : 0.06f;
+                            float cap = brain.tuning != null ? brain.tuning.gravityCap : 1.9f;
+                            grav = brain.opponentBrain.comboState.CalculateJuggleGravity(baseGrav, scalePerHit, cap);
+                        }
+
                         brain.simVelocity.y -= grav * CombatTickEngine.TICK_DELTA_TIME;
                         pos.x += brain.simVelocity.x * CombatTickEngine.TICK_DELTA_TIME;
                         pos.y += brain.simVelocity.y * CombatTickEngine.TICK_DELTA_TIME;
                         if (pos.y <= 0f)
                         {
                             pos.y = 0f;
-                            brain.simVelocity.y = 0f;
                             brain.isGrounded = true;
-                            if (brain.bbState == BBState.Airborne)
+
+                            // Ground bounce check
+                            if (brain.opponentBrain != null &&
+                                brain.opponentBrain.currentAttack != null &&
+                                brain.opponentBrain.currentAttack.groundBounce &&
+                                brain.opponentBrain.comboState.TryRegisterBounce(BBBounceType.GroundBounce))
                             {
-                                brain.bbState = BBState.Neutral;
-                                brain.stateTick = 0;
-                                if (brain.animDriver != null)
+                                brain.simVelocity.y = 6.0f;
+                                pos.y = 0.02f;
+                                brain.isGrounded = false;
+                                brain.hitstopRemaining = 4;
+                                BBContactPresentation.OnCleanHit(pos, brain.opponentBrain, false, false);
+                            }
+                            else
+                            {
+                                brain.simVelocity.y = 0f;
+                                if (brain.bbState == BBState.Airborne)
                                 {
-                                    sbyte numpad = brain.fighter != null ? BBInputFrame.WorldToFacingNumpad(brain.History.LatestFrame.numpad, brain.fighter.FacingDirection) : (sbyte)5;
-                                    brain.animDriver.UpdateLocomotionState(brain.bbState, numpad, brain.isGrounded);
+                                    brain.bbState = BBState.Neutral;
+                                    brain.stateTick = 0;
+                                    if (brain.animDriver != null)
+                                    {
+                                        sbyte numpad = brain.fighter != null ? BBInputFrame.WorldToFacingNumpad(brain.History.LatestFrame.numpad, brain.fighter.FacingDirection) : (sbyte)5;
+                                        brain.animDriver.UpdateLocomotionState(brain.bbState, numpad, brain.isGrounded);
+                                    }
                                 }
                             }
                         }
@@ -328,7 +604,7 @@ namespace DemonIdol.BlazBlue
             }
 
             // Arena boundary clamp
-            pos.x = PushbackSolver.ClampToArena(pos.x);
+            pos.x = ClampToArena(pos.x);
             brain.transform.position = pos;
         }
 
@@ -354,6 +630,10 @@ namespace DemonIdol.BlazBlue
             p2Brain.bbState = BBState.Neutral;
             p1Brain.hitstopRemaining = 12;
             p2Brain.hitstopRemaining = 12;
+
+            Vector3 techPt = new Vector3((p1x + p2x) * 0.5f, 1.0f, 0f);
+            OnThrowTeched?.Invoke(techPt);
+            BBContactPresentation.OnCleanHit(techPt, p1Brain, false, false);
         }
 
         private void ApplyContacts()
@@ -514,7 +794,7 @@ namespace DemonIdol.BlazBlue
                         defender.barrierSys.ApplyBarrierBlock(baseDamage, currentTick, out float pushbackMult, out int blockstunReduction);
                         defender.bbState = BBState.BarrierBlockstun;
                         defender.blockstunRemaining = Mathf.Max(1, blockstun - blockstunReduction);
-                        PushbackSolver.ApplyPushback(attacker.fighter, defender.fighter, 0.4f, attacker.fighter.FacingDirection, pushbackMult);
+                        ApplyPushback(attacker.fighter, defender.fighter, 0.4f, attacker.fighter.FacingDirection, pushbackMult);
                     }
                     else
                     {
@@ -527,7 +807,7 @@ namespace DemonIdol.BlazBlue
                         defender.bbState = BBState.Blockstun;
                         defender.blockstunRemaining = blockstun;
                         if (defender.animDriver != null) defender.animDriver.UpdateLocomotionState(defender.bbState, 4, defender.isGrounded);
-                        PushbackSolver.ApplyPushback(attacker.fighter, defender.fighter, 0.3f, attacker.fighter.FacingDirection, 1.0f);
+                        ApplyPushback(attacker.fighter, defender.fighter, 0.3f, attacker.fighter.FacingDirection, 1.0f);
                     }
 
                     attacker.hitstopRemaining = hitstopA;
@@ -538,6 +818,11 @@ namespace DemonIdol.BlazBlue
                         ? new Vector3(contact.contactPointX, contact.contactPointY, 0f)
                         : (defender.transform.position + Vector3.up * 1.0f);
                     BBContactPresentation.OnGuard(guardContactPt, chip > 0, crush);
+                    OnBlockLanded?.Invoke(attacker == p1Brain ? 0 : 1, defender == p1Brain ? 0 : 1, guardContactPt, isBarrier, chip > 0);
+                    if (defender.gauges.isDanger)
+                    {
+                        OnGuardCrushed?.Invoke(defender == p1Brain ? 0 : 1, guardContactPt);
+                    }
 
                     // Mark contact on attacker chain state
                     attacker.chainState.madeContact = true;
@@ -658,11 +943,16 @@ namespace DemonIdol.BlazBlue
                         ? new Vector3(contact.contactPointX, contact.contactPointY, 0f)
                         : (defender.transform.position + Vector3.up * 1.0f);
                     BBContactPresentation.OnCleanHit(hitContactPt, attacker, isCounterHit, moveKind == BBMoveKind.DistortionDrive);
+                    OnHitConfirmed?.Invoke(attacker == p1Brain ? 0 : 1, defender == p1Brain ? 0 : 1, scaledDmg, hitContactPt, isCounterHit, isFatal);
+                    if (defender.health <= 0f)
+                    {
+                        OnRoundEnded?.Invoke(attacker == p1Brain ? 0 : 1, "KO");
+                    }
 
                     attacker.gauges.AddHeatOnHit(moveButton, moveKind, false, tuning);
                     defender.gauges.AddHeatOnDamageTaken(scaledDmg, tuning);
 
-                    PushbackSolver.ApplyPushback(attacker.fighter, defender.fighter, 0.35f, attacker.fighter.FacingDirection, 1.0f);
+                    ApplyPushback(attacker.fighter, defender.fighter, 0.35f, attacker.fighter.FacingDirection, 1.0f);
                     comboHitCount++;
 
                     // Mark contact on attacker chain state

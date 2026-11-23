@@ -101,7 +101,12 @@ namespace DemonIdol.Combat
 
         private void Start()
         {
-            if (CombatTickEngine.Instance != null)
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                DemonIdol.BlazBlue.BBMatchSim.Instance.OnSimTickCompleted -= HandleSimTickCompleted;
+                DemonIdol.BlazBlue.BBMatchSim.Instance.OnSimTickCompleted += HandleSimTickCompleted;
+            }
+            else if (CombatTickEngine.Instance != null)
             {
                 CombatTickEngine.Instance.OnTick += HandleCombatTick;
             }
@@ -110,9 +115,55 @@ namespace DemonIdol.Combat
 
         private void OnDestroy()
         {
+            if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+            {
+                DemonIdol.BlazBlue.BBMatchSim.Instance.OnSimTickCompleted -= HandleSimTickCompleted;
+            }
             if (CombatTickEngine.Instance != null)
             {
                 CombatTickEngine.Instance.OnTick -= HandleCombatTick;
+            }
+        }
+
+        private void HandleSimTickCompleted(DemonIdol.BlazBlue.BBFighterSnapshot p1Snap, DemonIdol.BlazBlue.BBFighterSnapshot p2Snap)
+        {
+            if (_isReplayPlaying || !_replayEnabled) return;
+            FindFightersIfMissing();
+            if (_fighter1 == null || _fighter2 == null) return;
+
+            try
+            {
+                var s1 = new FighterSnapshot(p1Snap.position, _fighter1.transform.rotation, 0, 0f, p1Snap.health);
+                var s2 = new FighterSnapshot(p2Snap.position, _fighter2.transform.rotation, 0, 0f, p2Snap.health);
+
+                Vector3 camPos = _mainCamera != null ? _mainCamera.transform.position : Vector3.zero;
+                float fov = _mainCamera != null ? _mainCamera.fieldOfView : 60f;
+
+                var frame = new ReplayFrameSnapshot(p1Snap.tick, s1, s2, camPos, fov);
+
+                if (_snapshotBuffer.Count >= _bufferCapacity)
+                {
+                    _snapshotBuffer.RemoveAt(0);
+                }
+                _snapshotBuffer.Add(frame);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[AceReplays] Error capturing sim tick {p1Snap.tick}: {ex.Message}");
+            }
+        }
+
+        private void FindFightersIfMissing()
+        {
+            if (_fighter1 != null && _fighter2 != null) return;
+            var fighters = FindObjectsByType<FighterController>();
+            if (fighters != null)
+            {
+                foreach (var f in fighters)
+                {
+                    if (f.isPlayerControlled && _fighter1 == null) _fighter1 = f;
+                    else if (_fighter2 == null) _fighter2 = f;
+                }
             }
         }
 

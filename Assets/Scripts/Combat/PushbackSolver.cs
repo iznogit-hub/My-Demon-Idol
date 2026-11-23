@@ -6,6 +6,7 @@ namespace DemonIdol.Combat
     /// Handles pushback physics and corner wall reflection.
     /// If defender is pinned against the stage edge, pushes the attacker backward instead.
     /// </summary>
+    [System.Obsolete("Superseded by BBMatchSim.ApplyPushback and internal bounds. Do not use in new code.", false)]
     public static class PushbackSolver
     {
         public const float ARENA_LIMIT_X = 10.5f; // Half-width of 2.5D arena strictly bounded inside single 32m backdrop

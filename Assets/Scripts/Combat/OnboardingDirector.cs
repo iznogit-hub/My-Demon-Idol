@@ -584,13 +584,23 @@ namespace DemonIdol.Combat
         {
             if (_player != null)
             {
+                var cc = _player.GetComponent<CharacterController>();
+                if (cc != null) cc.enabled = false;
                 _player.transform.position = new Vector3(-2.5f, 0, 0);
+                if (cc != null) cc.enabled = true;
                 _player.SetFacing(1);
+                _player.ResetToIdle();
+                if (_player.brain != null) _player.brain.ResetForRound();
             }
             if (_dummy != null)
             {
+                var cc = _dummy.GetComponent<CharacterController>();
+                if (cc != null) cc.enabled = false;
                 _dummy.transform.position = new Vector3(2.5f, 0, 0);
+                if (cc != null) cc.enabled = true;
                 _dummy.SetFacing(-1);
+                _dummy.ResetToIdle();
+                if (_dummy.brain != null) _dummy.brain.ResetForRound();
             }
         }
 

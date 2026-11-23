@@ -18,7 +18,7 @@ namespace DemonIdol.BlazBlue.Editor
             "EX01", "EX02", "EX03", "EX04", "EX05", "EX06", "EX07"
         };
 
-        [MenuItem("Demon Idol/Build Roster Database")]
+        [MenuItem("Tools/MDI/Build Roster Database")]
         public static MDIRosterDatabase BuildDatabase()
         {
             string resourcesDir = "Assets/Resources";

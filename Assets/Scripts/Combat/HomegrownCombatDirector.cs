@@ -15,6 +15,7 @@ namespace DemonIdol.Combat
     /// Orchestrates match initialization, character customization, camera binding,
     /// HUD wiring, and referee execution without any UFE dependencies.
     /// </summary>
+    [System.Obsolete("Superseded by BBMatchBootstrap and BBArcadeDirector in Assets/Scripts/BlazBlue/. Retained for scene backward compatibility.", false)]
     public class HomegrownCombatDirector : MonoBehaviour
     {
         private static HomegrownCombatDirector _instance;
