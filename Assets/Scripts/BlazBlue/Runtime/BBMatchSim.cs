@@ -378,6 +378,29 @@ namespace DemonIdol.BlazBlue
             return false;
         }
 
+        /// <summary>
+        /// Clears all active projectiles, contacts, and state buffers between rounds.
+        /// Zero state leaks across rounds or rematches.
+        /// </summary>
+        public void ResetForRound()
+        {
+            for (int i = 0; i < MAX_PROJECTILES; i++)
+            {
+                if (_projectiles[i].active)
+                {
+                    _projectiles[i].active = false;
+                    OnProjectileDespawned?.Invoke(_projectiles[i].ownerIndex, new Vector3(_projectiles[i].position.x, _projectiles[i].position.y, 0f));
+                }
+            }
+            _p1Boxes.Clear();
+            _p2Boxes.Clear();
+            _contactCount = 0;
+            comboHitCount = 0;
+            currentTick = 0;
+            BBContactPresentation.ResetCounters();
+            BBSuperFlash.ForceReset();
+        }
+
         public void RaiseBurstExecuted(int playerIndex, BBBurstType burstType, Vector3 pos)
         {
             OnBurstExecuted?.Invoke(playerIndex, burstType, pos);

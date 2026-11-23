@@ -211,6 +211,11 @@ namespace DemonIdol.Combat
                 ResetFighter(_fighter1, _p1SpawnPos, Quaternion.Euler(0, 90f, 0));
                 ResetFighter(_fighter2, _p2SpawnPos, Quaternion.Euler(0, -90f, 0));
 
+                if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
+                {
+                    DemonIdol.BlazBlue.BBMatchSim.Instance.ResetForRound();
+                }
+
                 RoundTicksRemaining = _roundDurationSeconds * 60;
                 SecondsRemaining = _roundDurationSeconds;
                 _lastLoggedSec = _roundDurationSeconds;
