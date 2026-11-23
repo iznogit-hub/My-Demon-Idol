@@ -806,12 +806,13 @@ namespace DemonIdol.BlazBlue
                 float baseDamage = (attacker.currentAttack != null ? attacker.currentAttack.damage : 300f) * Mathf.Max(0.1f, attacker.ActiveDamageScale);
                 int hitstun = attacker.currentAttack != null ? attacker.currentAttack.hitstunTicks : 14;
                 int blockstun = attacker.currentAttack != null ? attacker.currentAttack.blockstunTicks : 9;
-                int hitstopA = (attacker.currentAttack != null ? attacker.currentAttack.hitstopAttacker : 8) + attacker.SignatureHitstopBonus;
-                int hitstopD = (attacker.currentAttack != null ? attacker.currentAttack.hitstopDefender : 8) + attacker.SignatureHitstopBonus;
-
                 BBMoveKind moveKind = attacker.currentAttack != null ? attacker.currentAttack.kind : BBMoveKind.Normal;
                 BBButton moveButton = attacker.currentAttack != null ? attacker.currentAttack.button : BBButton.A;
                 int moveHash = attacker.currentAttack != null ? attacker.currentAttack.moveId.GetHashCode() : 1;
+
+                int tierHitstop = BBDamageModel.GetTierHitstop(moveButton, moveKind);
+                int hitstopA = Mathf.Max(attacker.currentAttack != null ? attacker.currentAttack.hitstopAttacker : tierHitstop, tierHitstop) + attacker.SignatureHitstopBonus;
+                int hitstopD = Mathf.Max(attacker.currentAttack != null ? attacker.currentAttack.hitstopDefender : tierHitstop, tierHitstop) + attacker.SignatureHitstopBonus;
 
                 if (isGuarding)
                 {
@@ -844,7 +845,7 @@ namespace DemonIdol.BlazBlue
                     Vector3 guardContactPt = (contact.contactPointX != 0f || contact.contactPointY != 0f)
                         ? new Vector3(contact.contactPointX, contact.contactPointY, 0f)
                         : (defender.transform.position + Vector3.up * 1.0f);
-                    BBContactPresentation.OnGuard(guardContactPt, chip > 0, crush);
+                    BBContactPresentation.OnGuard(guardContactPt, chip > 0, crush, isBarrier);
                     OnBlockLanded?.Invoke(attacker == p1Brain ? 0 : 1, defender == p1Brain ? 0 : 1, guardContactPt, isBarrier, chip > 0);
                     if (defender.gauges.isDanger)
                     {

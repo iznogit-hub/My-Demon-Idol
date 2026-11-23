@@ -191,34 +191,43 @@ namespace DemonIdol.BlazBlue
             return null;
         }
 
-        public static GameObject SpawnGuardSpark(Vector3 point, bool guardCrush)
+        public static GameObject SpawnGuardSpark(Vector3 point, bool guardCrush, bool isBarrier = false)
         {
             GameObject sparkPrefab = null;
             var rdb = DemonIdol.Data.MDIRosterDatabase.Instance;
             if (rdb != null)
             {
-                sparkPrefab = rdb.guardSparkPrefab;
+                sparkPrefab = guardCrush ? rdb.guardSparkPrefab : (isBarrier ? rdb.hitSparkLightPrefab : rdb.guardSparkPrefab);
             }
 
 #if UNITY_EDITOR
             if (sparkPrefab == null)
             {
-                sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab");
+                if (isBarrier)
+                {
+                    sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Kevin Iglesias/Human Animations/Unity Demo Scenes/Human Spellcasting Animations/Prefabs/Spells/Human_Spell_Shield.prefab")
+                        ?? UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Nature/CFXR3 Shield Leaves A (Lit).prefab")
+                        ?? UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab");
+                }
+                else
+                {
+                    sparkPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab");
+                }
             }
 #endif
             if (sparkPrefab != null)
             {
-                Vector3 targetScale = Vector3.one * (guardCrush ? 1.5f : 1.0f);
+                Vector3 targetScale = Vector3.one * (guardCrush ? 1.5f : (isBarrier ? 1.35f : 1.0f));
                 return GetPooledSpark(sparkPrefab, point, Quaternion.identity, targetScale);
             }
             return null;
         }
 
-        public static void OnGuard(Vector3 point, bool chip, bool guardCrush)
+        public static void OnGuard(Vector3 point, bool chip, bool guardCrush, bool isBarrier = false)
         {
             LastGuardEvents++;
             ComboCount = 0;
-            SpawnGuardSpark(point, guardCrush);
+            SpawnGuardSpark(point, guardCrush, isBarrier);
 
             if (CombatAudioDirector.Instance != null)
             {
@@ -230,11 +239,11 @@ namespace DemonIdol.BlazBlue
 
             if (BBAudioBridge.Instance != null)
             {
-                BBAudioBridge.Instance.PlayCombatSound(guardCrush ? BBSoundEffect.BarrierShatter : BBSoundEffect.BlockNormal, point);
+                BBAudioBridge.Instance.PlayCombatSound(guardCrush ? BBSoundEffect.BarrierShatter : (isBarrier ? BBSoundEffect.BarrierShatter : BBSoundEffect.BlockNormal), point);
             }
 
             if (!Application.isPlaying) return;
-            float radius = guardCrush ? 3.2f : chip ? 2.2f : 1.6f;
+            float radius = guardCrush ? 3.2f : isBarrier ? 2.8f : (chip ? 2.2f : 1.6f);
             ShockwaveDistortionEmitter.EmitPooled(point, radius, guardCrush ? 0.36f : 0.24f);
         }
 
