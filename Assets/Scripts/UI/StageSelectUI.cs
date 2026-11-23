@@ -16,6 +16,7 @@ namespace DemonIdol.UI
     /// - Bottom: "DEPLOY TO BATTLE ARENA ▶" tactical action button and Back to Operatives button.
     /// 100% native procedural Unity UI with zero external sprite/video dependencies.
     /// </summary>
+    [System.Obsolete("Superseded by 3-scene DemonIdolMainMenuController / DemonIdolCharacterSelectManager")]
     [RequireComponent(typeof(RectTransform))]
     public class StageSelectUI : MonoBehaviour
     {

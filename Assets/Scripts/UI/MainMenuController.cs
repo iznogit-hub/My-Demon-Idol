@@ -14,6 +14,7 @@ namespace DemonIdol.UI
     /// Manages the full menu flow: Title Screen -> Mode Select -> Character Select -> Stage Select -> Launch into ArcadeArena.
     /// Handles 3D character preview pedestal, live stat display, audio feedback, and session initialization.
     /// </summary>
+    [System.Obsolete("Superseded by 3-scene DemonIdolMainMenuController / DemonIdolCharacterSelectManager")]
     public class MainMenuController : MonoBehaviour
     {
         public static MainMenuController Instance { get; private set; }

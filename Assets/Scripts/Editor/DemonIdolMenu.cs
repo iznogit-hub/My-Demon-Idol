@@ -46,6 +46,12 @@ namespace DemonIdol.Editor
             DemonIdolSceneBuilder.BuildAllThreeScenes(true);
         }
 
+        [MenuItem("Demon Idol/UI/Rebuild Modern Menu Scenes", priority = 15)]
+        public static void RebuildModernMenuScenes()
+        {
+            DemonIdolSceneBuilder.BuildModernMenuScenes(true);
+        }
+
         // =========================================================================
         // PLAY
         // =========================================================================

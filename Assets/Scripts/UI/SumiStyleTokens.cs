@@ -42,6 +42,18 @@ namespace DemonIdol.UI
         // Debounce window to prevent rapid double-clicks on menu transitions
         public const float MenuDebounceSeconds      = 0.20f; // 200ms
 
+        // Dynamic motion accessors respecting SettingsPanel.ReducedMotion
+        public static bool IsReducedMotion => SettingsPanel.ReducedMotion;
+        public static float PanelInDuration => SettingsPanel.ReducedMotion ? ReducedMotionMaxDuration : PanelInDurationNormal;
+        public static float PanelOutDuration => SettingsPanel.ReducedMotion ? ReducedMotionMaxDuration : PanelOutDurationNormal;
+        public static float ButtonPulseDuration => SettingsPanel.ReducedMotion ? 0.02f : ButtonPulseDurationNormal;
+        public static float InkWipeDuration => SettingsPanel.ReducedMotion ? 0.04f : InkWipeDurationNormal;
+
+        public static Color WithAlpha(Color color, float alpha)
+        {
+            return new Color(color.r, color.g, color.b, alpha);
+        }
+
         public static float EaseOutCubic(float t)
         {
             t = Mathf.Clamp01(t) - 1f;

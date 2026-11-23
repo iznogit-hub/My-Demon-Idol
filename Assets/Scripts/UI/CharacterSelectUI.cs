@@ -15,6 +15,7 @@ namespace DemonIdol.UI
     /// - Bottom: "LOCK IN OPERATIVE ▶" tactical confirmation button and Back to Hub.
     /// 100% native procedural Unity UI with zero external sprite/video dependencies.
     /// </summary>
+    [System.Obsolete("Superseded by 3-scene DemonIdolMainMenuController / DemonIdolCharacterSelectManager")]
     public class CharacterSelectUI : MonoBehaviour
     {
         public static CharacterSelectUI Instance { get; private set; }
