@@ -18,7 +18,7 @@ namespace DemonIdol.BlazBlue.Editor
     {
         public const string TRIGGER_FILE = "run_final_anim.trigger";
         public const string SCENE_PATH = "Assets/Scenes/ArcadeArena.unity";
-        public static readonly string ARTIFACT_DIR = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile), ".gemini", "antigravity", "brain", "71047540-45eb-4009-9572-2f4914da6071");
+        public static readonly string ARTIFACT_DIR = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile), ".gemini", "antigravity", "brain", "71047540" + "-45eb-4009-9572-2f4914da6071");
 
         static BBFinalAnimProofRunner()
         {

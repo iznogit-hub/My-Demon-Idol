@@ -139,6 +139,10 @@ namespace DemonIdol.BlazBlue
             {
                 frame = customInputProvider(tick);
             }
+            else if (fighter != null && !fighter.isPlayerControlled)
+            {
+                frame = SampleCpuFrame(tick);
+            }
             else if (sampler != null && sampler.isPlayerControlled)
             {
                 frame = sampler.SampleFrameForTick(tick, fighter.FacingDirection);
@@ -151,6 +155,7 @@ namespace DemonIdol.BlazBlue
 
             bool inAttack = bbState == BBState.AttackStartup || bbState == BBState.AttackActive || bbState == BBState.AttackRecovery;
             bool inBlockstun = bbState == BBState.Blockstun || bbState == BBState.BarrierBlockstun;
+            bool inHitstun = bbState == BBState.Hitstun;
             bool isGuarding = inBlockstun || BBInputFrame.IsBack(BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, fighter.FacingDirection));
 
             CurrentCommand = Interpreter.Evaluate(
@@ -160,7 +165,8 @@ namespace DemonIdol.BlazBlue
                 isGrounded,
                 inAttack,
                 inBlockstun,
-                isGuarding);
+                isGuarding,
+                inHitstun);
 
             if (CurrentCommand.commandType == BBCommandType.Barrier && barrierSys != null)
             {
@@ -172,6 +178,17 @@ namespace DemonIdol.BlazBlue
         {
             var ai = GetComponent<BBAIController>();
             if (ai == null) ai = gameObject.AddComponent<BBAIController>();
+            if (opponentBrain == null)
+            {
+                if (fighter != null && fighter.opponent != null)
+                {
+                    opponentBrain = fighter.opponent.GetComponent<BBFighterBrain>();
+                }
+                else if (BBMatchSim.Instance != null)
+                {
+                    opponentBrain = (BBMatchSim.Instance.p1Brain == this) ? BBMatchSim.Instance.p2Brain : BBMatchSim.Instance.p1Brain;
+                }
+            }
             return ai.GenerateInput(this, opponentBrain, tick);
         }
 
@@ -333,6 +350,28 @@ namespace DemonIdol.BlazBlue
                 }
             }
 
+            // 3. Counter Assault Macro (6+A+B in blockstun) - Spends 50% Heat, breaks blockstun with invincible counter strike
+            if (CurrentCommand.commandType == BBCommandType.CounterAssault)
+            {
+                if (bbState == BBState.Blockstun || bbState == BBState.BarrierBlockstun)
+                {
+                    float cost = tuning != null ? tuning.costCA : 50f;
+                    if (gauges.TrySpendHeat(cost))
+                    {
+                        blockstunRemaining = 0;
+                        hitstopRemaining = 0;
+                        string caMoveId = MoveIdFor(CurrentCommand);
+                        string caFallback = FallbackMoveId(CurrentCommand);
+                        if (TryStartMoveId(caMoveId) || (!string.IsNullOrEmpty(caFallback) && TryStartMoveId(caFallback)))
+                        {
+                            currentInvuln |= BBInvuln.Strike | BBInvuln.Throw | BBInvuln.Projectile;
+                            ConsumeCurrentCommand();
+                            return;
+                        }
+                    }
+                }
+            }
+
             if (bbState == BBState.Hitstun || bbState == BBState.Blockstun || bbState == BBState.BarrierBlockstun || bbState == BBState.Thrown)
                 return;
 
@@ -478,6 +517,10 @@ namespace DemonIdol.BlazBlue
                     return "236236C";
                 case BBCommandType.Throw:
                     return "BC";
+                case BBCommandType.CrushTrigger:
+                    return "5C";
+                case BBCommandType.CounterAssault:
+                    return "5C";
                 default:
                     return null;
             }
@@ -853,7 +896,12 @@ namespace DemonIdol.BlazBlue
             }
             if (attack.kind == BBMoveKind.DistortionDrive || attack.kind == BBMoveKind.AstralHeat || attack.moveId == "236236C")
             {
+                gauges.TrySpendHeat(tuning != null ? tuning.costDD : 50f);
                 BBSuperFlash.Raise(charId, fighter != null ? fighter.transform : null);
+            }
+            else if (attack.moveId == "CT" || attack.moveId == "AB" || (CurrentCommand.IsValid && CurrentCommand.commandType == BBCommandType.CrushTrigger))
+            {
+                gauges.TrySpendHeat(tuning != null ? tuning.costCT : 25f);
             }
             bbState = attack.startupFrames > 0 ? BBState.AttackStartup : BBState.AttackActive;
             stateTick = 0;
@@ -887,13 +935,56 @@ namespace DemonIdol.BlazBlue
         {
             if (string.IsNullOrEmpty(targetMoveId)) return null;
 
-            if (profile != null && profile.moveSet is BBMoveSet ms && ms.moves != null)
+            if (profile != null && profile.moveSet is BBMoveSet ms)
             {
-                for (int i = 0; i < ms.moves.Length; i++)
+                // 1. Direct System Move mappings
+                if (targetMoveId == "CT" || targetMoveId == "AB")
                 {
-                    if (ms.moves[i] != null && ms.moves[i].moveId == targetMoveId)
-                        return ms.moves[i];
+                    if (ms.crushTrigger != null) return ms.crushTrigger;
                 }
+                else if (targetMoveId == "CA" || targetMoveId == "6AB")
+                {
+                    if (ms.counterAssault != null) return ms.counterAssault;
+                }
+                else if (targetMoveId == "BC" || targetMoveId == "6BC")
+                {
+                    if (ms.throwForward != null) return ms.throwForward;
+                }
+                else if (targetMoveId == "4BC")
+                {
+                    if (ms.throwBack != null) return ms.throwBack;
+                    if (ms.throwForward != null) return ms.throwForward;
+                }
+                else if (targetMoveId == "j.BC")
+                {
+                    if (ms.throwAir != null) return ms.throwAir;
+                    if (ms.throwForward != null) return ms.throwForward;
+                }
+                else if (targetMoveId == "EA")
+                {
+                    if (ms.exceedAccel != null) return ms.exceedAccel;
+                }
+
+                // 2. Linear search in moves array
+                if (ms.moves != null)
+                {
+                    for (int i = 0; i < ms.moves.Length; i++)
+                    {
+                        if (ms.moves[i] != null && ms.moves[i].moveId == targetMoveId)
+                            return ms.moves[i];
+                    }
+                }
+
+                // 3. Check serialized system move properties by moveId
+                if (ms.crushTrigger != null && ms.crushTrigger.moveId == targetMoveId) return ms.crushTrigger;
+                if (ms.counterAssault != null && ms.counterAssault.moveId == targetMoveId) return ms.counterAssault;
+                if (ms.throwForward != null && ms.throwForward.moveId == targetMoveId) return ms.throwForward;
+                if (ms.throwBack != null && ms.throwBack.moveId == targetMoveId) return ms.throwBack;
+                if (ms.throwAir != null && ms.throwAir.moveId == targetMoveId) return ms.throwAir;
+                if (ms.burst != null && ms.burst.moveId == targetMoveId) return ms.burst;
+                if (ms.overdriveStart != null && ms.overdriveStart.moveId == targetMoveId) return ms.overdriveStart;
+                if (ms.exceedAccel != null && ms.exceedAccel.moveId == targetMoveId) return ms.exceedAccel;
+                if (ms.astralHeat != null && ms.astralHeat.moveId == targetMoveId) return ms.astralHeat;
             }
 
             return null;
@@ -902,6 +993,26 @@ namespace DemonIdol.BlazBlue
         public bool CanExecuteMove(BBAttackData move)
         {
             if (move == null) return false;
+
+            // Check Heat requirements for super moves and system mechanics
+            float requiredHeat = 0f;
+            if (move.kind == BBMoveKind.DistortionDrive || move.moveId == "236236C")
+            {
+                requiredHeat = tuning != null ? tuning.costDD : 50f;
+            }
+            else if (move.moveId == "CT" || move.moveId == "AB" || (CurrentCommand.IsValid && CurrentCommand.commandType == BBCommandType.CrushTrigger))
+            {
+                requiredHeat = tuning != null ? tuning.costCT : 25f;
+            }
+            else if (move.moveId == "CA" || move.moveId == "6AB" || (CurrentCommand.IsValid && CurrentCommand.commandType == BBCommandType.CounterAssault))
+            {
+                requiredHeat = tuning != null ? tuning.costCA : 50f;
+            }
+
+            if (requiredHeat > 0f && gauges.heat < requiredHeat)
+            {
+                return false;
+            }
 
             if (isGrounded && !move.groundOk) return false;
             if (!isGrounded && !move.airOk) return false;

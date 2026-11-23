@@ -67,7 +67,7 @@ MonoBehaviour:
   airOk: 0
   groundOk: 1
   attackLevel: 1
-  guard: 0
+  guard: 1
   attribute: 4
   invuln: []
   fatalCounter: 0

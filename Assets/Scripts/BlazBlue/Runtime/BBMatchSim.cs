@@ -145,6 +145,11 @@ namespace DemonIdol.BlazBlue
                 p2.opponentBrain = p1;
                 p2.ReleaseSoloTick();
             }
+            if (p1 != null && p2 != null && p1.fighter != null && p2.fighter != null)
+            {
+                p1.fighter.SetFacing(p1.transform.position.x <= p2.transform.position.x ? 1 : -1);
+                p2.fighter.SetFacing(p2.transform.position.x >= p1.transform.position.x ? -1 : 1);
+            }
         }
 
         /// <summary>
@@ -153,10 +158,17 @@ namespace DemonIdol.BlazBlue
         public void Tick(int tick)
         {
             if (p1Brain == null || p2Brain == null) return;
+            if (p1Brain.opponentBrain == null) p1Brain.opponentBrain = p2Brain;
+            if (p2Brain.opponentBrain == null) p2Brain.opponentBrain = p1Brain;
 
             using (s_SimTickMarker.Auto())
             {
                 currentTick = tick;
+
+                if (currentTick <= 1)
+                {
+                    LatchFacing();
+                }
 
                 // Super Flash freeze: freeze match sim for 20 ticks during super startup
                 if (BBSuperFlash.FreezeTicks > 0)
@@ -474,11 +486,25 @@ namespace DemonIdol.BlazBlue
             Vector3 contactPt = new Vector3(proj.position.x, proj.position.y, 0f);
             if (isGuarding)
             {
-                defender.bbState = BBState.Blockstun;
-                defender.blockstunRemaining = proj.blockstun;
-                defender.hitstopRemaining = proj.hitstopDefender;
-                BBContactPresentation.OnGuard(contactPt, false, false);
-                OnBlockLanded?.Invoke(proj.ownerIndex, defender == p1Brain ? 0 : 1, contactPt, false, false);
+                bool isHoldingBarrierButtons = defender.History != null && (defender.History.LatestFrame.held & (byte)(BBButton.A | BBButton.B)) == (byte)(BBButton.A | BBButton.B);
+                bool isBarrier = (defender.CurrentCommand.commandType == BBCommandType.Barrier || isHoldingBarrierButtons) && defender.barrier > 0f && !defender.gauges.isDanger;
+                if (isBarrier && defender.barrierSys != null)
+                {
+                    defender.barrierSys.ApplyBarrierBlock(proj.damage, currentTick, out float pushbackMult, out int blockstunReduction);
+                    defender.bbState = BBState.BarrierBlockstun;
+                    defender.blockstunRemaining = Mathf.Max(1, proj.blockstun - blockstunReduction);
+                    defender.hitstopRemaining = proj.hitstopDefender;
+                    BBContactPresentation.OnGuard(contactPt, false, false);
+                    OnBlockLanded?.Invoke(proj.ownerIndex, defender == p1Brain ? 0 : 1, contactPt, true, false);
+                }
+                else
+                {
+                    defender.bbState = BBState.Blockstun;
+                    defender.blockstunRemaining = proj.blockstun;
+                    defender.hitstopRemaining = proj.hitstopDefender;
+                    BBContactPresentation.OnGuard(contactPt, false, false);
+                    OnBlockLanded?.Invoke(proj.ownerIndex, defender == p1Brain ? 0 : 1, contactPt, false, false);
+                }
             }
             else
             {
@@ -774,7 +800,8 @@ namespace DemonIdol.BlazBlue
                     }
                 }
 
-                bool isBarrier = defender.CurrentCommand.commandType == BBCommandType.Barrier && defender.barrier > 0f && !defender.gauges.isDanger;
+                bool isHoldingBarrierButtons = defender.History != null && (defender.History.LatestFrame.held & (byte)(BBButton.A | BBButton.B)) == (byte)(BBButton.A | BBButton.B);
+                bool isBarrier = (defender.CurrentCommand.commandType == BBCommandType.Barrier || isHoldingBarrierButtons) && defender.barrier > 0f && !defender.gauges.isDanger;
 
                 float baseDamage = (attacker.currentAttack != null ? attacker.currentAttack.damage : 300f) * Mathf.Max(0.1f, attacker.ActiveDamageScale);
                 int hitstun = attacker.currentAttack != null ? attacker.currentAttack.hitstunTicks : 14;
@@ -972,9 +999,9 @@ namespace DemonIdol.BlazBlue
         {
             if (p1Brain == null || p2Brain == null || p1Brain.fighter == null || p2Brain.fighter == null) return;
 
-            // Only update facing in neutral or when landing
-            bool p1CanTurn = p1Brain.isGrounded && (p1Brain.bbState == BBState.Neutral || p1Brain.bbState == BBState.Crouching);
-            bool p2CanTurn = p2Brain.isGrounded && (p2Brain.bbState == BBState.Neutral || p2Brain.bbState == BBState.Crouching);
+            // Only update facing in neutral, walking, crouching, or when landing
+            bool p1CanTurn = p1Brain.isGrounded && (p1Brain.bbState == BBState.Neutral || p1Brain.bbState == BBState.Crouching || p1Brain.bbState == BBState.WalkForward || p1Brain.bbState == BBState.WalkBackward);
+            bool p2CanTurn = p2Brain.isGrounded && (p2Brain.bbState == BBState.Neutral || p2Brain.bbState == BBState.Crouching || p2Brain.bbState == BBState.WalkForward || p2Brain.bbState == BBState.WalkBackward);
 
             float p1x = p1Brain.transform.position.x;
             float p2x = p2Brain.transform.position.x;

@@ -71,11 +71,13 @@ The BlazBlue combat system is built around four primary buttons:
 ### System Macros (P1)
 | System Mechanic | Raw Input | Dedicated Keyboard Macro | Dedicated Gamepad Binding | Description |
 |---|:---:|:---:|:---:|---|
-| **Crush Trigger** | `A + B` | `U` | `L1` / `LB` | Spends 25% Heat to break standard block with guard crush. |
-| **Throw (Forward / Back)** | `B + C` | `O` | `R2` / `RT` | Unblockable close-range grapple. Hold 4+BC for back throw. |
-| **Blast Burst** | `A + B + C` | `P` | `L2` / `LT` | Defensive combo-breaker (Blue) or offensive launch blast (Gold). |
-| **Overdrive** | `A + B + C + D` | `;` (Semicolon) | `R3` (Right Stick Click) | Freezes time and enhances Drive attacks; scales longer at low HP. |
-| **Rapid Cancel** | `A + B + C` *(during hit/block)* | `Space` *(during hit)* or `O` | `R2` / `RT` *(during hit)* | Spends 50% Heat to instantly reset recovery back to Neutral. |
+| **Barrier Block** | `4/1 + A + B` *(while holding back)* | Hold `A/S` + `U` | Hold `Back` + `L1 / LB` | Green shield, drains Barrier, 0% chip damage, increased pushback. |
+| **Crush Trigger** | `A + B` *(in neutral)* | `U` | `L1` / `LB` | Spends 25% Heat to break standard block with guard crush. |
+| **Counter Assault** | `6 + A + B` *(during blockstun)* | `D` + `U` | `Forward` + `L1 / LB` | Spends 50% Heat; invincible guard-cancel strike escaping pressure. |
+| **Throw (Forward / Back)** | `B + C` | `O` | `R2` / `RT` | Unblockable close-range grapple. Hold 4+BC for back throw. Techable window. |
+| **Break Burst** | `A + B + C + D` *(in hitstun/blockstun)* | `P` | `L2` / `LT` | Defensive combo-breaker shockwave (consumes 100% Burst Gauge). |
+| **Overdrive** | `A + B + C + D` *(in neutral/attack)* | `;` (Semicolon) or `P` | `R3` or `L2` / `LT` | Freezes time and enhances Drive attacks; scales longer at low HP. |
+| **Rapid Cancel** | `A + B + C` *(during attack hit/block)* | `J + K + L` | `$\square$ + $\triangle$ + R1` | Spends 50% Heat to instantly reset attack recovery back to Neutral. |
 
 ---
 
@@ -104,10 +106,12 @@ The BlazBlue combat system is built around four primary buttons:
 ### System Macros (P2)
 | System Mechanic | Raw Input | Keyboard Key | Gamepad 2 |
 |---|:---:|:---:|:---:|
-| **Crush Trigger** | `A + B` | `Numpad 4` | `L1` / `LB` |
+| **Barrier Block** | `4/1 + A + B` | `Right/Down + Numpad 4` | `Back + L1 / LB` |
+| **Crush Trigger** | `A + B` *(in neutral)* | `Numpad 4` | `L1` / `LB` |
+| **Counter Assault** | `6 + A + B` *(during blockstun)* | `Left + Numpad 4` | `Forward + L1 / LB` |
 | **Throw** | `B + C` | `Numpad 5` | `R2` / `RT` |
-| **Blast Burst** | `A + B + C` | `Numpad 6` | `L2` / `LT` |
-| **Overdrive** | `A + B + C + D` | `Numpad +` | `R3` |
+| **Break Burst** | `A + B + C + D` *(in hitstun/blockstun)* | `Numpad 6` | `L2` / `LT` |
+| **Overdrive** | `A + B + C + D` *(in neutral/attack)* | `Numpad +` or `Numpad 6` | `R3` or `L2` / `LT` |
 
 ---
 

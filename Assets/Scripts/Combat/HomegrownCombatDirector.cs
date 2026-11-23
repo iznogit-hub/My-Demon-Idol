@@ -257,6 +257,8 @@ namespace DemonIdol.Combat
             {
                 _fighter1.opponent = _fighter2;
                 _fighter2.opponent = _fighter1;
+                _fighter1.SetFacing(_fighter1.transform.position.x <= _fighter2.transform.position.x ? 1 : -1);
+                _fighter2.SetFacing(_fighter2.transform.position.x >= _fighter1.transform.position.x ? -1 : 1);
             }
 
             // 5. Bind Camera (Direct 2D Framing, zero vendor interference)

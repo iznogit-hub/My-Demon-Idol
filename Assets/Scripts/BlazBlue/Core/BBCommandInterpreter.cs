@@ -90,7 +90,8 @@ namespace DemonIdol.BlazBlue
             bool isGrounded,
             bool isInAttack,
             bool isInBlockstun,
-            bool isGuarding)
+            bool isGuarding,
+            bool isInHitstun = false)
         {
             var result = new BBEvaluatedCommand();
             if (history == null) return result;
@@ -102,8 +103,10 @@ namespace DemonIdol.BlazBlue
             // 1. SYSTEM MACROS (A+B+C+D, A+B+C, A+B, B+C)
             // ==========================================
 
-            // A+B+C+D: Burst / Overdrive
-            if (history.IsQuadChordBuffered(chordWindowTicks: 3, bufferTicks: 5))
+            // A+B+C+D (or A+B+C in hitstun/blockstun): Burst / Overdrive
+            bool isStunned = isInBlockstun || isInHitstun;
+            if (history.IsQuadChordBuffered(chordWindowTicks: 3, bufferTicks: 5) ||
+                (isStunned && history.IsTripleChordBuffered(BBButton.A, BBButton.B, BBButton.C, chordWindowTicks: 3, bufferTicks: 5)))
             {
                 result.commandType = BBCommandType.BurstOrOverdrive;
                 result.button = BBButton.A | BBButton.B | BBButton.C | BBButton.D;
@@ -112,8 +115,8 @@ namespace DemonIdol.BlazBlue
                 return result;
             }
 
-            // A+B+C: Rapid Cancel (only during an attack)
-            if (isInAttack && history.IsTripleChordBuffered(BBButton.A, BBButton.B, BBButton.C, chordWindowTicks: 3, bufferTicks: 5))
+            // A+B+C: Rapid Cancel (only during an attack when not stunned)
+            if (isInAttack && !isStunned && history.IsTripleChordBuffered(BBButton.A, BBButton.B, BBButton.C, chordWindowTicks: 3, bufferTicks: 5))
             {
                 result.commandType = BBCommandType.RapidCancel;
                 result.button = BBButton.A | BBButton.B | BBButton.C;
@@ -132,10 +135,11 @@ namespace DemonIdol.BlazBlue
                 return result;
             }
 
-            // A+B: Barrier (while guarding) or Crush Trigger (neutral grounded)
+            // A+B: Barrier (while guarding or holding back) or Crush Trigger (neutral grounded)
             if (history.IsChordBuffered(BBButton.A, BBButton.B, chordWindowTicks: 3, bufferTicks: 5))
             {
-                result.commandType = isGuarding ? BBCommandType.Barrier : BBCommandType.CrushTrigger;
+                bool holdingBack = currentFacingNumpad == 4 || currentFacingNumpad == 1 || currentFacingNumpad == 7;
+                result.commandType = (isGuarding || holdingBack) ? BBCommandType.Barrier : BBCommandType.CrushTrigger;
                 result.button = BBButton.A | BBButton.B;
                 result.facingNumpad = currentFacingNumpad;
                 result.tick = currentTick;

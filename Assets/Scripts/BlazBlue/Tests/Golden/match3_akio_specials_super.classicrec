@@ -526,7 +526,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -534,7 +534,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2581012756
+            "stateHash": 459844453
         },
         {
             "tick": 21,
@@ -552,7 +552,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -560,7 +560,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2705009003
+            "stateHash": 629527826
         },
         {
             "tick": 22,
@@ -578,7 +578,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -586,7 +586,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 617115414
+            "stateHash": 2312341863
         },
         {
             "tick": 23,
@@ -604,7 +604,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -612,7 +612,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 565641429
+            "stateHash": 4024485508
         },
         {
             "tick": 24,
@@ -630,7 +630,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -638,7 +638,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 904037592
+            "stateHash": 1106434833
         },
         {
             "tick": 25,
@@ -656,7 +656,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -664,7 +664,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2181630287
+            "stateHash": 2065003902
         },
         {
             "tick": 26,
@@ -682,7 +682,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -690,7 +690,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 201023114
+            "stateHash": 525585795
         },
         {
             "tick": 27,
@@ -708,7 +708,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -716,7 +716,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3048518313
+            "stateHash": 2488810064
         },
         {
             "tick": 28,
@@ -734,7 +734,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -742,7 +742,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4269869852
+            "stateHash": 2677740909
         },
         {
             "tick": 29,
@@ -760,7 +760,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -768,7 +768,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 768040691
+            "stateHash": 301123770
         },
         {
             "tick": 30,
@@ -786,7 +786,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -794,7 +794,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4116762718
+            "stateHash": 3893421231
         },
         {
             "tick": 31,
@@ -812,7 +812,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackStartup",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -820,7 +820,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1717454173
+            "stateHash": 22227724
         },
         {
             "tick": 32,
@@ -838,7 +838,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackActive",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -846,7 +846,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2101458999
+            "stateHash": 3335831801
         },
         {
             "tick": 33,
@@ -864,7 +864,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackActive",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -872,7 +872,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 265844352
+            "stateHash": 959214662
         },
         {
             "tick": 34,
@@ -890,7 +890,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackActive",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -898,7 +898,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2757417413
+            "stateHash": 1520655371
         },
         {
             "tick": 35,
@@ -916,7 +916,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackActive",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -924,7 +924,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2174004414
+            "stateHash": 2485904664
         },
         {
             "tick": 36,
@@ -942,7 +942,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -950,7 +950,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1098272382
+            "stateHash": 790776789
         },
         {
             "tick": 37,
@@ -968,7 +968,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -976,7 +976,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2739257937
+            "stateHash": 251287042
         },
         {
             "tick": 38,
@@ -994,7 +994,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1002,7 +1002,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1674681164
+            "stateHash": 2309368343
         },
         {
             "tick": 39,
@@ -1020,7 +1020,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1028,7 +1028,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3388292799
+            "stateHash": 2871139828
         },
         {
             "tick": 40,
@@ -1046,7 +1046,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1054,7 +1054,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2851067954
+            "stateHash": 3653878913
         },
         {
             "tick": 41,
@@ -1072,7 +1072,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1080,7 +1080,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3294313669
+            "stateHash": 3621356526
         },
         {
             "tick": 42,
@@ -1098,7 +1098,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1106,7 +1106,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3823323824
+            "stateHash": 474988403
         },
         {
             "tick": 43,
@@ -1124,7 +1124,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1132,7 +1132,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 988541571
+            "stateHash": 1819560832
         },
         {
             "tick": 44,
@@ -1150,7 +1150,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1158,7 +1158,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4108374342
+            "stateHash": 3059309725
         },
         {
             "tick": 45,
@@ -1176,7 +1176,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1184,7 +1184,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3834581369
+            "stateHash": 2914236202
         },
         {
             "tick": 46,
@@ -1202,7 +1202,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1210,7 +1210,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2855330388
+            "stateHash": 3393553823
         },
         {
             "tick": 47,
@@ -1228,7 +1228,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1236,7 +1236,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2827396487
+            "stateHash": 4259923132
         },
         {
             "tick": 48,
@@ -1254,7 +1254,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1262,7 +1262,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3712654746
+            "stateHash": 220498409
         },
         {
             "tick": 49,
@@ -1280,7 +1280,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1288,7 +1288,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3491272013
+            "stateHash": 4275816950
         },
         {
             "tick": 50,
@@ -1306,7 +1306,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1314,7 +1314,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 431192824
+            "stateHash": 3445038523
         },
         {
             "tick": 51,
@@ -1332,7 +1332,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1340,7 +1340,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1408466955
+            "stateHash": 3691046024
         },
         {
             "tick": 52,
@@ -1358,7 +1358,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1366,7 +1366,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 616520750
+            "stateHash": 4223406853
         },
         {
             "tick": 53,
@@ -1384,7 +1384,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1392,7 +1392,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 45292161
+            "stateHash": 844676658
         },
         {
             "tick": 54,
@@ -1410,7 +1410,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1418,7 +1418,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1949000636
+            "stateHash": 1871570055
         },
         {
             "tick": 55,
@@ -1436,7 +1436,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1444,7 +1444,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 359219055
+            "stateHash": 1444261540
         },
         {
             "tick": 56,
@@ -1462,7 +1462,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1470,7 +1470,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2492206690
+            "stateHash": 802744497
         },
         {
             "tick": 57,
@@ -1488,7 +1488,7 @@
             "p1PosY": 0.0,
             "p1Health": 1000.0,
             "p1Super": 100.0,
-            "p1State": "AttackRecovery",
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -1496,7 +1496,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3315001973
+            "stateHash": 3835027230
         },
         {
             "tick": 58,
@@ -2605,8 +2605,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2614,7 +2614,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3456337692
+            "stateHash": 1721989269
         },
         {
             "tick": 101,
@@ -2631,8 +2631,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2640,7 +2640,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2606261331
+            "stateHash": 2411484354
         },
         {
             "tick": 102,
@@ -2657,8 +2657,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2666,7 +2666,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3132069694
+            "stateHash": 3031807191
         },
         {
             "tick": 103,
@@ -2683,8 +2683,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2692,7 +2692,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3621925581
+            "stateHash": 584873140
         },
         {
             "tick": 104,
@@ -2709,8 +2709,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2718,7 +2718,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2911257328
+            "stateHash": 1553980737
         },
         {
             "tick": 105,
@@ -2735,8 +2735,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2744,7 +2744,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3015004743
+            "stateHash": 3737586862
         },
         {
             "tick": 106,
@@ -2761,8 +2761,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2770,7 +2770,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1453071906
+            "stateHash": 3549360179
         },
         {
             "tick": 107,
@@ -2787,8 +2787,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2796,7 +2796,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2324065041
+            "stateHash": 2199064640
         },
         {
             "tick": 108,
@@ -2813,8 +2813,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2822,7 +2822,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3888123956
+            "stateHash": 628507485
         },
         {
             "tick": 109,
@@ -2839,8 +2839,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2848,7 +2848,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1715558379
+            "stateHash": 33767402
         },
         {
             "tick": 110,
@@ -2865,8 +2865,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2874,7 +2874,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 744647318
+            "stateHash": 545750111
         },
         {
             "tick": 111,
@@ -2891,8 +2891,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2900,7 +2900,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2660028421
+            "stateHash": 3049387388
         },
         {
             "tick": 112,
@@ -2917,8 +2917,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2926,7 +2926,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2082354024
+            "stateHash": 3485277865
         },
         {
             "tick": 113,
@@ -2943,8 +2943,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2952,7 +2952,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2520306111
+            "stateHash": 2516122294
         },
         {
             "tick": 114,
@@ -2969,8 +2969,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -2978,7 +2978,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1371613690
+            "stateHash": 2168665723
         },
         {
             "tick": 115,
@@ -2995,8 +2995,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3004,7 +3004,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1628022345
+            "stateHash": 4062506312
         },
         {
             "tick": 116,
@@ -3021,8 +3021,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3030,7 +3030,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1158676812
+            "stateHash": 2623840197
         },
         {
             "tick": 117,
@@ -3047,8 +3047,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3056,7 +3056,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1939948291
+            "stateHash": 2350648562
         },
         {
             "tick": 118,
@@ -3073,8 +3073,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3082,7 +3082,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1176433582
+            "stateHash": 4033462599
         },
         {
             "tick": 119,
@@ -3099,8 +3099,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3108,7 +3108,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3051745405
+            "stateHash": 3819396452
         },
         {
             "tick": 120,
@@ -3125,8 +3125,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3134,7 +3134,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3856895264
+            "stateHash": 1331329905
         },
         {
             "tick": 121,
@@ -3151,8 +3151,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3160,7 +3160,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 768410167
+            "stateHash": 3187326430
         },
         {
             "tick": 122,
@@ -3177,8 +3177,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3186,7 +3186,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1279793298
+            "stateHash": 4235180515
         },
         {
             "tick": 123,
@@ -3203,8 +3203,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3212,7 +3212,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2870635905
+            "stateHash": 380800560
         },
         {
             "tick": 124,
@@ -3229,8 +3229,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3238,7 +3238,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2832065508
+            "stateHash": 55251405
         },
         {
             "tick": 125,
@@ -3255,8 +3255,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3264,7 +3264,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 784421403
+            "stateHash": 604814106
         },
         {
             "tick": 126,
@@ -3281,8 +3281,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackStartup",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3290,7 +3290,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1136488710
+            "stateHash": 249862415
         },
         {
             "tick": 127,
@@ -3307,8 +3307,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackActive",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3316,7 +3316,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 110706146
+            "stateHash": 4025635564
         },
         {
             "tick": 128,
@@ -3333,8 +3333,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackActive",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3342,7 +3342,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1892646351
+            "stateHash": 556784217
         },
         {
             "tick": 129,
@@ -3359,8 +3359,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackActive",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3368,7 +3368,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4234259064
+            "stateHash": 1060129702
         },
         {
             "tick": 130,
@@ -3385,8 +3385,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3394,7 +3394,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1158553696
+            "stateHash": 3770726251
         },
         {
             "tick": 131,
@@ -3411,8 +3411,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3420,7 +3420,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2800166563
+            "stateHash": 3506702072
         },
         {
             "tick": 132,
@@ -3437,8 +3437,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3446,7 +3446,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1825105142
+            "stateHash": 1567577397
         },
         {
             "tick": 133,
@@ -3463,8 +3463,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3472,7 +3472,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 326589257
+            "stateHash": 4145264098
         },
         {
             "tick": 134,
@@ -3489,8 +3489,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3498,7 +3498,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4021749540
+            "stateHash": 1176965239
         },
         {
             "tick": 135,
@@ -3515,8 +3515,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3524,7 +3524,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2795653287
+            "stateHash": 1550143956
         },
         {
             "tick": 136,
@@ -3541,8 +3541,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3550,7 +3550,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 861133786
+            "stateHash": 1843896929
         },
         {
             "tick": 137,
@@ -3567,8 +3567,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3576,7 +3576,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1189446701
+            "stateHash": 2767475150
         },
         {
             "tick": 138,
@@ -3593,8 +3593,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3602,7 +3602,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4240443160
+            "stateHash": 3562942803
         },
         {
             "tick": 139,
@@ -3619,8 +3619,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3628,7 +3628,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3037563515
+            "stateHash": 3145227488
         },
         {
             "tick": 140,
@@ -3645,8 +3645,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3654,7 +3654,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4269011342
+            "stateHash": 741240445
         },
         {
             "tick": 141,
@@ -3671,8 +3671,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3680,7 +3680,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3036281537
+            "stateHash": 3365180042
         },
         {
             "tick": 142,
@@ -3697,8 +3697,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3706,7 +3706,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1822044924
+            "stateHash": 2865015039
         },
         {
             "tick": 143,
@@ -3723,8 +3723,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3732,7 +3732,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2013202911
+            "stateHash": 3546145436
         },
         {
             "tick": 144,
@@ -3749,8 +3749,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3758,7 +3758,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 893924594
+            "stateHash": 3104228297
         },
         {
             "tick": 145,
@@ -3775,8 +3775,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3784,7 +3784,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 286192549
+            "stateHash": 3465761366
         },
         {
             "tick": 146,
@@ -3801,8 +3801,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3810,7 +3810,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3766133840
+            "stateHash": 2579019803
         },
         {
             "tick": 147,
@@ -3827,8 +3827,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3836,7 +3836,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 176688403
+            "stateHash": 3524803304
         },
         {
             "tick": 148,
@@ -3853,8 +3853,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3862,7 +3862,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3012693286
+            "stateHash": 3811878117
         },
         {
             "tick": 149,
@@ -3879,8 +3879,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3888,7 +3888,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1212489017
+            "stateHash": 393794706
         },
         {
             "tick": 150,
@@ -3905,8 +3905,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3914,7 +3914,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2113645844
+            "stateHash": 2546175719
         },
         {
             "tick": 151,
@@ -3931,8 +3931,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3940,7 +3940,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3974095447
+            "stateHash": 4137799172
         },
         {
             "tick": 152,
@@ -3957,8 +3957,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3966,7 +3966,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4241540618
+            "stateHash": 1024469137
         },
         {
             "tick": 153,
@@ -3983,8 +3983,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -3992,7 +3992,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2159794845
+            "stateHash": 867610366
         },
         {
             "tick": 154,
@@ -4009,8 +4009,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4018,7 +4018,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1432059080
+            "stateHash": 3304972035
         },
         {
             "tick": 155,
@@ -4035,8 +4035,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4044,7 +4044,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3028844651
+            "stateHash": 1044049360
         },
         {
             "tick": 156,
@@ -4061,8 +4061,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4070,7 +4070,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1973273022
+            "stateHash": 957346541
         },
         {
             "tick": 157,
@@ -4087,8 +4087,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4096,7 +4096,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 454600433
+            "stateHash": 3109104698
         },
         {
             "tick": 158,
@@ -4113,8 +4113,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4122,7 +4122,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4263093996
+            "stateHash": 1987059247
         },
         {
             "tick": 159,
@@ -4139,8 +4139,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4148,7 +4148,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1246437327
+            "stateHash": 1428511884
         },
         {
             "tick": 160,
@@ -4165,8 +4165,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4174,7 +4174,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1598060194
+            "stateHash": 343305849
         },
         {
             "tick": 161,
@@ -4191,8 +4191,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4200,7 +4200,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1922101205
+            "stateHash": 60230598
         },
         {
             "tick": 162,
@@ -4217,8 +4217,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4226,7 +4226,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1363553984
+            "stateHash": 257449867
         },
         {
             "tick": 163,
@@ -4243,8 +4243,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4252,7 +4252,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2369575811
+            "stateHash": 3120047256
         },
         {
             "tick": 164,
@@ -4269,8 +4269,8 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
-            "p1State": "AttackRecovery",
+            "p1Super": 100.0,
+            "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
             "p2PosY": 0.0,
@@ -4278,7 +4278,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3110686550
+            "stateHash": 3070197077
         },
         {
             "tick": 165,
@@ -4295,7 +4295,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4304,7 +4304,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 14630106
+            "stateHash": 672263042
         },
         {
             "tick": 166,
@@ -4321,7 +4321,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4330,7 +4330,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4005346383
+            "stateHash": 206920087
         },
         {
             "tick": 167,
@@ -4347,7 +4347,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4356,7 +4356,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2704407100
+            "stateHash": 1731871604
         },
         {
             "tick": 168,
@@ -4373,7 +4373,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4382,7 +4382,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1233353993
+            "stateHash": 1457242113
         },
         {
             "tick": 169,
@@ -4399,7 +4399,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4408,7 +4408,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 601869110
+            "stateHash": 3135342
         },
         {
             "tick": 170,
@@ -4425,7 +4425,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4434,7 +4434,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3639308731
+            "stateHash": 1881272563
         },
         {
             "tick": 171,
@@ -4451,7 +4451,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4460,7 +4460,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1972631064
+            "stateHash": 4041061120
         },
         {
             "tick": 172,
@@ -4477,7 +4477,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4486,7 +4486,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1687053637
+            "stateHash": 3481980957
         },
         {
             "tick": 173,
@@ -4503,7 +4503,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4512,7 +4512,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3223420626
+            "stateHash": 913702570
         },
         {
             "tick": 174,
@@ -4529,7 +4529,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4538,7 +4538,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 667487783
+            "stateHash": 1590536479
         },
         {
             "tick": 175,
@@ -4555,7 +4555,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4564,7 +4564,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1821597044
+            "stateHash": 400230460
         },
         {
             "tick": 176,
@@ -4581,7 +4581,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4590,7 +4590,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2803658017
+            "stateHash": 2604753769
         },
         {
             "tick": 177,
@@ -4607,7 +4607,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4616,7 +4616,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4110126894
+            "stateHash": 2760235894
         },
         {
             "tick": 178,
@@ -4633,7 +4633,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4642,7 +4642,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2060090739
+            "stateHash": 512874299
         },
         {
             "tick": 179,
@@ -4659,7 +4659,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4668,7 +4668,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1248098992
+            "stateHash": 1537551880
         },
         {
             "tick": 180,
@@ -4685,7 +4685,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4694,7 +4694,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 685938909
+            "stateHash": 2780211333
         },
         {
             "tick": 181,
@@ -4711,7 +4711,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4720,7 +4720,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 549142346
+            "stateHash": 386929586
         },
         {
             "tick": 182,
@@ -4737,7 +4737,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4746,7 +4746,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3270330559
+            "stateHash": 2728147975
         },
         {
             "tick": 183,
@@ -4763,7 +4763,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4772,7 +4772,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 638609772
+            "stateHash": 3337867812
         },
         {
             "tick": 184,
@@ -4789,7 +4789,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4798,7 +4798,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1478055737
+            "stateHash": 688860209
         },
         {
             "tick": 185,
@@ -4815,7 +4815,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4824,7 +4824,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1048046374
+            "stateHash": 3948340894
         },
         {
             "tick": 186,
@@ -4841,7 +4841,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4850,7 +4850,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1813173291
+            "stateHash": 544350371
         },
         {
             "tick": 187,
@@ -4867,7 +4867,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4876,7 +4876,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1323252168
+            "stateHash": 1940719344
         },
         {
             "tick": 188,
@@ -4893,7 +4893,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4902,7 +4902,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2152674037
+            "stateHash": 256209037
         },
         {
             "tick": 189,
@@ -4919,7 +4919,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4928,7 +4928,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1257989250
+            "stateHash": 3974786010
         },
         {
             "tick": 190,
@@ -4945,7 +4945,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4954,7 +4954,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2274285079
+            "stateHash": 2411754959
         },
         {
             "tick": 191,
@@ -4971,7 +4971,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -4980,7 +4980,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1570825188
+            "stateHash": 3184519084
         },
         {
             "tick": 192,
@@ -4997,7 +4997,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5006,7 +5006,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1591203281
+            "stateHash": 2456840985
         },
         {
             "tick": 193,
@@ -5023,7 +5023,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5032,7 +5032,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1947771742
+            "stateHash": 300656742
         },
         {
             "tick": 194,
@@ -5049,7 +5049,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5058,7 +5058,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1443293859
+            "stateHash": 565314091
         },
         {
             "tick": 195,
@@ -5075,7 +5075,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5084,7 +5084,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1112648928
+            "stateHash": 1109107640
         },
         {
             "tick": 196,
@@ -5101,7 +5101,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5110,7 +5110,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 610151821
+            "stateHash": 1577369077
         },
         {
             "tick": 197,
@@ -5127,7 +5127,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5136,7 +5136,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3451879482
+            "stateHash": 1574358178
         },
         {
             "tick": 198,
@@ -5153,7 +5153,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5162,7 +5162,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3508085551
+            "stateHash": 2221751607
         },
         {
             "tick": 199,
@@ -5179,7 +5179,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5188,7 +5188,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3840136860
+            "stateHash": 3189611156
         },
         {
             "tick": 200,
@@ -5205,7 +5205,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5214,7 +5214,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1250112873
+            "stateHash": 1730466593
         },
         {
             "tick": 201,
@@ -5231,7 +5231,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5240,7 +5240,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 9475606
+            "stateHash": 3861676686
         },
         {
             "tick": 202,
@@ -5257,7 +5257,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5266,7 +5266,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3721845531
+            "stateHash": 1917689875
         },
         {
             "tick": 203,
@@ -5283,7 +5283,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5292,7 +5292,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3894150392
+            "stateHash": 2666913696
         },
         {
             "tick": 204,
@@ -5309,7 +5309,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5318,7 +5318,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3752005669
+            "stateHash": 2382337341
         },
         {
             "tick": 205,
@@ -5335,7 +5335,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5344,7 +5344,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4178300850
+            "stateHash": 1053158218
         },
         {
             "tick": 206,
@@ -5361,7 +5361,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5370,7 +5370,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 720798471
+            "stateHash": 742000063
         },
         {
             "tick": 207,
@@ -5387,7 +5387,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5396,7 +5396,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2399188436
+            "stateHash": 1718331740
         },
         {
             "tick": 208,
@@ -5413,7 +5413,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5422,7 +5422,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2930435201
+            "stateHash": 1714245769
         },
         {
             "tick": 209,
@@ -5439,7 +5439,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5448,7 +5448,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1323963790
+            "stateHash": 1129738006
         },
         {
             "tick": 210,
@@ -5465,7 +5465,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5474,7 +5474,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1174448723
+            "stateHash": 445945051
         },
         {
             "tick": 211,
@@ -5491,7 +5491,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5500,7 +5500,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1572538768
+            "stateHash": 3878008744
         },
         {
             "tick": 212,
@@ -5517,7 +5517,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5526,7 +5526,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3625068477
+            "stateHash": 4012370341
         },
         {
             "tick": 213,
@@ -5543,7 +5543,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5552,7 +5552,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4230783530
+            "stateHash": 348101970
         },
         {
             "tick": 214,
@@ -5569,7 +5569,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5578,7 +5578,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1040315295
+            "stateHash": 4026547111
         },
         {
             "tick": 215,
@@ -5595,7 +5595,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5604,7 +5604,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1118567628
+            "stateHash": 2004693188
         },
         {
             "tick": 216,
@@ -5621,7 +5621,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5630,7 +5630,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3167871897
+            "stateHash": 869031249
         },
         {
             "tick": 217,
@@ -5647,7 +5647,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5656,7 +5656,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2800135814
+            "stateHash": 555468734
         },
         {
             "tick": 218,
@@ -5673,7 +5673,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5682,7 +5682,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 478406027
+            "stateHash": 3048640963
         },
         {
             "tick": 219,
@@ -5699,7 +5699,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5708,7 +5708,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 651311272
+            "stateHash": 469017744
         },
         {
             "tick": 220,
@@ -5725,7 +5725,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5734,7 +5734,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3787029077
+            "stateHash": 1552188845
         },
         {
             "tick": 221,
@@ -5751,7 +5751,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5760,7 +5760,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2379249634
+            "stateHash": 3003591418
         },
         {
             "tick": 222,
@@ -5777,7 +5777,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5786,7 +5786,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4034505079
+            "stateHash": 2445457135
         },
         {
             "tick": 223,
@@ -5803,7 +5803,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5812,7 +5812,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 382897220
+            "stateHash": 4028779852
         },
         {
             "tick": 224,
@@ -5829,7 +5829,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5838,7 +5838,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1793860145
+            "stateHash": 3955081529
         },
         {
             "tick": 225,
@@ -5855,7 +5855,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5864,7 +5864,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1417015230
+            "stateHash": 721811078
         },
         {
             "tick": 226,
@@ -5881,7 +5881,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5890,7 +5890,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1543166211
+            "stateHash": 2144284235
         },
         {
             "tick": 227,
@@ -5907,7 +5907,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5916,7 +5916,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3044766144
+            "stateHash": 1156359512
         },
         {
             "tick": 228,
@@ -5933,7 +5933,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5942,7 +5942,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4283583981
+            "stateHash": 2059629077
         },
         {
             "tick": 229,
@@ -5959,7 +5959,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5968,7 +5968,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2607319066
+            "stateHash": 2749530178
         },
         {
             "tick": 230,
@@ -5985,7 +5985,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -5994,7 +5994,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 1831630735
+            "stateHash": 4023573591
         },
         {
             "tick": 231,
@@ -6011,7 +6011,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -6020,7 +6020,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 386710396
+            "stateHash": 290377780
         },
         {
             "tick": 232,
@@ -6037,7 +6037,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -6046,7 +6046,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 224938569
+            "stateHash": 3028971713
         },
         {
             "tick": 233,
@@ -6063,7 +6063,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -6072,7 +6072,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 4112649334
+            "stateHash": 776074798
         },
         {
             "tick": 234,
@@ -6089,7 +6089,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -6098,7 +6098,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3703280379
+            "stateHash": 3037352371
         },
         {
             "tick": 235,
@@ -6115,7 +6115,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -6124,7 +6124,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3719443288
+            "stateHash": 3971304384
         },
         {
             "tick": 236,
@@ -6141,7 +6141,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -6150,7 +6150,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3448853125
+            "stateHash": 3255645917
         },
         {
             "tick": 237,
@@ -6167,7 +6167,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -6176,7 +6176,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2167237138
+            "stateHash": 3901584234
         },
         {
             "tick": 238,
@@ -6193,7 +6193,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -6202,7 +6202,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 3715506535
+            "stateHash": 1109007839
         },
         {
             "tick": 239,
@@ -6219,7 +6219,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -6228,7 +6228,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2346810548
+            "stateHash": 2192410876
         },
         {
             "tick": 240,
@@ -6245,7 +6245,7 @@
             "p1PosX": -2.5,
             "p1PosY": 0.0,
             "p1Health": 1000.0,
-            "p1Super": 0.0,
+            "p1Super": 100.0,
             "p1State": "Idle",
             "p1Facing": 1,
             "p2PosX": 2.5,
@@ -6254,7 +6254,7 @@
             "p2Super": 0.0,
             "p2State": "Idle",
             "p2Facing": -1,
-            "stateHash": 2345561697
+            "stateHash": 1327384617
         }
     ]
 }

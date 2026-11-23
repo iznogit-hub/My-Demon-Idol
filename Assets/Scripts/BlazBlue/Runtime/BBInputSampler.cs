@@ -27,6 +27,26 @@ namespace DemonIdol.BlazBlue
         private Vector2 _currentStick = Vector2.zero;
         private byte _currentHeld = 0;
 
+        /// <summary>
+        /// Cleans opposing directional inputs according to standard tournament fighting game SOCD rules:
+        /// Left + Right = Neutral (x = 0).
+        /// Down + Up = Up (y = 1) (Standard fighting game SOCD priority).
+        /// </summary>
+        public static Vector2 CleanSOCD(bool up, bool down, bool left, bool right)
+        {
+            float x = 0f;
+            if (left && right) x = 0f;
+            else if (left) x = -1f;
+            else if (right) x = 1f;
+
+            float y = 0f;
+            if (down && up) y = 1f;
+            else if (up) y = 1f;
+            else if (down) y = -1f;
+
+            return new Vector2(x, y);
+        }
+
         private void Update()
         {
             if (!isPlayerControlled) return;
@@ -36,6 +56,13 @@ namespace DemonIdol.BlazBlue
 
         private void SampleHardware()
         {
+            // Input hygiene: strictly ignore and zero inputs when paused, during round intro countdown, or after KO
+            if (Time.timeScale == 0f || (MatchRoundReferee.Instance != null && MatchRoundReferee.Instance.State != MatchState.Fighting))
+            {
+                ResetLatches();
+                return;
+            }
+
             Vector2 stick = Vector2.zero;
             byte held = 0;
 
@@ -45,11 +72,8 @@ namespace DemonIdol.BlazBlue
             {
                 if (playerIndex == 0)
                 {
-                    // P1 Directions: WASD
-                    if (kb.wKey.isPressed) stick.y += 1f;
-                    if (kb.sKey.isPressed) stick.y -= 1f;
-                    if (kb.aKey.isPressed) stick.x -= 1f;
-                    if (kb.dKey.isPressed) stick.x += 1f;
+                    // P1 Directions: WASD with tournament SOCD cleaning
+                    stick = CleanSOCD(kb.wKey.isPressed, kb.sKey.isPressed, kb.aKey.isPressed, kb.dKey.isPressed);
 
                     // P1 Buttons: J=A, K=B, L=C, Space/I=D, T=Taunt
                     if (kb.jKey.isPressed) held |= (byte)BBButton.A;
@@ -59,22 +83,19 @@ namespace DemonIdol.BlazBlue
                     if (kb.tKey.isPressed) held |= (byte)BBButton.Taunt;
 
                     // P1 Keyboard Macros:
-                    // U = A+B (Crush Trigger)
+                    // U = A+B (Crush Trigger / Barrier)
                     if (kb.uKey.isPressed) held |= (byte)(BBButton.A | BBButton.B);
                     // O = B+C (Throw)
                     if (kb.oKey.isPressed) held |= (byte)(BBButton.B | BBButton.C);
-                    // P = A+B+C (Burst)
-                    if (kb.pKey.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C);
+                    // P = A+B+C+D (Burst / Overdrive Unified Macro)
+                    if (kb.pKey.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D);
                     // Semicolon (;) = A+B+C+D (Overdrive)
                     if (kb.semicolonKey.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D);
                 }
                 else
                 {
-                    // P2 Directions: Arrow Keys
-                    if (kb.upArrowKey.isPressed) stick.y += 1f;
-                    if (kb.downArrowKey.isPressed) stick.y -= 1f;
-                    if (kb.leftArrowKey.isPressed) stick.x -= 1f;
-                    if (kb.rightArrowKey.isPressed) stick.x += 1f;
+                    // P2 Directions: Arrow Keys with tournament SOCD cleaning
+                    stick = CleanSOCD(kb.upArrowKey.isPressed, kb.downArrowKey.isPressed, kb.leftArrowKey.isPressed, kb.rightArrowKey.isPressed);
 
                     // P2 Buttons: Numpad 1=A, Numpad 2=B, Numpad 3=C, Numpad 0/Enter=D
                     if (kb.numpad1Key.isPressed) held |= (byte)BBButton.A;
@@ -83,28 +104,29 @@ namespace DemonIdol.BlazBlue
                     if (kb.numpad0Key.isPressed || kb.numpadEnterKey.isPressed) held |= (byte)BBButton.D;
 
                     // P2 Macros:
-                    // Numpad 4 = A+B (Crush Trigger)
+                    // Numpad 4 = A+B (Crush Trigger / Barrier)
                     if (kb.numpad4Key.isPressed) held |= (byte)(BBButton.A | BBButton.B);
                     // Numpad 5 = B+C (Throw)
                     if (kb.numpad5Key.isPressed) held |= (byte)(BBButton.B | BBButton.C);
-                    // Numpad 6 = A+B+C (Burst)
-                    if (kb.numpad6Key.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C);
+                    // Numpad 6 = A+B+C+D (Burst / Overdrive Unified Macro)
+                    if (kb.numpad6Key.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D);
                     // Numpad Plus = A+B+C+D (Overdrive)
                     if (kb.numpadPlusKey.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D);
                 }
             }
 
             // 2. Gamepad Input. P1 reads pad 0. P2 reads pad 1 when a second pad is connected.
-            // Both fighters must not share Gamepad.current or one pad drives both humans.
             var pad = SelectGamepad(playerIndex);
             if (pad != null)
             {
-                // D-pad & Left Stick
-                Vector2 padStick = pad.leftStick.ReadValue();
-                if (pad.dpad.up.isPressed) padStick.y = 1f;
-                else if (pad.dpad.down.isPressed) padStick.y = -1f;
-                if (pad.dpad.right.isPressed) padStick.x = 1f;
-                else if (pad.dpad.left.isPressed) padStick.x = -1f;
+                // D-pad & Left Stick with SOCD cleaning
+                Vector2 padStickRaw = pad.leftStick.ReadValue();
+                bool padUp = pad.dpad.up.isPressed || padStickRaw.y > 0.5f;
+                bool padDown = pad.dpad.down.isPressed || padStickRaw.y < -0.5f;
+                bool padLeft = pad.dpad.left.isPressed || padStickRaw.x < -0.5f;
+                bool padRight = pad.dpad.right.isPressed || padStickRaw.x > 0.5f;
+
+                Vector2 padStick = CleanSOCD(padUp, padDown, padLeft, padRight);
 
                 if (padStick.sqrMagnitude > stick.sqrMagnitude)
                 {
@@ -122,20 +144,28 @@ namespace DemonIdol.BlazBlue
                 if (pad.buttonEast.isPressed)  held |= (byte)BBButton.D;
 
                 // Gamepad Macros:
-                // L1 / LB = A+B (Crush Trigger)
+                // L1 / LB = A+B (Crush Trigger / Barrier)
                 if (pad.leftShoulder.isPressed) held |= (byte)(BBButton.A | BBButton.B);
                 // R2 / RT = B+C (Throw)
                 if (pad.rightTrigger.isPressed) held |= (byte)(BBButton.B | BBButton.C);
-                // L2 / LT = A+B+C (Burst)
-                if (pad.leftTrigger.isPressed)  held |= (byte)(BBButton.A | BBButton.B | BBButton.C);
+                // L2 / LT = A+B+C+D (Burst / Overdrive Unified Macro)
+                if (pad.leftTrigger.isPressed)  held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D);
                 // R3 = A+B+C+D (Overdrive)
                 if (pad.rightStickButton.isPressed) held |= (byte)(BBButton.A | BBButton.B | BBButton.C | BBButton.D);
             }
 
-            // 3. Virtual Touch Overlay Input
-            if (virtualStickInput.sqrMagnitude > stick.sqrMagnitude)
+            // 3. Virtual Touch Overlay Input with SOCD cleaning
+            if (virtualStickInput.sqrMagnitude > 0.04f)
             {
-                stick = virtualStickInput;
+                bool touchUp = virtualStickInput.y > 0.5f;
+                bool touchDown = virtualStickInput.y < -0.5f;
+                bool touchLeft = virtualStickInput.x < -0.5f;
+                bool touchRight = virtualStickInput.x > 0.5f;
+                Vector2 touchClean = CleanSOCD(touchUp, touchDown, touchLeft, touchRight);
+                if (touchClean.sqrMagnitude > stick.sqrMagnitude)
+                {
+                    stick = touchClean;
+                }
             }
             held |= virtualHeldMask;
 
@@ -192,8 +222,9 @@ namespace DemonIdol.BlazBlue
         /// </summary>
         public BBInputFrame SampleFrameForTick(int tick, int facingDirection)
         {
-            if (!isPlayerControlled)
+            if (!isPlayerControlled || Time.timeScale == 0f || (MatchRoundReferee.Instance != null && MatchRoundReferee.Instance.State != MatchState.Fighting))
             {
+                ResetLatches();
                 return new BBInputFrame { held = 0, pressed = 0, released = 0, numpad = 5 };
             }
 
