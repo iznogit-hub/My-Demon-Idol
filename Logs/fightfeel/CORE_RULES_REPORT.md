@@ -1,8 +1,8 @@
 # MDI LAUNCH 2/4: CORE RULES VERIFICATION REPORT
 
-**Generated:** 2026-11-23 23:08:37 UTC
+**Generated:** 2026-11-24 01:52:35 UTC
 **Raw Log File:** `Logs/fightfeel/raw_core_rules.log`
-**Total Simulation Ticks Recorded:** 13413
+**Total Simulation Ticks Recorded:** 15820
 
 ## 1. Executive Summary & Gates Verification
 
@@ -22,14 +22,14 @@
 
 ## 2. Test Execution Ticks Breakdown
 
-- **Throw & Knockdown Ticks:** 5483
-- **Throw Tech Ticks:** 2754
-- **High/Low Guard Ticks:** 1735
-- **OTG Invulnerability Ticks:** 2177
-- **Input Buffer Ticks:** 575
-- **Counter Hit Ticks:** 516
+- **Throw & Knockdown Ticks:** 6413
+- **Throw Tech Ticks:** 3351
+- **High/Low Guard Ticks:** 2036
+- **OTG Invulnerability Ticks:** 2554
+- **Input Buffer Ticks:** 630
+- **Counter Hit Ticks:** 617
 - **Round 2 Reset Ticks:** 5
-- **Combat Audio SFX Ticks:** 168
+- **Combat Audio SFX Ticks:** 214
 
 ## 3. Strict Determinism & Zero Fake Verification
 

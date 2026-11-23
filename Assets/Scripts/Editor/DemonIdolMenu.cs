@@ -200,6 +200,12 @@ namespace DemonIdol.Editor
             Batch5CharacterPolishTool.ApplyBatch5Polish();
         }
 
+        [MenuItem("Demon Idol/Fighters/Configure Akio Karate 7-Move Kit", priority = 48)]
+        public static void ConfigureAkioKarateKit()
+        {
+            DemonIdol.BlazBlue.Editor.BBAkioKarateKitSetup.ConfigureKarateKit();
+        }
+
         // =========================================================================
         // BUILD
         // =========================================================================

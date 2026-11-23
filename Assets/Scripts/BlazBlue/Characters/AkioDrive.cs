@@ -52,10 +52,10 @@ namespace DemonIdol.BlazBlue
         {
             if (brain == null) return false;
 
-            // In air: j.D Dive Punch
+            // In air: j.D Dive Punch (or fallback to j.B)
             if (!brain.isGrounded)
             {
-                var airMove = brain.FindAttackByMoveId("j.D");
+                var airMove = brain.FindAttackByMoveId("j.D") ?? brain.FindAttackByMoveId("j.B");
                 if (airMove != null && brain.CanExecuteMove(airMove))
                 {
                     brain.StartAttack(airMove);
@@ -68,12 +68,12 @@ namespace DemonIdol.BlazBlue
             BBAttackData targetMove = null;
             if (facingNumpad == 1 || facingNumpad == 2 || facingNumpad == 3)
             {
-                // 2D Low Rush
+                // 2D Low Rush (falls back to 5D if not mapped)
                 targetMove = brain.FindAttackByMoveId("2D");
             }
             else if (facingNumpad == 6 || facingNumpad == 9)
             {
-                // 6D Rush Step
+                // 6D Rush Step (falls back to 5D if not mapped)
                 targetMove = brain.FindAttackByMoveId("6D");
             }
             else
@@ -96,6 +96,12 @@ namespace DemonIdol.BlazBlue
                     // 4th hit in Overdrive
                     targetMove = brain.FindAttackByMoveId("5D_4");
                 }
+            }
+
+            // Graceful fallback: If follow-up/directional D move is not mapped, execute primary 5D
+            if (targetMove == null)
+            {
+                targetMove = brain.FindAttackByMoveId("5D");
             }
 
             if (targetMove != null && brain.CanExecuteMove(targetMove))

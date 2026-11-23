@@ -1,4 +1,4 @@
 # GATE 2 CPU VERIFICATION LOG — 3 MATCHES
-Match 1 (C01 vs CPU C07): 236A=5, Super=2, CrouchBlocks=0, MinAttackGap=48f
-Match 2 (SK02 vs CPU EX06): 236A=4, Super=2, CrouchBlocks=0, MinAttackGap=48f
+Match 1 (C01 vs CPU C07): 236A=3, Super=2, CrouchBlocks=0, MinAttackGap=60f
+Match 2 (SK02 vs CPU EX06): 236A=2, Super=2, CrouchBlocks=0, MinAttackGap=66f
 Match 3 (EX01 vs CPU C12): 236A=3, Super=2, CrouchBlocks=0, MinAttackGap=48f
