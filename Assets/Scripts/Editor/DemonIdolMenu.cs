@@ -53,6 +53,15 @@ namespace DemonIdol.Editor
         }
 
         // =========================================================================
+        // ART & VISUALS
+        // =========================================================================
+        [MenuItem("Demon Idol/Art/Generate 25-Fighter Portraits", priority = 18)]
+        public static void Generate25FighterPortraits()
+        {
+            DemonIdolPortraitGenerator.GenerateAllPortraits();
+        }
+
+        // =========================================================================
         // PLAY
         // =========================================================================
         [MenuItem("Demon Idol/Play/Play From Main Menu", priority = 20)]

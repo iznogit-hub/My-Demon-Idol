@@ -180,13 +180,15 @@ namespace DemonIdol.BlazBlue.Visual
             var colliders = instance.GetComponentsInChildren<Collider>(true);
             foreach (var col in colliders)
             {
-                Destroy(col);
+                if (Application.isPlaying) Destroy(col);
+                else DestroyImmediate(col);
             }
             // Remove any Rigidbodies
             var bodies = instance.GetComponentsInChildren<Rigidbody>(true);
             foreach (var rb in bodies)
             {
-                Destroy(rb);
+                if (Application.isPlaying) Destroy(rb);
+                else DestroyImmediate(rb);
             }
         }
 
