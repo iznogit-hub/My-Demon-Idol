@@ -183,7 +183,7 @@ MonoBehaviour:
   _baseMoonColor: {r: 0.38, g: 0.45, b: 0.7, a: 1}
   _rainAudioSource: {fileID: 1522572648973886831}
   _thunderAudioSource: {fileID: 751488404958165540}
-  _rainLoopClip: {fileID: 0}
+  _rainLoopClip: {fileID: 8300000, guid: e205dde6d28cc4afe8c6ac9c0a408cb3, type: 3}
   _thunderCloseClip: {fileID: 8300000, guid: c492acabe2afa470f925f990700079c8, type: 3}
   _thunderDistantClip: {fileID: 8300000, guid: 93127405657634c60aa485c3d52354d0, type: 3}
   _rainVolume: 0.55
@@ -2980,7 +2980,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e205dde6d28cc4afe8c6ac9c0a408cb3, type: 3}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.55

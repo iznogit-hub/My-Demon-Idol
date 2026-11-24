@@ -79,7 +79,19 @@ namespace DemonIdol.VFX
         {
             Instance = this;
             EnsureReferences();
-            ApplyStreetlampGlow();
+            if (Application.isPlaying)
+            {
+                ApplyStreetlampGlow();
+            }
+            else
+            {
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.delayCall += () =>
+                {
+                    if (this != null) ApplyStreetlampGlow();
+                };
+#endif
+            }
         }
 
         private void OnEnable()
@@ -87,18 +99,38 @@ namespace DemonIdol.VFX
             Instance = this;
             ApplyAtmosphericSettings();
             ResetGlobalShaderVariables();
-            ApplyStreetlampGlow();
-
             if (Application.isPlaying)
             {
+                ApplyStreetlampGlow();
                 StartRainAudio();
                 ScheduleNextStrike();
+            }
+            else
+            {
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.delayCall += () =>
+                {
+                    if (this != null) ApplyStreetlampGlow();
+                };
+#endif
             }
         }
 
         private void OnValidate()
         {
-            ApplyStreetlampGlow();
+            if (Application.isPlaying)
+            {
+                ApplyStreetlampGlow();
+            }
+            else
+            {
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.delayCall += () =>
+                {
+                    if (this != null) ApplyStreetlampGlow();
+                };
+#endif
+            }
         }
 
         public void ApplyStreetlampGlow()
@@ -115,13 +147,20 @@ namespace DemonIdol.VFX
             };
 
 #if UNITY_EDITOR
-            foreach (var matName in lampMatNames)
+            try
             {
-                var mat = UnityEditor.AssetDatabase.LoadAssetAtPath<Material>($"Assets/CollegeRaimon/Materials/{matName}.mat");
-                if (mat != null && mat.HasProperty("_HorrorGlowIntensity"))
+                foreach (var matName in lampMatNames)
                 {
-                    mat.SetFloat("_HorrorGlowIntensity", targetIntensity);
+                    var mat = UnityEditor.AssetDatabase.LoadAssetAtPath<Material>($"Assets/CollegeRaimon/Materials/{matName}.mat");
+                    if (mat != null && mat.HasProperty("_HorrorGlowIntensity"))
+                    {
+                        mat.SetFloat("_HorrorGlowIntensity", targetIntensity);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                // Silently ignore if asset pipeline is busy during scene restore
             }
 #endif
         }
@@ -203,12 +242,15 @@ namespace DemonIdol.VFX
             #if UNITY_EDITOR
             if (!Application.isBatchMode)
             {
-                if (_rainLoopClip == null)
-                    _rainLoopClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_rain_loop.wav");
-                if (_thunderCloseClip == null)
-                    _thunderCloseClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_thunder_close.wav");
-                if (_thunderDistantClip == null)
-                    _thunderDistantClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_thunder_distant.wav");
+                if (Application.isPlaying)
+                {
+                    LoadAudioClipsImmediate();
+                }
+                else
+                {
+                    // In EditMode, schedule via delayCall to avoid VirtualArtifacts load failure during scene restoration
+                    UnityEditor.EditorApplication.delayCall += LoadAudioClipsSafe;
+                }
             }
             #endif
 
@@ -220,6 +262,31 @@ namespace DemonIdol.VFX
                 else CreateRainParticles();
             }
         }
+
+#if UNITY_EDITOR
+        private void LoadAudioClipsImmediate()
+        {
+            try
+            {
+                if (_rainLoopClip == null)
+                    _rainLoopClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_rain_loop.wav");
+                if (_thunderCloseClip == null)
+                    _thunderCloseClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_thunder_close.wav");
+                if (_thunderDistantClip == null)
+                    _thunderDistantClip = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/SFX/sfx_thunder_distant.wav");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[GrimDarkStormDirector] Audio clip deferred load: {ex.Message}");
+            }
+        }
+
+        private void LoadAudioClipsSafe()
+        {
+            if (this == null) return;
+            LoadAudioClipsImmediate();
+        }
+#endif
 
         private void CreateRainParticles()
         {
