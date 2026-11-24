@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4041907777713290281}
   - component: {fileID: 6753856664337020720}
   - component: {fileID: 1606042820585963596}
+  - component: {fileID: 6359033130773462474}
   m_Layer: 0
   m_Name: C02_Aika
   m_TagString: Untagged
@@ -134,6 +135,25 @@ MonoBehaviour:
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &6359033130773462474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57404065822515113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C02
+  characterDisplayName: Aika
+  profile: {fileID: 11400000, guid: 80af75aa76c0344bebcd2d75243dadc8, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 41ebd35f098c948f58c69bdb044da8e6, type: 2}
+  overrideController: {fileID: 22100000, guid: 105538d2428f74f3ca1294c5d7e5332b, type: 2}
+  animator: {fileID: 4041907777713290281}
+  weaponRig: {fileID: 1606042820585963596}
 --- !u!1 &124163274148768477
 GameObject:
   m_ObjectHideFlags: 0

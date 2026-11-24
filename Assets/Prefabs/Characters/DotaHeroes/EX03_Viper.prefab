@@ -1483,6 +1483,7 @@ GameObject:
   - component: {fileID: 3114935309404397827}
   - component: {fileID: 8277534419801351424}
   - component: {fileID: 4076446861206150646}
+  - component: {fileID: 7531010523504651179}
   m_Layer: 0
   m_Name: EX03_Viper
   m_TagString: Untagged
@@ -1564,17 +1565,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.04, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.65, y: 0.65, z: 0.65}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 0}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
   secondaryScale: {x: 1, y: 1, z: 1}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &7531010523504651179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4638855035254473992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: EX03
+  characterDisplayName: Viper
+  profile: {fileID: 11400000, guid: d06e397995065bbab90ffba91bf26091, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 05bc821749d814ae3859927186a01325, type: 2}
+  overrideController: {fileID: 22100000, guid: 132b6fb0ffd644f44957449cc5969376, type: 2}
+  animator: {fileID: 3114935309404397827}
+  weaponRig: {fileID: 4076446861206150646}
 --- !u!1 &4676336622718650345
 GameObject:
   m_ObjectHideFlags: 0

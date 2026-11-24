@@ -219,6 +219,15 @@ namespace DemonIdol.Editor
         }
 
         // =========================================================================
+        // STAGES
+        // =========================================================================
+        [MenuItem("Demon Idol/Stages/Create New Stage Prefab Template", priority = 45)]
+        public static void CreateNewStagePrefabTemplate()
+        {
+            DemonIdolStageTemplateCreator.CreateStageTemplate();
+        }
+
+        // =========================================================================
         // BUILD
         // =========================================================================
         [MenuItem("Demon Idol/Build/Mac App", priority = 50)]

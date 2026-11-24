@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 2422835402610768569}
   - component: {fileID: 1654059150577765787}
   - component: {fileID: 8010157869785341644}
+  - component: {fileID: 1234423694224721471}
   m_Layer: 0
   m_Name: C10_Reika
   m_TagString: Untagged
@@ -317,17 +318,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.04, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.62, y: 0.62, z: 0.62}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 3360497899579478474, guid: 9ccfc98472b804904bd895a294dbf8b5, type: 3}
   secondarySocket: 15
   secondaryPositionOffset: {x: 0, y: 0.06, z: -0.04}
   secondaryRotationOffset: {x: 0, y: 90, z: 0}
   secondaryScale: {x: 0.58, y: 0.58, z: 0.58}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &1234423694224721471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593211545231182016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C10
+  characterDisplayName: Reika
+  profile: {fileID: 11400000, guid: 970cda692f47e4120873681df2621ad1, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 14ff3739399b04546a53757b356ff642, type: 2}
+  overrideController: {fileID: 22100000, guid: 564c6a422f84e42a09faba1097c11df8, type: 2}
+  animator: {fileID: 3881641910708109043}
+  weaponRig: {fileID: 8010157869785341644}
 --- !u!1 &761502520416729589
 GameObject:
   m_ObjectHideFlags: 0

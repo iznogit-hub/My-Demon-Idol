@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 4474632918974726907}
   - component: {fileID: 7300575765708233119}
   - component: {fileID: 8818474333199480891}
+  - component: {fileID: 1285117533176131654}
   m_Layer: 0
   m_Name: SK03_Vex
   m_TagString: Untagged
@@ -406,17 +407,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0.04, y: 0.04, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.6, y: 0.6, z: 0.6}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 0}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0.02, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
   secondaryScale: {x: 0.6, y: 0.6, z: 0.6}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &1285117533176131654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909871151342833027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: SK03
+  characterDisplayName: Vex
+  profile: {fileID: 11400000, guid: 04217662abe3566bb750c0267816e7c3, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 6e87a784afd4e41d09ece2e2a2ab15c5, type: 2}
+  overrideController: {fileID: 22100000, guid: 0ac0cecdada0f4c03b397ad5f209beba, type: 2}
+  animator: {fileID: 4474632918974726907}
+  weaponRig: {fileID: 8818474333199480891}
 --- !u!1 &947805298925775643
 GameObject:
   m_ObjectHideFlags: 0

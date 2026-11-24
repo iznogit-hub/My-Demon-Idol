@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3207434819439495690}
   - component: {fileID: 5543244214087861887}
   - component: {fileID: 7763033303231473438}
+  - component: {fileID: 7038562125715408291}
   m_Layer: 0
   m_Name: C13_SapphiArtchan
   m_TagString: Untagged
@@ -84,6 +85,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83a2b16e33474c3e96167a8d6f1c853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AnimationEventReceiver
+--- !u!114 &7038562125715408291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C13
+  characterDisplayName: SapphiArtchan
+  profile: {fileID: 11400000, guid: 964bc5c251cb5b9ba82bfc9fde6ca21c, type: 2}
+  characterDefinition: {fileID: 11400000, guid: d5e6680029b2141e7a9942d0d662b673, type: 2}
+  overrideController: {fileID: 22100000, guid: 0547cf0830665bfdafd6fc1a91c92fd2, type: 2}
+  animator: {fileID: 3207434819439495690}
+  weaponRig: {fileID: 0}
 --- !u!1 &94667721637672810
 GameObject:
   m_ObjectHideFlags: 0

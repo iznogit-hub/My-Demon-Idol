@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 5958621934954761569}
   - component: {fileID: 6628177385491828711}
+  - component: {fileID: 7654621849085793918}
   m_Layer: 0
   m_Name: ST07_CollegeRaimon
   m_TagString: Untagged
@@ -193,6 +194,42 @@ MonoBehaviour:
   _fogDensity: 0.012
   _rainParticleSystem: {fileID: 4079445894492816618}
   _enableStreetlampGlow: 0
+--- !u!114 &7654621849085793918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15290307ddf9a4c499ea0ce8ed784efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBStagePrefabConfig
+  stageId: ST07
+  stageDisplayName: "College Raimon \u2014 Rainy Courtyard"
+  stageThumbnail: {fileID: 0}
+  p1SpawnX: -2.5
+  p2SpawnX: 2.5
+  floorY: 0
+  leftWallX: -10.2
+  rightWallX: 10.2
+  cameraMinX: -8
+  cameraMaxX: 8
+  cameraMinY: 1
+  cameraMaxY: 6.5
+  cameraDefaultZ: -4.8
+  skyboxMaterial: {fileID: 0}
+  ambientColor: {r: 0.2, g: 0.22, b: 0.28, a: 1}
+  directionalLightColor: {r: 0.7, g: 0.75, b: 0.9, a: 1}
+  directionalLightIntensity: 0.85
+  fogEnabled: 1
+  fogColor: {r: 0.08, g: 0.1, b: 0.15, a: 1}
+  fogDensity: 0.025
+  postProcessProfile: {fileID: 11400000, guid: 34f496be15b95d0e8ff7bd3f50f55247, type: 2}
+  stageBGM: {fileID: 8300000, guid: 4b3d00cd54931480bb30c3fd6ba01e88, type: 3}
+  ambientLoopSFX: {fileID: 8300000, guid: 4a174bcfd09e425eb963e97df4fa0f55, type: 3}
+  stagePropsRoot: {fileID: 5157003375707631647}
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +281,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 32, y: 0.5, z: 8}
+  m_Size: {x: 24, y: 0.5, z: 6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &100004
 GameObject:
@@ -272,7 +309,7 @@ Transform:
   m_GameObject: {fileID: 100004}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14, y: 2.5, z: 0}
+  m_LocalPosition: {x: -10.2, y: 3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -297,7 +334,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 6, z: 8}
+  m_Size: {x: 0.2, y: 7, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &100006
 GameObject:
@@ -325,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 100006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: 2.5, z: 0}
+  m_LocalPosition: {x: 10.2, y: 3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -350,7 +387,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 6, z: 8}
+  m_Size: {x: 0.2, y: 7, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &100008
 GameObject:
@@ -2980,8 +3017,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4a174bcfd09e425eb963e97df4fa0f55, type: 3}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 4a174bcfd09e425eb963e97df4fa0f55, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.55
   m_Pitch: 1

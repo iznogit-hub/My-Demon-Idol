@@ -1278,6 +1278,7 @@ GameObject:
   - component: {fileID: 3994465581803850399}
   - component: {fileID: 955540960517404117}
   - component: {fileID: 8175233760089566930}
+  - component: {fileID: 8809175486348683739}
   m_Layer: 0
   m_Name: SK06_CommanderRen
   m_TagString: Untagged
@@ -1356,17 +1357,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.05, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.45, y: 0.45, z: 0.45}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 0}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
   secondaryScale: {x: 1, y: 1, z: 1}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &8809175486348683739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027790194174550680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: SK06
+  characterDisplayName: CommanderRen
+  profile: {fileID: 11400000, guid: 03fd26d291c85d6aa9c45f2b2de8cf7c, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 92cf4de3de802451ba5cf2684d8ec483, type: 2}
+  overrideController: {fileID: 22100000, guid: 8c0c234db0908412c8a604710e044dcc, type: 2}
+  animator: {fileID: 3994465581803850399}
+  weaponRig: {fileID: 8175233760089566930}
 --- !u!1 &2036803705156912050
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1656149140567058402}
   - component: {fileID: 7099943345531639071}
   - component: {fileID: 4506546131999355463}
+  - component: {fileID: 3399687871867825566}
   m_Layer: 0
   m_Name: C05_Akane
   m_TagString: Untagged
@@ -103,6 +104,25 @@ MonoBehaviour:
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &3399687871867825566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84516208725712333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C05
+  characterDisplayName: Akane
+  profile: {fileID: 11400000, guid: d5b9159be21e59a8898acdc24f47dfc8, type: 2}
+  characterDefinition: {fileID: 11400000, guid: aa26f3335d0e64531be0e76be83da6aa, type: 2}
+  overrideController: {fileID: 22100000, guid: c9f420a7ae96446e3ba3708689af2631, type: 2}
+  animator: {fileID: 1656149140567058402}
+  weaponRig: {fileID: 4506546131999355463}
 --- !u!1 &175023561367248242
 GameObject:
   m_ObjectHideFlags: 0

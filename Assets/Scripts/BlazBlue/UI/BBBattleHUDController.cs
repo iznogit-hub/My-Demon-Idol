@@ -282,9 +282,20 @@ namespace DemonIdol.BlazBlue
 
         public void ShowAnnouncement(string text, int durationTicks = 90)
         {
+            Color defaultColor = text.Contains("PUNISH") ? new Color(1f, 0.85f, 0.2f) :
+                                 text.Contains("COUNTER") ? new Color(1f, 0.25f, 0.25f) :
+                                 text.Contains("PARRY") ? new Color(0.2f, 1f, 0.9f) :
+                                 text.Contains("REVERSAL") ? new Color(0.3f, 0.9f, 1f) :
+                                 Color.white;
+            ShowAnnouncement(text, defaultColor, durationTicks);
+        }
+
+        public void ShowAnnouncement(string text, Color color, int durationTicks = 90)
+        {
             if (_centerAnnouncementText != null)
             {
                 _centerAnnouncementText.text = text;
+                _centerAnnouncementText.color = color;
             }
             if (_centerAnnouncementGroup != null)
             {

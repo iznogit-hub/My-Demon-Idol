@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2753741199694496237}
   - component: {fileID: 4090687274121105819}
   - component: {fileID: 5460592696452288774}
+  - component: {fileID: 6164390721953758530}
   m_Layer: 0
   m_Name: C14_Muryotaisu
   m_TagString: Player
@@ -160,6 +161,25 @@ MonoBehaviour:
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &6164390721953758530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65556280210881102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C14
+  characterDisplayName: Muryotaisu
+  profile: {fileID: 11400000, guid: 07395436dcad5006bc377ff7ff071d77, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 134862087fa0d4ce5897be1b9c195661, type: 2}
+  overrideController: {fileID: 22100000, guid: 8c518b727bcf50599de9637c18cf87de, type: 2}
+  animator: {fileID: 3590247847411169332}
+  weaponRig: {fileID: 5460592696452288774}
 --- !u!1 &155179268527507310
 GameObject:
   m_ObjectHideFlags: 0

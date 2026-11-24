@@ -28,6 +28,7 @@ namespace DemonIdol.BlazBlue
         public float accumulatedP2;
         public bool isFatalCounter;
         public BBBounceType usedBounceMask;
+        public bool hasUsedWallBounceThisCombo;
         public int rapidCancelCount;
 
         // Up to 16 distinct moves tracked for same-move penalty
@@ -45,6 +46,7 @@ namespace DemonIdol.BlazBlue
             accumulatedP2 = 1.0f;
             isFatalCounter = false;
             usedBounceMask = BBBounceType.None;
+            hasUsedWallBounceThisCombo = false;
             rapidCancelCount = 0;
             trackedMoveCount = 0;
 
@@ -124,6 +126,7 @@ namespace DemonIdol.BlazBlue
 
         /// <summary>
         /// Calculates remaining ground hitstun factoring in combo duration decay and Fatal Counter shift.
+        /// Enforces minimum 12f untechable floor so freestyle 5-8 hit combos stay possible without infinites.
         /// </summary>
         public int CalculateDecayedHitstun(int authoredHitstun, bool isGroundHit)
         {
@@ -141,7 +144,7 @@ namespace DemonIdol.BlazBlue
                 else if (effectiveTime > 420) decay = 6;
                 else if (effectiveTime > 300) decay = 4;
                 else if (effectiveTime > 180) decay = 2;
-                return Math.Max(6, authoredHitstun - decay);
+                return Math.Max(12, authoredHitstun - decay);
             }
             else
             {
@@ -149,7 +152,7 @@ namespace DemonIdol.BlazBlue
                 else if (effectiveTime > 420) decay = 18;
                 else if (effectiveTime > 300) decay = 12;
                 else if (effectiveTime > 180) decay = 6;
-                return Math.Max(6, authoredHitstun - decay);
+                return Math.Max(12, authoredHitstun - decay);
             }
         }
 
@@ -161,6 +164,26 @@ namespace DemonIdol.BlazBlue
         public float CalculateJuggleGravity(float baseGravity, float scalePerHit = 0.06f, float cap = 1.9f)
         {
             float scale = 1.0f + (scalePerHit * airHitsInCombo);
+            scale = Math.Min(cap, scale);
+
+            if (isFatalCounter)
+            {
+                scale *= 0.80f;
+            }
+
+            return baseGravity * scale;
+        }
+
+        /// <summary>
+        /// Calculates progressive juggle gravity scaling (+8% per air hit after hit 3, capped at 2.2x).
+        /// </summary>
+        public float CalculateProgressiveJuggleGravity(float baseGravity, float scalePerHit = 0.08f, float cap = 2.2f)
+        {
+            float scale = 1.0f;
+            if (airHitsInCombo > 3)
+            {
+                scale += scalePerHit * (airHitsInCombo - 3);
+            }
             scale = Math.Min(cap, scale);
 
             if (isFatalCounter)
@@ -185,6 +208,10 @@ namespace DemonIdol.BlazBlue
             }
 
             usedBounceMask |= bounceType;
+            if (bounceType == BBBounceType.WallBounce)
+            {
+                hasUsedWallBounceThisCombo = true;
+            }
             return true;
         }
     }

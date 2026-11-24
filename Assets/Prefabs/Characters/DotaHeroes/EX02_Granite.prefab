@@ -1723,6 +1723,7 @@ GameObject:
   - component: {fileID: 4856182980962057754}
   - component: {fileID: 7430353069552583247}
   - component: {fileID: 4072944083181819553}
+  - component: {fileID: 5653103370613149514}
   m_Layer: 0
   m_Name: EX02_Granite
   m_TagString: Untagged
@@ -1804,17 +1805,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.05, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.7, y: 0.7, z: 0.7}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 0}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
   secondaryScale: {x: 1, y: 1, z: 1}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &5653103370613149514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840724585598804740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: EX02
+  characterDisplayName: Granite
+  profile: {fileID: 11400000, guid: 33cfcd4fe4f05bebaefb1ed885724717, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 18f1e4dd68ea849d8b775a18c05483fc, type: 2}
+  overrideController: {fileID: 22100000, guid: f57f7f33980ee4878afefa99fd87324e, type: 2}
+  animator: {fileID: 4856182980962057754}
+  weaponRig: {fileID: 4072944083181819553}
 --- !u!1 &4930502320728427058
 GameObject:
   m_ObjectHideFlags: 0

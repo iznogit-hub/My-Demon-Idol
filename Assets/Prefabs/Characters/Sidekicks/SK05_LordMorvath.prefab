@@ -6344,6 +6344,7 @@ GameObject:
   - component: {fileID: 8438614194400724502}
   - component: {fileID: 9190133408875306141}
   - component: {fileID: 2308730311782466210}
+  - component: {fileID: 6964260711155540687}
   m_Layer: 0
   m_Name: SK05_LordMorvath
   m_TagString: Untagged
@@ -6422,17 +6423,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.06, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.72, y: 0.72, z: 0.72}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 0}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
   secondaryScale: {x: 1, y: 1, z: 1}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &6964260711155540687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8480747360652606177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: SK05
+  characterDisplayName: LordMorvath
+  profile: {fileID: 11400000, guid: 6320a85ed20f5db5bbe17f3f9acb8c5a, type: 2}
+  characterDefinition: {fileID: 11400000, guid: d9881e27028a04338916478bcfef22af, type: 2}
+  overrideController: {fileID: 22100000, guid: 056cbdd8f2dc44041975cd5761235c58, type: 2}
+  animator: {fileID: 8438614194400724502}
+  weaponRig: {fileID: 2308730311782466210}
 --- !u!1 &8524238195700071497
 GameObject:
   m_ObjectHideFlags: 0

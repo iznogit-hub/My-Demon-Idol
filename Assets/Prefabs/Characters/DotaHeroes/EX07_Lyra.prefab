@@ -1942,6 +1942,7 @@ GameObject:
   - component: {fileID: 744468278441122464}
   - component: {fileID: 776788219159339331}
   - component: {fileID: 1726261729797219003}
+  - component: {fileID: 8152704981803104849}
   m_Layer: 0
   m_Name: EX07_Lyra
   m_TagString: Untagged
@@ -2020,17 +2021,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.04, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.6, y: 0.6, z: 0.6}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 0}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
   secondaryScale: {x: 1, y: 1, z: 1}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &8152704981803104849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8066289093787289664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: EX07
+  characterDisplayName: Lyra
+  profile: {fileID: 11400000, guid: 8d13ac1a26485b2a84c4396a0cdfc6bb, type: 2}
+  characterDefinition: {fileID: 11400000, guid: a09005b22849b4b5695e49562410035a, type: 2}
+  overrideController: {fileID: 22100000, guid: 49b0d934d6fe14366a3e404f83f72f97, type: 2}
+  animator: {fileID: 744468278441122464}
+  weaponRig: {fileID: 1726261729797219003}
 --- !u!1 &8217423935643751507
 GameObject:
   m_ObjectHideFlags: 0

@@ -5431,6 +5431,7 @@ GameObject:
   - component: {fileID: 2834526409794581628}
   - component: {fileID: 2656187841589531240}
   - component: {fileID: 5773257849912498707}
+  - component: {fileID: 7124551164727061291}
   m_Layer: 0
   m_Name: C12_Fina
   m_TagString: Untagged
@@ -5534,6 +5535,25 @@ MonoBehaviour:
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &7124551164727061291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862449341055988924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C12
+  characterDisplayName: Fina
+  profile: {fileID: 11400000, guid: b62cfbd2aab7c4b49944fbf1ece842bf, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 987089de942f6455db59262dabfcdf20, type: 2}
+  overrideController: {fileID: 22100000, guid: 3aedb18fbb1b546f8865f3403608f592, type: 2}
+  animator: {fileID: 2834526409794581628}
+  weaponRig: {fileID: 5773257849912498707}
 --- !u!1 &9101605434741783347
 GameObject:
   m_ObjectHideFlags: 0

@@ -2192,6 +2192,7 @@ GameObject:
   - component: {fileID: 11400000}
   - component: {fileID: 5955699761717420534}
   - component: {fileID: 2257094145965811197}
+  - component: {fileID: 8750364441828509115}
   m_Layer: 0
   m_Name: C04_UnityChan
   m_TagString: Untagged
@@ -2303,17 +2304,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.02, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.55, y: 0.55, z: 0.55}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 5363705418455237468, guid: 2b5012d67f4ed4e1ba984c58c4a90c99, type: 3}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0.04, z: 0}
   secondaryRotationOffset: {x: 0, y: 90, z: 0}
   secondaryScale: {x: 0.58, y: 0.58, z: 0.58}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &8750364441828509115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C04
+  characterDisplayName: UnityChan
+  profile: {fileID: 11400000, guid: 0ce86b767c0544e328d397f0c5258fea, type: 2}
+  characterDefinition: {fileID: 11400000, guid: c03b961794b074d61a88a29694019653, type: 2}
+  overrideController: {fileID: 22100000, guid: a5bc0701b0d1843418a62e7f0e859093, type: 2}
+  animator: {fileID: 9500000}
+  weaponRig: {fileID: 2257094145965811197}
 --- !u!1 &100098
 GameObject:
   m_ObjectHideFlags: 0

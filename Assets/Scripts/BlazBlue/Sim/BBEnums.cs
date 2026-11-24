@@ -145,6 +145,16 @@ namespace DemonIdol.BlazBlue
     }
 
     /// <summary>
+    /// Type of hit counter interaction.
+    /// </summary>
+    public enum BBCounterType : byte
+    {
+        None = 0,
+        CounterHit = 1,
+        PunishCounter = 2
+    }
+
+    /// <summary>
     /// Discrete states for the BlazBlue deterministic state machine.
     /// </summary>
     public enum BBState : byte
@@ -167,7 +177,8 @@ namespace DemonIdol.BlazBlue
         Thrown,
         DownWait,
         Wakeup,
-        Dead
+        Dead,
+        Crumple
     }
 
     /// <summary>

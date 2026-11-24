@@ -34,12 +34,15 @@ namespace DemonIdol.BlazBlue
         private float _attackWeight = 0f;
         private const float BLEND_SPEED_TICKS = 3f;
         private AnimationClip _activeAttackClip;
+        private Vector3 _baseModelLocalPos = Vector3.zero;
+        private bool _isVibrating = false;
 
         private void Awake()
         {
             if (animator == null) animator = GetComponentInChildren<Animator>();
             if (brain == null) brain = GetComponent<BBFighterBrain>();
             if (_weaponRig == null) _weaponRig = GetComponent<BBWeaponRig>();
+            if (animator != null) _baseModelLocalPos = animator.transform.localPosition;
         }
 
         private void OnEnable()
@@ -72,6 +75,7 @@ namespace DemonIdol.BlazBlue
 
             // Single-drive the Animator: Unbind runtimeAnimatorController so native Animator update does not compete with PlayableGraph
             animator.runtimeAnimatorController = null;
+            if (_baseModelLocalPos == Vector3.zero) _baseModelLocalPos = animator.transform.localPosition;
 
             _graph = PlayableGraph.Create($"BBAnim_{gameObject.name}");
             _graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
@@ -278,6 +282,19 @@ namespace DemonIdol.BlazBlue
             if (!Application.isPlaying) return;
             if (!_isGraphValid || !_graph.IsValid()) InitializeGraph();
             if (!_isGraphValid || !_graph.IsValid() || brain == null) return;
+
+            // Pillar 1: Defender hit-vibrate during hitstop (Model horizontal micro-oscillation)
+            if (brain != null && brain.hitstopRemaining > 0 && brain.bbState == BBState.Hitstun && animator != null)
+            {
+                float vibrateX = ((tick / 2) % 2 == 0) ? 0.028f : -0.028f;
+                animator.transform.localPosition = new Vector3(_baseModelLocalPos.x + vibrateX, _baseModelLocalPos.y, _baseModelLocalPos.z);
+                _isVibrating = true;
+            }
+            else if (_isVibrating && animator != null)
+            {
+                animator.transform.localPosition = _baseModelLocalPos;
+                _isVibrating = false;
+            }
 
             bool attacking = brain.bbState == BBState.AttackStartup
                 || brain.bbState == BBState.AttackActive

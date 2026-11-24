@@ -51,31 +51,8 @@ namespace DemonIdol.Editor
                         continue;
                     }
 
-                    Texture2D portraitTex = RenderFighterPortrait(def);
-                    if (portraitTex != null)
+                    if (GenerateAndAssignPortraitForFighter(def) != null)
                     {
-                        byte[] pngBytes = portraitTex.EncodeToPNG();
-                        UnityEngine.Object.DestroyImmediate(portraitTex);
-
-                        string portraitPath = $"{PORTRAITS_DIR}/Portrait_{charId}_{def.displayName}.png";
-                        string mugshotPath = $"{MUGSHOTS_DIR}/Mugshot_{charId}_{def.displayName}.png";
-
-                        File.WriteAllBytes(portraitPath, pngBytes);
-                        File.WriteAllBytes(mugshotPath, pngBytes);
-
-                        ConfigureSpriteImporter(portraitPath);
-                        ConfigureSpriteImporter(mugshotPath);
-
-                        AssetDatabase.ImportAsset(portraitPath, ImportAssetOptions.ForceUpdate);
-                        AssetDatabase.ImportAsset(mugshotPath, ImportAssetOptions.ForceUpdate);
-
-                        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(portraitPath);
-                        if (sprite != null)
-                        {
-                            def.portraitSprite = sprite;
-                            EditorUtility.SetDirty(def);
-                        }
-
                         generatedCount++;
                     }
                 }
@@ -87,6 +64,64 @@ namespace DemonIdol.Editor
             {
                 EditorUtility.ClearProgressBar();
             }
+        }
+
+        /// <summary>
+        /// Renders and configures a bust portrait and mugshot for a single character definition,
+        /// optionally using an active model instance/prefab.
+        /// </summary>
+        public static Sprite GenerateAndAssignPortraitForFighter(CharacterDefinition def, GameObject customModelPrefab = null)
+        {
+            if (def == null) return null;
+            if (!Directory.Exists(PORTRAITS_DIR)) Directory.CreateDirectory(PORTRAITS_DIR);
+            if (!Directory.Exists(MUGSHOTS_DIR)) Directory.CreateDirectory(MUGSHOTS_DIR);
+
+            GameObject modelToRender = customModelPrefab != null ? customModelPrefab : def.modelPrefab;
+            Texture2D portraitTex = null;
+
+            if (SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null && modelToRender != null)
+            {
+                try
+                {
+                    portraitTex = Render3DModelBust(modelToRender);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning($"[PortraitGenerator] 3D render failed for {def.id} ({ex.Message}), generating procedural Sumi-e portrait fallback.");
+                }
+            }
+
+            if (portraitTex == null)
+            {
+                portraitTex = GenerateSumiEProceduralPortrait(def);
+            }
+
+            if (portraitTex == null) return null;
+
+            byte[] pngBytes = portraitTex.EncodeToPNG();
+            UnityEngine.Object.DestroyImmediate(portraitTex);
+
+            string portraitPath = $"{PORTRAITS_DIR}/Portrait_{def.id}_{def.displayName}.png";
+            string mugshotPath = $"{MUGSHOTS_DIR}/Mugshot_{def.id}_{def.displayName}.png";
+
+            File.WriteAllBytes(portraitPath, pngBytes);
+            File.WriteAllBytes(mugshotPath, pngBytes);
+
+            ConfigureSpriteImporter(portraitPath);
+            ConfigureSpriteImporter(mugshotPath);
+
+            AssetDatabase.ImportAsset(portraitPath, ImportAssetOptions.ForceUpdate);
+            AssetDatabase.ImportAsset(mugshotPath, ImportAssetOptions.ForceUpdate);
+
+            Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(portraitPath);
+            if (sprite != null)
+            {
+                Undo.RecordObject(def, "Update Fighter Portrait");
+                def.portraitSprite = sprite;
+                EditorUtility.SetDirty(def);
+            }
+
+            return sprite;
         }
 
         private static CharacterDefinition FindCharacterDefinition(string charId)

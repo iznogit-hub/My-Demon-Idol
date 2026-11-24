@@ -582,6 +582,7 @@ GameObject:
   - component: {fileID: 2136663997111328819}
   - component: {fileID: 1004438340311323512}
   - component: {fileID: 7315661096134020316}
+  - component: {fileID: 7694087439013564618}
   m_Layer: 0
   m_Name: EX05_Kira
   m_TagString: Untagged
@@ -659,17 +660,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.04, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.6, y: 0.6, z: 0.6}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 0}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
   secondaryScale: {x: 1, y: 1, z: 1}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &7694087439013564618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320340291970175949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: EX05
+  characterDisplayName: Kira
+  profile: {fileID: 11400000, guid: 868515ecc71756818a95a9a10dd89ce3, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 720eba52ca58a44d3a7f7b089d9b56cd, type: 2}
+  overrideController: {fileID: 22100000, guid: 069bd6240d7f7417ca91242cad4f3de0, type: 2}
+  animator: {fileID: 2136663997111328819}
+  weaponRig: {fileID: 7315661096134020316}
 --- !u!1 &400143184117829676
 GameObject:
   m_ObjectHideFlags: 0

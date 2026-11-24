@@ -980,6 +980,7 @@ GameObject:
   - component: {fileID: 5953291791835662447}
   - component: {fileID: 6266971914875063552}
   - component: {fileID: 7032470182033750540}
+  - component: {fileID: 7387577480677452520}
   m_Layer: 0
   m_Name: C07_StellarWitch
   m_TagString: Untagged
@@ -1058,17 +1059,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 1, y: 1, z: 1}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 0}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
   secondaryScale: {x: 1, y: 1, z: 1}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &7387577480677452520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095970306432993455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C07
+  characterDisplayName: StellarWitch
+  profile: {fileID: 11400000, guid: 3c67146affd264b63a3166ce924c59b0, type: 2}
+  characterDefinition: {fileID: 11400000, guid: a9a18ae39bd704ee19466ef7250afdc1, type: 2}
+  overrideController: {fileID: 22100000, guid: e893e83b4c9684a309a80d0ec32d7b54, type: 2}
+  animator: {fileID: 5953291791835662447}
+  weaponRig: {fileID: 7032470182033750540}
 --- !u!1 &1145150080342878669
 GameObject:
   m_ObjectHideFlags: 0

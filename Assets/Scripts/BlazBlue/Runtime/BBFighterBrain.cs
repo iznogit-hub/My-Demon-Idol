@@ -44,6 +44,18 @@ namespace DemonIdol.BlazBlue
         public BBWakeupAction wakeupAction = BBWakeupAction.Natural;
         public Func<int, BBInputFrame> customInputProvider = null;
 
+        [Header("Pillar Combat Feel & Invulnerability Timers")]
+        public int guardEnteredTick = -999;
+        public int ticksSinceExitedStun = 999;
+        public int wakeupThrowInvulnTicks = 0;
+        public int techRollStrikeInvulnTicks = 0;
+        private bool _wasGuardingPrevFrame = false;
+        private Renderer[] _cachedRenderers;
+        private MaterialPropertyBlock _propBlock;
+        private static readonly int _RimColorProp = Shader.PropertyToID("_RimColor");
+        private static readonly int _EmissionColorProp = Shader.PropertyToID("_EmissionColor");
+        private int _rimFlashTicksRemaining = 0;
+
         [Header("Active Attack")]
         public BBAttackData currentAttack;
         public int attackTick = 0;
@@ -101,6 +113,8 @@ namespace DemonIdol.BlazBlue
 
             maxHealth = profile != null ? profile.maxHealth : 10000f;
             health = maxHealth;
+            _cachedRenderers = GetComponentsInChildren<Renderer>(true);
+            _propBlock = new MaterialPropertyBlock();
             gauges.Initialize(tuning);
             chainState.Reset();
             comboState.Reset();
@@ -174,6 +188,13 @@ namespace DemonIdol.BlazBlue
             {
                 barrierSys.NotifyBarrierPressed(tick);
             }
+
+            bool isPressingGuard = BBInputFrame.IsBack(BBInputFrame.WorldToFacingNumpad(History.LatestFrame.numpad, fighter.FacingDirection)) || (CurrentCommand.commandType == BBCommandType.Barrier);
+            if (isPressingGuard && !_wasGuardingPrevFrame)
+            {
+                guardEnteredTick = tick;
+            }
+            _wasGuardingPrevFrame = isPressingGuard;
         }
 
         BBInputFrame SampleCpuFrame(int tick)
@@ -196,6 +217,7 @@ namespace DemonIdol.BlazBlue
 
         public void HandleCombatTick(int tick)
         {
+            ticksSinceExitedStun++;
             StepInput(tick);
             if (hitstopRemaining <= 0 && bbState != BBState.Hitstun)
             {
@@ -275,6 +297,19 @@ namespace DemonIdol.BlazBlue
             ActiveDamageScale = 1f;
             ActiveReachScale = 1f;
             SignatureHitstopBonus = 0;
+            guardEnteredTick = -999;
+            ticksSinceExitedStun = 999;
+            wakeupThrowInvulnTicks = 0;
+            techRollStrikeInvulnTicks = 0;
+            _wasGuardingPrevFrame = false;
+            _rimFlashTicksRemaining = 0;
+            if (_cachedRenderers != null)
+            {
+                for (int i = 0; i < _cachedRenderers.Length; i++)
+                {
+                    if (_cachedRenderers[i] != null) _cachedRenderers[i].SetPropertyBlock(null);
+                }
+            }
 
             var cc = GetComponent<CharacterController>();
             if (cc != null) cc.enabled = false;
@@ -419,6 +454,11 @@ namespace DemonIdol.BlazBlue
 
             if (TryStartMoveId(moveId) || (!string.IsNullOrEmpty(fallback) && TryStartMoveId(fallback)))
             {
+                if (ticksSinceExitedStun <= 1)
+                {
+                    BBContactPresentation.OnReversal(transform.position + Vector3.up * 1f);
+                    BBBattleHUDController.Instance?.ShowAnnouncement("REVERSAL!", 45);
+                }
                 ConsumeCurrentCommand();
             }
             else
@@ -436,8 +476,8 @@ namespace DemonIdol.BlazBlue
                 else
                 {
                     // Move exists in profile but cannot start yet (e.g. during hitstop or recovery before cancel window).
-                    // Keep alive up to 4 ticks (buffered).
-                    if (tick - CurrentCommand.tick > 4)
+                    // Keep alive up to 5 ticks (5-tick reversal buffer).
+                    if (tick - CurrentCommand.tick > 5)
                     {
                         ConsumeCurrentCommand();
                     }
@@ -562,6 +602,18 @@ namespace DemonIdol.BlazBlue
 
             stateTick++;
 
+            if (_rimFlashTicksRemaining > 0)
+            {
+                _rimFlashTicksRemaining--;
+                if (_rimFlashTicksRemaining <= 0 && _cachedRenderers != null)
+                {
+                    for (int i = 0; i < _cachedRenderers.Length; i++)
+                    {
+                        if (_cachedRenderers[i] != null) _cachedRenderers[i].SetPropertyBlock(null);
+                    }
+                }
+            }
+
             // Tick gauges (passive regen, low-HP regen, OD countdown, barrier drain)
             bool isBarriering = CurrentCommand.commandType == BBCommandType.Barrier && !gauges.isDanger;
             gauges.Tick(tuning, health / maxHealth, isBarriering);
@@ -574,6 +626,16 @@ namespace DemonIdol.BlazBlue
 
             // Update invulnerability mask for current tick
             currentInvuln = BBInvuln.None;
+            if (wakeupThrowInvulnTicks > 0)
+            {
+                wakeupThrowInvulnTicks--;
+                currentInvuln |= BBInvuln.Throw;
+            }
+            if (techRollStrikeInvulnTicks > 0)
+            {
+                techRollStrikeInvulnTicks--;
+                currentInvuln |= BBInvuln.Strike;
+            }
             if (burstInvulnTicksRemaining > 0)
             {
                 burstInvulnTicksRemaining--;
@@ -641,6 +703,7 @@ namespace DemonIdol.BlazBlue
                     {
                         bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
                         stateTick = 0;
+                        ticksSinceExitedStun = 0;
                         chainState.Reset();
                         comboState.Reset();
                         if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
@@ -656,8 +719,24 @@ namespace DemonIdol.BlazBlue
                     {
                         bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
                         stateTick = 0;
+                        ticksSinceExitedStun = 0;
                         chainState.Reset();
                         comboState.Reset();
+                        if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
+                    }
+                    break;
+
+                case BBState.Crumple:
+                    if (hitstunRemaining > 0)
+                    {
+                        hitstunRemaining--;
+                    }
+                    else
+                    {
+                        bbState = BBState.DownWait;
+                        stateTick = 0;
+                        hitstunRemaining = 32;
+                        ticksSinceExitedStun = 0;
                         if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
                     }
                     break;
@@ -692,6 +771,7 @@ namespace DemonIdol.BlazBlue
                             hitstunRemaining = 16;
                             simVelocity.x = facingDir * 4.5f;
                             wakeupAction = BBWakeupAction.QuickTechRoll;
+                            techRollStrikeInvulnTicks = 8;
                             if (animDriver != null) animDriver.UpdateLocomotionState(bbState, 5, isGrounded);
                             break;
                         }
@@ -732,6 +812,8 @@ namespace DemonIdol.BlazBlue
                         simVelocity.x = 0f;
                         bbState = isGrounded ? BBState.Neutral : BBState.Airborne;
                         stateTick = 0;
+                        ticksSinceExitedStun = 0;
+                        wakeupThrowInvulnTicks = 6;
                         chainState.Reset();
                         comboState.Reset();
                         wakeupAction = BBWakeupAction.Natural;
@@ -1356,6 +1438,25 @@ namespace DemonIdol.BlazBlue
                 return true;
             }
             return false;
+        }
+
+        public void TriggerRimFlash(Color color, int ticks = 2)
+        {
+            if (_cachedRenderers == null || _cachedRenderers.Length == 0)
+            {
+                _cachedRenderers = GetComponentsInChildren<Renderer>(true);
+            }
+            if (_propBlock == null) _propBlock = new MaterialPropertyBlock();
+            _propBlock.SetColor(_RimColorProp, color);
+            _propBlock.SetColor(_EmissionColorProp, color);
+            _rimFlashTicksRemaining = ticks;
+            if (_cachedRenderers != null)
+            {
+                for (int i = 0; i < _cachedRenderers.Length; i++)
+                {
+                    if (_cachedRenderers[i] != null) _cachedRenderers[i].SetPropertyBlock(_propBlock);
+                }
+            }
         }
 
         public void ConsumeCurrentCommand()

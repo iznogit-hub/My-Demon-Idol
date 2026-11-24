@@ -129,6 +129,17 @@ namespace DemonIdol.Combat
         public float maxShakeAngle = 0.0f;
         public float masterShakeScale = 0.25f;
 
+        public struct CameraMicroImpulse
+        {
+            public Vector3 direction;
+            public float magnitude;
+            public int totalTicks;
+            public int ticksRemaining;
+            public float fovPunch;
+        }
+
+        private CameraMicroImpulse _activeImpulse;
+        private float _baseFieldOfView = 32f;
         private Vector3 _lastTargetPosition;
         private Camera _cam;
         private float _stageArenaLimitX = 10.5f;
@@ -143,6 +154,7 @@ namespace DemonIdol.Combat
             }
             _instance = this;
             _cam = GetComponent<Camera>();
+            if (_cam != null) _baseFieldOfView = _cam.fieldOfView;
             ConfigurePhysicalCamera();
             _lastTargetPosition = transform.position;
             ResetTrauma();
@@ -484,6 +496,23 @@ namespace DemonIdol.Combat
                 smoothedPosition.y += offsetY;
             }
 
+            if (_activeImpulse.ticksRemaining > 0)
+            {
+                _activeImpulse.ticksRemaining--;
+                float progress = (float)_activeImpulse.ticksRemaining / Mathf.Max(1, _activeImpulse.totalTicks);
+                Vector3 impulseOffset = _activeImpulse.direction * (_activeImpulse.magnitude * progress);
+                smoothedPosition += impulseOffset;
+
+                if (_cam != null && _activeImpulse.fovPunch > 0f)
+                {
+                    _cam.fieldOfView = _baseFieldOfView - (_activeImpulse.fovPunch * progress);
+                }
+            }
+            else if (_cam != null && !Mathf.Approximately(_cam.fieldOfView, _baseFieldOfView))
+            {
+                _cam.fieldOfView = _baseFieldOfView;
+            }
+
             // SF6 Heroic Pitch Angle Lock: Grounded perspective, zero yaw, zero roll
             transform.rotation = Quaternion.Euler(pitchAngle, 0f, 0f);
             transform.position = smoothedPosition;
@@ -495,6 +524,14 @@ namespace DemonIdol.Combat
             minDistanceZ = Mathf.Clamp(stage.cameraMinZ, -8.0f, -3.8f);
             maxDistanceZ = Mathf.Clamp(stage.cameraMaxZ, -14.0f, -7.5f);
             _stageArenaLimitX = stage.ArenaLimitX;
+        }
+
+        public void ApplyStageCameraLimits(DemonIdol.BlazBlue.BBStagePrefabConfig stage)
+        {
+            if (stage == null) return;
+            minDistanceZ = Mathf.Clamp(stage.cameraDefaultZ, -8.0f, -3.8f);
+            maxDistanceZ = Mathf.Clamp(stage.cameraDefaultZ - 5.0f, -14.0f, -7.5f);
+            _stageArenaLimitX = Mathf.Abs(stage.rightWallX);
         }
 
         public Vector3 CalculateFramingPosition()
@@ -526,13 +563,18 @@ namespace DemonIdol.Combat
             }
 
             // 1. Street Fighter 6 Dynamic Zoom Curve & 40% Screen Height Calibration:
-            // At close range (<= 1.8m): pushes in to 45% screen height
+            // At close range (< 2.2m): gentle footsies push-in
             // At neutral spacing (~3.0m): exactly 40% screen height
-            // At corner/wide spacing (>= 7.0m): pulls out to 35% screen height
+            // At corner/wide spacing (>= 7.0m): pulls out smoothly for jumpers/zoners
             float targetFraction;
-            if (fighterDistance <= 3.0f)
+            if (fighterDistance < 2.2f)
             {
-                float t = Mathf.Clamp01((fighterDistance - 1.6f) / (3.0f - 1.6f));
+                float t = Mathf.Clamp01((fighterDistance - 1.2f) / (2.2f - 1.2f));
+                targetFraction = Mathf.Lerp(closeCombatScreenFraction + 0.05f, closeCombatScreenFraction, t);
+            }
+            else if (fighterDistance <= 3.0f)
+            {
+                float t = Mathf.Clamp01((fighterDistance - 2.2f) / (3.0f - 2.2f));
                 targetFraction = Mathf.Lerp(closeCombatScreenFraction, targetCharacterScreenFraction, t);
             }
             else
@@ -593,7 +635,18 @@ namespace DemonIdol.Combat
             float distToBg = Mathf.Abs(targetZ) + 2.5f;
             float halfWidthAtBg = distToBg * tanFovX;
             float maxCamX = Mathf.Max(0f, 15.5f - halfWidthAtBg);
-            targetX = Mathf.Clamp(targetX, -maxCamX, maxCamX);
+
+            var activeStage = DemonIdol.BlazBlue.BBStagePrefabConfig.ActiveConfig;
+            if (activeStage != null)
+            {
+                maxCamX = Mathf.Abs(activeStage.cameraMaxX);
+                targetX = Mathf.Clamp(targetX, activeStage.cameraMinX, activeStage.cameraMaxX);
+                targetY = Mathf.Clamp(targetY, activeStage.cameraMinY, activeStage.cameraMaxY);
+            }
+            else
+            {
+                targetX = Mathf.Clamp(targetX, -maxCamX, maxCamX);
+            }
 
             // Frustum Safety Invariant: Ensure cornered fighters remain inside viewport
             float currentHalfViewX = Mathf.Abs(targetZ) * tanFovX;
@@ -739,6 +792,19 @@ namespace DemonIdol.Combat
         public void AddWallTrauma(float amount) => _traumaWall = Mathf.Clamp01(_traumaWall + amount * 0.35f);
         public void AddExplosionTrauma(float amount) => _traumaExplosion = Mathf.Clamp01(_traumaExplosion + amount * 0.35f);
         public void AddTrauma(float amount) => AddHitTrauma(amount);
+
+        public void ApplyMicroImpulse(Vector3 direction, float magnitude, int ticks, float fovPunch = 0f)
+        {
+            if (magnitude <= 0.001f || ticks <= 0) return;
+            _activeImpulse = new CameraMicroImpulse
+            {
+                direction = direction.sqrMagnitude > 0.001f ? direction.normalized : Vector3.back,
+                magnitude = magnitude,
+                totalTicks = ticks,
+                ticksRemaining = ticks,
+                fovPunch = fovPunch
+            };
+        }
 
         #endregion
     }

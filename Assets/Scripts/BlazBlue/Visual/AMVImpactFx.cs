@@ -165,6 +165,17 @@ namespace DemonIdol.BlazBlue.Visual
             Instance._flashRoutine = Instance.StartCoroutine(Instance.DoMonochromeFlash(flashColor, duration));
         }
 
+        public static void TriggerDemonParryFlash(Vector3 point)
+        {
+            EnsureCanvas();
+            if (Instance == null) return;
+
+            Color flashColor = new Color(1f, 0.92f, 0.35f, 1f); // Gold-white
+            float duration = SettingsPanel.ReducedMotion ? 0.08f : 0.18f; // ~0.18s Demon Idol silhouette flash
+            if (Instance._flashRoutine != null) Instance.StopCoroutine(Instance._flashRoutine);
+            Instance._flashRoutine = Instance.StartCoroutine(Instance.DoMonochromeFlash(flashColor, duration));
+        }
+
         private IEnumerator DoMonochromeFlash(Color targetColor, float duration)
         {
             if (s_ImpactFlashImage == null) yield break;

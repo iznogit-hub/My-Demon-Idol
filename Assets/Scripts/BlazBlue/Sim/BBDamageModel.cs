@@ -14,10 +14,14 @@ namespace DemonIdol.BlazBlue
         public const long SAME_MOVE_PENALTY_DEFAULT_BP = 8_000L; // 0.80x
         public const long DANGER_DAMAGE_MULTIPLIER_BP = 12_500L;  // 1.25x
         public const long STYLISH_DAMAGE_MULTIPLIER_BP = 8_000L;  // 0.80x
+        public const long COUNTER_HIT_DAMAGE_MULTIPLIER_BP = 11_000L;     // 1.10x (+10% damage)
+        public const long PUNISH_COUNTER_DAMAGE_MULTIPLIER_BP = 11_500L;  // 1.15x (+15% damage)
 
         public const float SAME_MOVE_PENALTY_DEFAULT = 0.80f;
         public const float DANGER_DAMAGE_MULTIPLIER = 1.25f;
         public const float STYLISH_DAMAGE_MULTIPLIER = 0.80f;
+        public const float COUNTER_HIT_DAMAGE_MULTIPLIER = 1.10f;
+        public const float PUNISH_COUNTER_DAMAGE_MULTIPLIER = 1.15f;
 
         // Tiered hitstop standards (spec launch pass 1)
         public const int HITSTOP_LIGHT = 9;
@@ -94,7 +98,8 @@ namespace DemonIdol.BlazBlue
             float minDamagePct,          // Guaranteed floor percentage (e.g. 0.08 for B normals, 0.30 for DD)
             bool isDefenderInDanger = false,
             bool isAttackerStylish = false,
-            float sameMovePenalty = SAME_MOVE_PENALTY_DEFAULT)
+            float sameMovePenalty = SAME_MOVE_PENALTY_DEFAULT,
+            BBCounterType counterType = BBCounterType.None)
         {
             if (baseDamage <= 0f) return 0;
 
@@ -121,6 +126,8 @@ namespace DemonIdol.BlazBlue
             // 4. Modifiers in integer BP
             long dangerBP = isDefenderInDanger ? DANGER_DAMAGE_MULTIPLIER_BP : BP_SCALE;
             long stylishBP = isAttackerStylish ? STYLISH_DAMAGE_MULTIPLIER_BP : BP_SCALE;
+            long counterBP = counterType == BBCounterType.PunishCounter ? PUNISH_COUNTER_DAMAGE_MULTIPLIER_BP :
+                            (counterType == BBCounterType.CounterHit ? COUNTER_HIT_DAMAGE_MULTIPLIER_BP : BP_SCALE);
             int curHpInt = (int)Math.Round(defenderCurrentHp);
             int maxHpInt = (int)Math.Round(defenderMaxHp);
             long gutsBP = CalculateGutsBP(curHpInt, maxHpInt);
@@ -132,6 +139,7 @@ namespace DemonIdol.BlazBlue
             totalMultiplierBP = (totalMultiplierBP * repeatFactorBP) / BP_SCALE;
             totalMultiplierBP = (totalMultiplierBP * dangerBP) / BP_SCALE;
             totalMultiplierBP = (totalMultiplierBP * stylishBP) / BP_SCALE;
+            totalMultiplierBP = (totalMultiplierBP * counterBP) / BP_SCALE;
             totalMultiplierBP = (totalMultiplierBP * gutsBP) / BP_SCALE;
 
             long scaledDamage = (baseDmg * totalMultiplierBP) / BP_SCALE;
@@ -143,6 +151,21 @@ namespace DemonIdol.BlazBlue
 
             // 7. Deterministic integer floor (minimum 1 damage on hit)
             return (int)Math.Max(1L, finalDamage);
+        }
+
+        public static int CalculateDamage(
+            float baseDamage,
+            float comboP1,
+            float accumulatedP2,
+            int moveUsesInCombo,
+            float defenderCurrentHp,
+            float defenderMaxHp,
+            float minDamagePct,
+            bool isDefenderInDanger,
+            bool isAttackerStylish,
+            BBCounterType counterType)
+        {
+            return CalculateDamage(baseDamage, comboP1, accumulatedP2, moveUsesInCombo, defenderCurrentHp, defenderMaxHp, minDamagePct, isDefenderInDanger, isAttackerStylish, SAME_MOVE_PENALTY_DEFAULT, counterType);
         }
 
         /// <summary>

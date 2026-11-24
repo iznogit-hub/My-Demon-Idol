@@ -3325,6 +3325,7 @@ GameObject:
   - component: {fileID: 3288981919052749849}
   - component: {fileID: 3848858870626634494}
   - component: {fileID: 1539931116241798464}
+  - component: {fileID: 5169293277233499693}
   m_Layer: 0
   m_Name: C08_SanpakuChan
   m_TagString: Untagged
@@ -3416,6 +3417,25 @@ MonoBehaviour:
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &5169293277233499693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8074729664840457433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C08
+  characterDisplayName: SanpakuChan
+  profile: {fileID: 11400000, guid: acbfed8e372aa4ea68ff90c84ab41dff, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 6afc4fc88fee743d8b0fe789a24fe645, type: 2}
+  overrideController: {fileID: 22100000, guid: f8f504493de4c46d2b0192897284d4cb, type: 2}
+  animator: {fileID: 3288981919052749849}
+  weaponRig: {fileID: 1539931116241798464}
 --- !u!1 &8124455944137588270
 GameObject:
   m_ObjectHideFlags: 0

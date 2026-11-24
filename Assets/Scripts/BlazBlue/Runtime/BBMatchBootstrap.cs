@@ -90,6 +90,7 @@ namespace DemonIdol.BlazBlue
         {
             _bootstrapped = true;
             isBlazBlueActive = true;
+            InitializeActiveStage();
             var fighters = FindObjectsByType<FighterController>(FindObjectsSortMode.None);
             BBFighterBrain p1Brain = null;
             BBFighterBrain p2Brain = null;
@@ -274,6 +275,122 @@ namespace DemonIdol.BlazBlue
             driver.animator = animator;
             driver.brain = brain;
             driver.InitializeGraph();
+        }
+
+        /// <summary>
+        /// Spawns and configures the active Stage Prefab dynamically from StageRegistry (defaulting to ST07_CollegeRaimon.prefab),
+        /// applying its spawn points, corner walls, camera bounds, fog, post-FX profile, and BGM automatically at match start.
+        /// </summary>
+        public static BBStagePrefabConfig InitializeActiveStage(string requestedStageId = null)
+        {
+            string stageId = requestedStageId;
+            if (string.IsNullOrEmpty(stageId))
+            {
+                var director = HomegrownCombatDirector.Instance;
+                if (director != null && !string.IsNullOrEmpty(director.ActiveStageId))
+                {
+                    stageId = director.ActiveStageId;
+                }
+                else
+                {
+                    stageId = PlayerPrefs.GetString("MDI_StageId", "ST07");
+                }
+            }
+            if (string.IsNullOrEmpty(stageId)) stageId = "ST07";
+
+            string canonicalStageId = StageRegistry.ResolveCanonicalStageId(stageId);
+            var stageDef = StageRegistry.GetStageById(canonicalStageId);
+            GameObject stagePrefab = stageDef != null ? stageDef.stagePrefab : null;
+
+            if (stagePrefab == null)
+            {
+                stagePrefab = Resources.Load<GameObject>("Prefabs/Stages/" + canonicalStageId);
+                if (stagePrefab == null)
+                {
+                    stagePrefab = Resources.Load<GameObject>("Prefabs/Stages/ST07_CollegeRaimon");
+                }
+#if UNITY_EDITOR
+                if (stagePrefab == null)
+                {
+                    stagePrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Stages/ST07_CollegeRaimon.prefab");
+                }
+#endif
+            }
+
+            GameObject arenaRoot = GameObject.Find("Arcade_Stage_Root");
+            if (arenaRoot == null) arenaRoot = new GameObject("Arcade_Stage_Root");
+
+            BBStagePrefabConfig stageConfig = arenaRoot.GetComponentInChildren<BBStagePrefabConfig>(true);
+
+            // If no existing config or stage instance differs from target prefab
+            if (stagePrefab != null && (stageConfig == null || (stageConfig.gameObject.name != stagePrefab.name && !stageConfig.gameObject.name.StartsWith(stagePrefab.name))))
+            {
+                if (stageConfig != null)
+                {
+                    if (Application.isPlaying) Destroy(stageConfig.gameObject);
+                    else DestroyImmediate(stageConfig.gameObject);
+                }
+
+                GameObject stageInstance = Instantiate(stagePrefab, arenaRoot.transform);
+                stageInstance.name = stagePrefab.name;
+                stageInstance.transform.localPosition = Vector3.zero;
+                stageInstance.transform.localRotation = Quaternion.identity;
+                stageConfig = stageInstance.GetComponent<BBStagePrefabConfig>();
+            }
+
+            if (stageConfig != null)
+            {
+                // 1. Combat Geometry & Corner Walls
+                PushbackSolver.SetArenaBounds(stageConfig.rightWallX, stageConfig.rightWallX - 0.2f);
+
+                // 2. Spawn Positions
+                var p1Spawn = GameObject.Find("SpawnPoint_P1");
+                if (p1Spawn != null) p1Spawn.transform.position = new Vector3(stageConfig.p1SpawnX, stageConfig.floorY, 0f);
+                var p2Spawn = GameObject.Find("SpawnPoint_P2");
+                if (p2Spawn != null) p2Spawn.transform.position = new Vector3(stageConfig.p2SpawnX, stageConfig.floorY, 0f);
+
+                // 3. Camera Framing Limits
+                if (FighterCamera2D.Instance != null)
+                {
+                    FighterCamera2D.Instance.ApplyStageCameraLimits(stageConfig);
+                }
+
+                // 4. Lighting, Fog & Atmosphere
+                stageConfig.ApplyEnvironmentSettings();
+
+                // 5. Audio / BGM & Ambient Loops
+                if (stageConfig.stageBGM != null)
+                {
+                    var bgmObj = GameObject.Find("Audio_BGM");
+                    if (bgmObj == null) bgmObj = new GameObject("Audio_BGM");
+                    var bgmSource = bgmObj.GetComponent<AudioSource>();
+                    if (bgmSource == null) bgmSource = bgmObj.AddComponent<AudioSource>();
+                    bgmSource.loop = true;
+                    if (bgmSource.clip != stageConfig.stageBGM || !bgmSource.isPlaying)
+                    {
+                        bgmSource.clip = stageConfig.stageBGM;
+                        bgmSource.Play();
+                    }
+                }
+
+                if (stageConfig.ambientLoopSFX != null)
+                {
+                    var ambientObj = GameObject.Find("Audio_AmbientLoop");
+                    if (ambientObj == null) ambientObj = new GameObject("Audio_AmbientLoop");
+                    var ambientSource = ambientObj.GetComponent<AudioSource>();
+                    if (ambientSource == null) ambientSource = ambientObj.AddComponent<AudioSource>();
+                    ambientSource.loop = true;
+                    if (ambientSource.clip != stageConfig.ambientLoopSFX || !ambientSource.isPlaying)
+                    {
+                        ambientSource.clip = stageConfig.ambientLoopSFX;
+                        ambientSource.Play();
+                    }
+                }
+
+                Debug.Log($"<color=#00e676>[BBMatchBootstrap] Active Stage Prefab '{stageConfig.stageDisplayName}' ({stageConfig.stageId}) spawned and configured successfully!</color>");
+            }
+
+            return stageConfig;
         }
     }
 }

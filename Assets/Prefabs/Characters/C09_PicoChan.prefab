@@ -2012,6 +2012,7 @@ GameObject:
   - component: {fileID: 9200602721552186482}
   - component: {fileID: 5061480043249247778}
   - component: {fileID: 477758949311330429}
+  - component: {fileID: 4398941483561684965}
   m_Layer: 0
   m_Name: C09_PicoChan
   m_TagString: Untagged
@@ -2102,6 +2103,25 @@ MonoBehaviour:
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &4398941483561684965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2350652681907635850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C09
+  characterDisplayName: PicoChan
+  profile: {fileID: 11400000, guid: bf88239a2700e41869a814d9e5c23900, type: 2}
+  characterDefinition: {fileID: 11400000, guid: e2ae9b33b9f2c4095a6a7da89a1a4d9d, type: 2}
+  overrideController: {fileID: 22100000, guid: cf4a6419c44394bfaa4d96a64710f094, type: 2}
+  animator: {fileID: 5061480043249247778}
+  weaponRig: {fileID: 477758949311330429}
 --- !u!1 &2360930407998502323
 GameObject:
   m_ObjectHideFlags: 0

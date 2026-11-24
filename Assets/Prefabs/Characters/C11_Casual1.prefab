@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 4422022864842465133}
   - component: {fileID: 4577230415727598117}
   - component: {fileID: 523548028597670086}
+  - component: {fileID: 7702964079760400752}
   m_Layer: 0
   m_Name: C11_Casual1
   m_TagString: Untagged
@@ -359,6 +360,25 @@ MonoBehaviour:
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &7702964079760400752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694388104871626401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C11
+  characterDisplayName: Casual1
+  profile: {fileID: 11400000, guid: 0e4d3fcde7b2521ebcc54d7c2b31492f, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 60490d5d0c3fa48c59f70c489f2a0e73, type: 2}
+  overrideController: {fileID: 22100000, guid: 8f76678bf635d49aeaa0815e78cb314c, type: 2}
+  animator: {fileID: 4422022864842465133}
+  weaponRig: {fileID: 523548028597670086}
 --- !u!1 &1718647405069632755
 GameObject:
   m_ObjectHideFlags: 0

@@ -2574,6 +2574,7 @@ GameObject:
   - component: {fileID: 6352511659601082584}
   - component: {fileID: 8623926055736699674}
   - component: {fileID: 2517836196787123589}
+  - component: {fileID: 4901928708709048494}
   m_Layer: 0
   m_Name: EX06_Sentry
   m_TagString: Untagged
@@ -2656,17 +2657,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.05, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.5, y: 0.5, z: 0.5}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 0}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
   secondaryScale: {x: 1, y: 1, z: 1}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &4901928708709048494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3750609567362246273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: EX06
+  characterDisplayName: Sentry
+  profile: {fileID: 11400000, guid: ab26b1eed8fb5cbf8f68ac504758d3ed, type: 2}
+  characterDefinition: {fileID: 11400000, guid: d432c4222f2ba4906af114f7086f3b7b, type: 2}
+  overrideController: {fileID: 22100000, guid: dad5e3b5aa48e43e5a44d1ae7a79969d, type: 2}
+  animator: {fileID: 6352511659601082584}
+  weaponRig: {fileID: 2517836196787123589}
 --- !u!1 &3862351820782906489
 GameObject:
   m_ObjectHideFlags: 0

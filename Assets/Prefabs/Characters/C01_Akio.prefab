@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3623253081010618763}
   - component: {fileID: 4444828250187098507}
   - component: {fileID: 2428029956833428231}
+  - component: {fileID: 7439051020000644712}
   m_Layer: 0
   m_Name: C01_Akio
   m_TagString: Untagged
@@ -103,6 +104,25 @@ MonoBehaviour:
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &7439051020000644712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11815375754467039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: C01
+  characterDisplayName: Akio
+  profile: {fileID: 11400000, guid: 2de1c05e6470b4b898c0532995a9a2d0, type: 2}
+  characterDefinition: {fileID: 11400000, guid: 850f4cb2234fe410e9295caef59a4f60, type: 2}
+  overrideController: {fileID: 22100000, guid: c01a110bb00000000000000000000001, type: 2}
+  animator: {fileID: 3623253081010618763}
+  weaponRig: {fileID: 2428029956833428231}
 --- !u!1 &104068586201757542
 GameObject:
   m_ObjectHideFlags: 0

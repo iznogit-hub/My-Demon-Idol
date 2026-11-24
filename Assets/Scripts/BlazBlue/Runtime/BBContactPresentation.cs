@@ -91,8 +91,13 @@ namespace DemonIdol.BlazBlue
             }
             if (BBAccessibility.ReducedGore) scale *= 0.35f;
 
+            // Directional strike vector alignment
+            Vector3 strikeDir = attacker != null ? (point - attacker.transform.position).normalized : Vector3.right;
+            if (strikeDir.sqrMagnitude < 0.001f) strikeDir = Vector3.right * (attacker != null ? attacker.FacingDirection : 1);
+            Quaternion strikeRot = Quaternion.LookRotation(strikeDir, Vector3.up);
+
             // Spawn tier-scaled hit spark
-            SpawnHitSpark(point, scale, isSuper, isHeavy);
+            SpawnHitSpark(point, scale, isSuper, isHeavy, strikeRot);
 
             // AMV Kinetic impact flash on counter hits
             if (counterHit)
@@ -256,7 +261,7 @@ namespace DemonIdol.BlazBlue
             return instance;
         }
 
-        public static GameObject SpawnHitSpark(Vector3 point, float scale, bool isSuper, bool isHeavy)
+        public static GameObject SpawnHitSpark(Vector3 point, float scale, bool isSuper, bool isHeavy, Quaternion? rotation = null)
         {
             point = SanitizePoint(point);
             LastSparkPosition = point;
@@ -271,7 +276,8 @@ namespace DemonIdol.BlazBlue
             if (sparkPrefab != null)
             {
                 Vector3 targetScale = Vector3.one * Mathf.Clamp(scale, 0.8f, 2.5f);
-                return GetPooledSpark(sparkPrefab, point, Quaternion.identity, targetScale);
+                Quaternion rot = rotation.HasValue ? rotation.Value : Quaternion.identity;
+                return GetPooledSpark(sparkPrefab, point, rot, targetScale);
             }
             return null;
         }
@@ -322,6 +328,50 @@ namespace DemonIdol.BlazBlue
             if (!Application.isPlaying) return;
             float radius = guardCrush ? 3.2f : isBarrier ? 2.8f : (chip ? 2.2f : 1.6f);
             ShockwaveDistortionEmitter.EmitPooled(point, radius, guardCrush ? 0.36f : 0.24f);
+        }
+
+        public static void OnInstantBlock(Vector3 point, BBFighterBrain defender)
+        {
+            point = SanitizePoint(point);
+            SpawnGuardSpark(point, false, true);
+            if (CombatAudioDirector.Instance != null)
+            {
+                CombatAudioDirector.Instance.PlayParry();
+            }
+            if (BBAudioBridge.Instance != null)
+            {
+                BBAudioBridge.Instance.PlayCombatSound(BBSoundEffect.BarrierShatter, point);
+            }
+            DemonIdol.BlazBlue.Visual.AMVImpactFx.TriggerDemonParryFlash(point);
+            defender?.TriggerRimFlash(new Color(0.2f, 1f, 0.9f, 1f), 2);
+        }
+
+        public static void OnWallBounce(Vector3 point)
+        {
+            point = SanitizePoint(point);
+            SpawnHitSpark(point, 1.8f, false, true);
+            if (CombatAudioDirector.Instance != null)
+            {
+                CombatAudioDirector.Instance.PlayHitHeavy();
+            }
+            if (BBAudioBridge.Instance != null)
+            {
+                BBAudioBridge.Instance.PlayCombatSound(BBSoundEffect.HitHeavy, point);
+            }
+            DemonIdol.BlazBlue.Visual.AMVImpactFx.TriggerCounterOrCrushFlash(point, false, true);
+        }
+
+        public static void OnReversal(Vector3 point)
+        {
+            point = SanitizePoint(point);
+            if (CombatAudioDirector.Instance != null)
+            {
+                CombatAudioDirector.Instance.PlayParry();
+            }
+            if (BBAudioBridge.Instance != null)
+            {
+                BBAudioBridge.Instance.PlayCombatSound(BBSoundEffect.BarrierShatter, point);
+            }
         }
 
         public static void OnWhiff()

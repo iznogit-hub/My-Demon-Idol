@@ -114,6 +114,7 @@ namespace DemonIdol.BlazBlue
                 case BBState.AttackRecovery:
                     return FrameType.Recovery;
                 case BBState.Hitstun:
+                case BBState.Crumple:
                     return FrameType.Hitstun;
                 case BBState.Blockstun:
                 case BBState.BarrierBlockstun:

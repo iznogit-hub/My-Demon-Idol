@@ -1605,6 +1605,7 @@ GameObject:
   - component: {fileID: 8382100453401000018}
   - component: {fileID: 8065228848897365670}
   - component: {fileID: 4714802571454106776}
+  - component: {fileID: 4044300437265716990}
   m_Layer: 0
   m_Name: SK02_Galahad
   m_TagString: Untagged
@@ -1683,17 +1684,38 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.04, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.65, y: 0.65, z: 0.65}
+  primaryTargetLength: 0
   secondaryWeaponPrefab: {fileID: 3360497899579478474, guid: 9ccfc98472b804904bd895a294dbf8b5, type: 3}
   secondarySocket: 15
   secondaryPositionOffset: {x: 0, y: 0, z: 0.05}
   secondaryRotationOffset: {x: 0, y: 90, z: 0}
   secondaryScale: {x: 0.58, y: 0.58, z: 0.58}
+  secondaryTargetLength: 0
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
   _secondaryBoneTransform: {fileID: 0}
   _primaryTrail: {fileID: 0}
   _secondaryTrail: {fileID: 0}
+--- !u!114 &4044300437265716990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4815620443998991726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b526df0ba1645338e2efd7db734c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBFighterPrefabConfig
+  characterId: SK02
+  characterDisplayName: Galahad
+  profile: {fileID: 11400000, guid: 6c445409a76852a48d35f00c67895933, type: 2}
+  characterDefinition: {fileID: 11400000, guid: e6d63962f3a6d49df8e0c8b923979031, type: 2}
+  overrideController: {fileID: 22100000, guid: 018a4662bdfc248b0bf2b8f01668eff0, type: 2}
+  animator: {fileID: 8382100453401000018}
+  weaponRig: {fileID: 4714802571454106776}
 --- !u!1 &4920187875512877029
 GameObject:
   m_ObjectHideFlags: 0
