@@ -1048,9 +1048,14 @@ namespace DemonIdol.BlazBlue
         /// </summary>
         public void PopulateWorldBoxes(BBBoxBuffer buffer)
         {
+            PopulateWorldBoxes(buffer, transform.position);
+        }
+
+        public void PopulateWorldBoxes(BBBoxBuffer buffer, Vector2 position)
+        {
             if (buffer == null) return;
-            float posX = transform.position.x;
-            float posY = transform.position.y;
+            float posX = position.x;
+            float posY = position.y;
             int facing = fighter != null ? fighter.FacingDirection : 1;
 
             // 1. Pushbox
@@ -1142,8 +1147,13 @@ namespace DemonIdol.BlazBlue
         /// </summary>
         public BBWorldBox GetPushBox()
         {
-            float posX = transform.position.x;
-            float posY = transform.position.y;
+            return GetPushBox(transform.position);
+        }
+
+        public BBWorldBox GetPushBox(Vector2 position)
+        {
+            float posX = position.x;
+            float posY = position.y;
             int facing = fighter != null ? fighter.FacingDirection : 1;
 
             if (bodyBoxes != null)
@@ -1197,11 +1207,41 @@ namespace DemonIdol.BlazBlue
                 {
                     transform.position += new Vector3(-sepDist, 0, 0);
                     attacker.transform.position += new Vector3(sepDist, 0, 0);
+                    if (BBMatchSim.Instance != null)
+                    {
+                        if (this == BBMatchSim.Instance.p1Brain)
+                        {
+                            BBMatchSim.Instance.p1SimPosition.x -= sepDist;
+                            BBMatchSim.Instance.p2SimPosition.x += sepDist;
+                        }
+                        else
+                        {
+                            BBMatchSim.Instance.p2SimPosition.x -= sepDist;
+                            BBMatchSim.Instance.p1SimPosition.x += sepDist;
+                        }
+                        BBMatchSim.Instance.p1SimPosition.x = BBMatchSim.ClampToArena(BBMatchSim.Instance.p1SimPosition.x);
+                        BBMatchSim.Instance.p2SimPosition.x = BBMatchSim.ClampToArena(BBMatchSim.Instance.p2SimPosition.x);
+                    }
                 }
                 else
                 {
                     transform.position += new Vector3(sepDist, 0, 0);
                     attacker.transform.position += new Vector3(-sepDist, 0, 0);
+                    if (BBMatchSim.Instance != null)
+                    {
+                        if (this == BBMatchSim.Instance.p1Brain)
+                        {
+                            BBMatchSim.Instance.p1SimPosition.x += sepDist;
+                            BBMatchSim.Instance.p2SimPosition.x -= sepDist;
+                        }
+                        else
+                        {
+                            BBMatchSim.Instance.p2SimPosition.x += sepDist;
+                            BBMatchSim.Instance.p1SimPosition.x -= sepDist;
+                        }
+                        BBMatchSim.Instance.p1SimPosition.x = BBMatchSim.ClampToArena(BBMatchSim.Instance.p1SimPosition.x);
+                        BBMatchSim.Instance.p2SimPosition.x = BBMatchSim.ClampToArena(BBMatchSim.Instance.p2SimPosition.x);
+                    }
                 }
 
                 if (cc1 != null) cc1.enabled = true;

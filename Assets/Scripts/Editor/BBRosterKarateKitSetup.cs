@@ -458,8 +458,8 @@ namespace DemonIdol.BlazBlue.Editor
             }
             else if (cfg.moveId == "j.B")
             {
-                cy = 0.75f;
-                hy = 0.35f;
+                cy = 0.15f;
+                hy = 0.70f;
                 farEdge = 1.10f + reachDelta;
             }
             else if (cfg.moveId == "5A")

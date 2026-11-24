@@ -215,10 +215,6 @@ namespace DemonIdol.BlazBlue
                 {
                     DemonIdol.BlazBlue.UI.BBTouchOverlay.Create(canvas.transform, p1Brain.sampler);
                 }
-                else if (BBTouchLayout.ShouldShowTouchControls() && canvas.GetComponentInChildren<BBTouchLayout>(true) == null)
-                {
-                    BBTouchLayout.Create(canvas.transform, p1Brain.sampler);
-                }
             }
         }
 

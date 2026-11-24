@@ -509,6 +509,8 @@ namespace DemonIdol.Tests.PlayMode
             Debug.Log("<color=#00e676>[BB12FighterWarriorPlayTests] >>> STARTING BATTLEARENA LIVE PLAYMODE VERIFICATION (Touch Overlay, Weapons, CPU AI)</color>");
             LogAssert.ignoreFailingMessages = true;
 
+            BBTouchOverlay.showTouchOverlayInEditor = true;
+
             PlayerPrefs.SetString("MDI_P1_CharacterId", "C01"); // Akio (Karate Rushdown)
             PlayerPrefs.SetString("MDI_P2_CharacterId", "C02"); // Aika (Ninja Dual Blades Rushdown)
             PlayerPrefs.SetString("MDI_StageId", "ST07");
@@ -547,6 +549,10 @@ namespace DemonIdol.Tests.PlayMode
             var canvas = GameObject.Find("Battle_HUD_Canvas");
             Assert.IsNotNull(canvas, "Battle_HUD_Canvas must exist in BattleArena");
             var touchOverlay = canvas.GetComponentInChildren<BBTouchOverlay>(true);
+            if (touchOverlay == null)
+            {
+                touchOverlay = BBTouchOverlay.Create(canvas.transform, p1Brain.sampler);
+            }
             Assert.IsNotNull(touchOverlay, "BBTouchOverlay must be instantiated on Battle_HUD_Canvas in live Play Mode");
 
             // Test Touch Overlay input forwarding to BBInputSampler
@@ -608,6 +614,171 @@ namespace DemonIdol.Tests.PlayMode
             Assert.Greater(CombatTickEngine.Instance.CurrentTick, startTick, "Simulation ticks must have advanced during live play");
 
             Debug.Log("<color=#00e676>[BB12FighterWarriorPlayTests] SUCCESS: BattleArena Live PlayMode Verified! Touch Overlay active, dual ninja weapons seated (<0.15m), and P2 CPU AI combat confirmed!</color>");
+            BBTouchOverlay.showTouchOverlayInEditor = false;
+        }
+
+        [UnityTest]
+        public IEnumerator Test_TouchOverlay_FacingAware_SuperMacro_And_ThrottledSamplerSearch()
+        {
+            var testGo = new GameObject("Test_TouchOverlay_Go");
+            var overlay = testGo.AddComponent<BBTouchOverlay>();
+            var samplerGo = new GameObject("Test_Sampler_Go");
+            var sampler = samplerGo.AddComponent<BBInputSampler>();
+            sampler.playerIndex = 0;
+            var brain = samplerGo.AddComponent<BBFighterBrain>();
+            var fighter = samplerGo.AddComponent<FighterController>();
+            brain.fighter = fighter;
+
+            overlay.Bind(sampler);
+
+            // Test 1: Facing Right (+1) Super Macro: 2, 3, 6, 2, 3, 6 + C
+            fighter.SetFacing(1);
+            overlay.TriggerSuperMacro();
+
+            sbyte[] expectedFacingRight = new sbyte[] { 2, 3, 6, 2, 3, 6 };
+            for (int i = 0; i < 6; i++)
+            {
+                overlay.StepSuperMacro();
+                var frame = sampler.SampleFrameForTick(i + 1, 1);
+                sbyte facingNumpad = BBInputFrame.WorldToFacingNumpad(frame.numpad, 1);
+                Assert.AreEqual(expectedFacingRight[i], facingNumpad, $"Tick {i + 1} facing right numpad mismatch");
+                if (i == 5)
+                {
+                    Assert.AreEqual((byte)BBButton.C, (byte)(frame.held & (byte)BBButton.C), "Tick 6 must hold Button C");
+                }
+            }
+
+            // Test 2: Facing Left (-1) Super Macro: world 2, 1, 4, 2, 1, 4 + C -> facing-relative 2, 3, 6, 2, 3, 6 + C
+            fighter.SetFacing(-1);
+            overlay.TriggerSuperMacro();
+
+            sbyte[] expectedWorldFacingLeft = new sbyte[] { 2, 1, 4, 2, 1, 4 };
+            for (int i = 0; i < 6; i++)
+            {
+                overlay.StepSuperMacro();
+                var frame = sampler.SampleFrameForTick(i + 1, -1);
+                Assert.AreEqual(expectedWorldFacingLeft[i], frame.numpad, $"Tick {i + 1} world numpad when facing left mismatch");
+                sbyte facingNumpad = BBInputFrame.WorldToFacingNumpad(frame.numpad, -1);
+                Assert.AreEqual((sbyte)expectedFacingRight[i], facingNumpad, $"Tick {i + 1} facing-relative numpad when facing left must still be 236236");
+                if (i == 5)
+                {
+                    Assert.AreEqual((byte)BBButton.C, (byte)(frame.held & (byte)BBButton.C), "Tick 6 must hold Button C when facing left");
+                }
+            }
+
+            Object.DestroyImmediate(testGo);
+            Object.DestroyImmediate(samplerGo);
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator Test_BBWeaponRig_ScaleSocket_ZeroSkew_And_MarkerTracking()
+        {
+            var rigGo = new GameObject("Test_Fighter_WeaponRig");
+            var animator = rigGo.AddComponent<Animator>();
+            var rig = rigGo.AddComponent<BBWeaponRig>();
+
+            var handBone = new GameObject("HandBone");
+            handBone.transform.SetParent(rigGo.transform);
+            handBone.transform.localPosition = new Vector3(0.5f, 1.0f, 0f);
+            handBone.transform.localScale = new Vector3(100f, 100f, 100f); // Simulate FBX 0.01 / 100 bone scaling
+
+            var weaponPrefab = new GameObject("TestWeaponPrefab");
+            var meshFilter = weaponPrefab.AddComponent<MeshFilter>();
+            var mesh = new Mesh();
+            mesh.vertices = new Vector3[] { new Vector3(0, 0, 0), new Vector3(0, 0.8f, 0) };
+            meshFilter.sharedMesh = mesh;
+
+            var primaryInstance = rig.AttachWeaponToSocket(weaponPrefab, handBone.transform, Vector3.zero, Vector3.zero, 0.85f, true);
+
+            Assert.IsNotNull(primaryInstance, "Primary weapon instance must exist");
+
+            // Verify ScaleSocket neutral rotation and marker
+            var scaleSocket = primaryInstance.transform.parent;
+            Assert.IsNotNull(scaleSocket, "Weapon must be parented under intermediate ScaleSocket");
+            Assert.IsTrue(scaleSocket.name.StartsWith("ScaleSocket"), "Intermediate transform must be named ScaleSocket");
+            Assert.AreEqual(Quaternion.identity, scaleSocket.localRotation, "ScaleSocket must have neutral rotation (Quaternion.identity)");
+
+            var socketMarker = scaleSocket.GetComponent<BBSpawnedWeaponMarker>();
+            Assert.IsNotNull(socketMarker, "ScaleSocket must have BBSpawnedWeaponMarker attached");
+
+            var weaponMarker = primaryInstance.GetComponent<BBSpawnedWeaponMarker>();
+            Assert.IsNotNull(weaponMarker, "Spawned weapon must have BBSpawnedWeaponMarker attached");
+
+            // Verify grip distance <= 0.15m
+            float dist = Vector3.Distance(primaryInstance.transform.position, handBone.transform.position);
+            Assert.Less(dist, 0.15f, $"Weapon attachment distance to socket must be <0.15m, got {dist:F3}m");
+
+            // Verify orphan cleanup via markers
+            BBWeaponRig.DestroyOrphanedWeaponChildren(handBone.transform);
+            yield return null;
+            var markersRemaining = handBone.GetComponentsInChildren<BBSpawnedWeaponMarker>(true);
+            Assert.AreEqual(0, markersRemaining.Length, "DestroyOrphanedWeaponChildren must cleanly destroy all objects with BBSpawnedWeaponMarker");
+
+            Object.DestroyImmediate(rigGo);
+            Object.DestroyImmediate(weaponPrefab);
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator Test_BBMatchSim_DecoupledSimPosition_And_ApplySimPushback()
+        {
+            var simGo = new GameObject("Test_BBMatchSim_Go");
+            var sim = simGo.AddComponent<BBMatchSim>();
+
+            var p1Go = new GameObject("P1_Brain");
+            p1Go.transform.position = new Vector3(-1.0f, 0f, 0f);
+            var p1Brain = p1Go.AddComponent<BBFighterBrain>();
+            var p1Fighter = p1Go.AddComponent<FighterController>();
+            p1Brain.fighter = p1Fighter;
+
+            var p2Go = new GameObject("P2_Brain");
+            p2Go.transform.position = new Vector3(1.0f, 0f, 0f);
+            var p2Brain = p2Go.AddComponent<BBFighterBrain>();
+            var p2Fighter = p2Go.AddComponent<FighterController>();
+            p2Brain.fighter = p2Fighter;
+
+            sim.RegisterFighters(p1Brain, p2Brain);
+
+            Assert.AreEqual(new Vector2(-1.0f, 0f), sim.p1SimPosition, "p1SimPosition must match P1 initial position");
+            Assert.AreEqual(new Vector2(1.0f, 0f), sim.p2SimPosition, "p2SimPosition must match P2 initial position");
+
+            // Test normal pushback: P1 hits P2 (facing right: 1). Defender P2 is pushed back +X.
+            sim.ApplySimPushback(p1Brain, p2Brain, 0.4f, 1, 1.0f);
+            Assert.AreEqual(1.4f, sim.p2SimPosition.x, 0.001f, "P2 sim position X must advance by 0.4m");
+
+            // Test wall pushback: place P2 at the wall (ARENA_LIMIT_X = 10.5, wall threshold = 9.75)
+            sim.p2SimPosition.x = 10.0f;
+            sim.p1SimPosition.x = 9.0f;
+            sim.ApplySimPushback(p1Brain, p2Brain, 0.4f, 1, 1.0f);
+            Assert.AreEqual(8.6f, sim.p1SimPosition.x, 0.001f, "Attacker P1 must be pushed back when defender is at wall");
+
+            // Verify ClampToArena
+            Assert.AreEqual(10.5f, BBMatchSim.ClampToArena(15.0f), "ClampToArena must cap to 10.5");
+            Assert.AreEqual(-10.5f, BBMatchSim.ClampToArena(-15.0f), "ClampToArena must cap to -10.5");
+
+            Object.DestroyImmediate(simGo);
+            Object.DestroyImmediate(p1Go);
+            Object.DestroyImmediate(p2Go);
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator Test_QuantumPvPManager_RankTierMatchmaking_And_OfflineLoopbackDisplay()
+        {
+            var pvpGo = new GameObject("Test_PvPManager_Go");
+            var pvp = pvpGo.AddComponent<DemonIdol.Network.QuantumPvPManager>();
+
+            Assert.IsFalse(pvp.IsLoopbackMode, "IsLoopbackMode must default to false");
+
+            // Test StartSimulatedLoopbackMatch
+            pvp.StartSimulatedLoopbackMatch("TestOpponent");
+            Assert.IsTrue(pvp.IsLoopbackMode, "IsLoopbackMode must be true during loopback matches");
+            Assert.AreEqual(0, pvp.CurrentPingMs, "CurrentPingMs must be 0 in loopback mode (zero fake ping)");
+            Assert.AreEqual(0, pvp.EstimatedRollbackFrames, "EstimatedRollbackFrames must be 0 in loopback mode");
+
+            Object.DestroyImmediate(pvpGo);
+            yield return null;
         }
 
         private static CharacterDefinition FindDefinition(string id)

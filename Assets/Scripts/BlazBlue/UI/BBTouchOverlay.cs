@@ -20,7 +20,7 @@ namespace DemonIdol.BlazBlue.UI
     [DisallowMultipleComponent]
     public class BBTouchOverlay : MonoBehaviour
     {
-        public static bool showTouchOverlayInEditor = true;
+        public static bool showTouchOverlayInEditor = false;
 
         public enum LeftHandMode
         {
@@ -52,6 +52,9 @@ namespace DemonIdol.BlazBlue.UI
         // Macro super execution state
         private bool _superMacroActive = false;
         private int _superMacroTicks = 0;
+        private float _macroFallbackTimer = 0f;
+        private float _samplerSearchTimer = 0f;
+        private CombatTickEngine _subscribedTickEngine = null;
 
         private static Sprite s_CircleSprite;
         private static Sprite s_RingSprite;
@@ -60,8 +63,39 @@ namespace DemonIdol.BlazBlue.UI
         {
 #if UNITY_EDITOR
             if (showTouchOverlayInEditor) return true;
+            return false;
+#else
+            return Application.isMobilePlatform;
 #endif
-            return Application.isMobilePlatform || SystemInfo.deviceType == DeviceType.Handheld;
+        }
+
+        private void OnEnable()
+        {
+            SubscribeTickEngine();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeTickEngine();
+        }
+
+        private void SubscribeTickEngine()
+        {
+            if (CombatTickEngine.Instance != null && _subscribedTickEngine == null)
+            {
+                _subscribedTickEngine = CombatTickEngine.Instance;
+                _subscribedTickEngine.OnTick -= HandleSimulationTick;
+                _subscribedTickEngine.OnTick += HandleSimulationTick;
+            }
+        }
+
+        private void UnsubscribeTickEngine()
+        {
+            if (_subscribedTickEngine != null)
+            {
+                _subscribedTickEngine.OnTick -= HandleSimulationTick;
+                _subscribedTickEngine = null;
+            }
         }
 
         private void Awake()
@@ -86,15 +120,25 @@ namespace DemonIdol.BlazBlue.UI
         {
             if (targetSampler == null)
             {
-                var samplers = FindObjectsByType<BBInputSampler>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-                foreach (var s in samplers)
+                _samplerSearchTimer -= Time.unscaledDeltaTime;
+                if (_samplerSearchTimer <= 0f)
                 {
-                    if (s.playerIndex == 0)
+                    _samplerSearchTimer = 0.5f;
+                    var samplers = FindObjectsByType<BBInputSampler>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+                    foreach (var s in samplers)
                     {
-                        targetSampler = s;
-                        break;
+                        if (s.playerIndex == 0)
+                        {
+                            targetSampler = s;
+                            break;
+                        }
                     }
                 }
+            }
+
+            if (_subscribedTickEngine == null)
+            {
+                SubscribeTickEngine();
             }
 
             if (currentMode == LeftHandMode.PocketHitbox)
@@ -102,25 +146,55 @@ namespace DemonIdol.BlazBlue.UI
                 UpdateHitboxDirections();
             }
 
-            // If super macro is active, feed the 236236C motion sequence over consecutive frames
-            if (_superMacroActive && targetSampler != null)
+            // Fallback tick progression only if CombatTickEngine is absent (e.g. standalone tests)
+            if (_superMacroActive && _subscribedTickEngine == null)
             {
-                _superMacroTicks++;
-                switch (_superMacroTicks)
+                _macroFallbackTimer += Time.unscaledDeltaTime;
+                if (_macroFallbackTimer >= 1f / 60f)
                 {
-                    case 1: targetSampler.SetTouchInput(2, 0); break; // 2 (down)
-                    case 2: targetSampler.SetTouchInput(3, 0); break; // 3 (down-forward)
-                    case 3: targetSampler.SetTouchInput(6, 0); break; // 6 (forward)
-                    case 4: targetSampler.SetTouchInput(2, 0); break; // 2 (down)
-                    case 5: targetSampler.SetTouchInput(3, 0); break; // 3 (down-forward)
-                    case 6: targetSampler.SetTouchInput(6, (ushort)BBButton.C); break; // 6 + C
-                    default:
-                        _superMacroActive = false;
-                        _superMacroTicks = 0;
-                        if (currentMode == LeftHandMode.PocketHitbox) UpdateHitboxDirections();
-                        else targetSampler.SetTouchInput(5, _heldButtonMask);
-                        break;
+                    _macroFallbackTimer = 0f;
+                    StepSuperMacro();
                 }
+            }
+        }
+
+        private void HandleSimulationTick(int tick)
+        {
+            if (_superMacroActive)
+            {
+                StepSuperMacro();
+            }
+        }
+
+        /// <summary>
+        /// Steps the 236236C super macro by 1 tick using facing-relative direction injection.
+        /// </summary>
+        public void StepSuperMacro()
+        {
+            if (!_superMacroActive || targetSampler == null) return;
+
+            int facing = 1;
+            var brain = targetSampler.GetComponent<BBFighterBrain>();
+            if (brain != null && brain.fighter != null)
+            {
+                facing = brain.fighter.FacingDirection >= 0 ? 1 : -1;
+            }
+
+            _superMacroTicks++;
+            switch (_superMacroTicks)
+            {
+                case 1: targetSampler.SetTouchInput(BBInputFrame.FacingToWorldNumpad(2, facing), 0); break; // 2 (down)
+                case 2: targetSampler.SetTouchInput(BBInputFrame.FacingToWorldNumpad(3, facing), 0); break; // 3 (down-forward)
+                case 3: targetSampler.SetTouchInput(BBInputFrame.FacingToWorldNumpad(6, facing), 0); break; // 6 (forward)
+                case 4: targetSampler.SetTouchInput(BBInputFrame.FacingToWorldNumpad(2, facing), 0); break; // 2 (down)
+                case 5: targetSampler.SetTouchInput(BBInputFrame.FacingToWorldNumpad(3, facing), 0); break; // 3 (down-forward)
+                case 6: targetSampler.SetTouchInput(BBInputFrame.FacingToWorldNumpad(6, facing), (ushort)BBButton.C); break; // 6 + C
+                default:
+                    _superMacroActive = false;
+                    _superMacroTicks = 0;
+                    if (currentMode == LeftHandMode.PocketHitbox) UpdateHitboxDirections();
+                    else targetSampler.SetTouchInput(5, _heldButtonMask);
+                    break;
             }
         }
 
@@ -234,6 +308,7 @@ namespace DemonIdol.BlazBlue.UI
             // 236236C Distortion Drive Macro
             _superMacroActive = true;
             _superMacroTicks = 0;
+            _macroFallbackTimer = 0f;
             MobileHaptics.Trigger(HapticImpact.Heavy);
         }
 

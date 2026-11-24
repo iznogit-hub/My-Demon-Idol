@@ -40,6 +40,22 @@ namespace DemonIdol.Combat
             }
         }
 
+        public void OnShoot()
+        {
+            if (CombatAudioDirector.Instance != null)
+            {
+                CombatAudioDirector.Instance.PlayProjectileFire();
+            }
+        }
+
+        public void OnHitImpact()
+        {
+            if (CombatAudioDirector.Instance != null)
+            {
+                CombatAudioDirector.Instance.PlaySwingHeavy();
+            }
+        }
+
         public void OnLand()
         {
             if (CombatAudioDirector.Instance != null)
@@ -66,19 +82,19 @@ namespace DemonIdol.Combat
         public void FootR(int i) => OnFootstep();
         public void FootR(float f) => OnFootstep();
 
-        // Melee / Weapon Swing Contact
-        public void Hit() => OnSwingLight();
-        public void Hit(AnimationEvent evt) => OnSwingLight();
-        public void Hit(string s) => OnSwingLight();
-        public void Hit(int i) => OnSwingLight();
-        public void Hit(float f) => OnSwingLight();
+        // Melee / Weapon Swing Contact -> heavy/impact swing
+        public void Hit() => OnHitImpact();
+        public void Hit(AnimationEvent evt) => OnHitImpact();
+        public void Hit(string s) => OnHitImpact();
+        public void Hit(int i) => OnHitImpact();
+        public void Hit(float f) => OnHitImpact();
 
-        // Projectile Release / Bow Shoot
-        public void Shoot() => OnSwingLight();
-        public void Shoot(AnimationEvent evt) => OnSwingLight();
-        public void Shoot(string s) => OnSwingLight();
-        public void Shoot(int i) => OnSwingLight();
-        public void Shoot(float f) => OnSwingLight();
+        // Projectile Release / Bow Shoot -> ranged/projectile launch SFX
+        public void Shoot() => OnShoot();
+        public void Shoot(AnimationEvent evt) => OnShoot();
+        public void Shoot(string s) => OnShoot();
+        public void Shoot(int i) => OnShoot();
+        public void Shoot(float f) => OnShoot();
 
         // Landing Impact
         public void Land() => OnLand();
@@ -101,7 +117,7 @@ namespace DemonIdol.Combat
         public void NewEvent(int i) { }
         public void NewEvent(float f) { }
 
-        // Fallbacks for other possible pack events
+        // Attack Swing -> weight-appropriate swing
         public void Attack() => OnSwingLight();
         public void Attack(AnimationEvent evt) => OnSwingLight();
         public void Attack(string s) => OnSwingLight();

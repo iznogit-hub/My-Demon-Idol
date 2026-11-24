@@ -29,6 +29,10 @@ namespace DemonIdol.BlazBlue
         public BBFighterBrain p1Brain;
         public BBFighterBrain p2Brain;
 
+        [Header("Simulation State Positions")]
+        public Vector2 p1SimPosition;
+        public Vector2 p2SimPosition;
+
         [Header("Tuning")]
         public BBSystemTuning tuning;
 
@@ -78,9 +82,64 @@ namespace DemonIdol.BlazBlue
             return Mathf.Clamp(x, -ARENA_LIMIT_X, ARENA_LIMIT_X);
         }
 
+        public void ApplySimPushback(BBFighterBrain attacker, BBFighterBrain defender, float pushbackAmount, int attackerFacingDir, float multiplier = 1.0f)
+        {
+            if (attacker == null || defender == null) return;
+            float effectivePushback = pushbackAmount * multiplier;
+            bool isDefenderP1 = (defender == p1Brain);
+            float defenderPosX = isDefenderP1 ? p1SimPosition.x : p2SimPosition.x;
+            bool isDefenderAtWall = Mathf.Abs(defenderPosX) >= (ARENA_LIMIT_X - 0.75f);
+            if (isDefenderAtWall)
+            {
+                if (attacker == p1Brain)
+                {
+                    p1SimPosition.x = ClampToArena(p1SimPosition.x - attackerFacingDir * effectivePushback);
+                }
+                else if (attacker == p2Brain)
+                {
+                    p2SimPosition.x = ClampToArena(p2SimPosition.x - attackerFacingDir * effectivePushback);
+                }
+                else
+                {
+                    attacker.transform.position = new Vector3(attacker.transform.position.x - attackerFacingDir * effectivePushback, attacker.transform.position.y, attacker.transform.position.z);
+                }
+            }
+            else
+            {
+                if (isDefenderP1)
+                {
+                    p1SimPosition.x = ClampToArena(p1SimPosition.x + attackerFacingDir * effectivePushback);
+                }
+                else if (defender == p2Brain)
+                {
+                    p2SimPosition.x = ClampToArena(p2SimPosition.x + attackerFacingDir * effectivePushback);
+                }
+                else
+                {
+                    defender.transform.position = new Vector3(defender.transform.position.x + attackerFacingDir * effectivePushback, defender.transform.position.y, defender.transform.position.z);
+                }
+            }
+        }
+
         public static void ApplyPushback(Transform attacker, Transform defender, float pushbackAmount, int attackerFacingDir, float multiplier = 1.0f)
         {
             if (attacker == null || defender == null) return;
+            if (Instance != null)
+            {
+                if (Instance.p1Brain != null && Instance.p2Brain != null)
+                {
+                    if (attacker == Instance.p1Brain.transform && defender == Instance.p2Brain.transform)
+                    {
+                        Instance.ApplySimPushback(Instance.p1Brain, Instance.p2Brain, pushbackAmount, attackerFacingDir, multiplier);
+                        return;
+                    }
+                    if (attacker == Instance.p2Brain.transform && defender == Instance.p1Brain.transform)
+                    {
+                        Instance.ApplySimPushback(Instance.p2Brain, Instance.p1Brain, pushbackAmount, attackerFacingDir, multiplier);
+                        return;
+                    }
+                }
+            }
             float effectivePushback = pushbackAmount * multiplier;
             float defenderPosX = defender.position.x;
             bool isDefenderAtWall = Mathf.Abs(defenderPosX) >= (ARENA_LIMIT_X - 0.75f);
@@ -97,6 +156,11 @@ namespace DemonIdol.BlazBlue
         public static void ApplyPushback(BBFighterBrain attacker, BBFighterBrain defender, float pushbackAmount, int attackerFacingDir, float multiplier = 1.0f)
         {
             if (attacker == null || defender == null) return;
+            if (Instance != null && (attacker == Instance.p1Brain || attacker == Instance.p2Brain))
+            {
+                Instance.ApplySimPushback(attacker, defender, pushbackAmount, attackerFacingDir, multiplier);
+                return;
+            }
             ApplyPushback(attacker.transform, defender.transform, pushbackAmount, attackerFacingDir, multiplier);
         }
 
@@ -167,11 +231,13 @@ namespace DemonIdol.BlazBlue
             {
                 p1.opponentBrain = p2;
                 p1.ReleaseSoloTick();
+                p1SimPosition = p1.transform.position;
             }
             if (p2 != null)
             {
                 p2.opponentBrain = p1;
                 p2.ReleaseSoloTick();
+                p2SimPosition = p2.transform.position;
             }
             if (p1 != null && p2 != null && p1.fighter != null && p2.fighter != null)
             {
@@ -205,8 +271,11 @@ namespace DemonIdol.BlazBlue
                     return;
                 }
 
+                p1SimPosition = p1Brain.transform.position;
+                p2SimPosition = p2Brain.transform.position;
+
                 if (_sideSwitchLeniencyTicks > 0) _sideSwitchLeniencyTicks--;
-                int currentP1Facing = (p1Brain.transform.position.x < p2Brain.transform.position.x) ? 1 : -1;
+                int currentP1Facing = (p1SimPosition.x < p2SimPosition.x) ? 1 : -1;
                 if (currentP1Facing != _lastP1FacingDir)
                 {
                     _sideSwitchLeniencyTicks = 3; // 3 frames of side-switch leniency on cross-ups
@@ -232,19 +301,17 @@ namespace DemonIdol.BlazBlue
                 p2Brain.AdvanceState(tick);
 
                 // Step 3: Movement integration
-                IntegrateMovement(p1Brain);
-                IntegrateMovement(p2Brain);
+                IntegrateMovement(p1Brain, ref p1SimPosition);
+                IntegrateMovement(p2Brain, ref p2SimPosition);
 
                 // Step 4: Pushbox resolution (Z=0 plane)
-                float p1x = p1Brain.transform.position.x;
-                float p2x = p2Brain.transform.position.x;
-                BBWorldBox p1Push = p1Brain.GetPushBox();
-                BBWorldBox p2Push = p2Brain.GetPushBox();
+                BBWorldBox p1Push = p1Brain.GetPushBox(p1SimPosition);
+                BBWorldBox p2Push = p2Brain.GetPushBox(p2SimPosition);
 
                 float arenaLimit = ARENA_LIMIT_X;
                 BBCollision.ResolvePush(
-                    ref p1x,
-                    ref p2x,
+                    ref p1SimPosition.x,
+                    ref p2SimPosition.x,
                     in p1Push,
                     in p2Push,
                     -arenaLimit,
@@ -253,16 +320,13 @@ namespace DemonIdol.BlazBlue
                     p2Brain.isGrounded
                 );
 
-                p1Brain.transform.position = new Vector3(p1x, p1Brain.transform.position.y, 0f);
-                p2Brain.transform.position = new Vector3(p2x, p2Brain.transform.position.y, 0f);
-
                 // Step 5: Build world-space box lists for this tick
                 _p1Boxes.Clear();
                 _p2Boxes.Clear();
                 _contactCount = 0;
 
-                p1Brain.PopulateWorldBoxes(_p1Boxes);
-                p2Brain.PopulateWorldBoxes(_p2Boxes);
+                p1Brain.PopulateWorldBoxes(_p1Boxes, p1SimPosition);
+                p2Brain.PopulateWorldBoxes(_p2Boxes, p2SimPosition);
 
                 // Step 6 & 7: Physics-free collision pass
                 using (s_CollideMarker.Auto())
@@ -307,17 +371,21 @@ namespace DemonIdol.BlazBlue
                 // Step 10: Facing latch and round condition checks
                 LatchFacing();
 
+                // Step 10.5: Authoritative write-back to Unity Transform positions at tick end
+                p1Brain.transform.position = new Vector3(p1SimPosition.x, p1SimPosition.y, 0f);
+                p2Brain.transform.position = new Vector3(p2SimPosition.x, p2SimPosition.y, 0f);
+
                 // Step 11: Compute state hash
                 lastTickHash = BBSimHash.ComputeTickHash(
                     tick,
-                    p1Brain.transform.position.x,
-                    p1Brain.transform.position.y,
+                    p1SimPosition.x,
+                    p1SimPosition.y,
                     p1Brain.fighter != null ? p1Brain.fighter.FacingDirection : 1,
                     (byte)p1Brain.bbState,
                     (int)p1Brain.health,
                     (int)p1Brain.heat,
-                    p2Brain.transform.position.x,
-                    p2Brain.transform.position.y,
+                    p2SimPosition.x,
+                    p2SimPosition.y,
                     p2Brain.fighter != null ? p2Brain.fighter.FacingDirection : -1,
                     (byte)p2Brain.bbState,
                     (int)p2Brain.health,
@@ -344,12 +412,15 @@ namespace DemonIdol.BlazBlue
                 ? BBInputFrame.WorldToFacingNumpad(brain.History.LatestFrame.numpad, facing)
                 : (sbyte)5;
             bool isGuarding = facingNumpad == 4 || facingNumpad == 1 || facingNumpad == 7;
+            Vector3 pos = (playerIndex == 0)
+                ? (p1Brain != null ? new Vector3(p1SimPosition.x, p1SimPosition.y, 0f) : Vector3.zero)
+                : (p2Brain != null ? new Vector3(p2SimPosition.x, p2SimPosition.y, 0f) : Vector3.zero);
 
             return new BBFighterSnapshot
             {
                 tick = currentTick,
                 playerIndex = playerIndex,
-                position = brain.transform.position,
+                position = pos,
                 facingDirection = facing,
                 isGrounded = brain.isGrounded,
                 state = brain.bbState,
@@ -572,12 +643,11 @@ namespace DemonIdol.BlazBlue
             }
         }
 
-        private void IntegrateMovement(BBFighterBrain brain)
+        private void IntegrateMovement(BBFighterBrain brain, ref Vector2 pos)
         {
             if (brain == null || brain.fighter == null) return;
             if (brain.hitstopRemaining > 0) return;
 
-            Vector3 pos = brain.transform.position;
             int facing = brain.fighter.FacingDirection;
 
             // If active attack has authored motion track, use it
@@ -621,7 +691,7 @@ namespace DemonIdol.BlazBlue
                                 pos.y = 0.02f;
                                 brain.isGrounded = false;
                                 brain.hitstopRemaining = 4;
-                                BBContactPresentation.OnCleanHit(pos, brain.opponentBrain, false, false);
+                                BBContactPresentation.OnCleanHit(new Vector3(pos.x, pos.y, 0f), brain.opponentBrain, false, false);
                             }
                             else
                             {
@@ -677,25 +747,24 @@ namespace DemonIdol.BlazBlue
 
             // Arena boundary clamp
             pos.x = ClampToArena(pos.x);
-            brain.transform.position = pos;
         }
 
         private void ResolveThrowTech()
         {
             // Both fighters teched throw: push apart and set neutral recovery
-            float p1x = p1Brain.transform.position.x;
-            float p2x = p2Brain.transform.position.x;
+            float p1x = p1SimPosition.x;
+            float p2x = p2SimPosition.x;
             float separation = 1.6f;
 
             if (p1x <= p2x)
             {
-                p1Brain.transform.position = new Vector3(p1x - (separation * 0.5f), p1Brain.transform.position.y, 0f);
-                p2Brain.transform.position = new Vector3(p2x + (separation * 0.5f), p2Brain.transform.position.y, 0f);
+                p1SimPosition.x = ClampToArena(p1x - (separation * 0.5f));
+                p2SimPosition.x = ClampToArena(p2x + (separation * 0.5f));
             }
             else
             {
-                p1Brain.transform.position = new Vector3(p1x + (separation * 0.5f), p1Brain.transform.position.y, 0f);
-                p2Brain.transform.position = new Vector3(p2x - (separation * 0.5f), p2Brain.transform.position.y, 0f);
+                p1SimPosition.x = ClampToArena(p1x + (separation * 0.5f));
+                p2SimPosition.x = ClampToArena(p2x - (separation * 0.5f));
             }
 
             p1Brain.bbState = BBState.Neutral;
@@ -703,7 +772,7 @@ namespace DemonIdol.BlazBlue
             p1Brain.hitstopRemaining = 12;
             p2Brain.hitstopRemaining = 12;
 
-            Vector3 techPt = new Vector3((p1x + p2x) * 0.5f, 1.0f, 0f);
+            Vector3 techPt = new Vector3((p1SimPosition.x + p2SimPosition.x) * 0.5f, 1.0f, 0f);
             OnThrowTeched?.Invoke(techPt);
             BBContactPresentation.OnCleanHit(techPt, p1Brain, false, false);
         }
@@ -748,7 +817,7 @@ namespace DemonIdol.BlazBlue
 
                 Vector3 throwPt = (contact.contactPointX != 0f || contact.contactPointY != 0f)
                     ? new Vector3(contact.contactPointX, contact.contactPointY, 0f)
-                    : (defender.transform.position + Vector3.up * 1.0f);
+                    : (new Vector3(defender == p1Brain ? p1SimPosition.x : p2SimPosition.x, defender == p1Brain ? p1SimPosition.y : p2SimPosition.y, 0f) + Vector3.up * 1.0f);
                 BBContactPresentation.OnCleanHit(throwPt, attacker, false, false);
                 if (BBMatchScreenDirector.Instance != null && BBMatchScreenDirector.Instance.Stats != null)
                 {
@@ -890,7 +959,7 @@ namespace DemonIdol.BlazBlue
                     bool crush = moveButton == BBButton.C || moveKind == BBMoveKind.DistortionDrive;
                     Vector3 guardContactPt = (contact.contactPointX != 0f || contact.contactPointY != 0f)
                         ? new Vector3(contact.contactPointX, contact.contactPointY, 0f)
-                        : (defender.transform.position + Vector3.up * 1.0f);
+                        : (new Vector3(defender == p1Brain ? p1SimPosition.x : p2SimPosition.x, defender == p1Brain ? p1SimPosition.y : p2SimPosition.y, 0f) + Vector3.up * 1.0f);
                     BBContactPresentation.OnGuard(guardContactPt, chip > 0, crush, isBarrier);
                     OnBlockLanded?.Invoke(attacker == p1Brain ? 0 : 1, defender == p1Brain ? 0 : 1, guardContactPt, isBarrier, chip > 0);
                     if (defender.gauges.isDanger)
@@ -1007,7 +1076,7 @@ namespace DemonIdol.BlazBlue
                     defender.hitstopRemaining = hitstopD;
                     Vector3 hitContactPt = (contact.contactPointX != 0f || contact.contactPointY != 0f)
                         ? new Vector3(contact.contactPointX, contact.contactPointY, 0f)
-                        : (defender.transform.position + Vector3.up * 1.0f);
+                        : (new Vector3(defender == p1Brain ? p1SimPosition.x : p2SimPosition.x, defender == p1Brain ? p1SimPosition.y : p2SimPosition.y, 0f) + Vector3.up * 1.0f);
                     BBContactPresentation.OnCleanHit(hitContactPt, attacker, isCounterHit, moveKind == BBMoveKind.DistortionDrive);
                     OnHitConfirmed?.Invoke(attacker == p1Brain ? 0 : 1, defender == p1Brain ? 0 : 1, scaledDmg, hitContactPt, isCounterHit, isFatal);
                     if (defender.health <= 0f)
@@ -1042,8 +1111,8 @@ namespace DemonIdol.BlazBlue
             bool p1CanTurn = p1Brain.isGrounded && (p1Brain.bbState == BBState.Neutral || p1Brain.bbState == BBState.Crouching || p1Brain.bbState == BBState.WalkForward || p1Brain.bbState == BBState.WalkBackward);
             bool p2CanTurn = p2Brain.isGrounded && (p2Brain.bbState == BBState.Neutral || p2Brain.bbState == BBState.Crouching || p2Brain.bbState == BBState.WalkForward || p2Brain.bbState == BBState.WalkBackward);
 
-            float p1x = p1Brain.transform.position.x;
-            float p2x = p2Brain.transform.position.x;
+            float p1x = p1SimPosition.x;
+            float p2x = p2SimPosition.x;
 
             if (p1CanTurn && p2CanTurn)
             {

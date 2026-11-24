@@ -10,10 +10,10 @@ using UnityEngine.InputSystem;
 namespace DemonIdol.BlazBlue
 {
     /// <summary>
-    /// On-screen A B C D, virtual D-pad, dynamic floating thumbstick, and hold-to-pause controls.
-    /// Fully calibrated for mobile phone landscape viewports with safe area margins and multi-touch haptics.
-    /// Writes the existing BBInputSampler virtual masks and stick vectors.
+    /// Legacy On-screen A B C D, virtual D-pad, dynamic floating thumbstick, and hold-to-pause controls.
+    /// Consolidated into BBTouchOverlay.
     /// </summary>
+    [System.Obsolete("Consolidated into BBTouchOverlay", false)]
     public class BBTouchLayout : MonoBehaviour
     {
         public BBInputSampler target;
@@ -203,6 +203,12 @@ namespace DemonIdol.BlazBlue
 
         public static BBTouchLayout Create(Transform parent, BBInputSampler sampler)
         {
+            if (parent != null && parent.GetComponentInChildren<DemonIdol.BlazBlue.UI.BBTouchOverlay>(true) != null)
+            {
+                Debug.LogWarning("[BBTouchLayout] BBTouchOverlay is already canonical touch controller. Skipping duplicate BBTouchLayout instantiation.");
+                return null;
+            }
+
             var root = new GameObject("BBTouchLayout", typeof(RectTransform));
             root.transform.SetParent(parent, false);
             var layout = root.AddComponent<BBTouchLayout>();

@@ -183,49 +183,50 @@ namespace DemonIdol.BlazBlue.Visual
             }
         }
 
-        private GameObject AttachWeaponToSocket(GameObject prefab, Transform socketBone, Vector3 posOffset, Vector3 rotOffset, float explicitTargetLength, bool isPrimary)
+        public GameObject AttachWeaponToSocket(GameObject prefab, Transform socketBone, Vector3 posOffset, Vector3 rotOffset, float explicitTargetLength, bool isPrimary)
         {
             if (prefab == null || socketBone == null) return null;
 
             // 1. Destroy any existing duplicate or orphaned weapon children under this socket
             DestroyOrphanedWeaponChildren(socketBone);
 
-            // 2. Instantiate weapon instance under the target bone
-            GameObject instance = Instantiate(prefab, socketBone);
-            instance.name = (isPrimary ? "Weapon_Primary_" : "Weapon_Secondary_") + warriorType;
-
-            // 3. Reset transform momentarily to measure unparented mesh bounds
-            instance.transform.localPosition = Vector3.zero;
-            instance.transform.localRotation = Quaternion.Euler(rotOffset);
-            instance.transform.localScale = Vector3.one;
-
-            // 4. Measure unparented local mesh bounds (size along max axis)
-            Bounds bounds = MeasureLocalMeshBounds(instance);
+            // 2. Measure local mesh bounds (size along max axis) from prefab
+            Bounds bounds = MeasureLocalMeshBounds(prefab);
             float maxAxisLength = Mathf.Max(bounds.size.x, Mathf.Max(bounds.size.y, bounds.size.z));
             if (maxAxisLength < 0.0001f) maxAxisLength = 1f;
 
             float targetLength = explicitTargetLength > 0.05f ? explicitTargetLength : GetDefaultTargetLength(warriorType, !isPrimary);
             float s = targetLength / maxAxisLength;
 
-            // 5. Divide uniform scale factor s by the parent bone's lossyScale to eliminate FBX 0.01 / 100 rig scaling distortion
+            // 3. Create neutral-rotation intermediate ScaleSocket to prevent shear/skew from non-uniform bone lossyScale
+            GameObject scaleSocketGo = new GameObject((isPrimary ? "ScaleSocket_Primary_" : "ScaleSocket_Secondary_") + warriorType);
+            Transform scaleSocket = scaleSocketGo.transform;
+            scaleSocket.SetParent(socketBone, false);
+            scaleSocket.localRotation = Quaternion.identity;
+
             Vector3 boneLossy = socketBone.lossyScale;
             float absX = Mathf.Max(Mathf.Abs(boneLossy.x), 0.0001f);
             float absY = Mathf.Max(Mathf.Abs(boneLossy.y), 0.0001f);
             float absZ = Mathf.Max(Mathf.Abs(boneLossy.z), 0.0001f);
+            scaleSocket.localScale = new Vector3(1f / absX, 1f / absY, 1f / absZ);
 
-            Vector3 lossyCompensatedScale = new Vector3(s / absX, s / absY, s / absZ);
-            instance.transform.localScale = lossyCompensatedScale;
-
-            // 6. Grip placement: seat weapon hilt/grip directly at palm center (keep within +-0.05m of bone pivot in world space)
             Vector3 clampedWorldOffset = posOffset;
             if (clampedWorldOffset.magnitude > 0.05f)
             {
                 clampedWorldOffset = clampedWorldOffset.normalized * 0.05f;
             }
-            instance.transform.localPosition = socketBone.InverseTransformVector(clampedWorldOffset);
-            instance.transform.localRotation = Quaternion.Euler(rotOffset);
+            scaleSocket.localPosition = socketBone.InverseTransformVector(clampedWorldOffset);
+            scaleSocketGo.AddComponent<BBSpawnedWeaponMarker>();
 
-            // 7. Sanitize physics and upgrade flat-gray materials to Sumi-e dark-gunmetal
+            // 4. Instantiate weapon instance under ScaleSocket with uniform target scale and rotation offset
+            GameObject instance = Instantiate(prefab, scaleSocket);
+            instance.name = (isPrimary ? "Weapon_Primary_" : "Weapon_Secondary_") + warriorType;
+            instance.transform.localPosition = Vector3.zero;
+            instance.transform.localRotation = Quaternion.Euler(rotOffset);
+            instance.transform.localScale = Vector3.one * s;
+            instance.AddComponent<BBSpawnedWeaponMarker>();
+
+            // 5. Sanitize physics and upgrade flat-gray materials to Sumi-e dark-gunmetal
             SanitizeWeaponInstance(instance);
 
             return instance;
@@ -337,24 +338,29 @@ namespace DemonIdol.BlazBlue.Visual
             return combined;
         }
 
-        private static void DestroyOrphanedWeaponChildren(Transform bone)
+        public static void DestroyOrphanedWeaponChildren(Transform bone)
         {
             if (bone == null) return;
+
+            // 1. Component-based safe marker cleanup
+            var markers = bone.GetComponentsInChildren<BBSpawnedWeaponMarker>(true);
+            for (int i = 0; i < markers.Length; i++)
+            {
+                if (markers[i] != null && markers[i].gameObject != null)
+                {
+                    if (Application.isPlaying) Destroy(markers[i].gameObject);
+                    else DestroyImmediate(markers[i].gameObject);
+                }
+            }
+
+            // 2. Safe cleanup of any lingering ScaleSocket or weapon roots
             for (int i = bone.childCount - 1; i >= 0; i--)
             {
                 Transform child = bone.GetChild(i);
                 if (child != null && (
+                    child.name.StartsWith("ScaleSocket_") ||
                     child.name.StartsWith("Weapon_Primary_") ||
-                    child.name.StartsWith("Weapon_Secondary_") ||
-                    child.name.StartsWith("Warrior_") ||
-                    child.name.StartsWith("Prop_") ||
-                    child.name.Contains("Sword") ||
-                    child.name.Contains("Staff") ||
-                    child.name.Contains("Shield") ||
-                    child.name.Contains("Bow") ||
-                    child.name.Contains("Spear") ||
-                    child.name.Contains("Hammer") ||
-                    child.name.Contains("Crossbow")))
+                    child.name.StartsWith("Weapon_Secondary_")))
                 {
                     if (Application.isPlaying) Destroy(child.gameObject);
                     else DestroyImmediate(child.gameObject);
@@ -366,8 +372,17 @@ namespace DemonIdol.BlazBlue.Visual
         {
             if (instance != null)
             {
-                if (Application.isPlaying) Destroy(instance);
-                else DestroyImmediate(instance);
+                Transform parent = instance.transform.parent;
+                if (parent != null && parent.name.StartsWith("ScaleSocket_"))
+                {
+                    if (Application.isPlaying) Destroy(parent.gameObject);
+                    else DestroyImmediate(parent.gameObject);
+                }
+                else
+                {
+                    if (Application.isPlaying) Destroy(instance);
+                    else DestroyImmediate(instance);
+                }
                 instance = null;
             }
         }

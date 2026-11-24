@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using Photon.Realtime;
+using Photon.Client;
 using Photon.Deterministic;
 using Quantum;
 using DemonIdol.Combat;
@@ -88,6 +89,7 @@ namespace DemonIdol.Network
         public MatchmakingMode CurrentMode { get; private set; } = MatchmakingMode.Ranked;
         public bool IsOpponentReconnecting { get; private set; } = false;
         public float DisconnectSecondsRemaining { get; private set; } = 5f;
+        public bool IsLoopbackMode { get; private set; } = false;
 
         public RealtimeClient Client => _client;
         public QuantumRunner Runner => _runner;
@@ -134,6 +136,13 @@ namespace DemonIdol.Network
 
         private void UpdatePingAndRollbackMetrics()
         {
+            if (IsLoopbackMode)
+            {
+                CurrentPingMs = 0;
+                EstimatedRollbackFrames = 0;
+                return;
+            }
+
             if (_client != null && _client.RealtimePeer != null)
             {
                 CurrentPingMs = Mathf.Max(12, (int)_client.RealtimePeer.Stats.RoundtripTime);
@@ -195,7 +204,7 @@ namespace DemonIdol.Network
         /// </summary>
         public async void StartQuickMatch1v1(string rankTier = "Adept")
         {
-            await ConnectAndStartQuantum(roomName: null, isPrivate: false);
+            await ConnectAndStartQuantum(roomName: null, isPrivate: false, canOnlyJoin: false, rankTier: rankTier);
         }
 
         /// <summary>
@@ -206,10 +215,11 @@ namespace DemonIdol.Network
         public void StartSimulatedLoopbackMatch(string simulatedOpponent = "Shadow_Shinobi")
         {
             if (Instance == null) Instance = this;
+            IsLoopbackMode = true;
             LocalPlayerSlot = 0;
             OpponentName = simulatedOpponent;
-            CurrentPingMs = 35;
-            EstimatedRollbackFrames = 1;
+            CurrentPingMs = 0;
+            EstimatedRollbackFrames = 0;
 
             SetState(QuantumPvPState.SearchingMatch);
             SetState(QuantumPvPState.MatchFound);
@@ -277,10 +287,11 @@ namespace DemonIdol.Network
             await ConnectAndStartQuantum(roomName: roomCode, isPrivate: true, canOnlyJoin: true);
         }
 
-        private async Task ConnectAndStartQuantum(string roomName, bool isPrivate, bool canOnlyJoin = false)
+        private async Task ConnectAndStartQuantum(string roomName, bool isPrivate, bool canOnlyJoin = false, string rankTier = "Adept")
         {
             try
             {
+                IsLoopbackMode = false;
                 if (IsQuantumDBEmpty())
                 {
                     string dbMsg = "[QuantumPvPManager] Online mode unavailable: Quantum Asset Database (QuantumUnityDB.qunitydb) is empty. Local and offline combat modes remain fully operational.";
@@ -346,6 +357,12 @@ namespace DemonIdol.Network
                     authValues.AuthType = CustomAuthenticationType.None;
                 }
 
+                var customProps = new PhotonHashtable();
+                if (!string.IsNullOrEmpty(rankTier))
+                {
+                    customProps["RankTier"] = rankTier;
+                }
+
                 var connectionArguments = new MatchmakingArguments
                 {
                     PhotonSettings = appSettings,
@@ -354,7 +371,9 @@ namespace DemonIdol.Network
                     UserId = localUserId,
                     AuthValues = authValues,
                     RoomName = roomName,
-                    CanOnlyJoin = canOnlyJoin
+                    CanOnlyJoin = canOnlyJoin,
+                    CustomProperties = customProps,
+                    CustomLobbyProperties = new string[] { "RankTier" }
                 };
 
                 Debug.Log($"<color=#00FF66>[QuantumPvPManager] Connecting to Quantum Cloud (AppId: {appSettings.AppIdQuantum}, User: {localUserId})...</color>");

@@ -524,7 +524,14 @@ namespace DemonIdol.UI
             if (_opponentNameText != null) _opponentNameText.text = $"OPPONENT: {opponentName.ToUpper()} (SLOT P{slot + 1})";
             if (_pingText != null && QuantumPvPManager.Instance != null)
             {
-                _pingText.text = $"PING: {QuantumPvPManager.Instance.CurrentPingMs}ms • ROLLBACK ACTIVE";
+                if (QuantumPvPManager.Instance.IsLoopbackMode)
+                {
+                    _pingText.text = "OFFLINE LOOPBACK";
+                }
+                else
+                {
+                    _pingText.text = $"PING: {QuantumPvPManager.Instance.CurrentPingMs}ms • ROLLBACK ACTIVE";
+                }
             }
         }
 

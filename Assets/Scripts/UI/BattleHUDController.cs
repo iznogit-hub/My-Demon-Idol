@@ -429,22 +429,24 @@ namespace DemonIdol.UI
 
             if (!isOnline) return;
 
+            bool isLoopback = pvp != null && pvp.IsLoopbackMode;
             int ping = pvp != null ? pvp.CurrentPingMs : 35;
             int frames = pvp != null ? pvp.EstimatedRollbackFrames : 1;
 
             if (_pingValueText != null)
             {
-                _pingValueText.text = $"{ping} ms";
+                _pingValueText.text = isLoopback ? "OFFLINE LOOPBACK" : $"{ping} ms";
             }
 
             if (_rollbackFramesText != null)
             {
-                _rollbackFramesText.text = $"ROLLBACK: {frames}F";
+                _rollbackFramesText.text = isLoopback ? "SIMULATED" : $"ROLLBACK: {frames}F";
             }
 
             if (_pingStatusDot != null)
             {
-                if (ping < 45) _pingStatusDot.color = new Color(0f, 1f, 0.4f, 1f); // Green
+                if (isLoopback) _pingStatusDot.color = new Color(0.2f, 0.8f, 1f, 1f); // Cyan
+                else if (ping < 45) _pingStatusDot.color = new Color(0f, 1f, 0.4f, 1f); // Green
                 else if (ping <= 70) _pingStatusDot.color = new Color(1f, 0.85f, 0.2f, 1f); // Yellow
                 else _pingStatusDot.color = new Color(1f, 0.2f, 0.2f, 1f); // Red
             }

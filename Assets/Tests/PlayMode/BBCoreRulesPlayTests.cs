@@ -330,23 +330,23 @@ namespace DemonIdol.Tests.PlayMode
             for (int f = 0; f < 2; f++) yield return null;
 
             float p2HpBeforeLowStand = p2Brain.health;
-            // P2 holds Standing Back (RightArrow) while P1 presses 2B (Down + B)
-            runner.SetHeldKeys(Key.RightArrow, Key.S, Key.K);
+            // P2 holds Standing Back (RightArrow) while P1 presses 2C (Down + C, Low attack in 7-move standard)
+            runner.SetHeldKeys(Key.RightArrow, Key.S, Key.L);
             float atkHoldA = Time.realtimeSinceStartup + 0.15f;
             while (p1Brain.currentAttack == null && Time.realtimeSinceStartup < atkHoldA)
             {
-                logTick("Guard_2B_Input", "p1_2B_vs_stand");
+                logTick("Guard_2C_Input", "p1_2C_vs_stand");
                 yield return null;
             }
             runner.SetHeldKeys(Key.RightArrow);
 
-            // Wait for 2B to resolve
+            // Wait for 2C to resolve
             float guardLowTimeout = Time.realtimeSinceStartup + 1.5f;
             bool sawLowHit = false;
             while (Time.realtimeSinceStartup < guardLowTimeout)
             {
-                logTick("Guard_2B_Active", $"p2_state={p2Brain.bbState}");
-                if (p2Brain.bbState == BBState.Hitstun)
+                logTick("Guard_2C_Active", $"p2_state={p2Brain.bbState}");
+                if (p2Brain.bbState == BBState.Hitstun || p2Brain.bbState == BBState.DownWait)
                 {
                     sawLowHit = true;
                     break;
@@ -356,10 +356,10 @@ namespace DemonIdol.Tests.PlayMode
             runner.ClearHeldKeys();
             float p2HpAfterLowStand = p2Brain.health;
             float lowStandDmg = p2HpBeforeLowStand - p2HpAfterLowStand;
-            Debug.Log($"[BBCoreRules] 2B vs Standing Guard: sawHit={sawLowHit}, damage={lowStandDmg}");
-            Assert.IsTrue(sawLowHit && lowStandDmg > 0f, "2B (Low) vs Standing Guard must result in clean HIT");
+            Debug.Log($"[BBCoreRules] 2C vs Standing Guard: sawHit={sawLowHit}, damage={lowStandDmg}");
+            Assert.IsTrue(sawLowHit && lowStandDmg > 0f, "2C (Low) vs Standing Guard must result in clean HIT");
 
-            // Subtest B: 2B (Low) vs Crouching Guard = BLOCK
+            // Subtest B: 2C (Low) vs Crouching Guard = BLOCK
             MatchRoundReferee.Instance.ResetFighter(0);
             MatchRoundReferee.Instance.ResetFighter(1);
             runner.ClearHeldKeys();
@@ -374,12 +374,12 @@ namespace DemonIdol.Tests.PlayMode
             for (int f = 0; f < 2; f++) yield return null;
 
             float p2HpBeforeLowCrouch = p2Brain.health;
-            // P2 holds Crouching Back while P1 presses 2B
-            runner.SetHeldKeys(Key.DownArrow, Key.RightArrow, Key.S, Key.K);
+            // P2 holds Crouching Back while P1 presses 2C
+            runner.SetHeldKeys(Key.DownArrow, Key.RightArrow, Key.S, Key.L);
             float atkHoldB = Time.realtimeSinceStartup + 0.15f;
             while (p1Brain.currentAttack == null && Time.realtimeSinceStartup < atkHoldB)
             {
-                logTick("Guard_2B_vs_Crouch", "p1_2B_vs_crouch");
+                logTick("Guard_2C_vs_Crouch", "p1_2C_vs_crouch");
                 yield return null;
             }
             runner.SetHeldKeys(Key.DownArrow, Key.RightArrow);
@@ -388,7 +388,7 @@ namespace DemonIdol.Tests.PlayMode
             bool sawLowBlock = false;
             while (Time.realtimeSinceStartup < guardLowBlockTimeout)
             {
-                logTick("Guard_2B_BlockCheck", $"p2_state={p2Brain.bbState}");
+                logTick("Guard_2C_BlockCheck", $"p2_state={p2Brain.bbState}");
                 if (p2Brain.bbState == BBState.Blockstun)
                 {
                     sawLowBlock = true;
@@ -399,11 +399,11 @@ namespace DemonIdol.Tests.PlayMode
             runner.ClearHeldKeys();
             float p2HpAfterLowCrouch = p2Brain.health;
             float lowCrouchDmg = p2HpBeforeLowCrouch - p2HpAfterLowCrouch;
-            Debug.Log($"[BBCoreRules] 2B vs Crouching Guard: sawBlock={sawLowBlock}, damage={lowCrouchDmg}");
-            Assert.IsTrue(sawLowBlock, "2B (Low) vs Crouching Guard must result in BLOCK");
+            Debug.Log($"[BBCoreRules] 2C vs Crouching Guard: sawBlock={sawLowBlock}, damage={lowCrouchDmg}");
+            Assert.IsTrue(sawLowBlock, "2C (Low) vs Crouching Guard must result in BLOCK");
             Assert.AreEqual(0f, lowCrouchDmg, "Regular block on normal move must take 0 chip damage");
 
-            // Subtest C: j.C (Overhead) vs Crouching Guard = HIT
+            // Subtest C: j.B (Overhead) vs Crouching Guard = HIT
             MatchRoundReferee.Instance.ResetFighter(0);
             MatchRoundReferee.Instance.ResetFighter(1);
             runner.ClearHeldKeys();
@@ -427,20 +427,20 @@ namespace DemonIdol.Tests.PlayMode
             float jumpHoldC = Time.realtimeSinceStartup + 0.15f;
             while (p1Brain.isGrounded && Time.realtimeSinceStartup < jumpHoldC)
             {
-                logTick("Guard_jC_Jump", "p1_jump");
+                logTick("Guard_jB_Jump", "p1_jump");
                 yield return null;
             }
             runner.SetHeldKeys(Key.DownArrow, Key.RightArrow);
 
             // Wait for airborne
-            for (int f = 0; f < 10; f++) { logTick("Guard_jC_Air", "p1_air"); yield return null; }
+            for (int f = 0; f < 10; f++) { logTick("Guard_jB_Air", "p1_air"); yield return null; }
 
-            // P1 presses C (L) in air
-            runner.SetHeldKeys(Key.DownArrow, Key.RightArrow, Key.L);
+            // P1 presses B (K) in air for j.B
+            runner.SetHeldKeys(Key.DownArrow, Key.RightArrow, Key.K);
             float atkHoldC = Time.realtimeSinceStartup + 0.15f;
             while (p1Brain.currentAttack == null && Time.realtimeSinceStartup < atkHoldC)
             {
-                logTick("Guard_jC_Input", "p1_jC_vs_crouch");
+                logTick("Guard_jB_Input", "p1_jB_vs_crouch");
                 yield return null;
             }
             runner.SetHeldKeys(Key.DownArrow, Key.RightArrow);
@@ -449,8 +449,8 @@ namespace DemonIdol.Tests.PlayMode
             bool sawJcHit = false;
             while (Time.realtimeSinceStartup < guardJcTimeout)
             {
-                logTick("Guard_jC_Active", $"p2_state={p2Brain.bbState}");
-                if (p2Brain.bbState == BBState.Hitstun)
+                logTick("Guard_jB_Active", $"p2_state={p2Brain.bbState}");
+                if (p2Brain.bbState == BBState.Hitstun || p2Brain.bbState == BBState.DownWait)
                 {
                     sawJcHit = true;
                     break;
@@ -460,10 +460,10 @@ namespace DemonIdol.Tests.PlayMode
             runner.ClearHeldKeys();
             float p2HpAfterJcCrouch = p2Brain.health;
             float jcCrouchDmg = p2HpBeforeJcCrouch - p2HpAfterJcCrouch;
-            Debug.Log($"[BBCoreRules] j.C vs Crouching Guard: sawHit={sawJcHit}, damage={jcCrouchDmg}");
-            Assert.IsTrue(sawJcHit && jcCrouchDmg > 0f, "j.C (Overhead) vs Crouching Guard must result in clean HIT");
+            Debug.Log($"[BBCoreRules] j.B vs Crouching Guard: sawHit={sawJcHit}, damage={jcCrouchDmg}");
+            Assert.IsTrue(sawJcHit && jcCrouchDmg > 0f, "j.B (Overhead) vs Crouching Guard must result in clean HIT");
 
-            // Subtest D: j.C (Overhead) vs Standing Guard = BLOCK
+            // Subtest D: j.B (Overhead) vs Standing Guard = BLOCK
             MatchRoundReferee.Instance.ResetFighter(0);
             MatchRoundReferee.Instance.ResetFighter(1);
             runner.ClearHeldKeys();
@@ -487,20 +487,20 @@ namespace DemonIdol.Tests.PlayMode
             float jumpHoldD = Time.realtimeSinceStartup + 0.15f;
             while (p1Brain.isGrounded && Time.realtimeSinceStartup < jumpHoldD)
             {
-                logTick("Guard_jC_Stand_Jump", "p1_jump");
+                logTick("Guard_jB_Stand_Jump", "p1_jump");
                 yield return null;
             }
             runner.SetHeldKeys(Key.RightArrow);
 
             // Wait for airborne
-            for (int f = 0; f < 10; f++) { logTick("Guard_jC_Stand_Air", "p1_air"); yield return null; }
+            for (int f = 0; f < 10; f++) { logTick("Guard_jB_Stand_Air", "p1_air"); yield return null; }
 
-            // P1 presses C in air
-            runner.SetHeldKeys(Key.RightArrow, Key.L);
+            // P1 presses B in air for j.B
+            runner.SetHeldKeys(Key.RightArrow, Key.K);
             float atkHoldD = Time.realtimeSinceStartup + 0.15f;
             while (p1Brain.currentAttack == null && Time.realtimeSinceStartup < atkHoldD)
             {
-                logTick("Guard_jC_Stand_Input", "p1_jC_vs_stand");
+                logTick("Guard_jB_Stand_Input", "p1_jB_vs_stand");
                 yield return null;
             }
             runner.SetHeldKeys(Key.RightArrow);
@@ -509,7 +509,7 @@ namespace DemonIdol.Tests.PlayMode
             bool sawJcBlock = false;
             while (Time.realtimeSinceStartup < guardJcBlockTimeout)
             {
-                logTick("Guard_jC_Stand_BlockCheck", $"p2_state={p2Brain.bbState}");
+                logTick("Guard_jB_Stand_BlockCheck", $"p2_state={p2Brain.bbState}");
                 if (p2Brain.bbState == BBState.Blockstun)
                 {
                     sawJcBlock = true;
@@ -686,17 +686,8 @@ namespace DemonIdol.Tests.PlayMode
             runner.ClearHeldKeys();
             for (int f = 0; f < 3; f++) yield return null;
 
-            // P1 starts 236A (Level 4 Special: startup 12f)
-            // Hold each directional step across 60Hz sim ticks so sim registers 2 -> 3 -> 6 motion
-            runner.SetHeldKeys(Key.S); // 2
-            int t1 = CombatTickEngine.Instance.CurrentTick;
-            while (CombatTickEngine.Instance.CurrentTick - t1 < 2) yield return null;
-
-            runner.SetHeldKeys(Key.S, Key.D); // 3
-            int t2 = CombatTickEngine.Instance.CurrentTick;
-            while (CombatTickEngine.Instance.CurrentTick - t2 < 2) yield return null;
-
-            runner.SetHeldKeys(Key.D, Key.J); // 6 + A
+            // P1 starts 5C (Level 3 Heavy Normal: startup 12f)
+            runner.SetHeldKeys(Key.L); // 5C
             float atkHold5 = Time.realtimeSinceStartup + 0.15f;
             while (p1Brain.currentAttack == null && Time.realtimeSinceStartup < atkHold5)
             {
@@ -704,7 +695,7 @@ namespace DemonIdol.Tests.PlayMode
             }
             runner.ClearHeldKeys();
 
-            // P1 is now in 236A AttackStartup. Wait until attackTick ~7 (5 frames before active)
+            // P1 is now in 5C AttackStartup. Wait until attackTick ~7 (before active)
             while (p1Brain.attackTick < 7 && p1Brain.currentAttack != null)
             {
                 logTick("CH_P1Startup", $"p1_atkTick={p1Brain.attackTick}_move={p1Brain.currentAttack?.moveId}");
@@ -721,7 +712,7 @@ namespace DemonIdol.Tests.PlayMode
             }
             runner.ClearHeldKeys();
 
-            // P1's 236A active frames hit P2 while P2 is in AttackStartup -> COUNTER HIT!
+            // P1's 5C active frames hit P2 while P2 is in AttackStartup -> COUNTER HIT!
             float chHitWait = Time.realtimeSinceStartup + 1.5f;
             int recordedHitstopA = 0;
             int recordedHitstunD = 0;
@@ -744,9 +735,9 @@ namespace DemonIdol.Tests.PlayMode
             }
 
             Debug.Log($"[BBCoreRules] Counter Hit Result: recordedHitstopA={recordedHitstopA}, recordedHitstunD={recordedHitstunD}");
-            // Normal hitstop for 236A (Level 3 special) is ~9. With Level 3 counter hit (+2), it reaches >= 11 (hitstun >= 17).
-            Assert.IsTrue(recordedHitstopA >= 11, $"Counter hit with Level 3 special must yield extra hitstop >= 11 (actual: {recordedHitstopA})");
-            Assert.IsTrue(recordedHitstunD >= 17, $"Counter hit with Level 3 special must yield extra hitstun >= 17 (actual: {recordedHitstunD})");
+            // Normal hitstop for 5C (Heavy Normal) is 13. With counter hit (+2), it reaches >= 11 (hitstun >= 17).
+            Assert.IsTrue(recordedHitstopA >= 11, $"Counter hit with Heavy Normal must yield extra hitstop >= 11 (actual: {recordedHitstopA})");
+            Assert.IsTrue(recordedHitstunD >= 17, $"Counter hit with Heavy Normal must yield extra hitstun >= 17 (actual: {recordedHitstunD})");
 
             // =========================================================================================
             // GATE 6: ROUND 2 REFEREE RESET
