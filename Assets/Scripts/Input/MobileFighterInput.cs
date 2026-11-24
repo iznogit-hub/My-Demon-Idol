@@ -332,8 +332,16 @@ namespace DemonIdol.Combat
         public void OnMediumAttackPressed() => OnHeavyAttackPressed();
         public void OnParryPressed() { if (_fighter != null) _fighter.ExecuteParry(); }
         public void OnBackdashPressed() { if (_fighter != null) _fighter.ExecuteBackdash(); }
-        public void OnBarrierHoldStart() { if (_fighter != null && _fighter.Barrier != null) _fighter.Barrier.ActivateBarrier(); }
-        public void OnBarrierHoldEnd() { if (_fighter != null && _fighter.Barrier != null) _fighter.Barrier.DeactivateBarrier(); }
+        public void OnBarrierHoldStart()
+        {
+            if (_fighter != null && _fighter.brain != null && _fighter.brain.barrierSys != null)
+            {
+                _fighter.brain.barrierSys.NotifyBarrierPressed(CombatTickEngine.Instance != null ? CombatTickEngine.Instance.CurrentTick : 0);
+            }
+        }
+        public void OnBarrierHoldEnd()
+        {
+        }
         public void OnSidestepUpPressed() { if (_fighter != null) _fighter.ExecuteSidestep(1f); }
         public void OnSidestepDownPressed() { if (_fighter != null) _fighter.ExecuteSidestep(-1f); }
 
