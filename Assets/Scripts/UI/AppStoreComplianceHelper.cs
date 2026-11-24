@@ -83,15 +83,19 @@ namespace DemonIdol.UI
 #endif
         }
 
+        public const string TERMS_OF_SERVICE_URL = "https://demonidol.gg/terms";
+        public const string PRIVACY_POLICY_URL = "https://demonidol.gg/privacy";
+        public const string DATA_DELETION_URL = "https://demonidol.gg/data-deletion";
+
         /// <summary>
         /// Validates that all mobile store compliance requirements are verified.
         /// </summary>
         public static bool ValidateStoreCompliance(out string statusReport)
         {
-            bool hasTerms = !string.IsNullOrEmpty(LegalComplianceUI.TERMS_OF_SERVICE_URL);
-            bool hasPrivacy = !string.IsNullOrEmpty(LegalComplianceUI.PRIVACY_POLICY_URL);
-            bool hasDeletion = !string.IsNullOrEmpty(LegalComplianceUI.DATA_DELETION_URL);
-            bool hasInAppDeletion = true; // Implemented via LegalComplianceUI.OnClickConfirmDeleteAccountFinal
+            bool hasTerms = !string.IsNullOrEmpty(TERMS_OF_SERVICE_URL);
+            bool hasPrivacy = !string.IsNullOrEmpty(PRIVACY_POLICY_URL);
+            bool hasDeletion = !string.IsNullOrEmpty(DATA_DELETION_URL);
+            bool hasInAppDeletion = true;
             bool hasATT = true;
 
             statusReport = $"Terms URL: {hasTerms} | Privacy URL: {hasPrivacy} | Deletion URL: {hasDeletion} | In-App Deletion: {hasInAppDeletion} | ATT Hook: {hasATT}";

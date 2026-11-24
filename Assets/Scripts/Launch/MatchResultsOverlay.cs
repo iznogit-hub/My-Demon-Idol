@@ -145,12 +145,6 @@ namespace DemonIdol.Launch
         void CharacterSelect()
         {
             LaunchServices.Session.MarkMenu();
-            if (DemonIdol.UI.BloodTechUIManager.Instance != null)
-            {
-                DemonIdol.UI.BloodTechUIManager.Instance.TransitionToCharacterSelect("Arcade");
-                Destroy(gameObject);
-                return;
-            }
             PlayerPrefs.SetInt("DemonIdol_ReturnToCharSelect", 1);
             PlayerPrefs.Save();
             SceneManager.LoadScene("MainMenu");
@@ -159,12 +153,6 @@ namespace DemonIdol.Launch
         void Menu()
         {
             LaunchServices.Session.MarkMenu();
-            if (DemonIdol.UI.BloodTechUIManager.Instance != null)
-            {
-                DemonIdol.UI.BloodTechUIManager.Instance.TransitionToModeSelect();
-                Destroy(gameObject);
-                return;
-            }
             PlayerPrefs.SetInt("DemonIdol_ReturnToCharSelect", 0);
             PlayerPrefs.Save();
             SceneManager.LoadScene("MainMenu");

@@ -8,7 +8,6 @@ namespace DemonIdol.BlazBlue
     /// Non-destructive BlazBlue Barrier subsystem.
     /// Manages A+B barrier guarding, Instant Barrier detection, zero chip mitigation,
     /// 2.2x/2.6x pushback multiplication, and Danger state.
-    /// Never touches Classic BarrierBlockSystem.cs.
     /// </summary>
     public class BBBarrier : MonoBehaviour
     {

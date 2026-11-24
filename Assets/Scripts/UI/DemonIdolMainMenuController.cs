@@ -748,16 +748,7 @@ namespace DemonIdol.UI
         public void OnOnlinePvPClicked()
         {
             CombatAudioDirector.Instance?.PlayButtonClick();
-            var pvp = FindAnyObjectByType<PvPLobbyUI>(FindObjectsInactive.Include);
-            if (pvp != null)
-            {
-                pvp.gameObject.SetActive(true);
-            }
-            else
-            {
-                // Fallback to Versus
-                OnVersusClicked();
-            }
+            OnVersusClicked();
         }
 
         public void OnTutorialClicked()

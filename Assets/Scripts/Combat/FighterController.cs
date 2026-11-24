@@ -194,18 +194,6 @@ namespace DemonIdol.Combat
         private CommandParser _cmdParser;
         public CommandParser CmdParser => _cmdParser ??= new CommandParser();
 
-        private JuggleEngine _juggle;
-        public JuggleEngine Juggle => _juggle ??= new JuggleEngine();
-
-        private OkizemeWakeup _wakeupHandler;
-        public OkizemeWakeup WakeupHandler => _wakeupHandler ??= new OkizemeWakeup();
-
-        private PsychicBurstSystem _burst;
-        public PsychicBurstSystem Burst => _burst ??= GetComponent<PsychicBurstSystem>() ?? gameObject.AddComponent<PsychicBurstSystem>();
-
-        private BarrierBlockSystem _barrier;
-        public BarrierBlockSystem Barrier => _barrier ??= GetComponent<BarrierBlockSystem>() ?? gameObject.AddComponent<BarrierBlockSystem>();
-
         // Legacy reflection hook compatibility
         private CharacterController _charController;
 

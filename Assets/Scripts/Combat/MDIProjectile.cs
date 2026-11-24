@@ -70,7 +70,7 @@ namespace DemonIdol.Combat
             transform.position += new Vector3(dx, 0f, 0f);
 
             // Arena boundary clamp check
-            if (Mathf.Abs(transform.position.x) > PushbackSolver.ARENA_LIMIT_X + 2.0f)
+            if (Mathf.Abs(transform.position.x) > 12.5f)
             {
                 Release();
                 return;

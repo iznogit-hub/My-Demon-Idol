@@ -8,7 +8,6 @@ namespace DemonIdol.BlazBlue
     /// Non-destructive BlazBlue Rapid Cancel subsystem.
     /// Resets attacker to neutral upon consuming 50 Heat on hit/block,
     /// triggers a 20-tick opponent slowdown at 0.75 speed, and adds camera trauma.
-    /// Never touches Classic RapidCancel.cs.
     /// </summary>
     public class BBRapidCancel : MonoBehaviour
     {

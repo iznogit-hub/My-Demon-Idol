@@ -108,9 +108,6 @@ namespace DemonIdol.BlazBlue
                 var classicInput = fc.GetComponent<MobileFighterInput>();
                 if (classicInput != null) classicInput.enabled = false;
 
-                var classicAi = fc.GetComponent<CombatAIController>();
-                if (classicAi != null) classicAi.enabled = false;
-
                 var sampler = fc.GetComponent<BBInputSampler>();
                 if (sampler == null) sampler = fc.gameObject.AddComponent<BBInputSampler>();
                 sampler.isPlayerControlled = fc.isPlayerControlled;
@@ -340,10 +337,7 @@ namespace DemonIdol.BlazBlue
 
             if (stageConfig != null)
             {
-                // 1. Combat Geometry & Corner Walls
-                PushbackSolver.SetArenaBounds(stageConfig.rightWallX, stageConfig.rightWallX - 0.2f);
-
-                // 2. Spawn Positions
+                // 1. Spawn Positions
                 var p1Spawn = GameObject.Find("SpawnPoint_P1");
                 if (p1Spawn != null) p1Spawn.transform.position = new Vector3(stageConfig.p1SpawnX, stageConfig.floorY, 0f);
                 var p2Spawn = GameObject.Find("SpawnPoint_P2");

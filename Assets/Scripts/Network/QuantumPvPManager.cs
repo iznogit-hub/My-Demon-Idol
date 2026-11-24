@@ -238,11 +238,6 @@ namespace DemonIdol.Network
                 SetState(QuantumPvPState.InMatch);
                 Debug.Log($"<color=#00FF66>[QuantumPvPManager] Simulated Loopback Rollback Duel against {simulatedOpponent} started!</color>");
 
-                if (BloodTechUIManager.Instance != null)
-                {
-                    BloodTechUIManager.Instance.TransitionToInGame();
-                }
-
                 if (MatchRoundReferee.Instance != null)
                 {
                     MatchRoundReferee.Instance.OnMatchFinished -= HandleOnlineMatchFinished;
@@ -444,12 +439,6 @@ namespace DemonIdol.Network
 
                     SetState(QuantumPvPState.InMatch);
                     Debug.Log("<color=#00FF66>[QuantumPvPManager] Real Quantum Rollback Simulation Running!</color>");
-
-                    // Transition UI to Battle Arena
-                    if (BloodTechUIManager.Instance != null)
-                    {
-                        BloodTechUIManager.Instance.TransitionToInGame();
-                    }
 
                     if (MatchRoundReferee.Instance != null)
                     {

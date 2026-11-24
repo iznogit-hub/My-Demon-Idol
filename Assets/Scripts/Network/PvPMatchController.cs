@@ -87,10 +87,7 @@ namespace DemonIdol.Network
                 QuantumPvPManager.Instance.LeaveMatch();
             }
 
-            if (BloodTechUIManager.Instance != null)
-            {
-                BloodTechUIManager.Instance.TransitionToModeSelect();
-            }
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
         }
     }
 }

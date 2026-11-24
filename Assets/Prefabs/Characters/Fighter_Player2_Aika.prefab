@@ -4196,7 +4196,6 @@ GameObject:
   - component: {fileID: 8198571008017543306}
   - component: {fileID: 6886907133697556812}
   - component: {fileID: 8164246021899150275}
-  - component: {fileID: 8991593183602433896}
   - component: {fileID: 8211172613555825658}
   - component: {fileID: 1961452905969260023}
   m_Layer: 0
@@ -4296,21 +4295,6 @@ MonoBehaviour:
   sidestepDistanceZ: 0.85
   sidestepDurationTicks: 14
   projectileMeter: 1
---- !u!114 &8991593183602433896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8763449512345602013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a22a42fd7a58453292990cf439d7fe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.TrainingDummyAI
-  mode: 3
-  attackIntervalTicks: 90
-  _fighter: {fileID: 0}
 --- !u!114 &8211172613555825658
 MonoBehaviour:
   m_ObjectHideFlags: 0

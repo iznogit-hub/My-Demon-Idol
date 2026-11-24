@@ -191,10 +191,6 @@ namespace DemonIdol.BlazBlue
             {
                 BattleHUDController.Instance.ToggleInGamePause();
             }
-            else if (BloodTechUIManager.Instance != null)
-            {
-                BloodTechUIManager.Instance.ToggleLocalPause(true);
-            }
             else
             {
                 Time.timeScale = Time.timeScale > 0f ? 0f : 1f;

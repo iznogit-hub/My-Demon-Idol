@@ -33,12 +33,6 @@ namespace DemonIdol.Combat
 
         private void Awake()
         {
-            if (GameplaySimulationAuthority.IsPackageNative)
-            {
-                enabled = false;
-                return;
-            }
-
             if (Instance != null && Instance != this)
             {
                 DemonIdol.Audio.CombatAudioDirector.DestroyDuplicateComponent(this);

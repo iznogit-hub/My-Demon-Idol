@@ -1,16 +1,21 @@
+using System;
 using UnityEngine;
 
 namespace DemonIdol.Combat
 {
     public enum BodyZone
     {
-        Head,  // High attacks target
-        Torso, // Mid attacks target
-        Legs   // Low attacks target
+        Head,
+        Torso,
+        Legs
     }
 
-    [RequireComponent(typeof(Collider))]
-    [System.Obsolete("Superseded by BBBodyBoxes and BBBoxBuffer in Assets/Scripts/BlazBlue/. Do not use in new code.", false)]
+    /// <summary>
+    /// Retired legacy combat hurtbox stub.
+    /// Active combat box math is performed deterministically by BBMatchSim / BBBoxBuffer.
+    /// Retained to maintain component GUID integrity on character prefabs without PhysX overhead.
+    /// </summary>
+    [System.Obsolete("Superseded by BBBodyBoxes and BBBoxBuffer in Assets/Scripts/BlazBlue/. Preserved for prefab GUID integrity.", false)]
     public class Hurtbox : MonoBehaviour
     {
         [SerializeField] private BodyZone _zone = BodyZone.Torso;
@@ -19,29 +24,10 @@ namespace DemonIdol.Combat
         [SerializeField] private FighterController _owner;
         public FighterController Owner
         {
-            get
-            {
-                if (_owner == null) _owner = GetComponentInParent<FighterController>();
-                return _owner;
-            }
+            get => _owner != null ? _owner : (_owner = GetComponentInParent<FighterController>());
             private set => _owner = value;
         }
 
-        private void Awake()
-        {
-            if (_owner == null)
-            {
-                _owner = GetComponentInParent<FighterController>();
-            }
-            Collider col = GetComponent<Collider>();
-            if (col != null) col.isTrigger = true;
-        }
-
-        public void Initialize(FighterController owner)
-        {
-            Owner = owner;
-            Collider col = GetComponent<Collider>();
-            if (col != null) col.isTrigger = true;
-        }
+        public void Initialize(FighterController owner) => Owner = owner;
     }
 }

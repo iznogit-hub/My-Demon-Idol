@@ -954,28 +954,18 @@ namespace DemonIdol.UI
         public void OnClickTermsAndPrivacy()
         {
             DemonIdol.Audio.CombatAudioDirector.Instance?.PlayButtonClick();
-            if (LegalComplianceUI.Instance != null)
-            {
-                LegalComplianceUI.Instance.Open(LegalTab.TermsOfService);
-            }
+            Application.OpenURL(AppStoreComplianceHelper.TERMS_OF_SERVICE_URL);
         }
 
         public void OnClickCredits()
         {
             DemonIdol.Audio.CombatAudioDirector.Instance?.PlayButtonClick();
-            if (CreditsUI.Instance != null)
-            {
-                CreditsUI.Instance.Open();
-            }
         }
 
         public void OnClickAccountDeletion()
         {
             DemonIdol.Audio.CombatAudioDirector.Instance?.PlayButtonClick();
-            if (LegalComplianceUI.Instance != null)
-            {
-                LegalComplianceUI.Instance.Open(LegalTab.DataDeletion);
-            }
+            Application.OpenURL(AppStoreComplianceHelper.DATA_DELETION_URL);
         }
 
         public void Open()
@@ -993,14 +983,7 @@ namespace DemonIdol.UI
         public void OnClickBack()
         {
             DemonIdol.Audio.CombatAudioDirector.Instance?.PlayButtonClick();
-            if (BloodTechUIManager.Instance != null)
-            {
-                BloodTechUIManager.Instance.OnClickCloseSettingsModal();
-            }
-            else
-            {
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(false);
         }
     }
 }

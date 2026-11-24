@@ -70,12 +70,6 @@ namespace DemonIdol.Combat
 
         private void Awake()
         {
-            if (GameplaySimulationAuthority.IsPackageNative)
-            {
-                enabled = false;
-                return;
-            }
-
             if (Instance != null && Instance != this)
             {
                 DemonIdol.Audio.CombatAudioDirector.DestroyDuplicateComponent(this);
@@ -221,14 +215,6 @@ namespace DemonIdol.Combat
                 _lastLoggedSec = _roundDurationSeconds;
                 State = MatchState.IntroCountdown;
 
-                // Start Replay recording if session active
-                if (MatchReplaySession.Instance != null && !isTrainingMode && CurrentRound == 1)
-                {
-                    string p1 = _fighter1 != null ? _fighter1.fighterName : "C01";
-                    string p2 = _fighter2 != null ? _fighter2.fighterName : "C02";
-                    MatchReplaySession.Instance.StartRecording(p1, p2, "ST01", UnityEngine.Random.Range(1000, 99999));
-                }
-
                 if (!isTrainingMode)
                 {
                     // Lock inputs during intro
@@ -317,17 +303,9 @@ namespace DemonIdol.Combat
                 {
                     if (FighterCamera2D.Instance != null) FighterCamera2D.Instance.TriggerKO();
 
-                    // Ace Death Replay integration (Fail-safe, preserves deterministic flow)
-                    if (AceDeathReplayDirector.Instance != null && AceDeathReplayDirector.Instance.ReplayEnabled)
-                    {
-                        yield return AceDeathReplayDirector.Instance.PlayDeathReplayCoroutine(null);
-                    }
-                    else
-                    {
-                        Time.timeScale = 0.25f;
-                        yield return new WaitForSecondsRealtime(1.0f);
-                        Time.timeScale = 1.0f;
-                    }
+                    Time.timeScale = 0.25f;
+                    yield return new WaitForSecondsRealtime(1.0f);
+                    Time.timeScale = 1.0f;
                 }
                 else
                 {
@@ -347,12 +325,6 @@ namespace DemonIdol.Combat
             if (FighterCamera2D.Instance != null) FighterCamera2D.Instance.TriggerResults();
             RoundWinner matchWinner = P1Wins > P2Wins ? RoundWinner.Player1 : (P2Wins > P1Wins ? RoundWinner.Player2 : RoundWinner.Draw);
 
-            if (MatchReplaySession.Instance != null && MatchReplaySession.Instance.IsRecording)
-            {
-                int winnerSlot = (matchWinner == RoundWinner.Player1) ? 1 : ((matchWinner == RoundWinner.Player2) ? 2 : 0);
-                MatchReplaySession.Instance.StopRecording(winnerSlot);
-            }
-
             OnMatchFinished?.Invoke(matchWinner);
         }
 
@@ -370,12 +342,6 @@ namespace DemonIdol.Combat
             else if (winner == RoundWinner.Player2) P2Wins = _winsRequired;
 
             if (FighterCamera2D.Instance != null) FighterCamera2D.Instance.TriggerResults();
-
-            if (MatchReplaySession.Instance != null && MatchReplaySession.Instance.IsRecording)
-            {
-                int winnerSlot = (winner == RoundWinner.Player1) ? 1 : ((winner == RoundWinner.Player2) ? 2 : 0);
-                MatchReplaySession.Instance.StopRecording(winnerSlot);
-            }
 
             OnRoundEnded?.Invoke(winner, EndReason.Knockout);
             OnMatchFinished?.Invoke(winner);
@@ -432,12 +398,6 @@ namespace DemonIdol.Combat
 
             var input = fc.GetComponent<MobileFighterInput>();
             if (input != null) input.enabled = enabled;
-
-            var dummy = fc.GetComponent<TrainingDummyAI>();
-            if (dummy != null) dummy.enabled = enabled;
-
-            var ai = fc.GetComponent<CombatAIController>();
-            if (ai != null) ai.enabled = enabled;
 
             var bbSampler = fc.GetComponent<DemonIdol.BlazBlue.BBInputSampler>();
             if (bbSampler != null)

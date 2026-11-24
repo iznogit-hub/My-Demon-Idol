@@ -217,14 +217,6 @@ namespace DemonIdol.BlazBlue.Tests
             Assert.AreEqual(5, DemonIdolCharacterSelectManager.StageIds.Length);
             Assert.AreEqual(5, DemonIdolCharacterSelectManager.DifficultyNames.Length);
         }
-
-        [Test]
-        public void Test_Legacy_Menu_Scripts_Marked_Obsolete()
-        {
-            Assert.IsTrue(typeof(MainMenuController).IsDefined(typeof(ObsoleteAttribute), false), "MainMenuController must be marked [Obsolete].");
-            Assert.IsTrue(typeof(CharacterSelectUI).IsDefined(typeof(ObsoleteAttribute), false), "CharacterSelectUI must be marked [Obsolete].");
-            Assert.IsTrue(typeof(StageSelectUI).IsDefined(typeof(ObsoleteAttribute), false), "StageSelectUI must be marked [Obsolete].");
-        }
     }
 }
 #endif

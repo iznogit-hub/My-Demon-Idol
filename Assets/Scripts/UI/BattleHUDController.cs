@@ -266,11 +266,6 @@ namespace DemonIdol.UI
                 _p1.OnSuperMeterChanged -= OnP1SuperChanged;
                 _p1.OnHitProcessed -= OnP1HitProcessed;
                 _p1.OnRapidCanceled -= OnP1RapidCanceled;
-                if (_p1.Burst != null)
-                {
-                    _p1.Burst.OnBurstMeterChanged -= OnP1BurstChanged;
-                    _p1.Burst.OnBurstTriggered -= OnP1BurstTriggered;
-                }
             }
             if (_p2 != null)
             {
@@ -278,11 +273,6 @@ namespace DemonIdol.UI
                 _p2.OnSuperMeterChanged -= OnP2SuperChanged;
                 _p2.OnHitProcessed -= OnP2HitProcessed;
                 _p2.OnRapidCanceled -= OnP2RapidCanceled;
-                if (_p2.Burst != null)
-                {
-                    _p2.Burst.OnBurstMeterChanged -= OnP2BurstChanged;
-                    _p2.Burst.OnBurstTriggered -= OnP2BurstTriggered;
-                }
             }
 
             _p1 = p1;
@@ -297,12 +287,6 @@ namespace DemonIdol.UI
                 _p1.OnSuperMeterChanged += OnP1SuperChanged;
                 _p1.OnHitProcessed += OnP1HitProcessed;
                 _p1.OnRapidCanceled += OnP1RapidCanceled;
-                if (_p1.Burst != null)
-                {
-                    _p1.Burst.OnBurstMeterChanged += OnP1BurstChanged;
-                    _p1.Burst.OnBurstTriggered += OnP1BurstTriggered;
-                    OnP1BurstChanged(_p1.Burst.CurrentBurstMeter, PsychicBurstSystem.MAX_BURST_METER);
-                }
                 OnP1HealthChanged(_p1.currentHealth, _p1.maxHealth);
                 OnP1SuperChanged(_p1.currentSuperMeter, _p1.maxSuperMeter);
             }
@@ -316,12 +300,6 @@ namespace DemonIdol.UI
                 _p2.OnSuperMeterChanged += OnP2SuperChanged;
                 _p2.OnHitProcessed += OnP2HitProcessed;
                 _p2.OnRapidCanceled += OnP2RapidCanceled;
-                if (_p2.Burst != null)
-                {
-                    _p2.Burst.OnBurstMeterChanged += OnP2BurstChanged;
-                    _p2.Burst.OnBurstTriggered += OnP2BurstTriggered;
-                    OnP2BurstChanged(_p2.Burst.CurrentBurstMeter, PsychicBurstSystem.MAX_BURST_METER);
-                }
                 OnP2HealthChanged(_p2.currentHealth, _p2.maxHealth);
                 OnP2SuperChanged(_p2.currentSuperMeter, _p2.maxSuperMeter);
             }
@@ -347,16 +325,6 @@ namespace DemonIdol.UI
         private void OnP2RapidCanceled()
         {
             ShowCallout("RAPID CANCEL!", new Color(1f, 0.9f, 0.2f, 1f));
-        }
-
-        private void OnP1BurstTriggered(BurstType type)
-        {
-            ShowCallout(type == BurstType.GoldOffensive ? "GOLD BURST!" : "PSYCHIC BURST!", new Color(1f, 0.75f, 0.1f, 1f));
-        }
-
-        private void OnP2BurstTriggered(BurstType type)
-        {
-            ShowCallout(type == BurstType.GoldOffensive ? "GOLD BURST!" : "PSYCHIC BURST!", new Color(1f, 0.75f, 0.1f, 1f));
         }
 
         public void SubscribeReferee(MatchRoundReferee referee)
@@ -820,7 +788,7 @@ namespace DemonIdol.UI
             }
 
             // Advance story progression checkpoint if won in Story mode
-            if (matchWinner == RoundWinner.Player1 && CharacterSelectUI.Instance != null && CharacterSelectUI.Instance.ActiveGameMode == "Story")
+            if (matchWinner == RoundWinner.Player1 && PlayerPrefs.GetString("MDI_GameMode", "Arcade") == "Story")
             {
                 if (DemonIdol.Cutscenes.StoryCheckpointManager.Instance != null)
                 {
@@ -1546,11 +1514,6 @@ namespace DemonIdol.UI
             {
                 CombatTickEngine.Instance.PauseSimulation(isNowPaused);
             }
-
-            if (BloodTechUIManager.Instance != null)
-            {
-                BloodTechUIManager.Instance.ToggleLocalPause(isNowPaused);
-            }
         }
 
         public void EnsurePauseModal()
@@ -1737,19 +1700,7 @@ namespace DemonIdol.UI
             PlayerPrefs.SetString("MDI_MenuInitialState", "CharacterSelect");
             PlayerPrefs.SetInt("DemonIdol_ReturnToCharSelect", 1);
             PlayerPrefs.Save();
-            if (Application.CanStreamedLevelBeLoaded("CharacterSelect"))
-            {
-                SceneManager.LoadScene("CharacterSelect");
-            }
-            else if (BloodTechUIManager.Instance != null)
-            {
-                string mode = CharacterSelectUI.Instance != null ? CharacterSelectUI.Instance.ActiveGameMode : "Training";
-                BloodTechUIManager.Instance.TransitionToCharacterSelect(mode);
-            }
-            else
-            {
-                SceneManager.LoadScene("MainMenu");
-            }
+            SceneManager.LoadScene("CharacterSelect");
         }
 
         public void OnClickStageSelect()
@@ -1790,14 +1741,7 @@ namespace DemonIdol.UI
             PlayerPrefs.SetString("MDI_MenuInitialState", "Title");
             PlayerPrefs.Save();
             LaunchServices.Session.MarkMenu();
-            if (BloodTechUIManager.Instance != null)
-            {
-                BloodTechUIManager.Instance.TransitionToModeSelect();
-            }
-            else
-            {
-                SceneManager.LoadScene("MainMenu");
-            }
+            SceneManager.LoadScene("MainMenu");
         }
 
         #endregion

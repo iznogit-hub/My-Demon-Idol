@@ -362,14 +362,6 @@ namespace DemonIdol.Launch
             CurrentState = GameFlowState.ModeSelect;
             HideAllPanels();
 
-            // Delegate 100% to Master UI Canvas Mode Select if present
-            if (BloodTechUIManager.Instance != null)
-            {
-                if (_flowCanvas != null) _flowCanvas.gameObject.SetActive(false);
-                BloodTechUIManager.Instance.TransitionToModeSelect();
-                return;
-            }
-
             if (_modeSelectGroup != null)
             {
                 _modeSelectGroup.gameObject.SetActive(true);
@@ -393,36 +385,15 @@ namespace DemonIdol.Launch
         {
             if (string.Equals(mode, "Training", StringComparison.OrdinalIgnoreCase))
             {
-                if (BloodTechUIManager.Instance != null)
+                if (DemonIdol.Combat.HomegrownCombatDirector.Instance != null)
                 {
-                    BloodTechUIManager.Instance.OnClickModeTraining();
+                    DemonIdol.Combat.HomegrownCombatDirector.Instance.SetMatchContext("C01", "C02", "ST01", true, true);
+                    DemonIdol.Combat.HomegrownCombatDirector.Instance.InitializeHomegrownMatch();
                 }
-                else
+                if (DemonIdol.Combat.MatchRoundReferee.Instance != null)
                 {
-                    if (DemonIdol.Combat.HomegrownCombatDirector.Instance != null)
-                    {
-                        DemonIdol.Combat.HomegrownCombatDirector.Instance.SetMatchContext("C01", "C02", "ST01", true, true);
-                        DemonIdol.Combat.HomegrownCombatDirector.Instance.InitializeHomegrownMatch();
-                    }
-                    if (DemonIdol.Combat.MatchRoundReferee.Instance != null)
-                    {
-                        DemonIdol.Combat.MatchRoundReferee.Instance.isTrainingMode = true;
-                        DemonIdol.Combat.MatchRoundReferee.Instance.StartMatch();
-                    }
-                }
-            }
-            else if (string.Equals(mode, "Online", StringComparison.OrdinalIgnoreCase) || string.Equals(mode, "PvP", StringComparison.OrdinalIgnoreCase))
-            {
-                if (BloodTechUIManager.Instance != null)
-                {
-                    BloodTechUIManager.Instance.OnClickModePvP();
-                }
-            }
-            else if (string.Equals(mode, "Story", StringComparison.OrdinalIgnoreCase))
-            {
-                if (BloodTechUIManager.Instance != null)
-                {
-                    BloodTechUIManager.Instance.OnClickModeStory();
+                    DemonIdol.Combat.MatchRoundReferee.Instance.isTrainingMode = true;
+                    DemonIdol.Combat.MatchRoundReferee.Instance.StartMatch();
                 }
             }
         }
@@ -765,7 +736,7 @@ namespace DemonIdol.Launch
 
             // Bottom Buttons
             _btnOptions = CreateNavButton(panel.transform, "Btn_Options", "SETTINGS & OPTIONS", new Vector2(-220f, -340f), () => SettingsPanel.Instance?.Open(), font);
-            _btnCredits = CreateNavButton(panel.transform, "Btn_Credits", "CREDITS", new Vector2(220f, -340f), () => CreditsUI.Instance?.Open(), font);
+            _btnCredits = CreateNavButton(panel.transform, "Btn_Credits", "CREDITS", new Vector2(220f, -340f), () => {}, font);
             _btnBackToTitle = CreateNavButton(panel.transform, "Btn_BackToTitle", "RETURN TO START", new Vector2(0f, -420f), () => StartCoroutine(ShowTitleStartScreen()), font);
 
             return panel.GetComponent<CanvasGroup>();

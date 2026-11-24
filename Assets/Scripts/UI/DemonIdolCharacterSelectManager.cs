@@ -429,17 +429,6 @@ namespace DemonIdol.UI
 
             // AMV Lock-in Choreography: 0.15s color-field flash + giant condensed name slam
             StartCoroutine(AnimateLockInFeedback(isP1));
-
-            // Announcer callout
-            var announcer = FindAnyObjectByType<DemonLordAnnouncerWidget>();
-            if (announcer != null)
-            {
-                string charId = isP1 ? RosterIds[p1Index] : RosterIds[p2Index];
-                var def = CharacterRegistry.GetCharacterById(charId);
-                string charName = def != null ? def.displayName : charId;
-                announcer.SetDialogue($"Selected: {charName}! Let planar combat begin.");
-                announcer.UpdateForFighter(charId);
-            }
         }
 
         private IEnumerator AnimateLockInFeedback(bool isP1)

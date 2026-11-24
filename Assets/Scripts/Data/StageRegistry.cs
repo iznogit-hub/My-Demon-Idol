@@ -7,7 +7,7 @@ namespace DemonIdol.Combat
     /// <summary>
     /// Content Registry for StageDefinitions.
     /// Dynamically discovers authored StageDefinitions from Resources,
-    /// providing a single source of truth for StageSelectUI without hardcoding stages.
+    /// providing a single source of truth for stage selection without hardcoding stages.
     /// </summary>
     public static class StageRegistry
     {

@@ -233,29 +233,10 @@ namespace DemonIdol.Combat
                 ConfigureFighter(_fighter2, _activeP2Id, !_p2IsCpu);
                 if (_p2IsCpu)
                 {
-                    if (_isTraining)
-                    {
-                        var dummy = _fighter2.GetComponent<TrainingDummyAI>();
-                        if (dummy == null) dummy = _fighter2.gameObject.AddComponent<TrainingDummyAI>();
-                        dummy.enabled = true;
-
-                        var ai = _fighter2.GetComponent<CombatAIController>();
-                        if (ai != null) ai.enabled = false;
-
-                        var dojo = GetComponent<PracticeDojoController>();
-                        if (dojo == null) dojo = gameObject.AddComponent<PracticeDojoController>();
-                        dojo.enabled = true;
-                    }
-                    else
-                    {
-                        var dummy = _fighter2.GetComponent<TrainingDummyAI>();
-                        if (dummy != null) dummy.enabled = false;
-
-                        var ai = _fighter2.GetComponent<CombatAIController>();
-                        if (ai == null) ai = _fighter2.gameObject.AddComponent<CombatAIController>();
-                        ai.ConfigurePersonalityFromFighter();
-                        ai.enabled = true;
-                    }
+                    var bbAi = _fighter2.GetComponent<DemonIdol.BlazBlue.BBAIController>();
+                    if (bbAi == null) bbAi = _fighter2.gameObject.AddComponent<DemonIdol.BlazBlue.BBAIController>();
+                    bbAi.enabledAI = !_isTraining;
+                    bbAi.enabled = true;
                 }
             }
 
@@ -321,7 +302,6 @@ namespace DemonIdol.Combat
             var stage = StageRegistry.GetStageById(_activeStageId);
             if (stage != null)
             {
-                PushbackSolver.SetArenaBounds(stage.ArenaLimitX, stage.wallThreshold);
                 Transform t1 = _fighter1 != null ? _fighter1.transform : null;
                 Transform t2 = _fighter2 != null ? _fighter2.transform : null;
 
@@ -469,7 +449,6 @@ namespace DemonIdol.Combat
                 foreach (var pi in model.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroyComponent(pi);
                 foreach (var hb in model.GetComponentsInChildren<Hitbox>(true)) SafeDestroy(hb.gameObject);
                 foreach (var hb in model.GetComponentsInChildren<Hurtbox>(true)) SafeDestroy(hb.gameObject);
-                foreach (var pb in model.GetComponentsInChildren<FighterPropBinder>(true)) SafeDestroy(pb);
 
                 // Strip any external prop objects (only if not an armature bone)
                 var allBones = new HashSet<Transform>();
