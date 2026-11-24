@@ -36,6 +36,9 @@ namespace DemonIdol.BlazBlue
 
         public static bool ShouldShowTouchControls()
         {
+#if UNITY_EDITOR
+            if (DemonIdol.BlazBlue.UI.BBTouchOverlay.showTouchOverlayInEditor) return true;
+#endif
             bool simulatorMobile = false;
 #if UNITY_EDITOR
             simulatorMobile = UnityEngine.Device.Application.isMobilePlatform

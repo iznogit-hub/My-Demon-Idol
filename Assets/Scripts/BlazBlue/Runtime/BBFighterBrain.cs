@@ -241,6 +241,12 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        public void SetHealthDirect(float value)
+        {
+            health = value;
+            MirrorHealthToFighter();
+        }
+
         /// <summary>
         /// Resets the fighter to pristine round-start conditions according to fighting-game rules.
         /// Restores max health, returns state to Neutral, clears hitstop, hitstun, blockstun, combos,

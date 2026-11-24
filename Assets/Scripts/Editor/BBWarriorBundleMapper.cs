@@ -132,11 +132,11 @@ namespace DemonIdol.BlazBlue.Editor
                 primaryPosOffset = Vector3.zero,
                 primaryRotOffset = Vector3.zero,
                 primaryScale = new Vector3(0.80f, 0.80f, 0.80f),
-                secondaryWeaponPrefab = null,
+                secondaryWeaponPrefab = "Assets/Prefabs/Weapons/Warrior/Warrior_Ninja_Sword.prefab",
                 secondarySocket = HumanBodyBones.LeftHand,
                 secondaryPosOffset = Vector3.zero,
                 secondaryRotOffset = Vector3.zero,
-                secondaryScale = Vector3.one,
+                secondaryScale = new Vector3(0.80f, 0.80f, 0.80f),
                 hasProjectile = false,
                 attackClips = new ClipSliceDef[]
                 {
@@ -1156,11 +1156,13 @@ namespace DemonIdol.BlazBlue.Editor
                     rig.primaryPositionOffset = cfg.primaryPosOffset;
                     rig.primaryRotationOffset = cfg.primaryRotOffset;
                     rig.primaryScale = cfg.primaryScale;
+                    rig.primaryTargetLength = BBWeaponRig.GetDefaultTargetLength(cfg.warriorType, false);
                 }
                 else
                 {
                     rig.primaryWeaponPrefab = null;
                     rig.primaryScale = Vector3.one;
+                    rig.primaryTargetLength = 0f;
                 }
 
                 if (!string.IsNullOrEmpty(cfg.secondaryWeaponPrefab))
@@ -1170,11 +1172,13 @@ namespace DemonIdol.BlazBlue.Editor
                     rig.secondaryPositionOffset = cfg.secondaryPosOffset;
                     rig.secondaryRotationOffset = cfg.secondaryRotOffset;
                     rig.secondaryScale = cfg.secondaryScale;
+                    rig.secondaryTargetLength = BBWeaponRig.GetDefaultTargetLength(cfg.warriorType, true);
                 }
                 else
                 {
                     rig.secondaryWeaponPrefab = null;
                     rig.secondaryScale = Vector3.one;
+                    rig.secondaryTargetLength = 0f;
                 }
 
                 PrefabUtility.SaveAsPrefabAsset(root, prefabPath);

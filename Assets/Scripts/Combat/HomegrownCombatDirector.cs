@@ -516,6 +516,10 @@ namespace DemonIdol.Combat
                 if (anim == null) anim = model.AddComponent<Animator>();
                 if (anim != null)
                 {
+                    if (anim.GetComponent<AnimationEventReceiver>() == null)
+                    {
+                        anim.gameObject.AddComponent<AnimationEventReceiver>();
+                    }
                     anim.applyRootMotion = false;
                     if (charDef != null && charDef.animatorController != null)
                     {
@@ -854,6 +858,10 @@ namespace DemonIdol.Combat
                 if (anim == null) anim = model.AddComponent<Animator>();
                 if (anim != null)
                 {
+                    if (anim.GetComponent<AnimationEventReceiver>() == null)
+                    {
+                        anim.gameObject.AddComponent<AnimationEventReceiver>();
+                    }
                     anim.applyRootMotion = false;
                     if (charDef != null && charDef.animatorController != null)
                     {

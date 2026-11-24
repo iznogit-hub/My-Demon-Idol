@@ -109,7 +109,14 @@ namespace DemonIdol.Combat
             prop.transform.SetParent(socket, false);
             prop.transform.localPosition = prop.localPositionOffset;
             prop.transform.localEulerAngles = prop.localRotationOffset;
-            prop.transform.localScale = prop.localScale;
+            
+            // Compensate for bone lossyScale so weapon props never scale excessively or float away
+            Vector3 socketLossy = socket.lossyScale;
+            float sx = prop.localScale.x / Mathf.Max(Mathf.Abs(socketLossy.x), 0.0001f);
+            float sy = prop.localScale.y / Mathf.Max(Mathf.Abs(socketLossy.y), 0.0001f);
+            float sz = prop.localScale.z / Mathf.Max(Mathf.Abs(socketLossy.z), 0.0001f);
+            prop.transform.localScale = new Vector3(sx, sy, sz);
+            
             prop.gameObject.SetActive(true);
         }
 

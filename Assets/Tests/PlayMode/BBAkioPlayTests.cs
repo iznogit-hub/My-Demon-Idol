@@ -101,7 +101,7 @@ namespace DemonIdol.Tests.PlayMode
                 p2Brain.ResetForRound();
                 p1Brain.heat = 100f; // Ensure full heat for super
                 p2Brain.maxHealth = 25000f;
-                p2Brain.health = 25000f;
+                p2Brain.SetHealthDirect(25000f);
                 p1InputQueue.Clear();
 
                 p1Fc.transform.position = new Vector3(-0.35f, 0f, 0f);
@@ -159,7 +159,7 @@ namespace DemonIdol.Tests.PlayMode
             p2Brain.ResetForRound();
             p1Brain.heat = 100f;
             p2Brain.maxHealth = 25000f;
-            p2Brain.health = 25000f;
+            p2Brain.SetHealthDirect(25000f);
             p1InputQueue.Clear();
 
             p1Fc.transform.position = new Vector3(-0.35f, 0f, 0f);

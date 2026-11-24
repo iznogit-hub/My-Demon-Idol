@@ -211,7 +211,11 @@ namespace DemonIdol.BlazBlue
                     BBComboReadout.Create(canvas.transform);
                 }
 
-                if (BBTouchLayout.ShouldShowTouchControls() && canvas.GetComponentInChildren<BBTouchLayout>(true) == null)
+                if (DemonIdol.BlazBlue.UI.BBTouchOverlay.ShouldShowOverlay() && canvas.GetComponentInChildren<DemonIdol.BlazBlue.UI.BBTouchOverlay>(true) == null)
+                {
+                    DemonIdol.BlazBlue.UI.BBTouchOverlay.Create(canvas.transform, p1Brain.sampler);
+                }
+                else if (BBTouchLayout.ShouldShowTouchControls() && canvas.GetComponentInChildren<BBTouchLayout>(true) == null)
                 {
                     BBTouchLayout.Create(canvas.transform, p1Brain.sampler);
                 }
@@ -252,6 +256,17 @@ namespace DemonIdol.BlazBlue
             if (animator == null) return;
             animator.applyRootMotion = false;
             fc.animator = animator;
+
+            // Ensure AnimationEventReceiver is attached directly to the Animator's GameObject (Model_C01 etc)
+            if (animator.GetComponent<DemonIdol.Combat.AnimationEventReceiver>() == null)
+            {
+                animator.gameObject.AddComponent<DemonIdol.Combat.AnimationEventReceiver>();
+            }
+            if (fc.GetComponent<DemonIdol.Combat.AnimationEventReceiver>() == null)
+            {
+                fc.gameObject.AddComponent<DemonIdol.Combat.AnimationEventReceiver>();
+            }
+
             var driver = fc.GetComponent<BBAnimationDriver>();
             if (driver == null) driver = fc.gameObject.AddComponent<BBAnimationDriver>();
             brain.animDriver = driver;

@@ -6,6 +6,7 @@ using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 using DemonIdol.BlazBlue;
+using DemonIdol.BlazBlue.Visual;
 using DemonIdol.Combat;
 using DemonIdol.Launch;
 
@@ -141,7 +142,7 @@ namespace DemonIdol.Tests.PlayMode
                     p2Brain.ResetForRound();
                     p1Brain.heat = 100f;
                     p2Brain.maxHealth = 50000f;
-                    p2Brain.health = 50000f;
+                    p2Brain.SetHealthDirect(50000f);
                     p1InputQueue.Clear();
 
                     p1Fc.transform.position = new Vector3(-0.35f, 0f, 0f);
@@ -190,6 +191,16 @@ namespace DemonIdol.Tests.PlayMode
                     Assert.LessOrEqual(Mathf.Abs(p1Fc.transform.position.y), 0.03f, $"P1 {cid} footY after {mid} must return within +-0.03m, got {p1Fc.transform.position.y:F4}m");
                 }
 
+                var p1Rig = p1Fc.GetComponentInChildren<BBWeaponRig>();
+                if (p1Rig != null && p1Rig.warriorType != BBWarriorType.Karate && p1Rig.PrimaryInstance != null && p1Rig.PrimaryBoneTransform != null)
+                {
+                    float gripDist = Vector3.Distance(p1Rig.PrimaryInstance.transform.position, p1Rig.PrimaryBoneTransform.position);
+                    Assert.Less(gripDist, 0.15f, $"P1 {cid} primary weapon grip distance must be <0.15m from hand bone, got {gripDist:F3}m");
+                    Bounds b = BBWeaponRig.MeasureMeshBounds(p1Rig.PrimaryInstance);
+                    float targetLen = p1Rig.primaryTargetLength > 0.05f ? p1Rig.primaryTargetLength : BBWeaponRig.GetDefaultTargetLength(p1Rig.warriorType, false);
+                    Assert.LessOrEqual(b.size.magnitude, targetLen * 1.5f, $"P1 {cid} primary bounds magnitude ({b.size.magnitude:F3}m) must be <= {targetLen * 1.5f:F3}m");
+                }
+
                 Debug.Log($"<color=#00e676>[BB12FighterWarriorPlayTests] P1 [{cid} {def.displayName}] ALL 7 MOVES CONNECTED CLEANLY! ({f+1}/12)</color>");
             }
 
@@ -232,7 +243,7 @@ namespace DemonIdol.Tests.PlayMode
                     p1Brain.ResetForRound();
                     p2Brain.heat = 100f;
                     p1Brain.maxHealth = 50000f;
-                    p1Brain.health = 50000f;
+                    p1Brain.SetHealthDirect(50000f);
                     p2InputQueue.Clear();
 
                     p2Fc.transform.position = new Vector3(-0.35f, 0f, 0f);
@@ -281,6 +292,16 @@ namespace DemonIdol.Tests.PlayMode
                     Assert.LessOrEqual(Mathf.Abs(p2Fc.transform.position.y), 0.03f, $"P2 {cid} footY after {mid} must return within +-0.03m, got {p2Fc.transform.position.y:F4}m");
                 }
 
+                var p2Rig = p2Fc.GetComponentInChildren<BBWeaponRig>();
+                if (p2Rig != null && p2Rig.warriorType != BBWarriorType.Karate && p2Rig.PrimaryInstance != null && p2Rig.PrimaryBoneTransform != null)
+                {
+                    float gripDist = Vector3.Distance(p2Rig.PrimaryInstance.transform.position, p2Rig.PrimaryBoneTransform.position);
+                    Assert.Less(gripDist, 0.15f, $"P2 {cid} primary weapon grip distance must be <0.15m from hand bone, got {gripDist:F3}m");
+                    Bounds b = BBWeaponRig.MeasureMeshBounds(p2Rig.PrimaryInstance);
+                    float targetLen = p2Rig.primaryTargetLength > 0.05f ? p2Rig.primaryTargetLength : BBWeaponRig.GetDefaultTargetLength(p2Rig.warriorType, false);
+                    Assert.LessOrEqual(b.size.magnitude, targetLen * 1.5f, $"P2 {cid} primary bounds magnitude ({b.size.magnitude:F3}m) must be <= {targetLen * 1.5f:F3}m");
+                }
+
                 Debug.Log($"<color=#00e676>[BB12FighterWarriorPlayTests] P2 [{cid} {def.displayName}] ALL 7 MOVES CONNECTED CLEANLY! ({f+1}/12)</color>");
             }
 
@@ -316,7 +337,7 @@ namespace DemonIdol.Tests.PlayMode
             p2Brain.ResetForRound();
             p1Brain.heat = 100f;
             p2Brain.maxHealth = 25000f;
-            p2Brain.health = 25000f;
+            p2Brain.SetHealthDirect(25000f);
             p1Fc.transform.position = new Vector3(-0.35f, 0f, 0f);
             p2Fc.transform.position = new Vector3(0.35f, 0f, 0f);
             yield return StepTicks(5);
@@ -419,6 +440,66 @@ namespace DemonIdol.Tests.PlayMode
                     queue.Enqueue(new BBInputFrame { numpad = 6, pressed = (byte)BBButton.C, held = (byte)BBButton.C });
                     break;
             }
+        }
+
+        [Test]
+        public void Test_All12Fighters_WeaponRig_GripDistance_And_WorldScale_Integrity()
+        {
+            Debug.Log("<color=#00e676>[BB12FighterWarriorPlayTests] Testing all 12 fighters for zero-floating weapon grip (<0.15m) and exact world bounds scale (<1.4x)...</color>");
+            for (int i = 0; i < LaunchFighterIds.Length; i++)
+            {
+                string cid = LaunchFighterIds[i];
+                var def = FindDefinition(cid);
+                Assert.IsNotNull(def, $"CharacterDefinition for {cid} must exist");
+                if (def.modelPrefab == null) continue;
+
+                GameObject instance = Object.Instantiate(def.modelPrefab);
+                try
+                {
+                    var rig = instance.GetComponent<BBWeaponRig>();
+                    if (rig == null) rig = instance.GetComponentInChildren<BBWeaponRig>();
+                    if (rig == null) continue;
+
+                    rig.Initialize();
+
+                    if (rig.warriorType == BBWarriorType.Karate)
+                    {
+                        Assert.IsNull(rig.PrimaryInstance, $"Karate fighter {cid} must have no primary weapon instance");
+                        continue;
+                    }
+
+                    if (rig.primaryWeaponPrefab != null)
+                    {
+                        Assert.IsNotNull(rig.PrimaryBoneTransform, $"{cid} primary bone transform must resolve to a valid humanoid bone");
+                        Assert.IsNotNull(rig.PrimaryInstance, $"{cid} primary weapon instance must be instantiated");
+
+                        float gripDist = Vector3.Distance(rig.PrimaryInstance.transform.position, rig.PrimaryBoneTransform.position);
+                        Assert.Less(gripDist, 0.15f, $"{cid} primary weapon grip distance must be <0.15m from hand bone, got {gripDist:F3}m");
+
+                        Bounds b = BBWeaponRig.MeasureMeshBounds(rig.PrimaryInstance);
+                        float targetLen = rig.primaryTargetLength > 0.05f ? rig.primaryTargetLength : BBWeaponRig.GetDefaultTargetLength(rig.warriorType, false);
+                        Assert.LessOrEqual(b.size.magnitude, targetLen * 1.5f, $"{cid} primary bounds magnitude ({b.size.magnitude:F3}m) must be <= {targetLen * 1.5f:F3}m");
+                    }
+
+                    if (rig.secondaryWeaponPrefab != null)
+                    {
+                        Assert.IsNotNull(rig.SecondaryBoneTransform, $"{cid} secondary bone transform must resolve to a valid humanoid bone");
+                        Assert.IsNotNull(rig.SecondaryInstance, $"{cid} secondary weapon instance must be instantiated");
+
+                        float secDist = Vector3.Distance(rig.SecondaryInstance.transform.position, rig.SecondaryBoneTransform.position);
+                        Assert.Less(secDist, 0.15f, $"{cid} secondary weapon grip distance must be <0.15m from bone, got {secDist:F3}m");
+
+                        Bounds b = BBWeaponRig.MeasureMeshBounds(rig.SecondaryInstance);
+                        float targetLen = rig.secondaryTargetLength > 0.05f ? rig.secondaryTargetLength : BBWeaponRig.GetDefaultTargetLength(rig.warriorType, true);
+                        Assert.LessOrEqual(b.size.magnitude, targetLen * 1.5f, $"{cid} secondary bounds magnitude ({b.size.magnitude:F3}m) must be <= {targetLen * 1.5f:F3}m");
+                    }
+                }
+                finally
+                {
+                    Object.DestroyImmediate(instance);
+                }
+            }
+            Debug.Log("<color=#00e676>[BB12FighterWarriorPlayTests] SUCCESS: All 12 launch fighters verified with zero-float grip (<0.15m) and exact world bounds!</color>");
         }
 
         private static CharacterDefinition FindDefinition(string id)

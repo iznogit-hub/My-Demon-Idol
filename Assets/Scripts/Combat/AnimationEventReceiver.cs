@@ -5,12 +5,14 @@ namespace DemonIdol.Combat
 {
     /// <summary>
     /// Bridges FBX / Mecanim animation events directly into combat audio effects.
-    /// Attach this to the character model holding the Animator.
-    /// Hitboxes are strictly authoritative on the 60Hz tick engine (FighterController).
+    /// Attach this to the character model holding the Animator (e.g. Model_C01).
+    /// Provides concrete receiver handlers for all ExplosiveLLC Warrior Pack animation events
+    /// ('FootL', 'FootR', 'Hit', 'Shoot', 'Land', 'WeaponSwitch', 'NewEvent') to silence console errors.
+    /// Hitboxes remain strictly authoritative on the 60Hz tick engine (BBMatchSim).
     /// </summary>
     public class AnimationEventReceiver : MonoBehaviour
     {
-        #region Animation Event Triggers
+        #region Classic Combat Audio Triggers
 
         // Called via Animation Events on Walk/Dash clips
         public void OnFootstep()
@@ -45,6 +47,72 @@ namespace DemonIdol.Combat
                 CombatAudioDirector.Instance.PlayLand();
             }
         }
+
+        #endregion
+
+        #region ExplosiveLLC Warrior Pack Event Handlers
+
+        // Footstep Left
+        public void FootL() => OnFootstep();
+        public void FootL(AnimationEvent evt) => OnFootstep();
+        public void FootL(string s) => OnFootstep();
+        public void FootL(int i) => OnFootstep();
+        public void FootL(float f) => OnFootstep();
+
+        // Footstep Right
+        public void FootR() => OnFootstep();
+        public void FootR(AnimationEvent evt) => OnFootstep();
+        public void FootR(string s) => OnFootstep();
+        public void FootR(int i) => OnFootstep();
+        public void FootR(float f) => OnFootstep();
+
+        // Melee / Weapon Swing Contact
+        public void Hit() => OnSwingLight();
+        public void Hit(AnimationEvent evt) => OnSwingLight();
+        public void Hit(string s) => OnSwingLight();
+        public void Hit(int i) => OnSwingLight();
+        public void Hit(float f) => OnSwingLight();
+
+        // Projectile Release / Bow Shoot
+        public void Shoot() => OnSwingLight();
+        public void Shoot(AnimationEvent evt) => OnSwingLight();
+        public void Shoot(string s) => OnSwingLight();
+        public void Shoot(int i) => OnSwingLight();
+        public void Shoot(float f) => OnSwingLight();
+
+        // Landing Impact
+        public void Land() => OnLand();
+        public void Land(AnimationEvent evt) => OnLand();
+        public void Land(string s) => OnLand();
+        public void Land(int i) => OnLand();
+        public void Land(float f) => OnLand();
+
+        // Weapon Switch / Sheathe
+        public void WeaponSwitch() { }
+        public void WeaponSwitch(AnimationEvent evt) { }
+        public void WeaponSwitch(string s) { }
+        public void WeaponSwitch(int i) { }
+        public void WeaponSwitch(float f) { }
+
+        // Generic FBX Event
+        public void NewEvent() { }
+        public void NewEvent(AnimationEvent evt) { }
+        public void NewEvent(string s) { }
+        public void NewEvent(int i) { }
+        public void NewEvent(float f) { }
+
+        // Fallbacks for other possible pack events
+        public void Attack() => OnSwingLight();
+        public void Attack(AnimationEvent evt) => OnSwingLight();
+        public void Attack(string s) => OnSwingLight();
+        public void Attack(int i) => OnSwingLight();
+        public void Attack(float f) => OnSwingLight();
+
+        public void Step() => OnFootstep();
+        public void Step(AnimationEvent evt) => OnFootstep();
+        public void Step(string s) => OnFootstep();
+        public void Step(int i) => OnFootstep();
+        public void Step(float f) => OnFootstep();
 
         #endregion
     }

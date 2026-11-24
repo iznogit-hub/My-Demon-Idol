@@ -21,6 +21,31 @@ namespace DemonIdol.BlazBlue
         public byte virtualPressedMask = 0;
         public byte virtualReleasedMask = 0;
 
+        /// <summary>
+        /// Feeds mobile virtual touch overlay input (numpad direction 1..9 and button bitmask).
+        /// Standard tournament SOCD is maintained.
+        /// </summary>
+        public void SetTouchInput(sbyte numpad, ushort buttonMask)
+        {
+            float x = 0f;
+            float y = 0f;
+            if (numpad == 1 || numpad == 4 || numpad == 7) x = -1f;
+            else if (numpad == 3 || numpad == 6 || numpad == 9) x = 1f;
+
+            if (numpad == 1 || numpad == 2 || numpad == 3) y = -1f;
+            else if (numpad == 7 || numpad == 8 || numpad == 9) y = 1f;
+
+            virtualStickInput = new Vector2(x, y);
+
+            byte bMask = (byte)(buttonMask & 0xFF);
+            byte newlyPressed = (byte)(bMask & ~virtualHeldMask);
+            byte newlyReleased = (byte)(~bMask & virtualHeldMask);
+
+            virtualPressedMask |= newlyPressed;
+            virtualReleasedMask |= newlyReleased;
+            virtualHeldMask = bMask;
+        }
+
         // Accumulated edges between combat ticks
         private byte _latchedPressed = 0;
         private byte _latchedReleased = 0;

@@ -346,11 +346,13 @@ MonoBehaviour:
   primaryPositionOffset: {x: 0, y: 0.04, z: 0.04}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
   primaryScale: {x: 0.9, y: 0.9, z: 0.9}
+  primaryTargetLength: 0.85
   secondaryWeaponPrefab: {fileID: 3360497899579478474, guid: 9ccfc98472b804904bd895a294dbf8b5, type: 3}
   secondarySocket: 15
   secondaryPositionOffset: {x: 0, y: 0, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
   secondaryScale: {x: 0.55, y: 0.55, z: 0.55}
+  secondaryTargetLength: 0.52
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}
