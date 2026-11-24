@@ -72,27 +72,5 @@ namespace DemonIdol.Combat
             return "Mike";
         }
 
-        /// <summary>
-        /// Converts to a lightweight runtime FighterProfile for UI compatibility.
-        /// </summary>
-        public FighterProfile ToFighterProfile()
-        {
-            return new FighterProfile
-            {
-                id = id,
-                displayName = displayName,
-                title = title,
-                archetype = archetype,
-                description = description,
-                prefabPath = modelPrefab != null ? modelPrefab.name : $"Prefabs/{id}",
-                speed = Mathf.RoundToInt(speed),
-                power = Mathf.RoundToInt(power),
-                reach = Mathf.RoundToInt(reach),
-                defense = Mathf.RoundToInt(defense),
-                domainName = domainName,
-                domainDescription = domainDescription,
-                themeColor = SumiStyleTokens.PaperWhite
-            };
-        }
     }
 }
