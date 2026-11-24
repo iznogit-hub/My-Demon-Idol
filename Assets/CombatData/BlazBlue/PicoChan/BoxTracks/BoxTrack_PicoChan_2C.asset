@@ -12,32 +12,320 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BoxTrack_PicoChan_2C
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 35
-  frameStart: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000020000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000030000000300000003000000i
+  tickCount: 36
+  frameStart: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000d0000000f0000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f0000002000000021000000220000002300000024000000250000002600000027000000i
   boxes:
-  - cx: 0.75
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0.85
     cy: 0.45
-    hx: 0.6
+    hx: 0.7
     hy: 0.25
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.75
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0.85
     cy: 0.45
-    hx: 0.6
+    hx: 0.7
     hy: 0.25
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.75
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0.85
     cy: 0.45
-    hx: 0.6
+    hx: 0.7
     hy: 0.25
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  keyTicks: 0a000000i
-  bakeHash: Bake_C09_2C_10_3_22
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.6
+    hx: 0.4
+    hy: 0.45
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  keyTicks: 0b000000i
+  bakeHash: Bake_C09_2C_11_3_22

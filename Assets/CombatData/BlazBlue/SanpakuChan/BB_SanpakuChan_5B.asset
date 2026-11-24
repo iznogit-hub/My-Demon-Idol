@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: -998496362607748373, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.85, y: 1.2, z: 0}
   hitboxSize: {x: 1.45, y: 0.6, z: 1}
@@ -99,9 +99,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 4798405cf864440ae8b6a4d4484ae804, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_Palm
-  clip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Swordsman_Thrust
+  clip: {fileID: -998496362607748373, guid: 388866d801cf0f34daa7a600517209b2, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 24
+  clipLastFrame: 18
   measuredImpactFrame: 7
   events: []

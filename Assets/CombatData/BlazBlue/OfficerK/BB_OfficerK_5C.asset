@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_OfficerK_5C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Heavy Strike
+  attackName: Colossal Strike
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 11
+  startupFrames: 13
   activeFrames: 4
-  recoveryFrames: 17
-  hitstunTicks: 18
-  blockstunTicks: 16
+  recoveryFrames: 19
+  hitstunTicks: 19
+  blockstunTicks: 17
   knockdownDurationTicks: 36
   hitstopAttacker: 11
   hitstopDefender: 11
   hitstopOnBlock: 11
   counterHitStopBonus: 4
-  advantageOnBlock: -4
-  advantageOnHit: -2
+  advantageOnBlock: -5
+  advantageOnHit: -3
   advantageOnCounterHit: 8
-  damage: 820
+  damage: 900
   chipDamageOnBlock: 0
   initialProration: 0.89
   comboDamageDecay: 0.89
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.4
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 3060872287085348379, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: 3060872287085348379, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 1.1, y: 1.2, z: 0}
   hitboxSize: {x: 1.6, y: 0.6, z: 1}
@@ -97,11 +97,11 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 7b3cdb82cae784b5283af46b2a397477, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_Roundhouse
-  clip: {fileID: 3060872287085348379, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Brute_DoubleSlam
+  clip: {fileID: 3060872287085348379, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 60
-  measuredImpactFrame: 11
+  measuredImpactFrame: 13
   events: []
 --- !u!114 &4076937571463244239
 MonoBehaviour:

@@ -24,7 +24,7 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 10
+  startupFrames: 11
   activeFrames: 3
   recoveryFrames: 22
   hitstunTicks: 36
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.4
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 6641085478485924818, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: 6641085478485924818, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
   animationTrigger: LowSweepAttack
   hitboxOffset: {x: 1.25, y: 0.35, z: 0}
   hitboxSize: {x: 1.8, y: 0.6, z: 1}
@@ -96,9 +96,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 34aaf540c37f644628ee4e7c2ad216fa, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_Sweep
-  clip: {fileID: 6641085478485924818, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Sorceress_Sweep
+  clip: {fileID: 6641085478485924818, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 60
-  measuredImpactFrame: 10
+  measuredImpactFrame: 11
   events: []

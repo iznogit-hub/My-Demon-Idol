@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Muryotaisu_5A
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Light Jab
+  attackName: Heavy Jab
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -65,9 +65,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 5
+  startupFrames: 7
   activeFrames: 3
-  recoveryFrames: 8
+  recoveryFrames: 9
   hitstunTicks: 13
   blockstunTicks: 11
   knockdownDurationTicks: 36
@@ -75,10 +75,10 @@ MonoBehaviour:
   hitstopDefender: 9
   hitstopOnBlock: 9
   counterHitStopBonus: 4
-  advantageOnBlock: 1
-  advantageOnHit: 3
+  advantageOnBlock: 0
+  advantageOnHit: 2
   advantageOnCounterHit: 8
-  damage: 280
+  damage: 320
   chipDamageOnBlock: 0
   initialProration: 0.8
   comboDamageDecay: 0.8
@@ -95,7 +95,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: 1827226128182048838, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.8, y: 1.25, z: 0}
   hitboxSize: {x: 1.5, y: 0.6, z: 1}
@@ -141,9 +141,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 4bc0b731e5feb42aebb57cdb4ca94208, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_Jab
-  clip: {fileID: 1827226128182048838, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: TwoHanded_Sweep
+  clip: {fileID: 1827226128182048838, guid: dbbdcfdc751ca1146932bd6bc3dda730, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 44
-  measuredImpactFrame: 5
+  clipLastFrame: 52
+  measuredImpactFrame: 7
   events: []

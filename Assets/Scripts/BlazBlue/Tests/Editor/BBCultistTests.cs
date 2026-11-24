@@ -50,9 +50,9 @@ namespace DemonIdol.BlazBlue.Tests
                 Assert.AreEqual(m.startupFrames, m.boxes.keyTicks[0], $"{m.moveId} peakLimbTick must equal firstActiveTick ({m.startupFrames}).");
 
                 var clip = m.clip != null ? m.clip : m.animationClip;
-                Assert.IsNotNull(clip, $"{m.moveId} must have an assigned AnimationClip from the Karate pack.");
+                Assert.IsNotNull(clip, $"{m.moveId} must have an assigned AnimationClip from the Mage pack.");
                 string clipAssetPath = AssetDatabase.GetAssetPath(clip);
-                Assert.IsTrue(clipAssetPath.Contains("Karate"), $"{m.moveId} clip path '{clipAssetPath}' must be from Karate Warrior pack.");
+                Assert.IsTrue(clipAssetPath.Contains("Mage"), $"{m.moveId} clip path '{clipAssetPath}' must be from Mage Warrior pack.");
             }
         }
 

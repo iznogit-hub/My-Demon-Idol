@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Fina_j.B
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Jump Attack
+  attackName: Air Strike
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 7
+  startupFrames: 8
   activeFrames: 4
   recoveryFrames: 14
   hitstunTicks: 19
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: -5059006814000262888, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: -5059006814000262888, guid: 714c40c75ea542248aea545b08b8bc50, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.85, y: -0.2, z: 0}
   hitboxSize: {x: 1.4, y: 1.4, z: 1}
@@ -95,9 +95,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 2f99d8b62892d47f18bd33b262887e4b, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_AirKick
-  clip: {fileID: -5059006814000262888, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Crossbow_Air
+  clip: {fileID: -5059006814000262888, guid: 714c40c75ea542248aea545b08b8bc50, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 44
-  measuredImpactFrame: 7
+  measuredImpactFrame: 8
   events: []

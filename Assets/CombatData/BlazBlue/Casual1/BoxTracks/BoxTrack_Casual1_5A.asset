@@ -12,32 +12,176 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b1969e770e84471af5a83235a29816, type: 3}
   m_Name: BoxTrack_Casual1_5A
   m_EditorClassIdentifier: MDI.BlazBlue.Core::DemonIdol.BlazBlue.BBBoxTrack
-  tickCount: 16
-  frameStart: 0000000000000000000000000000000000000000000000000100000002000000030000000300000003000000030000000300000003000000030000000300000003000000i
+  tickCount: 18
+  frameStart: 00000000010000000200000003000000040000000500000006000000080000000a0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000i
   boxes:
-  - cx: 0.54999995
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0.5625
     cy: 1.05
-    hx: 0.39999998
+    hx: 0.41249996
     hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.54999995
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0.5625
     cy: 1.05
-    hx: 0.39999998
+    hx: 0.41249996
     hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.54999995
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0.5625
     cy: 1.05
-    hx: 0.39999998
+    hx: 0.41249996
     hy: 0.35
     kind: 1
     hitIndex: 0
     attribute: 2
     flags: 0
-  keyTicks: 05000000i
-  bakeHash: Bake_C11_5A_5_3_8
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  - cx: 0
+    cy: 0.95
+    hx: 0.4
+    hy: 0.7
+    kind: 0
+    hitIndex: 0
+    attribute: 2
+    flags: 0
+  keyTicks: 06000000i
+  bakeHash: Bake_C11_5A_6_3_9

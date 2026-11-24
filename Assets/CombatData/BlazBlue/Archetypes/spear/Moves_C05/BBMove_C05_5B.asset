@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 7
+  startupFrames: 8
   activeFrames: 4
-  recoveryFrames: 12
-  hitstunTicks: 15
-  blockstunTicks: 13
+  recoveryFrames: 13
+  hitstunTicks: 16
+  blockstunTicks: 14
   knockdownDurationTicks: 36
   hitstopAttacker: 10
   hitstopDefender: 10
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: -998496362607748373, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
   animationTrigger: MediumAttack
   hitboxOffset: {x: 1.1, y: 1.2, z: 0}
   hitboxSize: {x: 1.6, y: 0.6, z: 1}
@@ -99,9 +99,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: b41423cb9139d41b5ad10ce9d2912ff9, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_Palm
-  clip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Sorceress_Wave
+  clip: {fileID: -998496362607748373, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 24
-  measuredImpactFrame: 7
+  clipLastFrame: 28
+  measuredImpactFrame: 8
   events: []

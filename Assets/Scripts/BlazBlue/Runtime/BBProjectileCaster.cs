@@ -11,26 +11,43 @@ namespace DemonIdol.BlazBlue
     {
         public static bool ShouldSpawn(string characterId, string moveId)
         {
-            if (string.IsNullOrEmpty(moveId) || !moveId.StartsWith("236")) return false;
-            switch (characterId)
+            if (string.IsNullOrEmpty(moveId)) return false;
+            if (moveId.StartsWith("236"))
             {
-                case "C01":
-                case "C02":
-                case "C04":
-                case "C05":
-                case "C06":
-                case "C07":
-                case "C09":
-                case "C11":
-                case "C12":
-                case "C13":
-                case "SK05":
-                case "EX05":
-                case "EX07":
-                    return true;
-                default:
-                    return false;
+                switch (characterId)
+                {
+                    case "C01":
+                    case "C02":
+                    case "C04":
+                    case "C05":
+                    case "C06":
+                    case "C07":
+                    case "C09":
+                    case "C11":
+                    case "C12":
+                    case "C13":
+                    case "SK05":
+                    case "EX05":
+                    case "EX07":
+                        return true;
+                    default:
+                        return false;
+                }
             }
+
+            // Dedicated ranged fighters:
+            // C05 Sorceress & C06 Mage: 5D signature drive
+            if (characterId == "C05" || characterId == "C06")
+            {
+                if (moveId == "5D") return true;
+            }
+            // C09 Archer & C12 Crossbow: 5B, 5C, 5D projectile shots
+            else if (characterId == "C09" || characterId == "C12")
+            {
+                if (moveId == "5B" || moveId == "5C" || moveId == "5D") return true;
+            }
+
+            return false;
         }
 
         public static void SpawnDeterministic(BBFighterBrain brain, string moveId)

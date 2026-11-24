@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 13
+  startupFrames: 15
   activeFrames: 4
-  recoveryFrames: 17
-  hitstunTicks: 18
-  blockstunTicks: 16
+  recoveryFrames: 19
+  hitstunTicks: 20
+  blockstunTicks: 18
   knockdownDurationTicks: 36
   hitstopAttacker: 11
   hitstopDefender: 11
@@ -37,7 +37,7 @@ MonoBehaviour:
   advantageOnBlock: -4
   advantageOnHit: -2
   advantageOnCounterHit: 8
-  damage: 750
+  damage: 800
   chipDamageOnBlock: 0
   initialProration: 0.89
   comboDamageDecay: 0.89
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 6234510843852800090, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: 6234510843852800090, guid: c52633ad3251d4841878d77a31df9981, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 1.1, y: 1.1, z: 0}
   hitboxSize: {x: 1.65, y: 0.7, z: 1}
@@ -96,11 +96,11 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 458729ace52e345c293ce812fab64bf0, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_IronRush
-  clip: {fileID: 6234510843852800090, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Hammer_Drive
+  clip: {fileID: 6234510843852800090, guid: c52633ad3251d4841878d77a31df9981, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 38
-  measuredImpactFrame: 13
+  clipLastFrame: 60
+  measuredImpactFrame: 15
   events: []
 --- !u!114 &3819739111252868413
 MonoBehaviour:

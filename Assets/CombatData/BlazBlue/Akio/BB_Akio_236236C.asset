@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_Akio_236236C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Signature Finisher
+  attackName: Super Finisher
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 7
   airOk: 0
   groundOk: 1
-  attackLevel: 5
+  attackLevel: 4
   guard: 0
   attribute: 2
   invuln:

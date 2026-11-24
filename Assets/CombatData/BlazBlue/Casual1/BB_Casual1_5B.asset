@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 7
+  startupFrames: 8
   activeFrames: 4
-  recoveryFrames: 12
-  hitstunTicks: 15
-  blockstunTicks: 13
+  recoveryFrames: 13
+  hitstunTicks: 16
+  blockstunTicks: 14
   knockdownDurationTicks: 36
   hitstopAttacker: 10
   hitstopDefender: 10
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.15
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: -998496362607748373, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.85, y: 1.2, z: 0}
   hitboxSize: {x: 1.45, y: 0.6, z: 1}
@@ -99,11 +99,11 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 52c10fb4c98e6424e80c5c88584d1a73, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_Palm
-  clip: {fileID: -998496362607748373, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Knight_ShieldBash
+  clip: {fileID: -998496362607748373, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 24
-  measuredImpactFrame: 7
+  clipLastFrame: 60
+  measuredImpactFrame: 8
   events: []
 --- !u!114 &7708467263637419758
 MonoBehaviour:

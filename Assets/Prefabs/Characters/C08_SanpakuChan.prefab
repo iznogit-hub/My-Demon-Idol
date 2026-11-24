@@ -3397,17 +3397,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55bbfed3f5db4c65bafeec077e67b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.Visual.BBWeaponRig
-  warriorType: 8
-  primaryWeaponPrefab: {fileID: 5068650513579292023, guid: 48e01b39c0e3b4cd481d18f1fd9d084c, type: 3}
+  warriorType: 1
+  primaryWeaponPrefab: {fileID: 9030696469222366477, guid: 1f254930453a14ffcb142f118b3a084c, type: 3}
   primarySocket: 18
   primaryPositionOffset: {x: 0, y: 0.02, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}
-  primaryScale: {x: 0.35, y: 0.35, z: 0.35}
-  secondaryWeaponPrefab: {fileID: 5068650513579292023, guid: 48e01b39c0e3b4cd481d18f1fd9d084c, type: 3}
+  primaryScale: {x: 0.9, y: 0.9, z: 0.9}
+  secondaryWeaponPrefab: {fileID: 0}
   secondarySocket: 17
   secondaryPositionOffset: {x: 0, y: 0.02, z: 0}
   secondaryRotationOffset: {x: 0, y: 0, z: 0}
-  secondaryScale: {x: 0.35, y: 0.35, z: 0.35}
+  secondaryScale: {x: 1, y: 1, z: 1}
   _primaryInstance: {fileID: 0}
   _secondaryInstance: {fileID: 0}
   _primaryBoneTransform: {fileID: 0}

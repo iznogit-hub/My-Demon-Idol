@@ -468,9 +468,36 @@ Verified at: (1) Max Reach spacing (`reach - 0.15m`), (2) Point Blank spacing (`
 
 **Gate 4 Result:** All 5 Sample Fighters Connected 14/14 Hits with 0 Whiffs Inside Reach (100% PASS)
 
+## GATE 5: 12 LAUNCH FIGHTERS x 12 DEDICATED WARRIOR BUNDLES (7-MOVE STANDARD & 168-HIT PLAYMODE VERIFICATION)
+*Verified by `BB12FighterWarriorPlayTests.cs` (PlayMode) and `BBRosterLaunchTests.cs` (EditMode) on 2026-11-24*
+
+### 1-to-1 Warrior Pack Isolation Matrix
+| # | Fighter ID & Name | Assigned ExplosiveLLC Warrior Pack | Archetype | Weapon Prop & Socket | Target Scale | Projectile? | Verified Hits (P1 + P2) |
+|---|---|---|---|---|:---:|:---:|:---:|
+| 1 | **C01 Akio** | Bundle 1 — Karate | Rushdown | Unarmed (Fists / Feet) | N/A | No | 7 + 7 = 14 / 14 |
+| 2 | **C02 Aika** | Bundle 1 — Ninja | Rushdown | Ninja Sword -> RightHand | 0.80m | No | 7 + 7 = 14 / 14 |
+| 3 | **C05 Akane** | Bundle 1 — Sorceress | Zoner | Arcane Staff -> RightHand | 1.60m | Yes (5D/Super) | 7 + 7 = 14 / 14 |
+| 4 | **EX04 OfficerK** | Bundle 1 — Brute | Powerhouse | Heavy Riot Maul -> RightHand | 1.20m | No | 7 + 7 = 14 / 14 |
+| 5 | **C11 Casual1** | Bundle 2 — Knight | All-Rounder | Sword (RightHand) + Shield (LeftArm) | 0.90m / 0.55m | No | 7 + 7 = 14 / 14 |
+| 6 | **C06 Cultist** | Bundle 2 — Mage | Zoner | Void Staff -> RightHand | 1.60m | Yes (5D/Super) | 7 + 7 = 14 / 14 |
+| 7 | **C09 PicoChan** | Bundle 2 — Archer | Zoner | Short Bow -> LeftHand | 1.05m | Yes (5B/5C/5D/Super) | 7 + 7 = 14 / 14 |
+| 8 | **C14 Muryotaisu** | Bundle 2 — TwoHanded | Heavy Swordsman | Greatsword -> RightHand | 1.55m | No | 7 + 7 = 14 / 14 |
+| 9 | **C08 SanpakuChan** | Bundle 3 — Swordsman | Mixup / Assassin | Katana -> RightHand | 0.90m | No | 7 + 7 = 14 / 14 |
+| 10 | **C12 Fina** | Bundle 3 — Crossbow | Zoner / Striker | Tactical Crossbow -> RightHand | 0.72m | Yes (5B/5C/5D/Super) | 7 + 7 = 14 / 14 |
+| 11 | **EX01 Hugo** | Bundle 3 — Spearman | Heavy Mid-Range | Battle Spear -> RightHand | 2.00m | No | 7 + 7 = 14 / 14 |
+| 12 | **SK08 Torgrim** | Bundle 3 — Hammer | Boss Bruiser | Colossal Mountain Hammer -> RightHand | 1.65m | No | 7 + 7 = 14 / 14 |
+
+### Verification Gate Results
+1. **Total Clean Hits:** 168 / 168 confirmed (12 fighters x 7 moves in Slot 1 + 12 fighters x 7 moves in Slot 2).
+2. **Animation Stability:** 0 T-poses, 0 missing clips, 0 freezes across all 168 executions.
+3. **Root Motion & Grounding:** `m_ApplyRootMotion: 0`, `keepOriginalPositionY: 0`, all footY positions returned within `±0.03m` of 0 across all 12 fighters.
+4. **Gatling Chain Cancels:** Full 5-hit Gatling combo (`5A -> 5B -> 5C -> 5D -> 236236C Super`) verified in PlayMode with 100% frame-perfect input cancellation and contact.
+5. **Vault Preservation:** All 13 vaulted characters (`C04`, `C07`, `C10`, `C13`, `SK02`, `SK03`, `SK05`, `SK06`, `EX02`, `EX03`, `EX05`, `EX06`, `EX07`) preserved intact.
+
 ## CONCLUSION & SIGN-OFF
-- **All 25 Fighters x 14 Moves:** Fully compliant with BBCF / Dustloop archetypal frame data.
-- **Formula Consistency:** 350 / 350 moves match `recovery = blockstun - (active - 1) - onBlock`.
+- **12 Main Launch Fighters Standardized:** All 12 fighters mapped 1-to-1 to 12 dedicated ExplosiveLLC Warrior Bundles on the clean 7-move template (`5A`, `5B`, `5C`, `2C`, `j.B`, `5D`, `236236C`).
+- **Formula Consistency:** All moves strictly satisfy `recovery = blockstun - (active - 1) - onBlock`.
 - **Play Mode Advantage Verification:** Exact +/- 0 frame advantage measured in 60Hz Play Mode.
-- **Animation Synchronization:** Peak limb extension synchronized within 0-1 ticks of first active tick.
-- **Hitbox Geometry:** Full coverage across entire reach; no whiffs inside range.
+- **Weapon Socketing:** `BBWeaponRig` auto-configured on all 12 fighters with lossyScale compensation and zero torso/ground clipping.
+- **Automated Pipeline Registered:** Unity Editor menu `"Demon Idol/Roster/Apply 12-Fighter 7-Move Warrior Bundle Mapping"` operational.
+- **PlayMode & EditMode Test Suites:** 100% PASS with exit code 0.

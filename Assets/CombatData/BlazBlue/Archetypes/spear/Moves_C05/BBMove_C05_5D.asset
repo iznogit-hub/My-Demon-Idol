@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 0
   protectionEndTick: 0
-  startupFrames: 13
+  startupFrames: 14
   activeFrames: 4
-  recoveryFrames: 17
-  hitstunTicks: 18
-  blockstunTicks: 16
+  recoveryFrames: 18
+  hitstunTicks: 19
+  blockstunTicks: 17
   knockdownDurationTicks: 36
   hitstopAttacker: 11
   hitstopDefender: 11
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 
-  animationClip: {fileID: 6234510843852800090, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: 6234510843852800090, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
   animationTrigger: DriveSkill
   hitboxOffset: {x: 1.2, y: 1.1, z: 0}
   hitboxSize: {x: 1.7, y: 0.7, z: 1}
@@ -96,9 +96,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: dfe58b73e3ebf40088bb277cf6c5f02a, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_IronRush
-  clip: {fileID: 6234510843852800090, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Sorceress_Drive
+  clip: {fileID: 6234510843852800090, guid: c1857e4094b87fe40a724b81e470c20d, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 38
-  measuredImpactFrame: 13
+  clipLastFrame: 40
+  measuredImpactFrame: 14
   events: []

@@ -24,11 +24,11 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 11
+  startupFrames: 12
   activeFrames: 4
-  recoveryFrames: 17
-  hitstunTicks: 18
-  blockstunTicks: 16
+  recoveryFrames: 18
+  hitstunTicks: 19
+  blockstunTicks: 17
   knockdownDurationTicks: 36
   hitstopAttacker: 11
   hitstopDefender: 11
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.4
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 3060872287085348379, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: 3060872287085348379, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 0.95, y: 1.2, z: 0}
   hitboxSize: {x: 1.5, y: 0.6, z: 1}
@@ -97,9 +97,9 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 0ed3428de3a314853b776975d498e4c7, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_Roundhouse
-  clip: {fileID: 3060872287085348379, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Mage_Eruption
+  clip: {fileID: 3060872287085348379, guid: ecf1c9844e13bbe48a8729667efdc143, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 60
-  measuredImpactFrame: 11
+  measuredImpactFrame: 12
   events: []

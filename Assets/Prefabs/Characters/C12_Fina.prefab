@@ -5515,8 +5515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55bbfed3f5db4c65bafeec077e67b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.Visual.BBWeaponRig
-  warriorType: 12
-  primaryWeaponPrefab: {fileID: 5772131030351363395, guid: 3cad6ff0adf0c47abb304cd2ef9f8139, type: 3}
+  warriorType: 11
+  primaryWeaponPrefab: {fileID: 5490523492803907556, guid: 313c04ca7785e4da49e96c36f6dbb296, type: 3}
   primarySocket: 18
   primaryPositionOffset: {x: 0, y: 0.06, z: 0}
   primaryRotationOffset: {x: 0, y: 0, z: 0}

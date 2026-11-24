@@ -24,7 +24,7 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 10
+  startupFrames: 11
   activeFrames: 3
   recoveryFrames: 22
   hitstunTicks: 36
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.4
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: 6641085478485924818, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: 6641085478485924818, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 1, y: 0.35, z: 0}
   hitboxSize: {x: 1.55, y: 0.6, z: 1}
@@ -96,11 +96,11 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: d08e22a389f7646f4868e9df0cfd0550, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_Sweep
-  clip: {fileID: 6641085478485924818, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Knight_Sweep
+  clip: {fileID: 6641085478485924818, guid: dc024c770b3081947b006c27e5619ee9, type: 3}
   clipFirstFrame: 0
   clipLastFrame: 60
-  measuredImpactFrame: 10
+  measuredImpactFrame: 11
   events: []
 --- !u!114 &751977273494220522
 MonoBehaviour:

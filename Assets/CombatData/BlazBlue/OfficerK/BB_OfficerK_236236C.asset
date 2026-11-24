@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb693230ba4b4e77b7a5e75144ef62d, type: 3}
   m_Name: BB_OfficerK_236236C
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.BlazBlue.BBAttackData
-  attackName: Signature Finisher
+  attackName: Super Finisher
   attackType: 0
   hitLevel: 1
   guardRequirement: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   isAirborneStrikeProtected: 0
   protectionStartTick: 5
   protectionEndTick: 12
-  startupFrames: 9
+  startupFrames: 10
   activeFrames: 4
-  recoveryFrames: 26
+  recoveryFrames: 28
   hitstunTicks: 36
   blockstunTicks: 15
   knockdownDurationTicks: 36
@@ -34,10 +34,10 @@ MonoBehaviour:
   hitstopDefender: 13
   hitstopOnBlock: 13
   counterHitStopBonus: 4
-  advantageOnBlock: -14
-  advantageOnHit: 7
+  advantageOnBlock: -16
+  advantageOnHit: 5
   advantageOnCounterHit: 8
-  damage: 2200
+  damage: 2400
   chipDamageOnBlock: 0
   initialProration: 0.94
   comboDamageDecay: 0.94
@@ -54,7 +54,7 @@ MonoBehaviour:
   screenShakeTrauma: 0.1
   canRapidCancel: 1
   gatlingCancels: 010000000200000003000000i
-  animationClip: {fileID: -6788666626592393668, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  animationClip: {fileID: -6788666626592393668, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
   animationTrigger: LightAttack
   hitboxOffset: {x: 1.25, y: 1.25, z: 0}
   hitboxSize: {x: 1.85, y: 0.9, z: 1}
@@ -66,7 +66,7 @@ MonoBehaviour:
   motion: 7
   airOk: 0
   groundOk: 1
-  attackLevel: 5
+  attackLevel: 4
   guard: 0
   attribute: 2
   invuln:
@@ -98,11 +98,11 @@ MonoBehaviour:
   followUpWindow: {x: 0, y: 0}
   boxes: {fileID: 11400000, guid: 3942a845ae2d54b57b533bd5775d8e5e, type: 2}
   motionTrack: {fileID: 0}
-  clipName: Karate_Super
-  clip: {fileID: -6788666626592393668, guid: ac9975871f6774c44a6c33bf8da40c0c, type: 3}
+  clipName: Brute_Super
+  clip: {fileID: -6788666626592393668, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
   clipFirstFrame: 0
-  clipLastFrame: 68
-  measuredImpactFrame: 9
+  clipLastFrame: 90
+  measuredImpactFrame: 10
   events: []
 --- !u!114 &2915813105327644741
 MonoBehaviour:

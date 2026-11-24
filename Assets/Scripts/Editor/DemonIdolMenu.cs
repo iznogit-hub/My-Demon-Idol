@@ -212,6 +212,12 @@ namespace DemonIdol.Editor
             DemonIdol.BlazBlue.Editor.BBRosterKarateKitSetup.ConfigureLaunchRoster();
         }
 
+        [MenuItem("Demon Idol/Roster/Apply 12-Fighter 7-Move Warrior Bundle Mapping", priority = 30)]
+        public static void Apply12FighterWarriorBundleMapping()
+        {
+            DemonIdol.BlazBlue.Editor.BBWarriorBundleMapper.Apply12FighterWarriorMapping();
+        }
+
         // =========================================================================
         // BUILD
         // =========================================================================
