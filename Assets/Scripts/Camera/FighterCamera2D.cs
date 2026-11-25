@@ -340,8 +340,10 @@ namespace DemonIdol.Combat
 
         private void HandleSimHitConfirmed(int attacker, int defender, float damage, Vector3 pt, bool isCounterHit, bool isFatal)
         {
-            if (isCounterHit || isFatal) TriggerCounterHitImpactZoom(counterHitTraumaIntensity, counterHitAccentDuration);
-            else TriggerHitImpactZoom(hitTraumaIntensity, hitAccentDuration);
+            if (isCounterHit || isFatal)
+                TriggerCounterHitImpactZoom(0.5f);
+            else
+                TriggerHitImpactZoom(0.25f);
         }
 
         private void HandleSimBlockLanded(int attacker, int defender, Vector3 pt, bool isBarrier, bool isChip)
@@ -371,6 +373,18 @@ namespace DemonIdol.Combat
 
         private void OnValidate()
         {
+            closeDistanceMax = Mathf.Max(closeDistanceMax, closeDistanceMin + 0.05f);
+            neutralDistance = Mathf.Max(neutralDistance, closeDistanceMax + 0.05f);
+            wideDistanceMax = Mathf.Max(wideDistanceMax, neutralDistance + 0.1f);
+
+            if (maxDistanceZ > minDistanceZ)
+            {
+                float nearZ = Mathf.Max(minDistanceZ, maxDistanceZ);
+                float farZ = Mathf.Min(minDistanceZ, maxDistanceZ);
+                minDistanceZ = nearZ;
+                maxDistanceZ = farZ;
+            }
+
             ConfigurePhysicalCamera();
         }
 
@@ -465,15 +479,15 @@ namespace DemonIdol.Combat
             return false;
         }
 
-        public void TriggerHitImpactZoom(float intensity = 0.25f, float duration = 0.12f)
+        public void TriggerHitImpactZoom(float intensity = 0.25f, float duration = -1f)
         {
             AddHitTrauma(intensity * 0.25f);
             RequestState(CameraState.HitAccent, duration > 0f ? duration : hitAccentDuration);
         }
 
-        public void TriggerHitAccent(float duration = 0.12f)
+        public void TriggerHitAccent(float duration = -1f)
         {
-            TriggerHitImpactZoom(hitTraumaIntensity, duration > 0f ? duration : hitAccentDuration);
+            TriggerHitImpactZoom(0.25f, duration);
         }
 
         public void SetClutchSlowMo(bool active)
@@ -488,35 +502,35 @@ namespace DemonIdol.Combat
             }
         }
 
-        public void TriggerCounterHitImpactZoom(float intensity = 0.5f, float duration = 0.18f)
+        public void TriggerCounterHitImpactZoom(float intensity = 0.5f, float duration = -1f)
         {
             AddCounterHitTrauma(intensity * 0.35f);
             RequestState(CameraState.CounterHitAccent, duration > 0f ? duration : counterHitAccentDuration);
         }
 
-        public void TriggerLaunchTrack(float duration = 0.55f)
+        public void TriggerLaunchTrack(float duration = -1f)
         {
             RequestState(CameraState.LaunchTrack, duration > 0f ? duration : launchTrackDuration);
         }
 
-        public void TriggerWallAccent(float duration = 0.28f)
+        public void TriggerWallAccent(float duration = -1f)
         {
             AddWallTrauma(wallTraumaIntensity);
             RequestState(CameraState.WallAccent, duration > 0f ? duration : wallAccentDuration);
         }
 
-        public void TriggerThrowCinematic(float duration = 0.35f)
+        public void TriggerThrowCinematic(float duration = -1f)
         {
             RequestState(CameraState.ThrowCinematic, duration > 0f ? duration : throwAccentDuration);
         }
 
-        public void TriggerUltimateEntry(float duration = 0.60f)
+        public void TriggerUltimateEntry(float duration = -1f)
         {
             AddExplosionTrauma(ultimateEntryTraumaIntensity);
             RequestState(CameraState.UltimateEntry, duration > 0f ? duration : ultimateEntryDuration);
         }
 
-        public void TriggerUltimateExit(float duration = 0.20f)
+        public void TriggerUltimateExit(float duration = -1f)
         {
             RequestState(CameraState.UltimateExit, duration > 0f ? duration : ultimateExitDuration);
         }

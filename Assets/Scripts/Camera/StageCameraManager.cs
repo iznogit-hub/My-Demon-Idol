@@ -266,6 +266,9 @@ namespace DemonIdol.CameraControl
                 fCam.targetCharacterScreenFraction = entry.characterScreenFraction;
                 fCam.offset = entry.basePosition;
                 fCam.pitchAngle = entry.baseEulerAngles.x;
+
+                if (fCam.minDistanceZ >= 0f) fCam.minDistanceZ = -3.2f;
+                if (fCam.maxDistanceZ >= 0f) fCam.maxDistanceZ = -7.0f;
                 
                 // Do NOT hardcode-overwrite fCam.minDistanceZ / maxDistanceZ here;
                 // stage limits belong to StageDefinition / BBStagePrefabConfig.

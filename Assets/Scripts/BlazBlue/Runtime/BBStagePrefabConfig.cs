@@ -29,6 +29,13 @@ namespace DemonIdol.BlazBlue
             }
         }
 
+        private void OnValidate()
+        {
+            if (rightWallX < leftWallX) rightWallX = leftWallX;
+            if (cameraMaxX < cameraMinX) cameraMaxX = cameraMinX;
+            if (cameraMaxY < cameraMinY) cameraMaxY = cameraMinY;
+        }
+
         [Header("Stage Identity")]
         public string stageId = "ST07";
         public string stageDisplayName = "College Raimon — Rainy Courtyard";

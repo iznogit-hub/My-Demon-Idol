@@ -63,5 +63,18 @@ namespace DemonIdol.Combat
         public Vector3 p2SpawnPosition = new Vector3(2.5f, 0f, 0f);
 
         public float ArenaLimitX => playableWidth * 0.5f;
+
+        private void OnValidate()
+        {
+            if (cameraMaxY < cameraMinY) cameraMaxY = cameraMinY;
+            // Camera looks down +Z from negative Z, so cameraMaxZ (far) <= cameraMinZ (near)
+            if (cameraMaxZ > cameraMinZ)
+            {
+                float nearZ = Mathf.Max(cameraMinZ, cameraMaxZ);
+                float farZ = Mathf.Min(cameraMinZ, cameraMaxZ);
+                cameraMinZ = nearZ;
+                cameraMaxZ = farZ;
+            }
+        }
     }
 }
