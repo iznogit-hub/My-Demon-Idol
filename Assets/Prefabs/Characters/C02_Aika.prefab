@@ -81,7 +81,7 @@ Animator:
   m_GameObject: {fileID: 57404065822515113}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6f046a28acb55a743ac3d732fcac0054, type: 3}
-  m_Controller: {fileID: 9100000, guid: 115d93abc9b6f498fbe9208c252f046c, type: 2}
+  m_Controller: {fileID: 9100000, guid: d84b572c95d6a4f21a3457e1ad3bc4fb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -155,6 +155,21 @@ MonoBehaviour:
   overrideController: {fileID: 22100000, guid: 105538d2428f74f3ca1294c5d7e5332b, type: 2}
   animator: {fileID: 4041907777713290281}
   weaponRig: {fileID: 1606042820585963596}
+  customIdle: {fileID: 0}
+  customWalkForward: {fileID: 0}
+  customWalkBack: {fileID: 0}
+  customJump: {fileID: 0}
+  customBlock: {fileID: 0}
+  customIntro: {fileID: 0}
+  customVictory: {fileID: 0}
+  customTaunt: {fileID: 0}
+  custom5A: {fileID: 0}
+  custom5B: {fileID: 0}
+  custom5C: {fileID: 0}
+  custom2C: {fileID: 0}
+  customJB: {fileID: 0}
+  custom5D: {fileID: 0}
+  customSuper236236C: {fileID: 0}
 --- !u!114 &7853769205285172987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBAnimationDriver
   animator: {fileID: 4041907777713290281}
   brain: {fileID: 0}
+  prefabConfig: {fileID: 6359033130773462474}
 --- !u!1 &124163274148768477
 GameObject:
   m_ObjectHideFlags: 0
