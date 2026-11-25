@@ -79,10 +79,10 @@ MonoBehaviour:
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.6153783
-    cy: 0.5800452
-    hx: 0.59171
-    hy: 0.341604
+  - cx: 0.61445737
+    cy: 0.58388996
+    hx: 0.5908244
+    hy: 0.34160388
     kind: 1
     hitIndex: 0
     attribute: 2
@@ -95,10 +95,10 @@ MonoBehaviour:
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.6153783
-    cy: 0.5800452
-    hx: 0.59171
-    hy: 0.341604
+  - cx: 0.61445737
+    cy: 0.58388996
+    hx: 0.5908244
+    hy: 0.34160388
     kind: 1
     hitIndex: 0
     attribute: 2
@@ -111,10 +111,10 @@ MonoBehaviour:
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.6153783
-    cy: 0.5800452
-    hx: 0.59171
-    hy: 0.341604
+  - cx: 0.61445737
+    cy: 0.58388996
+    hx: 0.5908244
+    hy: 0.34160388
     kind: 1
     hitIndex: 0
     attribute: 2
@@ -127,10 +127,10 @@ MonoBehaviour:
     hitIndex: 0
     attribute: 2
     flags: 0
-  - cx: 0.6153783
-    cy: 0.5800452
-    hx: 0.59171
-    hy: 0.341604
+  - cx: 0.61445737
+    cy: 0.58388996
+    hx: 0.5908244
+    hy: 0.34160388
     kind: 1
     hitIndex: 0
     attribute: 2

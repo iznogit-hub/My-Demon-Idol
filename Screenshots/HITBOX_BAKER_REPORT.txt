@@ -1,16 +1,16 @@
 # MDI 12-FIGHTER WARRIOR HITBOX BAKER AUDIT REPORT
-# Generated: 2026-11-25 12:00:50
+# Generated: 2026-11-25 16:53:21
 | Fighter | Pack | Demo Collider | Hit/Shoot Events | 5A Reach | 5C Reach | 5D Reach | Hurtbox H | Projectile Spawn | Status |
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-| C01 (Akio) | Karate | CapsuleCollider | Hit: 0, Shoot: 0 | 0.99m | 1.58m | 1.62m | 2.39m | N/A | BAKED |
-| C02 (Aika) | Ninja | CapsuleCollider | Hit: 0, Shoot: 0 | 0.97m | 1.58m | 1.88m | 1.84m | N/A | BAKED |
+| C01 (Akio) | Karate | CapsuleCollider | Hit: 0, Shoot: 0 | 0.99m | 1.58m | 1.62m | 2.38m | N/A | BAKED |
+| C02 (Aika) | Ninja | CapsuleCollider | Hit: 0, Shoot: 0 | 0.97m | 1.58m | 1.88m | 1.83m | N/A | BAKED |
 | C05 (Akane) | Sorceress | CapsuleCollider | Hit: 0, Shoot: 0 | 0.97m | 1.58m | 2.15m | 2.27m | (0.60m, 0.82m) | BAKED |
 | EX04 (OfficerK) | Brute | CapsuleCollider | Hit: 0, Shoot: 0 | 1.59m | 1.58m | 1.30m | 1.70m | N/A | BAKED |
-| C11 (Casual1) | Knight | CapsuleCollider | Hit: 0, Shoot: 0 | 1.05m | 1.58m | 2.12m | 1.68m | N/A | BAKED |
-| C06 (Cultist) | Mage | CapsuleCollider | Hit: 0, Shoot: 0 | 0.97m | 1.58m | 1.71m | 2.00m | (0.60m, 1.57m) | BAKED |
+| C11 (Casual1) | Knight | CapsuleCollider | Hit: 0, Shoot: 0 | 1.04m | 1.58m | 2.12m | 1.69m | N/A | BAKED |
+| C06 (Cultist) | Mage | CapsuleCollider | Hit: 0, Shoot: 0 | 0.97m | 1.58m | 1.71m | 1.97m | (0.60m, 1.57m) | BAKED |
 | C09 (PicoChan) | Archer | CapsuleCollider | Hit: 0, Shoot: 0 | 1.11m | 1.58m | 2.06m | 1.89m | (0.60m, 0.74m) | BAKED |
 | C14 (Muryotaisu) | TwoHanded | CapsuleCollider | Hit: 0, Shoot: 0 | 0.97m | 1.58m | 3.27m | 1.92m | N/A | BAKED |
-| C08 (SanpakuChan) | Swordsman | CapsuleCollider | Hit: 0, Shoot: 0 | 0.97m | 1.58m | 1.44m | 1.92m | N/A | BAKED |
+| C08 (SanpakuChan) | Swordsman | CapsuleCollider | Hit: 0, Shoot: 0 | 0.97m | 1.58m | 1.44m | 1.91m | N/A | BAKED |
 | C12 (Fina) | Crossbow | CapsuleCollider | Hit: 0, Shoot: 0 | 1.18m | 1.58m | 1.94m | 1.75m | (0.60m, 0.89m) | BAKED |
-| EX01 (Hugo) | Spearman | CapsuleCollider | Hit: 0, Shoot: 0 | 2.19m | 3.01m | 1.76m | 1.98m | N/A | BAKED |
-| SK08 (Torgrim) | Hammer | CapsuleCollider | Hit: 0, Shoot: 0 | 1.71m | 1.74m | 2.12m | 2.08m | N/A | BAKED |
+| EX01 (Hugo) | Spearman | CapsuleCollider | Hit: 0, Shoot: 0 | 2.19m | 3.01m | 1.76m | 1.97m | N/A | BAKED |
+| SK08 (Torgrim) | Hammer | CapsuleCollider | Hit: 0, Shoot: 0 | 1.71m | 1.74m | 2.12m | 2.07m | N/A | BAKED |

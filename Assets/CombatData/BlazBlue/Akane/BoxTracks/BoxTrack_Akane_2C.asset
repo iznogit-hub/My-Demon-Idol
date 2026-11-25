@@ -106,7 +106,7 @@ MonoBehaviour:
   - cx: 0.70199996
     cy: 0.55
     hx: 0.675
-    hy: 0.51302654
+    hy: 0.5130388
     kind: 1
     hitIndex: 0
     attribute: 2
@@ -122,7 +122,7 @@ MonoBehaviour:
   - cx: 0.70199996
     cy: 0.55
     hx: 0.675
-    hy: 0.51302654
+    hy: 0.5130388
     kind: 1
     hitIndex: 0
     attribute: 2
@@ -138,7 +138,7 @@ MonoBehaviour:
   - cx: 0.70199996
     cy: 0.55
     hx: 0.675
-    hy: 0.51302654
+    hy: 0.5130388
     kind: 1
     hitIndex: 0
     attribute: 2

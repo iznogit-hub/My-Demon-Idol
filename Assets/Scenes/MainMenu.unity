@@ -3352,7 +3352,18 @@ MonoBehaviour:
   targetFOV: 30
   framingDamping: 8
   cameraOffsetFromHead: {x: 0, y: 0.05, z: -2.6}
+  headHeightFallback: 1.55
+  headHeightHipOffset: 0.65
   postProcessVolume: {fileID: 617119170}
+  dofAperture: 3.2
+  dofFocalLength: 65
+  dofFocusDistance: 2.6
+  colorContrast: 12
+  bloomThreshold: 1.05
+  bloomIntensity: 0.35
+  vignetteIntensity: 0.32
+  defaultChromaPulseIntensity: 0.35
+  defaultChromaPulseDuration: 0.15
 --- !u!81 &600963363
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7265,6 +7276,22 @@ MonoBehaviour:
   footerControlPromptText: {fileID: 814939945}
   heroSpawnPoint: {fileID: 699613802}
   menuCamera: {fileID: 600963361}
+  defaultHeroSpawnPosition: {x: 1.75, y: 0, z: 0}
+  defaultHeroSpawnEuler: {x: 0, y: -145, z: 0}
+  heroPositionOffset: {x: 0, y: 0, z: 0}
+  heroEulerOffset: {x: 0, y: 0, z: 0}
+  heroScale: 1
+  cameraLerpSpeed: 6.5
+  pillarCameraPositions:
+  - {x: 0, y: 1.25, z: -4.5}
+  - {x: 0.35, y: 1.3, z: -4.2}
+  - {x: -0.4, y: 1.2, z: -4.8}
+  - {x: 0.6, y: 1.25, z: -5}
+  pillarCameraEulerAngles:
+  - {x: 4, y: -4, z: 0}
+  - {x: 6, y: -10, z: 0}
+  - {x: 3, y: 6, z: 0}
+  - {x: 2, y: -14, z: 0}
 --- !u!114 &1515865944
 MonoBehaviour:
   m_ObjectHideFlags: 0

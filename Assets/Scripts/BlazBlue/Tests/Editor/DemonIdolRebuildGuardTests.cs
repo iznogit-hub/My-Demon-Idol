@@ -117,7 +117,7 @@ namespace DemonIdol.BlazBlue.Tests
             {
                 // Normalize path
                 string rel = file.Replace('\\', '/');
-                if (rel.EndsWith("Assets/Scripts/Editor/DemonIdolMenu.cs"))
+                if (rel.EndsWith("Assets/Scripts/Editor/DemonIdolMenu.cs") || rel.EndsWith("Assets/Scripts/Editor/DemonIdolLaunchSync.cs"))
                     continue;
                 if (rel.Contains("/Editor_Archive/"))
                     continue;

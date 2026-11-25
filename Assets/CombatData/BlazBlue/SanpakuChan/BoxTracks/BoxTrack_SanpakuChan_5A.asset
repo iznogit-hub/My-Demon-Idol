@@ -56,9 +56,9 @@ MonoBehaviour:
     attribute: 2
     flags: 0
   - cx: 0.494
-    cy: 0.55555296
+    cy: 0.55556816
     hx: 0.475
-    hy: 0.45555294
+    hy: 0.45556813
     kind: 1
     hitIndex: 0
     attribute: 2
@@ -72,9 +72,9 @@ MonoBehaviour:
     attribute: 2
     flags: 0
   - cx: 0.494
-    cy: 0.55555296
+    cy: 0.55556816
     hx: 0.475
-    hy: 0.45555294
+    hy: 0.45556813
     kind: 1
     hitIndex: 0
     attribute: 2
@@ -88,9 +88,9 @@ MonoBehaviour:
     attribute: 2
     flags: 0
   - cx: 0.494
-    cy: 0.55555296
+    cy: 0.55556816
     hx: 0.475
-    hy: 0.45555294
+    hy: 0.45556813
     kind: 1
     hitIndex: 0
     attribute: 2

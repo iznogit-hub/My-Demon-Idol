@@ -241,18 +241,42 @@ MonoBehaviour:
   closeCombatScreenFraction: 0.64
   wideSpacingScreenFraction: 0.54
   zoomFactor: 0.45
+  closeDistanceMin: 1.2
+  closeDistanceMax: 2.2
+  closeCombatFractionBoost: 0.05
+  neutralDistance: 3
+  wideDistanceMax: 7
+  horizontalFramingPadding: 0.35
   offset: {x: 0, y: 1.15, z: -4.8}
   pitchAngle: 2.2
   aggressionLeadAmount: 0.35
   verticalLaunchThresholdY: 2.5
+  verticalLaunchFollowFactor: 0.38
   minDistanceZ: -3.2
   maxDistanceZ: -7
+  maxCinematicZoomInZ: -2.4
+  cinematicZoomBufferZ: 0.6
+  backgroundDistanceOffset: 2.5
+  cornerViewportEdgePadding: 1.2
   smoothSpeed: 8
   smoothSpeedY: 3.5
   smoothSpeedZ: 5.5
+  accentFollowSpeed: 14
   deadzoneX: 0.06
   deadzoneY: 0.1
   deadzoneZ: 0.12
+  hitAccentZoomDelta: 0.45
+  counterHitZoomDelta: 0.85
+  wallAccentZoomDelta: 0.65
+  throwAccentZoomDelta: 0.7
+  ultimateEntryZoomDelta: 1.1
+  koZoomDelta: 1.25
+  koFocusOffsetY: 1.2
+  resultsFocusOffsetY: 1.1
+  resultsCameraZ: -4.5
+  launchTrackMinY: 1.4
+  launchTrackMaxY: 5
+  launchTrackPaddingY: 1.2
   hitAccentZoomZ: -9.2
   counterHitZoomZ: -7.5
   launchTrackLiftY: 1.4
@@ -264,6 +288,25 @@ MonoBehaviour:
   maxShakeOffset: 0.035
   maxShakeAngle: 0
   masterShakeScale: 0.25
+  shakeFrequency: 24
+  microImpulseFocalPunchScale: 0.02
+  hitTraumaIntensity: 0.25
+  hitAccentDuration: 0.12
+  counterHitTraumaIntensity: 0.5
+  counterHitAccentDuration: 0.18
+  blockTraumaIntensity: 0.08
+  rapidCancelTraumaIntensity: 0.25
+  burstTraumaIntensity: 0.45
+  overdriveTraumaIntensity: 0.35
+  wallTraumaIntensity: 0.12
+  wallAccentDuration: 0.28
+  throwAccentDuration: 0.35
+  ultimateEntryTraumaIntensity: 0.15
+  ultimateEntryDuration: 0.6
+  ultimateExitDuration: 0.2
+  koTraumaIntensity: 0.2
+  koStateDuration: 2.5
+  launchTrackDuration: 0.55
 --- !u!81 &41798840
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1917,7 +1960,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1300681558}
+  m_Sprite: {fileID: 908844249}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2749,7 +2792,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1300681558}
+  m_Sprite: {fileID: 908844249}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3158,6 +3201,226 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903661649}
   m_CullTransparentMesh: 1
+--- !u!213 &908844249
+Sprite:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 4
+    height: 4
+  m_Offset: {x: 0, y: 0}
+  m_Border: {x: 0, y: 0, z: 0, w: 0}
+  m_PixelsToUnits: 100
+  m_Pivot: {x: 0.5, y: 0.5}
+  m_Extrude: 0
+  m_PackingTag: 
+  m_RenderDataKey:
+    00000000000000000000000000000000: 0
+  m_AtlasTags: []
+  m_SpriteAtlas: {fileID: 0}
+  m_RD:
+    serializedVersion: 4
+    texture: {fileID: 0}
+    alphaTexture: {fileID: 0}
+    secondaryTextures: []
+    m_SubMeshes:
+    - serializedVersion: 2
+      firstByte: 0
+      indexCount: 6
+      topology: 0
+      baseVertex: 0
+      firstVertex: 0
+      vertexCount: 4
+      localAABB:
+        m_Center: {x: 0, y: 0, z: 0}
+        m_Extent: {x: 0, y: 0, z: 0}
+    m_IndexBuffer: 000001000200020001000300y
+    m_VertexData:
+      serializedVersion: 3
+      m_VertexCount: 4
+      m_Channels:
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 3
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 1
+        offset: 0
+        format: 0
+        dimension: 2
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      m_DataSize: 80
+      _typelessdata: 0ad7a3bc0ad7a33c000000000ad7a33c0ad7a33c000000000ad7a3bc0ad7a3bc000000000ad7a33c0ad7a3bc000000000000000000000000000000000000000000000000000000000000000000000000
+    m_Bindpose: []
+    m_BlendShapes:
+      vertices: []
+      shapes: []
+      channels: []
+      fullWeights: []
+    textureRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 4
+      height: 4
+    textureRectOffset: {x: 0, y: 0}
+    atlasRectOffset: {x: -1, y: -1}
+    settingsRaw: 3136
+    uvTransform: {x: 100, y: 2, z: 100, w: 2}
+    downscaleMultiplier: 1
+  m_AtlasRD:
+    serializedVersion: 4
+    texture: {fileID: 0}
+    alphaTexture: {fileID: 0}
+    secondaryTextures: []
+    m_SubMeshes:
+    - serializedVersion: 2
+      firstByte: 0
+      indexCount: 6
+      topology: 0
+      baseVertex: 0
+      firstVertex: 0
+      vertexCount: 4
+      localAABB:
+        m_Center: {x: 0, y: 0, z: 0}
+        m_Extent: {x: 0, y: 0, z: 0}
+    m_IndexBuffer: 000001000200020001000300y
+    m_VertexData:
+      serializedVersion: 3
+      m_VertexCount: 4
+      m_Channels:
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 3
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 1
+        offset: 0
+        format: 0
+        dimension: 2
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      m_DataSize: 80
+      _typelessdata: 0ad7a3bc0ad7a33c000000000ad7a33c0ad7a33c000000000ad7a3bc0ad7a3bc000000000ad7a33c0ad7a3bc000000000000000000000000000000000000000000000000000000000000000000000000
+    m_Bindpose: []
+    m_BlendShapes:
+      vertices: []
+      shapes: []
+      channels: []
+      fullWeights: []
+    textureRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 4
+      height: 4
+    textureRectOffset: {x: 0, y: 0}
+    atlasRectOffset: {x: -1, y: -1}
+    settingsRaw: 3136
+    uvTransform: {x: 100, y: 2, z: 100, w: 2}
+    downscaleMultiplier: 1
+  m_PhysicsShape: []
+  m_Bones: []
+  m_ScriptableObjects: []
+  m_SpriteID: 
 --- !u!1 &925477104
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,18 +4374,42 @@ MonoBehaviour:
   closeCombatScreenFraction: 0.64
   wideSpacingScreenFraction: 0.54
   zoomFactor: 0.45
+  closeDistanceMin: 1.2
+  closeDistanceMax: 2.2
+  closeCombatFractionBoost: 0.05
+  neutralDistance: 3
+  wideDistanceMax: 7
+  horizontalFramingPadding: 0.35
   offset: {x: 0, y: 1.15, z: -4.6}
   pitchAngle: 2.5
   aggressionLeadAmount: 0.35
   verticalLaunchThresholdY: 2.5
+  verticalLaunchFollowFactor: 0.38
   minDistanceZ: -3.2
   maxDistanceZ: -7
+  maxCinematicZoomInZ: -2.4
+  cinematicZoomBufferZ: 0.6
+  backgroundDistanceOffset: 2.5
+  cornerViewportEdgePadding: 1.2
   smoothSpeed: 8
   smoothSpeedY: 3.5
   smoothSpeedZ: 5.5
+  accentFollowSpeed: 14
   deadzoneX: 0.06
   deadzoneY: 0.1
   deadzoneZ: 0.12
+  hitAccentZoomDelta: 0.45
+  counterHitZoomDelta: 0.85
+  wallAccentZoomDelta: 0.65
+  throwAccentZoomDelta: 0.7
+  ultimateEntryZoomDelta: 1.1
+  koZoomDelta: 1.25
+  koFocusOffsetY: 1.2
+  resultsFocusOffsetY: 1.1
+  resultsCameraZ: -4.5
+  launchTrackMinY: 1.4
+  launchTrackMaxY: 5
+  launchTrackPaddingY: 1.2
   hitAccentZoomZ: -9.2
   counterHitZoomZ: -7.5
   launchTrackLiftY: 1.4
@@ -4134,6 +4421,25 @@ MonoBehaviour:
   maxShakeOffset: 0.035
   maxShakeAngle: 0
   masterShakeScale: 0.25
+  shakeFrequency: 24
+  microImpulseFocalPunchScale: 0.02
+  hitTraumaIntensity: 0.25
+  hitAccentDuration: 0.12
+  counterHitTraumaIntensity: 0.5
+  counterHitAccentDuration: 0.18
+  blockTraumaIntensity: 0.08
+  rapidCancelTraumaIntensity: 0.25
+  burstTraumaIntensity: 0.45
+  overdriveTraumaIntensity: 0.35
+  wallTraumaIntensity: 0.12
+  wallAccentDuration: 0.28
+  throwAccentDuration: 0.35
+  ultimateEntryTraumaIntensity: 0.15
+  ultimateEntryDuration: 0.6
+  ultimateExitDuration: 0.2
+  koTraumaIntensity: 0.2
+  koStateDuration: 2.5
+  launchTrackDuration: 0.55
 --- !u!81 &1147536850
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4564,18 +4870,42 @@ MonoBehaviour:
   closeCombatScreenFraction: 0.64
   wideSpacingScreenFraction: 0.54
   zoomFactor: 0.45
+  closeDistanceMin: 1.2
+  closeDistanceMax: 2.2
+  closeCombatFractionBoost: 0.05
+  neutralDistance: 3
+  wideDistanceMax: 7
+  horizontalFramingPadding: 0.35
   offset: {x: -0.05, y: 1.05, z: -3.55}
   pitchAngle: 2.8
   aggressionLeadAmount: 0.35
   verticalLaunchThresholdY: 2.5
+  verticalLaunchFollowFactor: 0.38
   minDistanceZ: -3.2
   maxDistanceZ: -7
+  maxCinematicZoomInZ: -2.4
+  cinematicZoomBufferZ: 0.6
+  backgroundDistanceOffset: 2.5
+  cornerViewportEdgePadding: 1.2
   smoothSpeed: 8
   smoothSpeedY: 3.5
   smoothSpeedZ: 5.5
+  accentFollowSpeed: 14
   deadzoneX: 0.06
   deadzoneY: 0.1
   deadzoneZ: 0.12
+  hitAccentZoomDelta: 0.45
+  counterHitZoomDelta: 0.85
+  wallAccentZoomDelta: 0.65
+  throwAccentZoomDelta: 0.7
+  ultimateEntryZoomDelta: 1.1
+  koZoomDelta: 1.25
+  koFocusOffsetY: 1.2
+  resultsFocusOffsetY: 1.1
+  resultsCameraZ: -4.5
+  launchTrackMinY: 1.4
+  launchTrackMaxY: 5
+  launchTrackPaddingY: 1.2
   hitAccentZoomZ: -9.2
   counterHitZoomZ: -7.5
   launchTrackLiftY: 1.4
@@ -4587,6 +4917,25 @@ MonoBehaviour:
   maxShakeOffset: 0.035
   maxShakeAngle: 0
   masterShakeScale: 0.25
+  shakeFrequency: 24
+  microImpulseFocalPunchScale: 0.02
+  hitTraumaIntensity: 0.25
+  hitAccentDuration: 0.12
+  counterHitTraumaIntensity: 0.5
+  counterHitAccentDuration: 0.18
+  blockTraumaIntensity: 0.08
+  rapidCancelTraumaIntensity: 0.25
+  burstTraumaIntensity: 0.45
+  overdriveTraumaIntensity: 0.35
+  wallTraumaIntensity: 0.12
+  wallAccentDuration: 0.28
+  throwAccentDuration: 0.35
+  ultimateEntryTraumaIntensity: 0.15
+  ultimateEntryDuration: 0.6
+  ultimateExitDuration: 0.2
+  koTraumaIntensity: 0.2
+  koStateDuration: 2.5
+  launchTrackDuration: 0.55
 --- !u!81 &1259154685
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4762,7 +5111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1300681558}
+  m_Sprite: {fileID: 908844249}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4859,226 +5208,6 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
---- !u!213 &1300681558
-Sprite:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 4
-    height: 4
-  m_Offset: {x: 0, y: 0}
-  m_Border: {x: 0, y: 0, z: 0, w: 0}
-  m_PixelsToUnits: 100
-  m_Pivot: {x: 0.5, y: 0.5}
-  m_Extrude: 0
-  m_PackingTag: 
-  m_RenderDataKey:
-    00000000000000000000000000000000: 0
-  m_AtlasTags: []
-  m_SpriteAtlas: {fileID: 0}
-  m_RD:
-    serializedVersion: 4
-    texture: {fileID: 0}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 6
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 4
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 000001000200020001000300y
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 4
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 80
-      _typelessdata: 0ad7a3bc0ad7a33c000000000ad7a33c0ad7a33c000000000ad7a3bc0ad7a3bc000000000ad7a33c0ad7a3bc000000000000000000000000000000000000000000000000000000000000000000000000
-    m_Bindpose: []
-    m_BlendShapes:
-      vertices: []
-      shapes: []
-      channels: []
-      fullWeights: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 4
-      height: 4
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 3136
-    uvTransform: {x: 100, y: 2, z: 100, w: 2}
-    downscaleMultiplier: 1
-  m_AtlasRD:
-    serializedVersion: 4
-    texture: {fileID: 0}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 6
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 4
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 000001000200020001000300y
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 4
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 80
-      _typelessdata: 0ad7a3bc0ad7a33c000000000ad7a33c0ad7a33c000000000ad7a3bc0ad7a3bc000000000ad7a33c0ad7a3bc000000000000000000000000000000000000000000000000000000000000000000000000
-    m_Bindpose: []
-    m_BlendShapes:
-      vertices: []
-      shapes: []
-      channels: []
-      fullWeights: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 4
-      height: 4
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 3136
-    uvTransform: {x: 100, y: 2, z: 100, w: 2}
-    downscaleMultiplier: 1
-  m_PhysicsShape: []
-  m_Bones: []
-  m_ScriptableObjects: []
-  m_SpriteID: 
 --- !u!1 &1318409284
 GameObject:
   m_ObjectHideFlags: 0
@@ -5122,18 +5251,42 @@ MonoBehaviour:
   closeCombatScreenFraction: 0.64
   wideSpacingScreenFraction: 0.54
   zoomFactor: 0.45
+  closeDistanceMin: 1.2
+  closeDistanceMax: 2.2
+  closeCombatFractionBoost: 0.05
+  neutralDistance: 3
+  wideDistanceMax: 7
+  horizontalFramingPadding: 0.35
   offset: {x: 0, y: 1.15, z: -4.6}
   pitchAngle: 2
   aggressionLeadAmount: 0.35
   verticalLaunchThresholdY: 2.5
+  verticalLaunchFollowFactor: 0.38
   minDistanceZ: -3.2
   maxDistanceZ: -7
+  maxCinematicZoomInZ: -2.4
+  cinematicZoomBufferZ: 0.6
+  backgroundDistanceOffset: 2.5
+  cornerViewportEdgePadding: 1.2
   smoothSpeed: 8
   smoothSpeedY: 3.5
   smoothSpeedZ: 5.5
+  accentFollowSpeed: 14
   deadzoneX: 0.06
   deadzoneY: 0.1
   deadzoneZ: 0.12
+  hitAccentZoomDelta: 0.45
+  counterHitZoomDelta: 0.85
+  wallAccentZoomDelta: 0.65
+  throwAccentZoomDelta: 0.7
+  ultimateEntryZoomDelta: 1.1
+  koZoomDelta: 1.25
+  koFocusOffsetY: 1.2
+  resultsFocusOffsetY: 1.1
+  resultsCameraZ: -4.5
+  launchTrackMinY: 1.4
+  launchTrackMaxY: 5
+  launchTrackPaddingY: 1.2
   hitAccentZoomZ: -9.2
   counterHitZoomZ: -7.5
   launchTrackLiftY: 1.4
@@ -5145,6 +5298,25 @@ MonoBehaviour:
   maxShakeOffset: 0.035
   maxShakeAngle: 0
   masterShakeScale: 0.25
+  shakeFrequency: 24
+  microImpulseFocalPunchScale: 0.02
+  hitTraumaIntensity: 0.25
+  hitAccentDuration: 0.12
+  counterHitTraumaIntensity: 0.5
+  counterHitAccentDuration: 0.18
+  blockTraumaIntensity: 0.08
+  rapidCancelTraumaIntensity: 0.25
+  burstTraumaIntensity: 0.45
+  overdriveTraumaIntensity: 0.35
+  wallTraumaIntensity: 0.12
+  wallAccentDuration: 0.28
+  throwAccentDuration: 0.35
+  ultimateEntryTraumaIntensity: 0.15
+  ultimateEntryDuration: 0.6
+  ultimateExitDuration: 0.2
+  koTraumaIntensity: 0.2
+  koStateDuration: 2.5
+  launchTrackDuration: 0.55
 --- !u!81 &1318409286
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5320,7 +5492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1300681558}
+  m_Sprite: {fileID: 908844249}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6076,18 +6248,42 @@ MonoBehaviour:
   closeCombatScreenFraction: 0.64
   wideSpacingScreenFraction: 0.54
   zoomFactor: 0.45
+  closeDistanceMin: 1.2
+  closeDistanceMax: 2.2
+  closeCombatFractionBoost: 0.05
+  neutralDistance: 3
+  wideDistanceMax: 7
+  horizontalFramingPadding: 0.35
   offset: {x: -0.05, y: 1.15, z: -4.6}
   pitchAngle: 2.8
   aggressionLeadAmount: 0.35
   verticalLaunchThresholdY: 2.5
+  verticalLaunchFollowFactor: 0.38
   minDistanceZ: -3.2
   maxDistanceZ: -7
+  maxCinematicZoomInZ: -2.4
+  cinematicZoomBufferZ: 0.6
+  backgroundDistanceOffset: 2.5
+  cornerViewportEdgePadding: 1.2
   smoothSpeed: 8
   smoothSpeedY: 3.5
   smoothSpeedZ: 5.5
+  accentFollowSpeed: 14
   deadzoneX: 0.06
   deadzoneY: 0.1
   deadzoneZ: 0.12
+  hitAccentZoomDelta: 0.45
+  counterHitZoomDelta: 0.85
+  wallAccentZoomDelta: 0.65
+  throwAccentZoomDelta: 0.7
+  ultimateEntryZoomDelta: 1.1
+  koZoomDelta: 1.25
+  koFocusOffsetY: 1.2
+  resultsFocusOffsetY: 1.1
+  resultsCameraZ: -4.5
+  launchTrackMinY: 1.4
+  launchTrackMaxY: 5
+  launchTrackPaddingY: 1.2
   hitAccentZoomZ: -9.2
   counterHitZoomZ: -7.5
   launchTrackLiftY: 1.4
@@ -6099,6 +6295,25 @@ MonoBehaviour:
   maxShakeOffset: 0.035
   maxShakeAngle: 0
   masterShakeScale: 0.25
+  shakeFrequency: 24
+  microImpulseFocalPunchScale: 0.02
+  hitTraumaIntensity: 0.25
+  hitAccentDuration: 0.12
+  counterHitTraumaIntensity: 0.5
+  counterHitAccentDuration: 0.18
+  blockTraumaIntensity: 0.08
+  rapidCancelTraumaIntensity: 0.25
+  burstTraumaIntensity: 0.45
+  overdriveTraumaIntensity: 0.35
+  wallTraumaIntensity: 0.12
+  wallAccentDuration: 0.28
+  throwAccentDuration: 0.35
+  ultimateEntryTraumaIntensity: 0.15
+  ultimateEntryDuration: 0.6
+  ultimateExitDuration: 0.2
+  koTraumaIntensity: 0.2
+  koStateDuration: 2.5
+  launchTrackDuration: 0.55
 --- !u!81 &1552652603
 AudioListener:
   m_ObjectHideFlags: 0
@@ -6790,8 +7005,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 1, g: 0.98, b: 0.95, a: 1}
-  m_Intensity: 1.2
+  m_Color: {r: 0.7, g: 0.75, b: 0.9, a: 1}
+  m_Intensity: 0.85
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
@@ -6952,18 +7167,42 @@ MonoBehaviour:
   closeCombatScreenFraction: 0.64
   wideSpacingScreenFraction: 0.54
   zoomFactor: 0.45
+  closeDistanceMin: 1.2
+  closeDistanceMax: 2.2
+  closeCombatFractionBoost: 0.05
+  neutralDistance: 3
+  wideDistanceMax: 7
+  horizontalFramingPadding: 0.35
   offset: {x: 0, y: 1.25, z: -4.6}
   pitchAngle: 3.5
   aggressionLeadAmount: 0.35
   verticalLaunchThresholdY: 2.5
+  verticalLaunchFollowFactor: 0.38
   minDistanceZ: -3.2
   maxDistanceZ: -7
+  maxCinematicZoomInZ: -2.4
+  cinematicZoomBufferZ: 0.6
+  backgroundDistanceOffset: 2.5
+  cornerViewportEdgePadding: 1.2
   smoothSpeed: 8
   smoothSpeedY: 3.5
   smoothSpeedZ: 5.5
+  accentFollowSpeed: 14
   deadzoneX: 0.06
   deadzoneY: 0.1
   deadzoneZ: 0.12
+  hitAccentZoomDelta: 0.45
+  counterHitZoomDelta: 0.85
+  wallAccentZoomDelta: 0.65
+  throwAccentZoomDelta: 0.7
+  ultimateEntryZoomDelta: 1.1
+  koZoomDelta: 1.25
+  koFocusOffsetY: 1.2
+  resultsFocusOffsetY: 1.1
+  resultsCameraZ: -4.5
+  launchTrackMinY: 1.4
+  launchTrackMaxY: 5
+  launchTrackPaddingY: 1.2
   hitAccentZoomZ: -9.2
   counterHitZoomZ: -7.5
   launchTrackLiftY: 1.4
@@ -6975,6 +7214,25 @@ MonoBehaviour:
   maxShakeOffset: 0.035
   maxShakeAngle: 0
   masterShakeScale: 0.25
+  shakeFrequency: 24
+  microImpulseFocalPunchScale: 0.02
+  hitTraumaIntensity: 0.25
+  hitAccentDuration: 0.12
+  counterHitTraumaIntensity: 0.5
+  counterHitAccentDuration: 0.18
+  blockTraumaIntensity: 0.08
+  rapidCancelTraumaIntensity: 0.25
+  burstTraumaIntensity: 0.45
+  overdriveTraumaIntensity: 0.35
+  wallTraumaIntensity: 0.12
+  wallAccentDuration: 0.28
+  throwAccentDuration: 0.35
+  ultimateEntryTraumaIntensity: 0.15
+  ultimateEntryDuration: 0.6
+  ultimateExitDuration: 0.2
+  koTraumaIntensity: 0.2
+  koStateDuration: 2.5
+  launchTrackDuration: 0.55
 --- !u!81 &1722717013
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7580,18 +7838,42 @@ MonoBehaviour:
   closeCombatScreenFraction: 0.64
   wideSpacingScreenFraction: 0.54
   zoomFactor: 0.45
+  closeDistanceMin: 1.2
+  closeDistanceMax: 2.2
+  closeCombatFractionBoost: 0.05
+  neutralDistance: 3
+  wideDistanceMax: 7
+  horizontalFramingPadding: 0.35
   offset: {x: 0, y: 1.2, z: -4.8}
   pitchAngle: 2.8
   aggressionLeadAmount: 0.35
   verticalLaunchThresholdY: 2.5
+  verticalLaunchFollowFactor: 0.38
   minDistanceZ: -3.2
   maxDistanceZ: -7
+  maxCinematicZoomInZ: -2.4
+  cinematicZoomBufferZ: 0.6
+  backgroundDistanceOffset: 2.5
+  cornerViewportEdgePadding: 1.2
   smoothSpeed: 8
   smoothSpeedY: 3.5
   smoothSpeedZ: 5.5
+  accentFollowSpeed: 14
   deadzoneX: 0.06
   deadzoneY: 0.1
   deadzoneZ: 0.12
+  hitAccentZoomDelta: 0.45
+  counterHitZoomDelta: 0.85
+  wallAccentZoomDelta: 0.65
+  throwAccentZoomDelta: 0.7
+  ultimateEntryZoomDelta: 1.1
+  koZoomDelta: 1.25
+  koFocusOffsetY: 1.2
+  resultsFocusOffsetY: 1.1
+  resultsCameraZ: -4.5
+  launchTrackMinY: 1.4
+  launchTrackMaxY: 5
+  launchTrackPaddingY: 1.2
   hitAccentZoomZ: -9.2
   counterHitZoomZ: -7.5
   launchTrackLiftY: 1.4
@@ -7603,6 +7885,25 @@ MonoBehaviour:
   maxShakeOffset: 0.035
   maxShakeAngle: 0
   masterShakeScale: 0.25
+  shakeFrequency: 24
+  microImpulseFocalPunchScale: 0.02
+  hitTraumaIntensity: 0.25
+  hitAccentDuration: 0.12
+  counterHitTraumaIntensity: 0.5
+  counterHitAccentDuration: 0.18
+  blockTraumaIntensity: 0.08
+  rapidCancelTraumaIntensity: 0.25
+  burstTraumaIntensity: 0.45
+  overdriveTraumaIntensity: 0.35
+  wallTraumaIntensity: 0.12
+  wallAccentDuration: 0.28
+  throwAccentDuration: 0.35
+  ultimateEntryTraumaIntensity: 0.15
+  ultimateEntryDuration: 0.6
+  ultimateExitDuration: 0.2
+  koTraumaIntensity: 0.2
+  koStateDuration: 2.5
+  launchTrackDuration: 0.55
 --- !u!81 &1921357247
 AudioListener:
   m_ObjectHideFlags: 0

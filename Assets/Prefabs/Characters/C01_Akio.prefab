@@ -213,21 +213,21 @@ MonoBehaviour:
   standingHurtbox:
     serializedVersion: 2
     x: 0.02
-    y: 1.2448239
-    width: 0.21631731
-    height: 2.2502587
+    y: 1.2389771
+    width: 0.21631719
+    height: 2.2396894
   crouchingHurtbox:
     serializedVersion: 2
     x: 0.04
-    y: 0.7660455
-    width: 0.24836431
-    height: 1.4363354
+    y: 0.7624474
+    width: 0.24836418
+    height: 1.429589
   pushbox:
     serializedVersion: 2
     x: 0
-    y: 1.1490682
-    width: 0.1842703
-    height: 2.154503
+    y: 1.1436712
+    width: 0.1842702
+    height: 2.1443834
   showHitboxes: 0
 --- !u!114 &4829448165592238411
 MonoBehaviour:
@@ -2293,15 +2293,15 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 099a5553f4a3c45a58b5e8f7c3dea21c, type: 2}
-  - {fileID: 2100000, guid: 8aa0f13fd889d4edebc298d0e542543b, type: 2}
-  - {fileID: 2100000, guid: 02fb0fe585b4f46bcbe9a32d2a6a1f37, type: 2}
-  - {fileID: 2100000, guid: 31b9bc17826c340faa00496a21669848, type: 2}
-  - {fileID: 2100000, guid: 321bb13aeb9074403b973080e9f9bd03, type: 2}
-  - {fileID: 2100000, guid: d5c9c8d4811014006b2b2e6c927f1b33, type: 2}
-  - {fileID: 2100000, guid: 58462440c841f48d9807435ec435f523, type: 2}
-  - {fileID: 2100000, guid: 28606d7ade5634d91bac1f8ae31a0427, type: 2}
-  - {fileID: 2100000, guid: 794537738b03742798d9d9859724943e, type: 2}
+  - {fileID: 2100000, guid: 54a25f2b2f25e4a3e9add72e1c76876c, type: 2}
+  - {fileID: 2100000, guid: 712c90ed593f6474ca028dc3b5085729, type: 2}
+  - {fileID: 2100000, guid: 660120715ad254885bf7b590b0852bb3, type: 2}
+  - {fileID: 2100000, guid: e7f4d5b26e3d64d3fa07ee63f3c0fa38, type: 2}
+  - {fileID: 2100000, guid: fa6802331b9964ebcba61f732d7c8511, type: 2}
+  - {fileID: 2100000, guid: 09ef4f079e87c434087981fc3e07dc6d, type: 2}
+  - {fileID: 2100000, guid: b93725cace2d8451da99510ed8f0e4d8, type: 2}
+  - {fileID: 2100000, guid: 9f9359adceeb843f0910f50d9ea307ad, type: 2}
+  - {fileID: 2100000, guid: ab486015f38c14e39ab4254c3b6225a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
