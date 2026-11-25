@@ -532,14 +532,14 @@ namespace DemonIdol.BlazBlue
             if (dist < 1.5f)
             {
                 // Opponent in face: Backdash, defensive sweep 2C, 236A, or jab
+                if (self.heatMeter >= 50f && _rng.NextDouble() < 0.50)
+                {
+                    Enqueue236236C(facing);
+                    return;
+                }
                 if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.40)
                 {
                     Enqueue236A(facing);
-                    return;
-                }
-                if (self.heatMeter >= 50f && _rng.NextDouble() < 0.40)
-                {
-                    Enqueue236236C(facing);
                     return;
                 }
 
@@ -561,15 +561,15 @@ namespace DemonIdol.BlazBlue
             }
             else if (dist >= 1.5f && dist <= 2.6f)
             {
-                // Mid range: 236A special, 236236C super, 5C poke, 5D Drive spell/shot, or retreat
-                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.65)
-                {
-                    Enqueue236A(facing);
-                    return;
-                }
-                if (self.heatMeter >= 50f && _rng.NextDouble() < 0.50)
+                // Mid range: 236236C super, 236A special, 5C poke, 5D Drive spell/shot, or retreat
+                if (self.heatMeter >= 50f && _rng.NextDouble() < 0.60)
                 {
                     Enqueue236236C(facing);
+                    return;
+                }
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.50)
+                {
+                    Enqueue236A(facing);
                     return;
                 }
 
@@ -780,6 +780,11 @@ namespace DemonIdol.BlazBlue
         {
             if (dist > 2.0f)
             {
+                if (self.heatMeter >= 50f && _rng.NextDouble() < 0.50)
+                {
+                    Enqueue236236C(facing);
+                    return;
+                }
                 if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.35)
                 {
                     Enqueue236A(facing);
@@ -789,6 +794,11 @@ namespace DemonIdol.BlazBlue
             }
             else if (dist > 1.3f)
             {
+                if (self.heatMeter >= 50f && _rng.NextDouble() < 0.45)
+                {
+                    Enqueue236236C(facing);
+                    return;
+                }
                 if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.40)
                 {
                     Enqueue236A(facing);

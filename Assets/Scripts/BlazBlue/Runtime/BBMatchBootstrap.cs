@@ -162,6 +162,11 @@ namespace DemonIdol.BlazBlue
                     }
                 }
                 brain.bodyBoxes = BBBodyBoxes.CreateFromHip(hipH, info.weaponReach, hipW);
+                var pConfig = fc.GetComponent<BBFighterPrefabConfig>();
+                if (pConfig != null)
+                {
+                    pConfig.ApplyBakedHitboxesToBrain(brain);
+                }
                 EnsureDrive(brain, info);
                 AssignAnimator(fc, brain);
 

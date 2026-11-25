@@ -89,6 +89,23 @@ namespace DemonIdol.Editor
         }
 
         // =========================================================================
+        // COMBAT & HITBOX BAKER
+        // =========================================================================
+        [MenuItem("Demon Idol/Combat/Bake Hitboxes From Warrior Packs", priority = 30)]
+        public static void BakeHitboxesFromWarriorPacks()
+        {
+            DemonIdol.Editor.Combat.WarriorHitboxBaker.BakeAll12WarriorHitboxes();
+        }
+
+        [MenuItem("Demon Idol/Combat/Toggle Hitbox Gizmos", priority = 31)]
+        public static void ToggleHitboxGizmos()
+        {
+            BBFighterPrefabConfig.GlobalShowHitboxes = !BBFighterPrefabConfig.GlobalShowHitboxes;
+            SceneView.RepaintAll();
+            Debug.Log($"<color=#00e676>[Demon Idol] Hitbox Gizmos Overlay: {(BBFighterPrefabConfig.GlobalShowHitboxes ? "ENABLED" : "DISABLED")}</color>");
+        }
+
+        // =========================================================================
         // PLAY
         // =========================================================================
         [MenuItem("Demon Idol/Play/Play From Main Menu", priority = 20)]

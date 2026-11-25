@@ -1,28 +1,28 @@
 # GATE 1 VERIFICATION LOG — ALL 25 FIGHTERS
 | Fighter | Opponent | Measured Height | P1 Foot Y | P2 Foot Y | Avatar Valid | Models Count | Status |
 |---|---|:---:|:---:|:---:|:---:|:---:|:---:|
-| C01 | C02 | 1.73m | +0.042m | +0.037m | Valid | 1 | PASS |
+| C01 | C02 | 1.62m | +0.043m | +0.036m | Valid | 1 | PASS |
 | C02 | C04 | 1.52m | +0.039m | -0.013m | Valid | 1 | PASS |
-| C04 | C05 | 1.65m | -0.012m | -0.179m | Valid | 1 | PASS |
-| C05 | C06 | 1.67m | +0.210m | +0.004m | Valid | 1 | PASS |
-| C06 | C07 | 1.73m | +0.000m | +0.002m | Valid | 1 | PASS |
-| C07 | C08 | 1.60m | +0.018m | +0.042m | Valid | 1 | PASS |
-| C08 | C09 | 1.58m | +0.009m | +0.027m | Valid | 1 | PASS |
-| C09 | C10 | 1.59m | +0.019m | +0.003m | Valid | 1 | PASS |
-| C10 | C11 | 1.72m | +0.021m | +0.011m | Valid | 1 | PASS |
-| C11 | C12 | 1.54m | +0.011m | +0.032m | Valid | 1 | PASS |
+| C04 | C05 | 1.65m | -0.012m | -0.180m | Valid | 1 | PASS |
+| C05 | C06 | 1.74m | +0.225m | +0.003m | Valid | 1 | PASS |
+| C06 | C07 | 1.76m | +0.000m | +0.002m | Valid | 1 | PASS |
+| C07 | C08 | 1.60m | +0.018m | +0.044m | Valid | 1 | PASS |
+| C08 | C09 | 1.82m | +0.007m | +0.028m | Valid | 1 | PASS |
+| C09 | C10 | 1.66m | +0.018m | +0.010m | Valid | 1 | PASS |
+| C10 | C11 | 1.72m | +0.021m | +0.010m | Valid | 1 | PASS |
+| C11 | C12 | 1.64m | +0.010m | +0.032m | Valid | 1 | PASS |
 | C12 | C13 | 1.92m | +0.032m | +0.025m | Valid | 1 | PASS |
-| C13 | C14 | 1.60m | +0.024m | -0.001m | Valid | 1 | PASS |
-| C14 | SK02 | 1.72m | +0.000m | +0.010m | Valid | 1 | PASS |
+| C13 | C14 | 1.60m | +0.024m | -0.002m | Valid | 1 | PASS |
+| C14 | SK02 | 1.81m | -0.001m | +0.010m | Valid | 1 | PASS |
 | SK02 | SK03 | 1.72m | +0.004m | +0.390m | Valid | 1 | PASS |
 | SK03 | SK05 | 1.65m | +0.346m | -0.007m | Valid | 1 | PASS |
 | SK05 | SK06 | 1.81m | +0.003m | -0.018m | Valid | 1 | PASS |
-| SK06 | SK08 | 1.82m | +0.001m | -0.002m | Valid | 1 | PASS |
-| SK08 | EX01 | 1.59m | +0.000m | +0.033m | Valid | 1 | PASS |
-| EX01 | EX02 | 2.00m | +0.036m | -0.091m | Valid | 1 | PASS |
-| EX02 | EX03 | 1.98m | +0.061m | -0.022m | Valid | 1 | PASS |
-| EX03 | EX04 | 1.75m | -0.014m | +0.016m | Valid | 1 | PASS |
-| EX04 | EX05 | 1.59m | +0.016m | +0.018m | Valid | 1 | PASS |
-| EX05 | EX06 | 1.69m | +0.018m | +0.068m | Valid | 1 | PASS |
+| SK06 | SK08 | 1.82m | +0.001m | -0.001m | Valid | 1 | PASS |
+| SK08 | EX01 | 1.57m | +0.000m | +0.031m | Valid | 1 | PASS |
+| EX01 | EX02 | 1.57m | +0.034m | -0.087m | Valid | 1 | PASS |
+| EX02 | EX03 | 1.98m | +0.062m | -0.022m | Valid | 1 | PASS |
+| EX03 | EX04 | 1.75m | -0.014m | +0.015m | Valid | 1 | PASS |
+| EX04 | EX05 | 1.78m | +0.015m | +0.018m | Valid | 1 | PASS |
+| EX05 | EX06 | 1.69m | +0.018m | +0.064m | Valid | 1 | PASS |
 | EX06 | EX07 | 2.00m | +0.069m | +0.394m | Valid | 1 | PASS |
-| EX07 | C01 | 1.51m | +0.007m | +0.072m | Valid | 1 | PASS |
+| EX07 | C01 | 1.51m | +0.007m | +0.069m | Valid | 1 | PASS |

@@ -10,11 +10,48 @@ using UnityEditor;
 namespace DemonIdol.BlazBlue
 {
     /// <summary>
+    /// Editable per-move 2D AABB hitbox configuration baked from real animation poses & weapon geometry.
+    /// Allows fighting game designers to inspect and tweak frame data and hitboxes directly in the Prefab Inspector.
+    /// </summary>
+    [Serializable]
+    public struct MoveHitboxConfig
+    {
+        [Tooltip("Standard move identifier (5A, 5B, 5C, 2C, j.B, 5D, 236236C)")]
+        public string moveId;
+
+        [Header("Frame Timings (60 FPS Ticks)")]
+        public int startupTicks;
+        public int activeTicks;
+        public int recoveryTicks;
+
+        [Header("2D AABB Hitbox (Meters Relative to Fighter Root)")]
+        [Tooltip("Center offset (cx, cy) relative to root facing +X")]
+        public Vector2 hitboxOffset;
+        [Tooltip("Full width (X) and height (Y) of the hitbox")]
+        public Vector2 hitboxSize;
+
+        [Header("Projectile Properties")]
+        [Tooltip("Spawn offset (X, Y) relative to root for projectile moves")]
+        public Vector2 projectileSpawnOffset;
+        [Tooltip("Collision radius for projectile")]
+        public float projectileRadius;
+
+        [Header("Flags")]
+        [Tooltip("Whether this attack box is disjoint (immune to counter-strikes on attacking limb)")]
+        public bool isDisjoint;
+        [Tooltip("If true, the automated Hitbox Baker will NOT overwrite developer modifications")]
+        public bool useCustomOverride;
+
+        public float Reach => hitboxOffset.x + (hitboxSize.x * 0.5f);
+    }
+
+    /// <summary>
     /// Lightweight prefab configuration component for fighters.
     /// Provides zero runtime overhead while acting as the single authoritative authoring anchor
     /// in Prefab Mode for animations, 7-move kit, locomotion, weapon rig, and fighter identity.
     /// Supports per-fighter AnimatorOverrideController mapping to hot-swap custom AnimationClips
     /// on top of the character's dedicated ExplosiveLLC Warrior Pack AnimatorController.
+    /// Stores baked 2D AABB hitboxes and calibrated body hurtboxes for zero-allocation BBMatchSim queries.
     /// </summary>
     [DisallowMultipleComponent]
     public class BBFighterPrefabConfig : MonoBehaviour
@@ -65,6 +102,23 @@ namespace DemonIdol.BlazBlue
         public AnimationClip custom5D;
         [Tooltip("Optional custom 236236C (Super Attack) animation clip")]
         public AnimationClip customSuper236236C;
+
+        [Header("Baked 2D AABB Hitboxes & Frame Timings")]
+        [Tooltip("Baked 7-move hitboxes and timings extracted from Warrior pack geometry & events")]
+        public List<MoveHitboxConfig> moveHitboxes = new List<MoveHitboxConfig>();
+
+        [Header("Baked Body Hurtboxes & Pushbox (Center X, Y, Width, Height)")]
+        [Tooltip("Standing hurtbox bounds (x=centerX, y=centerY, width=fullWidth, height=fullHeight)")]
+        public Rect standingHurtbox;
+        [Tooltip("Crouching hurtbox bounds (x=centerX, y=centerY, width=fullWidth, height=fullHeight)")]
+        public Rect crouchingHurtbox;
+        [Tooltip("Pushbox bounds preventing fighter clipping")]
+        public Rect pushbox;
+
+        [Header("Hitbox Visual Debugger")]
+        [Tooltip("Show live 2D fighting-plane hitboxes, hurtboxes, pushboxes, and projectile spawn points")]
+        public bool showHitboxes = false;
+        public static bool GlobalShowHitboxes = false;
 
         /// <summary>
         /// Returns true if at least one custom AnimationClip override has been assigned.
@@ -136,6 +190,156 @@ namespace DemonIdol.BlazBlue
             aoc.ApplyOverrides(clipOverrides);
             return aoc;
         }
+
+        /// <summary>
+        /// Applies baked hurtboxes, pushbox, and attack hitboxes to the fighter's runtime BBFighterBrain.
+        /// Operates deterministically with zero runtime GC allocation.
+        /// </summary>
+        public void ApplyBakedHitboxesToBrain(BBFighterBrain targetBrain)
+        {
+            if (targetBrain == null) return;
+
+            // 1. Calibrate body boxes from baked hurtbox / pushbox
+            if (standingHurtbox.width > 0.05f)
+            {
+                if (targetBrain.bodyBoxes == null) targetBrain.bodyBoxes = new BBBodyBoxes();
+                float hx = standingHurtbox.width * 0.5f;
+                float hy = standingHurtbox.height * 0.5f;
+
+                targetBrain.bodyBoxes.standHurtBoxes = new BBBox[]
+                {
+                    new BBBox(standingHurtbox.x, standingHurtbox.y + hy * 0.55f, hx * 0.65f, hy * 0.35f, BBBoxKind.Hurt, 0, BBAttribute.Head),
+                    new BBBox(standingHurtbox.x, standingHurtbox.y, hx * 0.85f, hy * 0.45f, BBBoxKind.Hurt, 0, BBAttribute.Body),
+                    new BBBox(standingHurtbox.x, standingHurtbox.y - hy * 0.55f, hx * 0.90f, hy * 0.40f, BBBoxKind.Hurt, 0, BBAttribute.Foot)
+                };
+                targetBrain.bodyBoxes.standPushBox = new BBBox(pushbox.x, pushbox.y, pushbox.width * 0.5f, pushbox.height * 0.5f, BBBoxKind.Push);
+                targetBrain.bodyBoxes.standThrowHurtBox = new BBBox(standingHurtbox.x, standingHurtbox.y, hx * 0.82f, hy * 0.7f, BBBoxKind.ThrowHurt);
+
+                if (crouchingHurtbox.width > 0.05f)
+                {
+                    float chx = crouchingHurtbox.width * 0.5f;
+                    float chy = crouchingHurtbox.height * 0.5f;
+                    targetBrain.bodyBoxes.crouchHurtBoxes = new BBBox[]
+                    {
+                        new BBBox(crouchingHurtbox.x, crouchingHurtbox.y + chy * 0.45f, chx * 0.60f, chy * 0.35f, BBBoxKind.Hurt, 0, BBAttribute.Head),
+                        new BBBox(crouchingHurtbox.x, crouchingHurtbox.y - chy * 0.15f, chx * 0.85f, chy * 0.40f, BBBoxKind.Hurt, 0, BBAttribute.Body),
+                        new BBBox(crouchingHurtbox.x, crouchingHurtbox.y - chy * 0.65f, chx * 0.95f, chy * 0.30f, BBBoxKind.Hurt, 0, BBAttribute.Foot)
+                    };
+                    targetBrain.bodyBoxes.crouchPushBox = new BBBox(crouchingHurtbox.x, crouchingHurtbox.y, chx, chy, BBBoxKind.Push);
+                    targetBrain.bodyBoxes.crouchThrowHurtBox = new BBBox(crouchingHurtbox.x, crouchingHurtbox.y, chx * 0.85f, chy * 0.6f, BBBoxKind.ThrowHurt);
+                }
+            }
+
+            // 2. Calibrate attack boxes for active moves
+            if (moveHitboxes != null && moveHitboxes.Count > 0)
+            {
+                foreach (var m in moveHitboxes)
+                {
+                    var atk = targetBrain.FindAttackByMoveId(m.moveId);
+                    if (atk != null && atk.boxes != null && m.hitboxSize.x > 0.05f)
+                    {
+                        float hx = m.hitboxSize.x * 0.5f;
+                        float hy = m.hitboxSize.y * 0.5f;
+                        float cx = m.hitboxOffset.x;
+                        float cy = m.hitboxOffset.y;
+
+                        for (int b = 0; b < atk.boxes.boxes.Length; b++)
+                        {
+                            if (atk.boxes.boxes[b].kind == BBBoxKind.Hit)
+                            {
+                                atk.boxes.boxes[b].cx = cx;
+                                atk.boxes.boxes[b].cy = cy;
+                                atk.boxes.boxes[b].hx = hx;
+                                atk.boxes.boxes[b].hy = hy;
+                                if (m.isDisjoint) atk.boxes.boxes[b].flags |= BBBox.FLAG_DISJOINT;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        private void OnDrawGizmos()
+        {
+            if (!showHitboxes && !GlobalShowHitboxes) return;
+            DrawHitboxGizmos();
+        }
+
+        private void DrawHitboxGizmos()
+        {
+            Vector3 pos = transform.position;
+            int facing = 1;
+            var brain = GetComponent<BBFighterBrain>();
+            if (brain != null && brain.fighter != null) facing = brain.fighter.FacingDirection;
+
+            // 1. Draw Pushbox (Yellow wireframe)
+            if (pushbox.width > 0.05f)
+            {
+                Gizmos.color = new Color(1f, 0.92f, 0.016f, 0.9f);
+                Vector3 pushCenter = pos + new Vector3(pushbox.x * facing, pushbox.y, 0f);
+                Gizmos.DrawWireCube(pushCenter, new Vector3(pushbox.width, pushbox.height, 0.1f));
+            }
+
+            // 2. Draw Hurtbox (Green semi-transparent + wireframe)
+            Rect currentHurt = (brain != null && brain.bbState == BBState.Crouching && crouchingHurtbox.width > 0.05f)
+                ? crouchingHurtbox : standingHurtbox;
+
+            if (currentHurt.width > 0.05f)
+            {
+                Vector3 hurtCenter = pos + new Vector3(currentHurt.x * facing, currentHurt.y, 0f);
+                Gizmos.color = new Color(0.1f, 0.95f, 0.2f, 0.25f);
+                Gizmos.DrawCube(hurtCenter, new Vector3(currentHurt.width, currentHurt.height, 0.08f));
+                Gizmos.color = new Color(0.1f, 0.95f, 0.2f, 0.85f);
+                Gizmos.DrawWireCube(hurtCenter, new Vector3(currentHurt.width, currentHurt.height, 0.08f));
+            }
+
+            // 3. Draw Attack Hitbox (Red semi-transparent + wireframe)
+            if (moveHitboxes != null && moveHitboxes.Count > 0)
+            {
+                MoveHitboxConfig activeConfig = default;
+                bool foundActive = false;
+
+                if (brain != null && brain.currentAttack != null)
+                {
+                    foreach (var m in moveHitboxes)
+                    {
+                        if (m.moveId == brain.currentAttack.moveId)
+                        {
+                            activeConfig = m;
+                            foundActive = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    activeConfig = moveHitboxes[0]; // Preview 5A in Editor
+                    foundActive = true;
+                }
+
+                if (foundActive && activeConfig.hitboxSize.x > 0.05f)
+                {
+                    Vector3 hitCenter = pos + new Vector3(activeConfig.hitboxOffset.x * facing, activeConfig.hitboxOffset.y, 0f);
+                    Gizmos.color = new Color(1f, 0.15f, 0.15f, 0.35f);
+                    Gizmos.DrawCube(hitCenter, new Vector3(activeConfig.hitboxSize.x, activeConfig.hitboxSize.y, 0.12f));
+                    Gizmos.color = new Color(1f, 0.05f, 0.05f, 0.95f);
+                    Gizmos.DrawWireCube(hitCenter, new Vector3(activeConfig.hitboxSize.x, activeConfig.hitboxSize.y, 0.12f));
+
+                    // 4. Draw Projectile Spawn Point (Cyan crosshair)
+                    if (activeConfig.projectileSpawnOffset != Vector2.zero)
+                    {
+                        Vector3 spawnPos = pos + new Vector3(activeConfig.projectileSpawnOffset.x * facing, activeConfig.projectileSpawnOffset.y, 0f);
+                        Gizmos.color = Color.cyan;
+                        float r = activeConfig.projectileRadius > 0.05f ? activeConfig.projectileRadius : 0.2f;
+                        Gizmos.DrawWireSphere(spawnPos, r);
+                        Gizmos.DrawLine(spawnPos - Vector3.right * 0.15f, spawnPos + Vector3.right * 0.15f);
+                        Gizmos.DrawLine(spawnPos - Vector3.up * 0.15f, spawnPos + Vector3.up * 0.15f);
+                    }
+                }
+            }
+        }
+#endif
 
 #if UNITY_EDITOR
         private void Reset()

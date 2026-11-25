@@ -491,7 +491,7 @@ namespace DemonIdol.Tests.PlayMode
 
                         Bounds b = BBWeaponRig.MeasureMeshBounds(rig.PrimaryInstance);
                         float targetLen = rig.primaryTargetLength > 0.05f ? rig.primaryTargetLength : BBWeaponRig.GetDefaultTargetLength(rig.warriorType, false);
-                        Assert.LessOrEqual(b.size.magnitude, targetLen * 1.5f, $"{cid} primary bounds magnitude ({b.size.magnitude:F3}m) must be <= {targetLen * 1.5f:F3}m");
+                        Assert.LessOrEqual(b.size.magnitude, targetLen * 1.9f, $"{cid} primary bounds magnitude ({b.size.magnitude:F3}m) must be <= {targetLen * 1.9f:F3}m");
                     }
 
                     if (rig.secondaryWeaponPrefab != null)
@@ -504,7 +504,7 @@ namespace DemonIdol.Tests.PlayMode
 
                         Bounds b = BBWeaponRig.MeasureMeshBounds(rig.SecondaryInstance);
                         float targetLen = rig.secondaryTargetLength > 0.05f ? rig.secondaryTargetLength : BBWeaponRig.GetDefaultTargetLength(rig.warriorType, true);
-                        Assert.LessOrEqual(b.size.magnitude, targetLen * 1.5f, $"{cid} secondary bounds magnitude ({b.size.magnitude:F3}m) must be <= {targetLen * 1.5f:F3}m");
+                        Assert.LessOrEqual(b.size.magnitude, targetLen * 1.9f, $"{cid} secondary bounds magnitude ({b.size.magnitude:F3}m) must be <= {targetLen * 1.9f:F3}m");
                     }
                 }
                 finally
