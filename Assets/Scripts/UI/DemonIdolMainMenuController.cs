@@ -114,6 +114,30 @@ namespace DemonIdol.UI
         public Transform heroSpawnPoint;
         public Camera menuCamera;
 
+        [Header("Hero Spawn Transform (Editable in Inspector)")]
+        public Vector3 defaultHeroSpawnPosition = new Vector3(1.75f, 0f, 0f);
+        public Vector3 defaultHeroSpawnEuler = new Vector3(0f, -145f, 0f);
+        public Vector3 heroPositionOffset = Vector3.zero;
+        public Vector3 heroEulerOffset = Vector3.zero;
+        [Range(0.25f, 3.0f)] public float heroScale = 1.0f;
+
+        [Header("Menu Camera Pillar Presets (0=Fight, 1=Dojo, 2=Roster, 3=Settings)")]
+        [Range(1.0f, 20.0f)] public float cameraLerpSpeed = 6.5f;
+        public Vector3[] pillarCameraPositions = new Vector3[]
+        {
+            new Vector3(0.0f, 1.25f, -4.5f),   // 0: FIGHT
+            new Vector3(0.35f, 1.30f, -4.2f),  // 1: DOJO
+            new Vector3(-0.40f, 1.20f, -4.8f), // 2: ROSTER
+            new Vector3(0.60f, 1.25f, -5.0f)   // 3: SETTINGS
+        };
+        public Vector3[] pillarCameraEulerAngles = new Vector3[]
+        {
+            new Vector3(4f, -4f, 0f),   // 0: FIGHT
+            new Vector3(6f, -10f, 0f),  // 1: DOJO
+            new Vector3(3f, 6f, 0f),    // 2: ROSTER
+            new Vector3(2f, -14f, 0f)   // 3: SETTINGS
+        };
+
         // Runtime State
         public MainMenuPillar CurrentPillar { get; private set; } = MainMenuPillar.Fight;
         public bool IsDrawerOpen { get; private set; } = false;
@@ -127,20 +151,17 @@ namespace DemonIdol.UI
         // Camera Framing per Tab
         private Vector3 _targetCamPos = new Vector3(0.0f, 1.25f, -4.5f);
         private Quaternion _targetCamRot = Quaternion.Euler(4f, -4f, 0f);
-        private static readonly Vector3[] CamPositions = new Vector3[]
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
         {
-            new Vector3(0.0f, 1.25f, -4.5f),   // FIGHT
-            new Vector3(0.35f, 1.30f, -4.2f),  // DOJO
-            new Vector3(-0.40f, 1.20f, -4.8f), // ROSTER
-            new Vector3(0.60f, 1.25f, -5.0f)   // SETTINGS
-        };
-        private static readonly Quaternion[] CamRotations = new Quaternion[]
+            Instance = null;
+        }
+
+        private void OnDestroy()
         {
-            Quaternion.Euler(4f, -4f, 0f),     // FIGHT
-            Quaternion.Euler(6f, -10f, 0f),    // DOJO
-            Quaternion.Euler(3f, 6f, 0f),      // ROSTER
-            Quaternion.Euler(2f, -14f, 0f)     // SETTINGS
-        };
+            if (Instance == this) Instance = null;
+        }
 
         private void Awake()
         {
@@ -166,9 +187,10 @@ namespace DemonIdol.UI
             // 1. Camera Spatial Damped Lerp
             if (menuCamera != null)
             {
-                float dt = Time.unscaledDeltaTime;
-                menuCamera.transform.position = Vector3.Lerp(menuCamera.transform.position, _targetCamPos, dt * 6.5f);
-                menuCamera.transform.rotation = Quaternion.Slerp(menuCamera.transform.rotation, _targetCamRot, dt * 6.5f);
+                float dt = Mathf.Min(Time.unscaledDeltaTime, 0.1f);
+                float alpha = 1f - Mathf.Exp(-Mathf.Max(0.01f, cameraLerpSpeed) * dt);
+                menuCamera.transform.position = Vector3.Lerp(menuCamera.transform.position, _targetCamPos, alpha);
+                menuCamera.transform.rotation = Quaternion.Slerp(menuCamera.transform.rotation, _targetCamRot, alpha);
             }
 
             // 2. Input Device Detection (Zero GC)
@@ -276,11 +298,12 @@ namespace DemonIdol.UI
 
         public void SelectPillar(MainMenuPillar pillar, bool immediate = false)
         {
+            EnsureCameraPresetArrays();
             CurrentPillar = pillar;
-            int idx = (int)pillar;
+            int idx = Mathf.Clamp((int)pillar, 0, 3);
 
-            _targetCamPos = CamPositions[idx];
-            _targetCamRot = CamRotations[idx];
+            _targetCamPos = pillarCameraPositions[idx];
+            _targetCamRot = Quaternion.Euler(pillarCameraEulerAngles[idx]);
             if (immediate && menuCamera != null)
             {
                 menuCamera.transform.position = _targetCamPos;
@@ -382,6 +405,8 @@ namespace DemonIdol.UI
                 }
             }
 
+            ApplyHeroTransformOffsets();
+
             // Bind MenuFighterCameraRig for dynamic eye-level telephoto framing and Bokeh DOF focus
             if (menuCamera != null)
             {
@@ -391,6 +416,14 @@ namespace DemonIdol.UI
                     rig.SetTargetFighter(_activeHeroModel, _activeHeroId);
                 }
             }
+        }
+
+        public void ApplyHeroTransformOffsets()
+        {
+            if (_activeHeroModel == null) return;
+            _activeHeroModel.transform.localPosition = heroPositionOffset;
+            _activeHeroModel.transform.localRotation = Quaternion.Euler(heroEulerOffset);
+            _activeHeroModel.transform.localScale = Vector3.one * Mathf.Max(0.01f, heroScale);
         }
 
         // =========================================================================
@@ -834,8 +867,8 @@ namespace DemonIdol.UI
                 if (hp == null)
                 {
                     hp = new GameObject("Hero_SpawnPoint");
-                    hp.transform.position = new Vector3(1.75f, 0f, 0f);
-                    hp.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
+                    hp.transform.position = defaultHeroSpawnPosition;
+                    hp.transform.rotation = Quaternion.Euler(defaultHeroSpawnEuler);
                 }
                 heroSpawnPoint = hp.transform;
             }
@@ -845,6 +878,103 @@ namespace DemonIdol.UI
             {
                 gameObject.AddComponent<SafeAreaFitter>();
             }
+        }
+
+        private void EnsureCameraPresetArrays()
+        {
+            if (pillarCameraPositions == null || pillarCameraPositions.Length < 4)
+            {
+                pillarCameraPositions = new Vector3[]
+                {
+                    new Vector3(0.0f, 1.25f, -4.5f),
+                    new Vector3(0.35f, 1.30f, -4.2f),
+                    new Vector3(-0.40f, 1.20f, -4.8f),
+                    new Vector3(0.60f, 1.25f, -5.0f)
+                };
+            }
+
+            if (pillarCameraEulerAngles == null || pillarCameraEulerAngles.Length < 4)
+            {
+                pillarCameraEulerAngles = new Vector3[]
+                {
+                    new Vector3(4f, -4f, 0f),
+                    new Vector3(6f, -10f, 0f),
+                    new Vector3(3f, 6f, 0f),
+                    new Vector3(2f, -14f, 0f)
+                };
+            }
+        }
+
+        private void OnValidate()
+        {
+            EnsureCameraPresetArrays();
+            heroScale = Mathf.Clamp(heroScale, 0.25f, 3.0f);
+            cameraLerpSpeed = Mathf.Clamp(cameraLerpSpeed, 1.0f, 20.0f);
+
+            if (Application.isPlaying)
+            {
+                ApplyHeroTransformOffsets();
+                int idx = Mathf.Clamp((int)CurrentPillar, 0, 3);
+                _targetCamPos = pillarCameraPositions[idx];
+                _targetCamRot = Quaternion.Euler(pillarCameraEulerAngles[idx]);
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Vector3 basePos = heroSpawnPoint != null ? heroSpawnPoint.position : defaultHeroSpawnPosition;
+            Quaternion baseRot = heroSpawnPoint != null ? heroSpawnPoint.rotation : Quaternion.Euler(defaultHeroSpawnEuler);
+
+            Vector3 finalPos = basePos + (baseRot * heroPositionOffset);
+            Quaternion finalRot = baseRot * Quaternion.Euler(heroEulerOffset);
+            float height = 1.75f * Mathf.Max(0.25f, heroScale);
+
+            // Draw spawn pedestal ring + fighter height column + facing direction arrow
+            Gizmos.color = new Color(0.1f, 0.9f, 1.0f, 0.85f);
+            Gizmos.DrawWireSphere(finalPos + Vector3.up * (height * 0.5f), 0.35f * Mathf.Max(0.25f, heroScale));
+            Gizmos.DrawLine(finalPos, finalPos + Vector3.up * height);
+
+            Gizmos.color = new Color(1.0f, 0.8f, 0.1f, 0.95f);
+            Vector3 forward = finalRot * Vector3.forward;
+            Gizmos.DrawRay(finalPos + Vector3.up * (height * 0.6f), forward * 0.9f);
+        }
+
+        [ContextMenu("Ensure Hero_SpawnPoint Exists in Scene")]
+        public void ContextEnsureHeroSpawnPoint()
+        {
+            if (heroSpawnPoint == null)
+            {
+                GameObject existing = GameObject.Find("Hero_SpawnPoint");
+                if (existing == null)
+                {
+                    existing = new GameObject("Hero_SpawnPoint");
+                    existing.transform.position = defaultHeroSpawnPosition;
+                    existing.transform.rotation = Quaternion.Euler(defaultHeroSpawnEuler);
+                }
+                heroSpawnPoint = existing.transform;
+            }
+        }
+
+        [ContextMenu("Preview Camera: Fight")]
+        public void PreviewCameraFight() => PreviewPillarCamera(MainMenuPillar.Fight);
+
+        [ContextMenu("Preview Camera: Dojo")]
+        public void PreviewCameraDojo() => PreviewPillarCamera(MainMenuPillar.Dojo);
+
+        [ContextMenu("Preview Camera: Roster")]
+        public void PreviewCameraRoster() => PreviewPillarCamera(MainMenuPillar.Roster);
+
+        [ContextMenu("Preview Camera: Settings")]
+        public void PreviewCameraSettings() => PreviewPillarCamera(MainMenuPillar.Settings);
+
+        private void PreviewPillarCamera(MainMenuPillar pillar)
+        {
+            EnsureCameraPresetArrays();
+            Camera cam = menuCamera != null ? menuCamera : Camera.main;
+            if (cam == null) return;
+            int idx = Mathf.Clamp((int)pillar, 0, 3);
+            cam.transform.position = pillarCameraPositions[idx];
+            cam.transform.rotation = Quaternion.Euler(pillarCameraEulerAngles[idx]);
         }
     }
 }
