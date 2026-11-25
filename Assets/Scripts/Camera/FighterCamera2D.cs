@@ -145,6 +145,17 @@ namespace DemonIdol.Combat
         private float _stageArenaLimitX = 10.5f;
         private float _lastCameraFighterSearchTime = -10f;
 
+        // Cached state & lifecycle hardening
+        private Vector3 _smoothedBasePosition;
+        private bool _hasSmoothedBasePosition;
+        private float _baseFocalLength = 50f;
+        private float _impulseDurationRemaining;
+        private float _impulseTotalDuration;
+        private FighterController _cachedF1Controller;
+        private FighterController _cachedF2Controller;
+        private float _stageLeftWallX = -10.5f;
+        private float _stageRightWallX = 10.5f;
+
         private void Awake()
         {
             if (_instance != null && _instance != this)
@@ -154,8 +165,16 @@ namespace DemonIdol.Combat
             }
             _instance = this;
             _cam = GetComponent<Camera>();
-            if (_cam != null) _baseFieldOfView = _cam.fieldOfView;
+
             ConfigurePhysicalCamera();
+            if (_cam != null)
+            {
+                _baseFieldOfView = _cam.fieldOfView;
+                _baseFocalLength = Mathf.Max(1f, focalLength);
+            }
+
+            _smoothedBasePosition = transform.position;
+            _hasSmoothedBasePosition = true;
             _lastTargetPosition = transform.position;
             ResetTrauma();
         }
@@ -259,9 +278,16 @@ namespace DemonIdol.Combat
             {
                 _cam.usePhysicalProperties = true;
                 _cam.sensorSize = sensorSize;
-                _cam.focalLength = focalLength;
+                _cam.focalLength = Mathf.Max(1f, focalLength);
                 _cam.gateFit = Camera.GateFitMode.Horizontal;
                 _cam.lensShift = lensShift;
+                _baseFocalLength = _cam.focalLength;
+                _baseFieldOfView = _cam.fieldOfView;
+            }
+            else
+            {
+                _cam.usePhysicalProperties = false;
+                _baseFieldOfView = _cam.fieldOfView;
             }
         }
 
@@ -269,12 +295,13 @@ namespace DemonIdol.Combat
         {
             fighter1 = f1;
             fighter2 = f2;
+            _cachedF1Controller = f1 != null ? f1.GetComponent<FighterController>() : null;
+            _cachedF2Controller = f2 != null ? f2.GetComponent<FighterController>() : null;
         }
 
         public void BindFighterTransforms(Transform f1, Transform f2)
         {
-            fighter1 = f1;
-            fighter2 = f2;
+            SetTargets(f1, f2);
         }
 
         #region State Priority Machine
@@ -415,20 +442,90 @@ namespace DemonIdol.Combat
 
         private void LateUpdate()
         {
-            if (fighter1 == null || fighter2 == null)
+            // Frame rate independent delta time with game pause safety
+            float dt = Time.timeScale <= 0.0001f ? 0f : Mathf.Min(Time.unscaledDeltaTime, 0.1f);
+
+            // Screen Shake Trauma decay — always decayed even without targets
+            float decay = traumaDecay * dt;
+            _traumaHit = Mathf.Max(0f, _traumaHit - decay);
+            _traumaCounterHit = Mathf.Max(0f, _traumaCounterHit - decay);
+            _traumaWall = Mathf.Max(0f, _traumaWall - decay);
+            _traumaExplosion = Mathf.Max(0f, _traumaExplosion - decay);
+
+            float totalTrauma = Mathf.Clamp01(_traumaHit + _traumaCounterHit + _traumaWall + _traumaExplosion) * SettingsPanel.ScreenShakeIntensity * masterShakeScale;
+            if (SettingsPanel.ReducedMotion || SettingsPanel.QualityTier == 0)
             {
-                FindFightersIfMissing();
-                if (fighter1 == null || fighter2 == null) return;
+                totalTrauma = 0f;
+            }
+
+            Vector3 shakeOffset = Vector3.zero;
+            if (totalTrauma > 0.005f)
+            {
+                float shake = totalTrauma * totalTrauma;
+                shakeOffset.x = (Mathf.PerlinNoise(Time.unscaledTime * 24f, 0f) - 0.5f) * 2f * maxShakeOffset * shake;
+                shakeOffset.y = (Mathf.PerlinNoise(0f, Time.unscaledTime * 24f) - 0.5f) * 2f * maxShakeOffset * shake;
+            }
+
+            // Micro-impulse duration decay & pure post-offset
+            Vector3 impulseOffset = Vector3.zero;
+            if (_impulseDurationRemaining > 0f && _impulseTotalDuration > 0.0001f)
+            {
+                _impulseDurationRemaining = Mathf.Max(0f, _impulseDurationRemaining - dt);
+                float progress = Mathf.Clamp01(_impulseDurationRemaining / _impulseTotalDuration);
+                impulseOffset = _activeImpulse.direction * (_activeImpulse.magnitude * progress);
+
+                if (_cam != null && _activeImpulse.fovPunch > 0f)
+                {
+                    if (usePhysicalCamera && _cam.usePhysicalProperties)
+                    {
+                        _cam.focalLength = _baseFocalLength * (1f + (_activeImpulse.fovPunch * 0.02f * progress));
+                    }
+                    else
+                    {
+                        _cam.fieldOfView = _baseFieldOfView - (_activeImpulse.fovPunch * progress);
+                    }
+                }
+            }
+            else if (_cam != null)
+            {
+                if (usePhysicalCamera && _cam.usePhysicalProperties)
+                {
+                    if (!Mathf.Approximately(_cam.focalLength, _baseFocalLength))
+                    {
+                        _cam.focalLength = _baseFocalLength;
+                    }
+                }
+                else
+                {
+                    if (!Mathf.Approximately(_cam.fieldOfView, _baseFieldOfView))
+                    {
+                        _cam.fieldOfView = _baseFieldOfView;
+                    }
+                }
             }
 
             // Tick state timer
             if (_stateDurationRemaining > 0f)
             {
-                _stateDurationRemaining -= Time.unscaledDeltaTime;
+                _stateDurationRemaining = Mathf.Max(0f, _stateDurationRemaining - dt);
                 if (_stateDurationRemaining <= 0f && CurrentState != CameraState.KO && CurrentState != CameraState.Results)
                 {
                     CurrentState = CameraState.BaseCombatFrame;
                     _focusedTarget = null;
+                }
+            }
+
+            if (fighter1 == null || fighter2 == null)
+            {
+                FindFightersIfMissing();
+                if (fighter1 == null || fighter2 == null)
+                {
+                    if (_hasSmoothedBasePosition)
+                    {
+                        transform.position = _smoothedBasePosition + shakeOffset + impulseOffset;
+                        transform.rotation = Quaternion.Euler(pitchAngle, 0f, 0f);
+                    }
+                    return;
                 }
             }
 
@@ -454,7 +551,13 @@ namespace DemonIdol.Combat
 
             _lastTargetPosition = targetPosition;
 
-            // Interpolate Position with independent axis damping
+            // Interpolate Position with independent axis exponential damping
+            if (!_hasSmoothedBasePosition)
+            {
+                _smoothedBasePosition = transform.position;
+                _hasSmoothedBasePosition = true;
+            }
+
             float followSpeedX = smoothSpeed;
             float followSpeedY = smoothSpeedY;
             float followSpeedZ = smoothSpeedZ;
@@ -466,72 +569,42 @@ namespace DemonIdol.Combat
                 followSpeedZ = 14f;
             }
 
-            Vector3 currentPos = transform.position;
-            Vector3 smoothedPosition = new Vector3(
-                Mathf.Lerp(currentPos.x, targetPosition.x, followSpeedX * Time.unscaledDeltaTime),
-                Mathf.Lerp(currentPos.y, targetPosition.y, followSpeedY * Time.unscaledDeltaTime),
-                Mathf.Lerp(currentPos.z, targetPosition.z, followSpeedZ * Time.unscaledDeltaTime)
-            );
+            float alphaX = 1f - Mathf.Exp(-followSpeedX * dt);
+            float alphaY = 1f - Mathf.Exp(-followSpeedY * dt);
+            float alphaZ = 1f - Mathf.Exp(-followSpeedZ * dt);
 
-            // Screen Shake Trauma decay
-            float decay = traumaDecay * Time.unscaledDeltaTime;
-            _traumaHit = Mathf.Max(0f, _traumaHit - decay);
-            _traumaCounterHit = Mathf.Max(0f, _traumaCounterHit - decay);
-            _traumaWall = Mathf.Max(0f, _traumaWall - decay);
-            _traumaExplosion = Mathf.Max(0f, _traumaExplosion - decay);
+            _smoothedBasePosition.x = Mathf.Lerp(_smoothedBasePosition.x, targetPosition.x, alphaX);
+            _smoothedBasePosition.y = Mathf.Lerp(_smoothedBasePosition.y, targetPosition.y, alphaY);
+            _smoothedBasePosition.z = Mathf.Lerp(_smoothedBasePosition.z, targetPosition.z, alphaZ);
 
-            float totalTrauma = Mathf.Clamp01(_traumaHit + _traumaCounterHit + _traumaWall + _traumaExplosion) * SettingsPanel.ScreenShakeIntensity * masterShakeScale;
-            if (SettingsPanel.ReducedMotion || SettingsPanel.QualityTier == 0)
-            {
-                totalTrauma = 0f;
-            }
-
-            if (totalTrauma > 0.005f)
-            {
-                float shake = totalTrauma * totalTrauma;
-                float offsetX = (Mathf.PerlinNoise(Time.unscaledTime * 24f, 0f) - 0.5f) * 2f * maxShakeOffset * shake;
-                float offsetY = (Mathf.PerlinNoise(0f, Time.unscaledTime * 24f) - 0.5f) * 2f * maxShakeOffset * shake;
-
-                smoothedPosition.x += offsetX;
-                smoothedPosition.y += offsetY;
-            }
-
-            if (_activeImpulse.ticksRemaining > 0)
-            {
-                _activeImpulse.ticksRemaining--;
-                float progress = (float)_activeImpulse.ticksRemaining / Mathf.Max(1, _activeImpulse.totalTicks);
-                Vector3 impulseOffset = _activeImpulse.direction * (_activeImpulse.magnitude * progress);
-                smoothedPosition += impulseOffset;
-
-                if (_cam != null && _activeImpulse.fovPunch > 0f)
-                {
-                    _cam.fieldOfView = _baseFieldOfView - (_activeImpulse.fovPunch * progress);
-                }
-            }
-            else if (_cam != null && !Mathf.Approximately(_cam.fieldOfView, _baseFieldOfView))
-            {
-                _cam.fieldOfView = _baseFieldOfView;
-            }
-
-            // SF6 Heroic Pitch Angle Lock: Grounded perspective, zero yaw, zero roll
+            // Pure post-offset application (never fed back into smoothed base lerp)
+            Vector3 finalPosition = _smoothedBasePosition + shakeOffset + impulseOffset;
             transform.rotation = Quaternion.Euler(pitchAngle, 0f, 0f);
-            transform.position = smoothedPosition;
+            transform.position = finalPosition;
         }
 
         public void ApplyStageCameraLimits(StageDefinition stage)
         {
             if (stage == null) return;
-            minDistanceZ = Mathf.Clamp(stage.cameraMinZ, -8.0f, -3.8f);
-            maxDistanceZ = Mathf.Clamp(stage.cameraMaxZ, -14.0f, -7.5f);
+            float nearZ = Mathf.Max(stage.cameraMinZ, stage.cameraMaxZ);
+            float farZ = Mathf.Min(stage.cameraMinZ, stage.cameraMaxZ);
+            minDistanceZ = Mathf.Clamp(nearZ, -8.0f, -3.8f);
+            maxDistanceZ = Mathf.Clamp(farZ, -14.0f, -7.5f);
+            _stageLeftWallX = -stage.ArenaLimitX;
+            _stageRightWallX = stage.ArenaLimitX;
             _stageArenaLimitX = stage.ArenaLimitX;
         }
 
         public void ApplyStageCameraLimits(DemonIdol.BlazBlue.BBStagePrefabConfig stage)
         {
             if (stage == null) return;
-            minDistanceZ = Mathf.Clamp(stage.cameraDefaultZ, -8.0f, -3.8f);
-            maxDistanceZ = Mathf.Clamp(stage.cameraDefaultZ - 5.0f, -14.0f, -7.5f);
-            _stageArenaLimitX = Mathf.Abs(stage.rightWallX);
+            float nearZ = Mathf.Max(stage.cameraDefaultZ, stage.cameraDefaultZ - 5.0f);
+            float farZ = Mathf.Min(stage.cameraDefaultZ, stage.cameraDefaultZ - 5.0f);
+            minDistanceZ = Mathf.Clamp(nearZ, -8.0f, -3.8f);
+            maxDistanceZ = Mathf.Clamp(farZ, -14.0f, -7.5f);
+            _stageLeftWallX = stage.leftWallX;
+            _stageRightWallX = stage.rightWallX;
+            _stageArenaLimitX = Mathf.Max(Mathf.Abs(stage.leftWallX), Mathf.Abs(stage.rightWallX));
         }
 
         public Vector3 CalculateFramingPosition()
@@ -546,21 +619,26 @@ namespace DemonIdol.Combat
 
             if (_cam == null) _cam = GetComponent<Camera>();
 
-            // Calculate Optical Half FOV Tangents
-            float tanFovY;
+            // Calculate Optical Half FOV Tangents correctly under GateFitMode.Horizontal
+            float aspect = (_cam != null && _cam.aspect > 0.01f) ? _cam.aspect : (16f / 9f);
             float tanFovX;
-            if (_cam != null && _cam.usePhysicalProperties)
+            float tanFovY;
+            if (_cam != null && _cam.usePhysicalProperties && _cam.focalLength > 0.001f)
             {
-                tanFovY = (_cam.sensorSize.y * 0.5f) / _cam.focalLength;
                 tanFovX = (_cam.sensorSize.x * 0.5f) / _cam.focalLength;
+                tanFovY = tanFovX / aspect;
             }
             else
             {
-                float aspect = (_cam != null) ? Mathf.Max(0.5f, _cam.aspect) : (16f / 9f);
-                float fovY = (_cam != null) ? _cam.fieldOfView : 32f;
-                tanFovY = Mathf.Tan((fovY * 0.5f) * Mathf.Deg2Rad);
+                float fovRad = (_cam != null ? _cam.fieldOfView : _baseFieldOfView) * 0.5f * Mathf.Deg2Rad;
+                tanFovY = Mathf.Tan(fovRad);
                 tanFovX = tanFovY * aspect;
             }
+
+            // Safe near / far Z ordering
+            float nearLimitZ = Mathf.Max(minDistanceZ, maxDistanceZ);
+            float farLimitZ = Mathf.Min(minDistanceZ, maxDistanceZ);
+            float zoomInLimitZ = Mathf.Min(-2.4f, nearLimitZ + 0.6f);
 
             // 1. Street Fighter 6 Dynamic Zoom Curve & 40% Screen Height Calibration:
             // At close range (< 2.2m): gentle footsies push-in
@@ -585,21 +663,24 @@ namespace DemonIdol.Combat
 
             // Required vertical viewport height in world space
             float reqFrustumHeight = standardFighterHeight / Mathf.Max(0.1f, targetFraction);
-            float verticalCalibratedZ = -(reqFrustumHeight * 0.5f / tanFovY);
+            float verticalCalibratedZ = -(reqFrustumHeight * 0.5f / Mathf.Max(0.001f, tanFovY));
 
             // Horizontal bounds requirement: both fighters + snug margin (0.35m) fit inside view
             float requiredHalfWidth = (fighterDistance * 0.5f) + 0.35f;
-            float horizontalRequiredZ = -(requiredHalfWidth / tanFovX);
+            float horizontalRequiredZ = -(requiredHalfWidth / Mathf.Max(0.001f, tanFovX));
 
             // Dynamic depth satisfying both 55-65% vertical height and full horizontal visibility
             float baseZ = Mathf.Min(verticalCalibratedZ, horizontalRequiredZ);
-            baseZ = Mathf.Clamp(baseZ, maxDistanceZ, minDistanceZ);
+            baseZ = Mathf.Clamp(baseZ, farLimitZ, nearLimitZ);
 
-            // 2. SF6 Asymmetric Aggression Lead Tracking:
+            // 2. SF6 Asymmetric Aggression Lead Tracking (using cached controllers):
             // Camera slightly leads the attacking or advancing fighter, giving momentum breathing space
             float leadBiasX = 0f;
-            FighterController fc1 = fighter1 != null ? fighter1.GetComponent<FighterController>() : null;
-            FighterController fc2 = fighter2 != null ? fighter2.GetComponent<FighterController>() : null;
+            if (_cachedF1Controller == null && fighter1 != null) _cachedF1Controller = fighter1.GetComponent<FighterController>();
+            if (_cachedF2Controller == null && fighter2 != null) _cachedF2Controller = fighter2.GetComponent<FighterController>();
+
+            FighterController fc1 = _cachedF1Controller;
+            FighterController fc2 = _cachedF2Controller;
 
             if (fc1 != null && fc2 != null)
             {
@@ -634,12 +715,12 @@ namespace DemonIdol.Combat
             // Prevent camera frustum from ever showing out-of-bounds void
             float distToBg = Mathf.Abs(targetZ) + 2.5f;
             float halfWidthAtBg = distToBg * tanFovX;
-            float maxCamX = Mathf.Max(0f, 15.5f - halfWidthAtBg);
+            float maxCamX = Mathf.Max(0f, _stageArenaLimitX - halfWidthAtBg);
 
             var activeStage = DemonIdol.BlazBlue.BBStagePrefabConfig.ActiveConfig;
             if (activeStage != null)
             {
-                maxCamX = Mathf.Abs(activeStage.cameraMaxX);
+                maxCamX = Mathf.Max(Mathf.Abs(activeStage.cameraMinX), Mathf.Abs(activeStage.cameraMaxX));
                 targetX = Mathf.Clamp(targetX, activeStage.cameraMinX, activeStage.cameraMaxX);
                 targetY = Mathf.Clamp(targetY, activeStage.cameraMinY, activeStage.cameraMaxY);
             }
@@ -660,17 +741,17 @@ namespace DemonIdol.Combat
                 float neededHalfView = targetX - (minFighterX - 1.2f);
                 targetZ = Mathf.Min(targetZ, -(neededHalfView / tanFovX));
             }
-            targetZ = Mathf.Clamp(targetZ, maxDistanceZ, minDistanceZ);
+            targetZ = Mathf.Clamp(targetZ, farLimitZ, nearLimitZ);
 
-            // 5. Cinematic Accent Overrides
+            // 5. Cinematic Accent Overrides (all zoom inward closer to z=0 than baseZ)
             switch (CurrentState)
             {
                 case CameraState.HitAccent:
-                    targetZ = Mathf.Lerp(baseZ, hitAccentZoomZ, 0.45f);
+                    targetZ = Mathf.Clamp(baseZ + 0.45f, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.CounterHitAccent:
-                    targetZ = Mathf.Lerp(baseZ, counterHitZoomZ, 0.85f);
+                    targetZ = Mathf.Clamp(baseZ + 0.85f, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.LaunchTrack:
@@ -678,37 +759,58 @@ namespace DemonIdol.Combat
                     float airborneLowest = Mathf.Min(p1.y, p2.y, 0f);
                     targetY = Mathf.Clamp((airborneHighest + airborneLowest) * 0.5f, 1.4f, 5.0f);
                     float reqHalfHeight = (airborneHighest - airborneLowest) * 0.5f + 1.2f;
-                    float reqZ = -(reqHalfHeight / tanFovY);
+                    float reqZ = -(reqHalfHeight / Mathf.Max(0.001f, tanFovY));
                     targetZ = Mathf.Min(baseZ, reqZ);
-                    targetZ = Mathf.Clamp(targetZ, maxDistanceZ, minDistanceZ);
+                    targetZ = Mathf.Clamp(targetZ, farLimitZ, nearLimitZ);
                     break;
 
                 case CameraState.WallAccent:
-                    targetZ = Mathf.Lerp(baseZ, wallAccentZoomZ, 0.65f);
+                    targetZ = Mathf.Clamp(baseZ + 0.65f, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.ThrowCinematic:
-                    targetZ = Mathf.Lerp(baseZ, throwAccentZoomZ, 0.70f);
+                    targetZ = Mathf.Clamp(baseZ + 0.70f, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.UltimateEntry:
-                    targetZ = Mathf.Lerp(baseZ, ultimateEntryZoomZ, 0.90f);
+                    targetZ = Mathf.Clamp(baseZ + 1.10f, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.KO:
                     Transform focus = _focusedTarget != null ? _focusedTarget : (p1.y < p2.y ? fighter1 : fighter2);
-                    targetX = Mathf.Clamp(focus.position.x, -maxCamX, maxCamX);
-                    targetY = focus.position.y + 1.2f;
-                    targetZ = koCinematicZoomZ;
+                    if (focus != null)
+                    {
+                        targetX = focus.position.x;
+                        targetY = focus.position.y + 1.2f;
+                    }
+                    if (activeStage != null)
+                    {
+                        targetX = Mathf.Clamp(targetX, activeStage.cameraMinX, activeStage.cameraMaxX);
+                        targetY = Mathf.Clamp(targetY, activeStage.cameraMinY, activeStage.cameraMaxY);
+                    }
+                    else
+                    {
+                        targetX = Mathf.Clamp(targetX, -maxCamX, maxCamX);
+                    }
+                    targetZ = Mathf.Clamp(baseZ + 1.25f, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.Results:
                     Transform winFocus = _focusedTarget != null ? _focusedTarget : (p1.y < p2.y ? fighter2 : fighter1);
                     if (winFocus != null)
                     {
-                        targetX = Mathf.Clamp(winFocus.position.x, -maxCamX, maxCamX);
+                        targetX = winFocus.position.x;
                         targetY = winFocus.position.y + 1.1f;
-                        targetZ = -4.5f;
+                        if (activeStage != null)
+                        {
+                            targetX = Mathf.Clamp(targetX, activeStage.cameraMinX, activeStage.cameraMaxX);
+                            targetY = Mathf.Clamp(targetY, activeStage.cameraMinY, activeStage.cameraMaxY);
+                        }
+                        else
+                        {
+                            targetX = Mathf.Clamp(targetX, -maxCamX, maxCamX);
+                        }
+                        targetZ = Mathf.Clamp(-4.5f, farLimitZ, zoomInLimitZ);
                     }
                     break;
 
@@ -731,18 +833,41 @@ namespace DemonIdol.Combat
 
             if (DemonIdol.BlazBlue.BBMatchSim.Instance != null)
             {
-                if (DemonIdol.BlazBlue.BBMatchSim.Instance.p1Brain != null && fighter1 == null)
-                    fighter1 = DemonIdol.BlazBlue.BBMatchSim.Instance.p1Brain.transform;
-                if (DemonIdol.BlazBlue.BBMatchSim.Instance.p2Brain != null && fighter2 == null)
-                    fighter2 = DemonIdol.BlazBlue.BBMatchSim.Instance.p2Brain.transform;
-                if (fighter1 != null && fighter2 != null) return;
+                var sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                if (sim.p1Brain != null && fighter1 == null)
+                    fighter1 = sim.p1Brain.transform;
+                if (sim.p2Brain != null && fighter2 == null)
+                    fighter2 = sim.p2Brain.transform;
+                if (fighter1 != null && fighter2 != null && fighter1 != fighter2)
+                {
+                    SetTargets(fighter1, fighter2);
+                    return;
+                }
             }
 
-            var fighters = FindObjectsByType<FighterController>();
-            foreach (var f in fighters)
+            var controllers = FindObjectsByType<FighterController>(FindObjectsSortMode.None);
+            FighterController p1 = null;
+            FighterController p2 = null;
+            foreach (var f in controllers)
             {
-                if (f.isPlayerControlled && fighter1 == null) fighter1 = f.transform;
-                else if (fighter2 == null) fighter2 = f.transform;
+                if (f == null) continue;
+                if (f.isPlayerControlled && p1 == null)
+                {
+                    p1 = f;
+                }
+                else if (p2 == null)
+                {
+                    p2 = f;
+                }
+            }
+            if (p1 == null && controllers.Length >= 2)
+            {
+                p1 = controllers[0];
+                p2 = controllers[1];
+            }
+            if (p1 != null && p2 != null && p1 != p2)
+            {
+                SetTargets(p1.transform, p2.transform);
             }
         }
 
@@ -796,6 +921,8 @@ namespace DemonIdol.Combat
         public void ApplyMicroImpulse(Vector3 direction, float magnitude, int ticks, float fovPunch = 0f)
         {
             if (magnitude <= 0.001f || ticks <= 0) return;
+            _impulseTotalDuration = ticks / 60f;
+            _impulseDurationRemaining = _impulseTotalDuration;
             _activeImpulse = new CameraMicroImpulse
             {
                 direction = direction.sqrMagnitude > 0.001f ? direction.normalized : Vector3.back,

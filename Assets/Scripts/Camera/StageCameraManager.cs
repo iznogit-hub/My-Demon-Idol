@@ -19,7 +19,7 @@ namespace DemonIdol.CameraControl
         public float fieldOfView = 38.0f;
         public Vector2 sensorSize = new Vector2(36.0f, 20.25f);
         public Vector2 lensShift = new Vector2(0f, 0.035f);
-        [Range(0.30f, 0.50f)]
+        [Range(0.30f, 0.70f)]
         public float characterScreenFraction = 0.40f;
         [TextArea(1, 3)]
         public string description;
@@ -58,18 +58,21 @@ namespace DemonIdol.CameraControl
         public Camera ActiveCamera => _activeCamera;
         public IReadOnlyList<StageCameraEntry> StageCameras => _stageCameras;
 
+        private bool _isDuplicate;
+
         private void Awake()
         {
             if (Application.isPlaying)
             {
                 if (Instance != null && Instance != this)
                 {
+                    _isDuplicate = true;
                     Destroy(gameObject);
                     return;
                 }
                 Instance = this;
             }
-            else
+            else if (Instance == null)
             {
                 Instance = this;
             }
@@ -79,7 +82,19 @@ namespace DemonIdol.CameraControl
 
         private void OnEnable()
         {
-            Instance = this;
+            if (_isDuplicate) return;
+            if (Instance == null || !Application.isPlaying)
+            {
+                Instance = this;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
         }
 
         private void Start()
@@ -218,6 +233,48 @@ namespace DemonIdol.CameraControl
             return _stageCameras.Count > 0 ? _stageCameras[0] : null;
         }
 
+        private static void ApplyOpticsAndPose(
+            Camera cam,
+            StageCameraEntry entry,
+            FighterCamera2D fCam,
+            Transform fighter1,
+            Transform fighter2)
+        {
+            if (cam == null || entry == null) return;
+
+            cam.tag = "MainCamera";
+            cam.usePhysicalProperties = true;
+            cam.sensorSize = entry.sensorSize;
+            cam.focalLength = Mathf.Max(1f, entry.focalLength);
+            cam.gateFit = Camera.GateFitMode.Horizontal;
+            cam.lensShift = entry.lensShift;
+            // Do NOT assign cam.fieldOfView here — when usePhysicalProperties is true,
+            // writing fieldOfView overwrites focalLength.
+
+            if (fCam != null)
+            {
+                if (fighter1 != null && fighter2 != null)
+                {
+                    fCam.SetTargets(fighter1, fighter2);
+                }
+                fCam.usePhysicalCamera = true;
+                fCam.sensorSize = entry.sensorSize;
+                fCam.focalLength = Mathf.Max(1f, entry.focalLength);
+                fCam.lensShift = entry.lensShift;
+                fCam.targetCharacterScreenFraction = entry.characterScreenFraction;
+                fCam.offset = entry.basePosition;
+                fCam.pitchAngle = entry.baseEulerAngles.x;
+                // Do NOT hardcode-overwrite fCam.minDistanceZ / maxDistanceZ here;
+                // stage limits belong to StageDefinition / BBStagePrefabConfig.
+                fCam.ConfigurePhysicalCamera();
+            }
+            else
+            {
+                cam.transform.position = entry.basePosition;
+                cam.transform.rotation = Quaternion.Euler(entry.baseEulerAngles);
+            }
+        }
+
         public void SwitchToStageCamera(string stageId, Transform fighter1 = null, Transform fighter2 = null)
         {
             EnsureCameraRosterConfigured();
@@ -230,10 +287,19 @@ namespace DemonIdol.CameraControl
             Camera targetCam = targetEntry.camera;
             if (targetCam == null)
             {
-                // Fallback to searching by standard naming
+                // Fallback to searching all cameras including inactive ones
                 string camName = $"Camera_{targetEntry.stageId}";
-                var found = GameObject.Find(camName);
-                if (found != null) targetCam = found.GetComponent<Camera>();
+                var allCams = FindObjectsByType<Camera>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+                for (int i = 0; i < allCams.Length; i++)
+                {
+                    var c = allCams[i];
+                    if (c != null && c.name.StartsWith(camName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        targetCam = c;
+                        targetEntry.camera = targetCam;
+                        break;
+                    }
+                }
             }
 
             if (targetCam != null)
@@ -256,64 +322,20 @@ namespace DemonIdol.CameraControl
 
                 _activeCamera = targetCam;
 
-                // Configure Physical Camera optics
-                targetCam.usePhysicalProperties = true;
-                targetCam.sensorSize = targetEntry.sensorSize;
-                targetCam.focalLength = targetEntry.focalLength;
-                targetCam.fieldOfView = targetEntry.fieldOfView;
-                targetCam.lensShift = targetEntry.lensShift;
-
-                // Ensure FighterCamera2D targets
-                FighterCamera2D fCam = targetEntry.fighterCamera ?? targetCam.GetComponent<FighterCamera2D>();
-                if (fCam != null)
-                {
-                    if (fighter1 != null && fighter2 != null)
-                    {
-                        fCam.SetTargets(fighter1, fighter2);
-                    }
-                    fCam.focalLength = targetEntry.focalLength;
-                    fCam.lensShift = targetEntry.lensShift;
-                    fCam.targetCharacterScreenFraction = targetEntry.characterScreenFraction;
-                    fCam.offset = new Vector3(targetEntry.basePosition.x, targetEntry.basePosition.y, targetEntry.basePosition.z);
-                    fCam.pitchAngle = targetEntry.baseEulerAngles.x;
-                    fCam.minDistanceZ = -3.2f;
-                    fCam.maxDistanceZ = -7.0f;
-                    fCam.ConfigurePhysicalCamera();
-                }
+                FighterCamera2D fCam = targetEntry.fighterCamera != null ? targetEntry.fighterCamera : targetCam.GetComponent<FighterCamera2D>();
+                ApplyOpticsAndPose(targetCam, targetEntry, fCam, fighter1, fighter2);
             }
             else
             {
                 // If using a single shared Main Camera, adapt it dynamically to this stage's optics
-                Camera mainCam = Camera.main ?? FindAnyObjectByType<Camera>();
+                Camera mainCam = Camera.main;
+                if (mainCam == null) mainCam = FindAnyObjectByType<Camera>();
                 if (mainCam != null)
                 {
                     _activeCamera = mainCam;
                     EnsureSingleActiveAudioListener(mainCam);
-                    mainCam.transform.position = targetEntry.basePosition;
-                    mainCam.transform.rotation = Quaternion.Euler(targetEntry.baseEulerAngles);
-
-                    mainCam.usePhysicalProperties = true;
-                    mainCam.sensorSize = targetEntry.sensorSize;
-                    mainCam.focalLength = targetEntry.focalLength;
-                    mainCam.fieldOfView = targetEntry.fieldOfView;
-                    mainCam.lensShift = targetEntry.lensShift;
-
                     FighterCamera2D fCam = mainCam.GetComponent<FighterCamera2D>();
-                    if (fCam != null)
-                    {
-                        if (fighter1 != null && fighter2 != null)
-                        {
-                            fCam.SetTargets(fighter1, fighter2);
-                        }
-                        fCam.focalLength = targetEntry.focalLength;
-                        fCam.lensShift = targetEntry.lensShift;
-                        fCam.targetCharacterScreenFraction = targetEntry.characterScreenFraction;
-                        fCam.offset = new Vector3(targetEntry.basePosition.x, targetEntry.basePosition.y, targetEntry.basePosition.z);
-                        fCam.pitchAngle = targetEntry.baseEulerAngles.x;
-                        fCam.minDistanceZ = -3.2f;
-                        fCam.maxDistanceZ = -7.0f;
-                        fCam.ConfigurePhysicalCamera();
-                    }
+                    ApplyOpticsAndPose(mainCam, targetEntry, fCam, fighter1, fighter2);
                 }
             }
 

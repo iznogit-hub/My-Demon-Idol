@@ -11,12 +11,8 @@ namespace DemonIdol.Cinematics
 {
     /// <summary>
     /// Phase 2: Telephoto Close-Up Menu Camera Rig & Dynamic Focus Controller.
-    /// Provides:
-    /// - Up-close telephoto framing (28°-32° vertical FOV, bust/three-quarter framing)
-    /// - Dynamic head/chest eye-level height normalization across short (C09) and tall (EX01, SK08) fighters
-    /// - Dynamic Bokeh Depth of Field focus distance locked to fighter's face
-    /// - Chromatic aberration impact pulses with Reduced Motion safety
-    /// - Mobile-safe quality tier handling via GraphicsProfiles.cs
+    /// Hardened: explicit non-physical FOV ownership, framerate-independent damping,
+    /// safe runtime VolumeProfile lifecycle, and null/disable-safe chromatic aberration pulses.
     /// </summary>
     [RequireComponent(typeof(UnityEngine.Camera))]
     public class MenuFighterCameraRig : MonoBehaviour
@@ -40,22 +36,83 @@ namespace DemonIdol.Cinematics
 
         private DepthOfField _dof;
         private ChromaticAberration _chroma;
+        private bool _ownsVolumeObject;
+        private VolumeProfile _runtimeProfile;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState()
+        {
+            Instance = null;
+        }
 
         private void Awake()
         {
-            Instance = this;
-            _cam = GetComponent<UnityEngine.Camera>();
-            if (_cam != null)
+            if (Instance != null && Instance != this)
             {
-                _cam.fieldOfView = targetFOV;
+                Destroy(gameObject);
+                return;
             }
+            Instance = this;
 
+            _cam = GetComponent<UnityEngine.Camera>();
+            ApplyMenuOptics();
             FindOrCreateVolume();
+        }
+
+        private void OnEnable()
+        {
+            if (Instance == null) Instance = this;
+            ApplyMenuOptics();
         }
 
         private void Start()
         {
             ApplyQualitySettings();
+        }
+
+        private void OnDisable()
+        {
+            if (_chromaPulseRoutine != null)
+            {
+                StopCoroutine(_chromaPulseRoutine);
+                _chromaPulseRoutine = null;
+            }
+
+            if (_chroma != null)
+            {
+                _chroma.intensity.Override(0f);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                Instance = null;
+            }
+
+            if (_runtimeProfile != null)
+            {
+                Destroy(_runtimeProfile);
+                _runtimeProfile = null;
+            }
+
+            if (_ownsVolumeObject && postProcessVolume != null)
+            {
+                Destroy(postProcessVolume.gameObject);
+                postProcessVolume = null;
+                _ownsVolumeObject = false;
+            }
+        }
+
+        private void ApplyMenuOptics()
+        {
+            if (_cam == null) _cam = GetComponent<UnityEngine.Camera>();
+            if (_cam == null) return;
+
+            // Ensure combat physical-camera mode cannot lock out menu FOV updates.
+            _cam.usePhysicalProperties = false;
+            _cam.fieldOfView = targetFOV;
         }
 
         public void FindOrCreateVolume()
@@ -70,14 +127,24 @@ namespace DemonIdol.Cinematics
                 var volObj = new GameObject("Menu_PostProcessVolume");
                 postProcessVolume = volObj.AddComponent<Volume>();
                 postProcessVolume.isGlobal = true;
+                _ownsVolumeObject = true;
             }
 
-            if (postProcessVolume.profile == null)
+            if (postProcessVolume.sharedProfile == null)
             {
-                postProcessVolume.profile = ScriptableObject.CreateInstance<VolumeProfile>();
+                _runtimeProfile = ScriptableObject.CreateInstance<VolumeProfile>();
+                postProcessVolume.profile = _runtimeProfile;
+            }
+            else if (Application.isPlaying && _runtimeProfile == null)
+            {
+                // Clone profile at runtime so menu overrides never mutate serialized project assets.
+                _runtimeProfile = Instantiate(postProcessVolume.sharedProfile);
+                postProcessVolume.profile = _runtimeProfile;
             }
 
             var prof = postProcessVolume.profile;
+            if (prof == null) return;
+
             if (!prof.Has<DepthOfField>())
             {
                 var d = prof.Add<DepthOfField>(true);
@@ -137,9 +204,15 @@ namespace DemonIdol.Cinematics
         /// </summary>
         public void SetTargetFighter(GameObject model, string characterId)
         {
-            if (model == null) return;
+            if (model == null)
+            {
+                _targetModel = null;
+                _headBone = null;
+                return;
+            }
+
             _targetModel = model.transform;
-            _currentCharacterId = characterId;
+            _currentCharacterId = string.IsNullOrEmpty(characterId) ? "C01" : characterId;
 
             // 1. Try finding Humanoid head bone
             Animator anim = model.GetComponentInChildren<Animator>();
@@ -186,17 +259,20 @@ namespace DemonIdol.Cinematics
 
         private void LateUpdate()
         {
-            if (_targetModel == null) return;
+            if (_targetModel == null || _cam == null) return;
             UpdateCalculatedHeadPosition();
 
-            // Smoothly track FOV
-            if (_cam != null && Mathf.Abs(_cam.fieldOfView - targetFOV) > 0.05f)
+            // Framerate-independent exponential damping for FOV
+            if (Mathf.Abs(_cam.fieldOfView - targetFOV) > 0.05f)
             {
-                _cam.fieldOfView = Mathf.Lerp(_cam.fieldOfView, targetFOV, Time.unscaledDeltaTime * framingDamping);
+                if (_cam.usePhysicalProperties) _cam.usePhysicalProperties = false;
+                float dt = Mathf.Min(Time.unscaledDeltaTime, 0.1f);
+                float alpha = 1f - Mathf.Exp(-Mathf.Max(0.01f, framingDamping) * dt);
+                _cam.fieldOfView = Mathf.Lerp(_cam.fieldOfView, targetFOV, alpha);
             }
 
             // Dynamically lock Bokeh DOF focus distance to head/face
-            if (_dof != null && _dof.active && _cam != null)
+            if (_dof != null && _dof.active)
             {
                 float distToFace = Vector3.Distance(_cam.transform.position, _calculatedHeadPosition);
                 _dof.focusDistance.Override(Mathf.Max(0.1f, distToFace));
@@ -209,6 +285,8 @@ namespace DemonIdol.Cinematics
         /// </summary>
         public void PulseChromaticAberration(float intensity = 0.35f, float duration = 0.15f)
         {
+            if (!isActiveAndEnabled || _chroma == null) return;
+
             if (SettingsPanel.ReducedMotion)
             {
                 intensity = 0.05f;
@@ -224,13 +302,25 @@ namespace DemonIdol.Cinematics
             if (_chromaPulseRoutine != null)
             {
                 StopCoroutine(_chromaPulseRoutine);
+                _chromaPulseRoutine = null;
             }
+
+            if (duration <= 0.001f || intensity <= 0f)
+            {
+                _chroma.intensity.Override(0f);
+                return;
+            }
+
             _chromaPulseRoutine = StartCoroutine(DoChromaPulse(intensity, duration));
         }
 
         private IEnumerator DoChromaPulse(float maxIntensity, float duration)
         {
-            if (_chroma == null) yield break;
+            if (_chroma == null || duration <= 0.001f)
+            {
+                _chromaPulseRoutine = null;
+                yield break;
+            }
 
             float elapsed = 0f;
             while (elapsed < duration)
@@ -241,6 +331,7 @@ namespace DemonIdol.Cinematics
                 _chroma.intensity.Override(current);
                 yield return null;
             }
+
             _chroma.intensity.Override(0f);
             _chromaPulseRoutine = null;
         }
