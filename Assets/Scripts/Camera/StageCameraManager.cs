@@ -15,7 +15,9 @@ namespace DemonIdol.CameraControl
         public FighterCamera2D fighterCamera;
         public Vector3 basePosition = new Vector3(-0.05f, 1.93f, -6.5f);
         public Vector3 baseEulerAngles = new Vector3(2.8f, 0f, 0f);
+        [Range(10.0f, 150.0f)]
         public float focalLength = 29.405f;
+        [Range(15.0f, 90.0f)]
         public float fieldOfView = 38.0f;
         public Vector2 sensorSize = new Vector2(36.0f, 20.25f);
         public Vector2 lensShift = new Vector2(0f, 0.035f);

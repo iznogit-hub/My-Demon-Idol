@@ -35,27 +35,27 @@ namespace DemonIdol.BlazBlue
         public Sprite stageThumbnail;
 
         [Header("Combat Geometry & Bounds")]
-        public float p1SpawnX = -2.5f;
-        public float p2SpawnX = 2.5f;
-        public float floorY = 0f;
-        public float leftWallX = -10.2f;
-        public float rightWallX = 10.2f;
+        [Range(-10f, 0f)] public float p1SpawnX = -2.5f;
+        [Range(0f, 10f)] public float p2SpawnX = 2.5f;
+        [Range(-5f, 5f)] public float floorY = 0f;
+        [Range(-25f, -2f)] public float leftWallX = -10.2f;
+        [Range(2f, 25f)] public float rightWallX = 10.2f;
 
         [Header("Camera Framing Limits")]
-        public float cameraMinX = -8.0f;
-        public float cameraMaxX = 8.0f;
-        public float cameraMinY = 1.0f;
-        public float cameraMaxY = 6.5f;
-        public float cameraDefaultZ = -4.8f;
+        [Range(-20f, 0f)] public float cameraMinX = -8.0f;
+        [Range(0f, 20f)] public float cameraMaxX = 8.0f;
+        [Range(-5f, 5f)] public float cameraMinY = 1.0f;
+        [Range(2f, 15f)] public float cameraMaxY = 6.5f;
+        [Range(-15f, -2f)] public float cameraDefaultZ = -4.8f;
 
         [Header("Atmosphere, Lighting & Fog")]
         public Material skyboxMaterial;
         public Color ambientColor = new Color(0.2f, 0.22f, 0.28f, 1f);
         public Color directionalLightColor = new Color(0.7f, 0.75f, 0.9f, 1f);
-        public float directionalLightIntensity = 0.85f;
+        [Range(0f, 5f)] public float directionalLightIntensity = 0.85f;
         public bool fogEnabled = true;
         public Color fogColor = new Color(0.08f, 0.1f, 0.15f, 1f);
-        public float fogDensity = 0.025f;
+        [Range(0f, 0.2f)] public float fogDensity = 0.025f;
 
         [Header("Post-FX & Audio")]
         public VolumeProfile postProcessProfile;

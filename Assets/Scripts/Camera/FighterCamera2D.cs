@@ -62,57 +62,149 @@ namespace DemonIdol.Combat
         [Tooltip("Sensor size in mm (Full Frame 16:9 Super 35 = 36mm x 20.25mm)")]
         public Vector2 sensorSize = new Vector2(36.0f, 20.25f);
         [Tooltip("Cinematic focal length in mm (50mm standard prime)")]
+        [Range(10.0f, 150.0f)]
         public float focalLength = 50.0f;
         [Tooltip("Heroic lens shift (Y offset raises horizon line to anchor grounded fighters)")]
         public Vector2 lensShift = new Vector2(0f, 0.035f);
 
         [Header("Character Height Framing Calibration (55-65% Screen Size)")]
         [Tooltip("Standard character height in meters")]
+        [Range(0.5f, 3.0f)]
         public float standardFighterHeight = 1.35f;
         [Tooltip("Target fraction of vertical viewport occupied by characters in neutral combat (0.59 = 59%)")]
         [Range(0.25f, 0.75f)]
         public float targetCharacterScreenFraction = 0.59f;
         [Tooltip("Close combat zoom push-in fraction (0.64 = 64% screen size at throw range)")]
+        [Range(0.25f, 0.90f)]
         public float closeCombatScreenFraction = 0.64f;
         [Tooltip("Max spacing pull-out fraction (0.54 = 54% screen size corner-to-corner)")]
+        [Range(0.20f, 0.80f)]
         public float wideSpacingScreenFraction = 0.54f;
         [Tooltip("Zoom sensitivity relative to fighter distance (legacy compatibility)")]
+        [Range(0.01f, 2.0f)]
         public float zoomFactor = 0.45f;
 
-        [Header("SF6 Dynamic Handling")]
+        [Header("Dynamic Zoom Curve Distances & Padding")]
+        [Tooltip("Distance in meters where extreme close-range push-in begins")]
+        [Range(0.5f, 3.0f)]
+        public float closeDistanceMin = 1.2f;
+        [Tooltip("Distance in meters where neutral transition begins")]
+        [Range(1.0f, 4.0f)]
+        public float closeDistanceMax = 2.2f;
+        [Tooltip("Screen fraction boost at point-blank range")]
+        [Range(0.0f, 0.2f)]
+        public float closeCombatFractionBoost = 0.05f;
+        [Tooltip("Neutral combat spacing distance in meters")]
+        [Range(1.5f, 5.0f)]
+        public float neutralDistance = 3.0f;
+        [Tooltip("Max spacing distance in meters for full pull-out")]
+        [Range(4.0f, 15.0f)]
+        public float wideDistanceMax = 7.0f;
+        [Tooltip("Horizontal padding margin ensuring both fighters remain comfortably in-frame")]
+        [Range(0.0f, 2.0f)]
+        public float horizontalFramingPadding = 0.35f;
+
+        [Header("SF6 Dynamic Handling & Grounded Pitch")]
         [Tooltip("Grounded camera offset relative to midpoint")]
         public Vector3 offset = new Vector3(-0.05f, 1.05f, -3.55f);
         [Tooltip("Heroic upward pitch angle in degrees")]
+        [Range(-20.0f, 20.0f)]
         public float pitchAngle = 2.8f;
         [Tooltip("Asymmetric aggression lead bias towards the advancing/attacking fighter")]
+        [Range(0.0f, 2.0f)]
         public float aggressionLeadAmount = 0.35f;
         [Tooltip("Threshold vertical launch tracking height (normal jumps stay decoupled below this)")]
+        [Range(0.5f, 6.0f)]
         public float verticalLaunchThresholdY = 2.5f;
+        [Tooltip("Tracking ratio for vertical launches above threshold")]
+        [Range(0.0f, 1.0f)]
+        public float verticalLaunchFollowFactor = 0.38f;
 
-        [Header("Camera Distance Limits")]
+        [Header("Camera Distance Limits & Boundary Padding")]
         [Tooltip("Minimum camera distance Z (tight framing when close)")]
+        [Range(-15.0f, -1.0f)]
         public float minDistanceZ = -3.2f;
         [Tooltip("Maximum camera distance Z (widest framing at max spacing)")]
+        [Range(-20.0f, -2.0f)]
         public float maxDistanceZ = -7.0f;
+        [Tooltip("Hard limit on closest Z distance during cinematic accent zooms")]
+        [Range(-6.0f, -1.0f)]
+        public float maxCinematicZoomInZ = -2.4f;
+        [Tooltip("Buffer added to near limit for cinematic zoom clamping")]
+        [Range(0.0f, 2.0f)]
+        public float cinematicZoomBufferZ = 0.6f;
+        [Tooltip("Background depth offset used for camera boundary clamping")]
+        [Range(0.0f, 10.0f)]
+        public float backgroundDistanceOffset = 2.5f;
+        [Tooltip("Viewport edge padding for cornered fighters")]
+        [Range(0.1f, 3.0f)]
+        public float cornerViewportEdgePadding = 1.2f;
 
         [Header("Damping & Interpolation Speeds")]
+        [Range(0.1f, 30.0f)]
         public float smoothSpeed = 8.0f;
+        [Range(0.1f, 30.0f)]
         public float smoothSpeedY = 3.5f;
+        [Range(0.1f, 30.0f)]
         public float smoothSpeedZ = 5.5f;
+        [Tooltip("Fast follow speed during impact accents and KO cinematic")]
+        [Range(1.0f, 30.0f)]
+        public float accentFollowSpeed = 14.0f;
 
         [Header("Deadzone Filtering")]
+        [Range(0.0f, 0.5f)]
         public float deadzoneX = 0.06f;
+        [Range(0.0f, 0.5f)]
         public float deadzoneY = 0.10f;
+        [Range(0.0f, 0.5f)]
         public float deadzoneZ = 0.12f;
 
-        [Header("Cinematic Accent Zoom Offsets")]
-        public float hitAccentZoomZ = -9.2f;
-        public float counterHitZoomZ = -7.5f;
-        public float launchTrackLiftY = 1.4f;
-        public float wallAccentZoomZ = -7.8f;
-        public float throwAccentZoomZ = -7.2f;
-        public float ultimateEntryZoomZ = -5.8f;
-        public float koCinematicZoomZ = -5.5f;
+        [Header("Cinematic Accent Inward Zoom Deltas (Relative to baseZ)")]
+        [Tooltip("Inward push-in distance on standard Hit Confirm")]
+        [Range(0.0f, 2.0f)]
+        public float hitAccentZoomDelta = 0.45f;
+        [Tooltip("Inward push-in distance on Counter Hit / Fatal Counter")]
+        [Range(0.0f, 2.5f)]
+        public float counterHitZoomDelta = 0.85f;
+        [Tooltip("Inward push-in distance on Wall Bounce / Wall Splat")]
+        [Range(0.0f, 2.5f)]
+        public float wallAccentZoomDelta = 0.65f;
+        [Tooltip("Inward push-in distance during Throw Cinematic")]
+        [Range(0.0f, 2.5f)]
+        public float throwAccentZoomDelta = 0.70f;
+        [Tooltip("Inward push-in distance during Ultimate / Distortion Startup")]
+        [Range(0.0f, 3.0f)]
+        public float ultimateEntryZoomDelta = 1.10f;
+        [Tooltip("Inward push-in distance on Round KO")]
+        [Range(0.0f, 3.5f)]
+        public float koZoomDelta = 1.25f;
+        [Tooltip("Vertical target focus offset during KO zoom")]
+        [Range(0.0f, 3.0f)]
+        public float koFocusOffsetY = 1.2f;
+        [Tooltip("Vertical target focus offset during Match Results")]
+        [Range(0.0f, 3.0f)]
+        public float resultsFocusOffsetY = 1.1f;
+        [Tooltip("Camera distance Z during Match Results")]
+        [Range(-10.0f, -2.0f)]
+        public float resultsCameraZ = -4.5f;
+        [Tooltip("Minimum Y height for launch tracking")]
+        [Range(0.0f, 5.0f)]
+        public float launchTrackMinY = 1.4f;
+        [Tooltip("Maximum Y height for launch tracking")]
+        [Range(2.0f, 10.0f)]
+        public float launchTrackMaxY = 5.0f;
+        [Tooltip("Vertical padding margin during launch tracking")]
+        [Range(0.2f, 3.0f)]
+        public float launchTrackPaddingY = 1.2f;
+
+        [Header("Legacy Accent Zoom Offsets (Maintained for Serialization)")]
+        [Range(-15.0f, -1.0f)] public float hitAccentZoomZ = -9.2f;
+        [Range(-15.0f, -1.0f)] public float counterHitZoomZ = -7.5f;
+        [Range(0.0f, 5.0f)] public float launchTrackLiftY = 1.4f;
+        [Range(-15.0f, -1.0f)] public float wallAccentZoomZ = -7.8f;
+        [Range(-15.0f, -1.0f)] public float throwAccentZoomZ = -7.2f;
+        [Range(-15.0f, -1.0f)] public float ultimateEntryZoomZ = -5.8f;
+        [Range(-15.0f, -1.0f)] public float koCinematicZoomZ = -5.5f;
 
         [Header("State Tracking")]
         public CameraState CurrentState { get; private set; } = CameraState.BaseCombatFrame;
@@ -124,10 +216,31 @@ namespace DemonIdol.Combat
         [Range(0, 1)] private float _traumaCounterHit = 0f;
         [Range(0, 1)] private float _traumaWall = 0f;
         [Range(0, 1)] private float _traumaExplosion = 0f;
-        public float traumaDecay = 6.0f;
-        public float maxShakeOffset = 0.035f;
-        public float maxShakeAngle = 0.0f;
-        public float masterShakeScale = 0.25f;
+        [Range(0.1f, 20.0f)] public float traumaDecay = 6.0f;
+        [Range(0.0f, 0.2f)] public float maxShakeOffset = 0.035f;
+        [Range(0.0f, 15.0f)] public float maxShakeAngle = 0.0f;
+        [Range(0.0f, 2.0f)] public float masterShakeScale = 0.25f;
+        [Range(1.0f, 60.0f)] public float shakeFrequency = 24.0f;
+        [Range(0.001f, 0.1f)] public float microImpulseFocalPunchScale = 0.02f;
+
+        [Header("Event Trauma & State Durations")]
+        [Range(0.0f, 1.0f)] public float hitTraumaIntensity = 0.25f;
+        [Range(0.02f, 1.0f)] public float hitAccentDuration = 0.12f;
+        [Range(0.0f, 1.0f)] public float counterHitTraumaIntensity = 0.50f;
+        [Range(0.02f, 1.0f)] public float counterHitAccentDuration = 0.18f;
+        [Range(0.0f, 1.0f)] public float blockTraumaIntensity = 0.08f;
+        [Range(0.0f, 1.0f)] public float rapidCancelTraumaIntensity = 0.25f;
+        [Range(0.0f, 1.0f)] public float burstTraumaIntensity = 0.45f;
+        [Range(0.0f, 1.0f)] public float overdriveTraumaIntensity = 0.35f;
+        [Range(0.0f, 1.0f)] public float wallTraumaIntensity = 0.12f;
+        [Range(0.05f, 1.0f)] public float wallAccentDuration = 0.28f;
+        [Range(0.05f, 1.0f)] public float throwAccentDuration = 0.35f;
+        [Range(0.0f, 1.0f)] public float ultimateEntryTraumaIntensity = 0.15f;
+        [Range(0.1f, 2.0f)] public float ultimateEntryDuration = 0.60f;
+        [Range(0.05f, 1.0f)] public float ultimateExitDuration = 0.20f;
+        [Range(0.0f, 1.0f)] public float koTraumaIntensity = 0.20f;
+        [Range(0.5f, 5.0f)] public float koStateDuration = 2.5f;
+        [Range(0.1f, 2.0f)] public float launchTrackDuration = 0.55f;
 
         public struct CameraMicroImpulse
         {
@@ -227,28 +340,28 @@ namespace DemonIdol.Combat
 
         private void HandleSimHitConfirmed(int attacker, int defender, float damage, Vector3 pt, bool isCounterHit, bool isFatal)
         {
-            if (isCounterHit || isFatal) TriggerCounterHitImpactZoom(0.5f, 0.18f);
-            else TriggerHitImpactZoom(0.25f, 0.12f);
+            if (isCounterHit || isFatal) TriggerCounterHitImpactZoom(counterHitTraumaIntensity, counterHitAccentDuration);
+            else TriggerHitImpactZoom(hitTraumaIntensity, hitAccentDuration);
         }
 
         private void HandleSimBlockLanded(int attacker, int defender, Vector3 pt, bool isBarrier, bool isChip)
         {
-            AddTrauma(0.08f);
+            AddTrauma(blockTraumaIntensity);
         }
 
         private void HandleSimRapidCanceled(int playerIdx, Vector3 pt)
         {
-            AddTrauma(0.25f);
+            AddTrauma(rapidCancelTraumaIntensity);
         }
 
         private void HandleSimBurstExecuted(int playerIdx, DemonIdol.BlazBlue.BBBurstType burstType, Vector3 pt)
         {
-            AddTrauma(0.45f);
+            AddTrauma(burstTraumaIntensity);
         }
 
         private void HandleSimOverdriveActivated(int playerIdx, Vector3 pt)
         {
-            AddTrauma(0.35f);
+            AddTrauma(overdriveTraumaIntensity);
         }
 
         private void HandleSimRoundEnded(int winnerIdx, string reason)
@@ -355,12 +468,12 @@ namespace DemonIdol.Combat
         public void TriggerHitImpactZoom(float intensity = 0.25f, float duration = 0.12f)
         {
             AddHitTrauma(intensity * 0.25f);
-            RequestState(CameraState.HitAccent, duration);
+            RequestState(CameraState.HitAccent, duration > 0f ? duration : hitAccentDuration);
         }
 
         public void TriggerHitAccent(float duration = 0.12f)
         {
-            TriggerHitImpactZoom(0.25f, duration);
+            TriggerHitImpactZoom(hitTraumaIntensity, duration > 0f ? duration : hitAccentDuration);
         }
 
         public void SetClutchSlowMo(bool active)
@@ -378,40 +491,40 @@ namespace DemonIdol.Combat
         public void TriggerCounterHitImpactZoom(float intensity = 0.5f, float duration = 0.18f)
         {
             AddCounterHitTrauma(intensity * 0.35f);
-            RequestState(CameraState.CounterHitAccent, duration);
+            RequestState(CameraState.CounterHitAccent, duration > 0f ? duration : counterHitAccentDuration);
         }
 
         public void TriggerLaunchTrack(float duration = 0.55f)
         {
-            RequestState(CameraState.LaunchTrack, duration);
+            RequestState(CameraState.LaunchTrack, duration > 0f ? duration : launchTrackDuration);
         }
 
         public void TriggerWallAccent(float duration = 0.28f)
         {
-            AddWallTrauma(0.12f);
-            RequestState(CameraState.WallAccent, duration);
+            AddWallTrauma(wallTraumaIntensity);
+            RequestState(CameraState.WallAccent, duration > 0f ? duration : wallAccentDuration);
         }
 
         public void TriggerThrowCinematic(float duration = 0.35f)
         {
-            RequestState(CameraState.ThrowCinematic, duration);
+            RequestState(CameraState.ThrowCinematic, duration > 0f ? duration : throwAccentDuration);
         }
 
         public void TriggerUltimateEntry(float duration = 0.60f)
         {
-            AddExplosionTrauma(0.15f);
-            RequestState(CameraState.UltimateEntry, duration);
+            AddExplosionTrauma(ultimateEntryTraumaIntensity);
+            RequestState(CameraState.UltimateEntry, duration > 0f ? duration : ultimateEntryDuration);
         }
 
         public void TriggerUltimateExit(float duration = 0.20f)
         {
-            RequestState(CameraState.UltimateExit, duration);
+            RequestState(CameraState.UltimateExit, duration > 0f ? duration : ultimateExitDuration);
         }
 
         public void TriggerKO()
         {
-            AddExplosionTrauma(0.20f);
-            RequestState(CameraState.KO, 2.5f);
+            AddExplosionTrauma(koTraumaIntensity);
+            RequestState(CameraState.KO, koStateDuration);
         }
 
         public void TriggerResults()
@@ -462,8 +575,8 @@ namespace DemonIdol.Combat
             if (totalTrauma > 0.005f)
             {
                 float shake = totalTrauma * totalTrauma;
-                shakeOffset.x = (Mathf.PerlinNoise(Time.unscaledTime * 24f, 0f) - 0.5f) * 2f * maxShakeOffset * shake;
-                shakeOffset.y = (Mathf.PerlinNoise(0f, Time.unscaledTime * 24f) - 0.5f) * 2f * maxShakeOffset * shake;
+                shakeOffset.x = (Mathf.PerlinNoise(Time.unscaledTime * shakeFrequency, 0f) - 0.5f) * 2f * maxShakeOffset * shake;
+                shakeOffset.y = (Mathf.PerlinNoise(0f, Time.unscaledTime * shakeFrequency) - 0.5f) * 2f * maxShakeOffset * shake;
             }
 
             // Micro-impulse duration decay & pure post-offset
@@ -478,7 +591,7 @@ namespace DemonIdol.Combat
                 {
                     if (usePhysicalCamera && _cam.usePhysicalProperties)
                     {
-                        _cam.focalLength = _baseFocalLength * (1f + (_activeImpulse.fovPunch * 0.02f * progress));
+                        _cam.focalLength = _baseFocalLength * (1f + (_activeImpulse.fovPunch * microImpulseFocalPunchScale * progress));
                     }
                     else
                     {
@@ -564,9 +677,9 @@ namespace DemonIdol.Combat
 
             if (CurrentState == CameraState.CounterHitAccent || CurrentState == CameraState.KO)
             {
-                followSpeedX = 14f;
-                followSpeedY = 14f;
-                followSpeedZ = 14f;
+                followSpeedX = accentFollowSpeed;
+                followSpeedY = accentFollowSpeed;
+                followSpeedZ = accentFollowSpeed;
             }
 
             float alphaX = 1f - Mathf.Exp(-followSpeedX * dt);
@@ -638,26 +751,26 @@ namespace DemonIdol.Combat
             // Safe near / far Z ordering
             float nearLimitZ = Mathf.Max(minDistanceZ, maxDistanceZ);
             float farLimitZ = Mathf.Min(minDistanceZ, maxDistanceZ);
-            float zoomInLimitZ = Mathf.Min(-2.4f, nearLimitZ + 0.6f);
+            float zoomInLimitZ = Mathf.Min(maxCinematicZoomInZ, nearLimitZ + cinematicZoomBufferZ);
 
-            // 1. Street Fighter 6 Dynamic Zoom Curve & 40% Screen Height Calibration:
-            // At close range (< 2.2m): gentle footsies push-in
-            // At neutral spacing (~3.0m): exactly 40% screen height
-            // At corner/wide spacing (>= 7.0m): pulls out smoothly for jumpers/zoners
+            // 1. Street Fighter 6 Dynamic Zoom Curve & Screen Height Calibration:
+            // At close range (< closeDistanceMax): gentle footsies push-in
+            // At neutral spacing (~neutralDistance): calibrated target screen height
+            // At corner/wide spacing (>= wideDistanceMax): pulls out smoothly for jumpers/zoners
             float targetFraction;
-            if (fighterDistance < 2.2f)
+            if (fighterDistance < closeDistanceMax)
             {
-                float t = Mathf.Clamp01((fighterDistance - 1.2f) / (2.2f - 1.2f));
-                targetFraction = Mathf.Lerp(closeCombatScreenFraction + 0.05f, closeCombatScreenFraction, t);
+                float t = Mathf.Clamp01((fighterDistance - closeDistanceMin) / Mathf.Max(0.001f, closeDistanceMax - closeDistanceMin));
+                targetFraction = Mathf.Lerp(closeCombatScreenFraction + closeCombatFractionBoost, closeCombatScreenFraction, t);
             }
-            else if (fighterDistance <= 3.0f)
+            else if (fighterDistance <= neutralDistance)
             {
-                float t = Mathf.Clamp01((fighterDistance - 2.2f) / (3.0f - 2.2f));
+                float t = Mathf.Clamp01((fighterDistance - closeDistanceMax) / Mathf.Max(0.001f, neutralDistance - closeDistanceMax));
                 targetFraction = Mathf.Lerp(closeCombatScreenFraction, targetCharacterScreenFraction, t);
             }
             else
             {
-                float t = Mathf.Clamp01((fighterDistance - 3.0f) / (7.0f - 3.0f));
+                float t = Mathf.Clamp01((fighterDistance - neutralDistance) / Mathf.Max(0.001f, wideDistanceMax - neutralDistance));
                 targetFraction = Mathf.Lerp(targetCharacterScreenFraction, wideSpacingScreenFraction, t);
             }
 
@@ -665,11 +778,11 @@ namespace DemonIdol.Combat
             float reqFrustumHeight = standardFighterHeight / Mathf.Max(0.1f, targetFraction);
             float verticalCalibratedZ = -(reqFrustumHeight * 0.5f / Mathf.Max(0.001f, tanFovY));
 
-            // Horizontal bounds requirement: both fighters + snug margin (0.35m) fit inside view
-            float requiredHalfWidth = (fighterDistance * 0.5f) + 0.35f;
+            // Horizontal bounds requirement: both fighters + snug margin fit inside view
+            float requiredHalfWidth = (fighterDistance * 0.5f) + horizontalFramingPadding;
             float horizontalRequiredZ = -(requiredHalfWidth / Mathf.Max(0.001f, tanFovX));
 
-            // Dynamic depth satisfying both 55-65% vertical height and full horizontal visibility
+            // Dynamic depth satisfying both vertical height and full horizontal visibility
             float baseZ = Mathf.Min(verticalCalibratedZ, horizontalRequiredZ);
             baseZ = Mathf.Clamp(baseZ, farLimitZ, nearLimitZ);
 
@@ -706,14 +819,14 @@ namespace DemonIdol.Combat
             float airbornePeak = Mathf.Max(p1.y, p2.y);
             if (airbornePeak > verticalLaunchThresholdY)
             {
-                targetY = offset.y + (airbornePeak - verticalLaunchThresholdY) * 0.38f;
+                targetY = offset.y + (airbornePeak - verticalLaunchThresholdY) * verticalLaunchFollowFactor;
             }
 
             float targetZ = baseZ;
 
             // 4. Stage Arena Boundary Clamping:
             // Prevent camera frustum from ever showing out-of-bounds void
-            float distToBg = Mathf.Abs(targetZ) + 2.5f;
+            float distToBg = Mathf.Abs(targetZ) + backgroundDistanceOffset;
             float halfWidthAtBg = distToBg * tanFovX;
             float maxCamX = Mathf.Max(0f, _stageArenaLimitX - halfWidthAtBg);
 
@@ -731,14 +844,14 @@ namespace DemonIdol.Combat
 
             // Frustum Safety Invariant: Ensure cornered fighters remain inside viewport
             float currentHalfViewX = Mathf.Abs(targetZ) * tanFovX;
-            if (targetX + currentHalfViewX < maxFighterX + 1.2f)
+            if (targetX + currentHalfViewX < maxFighterX + cornerViewportEdgePadding)
             {
-                float neededHalfView = (maxFighterX + 1.2f) - targetX;
+                float neededHalfView = (maxFighterX + cornerViewportEdgePadding) - targetX;
                 targetZ = Mathf.Min(targetZ, -(neededHalfView / tanFovX));
             }
-            if (targetX - currentHalfViewX > minFighterX - 1.2f)
+            if (targetX - currentHalfViewX > minFighterX - cornerViewportEdgePadding)
             {
-                float neededHalfView = targetX - (minFighterX - 1.2f);
+                float neededHalfView = targetX - (minFighterX - cornerViewportEdgePadding);
                 targetZ = Mathf.Min(targetZ, -(neededHalfView / tanFovX));
             }
             targetZ = Mathf.Clamp(targetZ, farLimitZ, nearLimitZ);
@@ -747,33 +860,33 @@ namespace DemonIdol.Combat
             switch (CurrentState)
             {
                 case CameraState.HitAccent:
-                    targetZ = Mathf.Clamp(baseZ + 0.45f, farLimitZ, zoomInLimitZ);
+                    targetZ = Mathf.Clamp(baseZ + hitAccentZoomDelta, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.CounterHitAccent:
-                    targetZ = Mathf.Clamp(baseZ + 0.85f, farLimitZ, zoomInLimitZ);
+                    targetZ = Mathf.Clamp(baseZ + counterHitZoomDelta, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.LaunchTrack:
                     float airborneHighest = Mathf.Max(p1.y, p2.y);
                     float airborneLowest = Mathf.Min(p1.y, p2.y, 0f);
-                    targetY = Mathf.Clamp((airborneHighest + airborneLowest) * 0.5f, 1.4f, 5.0f);
-                    float reqHalfHeight = (airborneHighest - airborneLowest) * 0.5f + 1.2f;
+                    targetY = Mathf.Clamp((airborneHighest + airborneLowest) * 0.5f, launchTrackMinY, launchTrackMaxY);
+                    float reqHalfHeight = (airborneHighest - airborneLowest) * 0.5f + launchTrackPaddingY;
                     float reqZ = -(reqHalfHeight / Mathf.Max(0.001f, tanFovY));
                     targetZ = Mathf.Min(baseZ, reqZ);
                     targetZ = Mathf.Clamp(targetZ, farLimitZ, nearLimitZ);
                     break;
 
                 case CameraState.WallAccent:
-                    targetZ = Mathf.Clamp(baseZ + 0.65f, farLimitZ, zoomInLimitZ);
+                    targetZ = Mathf.Clamp(baseZ + wallAccentZoomDelta, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.ThrowCinematic:
-                    targetZ = Mathf.Clamp(baseZ + 0.70f, farLimitZ, zoomInLimitZ);
+                    targetZ = Mathf.Clamp(baseZ + throwAccentZoomDelta, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.UltimateEntry:
-                    targetZ = Mathf.Clamp(baseZ + 1.10f, farLimitZ, zoomInLimitZ);
+                    targetZ = Mathf.Clamp(baseZ + ultimateEntryZoomDelta, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.KO:
@@ -781,7 +894,7 @@ namespace DemonIdol.Combat
                     if (focus != null)
                     {
                         targetX = focus.position.x;
-                        targetY = focus.position.y + 1.2f;
+                        targetY = focus.position.y + koFocusOffsetY;
                     }
                     if (activeStage != null)
                     {
@@ -792,7 +905,7 @@ namespace DemonIdol.Combat
                     {
                         targetX = Mathf.Clamp(targetX, -maxCamX, maxCamX);
                     }
-                    targetZ = Mathf.Clamp(baseZ + 1.25f, farLimitZ, zoomInLimitZ);
+                    targetZ = Mathf.Clamp(baseZ + koZoomDelta, farLimitZ, zoomInLimitZ);
                     break;
 
                 case CameraState.Results:
@@ -800,7 +913,7 @@ namespace DemonIdol.Combat
                     if (winFocus != null)
                     {
                         targetX = winFocus.position.x;
-                        targetY = winFocus.position.y + 1.1f;
+                        targetY = winFocus.position.y + resultsFocusOffsetY;
                         if (activeStage != null)
                         {
                             targetX = Mathf.Clamp(targetX, activeStage.cameraMinX, activeStage.cameraMaxX);
@@ -810,7 +923,7 @@ namespace DemonIdol.Combat
                         {
                             targetX = Mathf.Clamp(targetX, -maxCamX, maxCamX);
                         }
-                        targetZ = Mathf.Clamp(-4.5f, farLimitZ, zoomInLimitZ);
+                        targetZ = Mathf.Clamp(resultsCameraZ, farLimitZ, zoomInLimitZ);
                     }
                     break;
 
@@ -932,6 +1045,25 @@ namespace DemonIdol.Combat
                 fovPunch = fovPunch
             };
         }
+
+        #endregion
+
+        #region Context Menu Helpers for Unity Editor
+
+        [ContextMenu("Trigger Test Hit Accent")]
+        public void TestHitAccent() => TriggerHitImpactZoom(hitTraumaIntensity, hitAccentDuration);
+
+        [ContextMenu("Trigger Test Counter Hit Accent")]
+        public void TestCounterHitAccent() => TriggerCounterHitImpactZoom(counterHitTraumaIntensity, counterHitAccentDuration);
+
+        [ContextMenu("Trigger Test Wall Accent")]
+        public void TestWallAccent() => TriggerWallAccent(wallAccentDuration);
+
+        [ContextMenu("Trigger Test KO Cinematic")]
+        public void TestKO() => TriggerKO();
+
+        [ContextMenu("Return To Base Combat Frame")]
+        public void TestResetToBase() => ReturnToBaseCombatFrame();
 
         #endregion
     }

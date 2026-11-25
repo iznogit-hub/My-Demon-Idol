@@ -21,11 +21,28 @@ namespace DemonIdol.Cinematics
 
         [Header("Camera Optics")]
         [Range(24f, 45f)] public float targetFOV = 30f;
-        public float framingDamping = 8.0f;
+        [Range(0.1f, 30.0f)] public float framingDamping = 8.0f;
         public Vector3 cameraOffsetFromHead = new Vector3(0.0f, 0.05f, -2.6f);
+
+        [Header("Head Framing Fallbacks")]
+        [Range(0.5f, 2.5f)] public float headHeightFallback = 1.55f;
+        [Range(0.1f, 1.5f)] public float headHeightHipOffset = 0.65f;
 
         [Header("URP Post-Processing Volume")]
         public Volume postProcessVolume;
+
+        [Header("Post-Processing Initial Values")]
+        [Range(1.0f, 32.0f)] public float dofAperture = 3.2f;
+        [Range(10.0f, 300.0f)] public float dofFocalLength = 65f;
+        [Range(0.1f, 10.0f)] public float dofFocusDistance = 2.6f;
+        [Range(-100f, 100f)] public float colorContrast = 12f;
+        [Range(0.0f, 5.0f)] public float bloomThreshold = 1.05f;
+        [Range(0.0f, 3.0f)] public float bloomIntensity = 0.35f;
+        [Range(0.0f, 1.0f)] public float vignetteIntensity = 0.32f;
+
+        [Header("Chromatic Aberration Pulse")]
+        [Range(0.0f, 1.0f)] public float defaultChromaPulseIntensity = 0.35f;
+        [Range(0.01f, 1.0f)] public float defaultChromaPulseDuration = 0.15f;
 
         private UnityEngine.Camera _cam;
         private Transform _targetModel;
@@ -155,9 +172,9 @@ namespace DemonIdol.Cinematics
             {
                 var d = prof.Add<DepthOfField>(true);
                 d.mode.Override(DepthOfFieldMode.Bokeh);
-                d.aperture.Override(3.2f);
-                d.focalLength.Override(65f);
-                d.focusDistance.Override(2.6f);
+                d.aperture.Override(dofAperture);
+                d.focalLength.Override(dofFocalLength);
+                d.focusDistance.Override(dofFocusDistance);
             }
 
             if (!prof.Has<Tonemapping>())
@@ -169,20 +186,20 @@ namespace DemonIdol.Cinematics
             if (!prof.Has<ColorAdjustments>())
             {
                 var ca = prof.Add<ColorAdjustments>(true);
-                ca.contrast.Override(12f);
+                ca.contrast.Override(colorContrast);
             }
 
             if (!prof.Has<Bloom>())
             {
                 var bl = prof.Add<Bloom>(true);
-                bl.threshold.Override(1.05f);
-                bl.intensity.Override(0.35f);
+                bl.threshold.Override(bloomThreshold);
+                bl.intensity.Override(bloomIntensity);
             }
 
             if (!prof.Has<Vignette>())
             {
                 var vg = prof.Add<Vignette>(true);
-                vg.intensity.Override(0.32f);
+                vg.intensity.Override(vignetteIntensity);
                 vg.color.Override(new Color(0.035f, 0.043f, 0.055f, 1f));
             }
 
@@ -258,7 +275,7 @@ namespace DemonIdol.Cinematics
             else if (_targetModel != null)
             {
                 var info = BBRosterArchetype.Get(_currentCharacterId);
-                float estimatedHeadY = _targetModel.position.y + (info.hipHeight > 0 ? info.hipHeight + 0.65f : 1.55f);
+                float estimatedHeadY = _targetModel.position.y + (info.hipHeight > 0 ? info.hipHeight + headHeightHipOffset : headHeightFallback);
                 _calculatedHeadPosition = new Vector3(_targetModel.position.x, estimatedHeadY, _targetModel.position.z);
             }
         }
@@ -289,8 +306,11 @@ namespace DemonIdol.Cinematics
         /// Pulses Chromatic Aberration on beat-drops, lock-ins, or counter-hits.
         /// Respects SettingsPanel.ReducedMotion and GraphicsProfiles.
         /// </summary>
-        public void PulseChromaticAberration(float intensity = 0.35f, float duration = 0.15f)
+        public void PulseChromaticAberration(float intensity = -1f, float duration = -1f)
         {
+            if (intensity < 0f) intensity = defaultChromaPulseIntensity;
+            if (duration < 0f) duration = defaultChromaPulseDuration;
+
             if (!isActiveAndEnabled || _chroma == null) return;
 
             if (SettingsPanel.ReducedMotion)
