@@ -20,7 +20,10 @@ namespace DemonIdol.BlazBlue.UI
     [DisallowMultipleComponent]
     public class BBTouchOverlay : MonoBehaviour
     {
-        public static bool showTouchOverlayInEditor = false;
+        public static BBTouchOverlay Instance { get; private set; }
+
+        public const string PREFS_SHOW_TOUCH_CONTROLS = "MDI_ShowTouchControls";
+        public static bool showTouchOverlayInEditor = true;
 
         public enum LeftHandMode
         {
@@ -39,6 +42,9 @@ namespace DemonIdol.BlazBlue.UI
         [SerializeField] private GameObject _hitboxContainer;
         [SerializeField] private GameObject _actionContainer;
         [SerializeField] private Text _modeToggleLabel;
+
+        private Canvas _parentCanvas;
+        private CanvasGroup _canvasGroup;
 
         // Multi-touch tracking for Pocket Hitbox
         private bool _hitboxLeft = false;
@@ -59,14 +65,93 @@ namespace DemonIdol.BlazBlue.UI
         private static Sprite s_CircleSprite;
         private static Sprite s_RingSprite;
 
+        public static bool IsTouchOverlayVisible()
+        {
+            if (PlayerPrefs.HasKey(PREFS_SHOW_TOUCH_CONTROLS))
+            {
+                return PlayerPrefs.GetInt(PREFS_SHOW_TOUCH_CONTROLS, 1) == 1;
+            }
+            return Application.isMobilePlatform || showTouchOverlayInEditor;
+        }
+
+        public static void SetTouchOverlayVisible(bool visible)
+        {
+            PlayerPrefs.SetInt(PREFS_SHOW_TOUCH_CONTROLS, visible ? 1 : 0);
+            PlayerPrefs.Save();
+            showTouchOverlayInEditor = visible;
+            if (Instance != null)
+            {
+                Instance.UpdateVisibility();
+            }
+        }
+
+        public static bool ShouldShowTouchControls(bool isMobilePlatform, bool simulatorMobile, bool hasTouchHardware)
+        {
+            return isMobilePlatform || simulatorMobile || hasTouchHardware;
+        }
+
         public static bool ShouldShowOverlay()
         {
-#if UNITY_EDITOR
-            if (showTouchOverlayInEditor) return true;
-            return false;
-#else
-            return Application.isMobilePlatform;
-#endif
+            return IsTouchOverlayVisible();
+        }
+
+        public void UpdateVisibility()
+        {
+            bool show = ShouldShowOverlay();
+            if (_canvasGroup != null)
+            {
+                _canvasGroup.alpha = show ? SettingsPanel.TouchControlsOpacity : 0f;
+                _canvasGroup.interactable = show;
+                _canvasGroup.blocksRaycasts = show;
+            }
+            else
+            {
+                gameObject.SetActive(show);
+            }
+        }
+
+        public void ApplySettings(float opacity, float scale, bool leftHanded)
+        {
+            if (_canvasGroup == null)
+            {
+                _canvasGroup = GetComponentInParent<CanvasGroup>();
+                if (_canvasGroup == null) _canvasGroup = GetComponent<CanvasGroup>();
+                if (_canvasGroup == null) _canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            }
+
+            bool show = ShouldShowOverlay();
+            _canvasGroup.alpha = show ? Mathf.Clamp(opacity, 0.2f, 1.0f) : 0f;
+            _canvasGroup.interactable = show;
+            _canvasGroup.blocksRaycasts = show;
+
+            float clampedScale = Mathf.Clamp(scale, 0.7f, 1.4f);
+            if (_joystickContainer != null) _joystickContainer.transform.localScale = Vector3.one * clampedScale;
+            if (_hitboxContainer != null) _hitboxContainer.transform.localScale = Vector3.one * clampedScale;
+            if (_actionContainer != null) _actionContainer.transform.localScale = Vector3.one * clampedScale;
+
+            if (leftHanded)
+            {
+                SetContainerLayout(_joystickContainer, new Vector2(0.5f, 0f), new Vector2(1f, 0.85f));
+                SetContainerLayout(_hitboxContainer, new Vector2(0.5f, 0f), new Vector2(1f, 0.85f));
+                SetContainerLayout(_actionContainer, new Vector2(0f, 0f), new Vector2(0.5f, 1f));
+            }
+            else
+            {
+                SetContainerLayout(_joystickContainer, new Vector2(0f, 0f), new Vector2(0.5f, 0.85f));
+                SetContainerLayout(_hitboxContainer, new Vector2(0f, 0f), new Vector2(0.5f, 0.85f));
+                SetContainerLayout(_actionContainer, new Vector2(0.5f, 0f), new Vector2(1f, 1f));
+            }
+        }
+
+        private static void SetContainerLayout(GameObject go, Vector2 anchorMin, Vector2 anchorMax)
+        {
+            if (go == null) return;
+            var rt = go.GetComponent<RectTransform>();
+            if (rt == null) return;
+            rt.anchorMin = anchorMin;
+            rt.anchorMax = anchorMax;
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
         }
 
         private void OnEnable()
@@ -100,6 +185,16 @@ namespace DemonIdol.BlazBlue.UI
 
         private void Awake()
         {
+            Instance = this;
+
+            _parentCanvas = GetComponentInParent<Canvas>();
+            _canvasGroup = GetComponentInParent<CanvasGroup>();
+            if (_canvasGroup == null)
+            {
+                _canvasGroup = GetComponent<CanvasGroup>();
+                if (_canvasGroup == null) _canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            }
+
             if (targetSampler == null)
             {
                 var samplers = FindObjectsByType<BBInputSampler>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
@@ -114,10 +209,23 @@ namespace DemonIdol.BlazBlue.UI
             }
 
             RefreshModeDisplay();
+            ApplySettings(SettingsPanel.TouchControlsOpacity, SettingsPanel.TouchControlsScale, SettingsPanel.LeftHandedMode);
+            UpdateVisibility();
+        }
+
+        private void OnDestroy()
+        {
+            if (Instance == this) Instance = null;
         }
 
         private void Update()
         {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD || UNITY_STANDALONE
+            if (UnityEngine.Input.GetKeyDown(KeyCode.F9))
+            {
+                SetTouchOverlayVisible(!IsTouchOverlayVisible());
+            }
+#endif
             if (targetSampler == null)
             {
                 _samplerSearchTimer -= Time.unscaledDeltaTime;
@@ -363,6 +471,63 @@ namespace DemonIdol.BlazBlue.UI
             tex.Apply();
             s_RingSprite = Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f));
             return s_RingSprite;
+        }
+
+        public static BBTouchOverlay EnsureInScene(BBInputSampler sampler = null)
+        {
+            if (Instance != null && Instance.gameObject != null)
+            {
+                if (sampler != null && Instance.targetSampler == null)
+                {
+                    Instance.Bind(sampler);
+                }
+                Instance.UpdateVisibility();
+                return Instance;
+            }
+
+            var existing = FindAnyObjectByType<BBTouchOverlay>();
+            if (existing != null)
+            {
+                Instance = existing;
+                if (sampler != null && existing.targetSampler == null)
+                {
+                    existing.Bind(sampler);
+                }
+                existing.UpdateVisibility();
+                return existing;
+            }
+
+            GameObject canvasGo = GameObject.Find("Touch_Overlay_Canvas");
+            if (canvasGo == null)
+            {
+                canvasGo = new GameObject("Touch_Overlay_Canvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster), typeof(CanvasGroup));
+            }
+
+            var canvas = canvasGo.GetComponent<Canvas>();
+            if (canvas == null) canvas = canvasGo.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 50; // strictly above BBBattleHUDController and below Pause/Settings modals at 100
+
+            var scaler = canvasGo.GetComponent<CanvasScaler>();
+            if (scaler == null) scaler = canvasGo.AddComponent<CanvasScaler>();
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1920f, 1080f);
+            scaler.matchWidthOrHeight = 0.5f;
+
+            var raycaster = canvasGo.GetComponent<GraphicRaycaster>();
+            if (raycaster == null) canvasGo.AddComponent<GraphicRaycaster>();
+
+            var cg = canvasGo.GetComponent<CanvasGroup>();
+            if (cg == null) cg = canvasGo.AddComponent<CanvasGroup>();
+            cg.alpha = 1f;
+            cg.interactable = true;
+            cg.blocksRaycasts = true;
+
+            BBTouchOverlay overlay = Create(canvasGo.transform, sampler);
+            overlay._parentCanvas = canvas;
+            overlay._canvasGroup = cg;
+            overlay.UpdateVisibility();
+            return overlay;
         }
 
         public static BBTouchOverlay Create(Transform parent, BBInputSampler sampler)

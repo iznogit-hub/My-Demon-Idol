@@ -140,10 +140,10 @@ namespace DemonIdol.BlazBlue.Tests
         [Test]
         public void TouchControls_ShowOnMobileSimulatorOrTouchHardware()
         {
-            Assert.IsTrue(BBTouchLayout.ShouldShowTouchControls(true, false, false));
-            Assert.IsTrue(BBTouchLayout.ShouldShowTouchControls(false, true, false));
-            Assert.IsTrue(BBTouchLayout.ShouldShowTouchControls(false, false, true));
-            Assert.IsFalse(BBTouchLayout.ShouldShowTouchControls(false, false, false));
+            Assert.IsTrue(DemonIdol.BlazBlue.UI.BBTouchOverlay.ShouldShowTouchControls(true, false, false));
+            Assert.IsTrue(DemonIdol.BlazBlue.UI.BBTouchOverlay.ShouldShowTouchControls(false, true, false));
+            Assert.IsTrue(DemonIdol.BlazBlue.UI.BBTouchOverlay.ShouldShowTouchControls(false, false, true));
+            Assert.IsFalse(DemonIdol.BlazBlue.UI.BBTouchOverlay.ShouldShowTouchControls(false, false, false));
         }
 
         static void AssertScriptEnabled(string yaml, string guid, string label)

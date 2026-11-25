@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7099943345531639071}
   - component: {fileID: 4506546131999355463}
   - component: {fileID: 3399687871867825566}
+  - component: {fileID: 2047974343318960787}
   m_Layer: 0
   m_Name: C05_Akane
   m_TagString: Untagged
@@ -49,8 +50,8 @@ Animator:
   m_GameObject: {fileID: 84516208725712333}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1679e2eb6e9a6344c994a61f31e35389, type: 3}
-  m_Controller: {fileID: 22100000, guid: c9f420a7ae96446e3ba3708689af2631, type: 2}
-  m_CullingMode: 1
+  m_Controller: {fileID: 9100000, guid: a1de9be75ad524f6ba8e7bec96f92b7d, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -123,6 +124,20 @@ MonoBehaviour:
   overrideController: {fileID: 22100000, guid: c9f420a7ae96446e3ba3708689af2631, type: 2}
   animator: {fileID: 1656149140567058402}
   weaponRig: {fileID: 4506546131999355463}
+--- !u!114 &2047974343318960787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84516208725712333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63390c6eadd784502ad0b5cb02c6ad3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBAnimationDriver
+  animator: {fileID: 1656149140567058402}
+  brain: {fileID: 0}
 --- !u!1 &175023561367248242
 GameObject:
   m_ObjectHideFlags: 0

@@ -4197,7 +4197,6 @@ GameObject:
   - component: {fileID: 6886907133697556812}
   - component: {fileID: 8164246021899150275}
   - component: {fileID: 8211172613555825658}
-  - component: {fileID: 1961452905969260023}
   m_Layer: 0
   m_Name: Fighter_Player2_Aika
   m_TagString: Untagged
@@ -4307,23 +4306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83a2b16e33474c3e96167a8d6f1c853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.AnimationEventReceiver
---- !u!114 &1961452905969260023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8763449512345602013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af1eefb6bddf47be860557d2fa7f51a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.MobileFighterInput
-  _fighter: {fileID: 0}
-  joystickDeadZone: 0.2
-  joystickExitThreshold: 0.15
-  _rawVirtualJoystick: {x: 0, y: 0}
-  isGestureModeEnabled: 0
 --- !u!1 &8865553672046049634
 GameObject:
   m_ObjectHideFlags: 0

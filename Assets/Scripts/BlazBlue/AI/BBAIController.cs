@@ -122,8 +122,15 @@ namespace DemonIdol.BlazBlue
 
                 if (step.buttons != BBButton.None)
                 {
-                    _attackCooldownTicks = Mathf.Max(_attackCooldownTicks, 10);
-                    _lastAttackTick = currentTick;
+                    if (currentTick - _lastAttackTick < 10 || _attackCooldownTicks > 0)
+                    {
+                        _desiredButtons = BBButton.None;
+                    }
+                    else
+                    {
+                        _attackCooldownTicks = 10;
+                        _lastAttackTick = currentTick;
+                    }
                 }
 
                 return ConstructInputFrame();
@@ -199,8 +206,11 @@ namespace DemonIdol.BlazBlue
                 {
                     if (TryEvaluateGatlingCancel(self, opponent, facing, currentTick))
                     {
-                        _attackCooldownTicks = 10;
-                        _lastAttackTick = currentTick;
+                        if (_desiredButtons != BBButton.None)
+                        {
+                            _attackCooldownTicks = 10;
+                            _lastAttackTick = currentTick;
+                        }
                         return ConstructInputFrame();
                     }
                 }
@@ -275,20 +285,30 @@ namespace DemonIdol.BlazBlue
                 }
             }
 
-            // Chain: 5B -> 5C
+            // Chain: 5B -> 5C or 236A
             if (curId == "5B")
             {
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.40)
+                {
+                    Enqueue236A(facing);
+                    return true;
+                }
                 _desiredNumpad = 5;
                 _desiredButtons = BBButton.C; // 5C Heavy Strike
                 return true;
             }
 
-            // Chain: 5C -> 2C (Knockdown), 5D (Drive), or 236236C (Super confirm)
+            // Chain: 5C -> 2C (Knockdown), 5D (Drive), 236A (Special confirm), or 236236C (Super confirm)
             if (curId == "5C")
             {
                 if (self.heatMeter >= 50f && (difficulty >= BBAIDifficulty.Medium) && _rng.NextDouble() < 0.70)
                 {
                     Enqueue236236C(facing);
+                    return true;
+                }
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.50)
+                {
+                    Enqueue236A(facing);
                     return true;
                 }
                 if (_rng.NextDouble() < 0.50)
@@ -448,7 +468,13 @@ namespace DemonIdol.BlazBlue
             }
             else if (dist > 1.3f)
             {
-                // Mid range: Jump-in overhead or advance
+                // Mid range: 236A special poke, jump-in overhead or advance
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.40)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
+
                 double roll = _rng.NextDouble();
                 if (roll < 0.35)
                 {
@@ -461,10 +487,15 @@ namespace DemonIdol.BlazBlue
             }
             else
             {
-                // In close: Rapid pokes and mixups
+                // In close: Rapid pokes, 236A specials, and mixups
                 if (self.heatMeter >= 50f && _rng.NextDouble() < 0.40)
                 {
                     Enqueue236236C(facing);
+                    return;
+                }
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.35)
+                {
+                    Enqueue236A(facing);
                     return;
                 }
 
@@ -500,7 +531,18 @@ namespace DemonIdol.BlazBlue
         {
             if (dist < 1.5f)
             {
-                // Opponent in face: Backdash, defensive sweep 2C, or jab
+                // Opponent in face: Backdash, defensive sweep 2C, 236A, or jab
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.40)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
+                if (self.heatMeter >= 50f && _rng.NextDouble() < 0.40)
+                {
+                    Enqueue236236C(facing);
+                    return;
+                }
+
                 double roll = _rng.NextDouble();
                 if (roll < 0.40)
                 {
@@ -519,7 +561,18 @@ namespace DemonIdol.BlazBlue
             }
             else if (dist >= 1.5f && dist <= 2.6f)
             {
-                // Mid range: 5C poke, 5D Drive spell/shot, or retreat
+                // Mid range: 236A special, 236236C super, 5C poke, 5D Drive spell/shot, or retreat
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.65)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
+                if (self.heatMeter >= 50f && _rng.NextDouble() < 0.50)
+                {
+                    Enqueue236236C(facing);
+                    return;
+                }
+
                 double roll = _rng.NextDouble();
                 if (roll < 0.45)
                 {
@@ -538,10 +591,15 @@ namespace DemonIdol.BlazBlue
             }
             else
             {
-                // Fullscreen/long range: Drive zoning & Super
+                // Fullscreen/long range: Drive zoning, Super & 236A
                 if (self.heatMeter >= 50f && _rng.NextDouble() < 0.50)
                 {
                     Enqueue236236C(facing);
+                    return;
+                }
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.40)
+                {
+                    Enqueue236A(facing);
                     return;
                 }
 
@@ -572,11 +630,21 @@ namespace DemonIdol.BlazBlue
             if (dist > 1.8f)
             {
                 // Steady forward advance
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.35)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
                 _desiredNumpad = BBInputFrame.FacingToWorldNumpad(6, facing);
             }
             else if (dist > 1.2f)
             {
-                // Mid range: Heavy blows
+                // Mid range: Heavy blows, 236A, 236236C
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.40)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
                 if (self.heatMeter >= 50f && _rng.NextDouble() < 0.45)
                 {
                     Enqueue236236C(facing);
@@ -601,7 +669,12 @@ namespace DemonIdol.BlazBlue
             }
             else
             {
-                // In close: Heavy 5B, 5C, or 2C Sweep
+                // In close: Heavy 5B, 5C, 236A, or 2C Sweep
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.35)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
                 double roll = _rng.NextDouble();
                 if (roll < 0.35)
                 {
@@ -629,11 +702,21 @@ namespace DemonIdol.BlazBlue
         {
             if (dist > 2.2f)
             {
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.35)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
                 _desiredNumpad = BBInputFrame.FacingToWorldNumpad(6, facing);
             }
             else if (dist >= 1.4f)
             {
-                // Prime swordsman range: 5B thrust & 5C cleave
+                // Prime swordsman range: 236A, 236236C, 5B thrust & 5C cleave
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.40)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
                 if (self.heatMeter >= 50f && _rng.NextDouble() < 0.40)
                 {
                     Enqueue236236C(facing);
@@ -660,6 +743,17 @@ namespace DemonIdol.BlazBlue
             else
             {
                 // Close range
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.35)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
+                if (self.heatMeter >= 50f && _rng.NextDouble() < 0.40)
+                {
+                    Enqueue236236C(facing);
+                    return;
+                }
+
                 double roll = _rng.NextDouble();
                 if (roll < 0.45)
                 {
@@ -686,10 +780,20 @@ namespace DemonIdol.BlazBlue
         {
             if (dist > 2.0f)
             {
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.35)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
                 _desiredNumpad = BBInputFrame.FacingToWorldNumpad(6, facing);
             }
             else if (dist > 1.3f)
             {
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.40)
+                {
+                    Enqueue236A(facing);
+                    return;
+                }
                 double roll = _rng.NextDouble();
                 if (roll < 0.25)
                 {
@@ -711,6 +815,11 @@ namespace DemonIdol.BlazBlue
                 if (self.heatMeter >= 50f && _rng.NextDouble() < 0.40)
                 {
                     Enqueue236236C(facing);
+                    return;
+                }
+                if (self.FindAttackByMoveId("236A") != null && _rng.NextDouble() < 0.35)
+                {
+                    Enqueue236A(facing);
                     return;
                 }
 
@@ -736,6 +845,19 @@ namespace DemonIdol.BlazBlue
                     _desiredButtons = BBButton.B; // 5B
                 }
             }
+        }
+
+        private void Enqueue236A(int facing)
+        {
+            Debug.Log($"[BBAI] Enqueue236A on {gameObject.name} facing={facing}");
+            _motionQueue.Clear();
+            _motionQueue.Enqueue(new MotionStep(2, BBButton.None));
+            _motionQueue.Enqueue(new MotionStep(3, BBButton.None));
+            _motionQueue.Enqueue(new MotionStep(6, BBButton.A));
+
+            var first = _motionQueue.Dequeue();
+            _desiredNumpad = BBInputFrame.FacingToWorldNumpad(first.facingNumpad, facing);
+            _desiredButtons = first.buttons;
         }
 
         private void EnqueueForwardDash(int facing)

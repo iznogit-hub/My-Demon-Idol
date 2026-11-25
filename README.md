@@ -120,4 +120,4 @@ Assets/
 
 ## License & Credits
 
-Developed by **Celestial Soul Studio** for *My Demon Idol*. Built with Unity 6, Universal Render Pipeline, Photon Quantum, and lilToon.
+Developed by **Celestial Soul Studio** for *My Demon Idol*. Built with Unity 6, Universal Render Pipeline, and Photon Quantum.

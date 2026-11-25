@@ -2524,7 +2524,6 @@ GameObject:
   - component: {fileID: 7888953491523380186}
   - component: {fileID: 1812919508496141183}
   - component: {fileID: 4183056632580218288}
-  - component: {fileID: 7744852983567422178}
   - component: {fileID: 8676597739950264716}
   m_Layer: 0
   m_Name: Fighter_Player1_Akio
@@ -2623,23 +2622,6 @@ MonoBehaviour:
   sidestepDistanceZ: 0.85
   sidestepDurationTicks: 14
   projectileMeter: 1
---- !u!114 &7744852983567422178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5399680386932577948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af1eefb6bddf47be860557d2fa7f51a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.MobileFighterInput
-  _fighter: {fileID: 0}
-  joystickDeadZone: 0.2
-  joystickExitThreshold: 0.15
-  _rawVirtualJoystick: {x: 0, y: 0}
-  isGestureModeEnabled: 0
 --- !u!114 &8676597739950264716
 MonoBehaviour:
   m_ObjectHideFlags: 0

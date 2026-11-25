@@ -63,6 +63,8 @@ namespace DemonIdol.BlazBlue
         public float ActiveDamageScale = 1f;
         public float ActiveReachScale = 1f;
         public int SignatureHitstopBonus;
+        public event System.Action<BBAttackData> OnAttackStarted;
+        public static event System.Action<BBFighterBrain, BBAttackData> OnAnyAttackStarted;
 
         [System.NonSerialized] public BBFighterBrain opponentBrain;
 
@@ -230,6 +232,7 @@ namespace DemonIdol.BlazBlue
         public bool TryStartMoveId(string moveId)
         {
             var attack = FindAttackByMoveId(moveId);
+            Debug.Log($"[TryStartMoveId] thisId={GetHashCode()} pIdx={sampler?.playerIndex} moveId={moveId} hasSubs={(OnAttackStarted != null)} found={(attack != null ? attack.name : "null")} canExec={(attack != null ? CanExecuteMove(attack).ToString() : "false")} bbState={bbState}");
             if (attack == null || !CanExecuteMove(attack)) return false;
             StartAttack(attack);
             return currentAttack == attack;
@@ -447,6 +450,10 @@ namespace DemonIdol.BlazBlue
             }
 
             string moveId = MoveIdFor(CurrentCommand);
+            if (CurrentCommand.commandType == BBCommandType.Special236 || (moveId != null && moveId.Contains("236")))
+            {
+                Debug.Log($"[CmdSpecial] pIdx={sampler?.playerIndex} tick={tick} cmd={CurrentCommand.commandType} btn={CurrentCommand.button} moveId={moveId}");
+            }
             if (string.IsNullOrEmpty(moveId)) return;
             string fallback = FallbackMoveId(CurrentCommand);
 
@@ -968,6 +975,8 @@ namespace DemonIdol.BlazBlue
             currentAttack = attack;
             attackTick = 0;
             attackHitMask.Clear();
+            OnAttackStarted?.Invoke(attack);
+            OnAnyAttackStarted?.Invoke(this, attack);
             chainState.madeContact = false;
             ActiveDamageScale = 1f;
             ActiveReachScale = 1f;
@@ -1063,6 +1072,18 @@ namespace DemonIdol.BlazBlue
                         if (ms.moves[i] != null && ms.moves[i].moveId == targetMoveId)
                             return ms.moves[i];
                     }
+                }
+
+                // 2b. If move is 236A special and not in primary 7-move kit, check tuned assets
+                if (targetMoveId == "236A" && profile != null)
+                {
+#if UNITY_EDITOR
+                    string charFolder = profile.characterId;
+                    if (profile.characterId.Contains("C12") || profile.characterId.Contains("Fina")) charFolder = "Fina";
+                    else if (profile.characterId.Contains("C11") || profile.characterId.Contains("Casual")) charFolder = "Casual1";
+                    var extraAtk = UnityEditor.AssetDatabase.LoadAssetAtPath<BBAttackData>($"Assets/CombatData/BlazBlue/{charFolder}/BB_{charFolder}_236A.asset");
+                    if (extraAtk != null) return extraAtk;
+#endif
                 }
 
                 // 3. Check serialized system move properties by moveId

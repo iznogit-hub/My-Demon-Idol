@@ -1,17 +1,14 @@
 using System;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.Playables;
 using DemonIdol.Combat;
 using DemonIdol.BlazBlue.Visual;
 
 namespace DemonIdol.BlazBlue
 {
     /// <summary>
-    /// Deterministic animation playback engine using Unity's Playables API.
-    /// Blends Layer 0 (locomotion / hit reactions on AnimatorController) with
-    /// Layer 1 (deterministic attack clips via AnimationClipPlayable.SetTime).
-    /// Zero mid-match allocations; does not touch Classic controllers.
+    /// Direct Mecanim animation driver.
+    /// Operates directly on Unity's native Animator component with standardized MDI_* states and parameters.
+    /// Zero mid-match allocations; completely stripped of PlayableGraph / AnimationPlayableOutput.
     /// </summary>
     [ExecuteAlways]
     public class BBAnimationDriver : MonoBehaviour
@@ -20,19 +17,8 @@ namespace DemonIdol.BlazBlue
         public Animator animator;
         public BBFighterBrain brain;
 
-        private PlayableGraph _graph;
-        private AnimationLayerMixerPlayable _mixer;
-        private AnimatorControllerPlayable _controllerPlayable;
-        private AnimationClipPlayable _attackPlayableA;
-        private AnimationClipPlayable _attackPlayableB;
-        private bool _usingPlayableA = true;
-
         private RuntimeAnimatorController _originalController;
-        private bool _isGraphValid = false;
         private BBWeaponRig _weaponRig;
-
-        private float _attackWeight = 0f;
-        private const float BLEND_SPEED_TICKS = 3f;
         private AnimationClip _activeAttackClip;
         private Vector3 _baseModelLocalPos = Vector3.zero;
         private bool _isVibrating = false;
@@ -42,71 +28,53 @@ namespace DemonIdol.BlazBlue
             if (animator == null) animator = GetComponentInChildren<Animator>();
             if (brain == null) brain = GetComponent<BBFighterBrain>();
             if (_weaponRig == null) _weaponRig = GetComponent<BBWeaponRig>();
-            if (animator != null) _baseModelLocalPos = animator.transform.localPosition;
+            if (animator != null)
+            {
+                _baseModelLocalPos = animator.transform.localPosition;
+                animator.applyRootMotion = false;
+                animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+            }
         }
 
         private void OnEnable()
         {
-            InitializeGraph();
+            InitializeDriver();
         }
 
         private void OnDisable()
         {
-            TeardownGraph();
+            TeardownDriver();
         }
 
-        private void OnDestroy()
+        public void InitializeGraph() => InitializeDriver();
+        public void TeardownGraph() => TeardownDriver();
+
+        public void InitializeDriver()
         {
-            TeardownGraph();
-        }
+            if (animator == null) animator = GetComponentInChildren<Animator>();
+            if (animator == null) return;
 
-        public void InitializeGraph()
-        {
-            if (_isGraphValid || animator == null) return;
+            if (_originalController == null)
+            {
+                _originalController = animator.runtimeAnimatorController;
+            }
 
-            _originalController = animator.runtimeAnimatorController;
+            animator.applyRootMotion = false;
+            animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
 
-            // In BlazBlue mode, switch to the fighter's BlazBlue override controller if assigned
-            RuntimeAnimatorController targetController = _originalController;
             if (brain != null && brain.profile != null && brain.profile.blazBlueOverrideController != null)
             {
-                targetController = brain.profile.blazBlueOverrideController;
+                animator.runtimeAnimatorController = brain.profile.blazBlueOverrideController;
             }
 
-            // Single-drive the Animator: Unbind runtimeAnimatorController so native Animator update does not compete with PlayableGraph
-            animator.runtimeAnimatorController = null;
-            if (_baseModelLocalPos == Vector3.zero) _baseModelLocalPos = animator.transform.localPosition;
-
-            _graph = PlayableGraph.Create($"BBAnim_{gameObject.name}");
-            _graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
-
-            var animOutput = AnimationPlayableOutput.Create(_graph, "BBAnimationOutput", animator);
-            _mixer = AnimationLayerMixerPlayable.Create(_graph, 2);
-
-            // Layer 0: Base Controller Playable
-            if (targetController != null)
+            if (_baseModelLocalPos == Vector3.zero)
             {
-                _controllerPlayable = AnimatorControllerPlayable.Create(_graph, targetController);
-                _graph.Connect(_controllerPlayable, 0, _mixer, 0);
-                _mixer.SetInputWeight(0, 1.0f);
+                _baseModelLocalPos = animator.transform.localPosition;
             }
-
-            animOutput.SetSourcePlayable(_mixer);
-            _graph.Play();
-            _isGraphValid = true;
         }
 
-        public void TeardownGraph()
+        public void TeardownDriver()
         {
-            if (!_isGraphValid) return;
-
-            if (_graph.IsValid())
-            {
-                _graph.Destroy();
-            }
-            _isGraphValid = false;
-
-            // Restore original Classic controller
             if (animator != null && _originalController != null)
             {
                 animator.runtimeAnimatorController = _originalController;
@@ -114,100 +82,25 @@ namespace DemonIdol.BlazBlue
         }
 
         /// <summary>
-        /// Plays an attack clip deterministically seeked using piecewise linear time-warp:
-        /// clip start -> tick 0
-        /// measured impact frame -> first active tick
-        /// clipLastFrame -> end of recovery
-        /// Never sample past clipLastFrame.
-        /// If recovery is longer than the clip has frames left, hold the last pose and blend 3 ticks to idle.
+        /// Plays an attack clip directly via Animator.
         /// </summary>
         public void PlayAttackClip(AnimationClip clip, int firstFrame, int lastFrame, int startupTicks, int totalTicks, int tickInMove, int measuredImpactFrame)
         {
-            if (!_isGraphValid || !_graph.IsValid() || clip == null) return;
-            if (clip.length <= 0f || clip.frameRate <= 0f || float.IsNaN(clip.length) || float.IsInfinity(clip.length) || totalTicks <= 0) return;
+            if (animator == null || clip == null) return;
             _activeAttackClip = clip;
 
-            // Ping-pong playables if clip changed
-            ref AnimationClipPlayable activePlayable = ref (_usingPlayableA ? ref _attackPlayableA : ref _attackPlayableB);
-
-            if (!activePlayable.IsValid() || activePlayable.GetAnimationClip() != clip)
+            if (brain != null && brain.currentAttack != null)
             {
-                if (activePlayable.IsValid())
-                {
-                    if (_mixer.IsValid())
-                    {
-                        _graph.Disconnect(_mixer, 1);
-                    }
-                    _graph.DestroyPlayable(activePlayable);
-                }
-
-                activePlayable = AnimationClipPlayable.Create(_graph, clip);
-                activePlayable.SetApplyFootIK(false);
-                if (_mixer.IsValid())
-                {
-                    _graph.Connect(activePlayable, 0, _mixer, 1);
-                }
-            }
-
-            const float EngineFps = 60.0f;
-            float t0 = (firstFrame > 0) ? (firstFrame / EngineFps) : 0f;
-            float tLast = (lastFrame > firstFrame && lastFrame > 0) ? (lastFrame / EngineFps) : clip.length;
-            tLast = Mathf.Min(tLast, clip.length);
-
-            // Impact frame in the clip (in 60Hz ticks, defaults to ~40% of clip duration if not specified)
-            int impactFrame = measuredImpactFrame > 0 ? measuredImpactFrame : Mathf.RoundToInt((lastFrame > 0 ? lastFrame : clip.length * EngineFps) * 0.40f);
-            float tImpact = impactFrame / EngineFps;
-            tImpact = Mathf.Clamp(tImpact, t0, tLast);
-
-            int tickActive = Mathf.Max(1, startupTicks);
-            int tickEnd = Mathf.Max(tickActive + 1, totalTicks - 1);
-
-            float seekTime;
-            if (tickInMove <= tickActive)
-            {
-                float u = (float)tickInMove / tickActive;
-                seekTime = Mathf.Lerp(t0, tImpact, u);
+                PlayAttack(brain.currentAttack);
             }
             else
             {
-                float u = (float)(tickInMove - tickActive) / (tickEnd - tickActive);
-                seekTime = Mathf.Lerp(tImpact, tLast, u);
+                string stateName = "MDI_" + clip.name;
+                if (HasState(stateName))
+                {
+                    animator.CrossFadeInFixedTime(stateName, 0.05f);
+                }
             }
-
-            // Never sample past clipLastFrame
-            if (float.IsNaN(seekTime) || float.IsInfinity(seekTime))
-            {
-                seekTime = t0;
-            }
-            seekTime = Mathf.Clamp(seekTime, 0f, clip.length);
-            if (activePlayable.IsValid())
-            {
-                activePlayable.SetTime(seekTime);
-            }
-
-            // Snap immediately to full weight on first attack frame or rapid gatling chain
-            if (tickInMove <= 1 && _attackWeight < 0.95f)
-            {
-                _attackWeight = 1.0f;
-            }
-            // If recovery is longer than the clip has frames left or at end of recovery, hold last pose and blend 3 ticks to idle
-            else if (tickInMove >= tickEnd - 3)
-            {
-                _attackWeight = Mathf.MoveTowards(_attackWeight, 0f, 1.0f / 3.0f);
-            }
-            else
-            {
-                _attackWeight = Mathf.MoveTowards(_attackWeight, 1.0f, 1.0f / BLEND_SPEED_TICKS);
-            }
-
-            if (_mixer.IsValid())
-            {
-                _mixer.SetInputWeight(1, _attackWeight);
-                _mixer.SetInputWeight(0, 1.0f - _attackWeight);
-            }
-
-            if (_graph.IsValid())
-                _graph.Evaluate(CombatTickEngine.TICK_DELTA_TIME);
         }
 
         public void PlayAttackClip(AnimationClip clip, int firstFrame, int lastFrame, int totalTicks, int tickInMove)
@@ -218,56 +111,46 @@ namespace DemonIdol.BlazBlue
 
         public void PlayAttack(BBAttackData attack)
         {
-            if (attack == null) return;
-            var clipToPlay = attack.clip != null ? attack.clip : attack.animationClip;
-            if (clipToPlay != null)
+            if (attack == null || animator == null) return;
+            _activeAttackClip = attack.clip != null ? attack.clip : attack.animationClip;
+
+            string mdiState = "MDI_" + attack.moveId;
+            if (HasState(mdiState))
             {
-                PlayAttackClip(clipToPlay, attack.clipFirstFrame, attack.clipLastFrame, attack.startupFrames, attack.TotalTicks, 0, attack.measuredImpactFrame);
+                animator.CrossFadeInFixedTime(mdiState, 0.05f);
+            }
+            else if (_activeAttackClip != null && HasState("MDI_" + _activeAttackClip.name))
+            {
+                animator.CrossFadeInFixedTime("MDI_" + _activeAttackClip.name, 0.05f);
+            }
+            else if (HasState("Attack1"))
+            {
+                animator.CrossFadeInFixedTime("Attack1", 0.05f);
             }
         }
 
         /// <summary>
-        /// Smoothly blends back to Layer 0 base locomotion/idle when an attack finishes.
+        /// Smoothly blends back to neutral locomotion/idle when an attack finishes.
         /// </summary>
         public void BlendToNeutral()
         {
-            if (!_isGraphValid || !_graph.IsValid()) return;
-
-            if (_attackWeight > 0f)
+            if (animator == null) return;
+            if (HasState("MDI_Idle"))
             {
-                _attackWeight = Mathf.MoveTowards(_attackWeight, 0f, 1.0f / BLEND_SPEED_TICKS);
-                if (_mixer.IsValid())
-                {
-                    _mixer.SetInputWeight(1, _attackWeight);
-                    _mixer.SetInputWeight(0, 1.0f - _attackWeight);
-                }
-                if (_graph.IsValid())
-                    _graph.Evaluate(CombatTickEngine.TICK_DELTA_TIME);
+                animator.CrossFadeInFixedTime("MDI_Idle", 0.1f);
+            }
+            else if (HasState("Idle"))
+            {
+                animator.CrossFadeInFixedTime("Idle", 0.1f);
             }
         }
 
         /// <summary>
-        /// Explicitly resets Layer 1 attack playback.
-        /// When immediate is true (e.g. hitstun, blockstun, knockdown, wakeup, or cancel),
-        /// snaps blend weight to 0 immediately so no attack pose remains frozen or stuck.
+        /// Explicitly resets attack state playback.
         /// </summary>
         public void ResetAttackLayer(bool immediate = true)
         {
             _activeAttackClip = null;
-            if (immediate)
-            {
-                _attackWeight = 0f;
-                if (_mixer.IsValid())
-                {
-                    _mixer.SetInputWeight(1, 0f);
-                    _mixer.SetInputWeight(0, 1.0f);
-                }
-            }
-            else
-            {
-                BlendToNeutral();
-            }
-
             if (_weaponRig != null)
             {
                 _weaponRig.SetWeaponTrailsActive(false);
@@ -280,17 +163,16 @@ namespace DemonIdol.BlazBlue
         public void TickAnimation(int tick)
         {
             if (!Application.isPlaying) return;
-            if (!_isGraphValid || !_graph.IsValid()) InitializeGraph();
-            if (!_isGraphValid || !_graph.IsValid() || brain == null) return;
+            if (animator == null || brain == null) return;
 
             // Pillar 1: Defender hit-vibrate during hitstop (Model horizontal micro-oscillation)
-            if (brain != null && brain.hitstopRemaining > 0 && brain.bbState == BBState.Hitstun && animator != null)
+            if (brain.hitstopRemaining > 0 && brain.bbState == BBState.Hitstun)
             {
                 float vibrateX = ((tick / 2) % 2 == 0) ? 0.028f : -0.028f;
                 animator.transform.localPosition = new Vector3(_baseModelLocalPos.x + vibrateX, _baseModelLocalPos.y, _baseModelLocalPos.z);
                 _isVibrating = true;
             }
-            else if (_isVibrating && animator != null)
+            else if (_isVibrating)
             {
                 animator.transform.localPosition = _baseModelLocalPos;
                 _isVibrating = false;
@@ -299,27 +181,9 @@ namespace DemonIdol.BlazBlue
             bool attacking = brain.bbState == BBState.AttackStartup
                 || brain.bbState == BBState.AttackActive
                 || brain.bbState == BBState.AttackRecovery;
-            AnimationClip attackClip = null;
+
             if (attacking && brain.currentAttack != null)
             {
-                attackClip = brain.currentAttack.clip != null ? brain.currentAttack.clip : brain.currentAttack.animationClip;
-                if (attackClip == null) attackClip = _activeAttackClip;
-            }
-
-            if (attacking && attackClip != null && brain.currentAttack != null)
-            {
-                var currentAtk = brain.currentAttack;
-                int impactFrame = (currentAtk is BBAttackData bbAtk) ? bbAtk.measuredImpactFrame : -1;
-                PlayAttackClip(
-                    attackClip,
-                    currentAtk.clipFirstFrame,
-                    currentAtk.clipLastFrame,
-                    currentAtk.startupFrames,
-                    currentAtk.TotalTicks,
-                    brain.attackTick,
-                    impactFrame
-                );
-
                 if (_weaponRig == null) _weaponRig = GetComponent<BBWeaponRig>();
                 if (_weaponRig != null)
                 {
@@ -353,28 +217,16 @@ namespace DemonIdol.BlazBlue
             else
             {
                 _activeAttackClip = null;
-                if (_attackWeight > 0f)
-                {
-                    _attackWeight = Mathf.MoveTowards(_attackWeight, 0f, 1.0f / BLEND_SPEED_TICKS);
-                    if (_mixer.IsValid())
-                    {
-                        _mixer.SetInputWeight(1, _attackWeight);
-                        _mixer.SetInputWeight(0, 1.0f - _attackWeight);
-                    }
-                }
                 if (_weaponRig != null)
+                {
                     _weaponRig.SetWeaponTrailsActive(false);
+                }
             }
-
-            // The graph is manual. Without this, walk/crouch/jump parameters never advance and the pose stays idle.
-            if (_graph.IsValid())
-                _graph.Evaluate(CombatTickEngine.TICK_DELTA_TIME);
         }
 
         public string CurrentClipLabel()
         {
-            if (_attackWeight > 0.05f && _activeAttackClip != null)
-                return _activeAttackClip.name;
+            if (_activeAttackClip != null) return _activeAttackClip.name;
             if (animator != null && animator.GetCurrentAnimatorClipInfoCount(0) > 0)
             {
                 var clips = animator.GetCurrentAnimatorClipInfo(0);
@@ -441,8 +293,7 @@ namespace DemonIdol.BlazBlue
         }
 
         /// <summary>
-        /// Updates Layer 0 locomotion parameters (Speed, MoveX, IsGrounded, IsCrouch, IsBlocking, Jump, Dash)
-        /// on both AnimatorControllerPlayable and the underlying Animator.
+        /// Updates locomotion parameters and reaction triggers directly on the Animator.
         /// </summary>
         public void UpdateLocomotionState(BBState state, sbyte facingNumpad, bool isGrounded)
         {
@@ -511,6 +362,7 @@ namespace DemonIdol.BlazBlue
                     SetParamTrigger("HitMid");
                     SetParamBool("IsGrounded", isGrounded);
                     SetParamBool("IsBlocking", false);
+                    if (HasState("MDI_HitMid")) animator.CrossFadeInFixedTime("MDI_HitMid", 0.05f);
                     break;
 
                 case BBState.Blockstun:
@@ -519,6 +371,7 @@ namespace DemonIdol.BlazBlue
                     SetParamTrigger("StandBlock");
                     SetParamBool("IsBlocking", true);
                     SetParamBool("IsGrounded", isGrounded);
+                    if (HasState("MDI_StandBlock")) animator.CrossFadeInFixedTime("MDI_StandBlock", 0.05f);
                     break;
 
                 case BBState.DownWait:
@@ -526,6 +379,7 @@ namespace DemonIdol.BlazBlue
                     SetParamTrigger("Knockdown");
                     SetParamBool("IsGrounded", true);
                     SetParamBool("IsBlocking", false);
+                    if (HasState("MDI_Knockdown")) animator.CrossFadeInFixedTime("MDI_Knockdown", 0.05f);
                     break;
 
                 case BBState.Wakeup:
@@ -533,17 +387,20 @@ namespace DemonIdol.BlazBlue
                     SetParamTrigger("StandUpBack");
                     SetParamBool("IsGrounded", true);
                     SetParamBool("IsBlocking", false);
+                    if (HasState("MDI_StandUpBack")) animator.CrossFadeInFixedTime("MDI_StandUpBack", 0.05f);
                     break;
             }
         }
 
+        private bool HasState(string stateName)
+        {
+            if (animator == null) return false;
+            return animator.HasState(0, Animator.StringToHash(stateName));
+        }
+
         private void SetParamFloat(string name, float val)
         {
-            if (_graph.IsValid() && _controllerPlayable.IsValid())
-            {
-                _controllerPlayable.SetFloat(name, val);
-            }
-            else if (animator != null && animator.runtimeAnimatorController != null)
+            if (animator != null && animator.runtimeAnimatorController != null)
             {
                 animator.SetFloat(name, val);
             }
@@ -551,11 +408,7 @@ namespace DemonIdol.BlazBlue
 
         private void SetParamBool(string name, bool val)
         {
-            if (_graph.IsValid() && _controllerPlayable.IsValid())
-            {
-                _controllerPlayable.SetBool(name, val);
-            }
-            else if (animator != null && animator.runtimeAnimatorController != null)
+            if (animator != null && animator.runtimeAnimatorController != null)
             {
                 animator.SetBool(name, val);
             }
@@ -563,11 +416,7 @@ namespace DemonIdol.BlazBlue
 
         private void SetParamTrigger(string name)
         {
-            if (_graph.IsValid() && _controllerPlayable.IsValid())
-            {
-                _controllerPlayable.SetTrigger(name);
-            }
-            else if (animator != null && animator.runtimeAnimatorController != null)
+            if (animator != null && animator.runtimeAnimatorController != null)
             {
                 animator.SetTrigger(name);
             }

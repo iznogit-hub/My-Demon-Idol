@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4090687274121105819}
   - component: {fileID: 5460592696452288774}
   - component: {fileID: 6164390721953758530}
+  - component: {fileID: 5988927920398266087}
   m_Layer: 0
   m_Name: C14_Muryotaisu
   m_TagString: Player
@@ -89,8 +90,8 @@ Animator:
   m_GameObject: {fileID: 65556280210881102}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 14df923b9101bb14abca861595b99a5f, type: 3}
-  m_Controller: {fileID: 22100000, guid: 8c518b727bcf50599de9637c18cf87de, type: 2}
-  m_CullingMode: 1
+  m_Controller: {fileID: 9100000, guid: d85da84302d9849caa1ca57e9b8617ae, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -180,6 +181,20 @@ MonoBehaviour:
   overrideController: {fileID: 22100000, guid: 8c518b727bcf50599de9637c18cf87de, type: 2}
   animator: {fileID: 3590247847411169332}
   weaponRig: {fileID: 5460592696452288774}
+--- !u!114 &5988927920398266087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65556280210881102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63390c6eadd784502ad0b5cb02c6ad3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBAnimationDriver
+  animator: {fileID: 3590247847411169332}
+  brain: {fileID: 0}
 --- !u!1 &155179268527507310
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4444828250187098507}
   - component: {fileID: 2428029956833428231}
   - component: {fileID: 7439051020000644712}
+  - component: {fileID: 4829448165592238411}
   m_Layer: 0
   m_Name: C01_Akio
   m_TagString: Untagged
@@ -49,8 +50,8 @@ Animator:
   m_GameObject: {fileID: 11815375754467039}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 75916f735b2fe014e9dfa3b043e648d1, type: 3}
-  m_Controller: {fileID: 22100000, guid: c01a110bb00000000000000000000001, type: 2}
-  m_CullingMode: 1
+  m_Controller: {fileID: 9100000, guid: faa8de8b9a44645eca710bcd10722376, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -123,6 +124,20 @@ MonoBehaviour:
   overrideController: {fileID: 22100000, guid: c01a110bb00000000000000000000001, type: 2}
   animator: {fileID: 3623253081010618763}
   weaponRig: {fileID: 2428029956833428231}
+--- !u!114 &4829448165592238411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11815375754467039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63390c6eadd784502ad0b5cb02c6ad3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBAnimationDriver
+  animator: {fileID: 3623253081010618763}
+  brain: {fileID: 0}
 --- !u!1 &104068586201757542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,7 +1547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2919512828187710408}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.108178884, y: 0.015796186, z: -0.015622601, w: 0.99388313}
+  m_LocalRotation: {x: 0.10817889, y: 0.015796188, z: -0.015622602, w: 0.9938832}
   m_LocalPosition: {x: -2.6688213e-10, y: 0.0023267018, z: 0.0000000010131044}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3318,7 +3333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7171300034422097755}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5375816, y: 0.37668422, z: 0.5118106, w: 0.5542245}
+  m_LocalRotation: {x: -0.5375817, y: 0.37668425, z: 0.51181066, w: 0.55422455}
   m_LocalPosition: {x: -0.00023255024, y: 0.0011431099, z: 0.0000067389947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4017,7 +4032,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9048762623119154968}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0040245736, y: 0.006599577, z: -0.042501643, w: 0.9990665}
+  m_LocalRotation: {x: 0.004024574, y: 0.0065995776, z: -0.042501647, w: 0.99906653}
   m_LocalPosition: {x: -9.313228e-11, y: 0.00029157606, z: 0.0000000011548402}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0

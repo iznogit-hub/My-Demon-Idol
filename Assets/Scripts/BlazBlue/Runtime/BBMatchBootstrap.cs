@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using DemonIdol.Combat;
-using DemonIdol.Input;
 
 namespace DemonIdol.BlazBlue
 {
@@ -105,8 +104,6 @@ namespace DemonIdol.BlazBlue
                     continue;
                 }
 
-                var classicInput = fc.GetComponent<MobileFighterInput>();
-                if (classicInput != null) classicInput.enabled = false;
 
                 var sampler = fc.GetComponent<BBInputSampler>();
                 if (sampler == null) sampler = fc.gameObject.AddComponent<BBInputSampler>();
@@ -208,12 +205,10 @@ namespace DemonIdol.BlazBlue
                 {
                     BBComboReadout.Create(canvas.transform);
                 }
-
-                if (DemonIdol.BlazBlue.UI.BBTouchOverlay.ShouldShowOverlay() && canvas.GetComponentInChildren<DemonIdol.BlazBlue.UI.BBTouchOverlay>(true) == null)
-                {
-                    DemonIdol.BlazBlue.UI.BBTouchOverlay.Create(canvas.transform, p1Brain.sampler);
-                }
             }
+
+            // Guarantee BBTouchOverlay exists in BattleArena with dedicated sortingOrder = 50 overlay canvas
+            DemonIdol.BlazBlue.UI.BBTouchOverlay.EnsureInScene(p1Brain != null ? p1Brain.sampler : null);
         }
 
         static void EnsureDrive(BBFighterBrain brain, BBRosterArchetype.Info info)

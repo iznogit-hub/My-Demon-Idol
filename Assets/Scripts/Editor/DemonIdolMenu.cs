@@ -55,6 +55,12 @@ namespace DemonIdol.Editor
         // =========================================================================
         // ART & VISUALS / LOOKDEV
         // =========================================================================
+        [MenuItem("Demon Idol/LookDev/Migrate lilToon to URP Autodesk Interactive", priority = 18)]
+        public static void MigrateLilToonToURPAutodeskInteractive()
+        {
+            DemonIdol.Editor.LookDev.URPAutodeskInteractiveMigrator.MigrateAll();
+        }
+
         [MenuItem("Demon Idol/LookDev/Unify 12-Fighter Raimon Materials", priority = 19)]
         public static void Unify12FighterRaimonMaterials()
         {
@@ -65,6 +71,21 @@ namespace DemonIdol.Editor
         public static void Generate25FighterPortraits()
         {
             DemonIdolPortraitGenerator.GenerateAllPortraits();
+        }
+
+        // =========================================================================
+        // ANIMATION & HITBOXES
+        // =========================================================================
+        [MenuItem("Demon Idol/Animation/Build 12 Warrior Fighter Controllers", priority = 25)]
+        public static void Build12WarriorFighterControllers()
+        {
+            DemonIdol.Editor.Animation.WarriorAnimationOverhaulTool.Build12WarriorControllers();
+        }
+
+        [MenuItem("Demon Idol/Animation/Audit Hitbox vs Avatar Reach", priority = 26)]
+        public static void AuditHitboxVsAvatarReach()
+        {
+            DemonIdol.Editor.Animation.WarriorAnimationOverhaulTool.AuditHitboxVsAvatarReach();
         }
 
         // =========================================================================
@@ -233,19 +254,25 @@ namespace DemonIdol.Editor
         [MenuItem("Demon Idol/Build/Mac App", priority = 50)]
         public static void BuildMacApp()
         {
-            DemonIdolAndroidBuildPipeline.BuildMacOS();
+            MDIMobileBuildPipeline.BuildMacStandalone();
         }
 
         [MenuItem("Demon Idol/Build/iOS Xcode Project", priority = 51)]
         public static void BuildIosXcode()
         {
-            BBBuildPipeline.BuildIOS();
+            MDIMobileBuildPipeline.BuildIosProject();
         }
 
         [MenuItem("Demon Idol/Build/Android AAB", priority = 52)]
         public static void BuildAndroidAab()
         {
-            BBBuildPipeline.BuildAndroidAAB();
+            MDIMobileBuildPipeline.BuildAndroidAab();
+        }
+
+        [MenuItem("Demon Idol/Build/Android APK (Development)", priority = 53)]
+        public static void BuildAndroidApk()
+        {
+            MDIMobileBuildPipeline.BuildAndroidApk();
         }
     }
 }

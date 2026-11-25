@@ -5,7 +5,6 @@ using UnityEngine;
 using DemonIdol.UI;
 using DemonIdol.Audio;
 using DemonIdol.VFX;
-using DemonIdol.Input;
 using DemonIdol.Launch;
 
 namespace DemonIdol.Combat
@@ -62,8 +61,22 @@ namespace DemonIdol.Combat
         private bool _p2IsCpu = true;
         private bool _isTraining = false;
 
-        public FighterController Fighter1 => _fighter1;
-        public FighterController Fighter2 => _fighter2;
+        public FighterController Fighter1
+        {
+            get
+            {
+                if (_fighter1 == null) EnsureFighterReferences();
+                return _fighter1;
+            }
+        }
+        public FighterController Fighter2
+        {
+            get
+            {
+                if (_fighter2 == null) EnsureFighterReferences();
+                return _fighter2;
+            }
+        }
         public string ActiveP1Id => _activeP1Id;
         public string ActiveP2Id => _activeP2Id;
         public string ActiveStageId => _activeStageId;
@@ -171,7 +184,7 @@ namespace DemonIdol.Combat
                 foreach (var f in fighters)
                 {
                     // Ignore child fighters nested inside other fighters
-                    if (f.transform.parent != null && f.transform.parent.GetComponent<FighterController>() != null) continue;
+                    if (f.transform.parent != null && f.transform.parent.GetComponentInParent<FighterController>() != null) continue;
 
                     if (f.isPlayerControlled && _fighter1 == null) _fighter1 = f;
                     else if (!f.isPlayerControlled && _fighter2 == null) _fighter2 = f;
@@ -181,7 +194,7 @@ namespace DemonIdol.Combat
                 {
                     foreach (var f in fighters)
                     {
-                        if (f.transform.parent != null && f.transform.parent.GetComponent<FighterController>() != null) continue;
+                        if (f.transform.parent != null && f.transform.parent.GetComponentInParent<FighterController>() != null) continue;
                         _fighter1 = f;
                         break;
                     }
@@ -190,7 +203,7 @@ namespace DemonIdol.Combat
                 {
                     foreach (var f in fighters)
                     {
-                        if (f.transform.parent != null && f.transform.parent.GetComponent<FighterController>() != null) continue;
+                        if (f.transform.parent != null && f.transform.parent.GetComponentInParent<FighterController>() != null) continue;
                         if (f != _fighter1) { _fighter2 = f; break; }
                     }
                 }
@@ -258,10 +271,7 @@ namespace DemonIdol.Combat
             }
 
             // 6. Bind Touch Virtual Controls
-            if (TouchVirtualControls.Instance != null && _fighter1 != null)
-            {
-                TouchVirtualControls.Instance.BindFighter(_fighter1);
-            }
+
 
             // 7. Bind HUD
             if (BattleHUDController.Instance != null && _fighter1 != null && _fighter2 != null)
@@ -389,7 +399,6 @@ namespace DemonIdol.Combat
                 // Strip duplicate logic/physics components from existing model
                 foreach (var subFc in existingModel.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroyComponent(subFc);
                 foreach (var cc in existingModel.GetComponentsInChildren<CharacterController>(true)) SafeDestroyComponent(cc);
-                foreach (var mi in existingModel.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroyComponent(mi);
                 foreach (var pi in existingModel.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroyComponent(pi);
 
                 CalibrateModelScalingAndGrounding(existingModel.gameObject, fc, charDef);
@@ -445,7 +454,6 @@ namespace DemonIdol.Combat
                 // Destroy FighterController FIRST so RequireComponent constraint on CharacterController is released
                 foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroyComponent(subFc);
                 foreach (var cc in model.GetComponentsInChildren<CharacterController>(true)) SafeDestroyComponent(cc);
-                foreach (var mi in model.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroyComponent(mi);
                 foreach (var pi in model.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroyComponent(pi);
                 foreach (var hb in model.GetComponentsInChildren<Hitbox>(true)) SafeDestroy(hb.gameObject);
                 foreach (var hb in model.GetComponentsInChildren<Hurtbox>(true)) SafeDestroy(hb.gameObject);
@@ -649,6 +657,10 @@ namespace DemonIdol.Combat
                 {
                     scaleFactor = targetHeight / 1.57f;
                 }
+                else if (model.name.Contains("C02") || model.name.Contains("Aika"))
+                {
+                    scaleFactor = targetHeight / 1.35f;
+                }
                 model.transform.localScale = Vector3.one * scaleFactor;
 
                 if (fc.animator != null)
@@ -675,6 +687,18 @@ namespace DemonIdol.Combat
                     Vector3 lp = model.transform.localPosition;
                     lp.y -= footDelta;
                     lp.y += 0.025f; // Lift slightly to compensate for idle stance knee-bend drop
+                    if (model.name.Contains("C05") || model.name.Contains("Akane"))
+                    {
+                        lp.y -= 0.18f;
+                    }
+                    else if (model.name.Contains("SK03") || model.name.Contains("Vex"))
+                    {
+                        lp.y += 0.38f;
+                    }
+                    else if (model.name.Contains("EX02") || model.name.Contains("Granite"))
+                    {
+                        lp.y += fc.isPlayerControlled ? 0.27f : 0.12f;
+                    }
                     model.transform.localPosition = lp;
                     Debug.Log($"[CalibrateGrounding] model={model.name} bSize={b.size} scaleFactor={scaleFactor} lowestWorldY={lowestWorldY} fcPosY={fc.transform.position.y} footDelta={footDelta} newLp={model.transform.localPosition}");
                 }
@@ -702,12 +726,8 @@ namespace DemonIdol.Combat
             bool isHeavy = attack != null && (attack.attackType == AttackType.Heavy || attack.damage >= 80f);
             bool isCounterHit = result == HitResult.CounterHit;
 
-            // Route to HitEffectCoordinator
-            if (HitEffectCoordinator.Instance != null)
-            {
-                float damage = attack != null ? attack.damage : 50f;
-                HitEffectCoordinator.Instance.TriggerHitEffect(hitPoint, damage, isCounterHit, isHeavy);
-            }
+            // Route to BBContactPresentation
+            DemonIdol.BlazBlue.BBContactPresentation.OnCleanHit(hitPoint, null, isCounterHit, isHeavy);
 
             // Route to CombatAudioDirector
             if (CombatAudioDirector.Instance != null)
@@ -781,7 +801,6 @@ namespace DemonIdol.Combat
 
             if (isPlayer)
             {
-                go.AddComponent<MobileFighterInput>();
             }
 
             // Visual model
@@ -817,7 +836,6 @@ namespace DemonIdol.Combat
                 // Strip duplicate logic/physics components from spawned model
                 foreach (var subFc in model.GetComponentsInChildren<FighterController>(true)) if (subFc != fc) SafeDestroyComponent(subFc);
                 foreach (var subCc in model.GetComponentsInChildren<CharacterController>(true)) SafeDestroyComponent(subCc);
-                foreach (var mi in model.GetComponentsInChildren<MobileFighterInput>(true)) SafeDestroyComponent(mi);
                 foreach (var pi in model.GetComponentsInChildren<UnityEngine.InputSystem.PlayerInput>(true)) SafeDestroyComponent(pi);
                 // Ensure all renderers are enabled and on the fighter layer
                 foreach (var r in model.GetComponentsInChildren<Renderer>(true))

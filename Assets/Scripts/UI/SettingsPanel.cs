@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using DemonIdol.Combat;
-using DemonIdol.Input;
+using DemonIdol.BlazBlue.UI;
 using DemonIdol.Launch;
 
 namespace DemonIdol.UI
@@ -124,6 +124,7 @@ namespace DemonIdol.UI
         [SerializeField] private Slider _touchOpacitySlider;
         [SerializeField] private Slider _touchScaleSlider;
         [SerializeField] private Toggle _leftHandedToggle;
+        [SerializeField] private Toggle _showTouchControlsToggle;
 
         [Header("Display & Graphics")]
         [SerializeField] private Toggle _highFpsToggle;
@@ -235,9 +236,9 @@ namespace DemonIdol.UI
             ApplyAudioSettings();
             ApplyQualityTier();
 
-            if (TouchVirtualControls.Instance != null)
+            if (BBTouchOverlay.Instance != null)
             {
-                TouchVirtualControls.Instance.ApplySettings(_current.touchControlsOpacity, _current.touchControlsScale, _current.leftHandedMode);
+                BBTouchOverlay.Instance.ApplySettings(_current.touchControlsOpacity, _current.touchControlsScale, _current.leftHandedMode);
             }
 
             SyncUIFromData();
@@ -386,7 +387,7 @@ namespace DemonIdol.UI
                 {
                     if (_isSyncingUI) return;
                     _current.touchControlsOpacity = val;
-                    TouchVirtualControls.Instance?.ApplySettings(_current.touchControlsOpacity, _current.touchControlsScale, _current.leftHandedMode);
+                    BBTouchOverlay.Instance?.ApplySettings(_current.touchControlsOpacity, _current.touchControlsScale, _current.leftHandedMode);
                     SaveSettings();
                     ShowToast($"TOUCH OPACITY: {Mathf.RoundToInt(val * 100f)}%");
                 });
@@ -400,7 +401,7 @@ namespace DemonIdol.UI
                 {
                     if (_isSyncingUI) return;
                     _current.touchControlsScale = val;
-                    TouchVirtualControls.Instance?.ApplySettings(_current.touchControlsOpacity, _current.touchControlsScale, _current.leftHandedMode);
+                    BBTouchOverlay.Instance?.ApplySettings(_current.touchControlsOpacity, _current.touchControlsScale, _current.leftHandedMode);
                     SaveSettings();
                     ShowToast($"TOUCH SCALE: {Mathf.RoundToInt(val * 100f)}%");
                 });
@@ -414,9 +415,21 @@ namespace DemonIdol.UI
                 {
                     if (_isSyncingUI) return;
                     _current.leftHandedMode = val;
-                    TouchVirtualControls.Instance?.ApplySettings(_current.touchControlsOpacity, _current.touchControlsScale, _current.leftHandedMode);
+                    BBTouchOverlay.Instance?.ApplySettings(_current.touchControlsOpacity, _current.touchControlsScale, _current.leftHandedMode);
                     SaveSettings();
                     ShowToast(val ? "LEFT-HANDED CONTROLS ENABLED" : "STANDARD CONTROLS ENABLED");
+                });
+            }
+
+            if (_showTouchControlsToggle != null)
+            {
+                _showTouchControlsToggle.onValueChanged.RemoveAllListeners();
+                _showTouchControlsToggle.isOn = BBTouchOverlay.IsTouchOverlayVisible();
+                _showTouchControlsToggle.onValueChanged.AddListener(val =>
+                {
+                    if (_isSyncingUI) return;
+                    BBTouchOverlay.SetTouchOverlayVisible(val);
+                    ShowToast(val ? "TOUCH CONTROLS: SHOWN" : "TOUCH CONTROLS: HIDDEN");
                 });
             }
 
@@ -585,6 +598,7 @@ namespace DemonIdol.UI
             if (_touchOpacitySlider != null) _touchOpacitySlider.value = _current.touchControlsOpacity;
             if (_touchScaleSlider != null) _touchScaleSlider.value = _current.touchControlsScale;
             if (_leftHandedToggle != null) _leftHandedToggle.isOn = _current.leftHandedMode;
+            if (_showTouchControlsToggle != null) _showTouchControlsToggle.isOn = BBTouchOverlay.IsTouchOverlayVisible();
 
             if (_highFpsToggle != null) _highFpsToggle.isOn = _current.highFrameRate;
             if (_damageNumbersToggle != null) _damageNumbersToggle.isOn = _current.showDamageNumbers;
@@ -629,6 +643,7 @@ namespace DemonIdol.UI
             if (_touchOpacitySlider == null) _touchOpacitySlider = FindComponentRecursive<Slider>("Slider_TouchOpacity");
             if (_touchScaleSlider == null) _touchScaleSlider = FindComponentRecursive<Slider>("Slider_TouchScale");
             if (_leftHandedToggle == null) _leftHandedToggle = FindComponentRecursive<Toggle>("Toggle_LeftHanded");
+            if (_showTouchControlsToggle == null) _showTouchControlsToggle = FindComponentRecursive<Toggle>("Toggle_ShowTouchControls", "Toggle_TouchControls");
 
             if (_highFpsToggle == null) _highFpsToggle = FindComponentRecursive<Toggle>("Toggle_HighFPS", "Toggle_120FPS");
             if (_damageNumbersToggle == null) _damageNumbersToggle = FindComponentRecursive<Toggle>("Toggle_DamageNumbers");
@@ -714,6 +729,7 @@ namespace DemonIdol.UI
             _touchOpacitySlider = CreateSliderControl(boxObj.transform, "Slider_TouchOpacity", "Touch Opacity", new Vector2(colLeftX, startY - stepY * 5f), font, 0.2f, 1.0f);
             _touchScaleSlider = CreateSliderControl(boxObj.transform, "Slider_TouchScale", "Touch Scale", new Vector2(colLeftX, startY - stepY * 6f), font, 0.7f, 1.4f);
             _leftHandedToggle = CreateToggleControl(boxObj.transform, "Toggle_LeftHanded", "Left-Handed Touch Layout", new Vector2(colLeftX, startY - stepY * 7f), font);
+            _showTouchControlsToggle = CreateToggleControl(boxObj.transform, "Toggle_ShowTouchControls", "Show Touch Controls", new Vector2(colLeftX, startY - stepY * 8f), font);
 
             // Right Column: Display & Accessibility (+230 X)
             float colRightX = 230f;

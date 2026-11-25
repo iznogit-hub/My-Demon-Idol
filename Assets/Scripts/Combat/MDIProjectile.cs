@@ -130,9 +130,9 @@ namespace DemonIdol.Combat
                 GameObject vfx = Instantiate(impactVfxPrefab, hitPos, Quaternion.identity);
                 Destroy(vfx, 1.5f);
             }
-            else if (HitEffectCoordinator.Instance != null)
+            else
             {
-                HitEffectCoordinator.Instance.SpawnHitBurst(hitPos, false, false);
+                DemonIdol.BlazBlue.BBContactPresentation.OnCleanHit(hitPos, null, false, false);
             }
 
             Release();

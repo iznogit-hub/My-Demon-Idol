@@ -191,9 +191,6 @@ namespace DemonIdol.Combat
         private InputBuffer _inputBuf;
         public InputBuffer InputBuf => _inputBuf ??= new InputBuffer(leniencyTicks: 5);
 
-        private CommandParser _cmdParser;
-        public CommandParser CmdParser => _cmdParser ??= new CommandParser();
-
         // Legacy reflection hook compatibility
         private CharacterController _charController;
 

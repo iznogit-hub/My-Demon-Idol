@@ -396,8 +396,6 @@ namespace DemonIdol.Combat
             fc.SetMoveInput(Vector2.zero);
             if (fc.InputBuf != null) fc.InputBuf.Clear();
 
-            var input = fc.GetComponent<MobileFighterInput>();
-            if (input != null) input.enabled = enabled;
 
             var bbSampler = fc.GetComponent<DemonIdol.BlazBlue.BBInputSampler>();
             if (bbSampler != null)

@@ -239,7 +239,6 @@ PrefabInstance:
       addedObject: {fileID: 4415163955013140323}
     - targetCorrespondingSourceObject: {fileID: 5035836946458307161, guid: fbb4058b461a2e342aa5cf67c191af96, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6891476533843867617}
     - targetCorrespondingSourceObject: {fileID: 5035836946458307161, guid: fbb4058b461a2e342aa5cf67c191af96, type: 3}
       insertIndex: -1
       addedObject: {fileID: 784726906113888110}
@@ -321,23 +320,6 @@ MonoBehaviour:
   sidestepDistanceZ: 0.85
   sidestepDurationTicks: 14
   projectileMeter: 1
---- !u!114 &6891476533843867617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522175161153133161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af1eefb6bddf47be860557d2fa7f51a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemonIdol.Combat.MobileFighterInput
-  _fighter: {fileID: 0}
-  joystickDeadZone: 0.2
-  joystickExitThreshold: 0.15
-  _rawVirtualJoystick: {x: 0, y: 0}
-  isGestureModeEnabled: 0
 --- !u!114 &784726906113888110
 MonoBehaviour:
   m_ObjectHideFlags: 0

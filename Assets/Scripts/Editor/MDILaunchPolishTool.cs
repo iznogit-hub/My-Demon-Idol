@@ -451,11 +451,6 @@ namespace DemonIdol.Editor
                     UnityEngine.Object.DestroyImmediate(cc, true);
                     modified = true;
                 }
-                foreach (var mi in prefab.GetComponentsInChildren<DemonIdol.Combat.MobileFighterInput>(true))
-                {
-                    UnityEngine.Object.DestroyImmediate(mi, true);
-                    modified = true;
-                }
 
                 if (modified)
                 {

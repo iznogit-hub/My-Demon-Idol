@@ -1018,6 +1018,7 @@ GameObject:
   - component: {fileID: 7029372895139870751}
   - component: {fileID: 2766913895643030913}
   - component: {fileID: 2343937405242717400}
+  - component: {fileID: 4991826573589847244}
   m_Layer: 0
   m_Name: EX04_OfficerK
   m_TagString: Untagged
@@ -1065,7 +1066,7 @@ Animator:
   m_GameObject: {fileID: 2002850534079977366}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ec731e0d4d082a44a94908cf0afe88d5, type: 3}
-  m_Controller: {fileID: 22100000, guid: 276371d5d64ee45fbb45e98d1f6ad3d0, type: 2}
+  m_Controller: {fileID: 9100000, guid: fb4a2e2493f5843c184a7a0db6389fa0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1139,6 +1140,20 @@ MonoBehaviour:
   overrideController: {fileID: 22100000, guid: 276371d5d64ee45fbb45e98d1f6ad3d0, type: 2}
   animator: {fileID: 1373218196794603068}
   weaponRig: {fileID: 2766913895643030913}
+--- !u!114 &4991826573589847244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002850534079977366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63390c6eadd784502ad0b5cb02c6ad3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBAnimationDriver
+  animator: {fileID: 1373218196794603068}
+  brain: {fileID: 0}
 --- !u!1 &2046130351992608048
 GameObject:
   m_ObjectHideFlags: 0

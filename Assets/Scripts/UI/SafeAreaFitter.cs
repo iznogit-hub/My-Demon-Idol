@@ -56,8 +56,22 @@ namespace DemonIdol.UI
             anchorMax.x = Mathf.Clamp01((anchorMax.x - _extraHorizontalPadding) / Screen.width);
             anchorMax.y = Mathf.Clamp01((anchorMax.y - _extraVerticalPadding) / Screen.height);
 
+            // Guard against collapse on Free Aspect, 16:9, or zero-margin displays
+            if (anchorMax.x <= anchorMin.x)
+            {
+                anchorMin.x = 0f;
+                anchorMax.x = 1f;
+            }
+            if (anchorMax.y <= anchorMin.y)
+            {
+                anchorMin.y = 0f;
+                anchorMax.y = 1f;
+            }
+
             _rectTransform.anchorMin = anchorMin;
             _rectTransform.anchorMax = anchorMax;
+            _rectTransform.offsetMin = Vector2.zero;
+            _rectTransform.offsetMax = Vector2.zero;
         }
     }
 }

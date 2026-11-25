@@ -2013,6 +2013,7 @@ GameObject:
   - component: {fileID: 5061480043249247778}
   - component: {fileID: 477758949311330429}
   - component: {fileID: 4398941483561684965}
+  - component: {fileID: 4380774426540944100}
   m_Layer: 0
   m_Name: C09_PicoChan
   m_TagString: Untagged
@@ -2060,7 +2061,7 @@ Animator:
   m_GameObject: {fileID: 2350652681907635850}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 10038fdbf93c4dd43af9ce774d03a956, type: 3}
-  m_Controller: {fileID: 22100000, guid: cf4a6419c44394bfaa4d96a64710f094, type: 2}
+  m_Controller: {fileID: 9100000, guid: e1ce6ddff33e8492fac76a426fbc76c4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2122,6 +2123,20 @@ MonoBehaviour:
   overrideController: {fileID: 22100000, guid: cf4a6419c44394bfaa4d96a64710f094, type: 2}
   animator: {fileID: 5061480043249247778}
   weaponRig: {fileID: 477758949311330429}
+--- !u!114 &4380774426540944100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2350652681907635850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63390c6eadd784502ad0b5cb02c6ad3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBAnimationDriver
+  animator: {fileID: 5061480043249247778}
+  brain: {fileID: 0}
 --- !u!1 &2360930407998502323
 GameObject:
   m_ObjectHideFlags: 0

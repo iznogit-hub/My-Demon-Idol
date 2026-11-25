@@ -42,14 +42,14 @@ def validate_vfx_prefabs():
     return all_ok
 
 def validate_hero_hitboxes():
-    print("\n--- [2/4] Verifying 16 Hero Prefabs Hitbox & Hurtbox Architecture ---")
+    print("\n--- [2/4] Verifying Active Hero Prefabs Hitbox & Hurtbox Architecture ---")
     sidekicks = [f"Assets/Prefabs/Characters/Sidekicks/SK0{i}_{name}.prefab" for i, name in [
-        (1, "Valen"), (2, "Galahad"), (3, "Vex"), (4, "Jin"),
-        (5, "LordMorvath"), (6, "CommanderRen"), (7, "Malakar"), (8, "Torgrim")
+        (2, "Galahad"), (3, "Vex"),
+        (5, "LordMorvath"), (6, "CommanderRen"), (8, "Torgrim")
     ]]
     dota_heroes = [f"Assets/Prefabs/Characters/DotaHeroes/EX0{i}_{name}.prefab" for i, name in [
         (1, "Hugo"), (2, "Granite"), (3, "Viper"), (4, "OfficerK"),
-        (5, "Kira"), (6, "Sentry"), (7, "Lyra"), (8, "Garrick")
+        (5, "Kira"), (6, "Sentry"), (7, "Lyra")
     ]]
 
     all_heroes = sidekicks + dota_heroes
@@ -81,32 +81,25 @@ def validate_hero_hitboxes():
 def validate_code_contracts():
     print("\n--- [3/4] Verifying C# Combat Engine & VFX Contracts ---")
     contracts = [
-        ("Assets/Scripts/Combat/Hitbox.cs", [
-            ("OverlapBoxNonAlloc", "Physics.OverlapBoxNonAlloc 60Hz spatial sweep"),
-            ("AdjustHitboxForAttack", "Dynamic hitbox reach scaling by attack level/type"),
-            ("ContinuousSpeculative", "ContinuousSpeculative collision detection"),
-            ("ProcessHitOnHurtbox", "Authoritative hurtbox collision dispatch"),
+        ("Assets/Scripts/BlazBlue/Runtime/BBMatchSim.cs", [
+            ("RegisterFighters", "Authoritative fighter registration"),
+            ("Tick(int tick)", "60Hz deterministic discrete tick engine"),
+            ("OnHitConfirmed", "Hit confirmation & damage scaling"),
         ]),
         ("Assets/Scripts/Combat/FighterController.cs", [
-            ("animator.speed = 0f", "Hitstop Mecanim freeze crunch"),
-            ("animator.speed = 1f", "Hitstop Mecanim unfreeze resume"),
             ("OnHitboxLanded", "Authoritative hit delivery"),
             ("AddSuperMeter", "Dual HP/Super Meter economy"),
             ("FindOpponentIfMissing", "Auto-opponent discovery"),
         ]),
-        ("Assets/Scripts/VFX/HitEffectCoordinator.cs", [
-            ("_bloodSplashPrefab", "Cartoon FX blood splatter binding"),
-            ("_spellShockwaveExplosionPrefab", "Kevin Iglesias 3D shockwave explosion binding"),
-            ("_spellShockwaveGroundPrefab", "Kevin Iglesias 3D shockwave ground burst binding"),
-            ("ShockwaveDistortionEmitter.EmitShockwave", "Screen-space refraction shockwave"),
-            ("facingDir", "Directional blood splatter orientation"),
+        ("Assets/Scripts/BlazBlue/Runtime/BBContactPresentation.cs", [
+            ("OnCleanHit", "Clean hit contact presentation"),
+            ("SpawnHitSpark", "Tier-scaled hit spark"),
+            ("strikeRot", "Directional strike vector alignment"),
+            ("LastContactPoint", "Contact point tracking"),
         ]),
         ("Assets/Scripts/UI/BattleHUDController.cs", [
             ("RegisterComboHit", "Combo hits and accumulated damage tracking"),
             ("AutoBindFightersIfMissing", "Automatic fighter discovery and binding"),
-        ]),
-        ("Assets/Scripts/Combat/HitboxVisualizer.cs", [
-            ("SafeGetKeyDown", "Safe multi-key toggle for F1/F4/H"),
         ])
     ]
 

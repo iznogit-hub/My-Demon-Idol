@@ -225,7 +225,7 @@ namespace DemonIdol.BlazBlue.Tests
         [Test]
         public void Test_MobileCertification_All9Characters_Baseline()
         {
-            bool pass = BBBuildPipeline.VerifyMobileCertificationBaseline();
+            bool pass = MDIMobileBuildPipeline.VerifyMobileCertificationBaseline();
             Assert.IsTrue(pass, "Mobile certification baseline must verify all 9 roster profiles.");
         }
     }

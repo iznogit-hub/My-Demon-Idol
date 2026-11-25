@@ -224,7 +224,7 @@ namespace DemonIdol.Editor.LookDev
         {
             // If the material has our AnimeToon shader, configure it cleanly:
             bool isAnimeToon = mat.shader != null && mat.shader.name == "DemonIdol/MDI/AnimeToon";
-            if (!isAnimeToon && animeToonShader != null && mat.shader != null && !mat.shader.name.Contains("lilToon"))
+            if (!isAnimeToon && animeToonShader != null && mat.shader != null)
             {
                 // Assign AnimeToon for standardized cel-shading if compatible
                 mat.shader = animeToonShader;

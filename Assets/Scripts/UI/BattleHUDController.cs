@@ -1546,6 +1546,20 @@ namespace DemonIdol.UI
                 if (_btnPauseCharSelect != null) { _btnPauseCharSelect.onClick.RemoveAllListeners(); _btnPauseCharSelect.onClick.AddListener(OnClickCharacterSelect); }
                 if (_btnPauseStageSelect != null) { _btnPauseStageSelect.onClick.RemoveAllListeners(); _btnPauseStageSelect.onClick.AddListener(OnClickStageSelect); }
                 if (_btnPauseMenu != null) { _btnPauseMenu.onClick.RemoveAllListeners(); _btnPauseMenu.onClick.AddListener(OnClickReturnToMenu); }
+
+                Button btnTouch = FindButtonRecursive(_pauseModal, "Btn_PauseToggleTouch");
+                if (btnTouch != null)
+                {
+                    Text label = btnTouch.GetComponentInChildren<Text>();
+                    if (label != null) label.text = DemonIdol.BlazBlue.UI.BBTouchOverlay.IsTouchOverlayVisible() ? "TOUCH CONTROLS: ON" : "TOUCH CONTROLS: OFF";
+                    btnTouch.onClick.RemoveAllListeners();
+                    btnTouch.onClick.AddListener(() =>
+                    {
+                        bool next = !DemonIdol.BlazBlue.UI.BBTouchOverlay.IsTouchOverlayVisible();
+                        DemonIdol.BlazBlue.UI.BBTouchOverlay.SetTouchOverlayVisible(next);
+                        if (label != null) label.text = next ? "TOUCH CONTROLS: ON" : "TOUCH CONTROLS: OFF";
+                    });
+                }
             }
         }
 
@@ -1582,7 +1596,7 @@ namespace DemonIdol.UI
             GameObject box = new GameObject("PauseBox", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
             box.transform.SetParent(modal.transform, false);
             RectTransform boxRt = box.GetComponent<RectTransform>();
-            boxRt.sizeDelta = new Vector2(460f, 480f);
+            boxRt.sizeDelta = new Vector2(460f, 540f);
             boxRt.anchoredPosition = Vector2.zero;
             Image boxImg = box.GetComponent<Image>();
             if (atlas != null) atlas.StylePanel(boxImg, false);
@@ -1592,7 +1606,7 @@ namespace DemonIdol.UI
             GameObject txtGo = new GameObject("Text_PauseTitle", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
             txtGo.transform.SetParent(box.transform, false);
             RectTransform txtRt = txtGo.GetComponent<RectTransform>();
-            txtRt.anchoredPosition = new Vector2(0f, 180f);
+            txtRt.anchoredPosition = new Vector2(0f, 210f);
             txtRt.sizeDelta = new Vector2(400f, 40f);
             Text pTitle = txtGo.GetComponent<Text>();
             pTitle.font = font;
@@ -1603,15 +1617,15 @@ namespace DemonIdol.UI
             pTitle.color = SumiStyleTokens.BrushGold;
 
             // Buttons — Bloodlines styled
-            _btnPauseResume = CreateModalButton(box.transform, "Btn_PauseResume", "RESUME", new Vector2(0f, 115f), SumiStyleTokens.ToriiRed, font);
+            _btnPauseResume = CreateModalButton(box.transform, "Btn_PauseResume", "RESUME", new Vector2(0f, 150f), SumiStyleTokens.ToriiRed, font);
             if (atlas != null) atlas.StyleButton(_btnPauseResume, 1, true);
             _btnPauseResume.onClick.AddListener(ToggleInGamePause);
 
-            _btnPauseMovelist = CreateModalButton(box.transform, "Btn_PauseMovelist", "COMMAND LIST", new Vector2(0f, 60f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
+            _btnPauseMovelist = CreateModalButton(box.transform, "Btn_PauseMovelist", "COMMAND LIST", new Vector2(0f, 95f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
             if (atlas != null) atlas.StyleButton(_btnPauseMovelist, 2, false);
             _btnPauseMovelist.onClick.AddListener(OnClickPauseMovelist);
 
-            _btnPauseRestart = CreateModalButton(box.transform, "Btn_PauseRestart", "RESTART MATCH", new Vector2(0f, 5f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
+            _btnPauseRestart = CreateModalButton(box.transform, "Btn_PauseRestart", "RESTART MATCH", new Vector2(0f, 40f), new Color(0.18f, 0.22f, 0.30f, 1f), font);
             if (atlas != null) atlas.StyleButton(_btnPauseRestart, 2, false);
             _btnPauseRestart.onClick.AddListener(() =>
             {
@@ -1619,15 +1633,25 @@ namespace DemonIdol.UI
                 OnClickRematch();
             });
 
-            _btnPauseCharSelect = CreateModalButton(box.transform, "Btn_PauseCharSelect", "CHARACTER SELECT", new Vector2(0f, -50f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
+            Button btnPauseToggleTouch = CreateModalButton(box.transform, "Btn_PauseToggleTouch", DemonIdol.BlazBlue.UI.BBTouchOverlay.IsTouchOverlayVisible() ? "TOUCH CONTROLS: ON" : "TOUCH CONTROLS: OFF", new Vector2(0f, -15f), new Color(0.20f, 0.25f, 0.35f, 1f), font);
+            if (atlas != null) atlas.StyleButton(btnPauseToggleTouch, 2, false);
+            btnPauseToggleTouch.onClick.AddListener(() =>
+            {
+                bool next = !DemonIdol.BlazBlue.UI.BBTouchOverlay.IsTouchOverlayVisible();
+                DemonIdol.BlazBlue.UI.BBTouchOverlay.SetTouchOverlayVisible(next);
+                Text label = btnPauseToggleTouch.GetComponentInChildren<Text>();
+                if (label != null) label.text = next ? "TOUCH CONTROLS: ON" : "TOUCH CONTROLS: OFF";
+            });
+
+            _btnPauseCharSelect = CreateModalButton(box.transform, "Btn_PauseCharSelect", "CHARACTER SELECT", new Vector2(0f, -70f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
             if (atlas != null) atlas.StyleButton(_btnPauseCharSelect, 2, false);
             _btnPauseCharSelect.onClick.AddListener(OnClickCharacterSelect);
 
-            _btnPauseStageSelect = CreateModalButton(box.transform, "Btn_PauseStageSelect", "STAGE SELECT", new Vector2(0f, -105f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
+            _btnPauseStageSelect = CreateModalButton(box.transform, "Btn_PauseStageSelect", "STAGE SELECT", new Vector2(0f, -125f), new Color(0.14f, 0.18f, 0.24f, 1f), font);
             if (atlas != null) atlas.StyleButton(_btnPauseStageSelect, 2, false);
             _btnPauseStageSelect.onClick.AddListener(OnClickStageSelect);
 
-            _btnPauseMenu = CreateModalButton(box.transform, "Btn_PauseMenu", "RETURN TO MENU", new Vector2(0f, -160f), SumiStyleTokens.CarbonInkWash, font);
+            _btnPauseMenu = CreateModalButton(box.transform, "Btn_PauseMenu", "RETURN TO MENU", new Vector2(0f, -180f), SumiStyleTokens.CarbonInkWash, font);
             if (atlas != null) atlas.StyleButton(_btnPauseMenu, 3, false);
             _btnPauseMenu.onClick.AddListener(OnClickReturnToMenu);
 

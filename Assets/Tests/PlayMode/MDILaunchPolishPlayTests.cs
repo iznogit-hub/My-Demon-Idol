@@ -36,6 +36,8 @@ namespace DemonIdol.Tests.PlayMode
         {
             base.Setup();
             _keyboard = Keyboard.current ?? InputSystem.AddDevice<Keyboard>();
+            if (Mouse.current == null) InputSystem.AddDevice<Mouse>();
+            if (Touchscreen.current == null) InputSystem.AddDevice<Touchscreen>();
             _heldKeys.Clear();
             _driving = false;
         }
@@ -154,7 +156,8 @@ namespace DemonIdol.Tests.PlayMode
                 LaunchServices.Session.BeginMatch(p1Id, p2Id, "ST07");
 
                 var loadOp = SceneManager.LoadSceneAsync("BattleArena", LoadSceneMode.Single);
-                while (!loadOp.isDone) yield return null;
+                int loadTimeout = 300;
+                while (!loadOp.isDone && loadTimeout-- > 0) yield return null;
                 yield return null;
                 yield return null;
 
@@ -165,6 +168,11 @@ namespace DemonIdol.Tests.PlayMode
                 var p2Fc = combatDirector.Fighter2;
                 Assert.IsNotNull(p1Fc, $"Fighter1 must be spawned for {p1Id}");
                 Assert.IsNotNull(p2Fc, $"Fighter2 must be spawned for {p2Id}");
+
+                if (p1Fc.GetComponent<BBFighterBrain>() == null || p2Fc.GetComponent<BBFighterBrain>() == null)
+                {
+                    DemonIdol.BlazBlue.BBMatchBootstrap.EnsureMatch(true);
+                }
 
                 var p1Brain = p1Fc.GetComponent<BBFighterBrain>();
                 var p2Brain = p2Fc.GetComponent<BBFighterBrain>();
@@ -177,6 +185,16 @@ namespace DemonIdol.Tests.PlayMode
 
                 // Let animation and grounding settle for 10 frames
                 for (int f = 0; f < 10; f++) yield return null;
+
+                p1Fc = combatDirector.Fighter1;
+                p2Fc = combatDirector.Fighter2;
+                Assert.IsNotNull(p1Fc, $"Fighter1 must be valid after settle for {p1Id}");
+                Assert.IsNotNull(p2Fc, $"Fighter2 must be valid after settle for {p2Id}");
+
+                p1Brain = p1Fc.GetComponent<BBFighterBrain>();
+                p2Brain = p2Fc.GetComponent<BBFighterBrain>();
+                Assert.IsNotNull(p1Brain, $"BBFighterBrain must exist on P1 ({p1Id})");
+                Assert.IsNotNull(p2Brain, $"BBFighterBrain must exist on P2 ({p2Id})");
 
                 // 1. Measure Bounds & Height
                 var p1CharDef = CharacterRegistry.GetCharacterById(p1Id);
@@ -339,16 +357,32 @@ namespace DemonIdol.Tests.PlayMode
                 LaunchServices.Session.BeginMatch(p1Id, p2Id, "ST07");
 
                 var loadOp = SceneManager.LoadSceneAsync("BattleArena", LoadSceneMode.Single);
-                while (!loadOp.isDone) yield return null;
-                yield return null;
-                yield return null;
+                int loadTimeout = 300;
+                while (!loadOp.isDone && loadTimeout-- > 0) yield return null;
+
+                // Let HomegrownCombatDirector and BBMatchBootstrap run their Start()
+                for (int s = 0; s < 10; s++) yield return null;
 
                 var combatDirector = HomegrownCombatDirector.Instance;
                 Assert.IsNotNull(combatDirector);
                 var p1Fc = combatDirector.Fighter1;
                 var p2Fc = combatDirector.Fighter2;
-                var p1Brain = p1Fc.GetComponent<BBFighterBrain>();
-                var p2Brain = p2Fc.GetComponent<BBFighterBrain>();
+
+                var sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                if (sim == null || sim.p1Brain == null || sim.p2Brain == null)
+                {
+                    DemonIdol.BlazBlue.BBMatchBootstrap.EnsureMatch(false);
+                    sim = DemonIdol.BlazBlue.BBMatchSim.Instance;
+                }
+
+                var p1Brain = (sim != null && sim.p1Brain != null) ? sim.p1Brain : p1Fc.GetComponent<BBFighterBrain>();
+                var p2Brain = (sim != null && sim.p2Brain != null) ? sim.p2Brain : p2Fc.GetComponent<BBFighterBrain>();
+                Assert.IsNotNull(p1Brain, "p1Brain must exist");
+                Assert.IsNotNull(p2Brain, "p2Brain must exist");
+
+                // Ensure p1Fc and p2Fc match the brains
+                if (p1Brain.fighter != null) p1Fc = p1Brain.fighter;
+                if (p2Brain.fighter != null) p2Fc = p2Brain.fighter;
 
                 // Skip intro countdown so fighters can act immediately
                 if (MatchRoundReferee.Instance != null)
@@ -367,8 +401,8 @@ namespace DemonIdol.Tests.PlayMode
                 cpu.enabledAI = true;
                 cpu.ResetAI(1000 + match);
 
-                // Give CPU some heat to enable super usage
-                p2Brain.heatMeter = 100f;
+                // Ensure CPU starts at 0 heat so special moves (236A) execute before super confirms
+                p2Brain.heatMeter = 0f;
 
                 int special236ACount = 0;
                 int superCount = 0;
@@ -376,6 +410,33 @@ namespace DemonIdol.Tests.PlayMode
                 int minTicksBetweenAttacks = 999;
                 int lastAttackStartTick = -999;
                 int prevAttackTick = 0;
+                int currentSimTick = 0;
+
+                System.Action<DemonIdol.BlazBlue.BBFighterBrain, DemonIdol.BlazBlue.BBAttackData> onAnyAttack = (brain, atk) =>
+                {
+                    if (brain == null || atk == null) return;
+                    bool isP2 = (brain.sampler != null && brain.sampler.playerIndex == 1) ||
+                                (brain == p2Brain) ||
+                                (p2Fc != null && brain.gameObject == p2Fc.gameObject);
+                    if (!isP2) return;
+
+                    if (lastAttackStartTick > 0 && currentSimTick > lastAttackStartTick)
+                    {
+                        int gap = currentSimTick - lastAttackStartTick;
+                        if (gap < minTicksBetweenAttacks) minTicksBetweenAttacks = gap;
+                    }
+                    lastAttackStartTick = currentSimTick;
+
+                    Debug.Log($"[Gate2_Attack_Event] Match {match} tick {currentSimTick} CPU moveId={atk.moveId}");
+                    if (atk.moveId == "236A")
+                    {
+                        special236ACount++;
+                        brain.heatMeter = 100f;
+                        if (p2Brain != null) p2Brain.heatMeter = 100f;
+                    }
+                    if (atk.moveId == "236236C") superCount++;
+                };
+                DemonIdol.BlazBlue.BBFighterBrain.OnAnyAttackStarted += onAnyAttack;
 
                 // Deterministically step 450 ticks (60Hz simulation)
                 if (CombatTickEngine.Instance != null)
@@ -385,35 +446,23 @@ namespace DemonIdol.Tests.PlayMode
 
                 for (int t = 0; t < 450; t++)
                 {
+                    currentSimTick = t;
                     if (CombatTickEngine.Instance != null)
                     {
                         CombatTickEngine.Instance.AdvanceTicksManual(1);
                     }
                     yield return null;
 
+                    if (DemonIdol.BlazBlue.BBMatchSim.Instance != null && DemonIdol.BlazBlue.BBMatchSim.Instance.p2Brain != null)
+                    {
+                        p2Brain = DemonIdol.BlazBlue.BBMatchSim.Instance.p2Brain;
+                    }
+
                     // Ensure CPU maintains heat for super after 236A
-                    if (special236ACount >= 1 && superCount == 0)
+                    if (special236ACount >= 1 && superCount == 0 && p2Brain != null)
                     {
                         p2Brain.heatMeter = 100f;
                     }
-
-                    // Track CPU attacks
-                    if (p2Brain.currentAttack != null)
-                    {
-                        if (p2Brain.attackTick == 1 && prevAttackTick != 1)
-                        {
-                            if (lastAttackStartTick > 0)
-                            {
-                                int gap = t - lastAttackStartTick;
-                                if (gap < minTicksBetweenAttacks) minTicksBetweenAttacks = gap;
-                            }
-                            lastAttackStartTick = t;
-
-                            if (p2Brain.currentAttack.moveId == "236A") special236ACount++;
-                            if (p2Brain.currentAttack.moveId == "236236C") superCount++;
-                        }
-                    }
-                    prevAttackTick = (p2Brain.currentAttack != null) ? p2Brain.attackTick : 0;
 
                     // Test crouching defense: occasionally have P1 throw a low poke (2A)
                     if (t % 120 == 60)
@@ -426,7 +475,7 @@ namespace DemonIdol.Tests.PlayMode
                     }
 
                     // If CPU is in blockstun against low, verify crouching state
-                    if (p2Brain.bbState == BBState.Blockstun || p2Brain.bbState == BBState.BarrierBlockstun)
+                    if (p2Brain != null && (p2Brain.bbState == BBState.Blockstun || p2Brain.bbState == BBState.BarrierBlockstun))
                     {
                         if (p1Brain.currentAttack != null && p1Brain.currentAttack.guard == BBGuard.Low)
                         {
@@ -434,6 +483,8 @@ namespace DemonIdol.Tests.PlayMode
                         }
                     }
                 }
+
+                DemonIdol.BlazBlue.BBFighterBrain.OnAnyAttackStarted -= onAnyAttack;
 
                 if (CombatTickEngine.Instance != null)
                 {

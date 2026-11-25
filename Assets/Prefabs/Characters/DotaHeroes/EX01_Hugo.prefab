@@ -2500,6 +2500,7 @@ GameObject:
   - component: {fileID: 7486079457860723190}
   - component: {fileID: 7326578082738592098}
   - component: {fileID: 660305529171905428}
+  - component: {fileID: 2267865703648408090}
   m_Layer: 0
   m_Name: EX01_Hugo
   m_TagString: Untagged
@@ -2536,7 +2537,7 @@ Animator:
   m_GameObject: {fileID: 8221994882499907626}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4d45659f9a6b2fa468cb678c1116e273, type: 3}
-  m_Controller: {fileID: 22100000, guid: beba96529fb2c40ef82bacf49b0c39a0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 62bbf99432dc24d589a8afa826528083, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2610,6 +2611,20 @@ MonoBehaviour:
   overrideController: {fileID: 22100000, guid: beba96529fb2c40ef82bacf49b0c39a0, type: 2}
   animator: {fileID: 533625789328063701}
   weaponRig: {fileID: 7326578082738592098}
+--- !u!114 &2267865703648408090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8221994882499907626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63390c6eadd784502ad0b5cb02c6ad3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MDI.Runtime::DemonIdol.BlazBlue.BBAnimationDriver
+  animator: {fileID: 533625789328063701}
+  brain: {fileID: 0}
 --- !u!1 &8484503832081327799
 GameObject:
   m_ObjectHideFlags: 0
