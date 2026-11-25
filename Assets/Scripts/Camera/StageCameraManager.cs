@@ -264,8 +264,17 @@ namespace DemonIdol.CameraControl
                 fCam.targetCharacterScreenFraction = entry.characterScreenFraction;
                 fCam.offset = entry.basePosition;
                 fCam.pitchAngle = entry.baseEulerAngles.x;
+                
                 // Do NOT hardcode-overwrite fCam.minDistanceZ / maxDistanceZ here;
                 // stage limits belong to StageDefinition / BBStagePrefabConfig.
+                // Synchronize stage camera limits if active stage config is present,
+                // preventing order-dependent clobbering of stage bounds.
+                var activeStage = DemonIdol.BlazBlue.BBStagePrefabConfig.ActiveConfig;
+                if (activeStage != null)
+                {
+                    fCam.ApplyStageCameraLimits(activeStage);
+                }
+
                 fCam.ConfigurePhysicalCamera();
             }
             else

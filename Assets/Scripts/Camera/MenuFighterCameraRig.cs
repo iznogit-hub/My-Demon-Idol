@@ -38,6 +38,7 @@ namespace DemonIdol.Cinematics
         private ChromaticAberration _chroma;
         private bool _ownsVolumeObject;
         private VolumeProfile _runtimeProfile;
+        private bool _isDuplicate;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStaticState()
@@ -49,6 +50,7 @@ namespace DemonIdol.Cinematics
         {
             if (Instance != null && Instance != this)
             {
+                _isDuplicate = true;
                 Destroy(gameObject);
                 return;
             }
@@ -61,17 +63,20 @@ namespace DemonIdol.Cinematics
 
         private void OnEnable()
         {
+            if (_isDuplicate) return;
             if (Instance == null) Instance = this;
             ApplyMenuOptics();
         }
 
         private void Start()
         {
+            if (_isDuplicate) return;
             ApplyQualitySettings();
         }
 
         private void OnDisable()
         {
+            if (_isDuplicate) return;
             if (_chromaPulseRoutine != null)
             {
                 StopCoroutine(_chromaPulseRoutine);
@@ -90,6 +95,7 @@ namespace DemonIdol.Cinematics
             {
                 Instance = null;
             }
+            if (_isDuplicate) return;
 
             if (_runtimeProfile != null)
             {
